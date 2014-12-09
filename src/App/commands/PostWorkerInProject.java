@@ -1,0 +1,44 @@
+package App.commands;
+
+import java.util.Map;
+
+import App.model.Projects.UsersRepository;
+
+/**
+ * POST /projects/{pid}/{type} - adiciona ao projecto identificado por pid um
+ * consultor do tipo type (manager ou consultant), dados os seguintes
+ * parâmetros:
+ * 
+ * consultant - identificador do consultor a inserir 
+ * Este comando retorna o sucesso ou insucesso da operação. Em caso de insucesso indica o motivo.
+ */
+public class PostWorkerInProject implements Command {
+
+	/**
+	 * Class that implements the {@link GetUser} factory, according to the 
+	 * AbstratFactory design pattern. 
+	 */
+	public static class Factory implements CommandFactory 
+	{
+		private final UsersRepository repository;
+		
+		public Factory(UsersRepository repository)
+		{
+			this.repository = repository;
+		}
+		
+		@Override
+		public Command newInstance(Map<String, String> parameters) 
+		{
+			// TODO
+			return null;
+		}
+	}
+	
+	@Override
+	public void execute() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
