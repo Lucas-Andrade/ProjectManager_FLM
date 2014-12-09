@@ -1,4 +1,4 @@
-package App.model.Projects;
+package utils;
 
 /**
  * Class that will represent a container of projects. Extends AContainer<Project>.

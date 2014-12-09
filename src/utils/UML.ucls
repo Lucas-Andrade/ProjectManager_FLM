@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.7" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="App.model.Projects.AContainer" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/App/model/Projects/AContainer.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="utils.AContainer" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/utils/AContainer.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1155" y="445"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="App.model.Projects.AWorker" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/App/model/Projects/AWorker.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="utils.AWorker" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/utils/AWorker.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="504" y="514"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -19,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="App.model.Projects.Consultant" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/App/model/Projects/Consultant.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="utils.Consultant" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/utils/Consultant.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="488" y="732"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="App.model.Projects.Element" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/App/model/Projects/Element.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="utils.Element" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/utils/Element.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="613" y="252"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,8 +37,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="5" language="java" name="App.model.Projects.ICost" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/App/model/Projects/ICost.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="5" language="java" name="utils.ICost" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/utils/ICost.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1040" y="270"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -46,8 +46,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="6" language="java" name="App.model.Projects.IName" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/App/model/Projects/IName.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="6" language="java" name="utils.IName" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/utils/IName.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1316" y="162"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -55,9 +55,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="7" language="java" name="App.model.Projects.InMemoryProjectsRepository" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/App/model/Projects/InMemoryProjectsRepository.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="utils.InMemoryProjectsRepository" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/utils/InMemoryProjectsRepository.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="722" y="1041"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -65,8 +64,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="App.model.Projects.Leader" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/App/model/Projects/Leader.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="utils.Leader" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/utils/Leader.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="563" y="876"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -74,8 +73,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="App.model.Projects.Local" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/App/model/Projects/Local.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="9" language="java" name="utils.Local" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/utils/Local.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="447" y="167"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -83,8 +82,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="App.model.Projects.NameTester" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/App/model/Projects/NameTester.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="10" language="java" name="utils.NameTester" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/utils/NameTester.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="119" y="849"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -92,8 +91,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="App.model.Projects.Project" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/App/model/Projects/Project.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="11" language="java" name="utils.Project" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/utils/Project.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="769" y="523"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -119,8 +118,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="App.model.Projects.ProjectsContainer" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/App/model/Projects/ProjectsContainer.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="14" language="java" name="utils.ProjectsContainer" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/utils/ProjectsContainer.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1024" y="658"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -128,8 +127,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="App.model.Projects.Team" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/App/model/Projects/Team.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="15" language="java" name="utils.Team" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/utils/Team.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1238" y="677"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -137,8 +136,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="16" language="java" name="App.model.Projects.UsersRepository" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/App/model/Projects/UsersRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="16" language="java" name="App.repository.UsersRepository" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/App/repository/UsersRepository.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="408" y="1033"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -146,8 +145,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="17" language="java" name="App.model.Projects.WorkersRepository" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/App/model/Projects/WorkersRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="17" language="java" name="App.repository.WorkersRepository" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/App/repository/WorkersRepository.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1064" y="-119"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

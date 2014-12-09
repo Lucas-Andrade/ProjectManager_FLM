@@ -2,7 +2,7 @@ package App.commands;
 
 import java.util.Map;
 
-import App.model.user.UserRepository;
+import App.repository.UserRepository;
 
 /**
  * POST /users - cria um novo utilizador, dados os seguintes parâmetros

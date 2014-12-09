@@ -1,4 +1,4 @@
-package App.model.Projects;
+package utils;
 
 /**
  * Class {@code Lider} whose objects will represent the managers and team lider of a project.

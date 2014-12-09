@@ -2,7 +2,7 @@ package App.commands;
 
 import java.util.Map;
 
-import App.model.Projects.UsersRepository;
+import App.repository.UsersRepository;
 
 /**
  * POST /projects/{pid}/subprojects - adiciona ao projecto identificado por pid

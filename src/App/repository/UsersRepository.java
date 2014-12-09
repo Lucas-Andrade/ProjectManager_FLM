@@ -1,5 +1,7 @@
-package App.model.Projects;
+package App.repository;
 import java.util.function.Predicate;
+
+import utils.Project;
 
 /**
  * Contract to be supported by product repositories (i.e. TravelAgency catalog

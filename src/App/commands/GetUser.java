@@ -2,7 +2,7 @@ package App.commands;
 
 import java.util.Map;
 
-import App.model.Projects.UsersRepository;
+import App.repository.UsersRepository;
 
 /**
  * @author amiguinhos do Maia

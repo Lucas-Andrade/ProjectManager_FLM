@@ -1,9 +1,10 @@
 /**
  * 
  */
-package App.model.user;
+package App.repository;
 
-import App.model.Repository;
+import App.elements.UserInterface;
+
 
 /**
  * @author amiguinhos do Maia

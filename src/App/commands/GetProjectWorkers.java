@@ -2,9 +2,9 @@ package App.commands;
 
 import java.util.Map;
 
-import App.model.Projects.Project;
-import App.model.Projects.UsersRepository;
-import App.model.Projects.WorkersRepository;
+import App.repository.UsersRepository;
+import App.repository.WorkersRepository;
+import utils.Project;
 
 
 /**

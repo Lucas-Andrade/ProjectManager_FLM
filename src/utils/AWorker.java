@@ -1,4 +1,4 @@
-package App.model.Projects;
+package utils;
 
 /**
  * Abstract class {@code AWorker} that will define the general fields shared by all types of

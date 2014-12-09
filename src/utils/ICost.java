@@ -1,4 +1,4 @@
-package App.model.Projects;
+package utils;
 
 /**
  * {@code ICost} Interface containing the method {@code getCost()} to be implemented by the classes

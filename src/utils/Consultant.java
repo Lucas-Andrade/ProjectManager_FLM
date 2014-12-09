@@ -1,4 +1,4 @@
-package App.model.Projects;
+package utils;
 
 /**
  * Class {@code Consultant} whose objects will represent the consultants that will constitute a

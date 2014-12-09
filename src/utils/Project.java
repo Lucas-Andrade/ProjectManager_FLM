@@ -1,4 +1,4 @@
-package App.model.Projects;
+package utils;
 
 /**
  * Class {@code Project} whose instances will represent a project.

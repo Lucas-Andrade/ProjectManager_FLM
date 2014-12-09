@@ -1,6 +1,6 @@
-package App.model.user;
+package App.elements;
 
-import App.model.DatabaseElements;
+
 
 /**
  * @author amiguinhos do Maia

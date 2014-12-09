@@ -1,4 +1,4 @@
-package App.model;
+package App.elements;
 
 /**
  * @author amiguinhos do Maia

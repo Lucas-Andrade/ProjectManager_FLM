@@ -6,11 +6,11 @@ import java.util.Collection;
 import java.util.Scanner;
 import java.util.TreeSet;
 
-import App.model.Projects.Consultant;
-import App.model.Projects.Leader;
-import App.model.Projects.Local;
-import App.model.Projects.Project;
-import App.model.Projects.Team;
+import utils.Consultant;
+import utils.Leader;
+import utils.Local;
+import utils.Project;
+import utils.Team;
 
 /**
  * Class for Project Manager. Create a container of projects (named MainProject) how store all the

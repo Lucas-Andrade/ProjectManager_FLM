@@ -1,4 +1,4 @@
-package App.model.Projects;
+package utils;
 /**
  * Class {@code Local} whose objects will represent the local of a project.
  * 

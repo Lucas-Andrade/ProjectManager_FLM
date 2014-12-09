@@ -1,4 +1,4 @@
-package App.model.Projects;
+package utils;
 
 /**
  * {@code IName} Interface containing the method {@code getName()} to be implemented by the classes

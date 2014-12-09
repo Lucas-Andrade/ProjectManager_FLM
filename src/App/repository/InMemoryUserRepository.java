@@ -1,6 +1,7 @@
-package App.model.user;
+package App.repository;
 
-import App.model.InMemoryRepo;
+import App.elements.UserInterface;
+
 
 /**
  * @author amiguinhos do Maia
