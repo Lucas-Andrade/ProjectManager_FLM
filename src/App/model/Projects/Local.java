@@ -12,8 +12,9 @@ public class Local implements ICost, IName {
 	 * @field cost - the cost associated with the local.
 	 */
 	private final String name;
-	private final String address;
 	private final double cost;
+	public final double latitude;
+	public final double longitude;
 
 	/**
 	 * Local contructor that wiil receive the local's name, address and cost as parameters.
@@ -28,16 +29,17 @@ public class Local implements ICost, IName {
 	 * @param cost
 	 *            - the cost associated with the local.
 	 */
-	public Local(String name, String address, double cost) {
+	public Local(double latitude, double longitude, String name, double cost) {
 
-		if (name == null || address == null || cost < 0)
+		if (name == null || latitude < - 90 || latitude > 90 || longitude < -180 || longitude > 180 || cost < 0)
 			throw new IllegalArgumentException();
 
 		this.name = name;
-		this.address = address;
 		this.cost = cost;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
-
+	
 	/**
 	 * Override of the method {@code getName()} from the {@code IName} Interface.
 	 */
@@ -45,14 +47,6 @@ public class Local implements ICost, IName {
 	public String getName() {
 
 		return name;
-	}
-
-	/**
-	 * @return {@code address}.
-	 */
-	public String getAddress() {
-
-		return address;
 	}
 
 	/**
@@ -70,6 +64,6 @@ public class Local implements ICost, IName {
 	@Override
 	public String toString() {
 
-		return getName() + ", " + getAddress() + ", cost: " + getCost() + "�";
+		return getName() + ", " + "(" + latitude + ", " + longitude + ")" + ", cost: " + getCost() + "�";
 	}
 }
