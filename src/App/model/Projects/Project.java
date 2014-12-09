@@ -8,7 +8,7 @@ package App.model.Projects;
 public class Project extends Element {
 
 	private final String name;
-	private final Leader manager;
+	private Leader manager;
 	private final Local local;
 	private final Team team;
 	private final ProjectsContainer projectsContainer;
@@ -17,29 +17,49 @@ public class Project extends Element {
 	 * Project constructor that will receive as parameter the name of the project, the local it will
 	 * take place, the manager in charge of the project and the team that will work on it.
 	 * 
-	 * Thows {@link IllegalArgumentException} if any of the given parameters are null.
+	 * Throws {@link IllegalArgumentException} if any of the given parameters are null.
 	 * 
-	 * @param name
-	 *            - the name of the project.
-	 * @param local
-	 *            - the local where the project will take place.
-	 * @param manager
-	 *            - the {@code Lider} in charge of the project.
-	 * @param team
-	 *            - the {@code Team} that will be responsible for executing the project.
+	 * @param name     - the name of the project.
+	 * @param local    - the local where the project will take place.
+	 * @param manager  - the {@code Lider} in charge of the project.
+	 * @param team     - the {@code Team} that will be responsible for executing the project.
 	 */
-	public Project(String name, Local local, Leader manager, Team team) {
-
+	public Project(String name, Local local, Leader manager, Team team) 
+	{
 		if (name == null || local == null || manager == null || team == null)
 			throw new IllegalArgumentException();
 
 		this.name = name;
 		this.local = local;
-		this.manager = manager;
 		this.team = team;
+		this.manager = manager;
 		this.projectsContainer = new ProjectsContainer();
 	}
 
+	
+	/**
+	 * Project constructor that will receive as parameter the name of the project, the local it will
+	 * take place, the manager in charge of the project and the team that will work on it.
+	 * 
+	 * Throws {@link IllegalArgumentException} if any of the given parameters are null.
+	 * 
+	 * @param name      - the name of the project.
+	 * @param local     - the local where the project will take place.
+	 * @param team      - the {@code Team} that will be responsible for executing the project.
+	 */
+	public Project(String name, Local local) 
+	{
+		if (name == null || local == null)
+			throw new IllegalArgumentException();
+
+		this.name = name;
+		this.local = local;
+		this.projectsContainer = new ProjectsContainer();
+		this.team = new Team();
+	}
+	
+	
+	
 	/**
 	 * Method that will allow a worker to be added to the {@code team}. If a worker with the same
 	 * name is already on the {@code team} or is the {@code manager} the worker will not be added
@@ -68,7 +88,7 @@ public class Project extends Element {
 	 * sub_project with the same name already exists it will not be added and the method will return
 	 * false.
 	 * 
-	 * Thows {@link IllegalArgumentException} if the given parameter is null.
+	 * Throws {@link IllegalArgumentException} if the given parameter is null.
 	 * 
 	 * @param project
 	 *            - the subproject to the added to the {@code projectsContainer}.
@@ -93,10 +113,10 @@ public class Project extends Element {
 	 * 
 	 * Uses the method {@code getWorkerByName()} from this same class as an auxiliary method.
 	 * 
-	 * Thows {@link IllegalArgumentException} if the given parameter is null.
+	 * Throws {@link IllegalArgumentException} if the given parameter is null.
 	 * 
 	 * @param name
-	 *            - The name ot the {@code AWorker} to be removed from the {@code team}.
+	 *            - The name of the {@code AWorker} to be removed from the {@code team}.
 	 * 
 	 * @return true if the worker is successfully removed and false otherwise.
 	 */
@@ -115,10 +135,10 @@ public class Project extends Element {
 	 * 
 	 * Uses the method {@code getSubProjectByName()} from this same class as an auxiliary method.
 	 * 
-	 * Thows {@link IllegalArgumentException} if the given parameter is null.
+	 * Throws {@link IllegalArgumentException} if the given parameter is null.
 	 * 
 	 * @param name
-	 *            - The name ot the {@code Project} to be removed from the {@code projectsContainer}
+	 *            - The name of the {@code Project} to be removed from the {@code projectsContainer}
 	 *            .
 	 * 
 	 * @return true if the subproject is successfully removed and false otherwise.
@@ -143,12 +163,12 @@ public class Project extends Element {
 	 * It will use the implementation of the method {@code getElementByName()} existing in the
 	 * {@link Team} class.
 	 * 
-	 * Thows {@link IllegalArgumentException} if the given parameter is null.
+	 * Throws {@link IllegalArgumentException} if the given parameter is null.
 	 * 
 	 * @param name
-	 *            - The name ot the {@code AWorker} to be found in the {@code team}.
+	 *            - The name of the {@code AWorker} to be found in the {@code team}.
 	 * 
-	 * @return returns the worker with correponding name or null if no worker in the {@code team}
+	 * @return returns the worker with corresponding name or null if no worker in the {@code team}
 	 *         verifies this condition.
 	 */
 	public AWorker getWorkerByName(String name) {
@@ -167,12 +187,12 @@ public class Project extends Element {
 	 * It will use the implementation of the method {@code getElementByName()} existing in the
 	 * {@link ProjectsContainer} class.
 	 * 
-	 * Thows {@link IllegalArgumentException} if the given parameter is null.
+	 * Throws {@link IllegalArgumentException} if the given parameter is null.
 	 * 
 	 * @param name
-	 *            - The name ot the {@code Project} to be found in the {@code projectsContainer}.
+	 *            - The name of the {@code Project} to be found in the {@code projectsContainer}.
 	 * 
-	 * @return returns the project with correponding name or null if no project with the given name
+	 * @return returns the project with corresponding name or null if no project with the given name
 	 *         exists.
 	 */
 	public Project getSubProjectByName(String name) {
