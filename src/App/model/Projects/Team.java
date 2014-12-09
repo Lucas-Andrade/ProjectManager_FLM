@@ -12,22 +12,24 @@ public class Team extends AContainer<AWorker> implements IName {
 	 */
 	private String name;
 
-	/**
-	 * Team constructor that will receive as parameters the team's name and leader.
-	 * 
-	 * Thows {@link IllegalArgumentException} if any of the given parameters are null.
-	 * 
-	 * @param name - the name of the team.
-	 * @param leader - the leader of the team.
-	 */
-	public Team(String name, Leader leader) {
+//	/**
+//	 * Team constructor that will receive as parameters the team's name and leader.
+//	 * 
+//	 * Thows {@link IllegalArgumentException} if any of the given parameters are null.
+//	 * 
+//	 * @param name - the name of the team.
+//	 * @param leader - the leader of the team.
+//	 */
+//	public Team(String name, Leader leader) {
+//		
+//		if(name == null || leader == null)
+//			throw new IllegalArgumentException();
+//		
+//		this.name = name;
+//		addElement(leader);
+//	}
 		
-		if(name == null || leader == null)
-			throw new IllegalArgumentException();
-		
-		this.name = name;
-		addElement(leader);
-	}
+	
 
 	/**
 	 * Override of the method {@code getELementByName()} from {@code AContainer}.
