@@ -2,6 +2,7 @@ package App.commands;
 
 import java.util.Map;
 
+import App.elements.UserInterface;
 import App.repository.UsersRepository;
 
 /**
@@ -10,6 +11,10 @@ import App.repository.UsersRepository;
  */
 public class GetUser implements Command
 {
+	
+	private String username;
+	private final UsersRepository repository;
+	
 	/**
 	 * Class that implements the {@link GetUser} factory, according to the 
 	 * AbstratFactory design pattern. 
@@ -26,15 +31,21 @@ public class GetUser implements Command
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			// TODO
-			return null;
+			return new GetUser(repository, parameters.get("{username}"));
 		}
-		
 	}
+	
+	private GetUser(UsersRepository repository, String username)
+	{
+		this.username=username;
+		this.repository=repository;
+	}
+	
 	@Override
 	public void execute()
 	{
-		// TODO
+		UserInterface user = repository.getUserByUsername(username);
+		System.out.println(user.toString());
 	}
 
 }

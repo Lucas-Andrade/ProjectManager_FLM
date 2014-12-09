@@ -8,11 +8,11 @@ import App.elements.UserInterface;
  *
  */
 public class InMemoryUserRepository extends InMemoryRepo<UserInterface> implements
-		UserRepository
+		UsersRepository
 {
 
 	@Override
-	public UserInterface getUserByLoginName(String loginName)
+	public UserInterface getUserByUsername(String loginName)
 	{
 		for (UserInterface user : super.getDatabaseElements())
 			if (user.getLoginName().equals(loginName))
