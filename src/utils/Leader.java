@@ -1,5 +1,7 @@
 package utils;
 
+
+
 /**
  * Class {@code Lider} whose objects will represent the managers and team lider of a project.
  * 
@@ -31,9 +33,9 @@ public class Leader extends Consultant {
 	 * @param bonus
 	 *            - bonus received by the worker for being a lider or a manager.
 	 */
-	public Leader(String name, double costPerHour, double hoursWorked, double bonus) {
+	public Leader(String name, double costPerHour, double hoursWorked, double bonus, long cid) {
 
-		super(name, costPerHour, hoursWorked);
+		super(name, costPerHour, hoursWorked, cid);
 
 		if (bonus < 0)
 			throw new IllegalArgumentException();

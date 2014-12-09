@@ -16,6 +16,7 @@ public abstract class AWorker extends Element {
 	private final String name;
 	private final double costPerHour;
 	private final double hoursWorked;
+	private final long cid;
 
 	/**
 	 * AWorker constructor that will receive the worker's name, cost per hour and the total amount
@@ -31,7 +32,7 @@ public abstract class AWorker extends Element {
 	 * @param hoursWorked
 	 *            - total amount of hours worked by the worker.
 	 */
-	public AWorker(String name, double costPerHour, double hoursWorked) {
+	public AWorker(String name, double costPerHour, double hoursWorked, long cid) {
 
 		if (name == null || costPerHour < 0 || hoursWorked < 0)
 			throw new IllegalArgumentException();
@@ -39,6 +40,7 @@ public abstract class AWorker extends Element {
 		this.costPerHour = costPerHour;
 		this.hoursWorked = hoursWorked;
 		this.name = name;
+		this.cid = cid;
 	}
 
 	/**
@@ -81,8 +83,8 @@ public abstract class AWorker extends Element {
 	@Override
 	public String toString() {
 
-		return this.getName() + ", payment per hour:" + this.getCostPerHour() + "â‚¬" + ", cost: "
-				+ this.getCost() + "â‚¬";
+		return this.getName() + ", payment per hour:" + this.getCostPerHour() + "€" + ", cost: "
+				+ this.getCost() + "€";
 	}
 
 	/**

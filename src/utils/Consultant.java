@@ -1,5 +1,7 @@
 package utils;
 
+
+
 /**
  * Class {@code Consultant} whose objects will represent the consultants that will constitute a
  * {@code Team}
@@ -24,8 +26,8 @@ public class Consultant extends AWorker {
 	 * @param hoursWorked
 	 *            - total amount of hours worked by the worker.
 	 */
-	public Consultant(String name, double costPerHour, double hoursWorked) {
+	public Consultant(String name, double costPerHour, double hoursWorked, long cid) {
 
-		super(name, costPerHour, hoursWorked);
+		super(name, costPerHour, hoursWorked, cid);
 	}
 }

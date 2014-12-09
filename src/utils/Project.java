@@ -1,5 +1,11 @@
 package utils;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.TreeSet;
+
 /**
  * Class {@code Project} whose instances will represent a project.
  * 
@@ -12,6 +18,7 @@ public class Project extends Element {
 	private final Local local;
 	private final Team team;
 	private final ProjectsContainer projectsContainer;
+	private final long pid;
 
 	/**
 	 * Project constructor that will receive as parameter the name of the project, the local it will
@@ -24,9 +31,9 @@ public class Project extends Element {
 	 * @param manager  - the {@code Lider} in charge of the project.
 	 * @param team     - the {@code Team} that will be responsible for executing the project.
 	 */
-	public Project(String name, Local local, Leader manager, Team team) 
+	public Project(String name, Local local, Leader manager, Team team, long pid) 
 	{
-		if (name == null || local == null || manager == null || team == null)
+		if (name == null || local == null || team == null) // o manager pode ser null.
 			throw new IllegalArgumentException();
 
 		this.name = name;
@@ -34,6 +41,7 @@ public class Project extends Element {
 		this.team = team;
 		this.manager = manager;
 		this.projectsContainer = new ProjectsContainer();
+		this.pid = pid;
 	}
 
 	
@@ -47,15 +55,17 @@ public class Project extends Element {
 	 * @param local     - the local where the project will take place.
 	 * @param team      - the {@code Team} that will be responsible for executing the project.
 	 */
-	public Project(String name, Local local) 
+	public Project(String name, Local local, long pid) 
 	{
-		if (name == null || local == null)
-			throw new IllegalArgumentException();
-
-		this.name = name;
-		this.local = local;
-		this.projectsContainer = new ProjectsContainer();
-		this.team = new Team();
+		this(name, local, null, new Team(), pid);	
+//		if (name == null || local == null)
+//			throw new IllegalArgumentException();
+//
+//		this.name = name;
+//		this.local = local;
+//		this.projectsContainer = new ProjectsContainer();
+//		this.team = new Team();
+//		this.pid = PID.getNextPIDToUseAndUpdate();
 	}
 	
 	
@@ -246,8 +256,8 @@ public class Project extends Element {
 	@Override
 	public String toString() {
 
-		// TODO Ã‰ difÃ­cil distinguir quais os subprojectos e quais os projectos.
-		return getName() + ", cost: " + getCost() + "â‚¬" + "\r\nLocal: " + local.toString()
+		// TODO É difícil distinguir quais os subprojectos e quais os projectos.
+		return getName() + ", cost: " + getCost() + "€" + "\r\nLocal: " + local.toString()
 				+ "\r\nManager: " + manager.toString() + "\r\nTeam: " + team.toString() + "\r\n"
 				+ projectsContainer.toString() + "\n";
 	}
