@@ -3,12 +3,12 @@
  */
 package app.resultsOutputMethods;
 
-import java.io.OutputStream;
+import java.io.IOException;
 
 /**
  *
  */
 public interface ResultOutputMethod
 {
-	public void giveResults(OutputStream out);
+	public void giveResults(Object... result) throws IOException;
 }
