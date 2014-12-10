@@ -17,8 +17,9 @@ public class GetUser implements Command
 	private String username;
 	private final UsersRepository repository;
 	/**
-	 * The {@link CommandParser.Node.content} to be used (between "{" and "}") in
-	 * the {@code CommandParser.Node} that has the {@code GetUser.Factory} in
+	 * The {@link CommandParser.Node.content} to be used (between "{" and "}", see
+	 * {@link CommandParser.Node.isPlaceHolderNode}) in the
+	 * {@code CommandParser.Node} that has the {@code GetUser.Factory} in
 	 * the field {@link CommandParser.Node.factory}.
 	 */
 	public static final String pathholderParameter = "username";
