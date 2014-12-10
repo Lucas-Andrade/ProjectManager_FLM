@@ -9,4 +9,6 @@ package App.commands;
 public interface Command 
 {
 	void execute();
+	// TODO em vez dum OutputStream, não seria melhor um Writer? Nós só queremos
+	// uma stream de caracteres, ou no futuro queremos mais?
 }
