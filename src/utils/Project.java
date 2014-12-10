@@ -1,10 +1,5 @@
 package utils;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.TreeSet;
 
 /**
  * Class {@code Project} whose instances will represent a project.
@@ -256,8 +251,8 @@ public class Project extends Element {
 	@Override
 	public String toString() {
 
-		// TODO É difícil distinguir quais os subprojectos e quais os projectos.
-		return getName() + ", cost: " + getCost() + "€" + "\r\nLocal: " + local.toString()
+		// TODO ï¿½ difï¿½cil distinguir quais os subprojectos e quais os projectos.
+		return getName() + ", cost: " + getCost() + "ï¿½" + "\r\nLocal: " + local.toString()
 				+ "\r\nManager: " + manager.toString() + "\r\nTeam: " + team.toString() + "\r\n"
 				+ projectsContainer.toString() + "\n";
 	}
@@ -332,5 +327,25 @@ public class Project extends Element {
 
 		return true;
 	}
+
+/**
+ * 
+ * @return
+ */
+	public Leader getManager() 
+	{	
+		return manager;
+	}
+
+
+	/**
+	 * 
+	 * @param manager the manager to set
+	 */
+	public void setManager(Leader manager) {
+		this.manager = manager;
+	}
+	
+	
 
 }

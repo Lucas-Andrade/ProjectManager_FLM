@@ -1,10 +1,12 @@
 package App.commands;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
-import App.repository.UsersRepository;
-import App.repository.WorkersRepository;
-import utils.Project;
+import utils.AWorker;
+import utils.Leader;
+import App.repository.ProjectRepository;
 
 
 /**
@@ -20,34 +22,65 @@ public class GetProjectWorkers implements Command
 	 */
 	public static class Factory implements CommandFactory {
 
-		private final WorkersRepository repository;
+		private final ProjectRepository repository;
 		
-		public Factory (WorkersRepository repository)
+		public Factory (ProjectRepository repository)
 		{
 			this.repository = repository;
 		}
 		
 		@Override
-		public Command newInstance(Map<String, String> parameters) {
-			return null;
-			
-		}	
+		public Command newInstance(Map<String, String> parameters) 
+		{
+			return new GetProjectWorkers(repository, parameters);
+		}
 	}
 
 	
-	
-	private GetProjectWorkers (WorkersRepository repository, long id)
+	private final ProjectRepository projectRepository;
+	private String typeWorker;
+	private final long projectId;
+	/**
+	 * 
+	 * @param repository
+	 * @param id
+	 */
+	private GetProjectWorkers (ProjectRepository repository, Map<String, String> parameters)
 	{
-		
+		this.projectRepository = repository;
+		final String ID = "id";
+		this.projectId = Long.parseLong(parameters.get("{pid}"));
+		this.typeWorker = parameters.get("{type}");
 	}
 	
 	@Override
-	public void execute() 
+	public void execute(OutputStream out) throws IOException 
 	{
-		
-		
+		if (typeWorker.equals("Manager"))
+		{
+			Leader manager = projectRepository.getProjectById(projectId).getManager();
+			out.write(manager.toString().getBytes());
+			out.close();
+			return;
+		}
+		else if(typeWorker.equals("Consultant"))  
+		{
+			Iterable<AWorker> workers = projectRepository.getProjectById(projectId).getTeam();
+			StringBuilder builder = new StringBuilder();
+			for(AWorker c : workers)
+			{
+				builder.append(c.toString()).append("\n");
+				
+			}
+			out.write(builder.toString().getBytes());
+			out.close();
+			return;
+		}
+		else
+			throw new IllegalArgumentException();
+			
 	}
-
-
 }
+
+
 
