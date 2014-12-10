@@ -17,4 +17,6 @@ public interface UsersRepository extends Repository<UserInterface>
 	 * @return the instance with the given identifier
 	 */
 	public UserInterface getUserByUsername(String loginName);
+
+	public UserInterface[] getAllUsers();
 }

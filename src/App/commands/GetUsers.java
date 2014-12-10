@@ -1,7 +1,10 @@
 package App.commands;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
+import App.elements.UserInterface;
 import App.repository.UsersRepository;
 
 /**
@@ -10,6 +13,8 @@ import App.repository.UsersRepository;
  */
 public class GetUsers implements Command {
 
+	private final UsersRepository repository;
+	
 	/**
 	 * Class that implements the {@link GetUser} factory, according to the 
 	 * AbstratFactory design pattern. 
@@ -26,15 +31,29 @@ public class GetUsers implements Command {
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			// TODO
-			return null;
+			return new GetUsers(repository);
 		}
+	}
+
 	
-}
-@Override
-public void execute()
-{
-	// TODO
-}
+	public GetUsers(UsersRepository repository)
+	{
+		this.repository = repository;
+	}
+	
+	@Override
+	public void execute(OutputStream out) throws IOException 
+	{
+		UserInterface[] users = repository.getAllUsers();
+		
+		StringBuilder builder = new StringBuilder();
+		for(UserInterface user : users)
+		{
+			builder.append(user.toString()).append("\n");
+		}
+		
+		out.write(builder.toString().getBytes());
+		out.flush();
+	}
 
 }
