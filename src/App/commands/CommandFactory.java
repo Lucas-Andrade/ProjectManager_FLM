@@ -7,5 +7,10 @@ import java.util.Map;
  */
 public interface CommandFactory     // Padrão de desenho  AbstractFactory
 {
+	/**
+	 * Generates a new instance of {@code Command}. 
+	 * @param parameters
+	 * @return
+	 */
 	public Command newInstance(Map<String,String> parameters);
 }

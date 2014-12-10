@@ -25,7 +25,12 @@ public class CommandParser {
 	 */
 	private static class Node {
 
+		/**
+		 * If {@code Node.content} starts with "{" and ends with "}", then this {@code Node}
+		 * is a placeholder. Also {@see Node.isPlaceHolderNode}.
+		 */
 		public final String content;
+		
 		public final Map<String, Node> fixedChilds;
 		public Node placeholderChild;              // nó placeholder
 		
