@@ -53,18 +53,7 @@ public class GetUsers implements Command
 		}
 		
 		out.write(builder.toString().getBytes());
-		out.flush();
-	}
-
-	@Override
-	public void execute(OutputStream writer) throws IOException
-	{
-		for(UserInterface user : repository.getDatabaseElements())
-		{
-			writer.write(user.toString().getBytes());
-			writer.close();
-		}
-
+		out.close();
 	}
 
 }

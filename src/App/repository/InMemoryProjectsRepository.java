@@ -1,11 +1,11 @@
-package utils;
+package App.repository;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.function.Predicate;
 
-import App.repository.UsersRepository;
+import utils.Project;
 
 /**
  * Class that implements an in-memory product repository (i.e. an ephemeral TravelAgency 
