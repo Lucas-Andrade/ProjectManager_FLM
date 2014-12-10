@@ -37,24 +37,18 @@ public class GetUser implements Command
 		}
 	}
 	
-<<<<<<< HEAD
-=======
+
 	private GetUser(UsersRepository repository, String username)
 	{
 		this.username=username;
 		this.repository=repository;
 	}
 	
->>>>>>> 58c2088aa06b7777bd63eef3b499ba21ebaad96b
 	@Override
 	public void execute(OutputStream out)
 	{
-<<<<<<< HEAD
-		
-=======
 		UserInterface user = repository.getUserByUsername(username);
 		System.out.println(user.toString());
->>>>>>> 58c2088aa06b7777bd63eef3b499ba21ebaad96b
 	}
 
 }
