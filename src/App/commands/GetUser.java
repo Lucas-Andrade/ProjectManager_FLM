@@ -16,6 +16,12 @@ public class GetUser implements Command
 	
 	private String username;
 	private final UsersRepository repository;
+	/**
+	 * The {@link CommandParser.Node.content} to be used (between "{" and "}") in
+	 * the {@code CommandParser.Node} that has the {@code GetUser.Factory} in
+	 * the field {@link CommandParser.Node.factory}.
+	 */
+	public static final String pathholderParameter = "username";
 	
 	/**
 	 * Class that implements the {@link GetUser} factory, according to the 
@@ -33,7 +39,7 @@ public class GetUser implements Command
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			return new GetUser(repository, parameters.get("{username}"));
+			return new GetUser(repository, parameters.get(pathholderParameter));
 		}
 	}
 	
@@ -49,7 +55,7 @@ public class GetUser implements Command
 	{
 		UserInterface user = repository.getUserByUsername(username);
 		out.write(user.toString().getBytes());
-		out.flush();
+		out.close();
 	}
 
 }
