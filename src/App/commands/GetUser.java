@@ -45,10 +45,11 @@ public class GetUser implements Command
 	}
 	
 	@Override
-	public void execute(OutputStream out)
+	public void execute(OutputStream out) throws IOException
 	{
 		UserInterface user = repository.getUserByUsername(username);
-		System.out.println(user.toString());
+		out.write(user.toString().getBytes());
+		out.flush();
 	}
 
 }

@@ -1,5 +1,6 @@
 package App.commands;
 
+import java.io.IOException;
 import java.io.OutputStream;
 
 
@@ -10,5 +11,5 @@ import java.io.OutputStream;
  */
 public interface Command 
 {
-	void execute(OutputStream out);
+	void execute(OutputStream out) throws IOException;
 }
