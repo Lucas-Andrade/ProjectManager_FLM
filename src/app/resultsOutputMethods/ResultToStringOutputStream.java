@@ -4,22 +4,17 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- *
+ * Class that gives to an {@code OutpuStream} the results has {@code String}s.
  */
-public class ResultToString implements ResultOutputMethod
+public class ResultToStringOutputStream extends OutputResultToStream
 {
-
-	/**
-	 * 
-	 */
-	OutputStream out;
 	
 	/**
-	 * @param out
+	 * @see super
 	 */
-	public ResultToString(OutputStream out)
+	public ResultToStringOutputStream(OutputStream out)
 	{
-		this.out = out;
+		super(out);
 	}
 
 	/* (non-Javadoc)
