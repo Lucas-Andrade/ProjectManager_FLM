@@ -2,7 +2,7 @@ package App.commands;
 
 import java.util.Map;
 
-import App.repository.UserRepository;
+import App.repository.UsersRepository;
 
 /**
  * POST /users - cria um novo utilizador, dados os seguintes parâmetros
@@ -20,13 +20,13 @@ public class PostUsers implements Command
 	 */
 	public static class Factory implements CommandFactory {
 
-		private final UserRepository repository;
+		private final UsersRepository repository;
 		private String username;
 		private String password;
 		private String email;
 		private String fullname;
 		
-		public Factory(UserRepository repository)
+		public Factory(UsersRepository repository)
 		{
 			this.repository = repository;
 		}
