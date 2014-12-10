@@ -1,5 +1,7 @@
 package App.commands;
 
+import java.io.OutputStream;
+
 
 // ainda vai ser alterada
 
@@ -8,5 +10,5 @@ package App.commands;
  */
 public interface Command 
 {
-	void execute();
+	void execute(OutputStream out);
 }

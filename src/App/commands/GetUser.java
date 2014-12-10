@@ -1,5 +1,7 @@
 package App.commands;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
 import App.repository.UsersRepository;
@@ -31,10 +33,11 @@ public class GetUser implements Command
 		}
 		
 	}
+	
 	@Override
-	public void execute()
+	public void execute(OutputStream out)
 	{
-		// TODO
+		
 	}
 
 }
