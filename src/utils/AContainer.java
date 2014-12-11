@@ -114,11 +114,19 @@ public abstract class AContainer<elements extends Element> implements ICost {
 	@Override
 	public String toString() {
 
-		String containerElementsString = "";
+		StringBuilder builder = new StringBuilder();
 
 		for (elements element : elementsList)
-			containerElementsString += element.toString() + "\r\n";
+			builder.append(element.toString()).append(" / ");
 
-		return containerElementsString;
+		return builder.toString();
+	}
+	
+	/**
+	 * @return the number of elements the container contains
+	 */
+	public int size()
+	{
+		return elementsList.size();
 	}
 }

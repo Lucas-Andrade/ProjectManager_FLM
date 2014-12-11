@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
-import app.repository.ProjectRepository;
-import app.repository.UsersRepository;
+import app.repository.UserRepository;
+
 
 public class GetWorkerInProject implements Command {
 
@@ -15,9 +15,9 @@ public class GetWorkerInProject implements Command {
 	 */
 	public static class Factory implements CommandFactory 
 	{
-		private final ProjectRepository repository;
+		private final UserRepository repository;
 		
-		public Factory(ProjectRepository repository)
+		public Factory(UserRepository repository)
 		{
 			this.repository = repository;
 		}
@@ -25,13 +25,9 @@ public class GetWorkerInProject implements Command {
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			return new GetWorkerInProject(repository, parameters);
+			// TODO
+			return null;
 		}
-	}
-
-	public GetWorkerInProject(ProjectRepository repository,
-			Map<String, String> parameters) {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

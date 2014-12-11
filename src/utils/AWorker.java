@@ -1,12 +1,14 @@
 package utils;
 
+import app.elements.WorkerInterface;
+
 /**
  * Abstract class {@code AWorker} that will define the general fields shared by all types of
  * workers.
  * 
  * Extends {@link Element}.
  */
-public abstract class AWorker extends Element {
+public abstract class AWorker extends Element implements WorkerInterface{
 
 	/**
 	 * @field name - String with the name of the worker.
@@ -83,8 +85,15 @@ public abstract class AWorker extends Element {
 	@Override
 	public String toString() {
 
-		return this.getName() + ", payment per hour:" + this.getCostPerHour() + "€" + ", cost: "
-				+ this.getCost() + "€";
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append("Name: ").append(name).append(", Payment per hour: ").append(costPerHour)
+			.append(" Euros, Cost: ").append(getCost()).append(" Euros");
+		
+		return builder.toString();
+		
+//		return this.getName() + ", payment per hour:" + this.getCostPerHour() + "€" + ", cost: "
+//				+ this.getCost() + "€";
 	}
 
 	/**

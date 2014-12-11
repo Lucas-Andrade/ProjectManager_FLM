@@ -1,8 +1,11 @@
 package app.commands;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
-import app.repository.UsersRepository;
+import app.commands.exceptions.CommandException;
+import app.repository.UserRepository;
 
 /**
  * POST /projects/{pid}/subprojects - adiciona ao projecto identificado por pid
@@ -11,7 +14,12 @@ import app.repository.UsersRepository;
  * subproject - identificador do subprojecto a inserir 
  * Este comando retorna o sucesso ou insucesso da operação. Em caso de insucesso indica o motivo.
  */
-public class PostSubproject implements Command {
+public class PostSubproject extends BaseCommand implements Command {
+
+	public PostSubproject(Map<String, String> parameters) {
+		super(parameters);
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * Class that implements the {@link GetUser} factory, according to the 
@@ -19,9 +27,9 @@ public class PostSubproject implements Command {
 	 */
 	public static class Factory implements CommandFactory 
 	{
-		private final UsersRepository repository;
+		private final UserRepository repository;
 		
-		public Factory(UsersRepository repository)
+		public Factory(UserRepository repository)
 		{
 			this.repository = repository;
 		}
@@ -33,11 +41,24 @@ public class PostSubproject implements Command {
 			return null;
 		}
 	}
-	
+
 	@Override
-	public void execute() {
+	public void execute(OutputStream out) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	protected String[] getDemandingParametres() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void internalExecute() throws CommandException {
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 }

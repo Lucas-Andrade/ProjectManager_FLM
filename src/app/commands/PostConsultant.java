@@ -1,15 +1,22 @@
 package app.commands;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
-
-import app.repository.UsersRepository;
+import app.commands.exceptions.CommandException;
+import app.repository.UserRepository;
 
 /**
  * POST /consultants - cria um novo consultor, dados os seguintes parâmetros:
  * name - nome do consultor
  * priceHour - preço/hora do consultor
  */
-public class PostConsultant implements Command {
+public class PostConsultant extends BaseCommand implements Command {
+
+	public PostConsultant(Map<String, String> parameters) {
+		super(parameters);
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * Class that implements the {@link GetUser} factory, according to the 
@@ -17,9 +24,9 @@ public class PostConsultant implements Command {
 	 */
 	public static class Factory implements CommandFactory 
 	{
-		private final UsersRepository repository;
+		private final UserRepository repository;
 		
-		public Factory(UsersRepository repository)
+		public Factory(UserRepository repository)
 		{
 			this.repository = repository;
 		}
@@ -31,9 +38,21 @@ public class PostConsultant implements Command {
 			return null;
 		}
 	}
-	
+
 	@Override
-	public void execute() {
+	public void execute(OutputStream out) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected String[] getDemandingParametres() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void internalExecute() throws CommandException {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,16 +1,20 @@
 package app.commands;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
-import app.repository.UsersRepository;
+import app.commands.exceptions.CommandException;
 import utils.Project;
 
 /**
  * GET /projects/{pid}/subprojects - retorna todos os subprojectos do projecto
  * identificado por pid, com clara distinção entre projectos e subprojectos.
  */
-public class GetSubproject implements Command 
+public class GetSubproject extends BaseCommand implements Command 
 {
+	
+
 	/**
 	 * Class that implements the {@link GetSubproject} factory, according to the 
 	 * AbstratFactory design pattern. 
@@ -34,15 +38,28 @@ public class GetSubproject implements Command
 //	}
 	
 
+	public GetSubproject(Map<String, String> parameters) {
+		super(parameters);
+		// TODO Auto-generated constructor stub
+	}
 
-	private GetSubproject(UsersRepository repository, long id)
-	{
+
+
+	@Override
+	public void execute(OutputStream out) throws IOException {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void execute()   // alterar para que imprimir para a consola não seja responsabilidade sua
-	{
+	protected String[] getDemandingParametres() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void internalExecute() throws CommandException {
+		// TODO Auto-generated method stub
 		
 	}
 

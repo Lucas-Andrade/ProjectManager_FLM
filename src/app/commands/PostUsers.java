@@ -1,8 +1,11 @@
 package app.commands;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
-import app.repository.UsersRepository;
+import app.commands.exceptions.CommandException;
+import app.repository.UserRepository;
 
 /**
  * POST /users - cria um novo utilizador, dados os seguintes parâmetros
@@ -12,21 +15,26 @@ import app.repository.UsersRepository;
  * fullname - nome completo (opcional)
  *
  */
-public class PostUsers implements Command
+public class PostUsers extends BaseCommand implements Command
 {
+	public PostUsers(UserRepository repository, Map<String, String> parameters) {
+		super(parameters);
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * Class that implements the {@link GetProducts} factory, according to the 
 	 * AbstratFactory design pattern. 
 	 */
 	public static class Factory implements CommandFactory {
 
-		private final UsersRepository repository;
+		private final UserRepository repository;
 		private String username;
 		private String password;
 		private String email;
 		private String fullname;
 		
-		public Factory(UsersRepository repository)
+		public Factory(UserRepository repository)
 		{
 			this.repository = repository;
 		}
@@ -36,14 +44,28 @@ public class PostUsers implements Command
 		{
 			if(parameters.get(username)==null||parameters.get(username)==null)
 				throw new IllegalArgumentException();
-			return new PostUsers();
+			return new PostUsers(repository, parameters);
 		}
 		
 	}
+
 	@Override
-	public void execute() {
-		
+	public void execute(OutputStream out) throws IOException {
+		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	protected String[] getDemandingParametres() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void internalExecute() throws CommandException {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

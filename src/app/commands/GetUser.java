@@ -4,18 +4,19 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
+import app.commands.exceptions.CommandException;
 import app.elements.UserInterface;
-import app.repository.UsersRepository;
+import app.repository.UserRepository;
 
 /**
  * @author amiguinhos do Maia
  *GET /users/{username} - retorna informação sobre o utilizador com nome de utilizador username.
  */
-public class GetUser implements Command
+public class GetUser extends BaseCommand implements Command
 {
 	
 	private String username;
-	private final UsersRepository repository;
+	private final UserRepository repository;
 	
 	/**
 	 * The {@link CommandParser.Node.content} to be used (between "{" and "}", see
@@ -31,9 +32,9 @@ public class GetUser implements Command
 	 */
 	public static class Factory implements CommandFactory 
 	{
-		private final UsersRepository repository;
+		private final UserRepository repository;
 		
-		public Factory(UsersRepository repository)
+		public Factory(UserRepository repository)
 		{
 			this.repository = repository;
 		}
@@ -47,14 +48,15 @@ public class GetUser implements Command
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			return new GetUser(repository, parameters.get(pathholderParameter));
+			return new GetUser(repository, parameters);
 		}
 	}
 	
 
-	private GetUser(UsersRepository repository, String username)
+	private GetUser(UserRepository repository, Map<String, String> parameters)
 	{
-		this.username=username;
+		super(parameters);
+		this.username=parameters.get(pathholderParameter);
 		this.repository=repository;
 	}
 	
@@ -64,6 +66,18 @@ public class GetUser implements Command
 		UserInterface user = repository.getUserByUsername(username);
 		out.write(user.toString().getBytes());
 		out.close();
+	}
+
+	@Override
+	protected String[] getDemandingParametres() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void internalExecute() throws CommandException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

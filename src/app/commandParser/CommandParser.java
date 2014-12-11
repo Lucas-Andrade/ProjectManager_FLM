@@ -9,7 +9,7 @@ import app.commands.CommandFactory;
 
 /**
  * Class whose instances are responsible for translating command strings into
- * their {@link app.commands.Command} instance counterparts.
+ * their {@link App.commands.Command} instance counterparts.
  * 
  * Implementation notes: (TODO)
  */

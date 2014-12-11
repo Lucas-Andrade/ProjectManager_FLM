@@ -1,18 +1,20 @@
+
 package app.repository;
+
 import java.util.Collection;
 import java.util.Collections;
-import java.util.TreeSet;
+import java.util.HashSet;
 
 import utils.Project;
 
-//ESTA CLASSE N�O TEM UTILIZA��O, TALVEZ NO FUTURO...
 /**
  * Abstract class whose purpose will be to store all projects in existence and control
  * the projects IDs (all PIDs have to be different).
  */
-public class InMemoryProjectRepository
-{
-	private static final Collection<Project> projects = new TreeSet<>();
+public class InMemoryProjectRepo extends InMemoryRepo<Project> implements ProjectRepository{
+	
+	private static final Collection<Project> projects = new HashSet<>();
+
 	private static long nextPIDToBeUsed = 1;
 
 	public static boolean addProject(Project project) {
@@ -43,5 +45,12 @@ public class InMemoryProjectRepository
 			projectsStr += project.toString();
 		return projectsStr;
 	}
-}
 
+	@Override
+	public Project getProjectById(long projectId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+}

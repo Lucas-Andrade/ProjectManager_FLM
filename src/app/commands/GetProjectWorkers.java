@@ -3,7 +3,7 @@ package app.commands;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
-
+import app.commands.exceptions.CommandException;
 import app.repository.ProjectRepository;
 import utils.AWorker;
 import utils.Leader;
@@ -13,7 +13,7 @@ import utils.Leader;
  * GET /projects/{pid}/{type} - retorna o(s) consultor(es) do tipo type (manager
  * ou consultant), do projecto identificado por pid.
  */
-public class GetProjectWorkers implements Command      
+public class GetProjectWorkers extends BaseCommand implements Command      
 {
 
 	/**
@@ -47,6 +47,7 @@ public class GetProjectWorkers implements Command
 	 */
 	private GetProjectWorkers (ProjectRepository repository, Map<String, String> parameters)
 	{
+		super(parameters);
 		this.projectRepository = repository;
 		final String ID = "id";
 		this.projectId = Long.parseLong(parameters.get("{pid}"));
@@ -79,6 +80,18 @@ public class GetProjectWorkers implements Command
 		else
 			throw new IllegalArgumentException();
 			
+	}
+
+	@Override
+	protected String[] getDemandingParametres() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void internalExecute() throws CommandException {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

@@ -7,14 +7,8 @@ import java.util.function.Predicate;
 
 import app.elements.DatabaseElements;
 
-/**
- * @author amiguinhos do Maia
- * @param <T>
- *
- */
-public abstract class InMemoryRepo<T extends DatabaseElements> implements
-		Repository<T>
-{
+public abstract class InMemoryRepo<T extends DatabaseElements> implements Repository<DatabaseElements>{
+
 	/**
 	 * Holds the database.
 	 */
@@ -23,8 +17,8 @@ public abstract class InMemoryRepo<T extends DatabaseElements> implements
 	/**
 	 * {@see ProductRepository#getProducts()}
 	 */
-	@Override
-	public Iterable<T> getDatabaseElements()
+
+	public Iterable<DatabaseElements> getDatabaseElements()
 	{
 		return Collections.unmodifiableCollection(database);
 	}
@@ -52,13 +46,13 @@ public abstract class InMemoryRepo<T extends DatabaseElements> implements
 	 * @throws IllegalArgumentException
 	 *             if the received DatabaseElement is {@code null}
 	 */
-	@Override
-	public void insert(T DatabaseElement)
+
+	public void insert(T databaseElement)
 	{
-		if (DatabaseElement == null)
+		if (databaseElement == null)
 			throw new IllegalArgumentException();
 
-		database.add(DatabaseElement);
+		database.add(databaseElement);
 	}
 
 }

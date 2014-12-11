@@ -1,8 +1,10 @@
 package app.commands;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
-
-import app.repository.UsersRepository;
+import app.commands.exceptions.CommandException;
+import app.repository.UserRepository;
 
 /**
  * POST /projects/{pid}/{type} - adiciona ao projecto identificado por pid um
@@ -12,7 +14,12 @@ import app.repository.UsersRepository;
  * consultant - identificador do consultor a inserir 
  * Este comando retorna o sucesso ou insucesso da operação. Em caso de insucesso indica o motivo.
  */
-public class PostWorkerInProject implements Command {
+public class PostWorkerInProject extends BaseCommand implements Command {
+
+	public PostWorkerInProject(Map<String, String> parameters) {
+		super(parameters);
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * Class that implements the {@link GetUser} factory, according to the 
@@ -20,9 +27,9 @@ public class PostWorkerInProject implements Command {
 	 */
 	public static class Factory implements CommandFactory 
 	{
-		private final UsersRepository repository;
+		private final UserRepository repository;
 		
-		public Factory(UsersRepository repository)
+		public Factory(UserRepository repository)
 		{
 			this.repository = repository;
 		}
@@ -35,8 +42,21 @@ public class PostWorkerInProject implements Command {
 		}
 	}
 	
+
 	@Override
-	public void execute() {
+	public void execute(OutputStream out) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected String[] getDemandingParametres() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void internalExecute() throws CommandException {
 		// TODO Auto-generated method stub
 		
 	}
