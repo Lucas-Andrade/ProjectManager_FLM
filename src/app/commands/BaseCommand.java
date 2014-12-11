@@ -4,6 +4,7 @@ import java.util.Map;
 
 import app.commands.exceptions.DemandingParameterNotPresentException;
 import app.resultsOutputMethods.ResultOutputMethod;
+import app.resultsOutputMethods.ResultOutputMethodToStream;
 
 public abstract class BaseCommand implements Command {
 
@@ -19,7 +20,7 @@ public abstract class BaseCommand implements Command {
 	}
 
 
-	public final void execute(ResultOutputMethod out) throws app.commands.exceptions.CommandException
+	public final void execute(ResultOutputMethodToStream out) throws app.commands.exceptions.CommandException
 	{	
 		validateDemandingParameters(getDemandingParametres());
 		internalExecute(out);

@@ -1,7 +1,7 @@
 
 package app.commands;
 
-import app.resultsOutputMethods.ResultOutputMethod;
+import app.resultsOutputMethods.ResultOutputMethodToStream;
 
 
 /**
@@ -9,7 +9,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  */
 public interface Command
 {
-	void execute(ResultOutputMethod out) throws app.commands.exceptions.CommandException;
+	void execute(ResultOutputMethodToStream out) throws app.commands.exceptions.CommandException;
 }
 
 
