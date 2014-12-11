@@ -1,11 +1,9 @@
 package app.commands;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Map;
-
 import app.commands.exceptions.CommandException;
-import utils.Project;
+import app.repository.ProjectRepository;
+import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * GET /projects/{pid}/subprojects - retorna todos os subprojectos do projecto
@@ -14,41 +12,31 @@ import utils.Project;
 public class GetSubproject extends BaseCommand implements Command 
 {
 	
+	private final ProjectRepository repository;
 
 	/**
 	 * Class that implements the {@link GetSubproject} factory, according to the 
 	 * AbstratFactory design pattern. 
 	 */
-//	public static class Factory implements CommandFactory 
-//	{
-//		
-//		
-//		public Factory(UsersRepository repository)
-//		{
-//			this.repository = repository;
-//		}
-//		
-//		@Override
-//		public Command newInstance(Map<String, String> parameters) 
-//		{
-//			return;
-//			
-//		}
-//		
-//	}
-	
-
-	public GetSubproject(Map<String, String> parameters) {
-		super(parameters);
-		// TODO Auto-generated constructor stub
+	public static class Factory implements CommandFactory 
+	{
+		private final ProjectRepository repository;
+		
+		public Factory(ProjectRepository repository)
+		{
+			this.repository = repository;
+		}
+		
+		@Override
+		public Command newInstance(Map<String, String> parameters) 
+		{
+			return new GetSubproject(repository, parameters);
+		}
 	}
 
-
-
-	@Override
-	public void execute(OutputStream out) throws IOException {
-		// TODO Auto-generated method stub
-		
+	public GetSubproject(ProjectRepository repository, Map<String, String> parameters) {
+		super(parameters);
+		this.repository = repository;
 	}
 
 	@Override
@@ -58,7 +46,8 @@ public class GetSubproject extends BaseCommand implements Command
 	}
 
 	@Override
-	protected void internalExecute() throws CommandException {
+	protected void internalExecute(ResultOutputMethod out)
+			throws CommandException {
 		// TODO Auto-generated method stub
 		
 	}
