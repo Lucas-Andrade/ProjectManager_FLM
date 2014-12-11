@@ -1,14 +1,13 @@
 package app.commands;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Map;
 
+import utils.AWorker;
+import utils.Leader;
 import app.commands.exceptions.CommandException;
 import app.repository.ProjectRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
-import utils.AWorker;
-import utils.Leader;
 
 
 /**
@@ -25,17 +24,17 @@ public class GetProjectWorkers extends BaseCommand
 	 */
 	public static class Factory implements CommandFactory {
 
-		private final ProjectRepository repository;
+		private final ProjectRepository pRepository;
 		
-		public Factory (ProjectRepository repository)
+		public Factory (ProjectRepository pRepository)
 		{
-			this.repository = repository;
+			this.pRepository = pRepository;
 		}
 		
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			return new GetProjectWorkers(repository, parameters);
+			return new GetProjectWorkers(pRepository, parameters);
 		}
 	}
 
@@ -52,10 +51,10 @@ public class GetProjectWorkers extends BaseCommand
 	 * @param repository
 	 * @param id
 	 */
-	private GetProjectWorkers (ProjectRepository repository, Map<String, String> parameters)
+	private GetProjectWorkers (ProjectRepository pRepository, Map<String, String> parameters)
 	{
 		super(parameters);
-		this.projectRepository = repository;
+		this.projectRepository = pRepository;
 	}
 	
 	/**
