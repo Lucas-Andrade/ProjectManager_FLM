@@ -3,6 +3,7 @@ package app.commands;
 import java.util.Map;
 
 import app.commands.exceptions.DemandingParameterNotPresentException;
+import app.resultsOutputMethods.ResultOutputMethod;
 
 public abstract class BaseCommand implements Command {
 
@@ -18,17 +19,17 @@ public abstract class BaseCommand implements Command {
 	}
 
 
-	public final void execute() throws app.commands.exceptions.CommandException
+	public final void execute(ResultOutputMethod out) throws app.commands.exceptions.CommandException
 	{	
 		validateDemandingParameters(getDemandingParametres());
-		internalExecute();
+		internalExecute(out);
 	}
 
 
 	protected abstract String[] getDemandingParametres();
 
 
-	abstract protected void internalExecute() throws app.commands.exceptions.CommandException;
+	abstract protected void internalExecute(ResultOutputMethod out) throws app.commands.exceptions.CommandException;
 
 
 	protected void validateDemandingParameters(String ...parameterNames) throws DemandingParameterNotPresentException {
