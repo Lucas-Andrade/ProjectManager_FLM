@@ -2,10 +2,12 @@ package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
+
 import utils.Local;
 import utils.Project;
 import app.commands.exceptions.CommandException;
 import app.repository.ProjectRepository;
+import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
@@ -17,7 +19,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * Este comando retorna o identificador do projecto (pid).
  */
 
-public class PostProject extends PostBase {
+public class PostProject extends BasePostCommand {
 	
 	private final ProjectRepository repository;
 	
@@ -28,21 +30,23 @@ public class PostProject extends PostBase {
 	public static class Factory implements CommandFactory 
 	{
 		private final ProjectRepository repository;
+		private final UserRepository uRepository;
 		
-		public Factory(ProjectRepository repository)
+		public Factory(ProjectRepository repository, UserRepository uRepository)
 		{
 			this.repository = repository;
+			this.uRepository = uRepository;
 		}
 		
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			return new PostProject(repository, parameters);
+			return new PostProject(repository, uRepository, parameters);
 		}
 	}
 
-	public PostProject(ProjectRepository repository, Map<String, String> parameters) {
-		super(parameters);
+	public PostProject(ProjectRepository repository, UserRepository uRepository, Map<String, String> parameters) {
+		super(uRepository, parameters);
 		this.repository = repository; 
 	}
 

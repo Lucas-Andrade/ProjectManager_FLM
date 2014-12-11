@@ -2,9 +2,11 @@ package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
+
 import utils.Project;
 import app.commands.exceptions.CommandException;
 import app.repository.ProjectRepository;
+import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
@@ -14,7 +16,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * subproject - identificador do subprojecto a inserir 
  * Este comando retorna o sucesso ou insucesso da operação. Em caso de insucesso indica o motivo.
  */
-public class PostSubproject extends PostBase {
+public class PostSubproject extends BasePostCommand {
 
 	private final ProjectRepository repository;
 	
@@ -27,21 +29,23 @@ public class PostSubproject extends PostBase {
 	public static class Factory implements CommandFactory 
 	{
 		private final ProjectRepository repository;
+		private final UserRepository uRepository;
 		
-		public Factory(ProjectRepository repository)
+		public Factory(ProjectRepository repository, UserRepository uRepository)
 		{
 			this.repository = repository;
+			this.uRepository = uRepository;
 		}
 		
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			return new PostSubproject(repository, parameters);
+			return new PostSubproject(repository, uRepository, parameters);
 		}
 	}
 	
-	public PostSubproject(ProjectRepository repository, Map<String, String> parameters) {
-		super(parameters);
+	public PostSubproject(ProjectRepository repository, UserRepository uRepository, Map<String, String> parameters) {
+		super(uRepository, parameters);
 		this.repository = repository;
 	}
 	

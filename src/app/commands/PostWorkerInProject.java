@@ -23,7 +23,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * consultant - identificador do consultor a inserir 
  * Este comando retorna o sucesso ou insucesso da operação. Em caso de insucesso indica o motivo.
  */
-public class PostWorkerInProject extends PostBase {
+public class PostWorkerInProject extends BasePostCommand {
 
 	public static final String PID = "pid";
 	
@@ -41,17 +41,19 @@ public class PostWorkerInProject extends PostBase {
 	{
 		private final ProjectRepository pRepository;
 		private final WorkerRepository wRepository;
+		private final UserRepository uRepository;
 		
-		public Factory(ProjectRepository pRepository, WorkerRepository wRepository)
+		public Factory(ProjectRepository pRepository, WorkerRepository wRepository, UserRepository uRepository)
 		{
 			this.pRepository = pRepository;
 			this.wRepository = wRepository;
+			this.uRepository = uRepository;
 		}
 		
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			return new PostWorkerInProject(pRepository, wRepository, parameters);
+			return new PostWorkerInProject(pRepository, wRepository, uRepository, parameters);
 		}
 	}
 	
@@ -68,9 +70,9 @@ public class PostWorkerInProject extends PostBase {
 	private long workerId;
 	
 	/*construtor*/
-	public PostWorkerInProject(ProjectRepository pRepository, WorkerRepository wRepository, Map<String, String> parameters) 
+	public PostWorkerInProject(ProjectRepository pRepository, WorkerRepository wRepository, UserRepository uRepository, Map<String, String> parameters) 
 	{
-		super(parameters);
+		super(uRepository, parameters);
 		this.projectRepository = pRepository;
 		this.workerRepository = wRepository;
 	}
@@ -131,7 +133,7 @@ public class PostWorkerInProject extends PostBase {
 		
 		
 	}
-	private boolean addConsultant(ResultOutputMethod out, long projectId, long workerId) throws IOException
+	private Boolean addConsultant(ResultOutputMethod out, long projectId, long workerId) throws IOException
 	{
 		Consultant consultant = workerRepository.getConsultantByID(workerId);
 		
@@ -144,7 +146,7 @@ public class PostWorkerInProject extends PostBase {
 		return false;
 	}
 
-	private boolean addManager(ResultOutputMethod out, long projectId, long workerId) throws IOException 
+	private Boolean addManager(ResultOutputMethod out, long projectId, long workerId) throws IOException 
 	{
 		Leader manager = workerRepository.getManagerByID(workerId);
 		if (manager!=null)
