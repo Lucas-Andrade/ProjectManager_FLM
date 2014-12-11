@@ -3,17 +3,20 @@ package app.commands;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
+
 import app.commands.exceptions.CommandException;
 import app.repository.ProjectRepository;
+import app.resultsOutputMethods.ResultOutputMethod;
 import utils.AWorker;
 import utils.Leader;
 
 
 /**
+ * Class whose instances are commands that return .....
  * GET /projects/{pid}/{type} - retorna o(s) consultor(es) do tipo type (manager
  * ou consultant), do projecto identificado por pid.
  */
-public class GetProjectWorkers extends BaseCommand implements Command      
+public class GetProjectWorkers extends BaseCommand       
 {
 
 	/**
@@ -39,7 +42,11 @@ public class GetProjectWorkers extends BaseCommand implements Command
 	
 	private final ProjectRepository projectRepository;
 	private String typeWorker;
-	private final long projectId;
+	private long projectId;
+	public static final String PID = "pid";
+	public static final String WTYPE = "type";
+	private static final String[] DEMANDING_PARAMETERS = {PID, WTYPE };
+	
 	/**
 	 * 
 	 * @param repository
@@ -49,50 +56,42 @@ public class GetProjectWorkers extends BaseCommand implements Command
 	{
 		super(parameters);
 		this.projectRepository = repository;
-		final String ID = "id";
-		this.projectId = Long.parseLong(parameters.get("{pid}"));
-		this.typeWorker = parameters.get("{type}");
 	}
 	
+	/**
+	 * @see app.commands.BaseCommand#getDemandingParametres()
+	 */
 	@Override
-	public void execute(OutputStream out) throws IOException 
+	protected String[] getDemandingParametres() 
 	{
+		return DEMANDING_PARAMETERS;
+	}
+
+	
+	//
+	@Override
+	protected void internalExecute(ResultOutputMethod out) throws CommandException, IOException {
+		
+		projectId = getParameterAsLong(PID);
+		this.typeWorker = parameters.get(WTYPE);
+		
 		if (typeWorker.equals("Manager"))
 		{
 			Leader manager = projectRepository.getProjectById(projectId).getManager();
-			out.write(manager.toString().getBytes());
-			out.close();
+			out.giveResults(manager);
 			return;
 		}
 		else if(typeWorker.equals("Consultant"))  
 		{
 			Iterable<AWorker> workers = projectRepository.getProjectById(projectId).getTeam();
-			StringBuilder builder = new StringBuilder();
-			for(AWorker c : workers)
-			{
-				builder.append(c.toString()).append("\n");
-				
-			}
-			out.write(builder.toString().getBytes());
-			out.close();
+			out.giveResults(workers);
+			
 			return;
 		}
 		else
 			throw new IllegalArgumentException();
-			
 	}
 
-	@Override
-	protected String[] getDemandingParametres() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected void internalExecute() throws CommandException {
-		// TODO Auto-generated method stub
-		
-	}
 }
 
 
