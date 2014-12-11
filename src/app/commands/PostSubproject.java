@@ -31,7 +31,7 @@ public class PostSubproject extends BasePostCommand {
 		private final ProjectRepository repository;
 		private final UserRepository uRepository;
 		
-		public Factory(ProjectRepository repository, UserRepository uRepository)
+		public Factory(UserRepository uRepository, ProjectRepository repository)
 		{
 			this.repository = repository;
 			this.uRepository = uRepository;
@@ -40,11 +40,11 @@ public class PostSubproject extends BasePostCommand {
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			return new PostSubproject(repository, uRepository, parameters);
+			return new PostSubproject(uRepository, repository, parameters);
 		}
 	}
 	
-	public PostSubproject(ProjectRepository repository, UserRepository uRepository, Map<String, String> parameters) {
+	public PostSubproject(UserRepository uRepository, ProjectRepository repository, Map<String, String> parameters) {
 		super(uRepository, parameters);
 		this.repository = repository;
 	}
