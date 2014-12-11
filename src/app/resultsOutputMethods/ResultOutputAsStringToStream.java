@@ -1,6 +1,5 @@
 package app.resultsOutputMethods;
 
-import java.io.IOException;
 import java.io.OutputStream;
 
 /**
@@ -8,28 +7,24 @@ import java.io.OutputStream;
  */
 public class ResultOutputAsStringToStream extends ResultOutputMethodToStream
 {
-	
+
 	/**
-	 * @see super
+	 * @see super()
 	 */
 	public ResultOutputAsStringToStream(OutputStream out)
 	{
 		super(out);
 	}
 
-	/* (non-Javadoc)
-	 * @see app.resultsOutputMethod.ResultsOutputMethod#giveResults(java.io.OutputStream)
-	 */
 	@Override
-	public void giveResults(Object... result) throws IOException
+	protected byte[] internalGiveResults(Object[] results)
 	{
 		StringBuilder sb = new StringBuilder();
-		for(Object rs : result)
+		for (Object rs : results)
 		{
 			sb.append(rs.toString()).append("\n");
 		}
-		this.out.write(sb.toString().getBytes());
-		this.out.close();
+		return sb.toString().getBytes();
 	}
 
 }

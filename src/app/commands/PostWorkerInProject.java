@@ -2,9 +2,18 @@ package app.commands;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.util.Map;
+
+import utils.AWorker;
+import utils.Consultant;
+import utils.Leader;
+import utils.Project;
 import app.commands.exceptions.CommandException;
+import app.repository.ProjectRepository;
 import app.repository.UserRepository;
+import app.repository.WorkerRepository;
+import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * POST /projects/{pid}/{type} - adiciona ao projecto identificado por pid um
@@ -16,49 +25,134 @@ import app.repository.UserRepository;
  */
 public class PostWorkerInProject extends BaseCommand implements Command {
 
-	public PostWorkerInProject(Map<String, String> parameters) {
-		super(parameters);
-		// TODO Auto-generated constructor stub
-	}
-
+	public static final String PID = "pid";
+	
+	public static final String WTYPE = "type";
+	
+	public static final String CID = "cid";
+	
+		
+	
 	/**
 	 * Class that implements the {@link GetUser} factory, according to the 
 	 * AbstratFactory design pattern. 
 	 */
 	public static class Factory implements CommandFactory 
 	{
-		private final UserRepository repository;
+		private final ProjectRepository pRepository;
+		private final WorkerRepository wRepository;
 		
-		public Factory(UserRepository repository)
+		public Factory(WorkerRepository wRepository, ProjectRepository pRepository )
 		{
-			this.repository = repository;
+			this.pRepository = pRepository;
+			this.wRepository = wRepository;
 		}
 		
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			// TODO
-			return null;
+			return new PostWorkerInProject(wRepository, pRepository, parameters);
 		}
 	}
 	
+	private final ProjectRepository projectRepository;
+	
+	private final WorkerRepository workerRepository;
+
+	private static final String[] DEMANDING_PARAMETERS = {PID, WTYPE, CID };
+	
+	private long projectId;
+
+	private String typeWorker;
+
+	private long workerId;
+	
+	/*construtor*/
+	public PostWorkerInProject(WorkerRepository wRepository, ProjectRepository pRepository, Map<String, String> parameters) 
+	{
+		super(parameters);
+		this.projectRepository = pRepository;
+		this.workerRepository = wRepository;
+	}
+	
+	
+	//devolve o array com os nomes dos parãmetros obrigatórios
+	@Override
+	protected String[] getDemandingParametres() 
+	{		
+		return DEMANDING_PARAMETERS;
+	}
+
 
 	@Override
-	public void execute(OutputStream out) throws IOException {
-		// TODO Auto-generated method stub
+	protected void internalExecute(ResultOutputMethod out) throws CommandException, IOException 
+	{
+		this.projectId = getParameterAsLong(PID);
+		this.typeWorker = getParameterAsString(WTYPE);
+		this.workerId = getParameterAsLong (CID);
+		
+		Project project = projectRepository.getProjectById(projectId);
+		if (project == null)
+		{
+			out.giveResults("The Specified Project do not exists in repository.");
+			return;
+		}
+		
+		if (typeWorker.equals("Manager"))
+		{
+			out.giveResults(addManager(out, projectId, workerId));
+			return;
+		}
+		else if(typeWorker.equals("Consultant"))  
+		{
+			out.giveResults(addConsultant(out,projectId, workerId));
+			
+			return;
+		}
+		else
+			out.giveResults("Unrecognised type of worker.");
+		
+		
+		
+//		AWorker worker = null;
+//		
+//		String methodName = "add" + typeWorker;
+//		
+//		Class<? extends PostWorkerInProject> c = this.getClass();
+//		Method creatorMethod;
+//		try {
+//			creatorMethod = c.getMethod(methodName, (Class<?>[])null);
+//			worker = (AWorker) creatorMethod.invoke(this, name, descr, price);
+//		} catch (Exception e) {
+//			throw new CommandException("Error finding method to create a " + typeWorker, e);
+//		}
+//		
+//		productsRepository.insert(p);
+		
 		
 	}
-
-	@Override
-	protected String[] getDemandingParametres() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected void internalExecute() throws CommandException {
-		// TODO Auto-generated method stub
+	private boolean addConsultant(ResultOutputMethod out, long projectId, long workerId) throws IOException
+	{
+		Consultant consultant = workerRepository.getConsultantByID(workerId);
 		
+		if (consultant!=null)
+		{
+			projectRepository.getProjectById(projectId).addWorker(consultant);
+			return true;
+		}
+		out.giveResults("The Specified Consultant do not exists in repository.");
+		return false;
 	}
 
+	private boolean addManager(ResultOutputMethod out, long projectId, long workerId) throws IOException 
+	{
+		Leader manager = workerRepository.getManagerByID(workerId);
+		if (manager!=null)
+		{
+			projectRepository.getProjectById(projectId).setManager(manager);
+			return true;
+		}
+		out.giveResults("The Specified Manager do not exists in repository.");
+		return false;
+	}
 }

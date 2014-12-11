@@ -1,11 +1,11 @@
 package app.commands;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Map;
+
 import app.commands.exceptions.CommandException;
-import app.elements.UserInterface;
 import app.repository.UserRepository;
+import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * @author amiguinhos do Maia
@@ -43,30 +43,14 @@ public class GetUsers extends BaseCommand implements Command
 	}
 	
 	@Override
-	public void execute(OutputStream out) throws IOException 
+	public void internalExecute(ResultOutputMethod out) throws CommandException, IOException
 	{
-		UserInterface[] users = repository.getAllUsers();
-		
-		StringBuilder builder = new StringBuilder();
-		for(UserInterface user : users)
-		{
-			builder.append(user.toString()).append("\n");
-		}
-		
-		out.write(builder.toString().getBytes());
-		out.close();
+		out.giveResults(repository.getAllUsers());
 	}
 
 	@Override
 	protected String[] getDemandingParametres() {
-		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	protected void internalExecute() throws CommandException {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
