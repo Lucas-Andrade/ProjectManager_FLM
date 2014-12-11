@@ -19,9 +19,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  */
 public class PostUsers extends BasePostCommand
 {
-<<<<<<< HEAD
-=======
-	
+
 	private String username;
 	private String password;
 	private String email;
@@ -32,27 +30,15 @@ public class PostUsers extends BasePostCommand
 	private static final String FULLNAME = "fullname";
 	private static final String[] DEMANDING_PARAMETERS = {USERNAME, PASSWORD, EMAIL, FULLNAME};
 	
-	public PostUsers(UserRepository repository, Map<String, String> parameters) {
-		super(repository, parameters);
-		// TODO Auto-generated constructor stub
-	}
->>>>>>> 39215d731f156aa5db71db2e6adb2cf8a2fa0062
 
 	/**
 	 * Class that implements the {@link GetProducts} factory, according to the 
 	 * AbstratFactory design pattern. 
 	 */
-	public static class Factory implements CommandFactory {
-
+	public static class Factory implements CommandFactory 
+	{
 		private final UserRepository uRepository;
 		private String username;
-		private String password;
-		private String email;
-		private String fullname;
-<<<<<<< HEAD
-
-=======
->>>>>>> 39215d731f156aa5db71db2e6adb2cf8a2fa0062
 		
 		public Factory(UserRepository uRepository)
 		{
@@ -68,12 +54,7 @@ public class PostUsers extends BasePostCommand
 		}
 		
 	}
-	
-	private static final String USERNAME = "username";
-	private static final String PASSWORD = "password";
-	private static final String EMAIL = "email";
-	private static final String FULLNAME = "fullname";
-	private static final String[] DEMANDING_PARAMETERS = {USERNAME, PASSWORD, EMAIL, FULLNAME };
+
 	
 	public PostUsers(UserRepository repository, Map<String, String> parameters) {
 		super(repository, parameters);

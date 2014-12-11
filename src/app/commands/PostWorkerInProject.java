@@ -43,7 +43,7 @@ public class PostWorkerInProject extends BasePostCommand {
 		private final WorkerRepository wRepository;
 		private final UserRepository uRepository;
 		
-		public Factory(ProjectRepository pRepository, WorkerRepository wRepository, UserRepository uRepository)
+		public Factory(UserRepository uRepository, ProjectRepository pRepository, WorkerRepository wRepository)
 		{
 			this.pRepository = pRepository;
 			this.wRepository = wRepository;
@@ -53,7 +53,7 @@ public class PostWorkerInProject extends BasePostCommand {
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			return new PostWorkerInProject(pRepository, wRepository, uRepository, parameters);
+			return new PostWorkerInProject(uRepository, pRepository, wRepository, parameters);
 		}
 	}
 	
@@ -70,7 +70,7 @@ public class PostWorkerInProject extends BasePostCommand {
 	private long workerId;
 	
 	/*construtor*/
-	public PostWorkerInProject(ProjectRepository pRepository, WorkerRepository wRepository, UserRepository uRepository, Map<String, String> parameters) 
+	public PostWorkerInProject(UserRepository uRepository, ProjectRepository pRepository, WorkerRepository wRepository, Map<String, String> parameters) 
 	{
 		super(uRepository, parameters);
 		this.projectRepository = pRepository;

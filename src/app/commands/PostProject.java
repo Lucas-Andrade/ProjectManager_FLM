@@ -23,6 +23,12 @@ public class PostProject extends BasePostCommand {
 	
 	private final ProjectRepository repository;
 	
+	private static final String LATITUDE = "latitude";
+	private static final String LONGITUDE = "password";
+	private static final String NAME = "name";
+	private static final String PRICE = "price";
+	private static final String[] DEMANDING_PARAMETERS = {LATITUDE, LONGITUDE, NAME, PRICE};
+	
 	/**
 	 * Class that implements the {@link PostProject} factory, according to the 
 	 * AbstratFactory design pattern. 
@@ -52,15 +58,15 @@ public class PostProject extends BasePostCommand {
 
 	@Override
 	protected String[] getDemandingParametres() {
-		return new String[]{"latitude", "longitude", "name", "price"};
+		return DEMANDING_PARAMETERS;
 	}
 
 	@Override
 	protected void internalPostExecute(ResultOutputMethod out) throws CommandException, IOException {
-		double latitude = getParameterAsDouble("latitude");
-		double longitude = getParameterAsDouble("longitude");
-		String name = getParameterAsString("name");
-		double price = getParameterAsDouble("price");
+		double latitude = getParameterAsDouble(LATITUDE);
+		double longitude = getParameterAsDouble(LONGITUDE);
+		String name = getParameterAsString(NAME);
+		double price = getParameterAsDouble(PRICE);
 		
 		Local local = new Local(latitude, longitude, name, price);
 		long pid = repository.getNextPID();
