@@ -29,6 +29,14 @@ public class ProjectsContainer extends AContainer<Project> {
 	}
 	
 	/**
+	 * @return a string with information about all the projects in the container
+	 */
+	public String toString()
+	{
+		return toString(0);
+	}
+	
+	/**
 	 * returns a string with details about all the projects in the container
 	 * the parameter allow to set the number of spaces that will appear in front of every line
 	 * of the information. this allows for indentation of the subprojects of a {@code Project}

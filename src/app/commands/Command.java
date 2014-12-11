@@ -1,6 +1,8 @@
 
 package app.commands;
 
+import java.io.IOException;
+
 import app.resultsOutputMethods.ResultOutputMethodToStream;
 
 
@@ -9,7 +11,7 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  */
 public interface Command
 {
-	void execute(ResultOutputMethodToStream out) throws app.commands.exceptions.CommandException;
+	void execute(ResultOutputMethodToStream out) throws app.commands.exceptions.CommandException, IOException;
 }
 
 

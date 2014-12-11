@@ -1,6 +1,9 @@
 package app.commands;
 
+import java.io.IOException;
 import java.util.Map;
+
+import utils.Project;
 import app.commands.exceptions.CommandException;
 import app.repository.ProjectRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
@@ -11,8 +14,9 @@ import app.resultsOutputMethods.ResultOutputMethod;
  */
 public class GetSubproject extends BaseCommand implements Command 
 {
-	
 	private final ProjectRepository repository;
+	
+	public static final String pathholderParameter = "pid";
 
 	/**
 	 * Class that implements the {@link GetSubproject} factory, according to the 
@@ -41,15 +45,14 @@ public class GetSubproject extends BaseCommand implements Command
 
 	@Override
 	protected String[] getDemandingParametres() {
-		// TODO Auto-generated method stub
-		return null;
+		return new String[]{pathholderParameter};
 	}
 
 	@Override
-	protected void internalExecute(ResultOutputMethod out)
-			throws CommandException {
-		// TODO Auto-generated method stub
-		
+	protected void internalExecute(ResultOutputMethod out) throws CommandException, IOException 
+	{
+		Project project = repository.getProjectById(getParameterAsLong(pathholderParameter));
+		out.giveResults(project.getContainerProject());
 	}
 
 }

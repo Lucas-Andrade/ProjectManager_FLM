@@ -1,5 +1,6 @@
 package app.commands;
 
+import java.io.IOException;
 import java.util.Map;
 
 import app.commands.exceptions.DemandingParameterNotPresentException;
@@ -20,7 +21,7 @@ public abstract class BaseCommand implements Command {
 	}
 
 
-	public final void execute(ResultOutputMethodToStream out) throws app.commands.exceptions.CommandException
+	public final void execute(ResultOutputMethodToStream out) throws app.commands.exceptions.CommandException, IOException
 	{	
 		validateDemandingParameters(getDemandingParametres());
 		internalExecute(out);
@@ -30,7 +31,7 @@ public abstract class BaseCommand implements Command {
 	protected abstract String[] getDemandingParametres();
 
 
-	abstract protected void internalExecute(ResultOutputMethod out) throws app.commands.exceptions.CommandException;
+	abstract protected void internalExecute(ResultOutputMethod out) throws app.commands.exceptions.CommandException, IOException;
 
 
 	protected void validateDemandingParameters(String ...parameterNames) throws DemandingParameterNotPresentException {
@@ -54,5 +55,7 @@ public abstract class BaseCommand implements Command {
 		return Integer.parseInt(parameters.get(name));
 	}
 
-
+	protected long getParameterAsLong(String name) {
+		return Long.parseLong(parameters.get(name));
+	}
 }

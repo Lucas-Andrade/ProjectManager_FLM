@@ -224,6 +224,7 @@ public class Project extends Element implements ProjectInterface{
 	 * @return and unmodifiable view of {@code projectsContainer} provided by the method
 	 *         {@code getElementsList()}.
 	 */
+	@Override
 	public Iterable<Project> getContainerProject() {
 
 		return this.projectsContainer.getElementsList();
@@ -376,6 +377,13 @@ public class Project extends Element implements ProjectInterface{
 		this.manager = manager;
 	}
 	
+	/**
+	 * @return the project identification (PID)
+	 */
+	public long getPID()
+	{
+		return pid;
+	}
 	
-
+	
 }
