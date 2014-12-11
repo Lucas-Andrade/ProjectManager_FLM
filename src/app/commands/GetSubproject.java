@@ -17,6 +17,8 @@ public class GetSubproject extends BaseCommand
 	private final ProjectRepository repository;
 	
 	public static final String pathholderParameter = "pid";
+	
+	public static final String[] demandingParameters = new String[]{pathholderParameter};
 
 	/**
 	 * Class that implements the {@link GetSubproject} factory, according to the 
@@ -45,7 +47,7 @@ public class GetSubproject extends BaseCommand
 
 	@Override
 	protected String[] getDemandingParametres() {
-		return new String[]{pathholderParameter};
+		return demandingParameters;
 	}
 
 	@Override
