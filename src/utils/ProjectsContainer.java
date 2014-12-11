@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.Collection;
+
 /**
  * Class that will represent a container of projects. Extends AContainer<Project>.
  */
@@ -24,5 +26,24 @@ public class ProjectsContainer extends AContainer<Project> {
 		}
 
 		return null;
+	}
+	
+	/**
+	 * returns a string with details about all the projects in the container
+	 * the parameter allow to set the number of spaces that will appear in front of every line
+	 * of the information. this allows for indentation of the subprojects of a {@code Project}
+	 * @param nr 
+	 * @return information about all the projects in the container
+	 */
+	public String toString(int nr)
+	{
+		Collection<Project> elementsList = getElementsList();
+		
+		StringBuilder builder = new StringBuilder();
+
+		for (Project element : elementsList)
+			builder.append(element.toString(nr));
+		
+		return builder.toString();
 	}
 }

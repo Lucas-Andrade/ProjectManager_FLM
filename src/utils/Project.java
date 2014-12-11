@@ -1,12 +1,14 @@
 package utils;
 
+import app.elements.ProjectInterface;
+
 
 /**
  * Class {@code Project} whose instances will represent a project.
  * 
  * Extends {@link Element}.
  */
-public class Project extends Element {
+public class Project extends Element implements ProjectInterface{
 
 	private final String name;
 	private Leader manager;
@@ -251,10 +253,38 @@ public class Project extends Element {
 	@Override
 	public String toString() {
 
-		// TODO � dif�cil distinguir quais os subprojectos e quais os projectos.
-		return getName() + ", cost: " + getCost() + "�" + "\r\nLocal: " + local.toString()
-				+ "\r\nManager: " + manager.toString() + "\r\nTeam: " + team.toString() + "\r\n"
-				+ projectsContainer.toString() + "\n";
+		return toString(0);
+		
+//		// TODO � dif�cil distinguir quais os subprojectos e quais os projectos.
+//		return getName() + ", cost: " + getCost() + "�" + "\r\nLocal: " + local.toString()
+//				+ "\r\nManager: " + manager.toString() + "\r\nTeam: " + team.toString() + "\r\n"
+//				+ projectsContainer.toString() + "\n";
+	}
+	
+	/**
+	 * allows to add characters at the beginning of each line of the {@code toString()}
+	 * this allows to indent subprojects to clearly show which projects belong to what main poject
+	 * @param space
+	 * @return information about the project
+	 */
+	protected String toString(int nr)
+	{
+		StringBuilder spaceBuilder = new StringBuilder();
+		for(int i = 0; i < nr * 5; i++)
+			spaceBuilder.append(" ");
+		String space = spaceBuilder.toString();
+		
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append(space).append("Name: ").append(name)
+			.append("\n").append(space).append("Cost: ").append(getCost()).append(" Euros")
+			.append("\n").append(space).append("Local: ").append(local.toString())
+			.append("\n").append(space).append("Team: ").append(team.toString())
+			.append("\n").append(space).append("Subprojects: ")
+			.append(projectsContainer.size() == 0 ? "None." : "\n" + projectsContainer.toString(nr + 1))
+			.append("\n");
+		
+		return builder.toString();
 	}
 
 	/**

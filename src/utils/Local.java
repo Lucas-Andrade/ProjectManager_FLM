@@ -64,6 +64,6 @@ public class Local implements ICost, IName {
 	@Override
 	public String toString() {
 
-		return getName() + ", " + "(" + latitude + ", " + longitude + ")" + ", cost: " + getCost() + "�";
+		return getName() + ", " + "(" + latitude + ", " + longitude + ")" + ", cost: " + getCost() + " Euros";
 	}
 }

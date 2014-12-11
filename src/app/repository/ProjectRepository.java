@@ -1,13 +1,7 @@
 package app.repository;
 
-import app.elements.Project;
-import app.elements.Worker;
+import app.elements.DatabaseElements;
 
-public class ProjectRepository {
-
-	public utils.Project getProjectById(long projectId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+public interface ProjectRepository extends Repository<DatabaseElements>{
 
 }

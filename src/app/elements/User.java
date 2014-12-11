@@ -3,7 +3,7 @@ package app.elements;
 
 /**
  * @author amiguinhos do Maia
- * Eva Seal of Aproval
+ * Eva's Seal of Approval
  */
 public class User implements UserInterface
 {
@@ -53,4 +53,15 @@ public class User implements UserInterface
 		return fullName;
 	}
 
+	/**
+	 * @return information about this user
+	 */
+	public String toString()
+	{
+		StringBuilder builder = new StringBuilder();
+		builder.append("Name: ").append(fullName).append(", Email: ").append(email)
+			.append(", Username: ").append(loginName);
+		
+		return builder.toString();
+	}
 }
