@@ -17,7 +17,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * Este comando retorna o identificador do projecto (pid).
  */
 
-public class PostProject extends BaseCommand implements Command{
+public class PostProject extends BaseCommand {
 	
 	private final ProjectRepository repository;
 	

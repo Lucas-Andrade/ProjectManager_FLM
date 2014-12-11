@@ -14,7 +14,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * subproject - identificador do subprojecto a inserir 
  * Este comando retorna o sucesso ou insucesso da operação. Em caso de insucesso indica o motivo.
  */
-public class PostSubproject extends BaseCommand implements Command {
+public class PostSubproject extends BaseCommand {
 
 	private final ProjectRepository repository;
 	

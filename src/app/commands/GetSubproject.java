@@ -12,7 +12,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * GET /projects/{pid}/subprojects - retorna todos os subprojectos do projecto
  * identificado por pid, com clara distinção entre projectos e subprojectos.
  */
-public class GetSubproject extends BaseCommand implements Command 
+public class GetSubproject extends BaseCommand 
 {
 	private final ProjectRepository repository;
 	

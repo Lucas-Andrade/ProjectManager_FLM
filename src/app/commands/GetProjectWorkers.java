@@ -67,13 +67,11 @@ public class GetProjectWorkers extends BaseCommand
 		return DEMANDING_PARAMETERS;
 	}
 
-	
-	//
 	@Override
 	protected void internalExecute(ResultOutputMethod out) throws CommandException, IOException {
 		
 		projectId = getParameterAsLong(PID);
-		this.typeWorker = parameters.get(WTYPE);
+		this.typeWorker = getParameterAsString(WTYPE);
 		
 		if (typeWorker.equals("Manager"))
 		{
@@ -89,7 +87,7 @@ public class GetProjectWorkers extends BaseCommand
 			return;
 		}
 		else
-			throw new IllegalArgumentException();
+			out.giveResults("Unrecognised type of worker.");
 	}
 
 }
