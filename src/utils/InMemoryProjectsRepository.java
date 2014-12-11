@@ -1,11 +1,12 @@
-package App.repository;
+package utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.function.Predicate;
 
-import utils.Project;
+import App.elements.UserInterface;
+import App.repository.UsersRepository;
 
 /**
  * Class that implements an in-memory product repository (i.e. an ephemeral TravelAgency 
@@ -70,6 +71,42 @@ public class InMemoryProjectsRepository implements UsersRepository {
 			throw new IllegalArgumentException();
 		
 		catalog.add(project);
+	}
+
+
+	@Override
+	public Iterable<UserInterface> getDatabaseElements() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Iterable<UserInterface> getDatabaseElements(
+			Predicate<UserInterface> criteria) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void insert(UserInterface t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public UserInterface getUserByUsername(String loginName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public UserInterface[] getAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

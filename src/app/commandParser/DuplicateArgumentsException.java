@@ -1,4 +1,4 @@
-package app.commandParser;
+package App.commandParser;
 
 /**
  * Class whose instances represent parser errors that result from finding 

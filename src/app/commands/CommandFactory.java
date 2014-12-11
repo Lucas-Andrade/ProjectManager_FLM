@@ -1,9 +1,9 @@
-package app.commands;
+package App.commands;
 
 import java.util.Map;
 
 /**
- * Contract to be suported by all {@link app.commands.Command} factories
+ * Contract to be suported by all {@link App.commands.Command} factories
  */
 public interface CommandFactory     // Padrão de desenho  AbstractFactory
 {

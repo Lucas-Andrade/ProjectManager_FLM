@@ -1,4 +1,4 @@
-package app.elements;
+package App.elements;
 
 public class Project implements ProjectInterface {
 

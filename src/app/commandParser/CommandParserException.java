@@ -1,4 +1,4 @@
-package app.commandParser;
+package App.commandParser;
 
 public class CommandParserException extends Exception {
 

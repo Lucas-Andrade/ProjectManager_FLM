@@ -328,10 +328,10 @@ public class Project extends Element {
 		return true;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
+/**
+ * 
+ * @return
+ */
 	public Leader getManager() 
 	{	
 		return manager;
@@ -346,4 +346,6 @@ public class Project extends Element {
 		this.manager = manager;
 	}
 	
+	
+
 }

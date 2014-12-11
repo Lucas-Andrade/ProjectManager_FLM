@@ -1,15 +1,15 @@
-package app.commandParser;
+package App.commandParser;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-import app.commands.Command;
-import app.commands.CommandFactory;
+import App.commands.Command;
+import App.commands.CommandFactory;
 
 /**
  * Class whose instances are responsible for translating command strings into
- * their {@link app.commands.Command} instance counterparts.
+ * their {@link App.commands.Command} instance counterparts.
  * 
  * Implementation notes: (TODO)
  */

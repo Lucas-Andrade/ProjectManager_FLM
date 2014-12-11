@@ -1,11 +1,11 @@
 /**
  * 
  */
-package app.repository;
+package App.repository;
 
 import java.util.function.Predicate;
 
-import app.elements.DatabaseElements;
+import App.elements.DatabaseElements;
 
 
 /**
@@ -41,9 +41,5 @@ public interface Repository<T extends DatabaseElements>
 	 *             if the received DatabaseElements is {@code null}
 	 */
 	public void insert(T t);
-	
-	//TODO
-	@Override
-	public String toString();
 
 }

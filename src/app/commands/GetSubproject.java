@@ -1,15 +1,18 @@
-package app.commands;
+package App.commands;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
-import app.repository.UsersRepository;
+import App.commands.exceptions.CommandException;
+import App.repository.UsersRepository;
 import utils.Project;
 
 /**
  * GET /projects/{pid}/subprojects - retorna todos os subprojectos do projecto
  * identificado por pid, com clara distinção entre projectos e subprojectos.
  */
-public class GetSubproject implements Command 
+public class GetSubproject extends BaseCommand implements Command 
 {
 	/**
 	 * Class that implements the {@link GetSubproject} factory, according to the 
@@ -43,6 +46,24 @@ public class GetSubproject implements Command
 	@Override
 	public void execute()   // alterar para que imprimir para a consola não seja responsabilidade sua
 	{
+		
+	}
+
+	@Override
+	public void execute(OutputStream out) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected String[] getDemandingParametres() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void internalExecute() throws CommandException {
+		// TODO Auto-generated method stub
 		
 	}
 

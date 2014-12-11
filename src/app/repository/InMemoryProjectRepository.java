@@ -1,11 +1,11 @@
-package app.repository;
+package App.repository;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.TreeSet;
 
 import utils.Project;
 
-//ESTA CLASSE Nï¿½O TEM UTILIZAï¿½ï¿½O, TALVEZ NO FUTURO...
+//ESTA CLASSE NÃO TEM UTILIZAÇÃO, TALVEZ NO FUTURO...
 /**
  * Abstract class whose purpose will be to store all projects in existence and control
  * the projects IDs (all PIDs have to be different).

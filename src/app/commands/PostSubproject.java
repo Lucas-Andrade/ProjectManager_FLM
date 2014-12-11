@@ -1,8 +1,8 @@
-package app.commands;
+package App.commands;
 
 import java.util.Map;
 
-import app.repository.UsersRepository;
+import App.repository.UsersRepository;
 
 /**
  * POST /projects/{pid}/subprojects - adiciona ao projecto identificado por pid
@@ -11,7 +11,7 @@ import app.repository.UsersRepository;
  * subproject - identificador do subprojecto a inserir 
  * Este comando retorna o sucesso ou insucesso da operação. Em caso de insucesso indica o motivo.
  */
-public class PostSubproject implements Command {
+public class PostSubproject extends BaseCommand implements Command {
 
 	/**
 	 * Class that implements the {@link GetUser} factory, according to the 

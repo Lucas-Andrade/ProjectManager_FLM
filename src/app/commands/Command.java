@@ -1,5 +1,5 @@
 
-package app.commands;
+package App.commands;
 
 import java.io.IOException;
 import java.io.OutputStream;

@@ -1,4 +1,4 @@
-package app.repository;
+package App.repository;
 
 public interface WorkersRepository{
 

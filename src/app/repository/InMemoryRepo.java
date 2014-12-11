@@ -1,11 +1,11 @@
-package app.repository;
+package App.repository;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.function.Predicate;
 
-import app.elements.DatabaseElements;
+import App.elements.DatabaseElements;
 
 /**
  * @author amiguinhos do Maia

@@ -1,11 +1,8 @@
-package app.repository;
-
-import app.elements.Project;
-import app.elements.Worker;
+package App.repository;
 
 public class ProjectRepository {
 
-	public utils.Project getProjectById(long projectId) {
+	public Object getProjectById(long projectId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
