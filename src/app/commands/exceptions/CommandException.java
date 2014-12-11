@@ -1,4 +1,4 @@
-package App.commands.exceptions;
+package app.commands.exceptions;
 
 
 

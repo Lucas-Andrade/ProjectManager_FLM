@@ -1,13 +1,12 @@
-package App.commands;
+package app.commands;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
-
+import app.commands.exceptions.CommandException;
+import app.repository.ProjectRepository;
 import utils.AWorker;
 import utils.Leader;
-import App.commands.exceptions.CommandException;
-import App.repository.ProjectRepository;
 
 
 /**
@@ -48,6 +47,7 @@ public class GetProjectWorkers extends BaseCommand implements Command
 	 */
 	private GetProjectWorkers (ProjectRepository repository, Map<String, String> parameters)
 	{
+		super(parameters);
 		this.projectRepository = repository;
 		final String ID = "id";
 		this.projectId = Long.parseLong(parameters.get("{pid}"));

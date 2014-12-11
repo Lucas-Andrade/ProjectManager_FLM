@@ -1,11 +1,11 @@
-package App.commands;
+package app.commands;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
-import App.commands.exceptions.CommandException;
-import App.repository.UsersRepository;
+import app.commands.exceptions.CommandException;
+import app.repository.UserRepository;
 
 /**
  * POST /projects - cria uma novo projecto, dados os seguintes parâmetros:
@@ -28,9 +28,9 @@ public class PostProject extends BaseCommand implements Command{
 	 */
 	public static class Factory implements CommandFactory 
 	{
-		private final UsersRepository repository;
+		private final UserRepository repository;
 		
-		public Factory(UsersRepository repository)
+		public Factory(UserRepository repository)
 		{
 			this.repository = repository;
 		}
@@ -41,12 +41,6 @@ public class PostProject extends BaseCommand implements Command{
 			// TODO
 			return null;
 		}
-	}
-	
-	@Override
-	public void execute() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

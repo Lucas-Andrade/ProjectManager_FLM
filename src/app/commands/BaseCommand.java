@@ -1,10 +1,8 @@
-package App.commands;
+package app.commands;
 
 import java.util.Map;
 
-import App.commands.exceptions.CommandException;
-import App.commands.exceptions.DemandingParameterNotPresentException;
-
+import app.commands.exceptions.DemandingParameterNotPresentException;
 
 public abstract class BaseCommand implements Command {
 
@@ -20,18 +18,17 @@ public abstract class BaseCommand implements Command {
 	}
 
 
-	public final void execute() throws CommandException
+	public final void execute() throws app.commands.exceptions.CommandException
 	{	
 		validateDemandingParameters(getDemandingParametres());
 		internalExecute();
 	}
 
 
-
 	protected abstract String[] getDemandingParametres();
 
 
-	abstract protected void internalExecute() throws CommandException;
+	abstract protected void internalExecute() throws app.commands.exceptions.CommandException;
 
 
 	protected void validateDemandingParameters(String ...parameterNames) throws DemandingParameterNotPresentException {

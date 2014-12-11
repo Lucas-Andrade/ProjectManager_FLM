@@ -1,4 +1,4 @@
-package App.AppTest.commandParser;
+package app.AppTest.commandParser;
 
 import static org.junit.Assert.assertTrue;
 

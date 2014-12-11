@@ -1,12 +1,12 @@
-package App.commands;
+package app.commands;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
-import App.commands.exceptions.CommandException;
-import App.elements.UserInterface;
-import App.repository.UsersRepository;
+import app.commands.exceptions.CommandException;
+import app.elements.UserInterface;
+import app.repository.UserRepository;
 
 /**
  * @author amiguinhos do Maia
@@ -16,7 +16,7 @@ public class GetUser extends BaseCommand implements Command
 {
 	
 	private String username;
-	private final UsersRepository repository;
+	private final UserRepository repository;
 	
 	/**
 	 * The {@link CommandParser.Node.content} to be used (between "{" and "}", see
@@ -32,9 +32,9 @@ public class GetUser extends BaseCommand implements Command
 	 */
 	public static class Factory implements CommandFactory 
 	{
-		private final UsersRepository repository;
+		private final UserRepository repository;
 		
-		public Factory(UsersRepository repository)
+		public Factory(UserRepository repository)
 		{
 			this.repository = repository;
 		}
@@ -48,14 +48,15 @@ public class GetUser extends BaseCommand implements Command
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			return new GetUser(repository, parameters.get(pathholderParameter));
+			return new GetUser(repository, parameters);
 		}
 	}
 	
 
-	private GetUser(UsersRepository repository, String username)
+	private GetUser(UserRepository repository, Map<String, String> parameters)
 	{
-		this.username=username;
+		super(parameters);
+		this.username=parameters.get(pathholderParameter);
 		this.repository=repository;
 	}
 	

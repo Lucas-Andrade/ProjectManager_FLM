@@ -1,8 +1,11 @@
-package App.commands;
+package app.commands;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
-import App.repository.UsersRepository;
+import app.repository.UserRepository;
+
 
 public class GetWorkerInProject implements Command {
 
@@ -12,9 +15,9 @@ public class GetWorkerInProject implements Command {
 	 */
 	public static class Factory implements CommandFactory 
 	{
-		private final UsersRepository repository;
+		private final UserRepository repository;
 		
-		public Factory(UsersRepository repository)
+		public Factory(UserRepository repository)
 		{
 			this.repository = repository;
 		}
@@ -26,11 +29,9 @@ public class GetWorkerInProject implements Command {
 			return null;
 		}
 	}
-	
-	
-	
+
 	@Override
-	public void execute() {
+	public void execute(OutputStream out) throws IOException {
 		// TODO Auto-generated method stub
 		
 	}

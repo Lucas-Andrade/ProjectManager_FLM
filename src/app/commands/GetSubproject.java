@@ -1,11 +1,10 @@
-package App.commands;
+package app.commands;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
-import App.commands.exceptions.CommandException;
-import App.repository.UsersRepository;
+import app.commands.exceptions.CommandException;
 import utils.Project;
 
 /**
@@ -14,6 +13,8 @@ import utils.Project;
  */
 public class GetSubproject extends BaseCommand implements Command 
 {
+	
+
 	/**
 	 * Class that implements the {@link GetSubproject} factory, according to the 
 	 * AbstratFactory design pattern. 
@@ -37,17 +38,12 @@ public class GetSubproject extends BaseCommand implements Command
 //	}
 	
 
-
-	private GetSubproject(UsersRepository repository, long id)
-	{
-		
+	public GetSubproject(Map<String, String> parameters) {
+		super(parameters);
+		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void execute()   // alterar para que imprimir para a consola não seja responsabilidade sua
-	{
-		
-	}
+
 
 	@Override
 	public void execute(OutputStream out) throws IOException {

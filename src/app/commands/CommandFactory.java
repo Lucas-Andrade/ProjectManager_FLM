@@ -1,4 +1,4 @@
-package App.commands;
+package app.commands;
 
 import java.util.Map;
 
