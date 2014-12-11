@@ -2,9 +2,11 @@ package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
+
 import utils.Consultant;
 import utils.Leader;
 import app.commands.exceptions.CommandException;
+import app.repository.UserRepository;
 import app.repository.WorkerRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
@@ -13,7 +15,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * name - nome do consultor
  * priceHour - preço/hora do consultor
  */
-public class PostConsultant extends PostBase {
+public class PostConsultant extends BasePostCommand {
 
 	private final WorkerRepository repository;
 	
@@ -24,21 +26,23 @@ public class PostConsultant extends PostBase {
 	public static class Factory implements CommandFactory 
 	{
 		private final WorkerRepository repository;
+		private final UserRepository uRepository;
 		
-		public Factory(WorkerRepository repository)
+		public Factory(WorkerRepository repository, UserRepository uRepository)
 		{
 			this.repository = repository;
+			this.uRepository = uRepository;
 		}
 		
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			return new PostConsultant(repository, parameters);
+			return new PostConsultant(repository, uRepository, parameters);
 		}
 	}
 
-	public PostConsultant(WorkerRepository repository, Map<String, String> parameters) {
-		super(parameters);
+	public PostConsultant(WorkerRepository repository, UserRepository uRepository, Map<String, String> parameters) {
+		super(uRepository, parameters);
 		this.repository = repository;
 	}
 

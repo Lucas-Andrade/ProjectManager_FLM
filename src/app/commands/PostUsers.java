@@ -16,10 +16,10 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * fullname - nome completo (opcional)
  *
  */
-public class PostUsers extends PostBase
+public class PostUsers extends BasePostCommand
 {
 	public PostUsers(UserRepository repository, Map<String, String> parameters) {
-		super(parameters);
+		super(repository, parameters);
 		// TODO Auto-generated constructor stub
 	}
 
