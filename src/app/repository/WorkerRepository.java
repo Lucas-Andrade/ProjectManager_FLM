@@ -8,8 +8,12 @@ public interface WorkerRepository extends Repository<DatabaseElements>{
 
 	public long nextCID();
 
-	public void addManager(Leader manager);
+	public boolean addManager(Leader manager);
 
-	public void addConsultant(Consultant consultant);
+	public boolean addConsultant(Consultant consultant);
+	
+	public Consultant getConsultantByID(long cid);
+	
+	public Leader getManagerByID(long cid);
 
 }

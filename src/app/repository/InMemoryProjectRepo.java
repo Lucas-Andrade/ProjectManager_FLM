@@ -40,10 +40,10 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements Projec
 
 	@Override
 	public String toString() {
-		String projectsStr = "";
+		StringBuilder builder = new StringBuilder();
 		for (Project project : projects)
-			projectsStr += project.toString();
-		return projectsStr;
+			builder.append(project.toString()).append("\n");
+		return builder.toString();
 	}
 
 	@Override

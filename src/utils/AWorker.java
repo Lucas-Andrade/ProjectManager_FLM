@@ -162,4 +162,13 @@ public abstract class AWorker extends Element implements WorkerInterface{
 
 		return true;
 	}
+	
+	/**
+	 * @return the worker identification number
+	 */
+	@Override
+	public long getCID()
+	{
+		return cid;
+	}
 }

@@ -2,7 +2,6 @@ package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
-
 import utils.Consultant;
 import utils.Leader;
 import app.commands.exceptions.CommandException;
