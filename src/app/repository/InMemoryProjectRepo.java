@@ -17,7 +17,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements Projec
 
 	private static long nextPIDToBeUsed = 1;
 
-	public static boolean addProject(Project project) {
+	public boolean addProject(Project project) {
 		if (projects.add(project))
 		{
 			nextPIDToBeUsed++;
@@ -48,8 +48,15 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements Projec
 
 	@Override
 	public Project getProjectById(long projectId) {
-		// TODO Auto-generated method stub
+		for (Project project : projects)
+			if (project.getPID() == projectId)
+				return project;
 		return null;
+	}
+
+	@Override
+	public long getNextPID() {
+		return nextPIDToBeUsed;
 	}
 	
 	

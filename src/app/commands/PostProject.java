@@ -1,11 +1,12 @@
 package app.commands;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Map;
-
+import utils.Local;
+import utils.Project;
 import app.commands.exceptions.CommandException;
-import app.repository.UserRepository;
+import app.repository.ProjectRepository;
+import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * POST /projects - cria uma novo projecto, dados os seguintes parâmetros:
@@ -17,20 +18,18 @@ import app.repository.UserRepository;
  */
 
 public class PostProject extends BaseCommand implements Command{
-	public PostProject(Map<String, String> parameters) {
-		super(parameters);
-		// TODO Auto-generated constructor stub
-	}
-
+	
+	private final ProjectRepository repository;
+	
 	/**
-	 * Class that implements the {@link GetUser} factory, according to the 
+	 * Class that implements the {@link PostProject} factory, according to the 
 	 * AbstratFactory design pattern. 
 	 */
 	public static class Factory implements CommandFactory 
 	{
-		private final UserRepository repository;
+		private final ProjectRepository repository;
 		
-		public Factory(UserRepository repository)
+		public Factory(ProjectRepository repository)
 		{
 			this.repository = repository;
 		}
@@ -38,27 +37,34 @@ public class PostProject extends BaseCommand implements Command{
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			// TODO
-			return null;
+			return new PostProject(repository, parameters);
 		}
 	}
 
-	@Override
-	public void execute(OutputStream out) throws IOException {
-		// TODO Auto-generated method stub
-		
+	public PostProject(ProjectRepository repository, Map<String, String> parameters) {
+		super(parameters);
+		this.repository = repository; 
 	}
 
 	@Override
 	protected String[] getDemandingParametres() {
-		// TODO Auto-generated method stub
-		return null;
+		return new String[]{"latitude", "longitude", "name", "price"};
 	}
 
 	@Override
-	protected void internalExecute() throws CommandException {
-		// TODO Auto-generated method stub
+	protected void internalExecute(ResultOutputMethod out) throws CommandException, IOException {
+		double latitude = getParameterAsDouble("latitude");
+		double longitude = getParameterAsDouble("longitude");
+		String name = getParameterAsString("name");
+		double price = getParameterAsDouble("price");
 		
+		Local local = new Local(latitude, longitude, name, price);
+		long pid = repository.getNextPID();
+		
+		Project project = new Project(local, pid);
+		
+		repository.addProject(project);
+		out.giveResults(pid);
 	}
 
 }

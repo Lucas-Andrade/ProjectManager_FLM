@@ -1,11 +1,11 @@
 package app.commands;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Map;
-
+import utils.Project;
 import app.commands.exceptions.CommandException;
-import app.repository.UserRepository;
+import app.repository.ProjectRepository;
+import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * POST /projects/{pid}/subprojects - adiciona ao projecto identificado por pid
@@ -16,20 +16,19 @@ import app.repository.UserRepository;
  */
 public class PostSubproject extends BaseCommand implements Command {
 
-	public PostSubproject(Map<String, String> parameters) {
-		super(parameters);
-		// TODO Auto-generated constructor stub
-	}
-
+	private final ProjectRepository repository;
+	
+	public static final String pathholderParameter = "pid";
+	
 	/**
 	 * Class that implements the {@link GetUser} factory, according to the 
 	 * AbstratFactory design pattern. 
 	 */
 	public static class Factory implements CommandFactory 
 	{
-		private final UserRepository repository;
+		private final ProjectRepository repository;
 		
-		public Factory(UserRepository repository)
+		public Factory(ProjectRepository repository)
 		{
 			this.repository = repository;
 		}
@@ -37,27 +36,48 @@ public class PostSubproject extends BaseCommand implements Command {
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			// TODO
-			return null;
+			return new PostSubproject(repository, parameters);
 		}
 	}
-
-	@Override
-	public void execute(OutputStream out) throws IOException {
-		// TODO Auto-generated method stub
-		
+	
+	public PostSubproject(ProjectRepository repository, Map<String, String> parameters) {
+		super(parameters);
+		this.repository = repository;
 	}
-
+	
 	@Override
 	protected String[] getDemandingParametres() {
-		// TODO Auto-generated method stub
-		return null;
+		return new String[]{"pid", "subPid"};
 	}
 
 	@Override
-	protected void internalExecute() throws CommandException {
-		// TODO Auto-generated method stub
+	protected void internalExecute(ResultOutputMethod out) throws CommandException, IOException 
+	{
+		long pid = getParameterAsLong("pid");
+		long subPid = getParameterAsLong("subPid");
 		
+		if(pid == subPid)
+		{
+			out.giveResults("Specified project identifications are equal!");
+			return;
+		}
+		
+		Project project = repository.getProjectById(pid);
+		if(project == null)
+		{
+			out.giveResults("Specified project does not exist.");
+			return;
+		}
+		
+		Project subProject = repository.getProjectById(subPid);
+		if(subProject == null)
+		{
+			out.giveResults("Specified subproject does not exist.");
+			return;
+		}
+		
+		project.addProject(subProject);
+		out.giveResults("Success.");
 	}
 	
 
