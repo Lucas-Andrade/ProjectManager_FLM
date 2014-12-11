@@ -4,15 +4,15 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Class that gives to an {@code OutpuStream} the results has {@code String}s.
+ * Class that gives to an {@link OutputStream} the results has {@code String}s.
  */
-public class ResultToStringOutputStream extends OutputResultToStream
+public class ResultOutputAsStringToStream extends ResultOutputMethodToStream
 {
 	
 	/**
 	 * @see super
 	 */
-	public ResultToStringOutputStream(OutputStream out)
+	public ResultOutputAsStringToStream(OutputStream out)
 	{
 		super(out);
 	}
