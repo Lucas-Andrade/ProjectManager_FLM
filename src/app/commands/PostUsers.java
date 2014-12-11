@@ -18,6 +18,17 @@ import app.resultsOutputMethods.ResultOutputMethod;
  */
 public class PostUsers extends BasePostCommand
 {
+	
+	private String username;
+	private String password;
+	private String email;
+	private String fullname;
+	private static final String USERNAME = "username";
+	private static final String PASSWORD = "password";
+	private static final String EMAIL = "email";
+	private static final String FULLNAME = "fullname";
+	private static final String[] DEMANDING_PARAMETERS = {USERNAME, PASSWORD, EMAIL, FULLNAME};
+	
 	public PostUsers(UserRepository repository, Map<String, String> parameters) {
 		super(repository, parameters);
 		// TODO Auto-generated constructor stub
@@ -34,10 +45,6 @@ public class PostUsers extends BasePostCommand
 		private String password;
 		private String email;
 		private String fullname;
-		private static final String USERNAME = "username";
-		private static final String PASSWORD = "password";
-		private static final String EMAIL = "email";
-		private static final String FULLNAME = "fullname";
 		
 		public Factory(UserRepository repository)
 		{
@@ -56,7 +63,7 @@ public class PostUsers extends BasePostCommand
 
 	@Override
 	protected String[] getDemandingParametres() {
-		return {USERNAME, PASSWORD, EMAIL, FULLNAME};
+		return DEMANDING_PARAMETERS;
 	}
 
 	@Override
