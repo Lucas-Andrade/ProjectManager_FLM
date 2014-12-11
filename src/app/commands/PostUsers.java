@@ -1,8 +1,8 @@
-package app.commands;
+package App.commands;
 
 import java.util.Map;
 
-import app.repository.UsersRepository;
+import App.repository.UsersRepository;
 
 /**
  * POST /users - cria um novo utilizador, dados os seguintes parâmetros
@@ -12,7 +12,7 @@ import app.repository.UsersRepository;
  * fullname - nome completo (opcional)
  *
  */
-public class PostUsers implements Command
+public class PostUsers extends BaseCommand implements Command
 {
 	/**
 	 * Class that implements the {@link GetProducts} factory, according to the 

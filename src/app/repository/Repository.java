@@ -1,8 +1,8 @@
+
 package app.repository;
 
-import java.util.function.Predicate;
-
 import app.elements.DatabaseElements;
+
 
 public interface Repository<T extends DatabaseElements> {
 
@@ -32,5 +32,6 @@ public interface Repository<T extends DatabaseElements> {
 //	 *             if the received DatabaseElements is {@code null}
 //	 */
 //	public void insert(T t);
+
 
 }

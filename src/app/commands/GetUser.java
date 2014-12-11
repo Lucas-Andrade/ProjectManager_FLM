@@ -1,17 +1,18 @@
-package app.commands;
+package App.commands;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
-import app.elements.UserInterface;
-import app.repository.UsersRepository;
+import App.commands.exceptions.CommandException;
+import App.elements.UserInterface;
+import App.repository.UsersRepository;
 
 /**
  * @author amiguinhos do Maia
  *GET /users/{username} - retorna informação sobre o utilizador com nome de utilizador username.
  */
-public class GetUser implements Command
+public class GetUser extends BaseCommand implements Command
 {
 	
 	private String username;
@@ -64,6 +65,18 @@ public class GetUser implements Command
 		UserInterface user = repository.getUserByUsername(username);
 		out.write(user.toString().getBytes());
 		out.close();
+	}
+
+	@Override
+	protected String[] getDemandingParametres() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void internalExecute() throws CommandException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

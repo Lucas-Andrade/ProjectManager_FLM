@@ -1,4 +1,4 @@
-package app.model.projects;
+package App.model.Projects;
 
 // ESTA CLASSE NÃO TEM UTILIZAÇÃO, TALVEZ NO FUTURO...
 /**

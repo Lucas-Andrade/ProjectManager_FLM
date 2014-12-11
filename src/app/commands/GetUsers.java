@@ -1,18 +1,19 @@
-package app.commands;
+package App.commands;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
-import app.elements.User;
-import app.elements.UserInterface;
-import app.repository.UsersRepository;
+import App.commands.exceptions.CommandException;
+import App.elements.User;
+import App.elements.UserInterface;
+import App.repository.UsersRepository;
 
 /**
  * @author amiguinhos do Maia
  * GET /users - retorna a lista de utilizadores
  */
-public class GetUsers implements Command
+public class GetUsers extends BaseCommand implements Command
 {
 
 	private final UsersRepository repository;
@@ -55,6 +56,18 @@ public class GetUsers implements Command
 		
 		out.write(builder.toString().getBytes());
 		out.close();
+	}
+
+	@Override
+	protected String[] getDemandingParametres() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void internalExecute() throws CommandException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -358,10 +358,10 @@ public class Project extends Element implements ProjectInterface{
 		return true;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
+/**
+ * 
+ * @return
+ */
 	public Leader getManager() 
 	{	
 		return manager;
@@ -376,4 +376,6 @@ public class Project extends Element implements ProjectInterface{
 		this.manager = manager;
 	}
 	
+	
+
 }
