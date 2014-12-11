@@ -34,6 +34,10 @@ public class PostUsers extends BasePostCommand
 		private String password;
 		private String email;
 		private String fullname;
+		private static final String USERNAME = "username";
+		private static final String PASSWORD = "password";
+		private static final String EMAIL = "email";
+		private static final String FULLNAME = "fullname";
 		
 		public Factory(UserRepository repository)
 		{
@@ -52,8 +56,7 @@ public class PostUsers extends BasePostCommand
 
 	@Override
 	protected String[] getDemandingParametres() {
-		// TODO Auto-generated method stub
-		return null;
+		return {USERNAME, PASSWORD, EMAIL, FULLNAME};
 	}
 
 	@Override

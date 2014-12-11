@@ -17,9 +17,9 @@ import app.resultsOutputMethods.ResultOutputMethod;
 public abstract class BasePostCommand extends BaseCommand
 {
 	
-	public static final String USERNAME = "username";
+	public static final String LOGINNAME = "loginName";
 	
-	public static final String PASSWORD = "password";
+	public static final String LOGINPASSWORD = "loginPassword";
 	
 	private final UserRepository repository;
 	
@@ -36,9 +36,9 @@ public abstract class BasePostCommand extends BaseCommand
 	protected void internalExecute(ResultOutputMethod out)
 			throws CommandException, IOException
 	{
-		validateDemandingParameters(USERNAME, PASSWORD);
-		String username = parameters.get(USERNAME);
-		String password = parameters.get(PASSWORD);
+		validateDemandingParameters(LOGINNAME, LOGINPASSWORD);
+		String username = parameters.get(LOGINNAME);
+		String password = parameters.get(LOGINPASSWORD);
 		if (authenticateUser(username, password))
 			internalPostExecute(out);
 		else

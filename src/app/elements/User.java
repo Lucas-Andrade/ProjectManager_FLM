@@ -8,17 +8,17 @@ package app.elements;
 public class User implements UserInterface
 {
 
-	private final String loginName;
-	private String loginPassword;
+	private final String username;
+	private String password;
 	private String email;
-	private final String fullName;
+	private final String fullname;
 
-	public User(String username, String password, String email, String fullName)
+	public User(String username, String password, String email, String fullname)
 	{
-		this.loginName = username;
-		this.loginPassword = password;
+		this.username = username;
+		this.password = password;
 		this.email = email;
-		this.fullName = fullName;
+		this.fullname = fullname;
 	}
 
 	/**
@@ -26,7 +26,7 @@ public class User implements UserInterface
 	 */
 	public String getLoginName()
 	{
-		return loginName;
+		return username;
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class User implements UserInterface
 	 */
 	public String getLoginPassword()
 	{
-		return loginPassword;
+		return password;
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class User implements UserInterface
 	 */
 	public String getFullName()
 	{
-		return fullName;
+		return fullname;
 	}
 
 	/**
@@ -59,8 +59,8 @@ public class User implements UserInterface
 	public String toString()
 	{
 		StringBuilder builder = new StringBuilder();
-		builder.append("Name: ").append(fullName).append(", Email: ").append(email)
-			.append(", Username: ").append(loginName);
+		builder.append("Name: ").append(fullname).append(", Email: ").append(email)
+			.append(", Username: ").append(username);
 		
 		return builder.toString();
 	}
