@@ -21,7 +21,7 @@
   </class>  
   <interface id="3" language="java" name="app.repository.ProjectRepository" project="ProjectManager_FLM" 
     file="/ProjectManager_FLM/src/app/repository/ProjectRepository.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="212" y="202"/>    
+    <position height="-1" width="-1" x="61" y="200"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </interface>  
   <interface id="4" language="java" name="app.repository.UserRepository" project="ProjectManager_FLM" 
     file="/ProjectManager_FLM/src/app/repository/UserRepository.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="354" y="203"/>    
+    <position height="-1" width="-1" x="278" y="209"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </interface>  
   <interface id="5" language="java" name="app.repository.WorkerRepository" project="ProjectManager_FLM" 
     file="/ProjectManager_FLM/src/app/repository/WorkerRepository.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="502" y="205"/>    
+    <position height="-1" width="-1" x="474" y="202"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </interface>  
   <class id="6" language="java" name="app.repository.InMemoryProjectRepo" project="ProjectManager_FLM" 
     file="/ProjectManager_FLM/src/app/repository/InMemoryProjectRepo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="563" y="515"/>    
+    <position height="-1" width="-1" x="564" y="584"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -78,8 +78,9 @@
     <end type="TARGET" refId="1"/>  
   </generalization>  
   <realization id="10">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="1"/>  
+    <bendpoint x="354" y="420"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
   </realization>  
   <generalization id="11">    
     <bendpoint x="691" y="516"/>    
@@ -96,25 +97,24 @@
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="3"/>  
   </realization>  
-  <realization id="14">    
-    <bendpoint x="502" y="282"/>    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
-  <realization id="15">    
-    <bendpoint x="354" y="420"/>    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <generalization id="16">    
+  <generalization id="14">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="15">    
     <bendpoint x="691" y="419"/>    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
-  <generalization id="17">    
-    <end type="SOURCE" refId="3"/>    
+  <realization id="16">    
+    <bendpoint x="502" y="282"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <realization id="17">    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
-  </generalization>  
+  </realization>  
   <generalization id="18">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="1"/>  
