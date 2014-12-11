@@ -25,7 +25,7 @@ public class Project extends Element implements ProjectInterface{
 	 * 
 	 * @param name     - the name of the project.
 	 * @param local    - the local where the project will take place.
-	 * @param manager  - the {@code Lider} in charge of the project.
+	 * @param manager  - the {@code Leader} in charge of the project.
 	 * @param team     - the {@code Team} that will be responsible for executing the project.
 	 */
 	public Project(String name, Local local, Leader manager, Team team, long pid) 
@@ -52,9 +52,9 @@ public class Project extends Element implements ProjectInterface{
 	 * @param local     - the local where the project will take place.
 	 * @param team      - the {@code Team} that will be responsible for executing the project.
 	 */
-	public Project(String name, Local local, long pid) 
+	public Project(Local local, long pid) 
 	{
-		this(name, local, null, new Team(), pid);	
+		this(null, local, null, new Team(), pid);	
 //		if (name == null || local == null)
 //			throw new IllegalArgumentException();
 //
@@ -224,6 +224,7 @@ public class Project extends Element implements ProjectInterface{
 	 * @return and unmodifiable view of {@code projectsContainer} provided by the method
 	 *         {@code getElementsList()}.
 	 */
+	@Override
 	public Iterable<Project> getContainerProject() {
 
 		return this.projectsContainer.getElementsList();
@@ -376,6 +377,14 @@ public class Project extends Element implements ProjectInterface{
 		this.manager = manager;
 	}
 	
+	/**
+	 * @return the project identification (PID)
+	 */
+	@Override
+	public long getPID()
+	{
+		return pid;
+	}
 	
-
+	
 }

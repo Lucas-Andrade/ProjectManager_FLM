@@ -55,5 +55,7 @@ public abstract class BaseCommand implements Command {
 		return Integer.parseInt(parameters.get(name));
 	}
 
-
+	protected long getParameterAsLong(String name) {
+		return Long.parseLong(parameters.get(name));
+	}
 }
