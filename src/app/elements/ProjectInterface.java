@@ -1,4 +1,4 @@
-package App.elements;
+package app.elements;
 
 public interface ProjectInterface extends DatabaseElements {
 

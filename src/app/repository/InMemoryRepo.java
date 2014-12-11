@@ -1,11 +1,11 @@
-package App.repository;
+package app.repository;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.function.Predicate;
 
-import App.elements.DatabaseElements;
+import app.elements.DatabaseElements;
 
 public abstract class InMemoryRepo<T extends DatabaseElements> implements Repository<DatabaseElements>{
 
