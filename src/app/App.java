@@ -1,4 +1,4 @@
-package App;
+package app;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

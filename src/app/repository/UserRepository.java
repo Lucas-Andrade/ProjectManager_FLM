@@ -2,6 +2,7 @@
 package app.repository;
 
 import app.elements.DatabaseElements;
+import app.elements.User;
 import app.elements.UserInterface;
 
 
@@ -18,7 +19,12 @@ public interface UserRepository extends Repository<DatabaseElements>
 	 * @return the instance with the given identifier
 	 */
 	public UserInterface getUserByUsername(String loginName);
+	
+	public boolean addUser(User user);
+	
+	public boolean isPasswordCorrectForUser(String username, String userPassword);
 
 	public UserInterface[] getAllUsers();
-
+	
+	public void reset();
 }

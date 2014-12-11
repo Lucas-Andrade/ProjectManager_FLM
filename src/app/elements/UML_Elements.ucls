@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="utils.AWorker" project="ProjectManager_FLM" 
     file="/ProjectManager_FLM/src/utils/AWorker.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="517" y="437"/>    
+    <position height="-1" width="-1" x="508" y="436"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
