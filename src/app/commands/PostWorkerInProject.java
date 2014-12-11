@@ -23,7 +23,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * consultant - identificador do consultor a inserir 
  * Este comando retorna o sucesso ou insucesso da operação. Em caso de insucesso indica o motivo.
  */
-public class PostWorkerInProject extends BaseCommand implements Command {
+public class PostWorkerInProject extends PostBase {
 
 	public static final String PID = "pid";
 	
@@ -85,7 +85,7 @@ public class PostWorkerInProject extends BaseCommand implements Command {
 
 
 	@Override
-	protected void internalExecute(ResultOutputMethod out) throws CommandException, IOException 
+	protected void internalPostExecute(ResultOutputMethod out) throws CommandException, IOException 
 	{
 		this.projectId = getParameterAsLong(PID);
 		this.typeWorker = getParameterAsString(WTYPE);

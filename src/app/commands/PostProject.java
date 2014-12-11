@@ -17,7 +17,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * Este comando retorna o identificador do projecto (pid).
  */
 
-public class PostProject extends BaseCommand {
+public class PostProject extends PostBase {
 	
 	private final ProjectRepository repository;
 	
@@ -52,7 +52,7 @@ public class PostProject extends BaseCommand {
 	}
 
 	@Override
-	protected void internalExecute(ResultOutputMethod out) throws CommandException, IOException {
+	protected void internalPostExecute(ResultOutputMethod out) throws CommandException, IOException {
 		double latitude = getParameterAsDouble("latitude");
 		double longitude = getParameterAsDouble("longitude");
 		String name = getParameterAsString("name");

@@ -13,7 +13,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * name - nome do consultor
  * priceHour - preço/hora do consultor
  */
-public class PostConsultant extends BaseCommand {
+public class PostConsultant extends PostBase {
 
 	private final WorkerRepository repository;
 	
@@ -48,7 +48,7 @@ public class PostConsultant extends BaseCommand {
 	}
 
 	@Override
-	protected void internalExecute(ResultOutputMethod out) throws CommandException, IOException 
+	protected void internalPostExecute(ResultOutputMethod out) throws CommandException, IOException 
 	{
 		String name = getParameterAsString("name");
 		double priceHour = getParameterAsDouble("priceHour");

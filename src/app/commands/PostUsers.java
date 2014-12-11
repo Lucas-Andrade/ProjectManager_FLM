@@ -6,6 +6,7 @@ import java.util.Map;
 
 import app.commands.exceptions.CommandException;
 import app.repository.UserRepository;
+import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * POST /users - cria um novo utilizador, dados os seguintes parâmetros
@@ -15,7 +16,7 @@ import app.repository.UserRepository;
  * fullname - nome completo (opcional)
  *
  */
-public class PostUsers extends BaseCommand implements Command
+public class PostUsers extends PostBase
 {
 	public PostUsers(UserRepository repository, Map<String, String> parameters) {
 		super(parameters);
@@ -50,19 +51,15 @@ public class PostUsers extends BaseCommand implements Command
 	}
 
 	@Override
-	public void execute(OutputStream out) throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	protected String[] getDemandingParametres() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected void internalExecute() throws CommandException {
+	protected void internalPostExecute(ResultOutputMethod out)
+			throws CommandException, IOException
+	{
 		// TODO Auto-generated method stub
 		
 	}

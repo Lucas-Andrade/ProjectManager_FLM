@@ -14,7 +14,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * subproject - identificador do subprojecto a inserir 
  * Este comando retorna o sucesso ou insucesso da operação. Em caso de insucesso indica o motivo.
  */
-public class PostSubproject extends BaseCommand {
+public class PostSubproject extends PostBase {
 
 	private final ProjectRepository repository;
 	
@@ -51,7 +51,7 @@ public class PostSubproject extends BaseCommand {
 	}
 
 	@Override
-	protected void internalExecute(ResultOutputMethod out) throws CommandException, IOException 
+	protected void internalPostExecute(ResultOutputMethod out) throws CommandException, IOException 
 	{
 		long pid = getParameterAsLong("pid");
 		long subPid = getParameterAsLong("subPid");
