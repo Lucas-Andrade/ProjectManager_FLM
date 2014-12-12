@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import app.commandParser.CommandParser;
+import app.commandParser.CommandParserException;
 import app.commandParser.InvalidRegisterException;
 import app.commands.GetProjectWorkers;
 import app.commands.GetSubproject;
@@ -21,12 +22,21 @@ import app.repository.ProjectRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
 /**
- * Class for Project Manager. Create a container of projects (named MainProject) how store all the
- * Main projects existent in the Company.
+ * Class for Project Manager. Create a container of projects, another of users and other of workers.
  * 
  * <p>
- * Commands:
- * <li>ADD_PROJECT: add a Main Project.* 
+  * Commands:
+ * <li>POST /users {parameter list}  : add a user to the User Repository
+ * <li>POST /project  {parameter list}  : add a Project to the Project repository.
+ * <li>POST /consultant  {parameter list}  : add a consultant to the Worker Repository.
+ * <li>POST /project/{pid}/{type}  {parameter list} : add a consultant or Manager to a project/subproject.
+ * <li>POST /project/{pid}/subproject  {parameter list} : add a subproject to a project/subproject.
+ * <li>GET /users {parameter list}  : Return the information of all users in the User Repository
+ * <li>GET /users/{username}  : Return the information of the user with the  specify {@code username} of the User Repository
+ * <li>GET /project/{pid}/{type} : Return the information of all consultants or of the Manager of a project with the  specify {@code ProjectId}.
+ * <li>GET /project/{pid}/subproject : Return the information of all subprojects of a project with the  specify {@code ProjectId}..
+ * <li>HELP: terminates the application.
+ * <li>END: terminates the application.
  * 
  * <p>
  * Public methods:
@@ -63,7 +73,18 @@ public class AppProjectManager
 //		Example:
 //			•	POST  /consultant/  loginName=FilipaG&password=123456&name=Filipe%20Maia&priceHour=20
 
-		// Comandos disponúveis:
+	// Comandos disponíveis:
+//		Post Users ->  POST /users {parameter list}
+//		Post Consultant ->  POST /consultant  {parameter list}
+//		Post Project ->  POST /project  {parameter list}
+//		Post Consultant/Manager in Project -> POST /project/{pid}/{type}  {parameter list}
+//		Post Subproject in Project	->	POST /project/{pid}/subproject  {parameter list}
+//		Get Users  ->  GET  /users  {parameter list}
+//		Get User  -> GET  /users/{username}  {parameter list}
+//		Get Consultant/Manager in Project  -> GET  /project/{pid}/{type}  {parameter list}
+//		Get Subproject in Project  ->  GET  /project/{pid}/subproject  {parameter list}
+		
+		
 		
 
 	}
@@ -71,9 +92,11 @@ public class AppProjectManager
 	
 	/**
 	 * Ask for a command and execute it, till the END_APP command is called.
+	 * @throws CommandParserException 
 	 */
-	public void execute() 
+	public void execute() throws CommandParserException 
 	{
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		
 		CommandParser parser = new CommandParser();
@@ -87,32 +110,24 @@ public class AppProjectManager
 		System.out.println("********** JAVA COMPANY *********");
 		System.out.println("*********************************");
 		
-		System.out.println("Insert ");
+		System.out.println("Insert the command you want to execute:");
 		do
 		{
-			for (String element : commands)
-				System.out.println("->" + element);
-
 			switch (scanner.next()) {
 
-				case "":
+				case "HELP":
 					scanner.nextLine();
-	
-					break;
-				case 2:
-					scanner.nextLine();
-					addSubProject();
 					break;
 		
-				case "end":
+				case "END":
 					scanner.nextLine();
 					return;
 				default:
-					System.out.println("Invalid Command. Please Insert a Valid Command");
+					parser.getCommand(scanner.nextLine());
 			}
 
 		} while (true);
-
+		
 	}	
 	
 		
