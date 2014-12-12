@@ -2,12 +2,14 @@ package app.repository;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Iterator;
 import java.util.function.Predicate;
 
 import app.elements.DatabaseElement;
 
-public abstract class InMemoryRepo<T extends DatabaseElement> implements Repository<DatabaseElement>{
+public abstract class InMemoryRepo<T extends DatabaseElement> implements
+		Repository<DatabaseElement>
+{
 
 	/**
 	 * Holds the database.
@@ -18,9 +20,9 @@ public abstract class InMemoryRepo<T extends DatabaseElement> implements Reposit
 	 * {@see ProductRepository#getProducts()}
 	 */
 
-	public Iterable<DatabaseElement> getDatabaseElements()
+	public Iterator<T> getDatabaseElements()
 	{
-		return Collections.unmodifiableCollection(database);
+		return database.iterator();
 	}
 
 	/**
