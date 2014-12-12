@@ -1,7 +1,7 @@
 
 package app.repository;
 
-import app.elements.DatabaseElements;
+import app.elements.DatabaseElement;
 import app.elements.User;
 import app.elements.UserInterface;
 
@@ -10,7 +10,7 @@ import app.elements.UserInterface;
  * @author amiguinhos do Maia
  *
  */
-public interface UserRepository extends Repository<DatabaseElements>
+public interface UserRepository extends Repository<DatabaseElement>
 {
 	/**
 	 * Gets the user with the given loginName, or {@code null} if none exists

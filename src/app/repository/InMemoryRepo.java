@@ -5,9 +5,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.function.Predicate;
 
-import app.elements.DatabaseElements;
+import app.elements.DatabaseElement;
 
-public abstract class InMemoryRepo<T extends DatabaseElements> implements Repository<DatabaseElements>{
+public abstract class InMemoryRepo<T extends DatabaseElement> implements Repository<DatabaseElement>{
 
 	/**
 	 * Holds the database.
@@ -18,7 +18,7 @@ public abstract class InMemoryRepo<T extends DatabaseElements> implements Reposi
 	 * {@see ProductRepository#getProducts()}
 	 */
 
-	public Iterable<DatabaseElements> getDatabaseElements()
+	public Iterable<DatabaseElement> getDatabaseElements()
 	{
 		return Collections.unmodifiableCollection(database);
 	}

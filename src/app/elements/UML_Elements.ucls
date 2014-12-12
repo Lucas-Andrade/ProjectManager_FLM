@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.7" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <interface id="1" language="java" name="app.elements.DatabaseElements" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/app/elements/DatabaseElements.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="1" language="java" name="app.elements.DatabaseElement" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/app/elements/DatabaseElement.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="496" y="56"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

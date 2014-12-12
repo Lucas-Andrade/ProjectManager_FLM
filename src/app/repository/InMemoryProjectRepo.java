@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.TreeSet;
 
-import app.elements.DatabaseElements;
+import app.elements.DatabaseElement;
 import app.elements.ProjectComparator;
 import utils.Project;
 
@@ -63,12 +63,12 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements Projec
 	}
 
 	@Override
-	public DatabaseElements[] getAll() {
+	public DatabaseElement[] getAll() {
 		Collection<Project> col = getProjects();
-		DatabaseElements[] dataArr = new DatabaseElements[col.size()];
+		DatabaseElement[] dataArr = new DatabaseElement[col.size()];
 		int index = 0;
 		
-		for(DatabaseElements elem : col)
+		for(DatabaseElement elem : col)
 			dataArr[index++] = elem;
 		
 		return dataArr;

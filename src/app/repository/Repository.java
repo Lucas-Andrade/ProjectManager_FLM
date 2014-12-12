@@ -1,13 +1,13 @@
 
 package app.repository;
 
-import app.elements.DatabaseElements;
+import app.elements.DatabaseElement;
 
 
-public interface Repository<T extends DatabaseElements> {
+public interface Repository<T extends DatabaseElement> {
 
 	public void removeAll();
-	public DatabaseElements[] getAll();
+	public DatabaseElement[] getAll();
 	public int size();
 	
 	public String toString();

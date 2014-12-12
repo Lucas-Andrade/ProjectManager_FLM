@@ -255,11 +255,6 @@ public class Project extends Element implements ProjectInterface{
 	public String toString() {
 
 		return toString(0);
-		
-//		// TODO � dif�cil distinguir quais os subprojectos e quais os projectos.
-//		return getName() + ", cost: " + getCost() + "�" + "\r\nLocal: " + local.toString()
-//				+ "\r\nManager: " + manager.toString() + "\r\nTeam: " + team.toString() + "\r\n"
-//				+ projectsContainer.toString() + "\n";
 	}
 	
 	/**

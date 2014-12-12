@@ -3,7 +3,7 @@ package app.repository;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.TreeSet;
-import app.elements.DatabaseElements;
+import app.elements.DatabaseElement;
 import app.elements.WorkerComparator;
 import utils.AWorker;
 import utils.Consultant;
@@ -82,12 +82,12 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements WorkerR
 	}
 
 	@Override
-	public DatabaseElements[] getAll() {
+	public DatabaseElement[] getAll() {
 		Collection<AWorker> col = getWorkers();
-		DatabaseElements[] dataArr = new DatabaseElements[col.size()];
+		DatabaseElement[] dataArr = new DatabaseElement[col.size()];
 		int index = 0;
 		
-		for(DatabaseElements elem : col)
+		for(DatabaseElement elem : col)
 			dataArr[index++] = elem;
 		
 		return dataArr;

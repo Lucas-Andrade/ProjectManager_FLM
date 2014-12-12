@@ -6,7 +6,7 @@ package app.elements;
  * @author amiguinhos do Maia
  *
  */
-public interface UserInterface extends DatabaseElements
+public interface UserInterface extends DatabaseElement
 {
 	/**
 	 * @return the username
