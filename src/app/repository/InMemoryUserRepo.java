@@ -96,6 +96,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements UserReposito
 		return users.size();
 	}
 	
+	@Override
 	public boolean addAdmin(String username, String password)
 	{
 		return addUser(new Admin(username, password));
