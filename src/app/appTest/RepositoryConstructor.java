@@ -13,24 +13,22 @@ public class RepositoryConstructor {
 
 	public InMemoryProjectRepo constructProjectRepository()
 	{
-		Project project1 = constructProject(1);
-		Project project2 = constructProject(2);
-		Project project3 = constructProject(3);
-		Project project4 = constructProject(4);
-		Project project5 = constructProject(5);
-		
-		project4.addProject(project5);
-		
 		InMemoryProjectRepo repo = new InMemoryProjectRepo();
 		
+		Project project1 = constructProject((int) repo.getNextPID());
 		repo.addProject(project1);
+		Project project2 = constructProject((int) repo.getNextPID());
 		repo.addProject(project2);
+		Project project3 = constructProject((int) repo.getNextPID());
 		repo.addProject(project3);
+		Project project4 = constructProject((int) repo.getNextPID());
 		repo.addProject(project4);
+		
+		project3.addProject(project4);
+		
+		Project project5 = constructProject((int) repo.getNextPID());
 		repo.addProject(project5);
-		
-		
-		
+
 		return repo;
 	}
 	

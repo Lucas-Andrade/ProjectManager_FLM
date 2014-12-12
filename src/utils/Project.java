@@ -54,7 +54,7 @@ public class Project extends Element implements ProjectInterface{
 	 */
 	public Project(Local local, long pid) 
 	{
-		this("", local, null, new Team(), pid);	
+		this(String.valueOf(pid), local, null, new Team(), pid);	
 //		if (name == null || local == null)
 //			throw new IllegalArgumentException();
 //

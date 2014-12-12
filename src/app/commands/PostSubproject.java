@@ -80,8 +80,10 @@ public class PostSubproject extends BasePostCommand {
 			return;
 		}
 		
-		project.addProject(subProject);
-		out.giveResults("Success.");
+		if(project.addProject(subProject))
+			out.giveResults("Success.");
+		else
+			out.giveResults("Could not add subproject to project, because both have the same name.");
 	}
 	
 
