@@ -3,7 +3,7 @@ package app.commands;
 import java.io.IOException;
 import java.util.Map;
 
-import app.commands.exceptions.DemandingParameterNotPresentException;
+import app.commands.exceptions.MandatoryParameterNotPresentException;
 import app.resultsOutputMethods.ResultOutputMethod;
 import app.resultsOutputMethods.ResultOutputMethodToStream;
 
@@ -34,10 +34,10 @@ public abstract class BaseCommand implements Command {
 	abstract protected void internalExecute(ResultOutputMethod out) throws app.commands.exceptions.CommandException, IOException;
 
 
-	protected void validateDemandingParameters(String ...parameterNames) throws DemandingParameterNotPresentException {
+	protected void validateDemandingParameters(String ...parameterNames) throws MandatoryParameterNotPresentException {
 				for (String name : parameterNames) {
 					if(!parameters.containsKey(name)) {
-						throw new DemandingParameterNotPresentException(name);
+						throw new MandatoryParameterNotPresentException(name);
 					}
 				}
 			}
