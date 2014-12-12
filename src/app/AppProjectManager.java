@@ -1,13 +1,12 @@
 package app;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 import app.commandParser.CommandParser;
 import app.commandParser.CommandParserException;
 import app.commandParser.InvalidRegisterException;
 import app.commands.GetProjectWorkers;
-import app.commands.GetSubproject;
 import app.commands.GetUser;
 import app.commands.GetUsers;
 import app.commands.PostConsultant;
@@ -15,34 +14,61 @@ import app.commands.PostProject;
 import app.commands.PostSubproject;
 import app.commands.PostUsers;
 import app.commands.PostWorkerInProject;
+import app.commands.exceptions.CommandException;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
 import app.repository.InMemoryWorkerRepo;
 import app.repository.ProjectRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
+import app.resultsOutputMethods.ResultOutputAsStringToStream;
+import app.resultsOutputMethods.ResultOutputMethodToStream;
+
 /**
- * Class for Project Manager. Create a container of projects, another of users and other of workers.
+ * Class for Project Management.
  * 
- * <p>
-  * Commands:
- * <li>POST /users {parameter list}  : add a user to the User Repository
- * <li>POST /project  {parameter list}  : add a Project to the Project repository.
- * <li>POST /consultant  {parameter list}  : add a consultant to the Worker Repository.
- * <li>POST /project/{pid}/{type}  {parameter list} : add a consultant or Manager to a project/subproject.
- * <li>POST /project/{pid}/subproject  {parameter list} : add a subproject to a project/subproject.
- * <li>GET /users {parameter list}  : Return the information of all users in the User Repository
- * <li>GET /users/{username}  : Return the information of the user with the  specify {@code username} of the User Repository
- * <li>GET /project/{pid}/{type} : Return the information of all consultants or of the Manager of a project with the  specify {@code ProjectId}.
- * <li>GET /project/{pid}/subproject : Return the information of all subprojects of a project with the  specify {@code ProjectId}..
+ * Create a container of Projects, another of Users and other of Workers. 
+ * 
+ * This application returns the results of the executed command in the console, but
+ * can be modified to print to another Output Stream.
+ * 
+ * <p>AVAIABLE COMMANDS:
+ * <li>POST /users {parameter list} : add a user to the User Repository
+ * <li>POST /project {parameter list} : add a Project to the Project repository.
+ * <li>POST /consultant {parameter list} : add a consultant to the Worker
+ * Repository.
+ * <li>POST /project/{pid}/{type} {parameter list} : add a consultant or Manager
+ * to a project/subproject.
+ * <li>POST /project/{pid}/subproject {parameter list} : add a subproject to a
+ * project/subproject.
+ * <li>GET /users {parameter list} : Return the information of all users in the
+ * User Repository
+ * <li>GET /users/{username} : Return the information of the user with the
+ * specify {@code username} of the User Repository
+ * <li>GET /project/{pid}/{type} : Return the information of all consultants or
+ * of the Manager of a project with the specify {@code ProjectId}.
+ * <li>GET /project/{pid}/subproject : Return the information of all subprojects
+ * of a project with the specify {@code ProjectId}.
  * <li>HELP: terminates the application.
  * <li>END: terminates the application.
  * 
- * <p>
- * Public methods:
+ * <p> IMPLEMENTATION NOTES:
+ * <li>Only registered users can use POST commands;
+ * <li> Before start to use the commands, the user has to create the administrator data.
+ * This operation allows the inclusion of other users to users repository. 
+ * <li>The user's LoginName and Password must be introduce with the parameters
+ * list of the POST Commands to authentication;
+ * <li>All the commands have the same follow generic strutter: {method} {path} {parameter list} 
+ * Example: POST /consultant/ loginName=FilipaG&password=123456&name=Filipe%20Maia&priceHour=20
  * 
- * <li>execute: Ask for a command and execute it, till the END_APP command is called.
+ * <p> Public methods:
+ * 
+ * <li>execute: Ask for a command and execute it, till the END_APP command is
+ * called.
  * <li>main: run the app.
+ * 
+ * @author Filipa Gonçalves., Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public class AppProjectManager 
 {
@@ -64,40 +90,50 @@ public class AppProjectManager
 	
 	public static void helpCommand()
 	{
-//		Só utilizadores registados podem utilizar os comandos POST;
-//		O LoginName e a password do utilizador devem ser inseridos junto com a lista de parâmetros do Comando POST que pretende utilizar
-//		Se os dados de autenticação não forem válidos, o comando não é efectuado.
-//		Na lista de parâmetros, os parâmetros devem ser separados pelo símbolo "&" e as palavras pelo código "%20".
-//		All the commands have the same follow generic strutur:
-//		{method} {path} {parameter list}
-//		Example:
-//			•	POST  /consultant/  loginName=FilipaG&password=123456&name=Filipe%20Maia&priceHour=20
+		System.out.println("IMPLEMENTATION NOTES:");
+		System.out.println(" - Only registered users can use POST commands;"
+				+ "\n    Before start to use the commands, the user has to create the administrator data.");
+			 
+		System.out.println("     The user's LoginName and Password must be introduce with the parameters list of"
+				+"\n    the POST Commands to authentication;"
+				+"\n If the authentication data are not valid, the command is not performed.");
+		System.out.println("\n - All the commands have the same follow generic strutter:	\n              {method} {path} {parameter list}"
+			+"\n\nIn the list of parameters, the parameters must be separated by the '&' symbol and the words by the code '% 20'");					
+		System.out.println(" Example:" +
+							"\n POST  /consultant/  loginName=FilipaG&password=123456&name=Filipe%20Maia&priceHour=20");
+		
+		
+		System.out.println("\nAVAIABLE COMMANDS:"  
+				+"\n  POST /users {parameter list}  :  Add a user to the User Repository "
+				+"\n  POST /project  {parameter list} : Add a Project to the Project repository"
+		        +"\n  POST /consultant  {parameter list}  :  Add a consultant to the Worker Repository" 
+		        +"\n  POST /project/{pid}/{type}  {parameter list} : add a consultant or Manager to a project/subproject"
+		        +"\n  POST /project/{pid}/subproject  {parameter list} : add a subproject to a project/subproject"
+		        +"\n  GET /users {parameter list}  : Return the information of all users in the User Repository"
+		        +"\n  GET /users/{username}  : Return the information of the user with the  specify {@code username} of the User Repository"
+		        +"\n  GET /project/{pid}/{type} : Return the information of all consultants or of the Manager of a project with the  specify {@code ProjectId}"
+		        +"\n  GET /project/{pid}/subproject : Return the information of all subprojects of a project with the  specify {@code ProjectId}"
+		        +"\n  HELP: terminates the application"
+		        +"\n  END: terminates the application");
 
-	// Comandos disponíveis:
-//		Post Users ->  POST /users {parameter list}
-//		Post Consultant ->  POST /consultant  {parameter list}
-//		Post Project ->  POST /project  {parameter list}
-//		Post Consultant/Manager in Project -> POST /project/{pid}/{type}  {parameter list}
-//		Post Subproject in Project	->	POST /project/{pid}/subproject  {parameter list}
-//		Get Users  ->  GET  /users  {parameter list}
-//		Get User  -> GET  /users/{username}  {parameter list}
-//		Get Consultant/Manager in Project  -> GET  /project/{pid}/{type}  {parameter list}
-//		Get Subproject in Project  ->  GET  /project/{pid}/subproject  {parameter list}
-		
-		
-		
-
+		System.out.println("\nThe user must write the command in the console and press Enter to proceed.");
 	}
+
+	
+	private ResultOutputMethodToStream out = new ResultOutputAsStringToStream(System.out);
 	
 	
 	/**
 	 * Ask for a command and execute it, till the END_APP command is called.
 	 * @throws CommandParserException 
+	 * @throws IOException 
+	 * @throws CommandException 
 	 */
-	public void execute() throws CommandParserException 
+	public void execute() throws CommandParserException, CommandException, IOException 
 	{
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
+		
 		
 		CommandParser parser = new CommandParser();
 		ProjectRepository projectRepo = new InMemoryProjectRepo();
@@ -110,12 +146,21 @@ public class AppProjectManager
 		System.out.println("********** JAVA COMPANY *********");
 		System.out.println("*********************************");
 		
-		System.out.println("Insert the command you want to execute:");
+		
+		System.out.println("\n Create Administrator");
+		System.out.println("LoginName: Admin1");
+		System.out.print("Insert New password:");
+		String password = scanner.nextLine();
+		userRepo.addAdmin("Admin1", password);
+		
+		System.out.println("\nInsert the command you want to execute:");
 		do
 		{
-			switch (scanner.next()) {
+			String a = scanner.nextLine();
+			switch (a) {
 
 				case "HELP":
+					helpCommand();
 					scanner.nextLine();
 					break;
 		
@@ -123,7 +168,9 @@ public class AppProjectManager
 					scanner.nextLine();
 					return;
 				default:
-					parser.getCommand(scanner.nextLine());
+					parser.getCommand(a.split(" ")).execute(out);
+					scanner.nextLine();
+					
 			}
 
 		} while (true);
@@ -133,9 +180,9 @@ public class AppProjectManager
 		
 	
 	
-	public static void main(String[] args) throws InvalidRegisterException, FileNotFoundException {
+	public static void main(String[] args) throws CommandParserException, CommandException, IOException {
 		
-		App app = new App();
+		AppProjectManager app = new AppProjectManager();
 		app.execute();
 		
 		
