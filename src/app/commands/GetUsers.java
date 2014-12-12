@@ -11,7 +11,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author amiguinhos do Maia
  * GET /users - retorna a lista de utilizadores
  */
-public class GetUsers extends BaseCommand implements Command
+public class GetUsers extends BaseCommand
 {
 
 	private final UserRepository repository;

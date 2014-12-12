@@ -13,7 +13,7 @@ public interface WorkerRepository extends Repository<DatabaseElement>
 
 	/**
 	 * @return The next available CID ({@link AWorker} ID, there can't be more
-	 *         than one {@code AWorker} with the same CID.
+	 *         than one {@code AWorker} with the same CID).
 	 */
 	public long nextCID();
 

@@ -1,44 +1,37 @@
-
 package app.repository;
 
 import app.elements.DatabaseElement;
 
+/**
+ * The interface to be implemented by all Repositories.
+ * 
+ * @param <T>
+ *            The elements that can be stored in the Repository, extends
+ *            {@code DatabaseElements}.
+ */
+public interface Repository<T extends DatabaseElement>
+{
 
-public interface Repository<T extends DatabaseElement> {
-
+	/**
+	 * Removes all elements from the {@code Repository}.
+	 */
 	public void removeAll();
+
+	/**
+	 * @return An array with all {@link DatabaseElements} that are in the
+	 *         Repository.
+	 */
 	public DatabaseElement[] getAll();
+
+	/**
+	 * @return The size of the {@code Repository}.
+	 */
 	public int size();
-	
+
+	/**
+	 * @see Object#toString()
+	 */
+	@Override
 	public String toString();
-	
-
-//	/**
-//	 * Gets all the DatabaseElements in the repository
-//	 * 
-//	 * @return The repository DatabaseElements
-//	 */
-//	public Iterable<T> getDatabaseElements();
-//
-//	/**
-//	 * Gets all the DatabaseElements that pass to the given filtering criteria
-//	 * 
-//	 * @param criteria
-//	 *            The filtering criteria to be used
-//	 * @return The repository DatabaseElements that are within the specified filtering
-//	 *         criteria
-//	 */
-//	public Iterable<T> getDatabaseElements(Predicate<T> criteria);
-//
-//	/**
-//	 * Adds the given DatabaseElements to the Database
-//	 * 
-//	 * @param product
-//	 *            The DatabaseElements to add to the Database
-//	 * @throws IllegalArgumentException
-//	 *             if the received DatabaseElements is {@code null}
-//	 */
-//	public void insert(T t);
-
 
 }

@@ -10,7 +10,7 @@ import app.elements.ProjectComparator;
 import utils.Project;
 
 /**
- * Abstract class whose purpose will be to store all projects in existence and control
+ * Abstract class whose purpose will be to store all projects in the memory and control
  * the projects IDs (all PIDs have to be different).
  */
 public class InMemoryProjectRepo extends InMemoryRepo<Project> implements ProjectRepository{
