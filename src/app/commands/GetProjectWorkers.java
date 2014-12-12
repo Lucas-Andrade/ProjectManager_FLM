@@ -72,13 +72,13 @@ public class GetProjectWorkers extends BaseCommand
 		projectId = getParameterAsLong(PID);
 		this.typeWorker = getParameterAsString(WTYPE);
 		
-		if (typeWorker.equals("Manager"))
+		if (typeWorker.equalsIgnoreCase("Manager"))
 		{
 			Leader manager = projectRepository.getProjectById(projectId).getManager();
 			out.giveResults(manager);
 			return;
 		}
-		else if(typeWorker.equals("Consultant"))  
+		else if(typeWorker.equalsIgnoreCase("Consultant"))  
 		{
 			Iterable<AWorker> workers = projectRepository.getProjectById(projectId).getTeam();
 			out.giveResults(workers);
