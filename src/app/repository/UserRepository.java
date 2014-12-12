@@ -25,5 +25,7 @@ public interface UserRepository extends Repository<DatabaseElements>
 	public boolean isPasswordCorrectForUser(String username, String userPassword);
 
 	public UserInterface[] getAllUsers();
+
+	boolean addAdmin(String username, String password);
 	
 }
