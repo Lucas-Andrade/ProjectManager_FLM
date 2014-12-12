@@ -17,11 +17,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements UserReposito
 	@Override
 	public UserInterface getUserByUsername(String loginName)
 	{
-		for (DatabaseElements user : getDatabaseElements())
-			if (((User) user).getLoginName().equals(loginName))
-				return (UserInterface) user;
-
-		return null;
+		return users.get(loginName);
 	}
 
 	@Override
@@ -35,9 +31,22 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements UserReposito
 		for(Entry<String, UserInterface> user : usersSet)
 		{
 			userArray[index] = user.getValue();
+			index++;
 		}
 		
 		return userArray;
+	}
+	
+	public String toString()
+	{
+		StringBuilder builder = new StringBuilder();
+		
+		for(UserInterface user : getAllUsers())
+		{
+			builder.append(user.toString()).append("\n");
+		}
+		
+		return builder.toString();
 	}
 
 	@Override
@@ -77,6 +86,9 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements UserReposito
 		}
 	}
 	
-	
+	public int size()
+	{
+		return users.size();
+	}
 	
 }

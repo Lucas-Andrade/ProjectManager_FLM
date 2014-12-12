@@ -24,6 +24,7 @@ public class User implements UserInterface
 	/**
 	 * @return the username
 	 */
+	@Override
 	public String getLoginName()
 	{
 		return username;
@@ -32,6 +33,7 @@ public class User implements UserInterface
 	/**
 	 * @return the password
 	 */
+	@Override
 	public String getLoginPassword()
 	{
 		return password;
@@ -40,6 +42,7 @@ public class User implements UserInterface
 	/**
 	 * @return the email
 	 */
+	@Override
 	public String getEmail()
 	{
 		return email;
@@ -48,6 +51,7 @@ public class User implements UserInterface
 	/**
 	 * @return the fullName
 	 */
+	@Override
 	public String getFullName()
 	{
 		return fullname;
@@ -56,6 +60,7 @@ public class User implements UserInterface
 	/**
 	 * @return information about this user
 	 */
+	@Override
 	public String toString()
 	{
 		StringBuilder builder = new StringBuilder();
@@ -63,5 +68,18 @@ public class User implements UserInterface
 			.append(", Username: ").append(username);
 		
 		return builder.toString();
+	}
+	
+	@Override
+	public boolean equals(UserInterface user)
+	{
+		if(user == null)
+			return false;
+		
+		if (fullname.equals(user.getFullName()) && email.equals(user.getEmail()) && 
+				username.equals(user.getLoginName()) && password.equals(user.getLoginPassword()))
+			return true;
+		else
+			return false;
 	}
 }
