@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.util.Map;
 
 import app.commands.exceptions.CommandException;
+import app.repository.ProjectRepository;
 import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
@@ -18,7 +19,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  */
 public class PostUsers extends BasePostCommand
 {
-	
+
 	private String username;
 	private String password;
 	private String email;
@@ -29,26 +30,19 @@ public class PostUsers extends BasePostCommand
 	private static final String FULLNAME = "fullname";
 	private static final String[] DEMANDING_PARAMETERS = {USERNAME, PASSWORD, EMAIL, FULLNAME};
 	
-	public PostUsers(UserRepository repository, Map<String, String> parameters) {
-		super(repository, parameters);
-		// TODO Auto-generated constructor stub
-	}
 
 	/**
 	 * Class that implements the {@link GetProducts} factory, according to the 
 	 * AbstratFactory design pattern. 
 	 */
-	public static class Factory implements CommandFactory {
-
-		private final UserRepository repository;
+	public static class Factory implements CommandFactory 
+	{
+		private final UserRepository uRepository;
 		private String username;
-		private String password;
-		private String email;
-		private String fullname;
 		
-		public Factory(UserRepository repository)
+		public Factory(UserRepository uRepository)
 		{
-			this.repository = repository;
+			this.uRepository = uRepository;
 		}
 		
 		@Override
@@ -56,9 +50,14 @@ public class PostUsers extends BasePostCommand
 		{
 			if(parameters.get(username)==null||parameters.get(username)==null)
 				throw new IllegalArgumentException();
-			return new PostUsers(repository, parameters);
+			return new PostUsers(uRepository,  parameters);
 		}
 		
+	}
+
+	
+	public PostUsers(UserRepository repository, Map<String, String> parameters) {
+		super(repository, parameters);
 	}
 
 	@Override

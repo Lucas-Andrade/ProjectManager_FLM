@@ -28,7 +28,7 @@ public class PostConsultant extends BasePostCommand {
 		private final WorkerRepository repository;
 		private final UserRepository uRepository;
 		
-		public Factory(WorkerRepository repository, UserRepository uRepository)
+		public Factory(UserRepository uRepository, WorkerRepository repository)
 		{
 			this.repository = repository;
 			this.uRepository = uRepository;
@@ -37,11 +37,11 @@ public class PostConsultant extends BasePostCommand {
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			return new PostConsultant(repository, uRepository, parameters);
+			return new PostConsultant( uRepository, repository, parameters);
 		}
 	}
 
-	public PostConsultant(WorkerRepository repository, UserRepository uRepository, Map<String, String> parameters) {
+	public PostConsultant(UserRepository uRepository, WorkerRepository repository, Map<String, String> parameters) {
 		super(uRepository, parameters);
 		this.repository = repository;
 	}

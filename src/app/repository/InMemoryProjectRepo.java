@@ -3,8 +3,8 @@ package app.repository;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
-
+import java.util.TreeSet;
+import app.elements.ProjectComparator;
 import utils.Project;
 
 /**
@@ -13,7 +13,7 @@ import utils.Project;
  */
 public class InMemoryProjectRepo extends InMemoryRepo<Project> implements ProjectRepository{
 	
-	private static final Collection<Project> projects = new HashSet<>();
+	private static final Collection<Project> projects = new TreeSet<>(new ProjectComparator());
 
 	private static long nextPIDToBeUsed = 1;
 
@@ -26,15 +26,16 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements Projec
 		return false;
 	}
 
-	public static boolean removeName(Project project) {
+	public boolean removeProject(Project project) {
 		return projects.remove(project);
 	}
 	
-	public static void removeAll() {
+	public void removeAll() {
+		nextPIDToBeUsed = 1;
 		projects.clear();
 	}
 
-	public static Collection<Project> getProjects() {
+	public Collection<Project> getProjects() {
 		return Collections.unmodifiableCollection(projects);
 	}
 
