@@ -40,7 +40,7 @@ public interface WorkerRepository extends Repository<DatabaseElement>
 	 * 
 	 * @param cid
 	 *            The CID of the Consultant to search.
-	 * @return The Consultant with the supplied CID.
+	 * @return The Consultant with the supplied CID, or null if none.
 	 */
 	public Consultant getConsultantByID(long cid);
 
@@ -50,7 +50,7 @@ public interface WorkerRepository extends Repository<DatabaseElement>
 	 * 
 	 * @param cid
 	 *            The CID of the Manager to search.
-	 * @return The Manager with the supplied CID.
+	 * @return The Manager with the supplied CID, or null if none.
 	 */
 	public Leader getManagerByID(long cid);
 
