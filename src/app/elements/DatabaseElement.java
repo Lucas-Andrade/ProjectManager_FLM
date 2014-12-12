@@ -4,7 +4,7 @@ package app.elements;
  * @author amiguinhos do Maia
  *
  */
-public interface DatabaseElements
+public interface DatabaseElement
 {
 // O Paulo na aula 10/12/14 disse que não gostava desta interface (nem do nome dela, o nome
 	// dela já é utilizado noutro local). Esta interface serve para establecer um upper bound

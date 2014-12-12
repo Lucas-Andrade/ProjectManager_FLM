@@ -2,9 +2,9 @@
 package app.repository;
 
 import utils.Project;
-import app.elements.DatabaseElements;
+import app.elements.DatabaseElement;
 
-public interface ProjectRepository extends Repository<DatabaseElements>{
+public interface ProjectRepository extends Repository<DatabaseElement>{
 	
 	public Project getProjectById(long projectId);
 

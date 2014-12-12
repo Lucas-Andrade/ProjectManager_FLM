@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import app.elements.Admin;
-import app.elements.DatabaseElements;
+import app.elements.DatabaseElement;
 import app.elements.ImmutableAdmin;
 import app.elements.User;
 import app.elements.UserInterface;
@@ -103,7 +103,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements UserReposito
 	}
 
 	@Override
-	public DatabaseElements[] getAll() {
-		return (DatabaseElements[]) getAllUsers();
+	public DatabaseElement[] getAll() {
+		return (DatabaseElement[]) getAllUsers();
 	}
 }

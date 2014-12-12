@@ -2,9 +2,9 @@ package app.repository;
 
 import utils.Consultant;
 import utils.Leader;
-import app.elements.DatabaseElements;
+import app.elements.DatabaseElement;
 
-public interface WorkerRepository extends Repository<DatabaseElements>{
+public interface WorkerRepository extends Repository<DatabaseElement>{
 
 	public long nextCID();
 

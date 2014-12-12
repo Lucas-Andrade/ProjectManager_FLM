@@ -50,8 +50,6 @@ public class PostUsers extends BasePostCommand
 		@Override
 		public Command newInstance(Map<String, String> parameters) 
 		{
-			if(parameters.get(username)==null||parameters.get(username)==null)
-				throw new IllegalArgumentException();
 			return new PostUsers(uRepository,  parameters);
 		}
 		

@@ -1,6 +1,6 @@
 package app.elements;
 
-public interface WorkerInterface extends DatabaseElements {
+public interface WorkerInterface extends DatabaseElement {
 
 	public long getCID();
 }

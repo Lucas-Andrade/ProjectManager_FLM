@@ -135,7 +135,7 @@ public class CommandParser {
 			throws InvalidRegisterException {
 		// Para fazer a distribuição do conteúdo da path pelos nós facilita se o
 		// método estiver junto à path, assim concantenam-se estes dois parâmetros.
-		path = method.trim() + path;
+		path = method.trim()+ path;
 		
 		String[] treePathElementsArray = path.split("/"); 
 		
