@@ -41,7 +41,7 @@ public class RepositoryConstructor {
 		User user4 = constructUser(4);
 		
 		InMemoryUserRepo repo = new InMemoryUserRepo();
-		repo.reset();
+		repo.removeAll();
 		repo.addUser(user1);
 		repo.addUser(user2);
 		repo.addUser(user3);

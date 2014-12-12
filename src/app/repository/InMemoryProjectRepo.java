@@ -73,6 +73,11 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements Projec
 		
 		return dataArr;
 	}
+
+	@Override
+	public int size() {
+		return projects.size();
+	}
 	
 	
 }

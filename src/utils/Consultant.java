@@ -14,9 +14,9 @@ public class Consultant extends AWorker {
 	 * Consultant constructor that will receive as parameters the worker's name, cost per hour and
 	 * the total amount of hours worked.
 	 * 
-	 * Explicitly calls the constructor of its super class to iniciate its fields.
+	 * Explicitly calls the constructor of its super class to initiate its fields.
 	 * 
-	 * Thows {@link IllegalArgumentException} if the {@code name} is null or the {@code costPerHour}
+	 * Throws {@link IllegalArgumentException} if the {@code name} is null or the {@code costPerHour}
 	 * and {@code hoursWorked} are less than 0.
 	 * 
 	 * @param name

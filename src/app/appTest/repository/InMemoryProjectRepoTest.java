@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import utils.Project;
 import app.appTest.RepositoryConstructor;
+import app.elements.DatabaseElements;
 import app.repository.InMemoryProjectRepo;
 
 public class InMemoryProjectRepoTest {
@@ -82,8 +83,16 @@ public class InMemoryProjectRepoTest {
 	}
 	
 	@Test
-	public void visualTest()
+	public void shouldReturnTheWholeRepository()
 	{
-		System.out.println(repo.toString());
+		DatabaseElements[] rep = repo.getAll();
+		StringBuilder builder = new StringBuilder();
+		
+		for(DatabaseElements elem : rep)
+			builder.append(elem.toString()).append("\n");
+		
+		assertEquals(repo.toString(), builder.toString());
+		
+	//	System.out.println(repo.toString());
 	}
 }

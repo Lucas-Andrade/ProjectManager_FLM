@@ -24,7 +24,7 @@ public abstract class AWorker extends Element implements WorkerInterface{
 	 * AWorker constructor that will receive the worker's name, cost per hour and the total amount
 	 * of hours worked as parameters.
 	 * 
-	 * Thows {@link IllegalArgumentException} if the {@code name} is null or the {@code costPerHour}
+	 * Throws {@link IllegalArgumentException} if the {@code name} is null or the {@code costPerHour}
 	 * and {@code hoursWorked} are less than 0.
 	 * 
 	 * @param name

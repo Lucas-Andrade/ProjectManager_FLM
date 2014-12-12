@@ -28,7 +28,7 @@ public class WorkerComparator implements Comparator<AWorker>{
 			cid2 = -1;
 		}
 		
-		return cid1 > cid2 ? -1 : (cid1 < cid2) ? 1 : 0;
+		return cid1 > cid2 ? 1 : (cid1 < cid2) ? -1 : 0;
 	}
 
 }

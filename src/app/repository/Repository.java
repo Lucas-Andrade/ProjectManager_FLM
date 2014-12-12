@@ -8,6 +8,7 @@ public interface Repository<T extends DatabaseElements> {
 
 	public void removeAll();
 	public DatabaseElements[] getAll();
+	public int size();
 	
 	public String toString();
 	

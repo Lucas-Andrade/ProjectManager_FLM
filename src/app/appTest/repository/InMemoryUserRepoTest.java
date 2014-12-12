@@ -1,10 +1,13 @@
 package app.appTest.repository;
 
 import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import app.appTest.RepositoryConstructor;
 import app.elements.Admin;
+import app.elements.DatabaseElements;
 import app.elements.UserInterface;
 import app.repository.InMemoryUserRepo;
 
@@ -52,7 +55,7 @@ public class InMemoryUserRepoTest {
 	@Test
 	public void shouldCorrectlyResetTheRepositoryLeavingOnlyTheAdmin()
 	{
-		repo.reset();
+		repo.removeAll();
 		assertEquals(1, repo.size());
 		assertTrue(repo.getAllUsers()[0] instanceof Admin);
 	}
@@ -68,10 +71,18 @@ public class InMemoryUserRepoTest {
 	{
 		assertTrue(repo.addUser(constructor.constructUser(25489)));
 	}
-	
-	@Test
-	public void visualTest() {
-		System.out.println(repo.toString());
-	}
 
+	@Test
+	public void shouldReturnTheWholeRepository()
+	{
+		DatabaseElements[] rep = repo.getAll();
+		StringBuilder builder = new StringBuilder();
+		
+		for(DatabaseElements elem : rep)
+			builder.append(elem.toString()).append("\n");
+		
+		assertEquals(repo.toString(), builder.toString());
+		
+//		System.out.println(repo.toString());
+	}
 }

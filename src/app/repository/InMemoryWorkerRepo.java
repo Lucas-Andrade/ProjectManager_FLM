@@ -92,4 +92,9 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements WorkerR
 		
 		return dataArr;
 	}
+
+	@Override
+	public int size() {
+		return workers.size();
+	}
 }
