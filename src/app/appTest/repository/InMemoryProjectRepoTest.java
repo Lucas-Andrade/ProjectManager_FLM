@@ -76,6 +76,12 @@ public class InMemoryProjectRepoTest {
 	}
 	
 	@Test
+	public void shouldNotAddProjectWithTheSamePID()
+	{
+		assertFalse(repo.addProject(constructor.constructProject(2)));
+	}
+	
+	@Test
 	public void visualTest()
 	{
 		System.out.println(repo.toString());

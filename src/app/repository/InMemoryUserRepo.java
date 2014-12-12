@@ -91,4 +91,8 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements UserReposito
 		return users.size();
 	}
 	
+	public void addAdmin()
+	{
+		addUser(new Admin());
+	}
 }

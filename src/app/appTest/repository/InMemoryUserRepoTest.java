@@ -1,15 +1,10 @@
 package app.appTest.repository;
 
 import static org.junit.Assert.*;
-
-import java.util.Map;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import app.appTest.RepositoryConstructor;
 import app.elements.Admin;
-import app.elements.User;
 import app.elements.UserInterface;
 import app.repository.InMemoryUserRepo;
 
@@ -22,7 +17,6 @@ public class InMemoryUserRepoTest {
 	public void constructARepository()
 	{
 		repo = new InMemoryUserRepo();
-//		repo.removeAll();
 		constructor = new RepositoryConstructor();
 		
 		repo = constructor.constructUserRepository();

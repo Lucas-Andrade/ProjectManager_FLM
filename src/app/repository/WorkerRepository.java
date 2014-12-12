@@ -16,4 +16,6 @@ public interface WorkerRepository extends Repository<DatabaseElements>{
 	
 	public Leader getManagerByID(long cid);
 
+	public void removeAll();
+
 }

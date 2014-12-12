@@ -2,14 +2,15 @@ package app.repository;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.TreeSet;
+import app.elements.WorkerComparator;
 import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
 
 public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements WorkerRepository{
 
-	private static final Collection<AWorker> workers = new HashSet<>();
+	private static final Collection<AWorker> workers = new TreeSet<>(new WorkerComparator());
 
 	private static long nextCIDToBeUsed = 1;
 	
@@ -71,5 +72,11 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements WorkerR
 		for (AWorker worker: workers)
 			builder.append(worker.toString()).append("\n");
 		return builder.toString();
+	}
+	
+	@Override
+	public void removeAll()
+	{
+		workers.clear();
 	}
 }

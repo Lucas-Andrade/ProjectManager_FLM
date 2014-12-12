@@ -52,19 +52,19 @@ public class RepositoryConstructor {
 	
 	public InMemoryWorkerRepo constructWorkerRepo()
 	{
-		Consultant cons1 = constructConsultant(1);
-		Consultant cons2 = constructConsultant(2);
-		Consultant cons3 = constructConsultant(3);
-		Consultant cons4 = constructConsultant(4);
-		Leader mana5 = constructLeader(5);
-		Leader mana6 = constructLeader(6);
-		
 		InMemoryWorkerRepo repo = new InMemoryWorkerRepo();
+		
+		Consultant cons1 = constructConsultant((int)repo.nextCID());
 		repo.addConsultant(cons1);
+		Consultant cons2 = constructConsultant((int)repo.nextCID());
 		repo.addConsultant(cons2);
+		Consultant cons3 = constructConsultant((int)repo.nextCID());
 		repo.addConsultant(cons3);
+		Consultant cons4 = constructConsultant((int)repo.nextCID());
 		repo.addConsultant(cons4);
+		Leader mana5 = constructLeader((int)repo.nextCID());
 		repo.addManager(mana5);
+		Leader mana6 = constructLeader((int)repo.nextCID());
 		repo.addManager(mana6);
 		
 		return repo;
