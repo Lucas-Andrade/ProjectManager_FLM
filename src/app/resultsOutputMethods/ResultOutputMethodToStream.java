@@ -1,15 +1,14 @@
-/**
- * 
- */
 package app.resultsOutputMethods;
 
 import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Class that has an {@link OutputStream} to give the results. None of the
- * methods from this class should {@link OutputStream#close()} the
- * {@code OutputStream} (that is not their responsibility, that's the
+ * Class that defines the contract for all output methods of results that give
+ * the results to an {@link OutputStream}.
+ * 
+ * Note: none of the methods from this class should {@link OutputStream#close()}
+ * the {@code OutputStream} (that is not their responsibility, that's the
  * responsibility of who instantiates the {@code OutputStream}).
  */
 public abstract class ResultOutputMethodToStream implements ResultOutputMethod
@@ -35,7 +34,11 @@ public abstract class ResultOutputMethodToStream implements ResultOutputMethod
 	/**
 	 * @see app.resultsOutputMethod.ResultsOutputMethod#giveResults(java.io.OutputStream)
 	 * 
-	 * 
+	 *      Sends the results to
+	 *      {@link ResultOutputMethodToStream#internalGiveResults(Object[])} ,
+	 *      then gives them to
+	 *      {@link ResultOutputMethodToStream#writeAndFlushOutputStream(byte[])}
+	 *      .
 	 * 
 	 *      Implementation Notes: This implementation of
 	 *      {@code giveResults(Object...)} won't work as expected if: <li>more
@@ -43,8 +46,7 @@ public abstract class ResultOutputMethodToStream implements ResultOutputMethod
 	 *      if one (or more than one) of the parameters passed is an array (if
 	 *      is passed only a single array as a parameter and there are no more
 	 *      parameters, there's no problem); <li>an array with primitive
-	 *      elements is passed as a parameter; <li>the object doesn't have an
-	 *      Override of {@link Object#toString()}.
+	 *      elements is passed as a parameter.
 	 */
 	@Override
 	public void giveResults(Object... result) throws IOException
@@ -53,17 +55,21 @@ public abstract class ResultOutputMethodToStream implements ResultOutputMethod
 	}
 
 	/**
-	 * Receives the results and gives them back in the way defined by the output
-	 * method.
+	 * Receives the results and gives them back (as an array of {@code byte}s)
+	 * in the way defined by this method.
 	 * 
 	 * @param results
-	 * @return
+	 *            The results to be output by the method.
+	 * @return The results in an array of {@code byte}s.
 	 */
 	protected abstract byte[] internalGiveResults(Object[] results);
 
 	/**
+	 * Receives the results as an array of {@code byte}s and sends them to the
+	 * {@code OutputStream}.
 	 * 
 	 * @param result
+	 *            The results to be output by the method.
 	 * @throws IOException
 	 */
 	private void writeAndFlushOutputStream(byte[] result) throws IOException
