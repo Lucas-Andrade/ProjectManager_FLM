@@ -15,7 +15,7 @@ public class Team extends AContainer<AWorker> implements IName {
 //	/**
 //	 * Team constructor that will receive as parameters the team's name and leader.
 //	 * 
-//	 * Thows {@link IllegalArgumentException} if any of the given parameters are null.
+//	 * Throws {@link IllegalArgumentException} if any of the given parameters are null.
 //	 * 
 //	 * @param name - the name of the team.
 //	 * @param leader - the leader of the team.
