@@ -1,11 +1,11 @@
 package app.commands;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Map;
 
 import app.commands.exceptions.CommandException;
-import app.repository.ProjectRepository;
+import app.elements.User;
+import app.elements.UserInterface;
 import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
@@ -29,6 +29,8 @@ public class PostUsers extends BasePostCommand
 	private static final String EMAIL = "email";
 	private static final String FULLNAME = "fullname";
 	private static final String[] DEMANDING_PARAMETERS = {USERNAME, PASSWORD, EMAIL, FULLNAME};
+
+	private final UserRepository repository;
 	
 
 	/**
@@ -58,6 +60,7 @@ public class PostUsers extends BasePostCommand
 	
 	public PostUsers(UserRepository repository, Map<String, String> parameters) {
 		super(repository, parameters);
+		this.repository = repository;
 	}
 
 	@Override
@@ -69,9 +72,34 @@ public class PostUsers extends BasePostCommand
 	protected void internalPostExecute(ResultOutputMethod out)
 			throws CommandException, IOException
 	{
-		// TODO Auto-generated method stub
-		
+		this.username = parameters.get(USERNAME);
+		this.password = parameters.get(PASSWORD);
+		this.email = parameters.get(EMAIL);
+		this.fullname = parameters.get(FULLNAME);
+		UserInterface[] existingUsers = repository.getAllUsers();
+		for(UserInterface existingUser : existingUsers)
+		{
+			if(existingUser.getLoginName().equals(this.username))
+				out.giveResults("The Specified Username already exists in repository.");
+		}
+		if(this.validEmail())
+		{
+			repository.addUser(new User(this.username, this.password, this.email, this.fullname));
+			return;
+		}
+		else
+			out.giveResults("The Email is not valid.");
 	}
 
+	private boolean validEmail()
+	{
+		if(!(email.contains("@")))
+			return false;
+		if(email.substring(email.indexOf("@")+1, email.length()).contains("@"))
+			return false;
+		if(email.lastIndexOf(".")<email.lastIndexOf("@"))
+			return false;
+		return true;
+	}
 
 }
