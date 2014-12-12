@@ -5,7 +5,10 @@ import java.util.Scanner;
 
 import app.commandParser.CommandParser;
 import app.commandParser.CommandParserException;
+import app.commandParser.DuplicateArgumentsException;
+import app.commandParser.InvalidCommandArgumentsException;
 import app.commandParser.InvalidRegisterException;
+import app.commandParser.UnknownCommandException;
 import app.commands.GetProjectWorkers;
 import app.commands.GetUser;
 import app.commands.GetUsers;
@@ -15,6 +18,8 @@ import app.commands.PostSubproject;
 import app.commands.PostUsers;
 import app.commands.PostWorkerInProject;
 import app.commands.exceptions.CommandException;
+import app.commands.exceptions.InvalidParameterValueException;
+import app.commands.exceptions.MandatoryParameterNotPresentException;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
 import app.repository.InMemoryWorkerRepo;
@@ -67,7 +72,7 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * called.
  * <li>main: run the app.
  * 
- * @author Filipa Gonçalves., Filipe Maia, Lucas Andrade.
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
 public class AppProjectManager 
@@ -139,8 +144,14 @@ public class AppProjectManager
 		ProjectRepository projectRepo = new InMemoryProjectRepo();
 		UserRepository userRepo = new InMemoryUserRepo();
 		WorkerRepository workersRepo = new InMemoryWorkerRepo();
-
-		RegisterCommand(parser, userRepo, projectRepo, workersRepo);
+		try
+		{
+			RegisterCommand(parser, userRepo, projectRepo, workersRepo);
+		} 
+		catch(InvalidRegisterException e)
+		{
+			System.out.println("Invalid Registry! Verify RegisterCommand method.");
+		}
 
 		System.out.println("*********************************");
 		System.out.println("********** JAVA COMPANY *********");
@@ -168,9 +179,37 @@ public class AppProjectManager
 					scanner.nextLine();
 					return;
 				default:
+					try{
 					parser.getCommand(a.split(" ")).execute(out);
 					scanner.nextLine();
-					
+					}catch (UnknownCommandException  e)
+					{
+						System.out.println("args must have 2 or 3 elements");
+					}
+					catch(InvalidCommandArgumentsException e)
+					{
+						System.out.println("args must have 2 or 3 elements");
+					}
+					catch(DuplicateArgumentsException e)
+					{
+						System.out.println("args must have 2 or 3 elements");
+					}
+					catch(CommandParserException e)
+					{
+						System.out.println("args must have 2 or 3 elements");
+					}
+					catch(MandatoryParameterNotPresentException e)
+					{
+						System.out.println("args must have 2 or 3 elements");
+					}
+					catch(InvalidParameterValueException e)
+					{
+						System.out.println("args must have 2 or 3 elements");
+					}
+					catch(CommandException e)
+					{
+						System.out.println("args must have 2 or 3 elements");
+					}
 			}
 
 		} while (true);

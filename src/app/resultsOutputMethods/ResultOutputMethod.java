@@ -1,6 +1,3 @@
-/**
- * 
- */
 package app.resultsOutputMethods;
 
 import java.io.IOException;
