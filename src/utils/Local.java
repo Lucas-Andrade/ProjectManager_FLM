@@ -1,14 +1,16 @@
 package utils;
+
 /**
  * Class {@code Local} whose objects will represent the local of a project.
  * 
  * Implements the Interfaces {@link ICost}, {@link IName}.
  */
-public class Local implements ICost, IName {
+public class Local implements ICost, IName
+{
 
 	/**
 	 * @field name - String with the name of the local.
-	 * @field localisation - String with the address of the local.
+	 * @field localization - String with the address of the local.
 	 * @field cost - the cost associated with the local.
 	 */
 	private final String name;
@@ -17,10 +19,11 @@ public class Local implements ICost, IName {
 	public final double longitude;
 
 	/**
-	 * Local constructor that will receive the local's name, address and cost as parameters.
+	 * Local constructor that will receive the local's name, address and cost as
+	 * parameters.
 	 * 
-	 * Throws {@link IllegalArgumentException} if the name or the address are null or the cost is
-	 * less than 0.
+	 * Throws {@link IllegalArgumentException} if the name or the address are
+	 * null or the cost is less than 0.
 	 * 
 	 * @param name
 	 *            - the name of the local.
@@ -29,9 +32,11 @@ public class Local implements ICost, IName {
 	 * @param cost
 	 *            - the cost associated with the local.
 	 */
-	public Local(double latitude, double longitude, String name, double cost) {
+	public Local(double latitude, double longitude, String name, double cost)
+	{
 
-		if (name == null || latitude < - 90 || latitude > 90 || longitude < -180 || longitude > 180 || cost < 0)
+		if (name == null || latitude < -90 || latitude > 90 || longitude < -180
+				|| longitude > 180 || cost < 0)
 			throw new IllegalArgumentException();
 
 		this.name = name;
@@ -39,21 +44,25 @@ public class Local implements ICost, IName {
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
-	
+
 	/**
-	 * Override of the method {@code getName()} from the {@code IName} Interface.
+	 * Override of the method {@code getName()} from the {@code IName}
+	 * Interface.
 	 */
 	@Override
-	public String getName() {
+	public String getName()
+	{
 
 		return name;
 	}
 
 	/**
-	 * Override of the method {@code getCosts()} from the {@code ICost} Interface.
+	 * Override of the method {@code getCosts()} from the {@code ICost}
+	 * Interface.
 	 */
 	@Override
-	public double getCost() {
+	public double getCost()
+	{
 
 		return cost;
 	}
@@ -62,8 +71,10 @@ public class Local implements ICost, IName {
 	 * Override of the method {@code toString()} from {@code Object}.
 	 */
 	@Override
-	public String toString() {
+	public String toString()
+	{
 
-		return getName() + ", " + "(" + latitude + ", " + longitude + ")" + ", cost: " + getCost() + " Euros";
+		return getName() + ", " + "(" + latitude + ", " + longitude + ")"
+				+ ", cost: " + getCost() + " Euros";
 	}
 }
