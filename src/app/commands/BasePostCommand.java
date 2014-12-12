@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.Map;
 
 import app.commands.exceptions.CommandException;
-import app.commands.exceptions.DemandingParameterNotPresentException;
 import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
@@ -16,21 +15,25 @@ import app.resultsOutputMethods.ResultOutputMethod;
  */
 public abstract class BasePostCommand extends BaseCommand
 {
-	
+
 	public static final String LOGINNAME = "loginName";
-	
+
 	public static final String LOGINPASSWORD = "loginPassword";
-	
+
 	private final UserRepository repository;
-	
-	public BasePostCommand(UserRepository repository, Map<String, String> parameters)
+
+	public BasePostCommand(UserRepository repository,
+			Map<String, String> parameters)
 	{
 		super(parameters);
 		this.repository = repository;
 	}
 
-	/* (non-Javadoc)
-	 * @see app.commands.BaseCommand#internalExecute(app.resultsOutputMethods.ResultOutputMethod)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see app.commands.BaseCommand#internalExecute(app.resultsOutputMethods.
+	 * ResultOutputMethod)
 	 */
 	@Override
 	protected void internalExecute(ResultOutputMethod out)
@@ -44,12 +47,13 @@ public abstract class BasePostCommand extends BaseCommand
 		else
 			out.giveResults("username e/ou password erradas");
 	}
-	
+
 	protected boolean authenticateUser(String username, String password)
 	{
 		return repository.isPasswordCorrectForUser(username, password);
 	}
-	
-	abstract protected void internalPostExecute(ResultOutputMethod out) throws app.commands.exceptions.CommandException, IOException;
+
+	abstract protected void internalPostExecute(ResultOutputMethod out)
+			throws app.commands.exceptions.CommandException, IOException;
 
 }

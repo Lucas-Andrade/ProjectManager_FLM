@@ -11,8 +11,11 @@ import java.io.IOException;
 public interface ResultOutputMethod
 {
 	/**
-	 * Receives the results and gives them back in the way defined by the output method.
-	 * @param result the results to be output by the method.
+	 * Receives the results and gives them back in the way defined by this
+	 * method.
+	 * 
+	 * @param result
+	 *            The results to be output by the method.
 	 * @throws IOException
 	 */
 	public void giveResults(Object... result) throws IOException;
