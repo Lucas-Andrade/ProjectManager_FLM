@@ -54,7 +54,7 @@ public class Project extends Element implements ProjectInterface{
 	 */
 	public Project(Local local, long pid) 
 	{
-		this(null, local, null, new Team(), pid);	
+		this("", local, null, new Team(), pid);	
 //		if (name == null || local == null)
 //			throw new IllegalArgumentException();
 //
@@ -277,7 +277,7 @@ public class Project extends Element implements ProjectInterface{
 		
 		StringBuilder builder = new StringBuilder();
 		
-		builder.append(space).append("Name: ").append(name)
+		builder.append(space).append("Project ID: ").append(pid)
 			.append("\n").append(space).append("Cost: ").append(getCost()).append(" Euros")
 			.append("\n").append(space).append("Local: ").append(local.toString())
 			.append("\n").append(space).append("Team: ").append(team.toString())
@@ -293,8 +293,17 @@ public class Project extends Element implements ProjectInterface{
 	 */
 	@Override
 	public double getCost() {
-
-		return local.getCost() + manager.getCost() + team.getCost() + projectsContainer.getCost();
+		
+		double managerCost;
+		try{
+			managerCost = manager.getCost();
+		}
+		catch(NullPointerException e)
+		{
+			managerCost = 0;
+		}
+		
+		return local.getCost() + managerCost + team.getCost() + projectsContainer.getCost();
 	}
 
 	/**
