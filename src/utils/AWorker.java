@@ -91,9 +91,6 @@ public abstract class AWorker extends Element implements WorkerInterface{
 			.append(" Euros, Cost: ").append(getCost()).append(" Euros");
 		
 		return builder.toString();
-		
-//		return this.getName() + ", payment per hour:" + this.getCostPerHour() + "€" + ", cost: "
-//				+ this.getCost() + "€";
 	}
 
 	/**

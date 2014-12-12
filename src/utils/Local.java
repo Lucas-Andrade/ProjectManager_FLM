@@ -8,7 +8,7 @@ public class Local implements ICost, IName {
 
 	/**
 	 * @field name - String with the name of the local.
-	 * @field localization - String with the adress of the local.
+	 * @field localisation - String with the address of the local.
 	 * @field cost - the cost associated with the local.
 	 */
 	private final String name;
@@ -17,9 +17,9 @@ public class Local implements ICost, IName {
 	public final double longitude;
 
 	/**
-	 * Local contructor that wiil receive the local's name, address and cost as parameters.
+	 * Local constructor that will receive the local's name, address and cost as parameters.
 	 * 
-	 * Thows {@link IllegalArgumentException} if the name or the address are null or the cost is
+	 * Throws {@link IllegalArgumentException} if the name or the address are null or the cost is
 	 * less than 0.
 	 * 
 	 * @param name
