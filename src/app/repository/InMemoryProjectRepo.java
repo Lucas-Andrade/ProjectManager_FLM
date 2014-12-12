@@ -4,6 +4,8 @@ package app.repository;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.TreeSet;
+
+import app.elements.DatabaseElements;
 import app.elements.ProjectComparator;
 import utils.Project;
 
@@ -58,6 +60,18 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements Projec
 	@Override
 	public long getNextPID() {
 		return nextPIDToBeUsed;
+	}
+
+	@Override
+	public DatabaseElements[] getAll() {
+		Collection<Project> col = getProjects();
+		DatabaseElements[] dataArr = new DatabaseElements[col.size()];
+		int index = 0;
+		
+		for(DatabaseElements elem : col)
+			dataArr[index++] = elem;
+		
+		return dataArr;
 	}
 	
 	

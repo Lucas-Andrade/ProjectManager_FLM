@@ -6,6 +6,12 @@ import app.elements.DatabaseElements;
 
 public interface Repository<T extends DatabaseElements> {
 
+	public void removeAll();
+	public DatabaseElements[] getAll();
+	
+	public String toString();
+	
+
 //	/**
 //	 * Gets all the DatabaseElements in the repository
 //	 * 

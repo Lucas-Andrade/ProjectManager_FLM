@@ -26,5 +26,4 @@ public interface UserRepository extends Repository<DatabaseElements>
 
 	public UserInterface[] getAllUsers();
 	
-	public void reset();
 }

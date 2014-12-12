@@ -7,12 +7,18 @@ import java.util.Set;
 
 import app.elements.Admin;
 import app.elements.DatabaseElements;
+import app.elements.ImmutableAdmin;
 import app.elements.User;
 import app.elements.UserInterface;
 
 public class InMemoryUserRepo extends InMemoryRepo<User> implements UserRepository {
 	
 	Map<String, UserInterface> users = new HashMap<String, UserInterface>();
+	
+	public InMemoryUserRepo()
+	{
+		users.put("admin",  new ImmutableAdmin());
+	}
 	
 	@Override
 	public UserInterface getUserByUsername(String loginName)
@@ -64,10 +70,9 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements UserReposito
 	}
 
 	@Override
-	public void reset() {
+	public void removeAll() {
 		users.clear();
-		UserInterface admin = new Admin();
-		users.put("admin", admin);
+		users.put("admin",  new ImmutableAdmin());
 	}
 
 	@Override
@@ -91,8 +96,13 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements UserReposito
 		return users.size();
 	}
 	
-	public void addAdmin()
+	public boolean addAdmin(String username, String password)
 	{
-		addUser(new Admin());
+		return addUser(new Admin(username, password));
+	}
+
+	@Override
+	public DatabaseElements[] getAll() {
+		return (DatabaseElements[]) getAllUsers();
 	}
 }
