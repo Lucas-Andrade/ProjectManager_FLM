@@ -14,7 +14,6 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements UserReposito
 	
 	Map<String, UserInterface> users = new HashMap<String, UserInterface>();
 	
-	
 	@Override
 	public UserInterface getUserByUsername(String loginName)
 	{

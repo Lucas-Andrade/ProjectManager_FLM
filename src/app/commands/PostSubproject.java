@@ -50,7 +50,7 @@ public class PostSubproject extends BasePostCommand {
 	}
 	
 	@Override
-	protected String[] getDemandingParametres() {
+	protected String[] getMandatoryParametres() {
 		return new String[]{"pid", "subPid"};
 	}
 
