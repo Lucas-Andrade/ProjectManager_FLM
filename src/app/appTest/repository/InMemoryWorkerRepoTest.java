@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class InMemoryRepoTest {
+public class InMemoryWorkerRepoTest {
 
 	@Test
 	public void test() {

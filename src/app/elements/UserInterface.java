@@ -17,4 +17,12 @@ public interface UserInterface extends DatabaseElements
 	 * @return the password
 	 */
 	public String getLoginPassword();
+	
+	public String toString();
+	
+	public String getFullName();
+	
+	public String getEmail();
+	
+	public boolean equals(UserInterface user);
 }

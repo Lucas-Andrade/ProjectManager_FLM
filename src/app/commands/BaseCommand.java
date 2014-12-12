@@ -23,12 +23,12 @@ public abstract class BaseCommand implements Command {
 
 	public final void execute(ResultOutputMethodToStream out) throws app.commands.exceptions.CommandException, IOException
 	{	
-		validateDemandingParameters(getDemandingParametres());
+		validateDemandingParameters(getMandatoryParametres());
 		internalExecute(out);
 	}
 
 
-	protected abstract String[] getDemandingParametres();
+	protected abstract String[] getMandatoryParametres();
 
 
 	abstract protected void internalExecute(ResultOutputMethod out) throws app.commands.exceptions.CommandException, IOException;

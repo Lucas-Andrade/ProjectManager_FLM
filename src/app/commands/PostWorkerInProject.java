@@ -80,7 +80,7 @@ public class PostWorkerInProject extends BasePostCommand {
 	
 	//devolve o array com os nomes dos parãmetros obrigatórios
 	@Override
-	protected String[] getDemandingParametres() 
+	protected String[] getMandatoryParametres() 
 	{		
 		return DEMANDING_PARAMETERS;
 	}
