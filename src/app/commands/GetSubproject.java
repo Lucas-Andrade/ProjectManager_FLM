@@ -46,7 +46,7 @@ public class GetSubproject extends BaseCommand
 	}
 
 	@Override
-	protected String[] getMandatoryParametres() {
+	protected String[] getMandatoryParameters() {
 		return demandingParameters;
 	}
 

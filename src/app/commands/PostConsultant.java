@@ -47,7 +47,7 @@ public class PostConsultant extends BasePostCommand {
 	}
 
 	@Override
-	protected String[] getMandatoryParametres() {
+	protected String[] getMandatoryParameters() {
 		return new String[]{"name", "priceHour"};
 	}
 

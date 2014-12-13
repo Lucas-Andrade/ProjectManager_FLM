@@ -61,7 +61,7 @@ public class GetUser extends BaseCommand
 	}
 
 	@Override
-	protected String[] getMandatoryParametres() {
+	protected String[] getMandatoryParameters() {
 		return new String[] {pathholderParameter};
 	}
 

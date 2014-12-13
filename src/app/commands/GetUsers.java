@@ -49,7 +49,7 @@ public class GetUsers extends BaseCommand
 	}
 
 	@Override
-	protected String[] getMandatoryParametres() {
+	protected String[] getMandatoryParameters() {
 		return null;
 	}
 
