@@ -10,6 +10,7 @@ import app.commandParser.InvalidCommandArgumentsException;
 import app.commandParser.InvalidRegisterException;
 import app.commandParser.UnknownCommandException;
 import app.commands.GetProjectWorkers;
+import app.commands.GetSubproject;
 import app.commands.GetUser;
 import app.commands.GetUsers;
 import app.commands.PostConsultant;
@@ -100,12 +101,13 @@ public class AppProjectManager {
 		parser.registerCommand("POST", "/users", new PostUsers.Factory(userRepo));
 		parser.registerCommand("POST", "/consultant", new PostConsultant.Factory(userRepo, workersRepo));
 		parser.registerCommand("POST", "/project", new PostProject.Factory(userRepo, projectRepo));
-		parser.registerCommand("POST", "/project/{pid}/{type}", new PostWorkerInProject.Factory(userRepo, projectRepo,workersRepo));
-		parser.registerCommand("POST", "/project/{pid}/subproject",new PostSubproject.Factory(userRepo, projectRepo));
-		parser.registerCommand("GET", "/users", new GetUsers.Factory(userRepo));
+		parser.registerCommand("POST", "/project/{pid}/{type}",	new PostWorkerInProject.Factory(userRepo, projectRepo, workersRepo));
+		parser.registerCommand("POST", "/project/{pid}/subproject", new PostSubproject.Factory(userRepo, projectRepo));
+		parser.registerCommand("GET", "/users",	new GetUsers.Factory(userRepo));
 		parser.registerCommand("GET", "/users/{username}", new GetUser.Factory(userRepo));
-		parser.registerCommand("GET", "/project/{pid}/{type}",new GetProjectWorkers.Factory(projectRepo));
-		parser.registerCommand("GET", "/project/{pid}/subproject",new PostSubproject.Factory(userRepo, projectRepo));
+		parser.registerCommand("GET", "/project/{pid}/{type}",	new GetProjectWorkers.Factory(projectRepo));
+		parser.registerCommand("GET", "/project/{pid}/subproject", new GetSubproject.Factory(projectRepo));
+
 
 	}
 
