@@ -7,18 +7,22 @@ import java.util.function.Predicate;
 
 import app.elements.DatabaseElement;
 
+/**
+ * Abstract class whose purpose will be to store all {link DatabaseElements} in
+ * the memory.
+ * 
+ * @param <T>
+ *            The elements that can be stored in the Repository, extends
+ *            {@code DatabaseElements}.
+ */
 public abstract class InMemoryRepo<T extends DatabaseElement> implements
 		Repository<DatabaseElement>
 {
 
 	/**
-	 * Holds the database.
+	 * The {@link Collection} that holds the repository elements.
 	 */
 	private final Collection<T> database = new ArrayList<>();
-
-	/**
-	 * {@see ProductRepository#getProducts()}
-	 */
 
 	public Iterator<T> getDatabaseElements()
 	{

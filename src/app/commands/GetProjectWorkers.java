@@ -58,10 +58,10 @@ public class GetProjectWorkers extends BaseCommand
 	}
 	
 	/**
-	 * @see app.commands.BaseCommand#getMandatoryParametres()
+	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
-	protected String[] getMandatoryParametres() 
+	protected String[] getMandatoryParameters() 
 	{
 		return DEMANDING_PARAMETERS;
 	}

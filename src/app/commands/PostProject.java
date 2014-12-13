@@ -57,7 +57,7 @@ public class PostProject extends BasePostCommand {
 	}
 
 	@Override
-	protected String[] getMandatoryParametres() {
+	protected String[] getMandatoryParameters() {
 		return DEMANDING_PARAMETERS;
 	}
 

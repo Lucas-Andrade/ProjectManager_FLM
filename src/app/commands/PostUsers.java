@@ -61,7 +61,7 @@ public class PostUsers extends BasePostCommand
 	}
 
 	@Override
-	protected String[] getMandatoryParametres() {
+	protected String[] getMandatoryParameters() {
 		return DEMANDING_PARAMETERS;
 	}
 
