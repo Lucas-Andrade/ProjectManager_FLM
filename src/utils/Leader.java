@@ -1,28 +1,30 @@
 package utils;
 
-
-
 /**
- * Class {@code Lider} whose objects will represent the managers and team lider of a project.
+ * Class {@code Leader} whose objects will represent the managers and team
+ * leader of a project.
  * 
  * Extends {@link Consultant}.
  */
-public class Leader extends Consultant {
+public class Leader extends Consultant
+{
 
 	/**
-	 * @field bonus - bonus received by the worker for being a lider or a manager.
+	 * @field bonus - bonus received by the worker for being a leader or a
+	 *        manager.
 	 */
 	private final double bonus;
 
 	/**
-	 * Lider constructor that will receive as parameters the worker's name, cost per hour, the total
-	 * amount of hours worked and its bonus.
+	 * Leader constructor that will receive as parameters the worker's name,
+	 * cost per hour, the total amount of hours worked and its bonus.
 	 * 
-	 * Explicitly calls the constructor of its super class to iniciate the fields shared with the
-	 * other workers.
+	 * Explicitly calls the constructor of its super class to initiate the
+	 * fields shared with the other workers.
 	 * 
-	 * Thows {@link IllegalArgumentException} if the {@code name} is null or the {@code costPerHour}
-	 * , the {@code hoursWorked} or the bonus are less than 0.
+	 * Throws {@link IllegalArgumentException} if the {@code name} is null or
+	 * the {@code costPerHour} , the {@code hoursWorked} or the bonus are less
+	 * than 0.
 	 * 
 	 * @param name
 	 *            - name of the worker.
@@ -31,9 +33,12 @@ public class Leader extends Consultant {
 	 * @param hoursWorked
 	 *            - total amount of hours worked by the worker.
 	 * @param bonus
-	 *            - bonus received by the worker for being a lider or a manager.
+	 *            - bonus received by the worker for being a leader or a
+	 *            manager.
 	 */
-	public Leader(String name, double costPerHour, double hoursWorked, double bonus, long cid) {
+	public Leader(String name, double costPerHour, double hoursWorked,
+			double bonus, long cid)
+	{
 
 		super(name, costPerHour, hoursWorked, cid);
 
@@ -44,10 +49,12 @@ public class Leader extends Consultant {
 	}
 
 	/**
-	 * Override of the method {@code getCosts()} from the {@code ICost} Interface.
+	 * Override of the method {@code getCosts()} from the {@code ICost}
+	 * Interface.
 	 */
 	@Override
-	public double getCost() {
+	public double getCost()
+	{
 
 		return this.getCostPerHour() * this.getWorkerHours() + bonus;
 	}
@@ -55,7 +62,8 @@ public class Leader extends Consultant {
 	/**
 	 * @return {@code bonus}.
 	 */
-	public double getBonus() {
+	public double getBonus()
+	{
 
 		return bonus;
 	}

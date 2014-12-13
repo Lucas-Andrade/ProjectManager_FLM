@@ -100,12 +100,12 @@ public class PostWorkerInProject extends BasePostCommand {
 			return;
 		}
 		
-		if (typeWorker.equals("Manager"))
+		if (typeWorker.equalsIgnoreCase("manager"))
 		{
 			out.giveResults(addManager(out, projectId, workerId));
 			return;
 		}
-		else if(typeWorker.equals("Consultant"))  
+		else if(typeWorker.equalsIgnoreCase("consultant")) 
 		{
 			out.giveResults(addConsultant(out,projectId, workerId));
 			

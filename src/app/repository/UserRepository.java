@@ -1,31 +1,55 @@
-
 package app.repository;
 
 import app.elements.DatabaseElement;
 import app.elements.User;
 import app.elements.UserInterface;
 
-
 /**
- * @author amiguinhos do Maia
- *
+ * The interface to be implemented by all {@link User}s {@link Repository}.
  */
 public interface UserRepository extends Repository<DatabaseElement>
 {
 	/**
 	 * Gets the user with the given loginName, or {@code null} if none exists
-	 *  
-	 * @param loginName the user identifier
+	 * 
+	 * @param loginName
+	 *            the user identifier
 	 * @return the instance with the given identifier
 	 */
 	public UserInterface getUserByUsername(String loginName);
-	
+
+	/**
+	 * Method that adds a User {@code User} to the repository.
+	 * 
+	 * @param user
+	 *            The User to add.
+	 * @return True if successful, False if not.
+	 */
 	public boolean addUser(User user);
-	
+
+	/**
+	 * Checks if the password corresponds to the User with the username.
+	 * 
+	 * @param username
+	 *            The User's username.
+	 * @param userPassword
+	 *            The password to be checked.
+	 * @return True if it's the User's password, False if not.
+	 */
 	public boolean isPasswordCorrectForUser(String username, String userPassword);
 
+	/**
+	 * @return An array of {@link UserInterface} with all the Users in the
+	 *         repository.
+	 */
 	public UserInterface[] getAllUsers();
 
+	/**
+	 * Adds to the repository an Admin {@code User}.
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	boolean addAdmin(String username, String password);
-	
+
 }

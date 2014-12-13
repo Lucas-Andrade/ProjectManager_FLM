@@ -3,12 +3,13 @@ package utils;
 import app.elements.WorkerInterface;
 
 /**
- * Abstract class {@code AWorker} that will define the general fields shared by all types of
- * workers.
+ * Abstract class {@code AWorker} that will define the general fields shared by
+ * all types of workers.
  * 
  * Extends {@link Element}.
  */
-public abstract class AWorker extends Element implements WorkerInterface{
+public abstract class AWorker extends Element implements WorkerInterface
+{
 
 	/**
 	 * @field name - String with the name of the worker.
@@ -21,11 +22,11 @@ public abstract class AWorker extends Element implements WorkerInterface{
 	private final long cid;
 
 	/**
-	 * AWorker constructor that will receive the worker's name, cost per hour and the total amount
-	 * of hours worked as parameters.
+	 * AWorker constructor that will receive the worker's name, cost per hour
+	 * and the total amount of hours worked as parameters.
 	 * 
-	 * Throws {@link IllegalArgumentException} if the {@code name} is null or the {@code costPerHour}
-	 * and {@code hoursWorked} are less than 0.
+	 * Throws {@link IllegalArgumentException} if the {@code name} is null or
+	 * the {@code costPerHour} and {@code hoursWorked} are less than 0.
 	 * 
 	 * @param name
 	 *            - name of the worker.
@@ -34,7 +35,8 @@ public abstract class AWorker extends Element implements WorkerInterface{
 	 * @param hoursWorked
 	 *            - total amount of hours worked by the worker.
 	 */
-	public AWorker(String name, double costPerHour, double hoursWorked, long cid) {
+	public AWorker(String name, double costPerHour, double hoursWorked, long cid)
+	{
 
 		if (name == null || costPerHour < 0 || hoursWorked < 0)
 			throw new IllegalArgumentException();
@@ -48,7 +50,8 @@ public abstract class AWorker extends Element implements WorkerInterface{
 	/**
 	 * @return {@code costPerHour}.
 	 */
-	public double getCostPerHour() {
+	public double getCostPerHour()
+	{
 
 		return costPerHour;
 	}
@@ -56,26 +59,29 @@ public abstract class AWorker extends Element implements WorkerInterface{
 	/**
 	 * @return {@code hoursWorked}.
 	 */
-	public double getWorkerHours() {
+	public double getWorkerHours()
+	{
 
 		return hoursWorked;
 	}
 
 	/**
-	 * Override of the method {@code getName()} from the {@code IName} Interface.
+	 * Override of the method {@code getName()} from the {@code IName}
+	 * Interface.
 	 */
 	@Override
-	public String getName() {
-
+	public String getName()
+	{
 		return name;
 	}
 
 	/**
-	 * Override of the method {@code getCosts()} from the {@code ICost} Interface.
+	 * Override of the method {@code getCosts()} from the {@code ICost}
+	 * Interface.
 	 */
 	@Override
-	public double getCost() {
-
+	public double getCost()
+	{
 		return costPerHour * hoursWorked;
 	}
 
@@ -83,28 +89,31 @@ public abstract class AWorker extends Element implements WorkerInterface{
 	 * Override of the method {@code toString()} from {@code Object}.
 	 */
 	@Override
-	public String toString() {
-
+	public String toString()
+	{
 		StringBuilder builder = new StringBuilder();
-		
-		builder.append("Name: ").append(name).append(", Payment per hour: ").append(costPerHour)
-			.append(" Euros, Cost: ").append(getCost()).append(" Euros");
-		
+
+		builder.append("Name: ").append(name).append(", Payment per hour: ")
+				.append(costPerHour).append(" Euros, Cost: ").append(getCost())
+				.append(" Euros");
+
 		return builder.toString();
 	}
 
 	/**
-	 * Override of the method {@code compareTo()} from the {@link Comparable} Interface.
+	 * Override of the method {@code compareTo()} from the {@link Comparable}
+	 * Interface.
 	 * 
-	 * It will allow the workers to be ordered in a {@link Team} by ascending order of their
-	 * {@code costPerHour}.
+	 * It will allow the workers to be ordered in a {@link Team} by ascending
+	 * order of their {@code costPerHour}.
 	 * 
-	 * Two workers are considered to be equal when their {@code name} and {@code costPerHour} are
-	 * the same. It is consistent with the method {@code equals} from {@code Object}.
+	 * Two workers are considered to be equal when their {@code name} and
+	 * {@code costPerHour} are the same. It is consistent with the method
+	 * {@code equals} from {@code Object}.
 	 */
 	@Override
-	public int compareTo(Element element) {
-
+	public int compareTo(Element element)
+	{
 		if (element == null)
 			throw new IllegalArgumentException();
 
@@ -116,16 +125,16 @@ public abstract class AWorker extends Element implements WorkerInterface{
 		if (this.costPerHour > worker.getCostPerHour())
 			return 1;
 
-		return this.costPerHour < worker.getCostPerHour() ? -1 : this.getName().compareTo(
-				worker.getName());
+		return this.costPerHour < worker.getCostPerHour() ? -1 : this.getName()
+				.compareTo(worker.getName());
 	}
 
 	/**
 	 * Override of the method {@code hashCode()} from {@code Object}.
 	 */
 	@Override
-	public int hashCode() {
-
+	public int hashCode()
+	{
 		final int prime = 31;
 		int result = 1;
 		long temp;
@@ -139,12 +148,12 @@ public abstract class AWorker extends Element implements WorkerInterface{
 	}
 
 	/**
-	 * Override of the method {@code equals()} from {@code Object} to be consistent with the
-	 * {@code compareTo()} method.
+	 * Override of the method {@code equals()} from {@code Object} to be
+	 * consistent with the {@code compareTo()} method.
 	 */
 	@Override
-	public boolean equals(Object worker) {
-
+	public boolean equals(Object worker)
+	{
 		if (this == worker)
 			return true;
 
@@ -159,7 +168,7 @@ public abstract class AWorker extends Element implements WorkerInterface{
 
 		return true;
 	}
-	
+
 	/**
 	 * @return the worker identification number
 	 */
