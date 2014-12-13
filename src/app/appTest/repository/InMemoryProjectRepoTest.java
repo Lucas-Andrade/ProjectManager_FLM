@@ -93,6 +93,6 @@ public class InMemoryProjectRepoTest {
 		
 		assertEquals(repo.toString(), builder.toString());
 		
-	//	System.out.println(repo.toString());
+		System.out.println(repo.toString());
 	}
 }

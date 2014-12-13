@@ -40,7 +40,6 @@ public class PostUsers extends BasePostCommand
 	public static class Factory implements CommandFactory 
 	{
 		private final UserRepository uRepository;
-		private String username;
 		
 		public Factory(UserRepository uRepository)
 		{
