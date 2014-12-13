@@ -3,14 +3,18 @@ package app.commands;
 import java.util.Map;
 
 /**
- * Contract to be suported by all {@link App.commands.Command} factories
+ * Contract to be supported by all {@link Command} Factories. Each
+ * {@code Command} Factory should generate instances of the corresponding
+ * {@code Command}.
  */
-public interface CommandFactory     // Padrão de desenho  AbstractFactory
+public interface CommandFactory
 {
 	/**
-	 * Generates a new instance of {@code Command}. 
+	 * Generates a new instance of {@code Command}.
+	 * 
 	 * @param parameters
+	 *            The {@code Command} arguments.
 	 * @return
 	 */
-	public Command newInstance(Map<String,String> parameters);
+	public Command newInstance(Map<String, String> parameters);
 }

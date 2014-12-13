@@ -11,7 +11,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
 
 
 /**
- * Class whose instances are commands that return .....
+ * Class whose instances are {@link Command}s that return the {@link AWorker}s
  * GET /projects/{pid}/{type} - retorna o(s) consultor(es) do tipo type (manager
  * ou consultant), do projecto identificado por pid.
  */
