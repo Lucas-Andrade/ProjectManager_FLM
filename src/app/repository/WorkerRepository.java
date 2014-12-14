@@ -54,9 +54,4 @@ public interface WorkerRepository extends Repository<DatabaseElement>
 	 */
 	public Leader getManagerByID(long cid);
 
-	/**
-	 * Removes all {@code AWorker}s from the repository.
-	 */
-	public void removeAll();
-
 }
