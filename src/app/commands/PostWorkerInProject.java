@@ -82,8 +82,8 @@ public class PostWorkerInProject extends BasePostCommand
 	private long workerId;
 
 	/**
-	 * Class that implements the {@link GetUser} factory, according to the
-	 * AbstratFactory design pattern.
+	 * Class that implements the {@link PostWorkerInProject} factory, according to
+	 * the {@link CommandFactory}.
 	 */
 	public static class Factory implements CommandFactory
 	{
@@ -176,7 +176,7 @@ public class PostWorkerInProject extends BasePostCommand
 	 * {@code Command} adds {@code AWorker} as a Manager ( {@link Leader};
 	 * {@link Project#manager}). If indicates Consultant adds {@code AWorker} as
 	 * a {@link Consultant} in the {@link Team} of the {@code Project} (
-	 * {@link Project#team}).
+	 * {@link Project#team}). Outputs True if successful, False if not.
 	 * 
 	 * @see PostWorkerInProject#addConsultant(ResultOutputMethod, long, long)
 	 * @see PostWorkerInProject#addManager(ResultOutputMethod, long, long)

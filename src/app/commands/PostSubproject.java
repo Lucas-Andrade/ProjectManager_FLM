@@ -118,7 +118,8 @@ public class PostSubproject extends BasePostCommand
 	/**
 	 * Adds a Sub{@code Project} to a {@code Project} if both {@code Project}s
 	 * have different IDs (if they are not the same) and have different Names
-	 * and if both exist.
+	 * and if both exist. Outputs a successful message if successful and
+	 * vice-versa.
 	 * 
 	 * @see BasePostCommand#internalPostExecute(ResultOutputMethod)
 	 */
