@@ -57,7 +57,7 @@ public class InMemoryUserRepoTest {
 	{
 		repo.removeAll();
 		assertEquals(1, repo.size());
-		assertTrue(repo.getAllUsers()[0] instanceof Admin);
+		assertTrue(repo.getAll()[0] instanceof Admin);
 	}
 	
 	@Test

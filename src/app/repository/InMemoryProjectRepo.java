@@ -2,7 +2,6 @@
 package app.repository;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.TreeSet;
 
 import app.elements.DatabaseElement;
@@ -17,12 +16,12 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements Projec
 	
 	private static final Collection<Project> projects = new TreeSet<>(new ProjectComparator());
 
-	private static long nextPIDToBeUsed = 1;
+	private static long NEXT_PID_TO_BE_USED = 1;
 
 	public boolean addProject(Project project) {
 		if (projects.add(project))
 		{
-			nextPIDToBeUsed++;
+			NEXT_PID_TO_BE_USED++;
 			return true;
 		}
 		return false;
@@ -33,12 +32,8 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements Projec
 	}
 	
 	public void removeAll() {
-		nextPIDToBeUsed = 1;
+		NEXT_PID_TO_BE_USED = 1;
 		projects.clear();
-	}
-
-	public Collection<Project> getProjects() {
-		return Collections.unmodifiableCollection(projects);
 	}
 
 	@Override
@@ -59,19 +54,12 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements Projec
 
 	@Override
 	public long getNextPID() {
-		return nextPIDToBeUsed;
+		return NEXT_PID_TO_BE_USED;
 	}
 
 	@Override
 	public DatabaseElement[] getAll() {
-		Collection<Project> col = getProjects();
-		DatabaseElement[] dataArr = new DatabaseElement[col.size()];
-		int index = 0;
-		
-		for(DatabaseElement elem : col)
-			dataArr[index++] = elem;
-		
-		return dataArr;
+		return (DatabaseElement[]) projects.toArray();
 	}
 
 	@Override

@@ -77,7 +77,7 @@ public class GetUsers extends BaseCommand
 	public void internalExecute(ResultOutputMethod out)
 			throws CommandException, IOException
 	{
-		out.giveResults((Object[]) repository.getAllUsers());
+		out.giveResults((Object[]) repository.getAll());
 	}
 
 	/**
