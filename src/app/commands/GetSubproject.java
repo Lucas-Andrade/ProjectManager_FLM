@@ -9,51 +9,102 @@ import app.repository.ProjectRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
- * GET /projects/{pid}/subprojects - retorna todos os subprojectos do projecto
- * identificado por pid, com clara distinção entre projectos e subprojectos.
+ * Class whose instances are {@link Command}s that return the Sub{@link Project}
+ * s in a {@link Project}.
  */
-public class GetSubproject extends BaseCommand 
+public class GetSubproject extends BaseCommand
 {
-	private final ProjectRepository repository;
-	
-	public static final String pathholderParameter = "pid";
-	
-	public static final String[] demandingParameters = new String[]{pathholderParameter};
 
 	/**
-	 * Class that implements the {@link GetSubproject} factory, according to the 
-	 * AbstratFactory design pattern. 
+	 * The {@link ProjectRepository} with the {@code Project}s. This
+	 * {@code ProjectRepository} is accessed to get the {@code Project} with the
+	 * wanted Sub{@code Project}s.
 	 */
-	public static class Factory implements CommandFactory 
+	private final ProjectRepository repository;
+
+	/**
+	 * {@code String} with the {@code Project}ID argument's name.
+	 */
+	public static final String pathholderParameter = "pid";
+
+	/**
+	 * An array of {@code String}s with the names of all mandatory arguments.
+	 */
+	public static final String[] demandingParameters = new String[] { pathholderParameter };
+
+	/**
+	 * Class that implements the {@code GetSubproject} factory, according to the
+	 * {@link CommandFactory}.
+	 */
+	public static class Factory implements CommandFactory
 	{
+
+		/**
+		 * The {@link ProjectRepository} with the {@code Project}s. This
+		 * {@code ProjectRepository} is accessed to get the {@code Project} with
+		 * the wanted Sub{@code Project}s.
+		 */
 		private final ProjectRepository repository;
-		
+
+		/**
+		 * The constructor for {@code Factory}.
+		 * 
+		 * @param repository
+		 *            The {@code ProjectRepository} with the {@code Project}.
+		 */
 		public Factory(ProjectRepository repository)
 		{
 			this.repository = repository;
 		}
-		
+
+		/**
+		 * @see CommandFactory#newInstance(Map)
+		 */
 		@Override
-		public Command newInstance(Map<String, String> parameters) 
+		public Command newInstance(Map<String, String> parameters)
 		{
 			return new GetSubproject(repository, parameters);
 		}
 	}
 
-	public GetSubproject(ProjectRepository repository, Map<String, String> parameters) {
+	/**
+	 * The constructor for {@code GetSubproject}.
+	 * 
+	 * @param repository
+	 *            The {@code ProjectRepository}.
+	 * @param parameters
+	 *            The {@code Command} arguments.
+	 */
+	public GetSubproject(ProjectRepository repository,
+			Map<String, String> parameters)
+	{
 		super(parameters);
 		this.repository = repository;
 	}
 
+	/**
+	 * @see app.commands.BaseCommand#getMandatoryParameters()
+	 */
 	@Override
-	protected String[] getMandatoryParameters() {
+	protected String[] getMandatoryParameters()
+	{
 		return demandingParameters;
 	}
 
+	/**
+	 * Get's the Sub{@code Project}s from the {@code Project} with the argument
+	 * PID stored in {@link GetSubproject#parameters} (argument's name is
+	 * {@link GetSubproject#pathholderParameter}), if the {@code Project} exists and
+	 * has at least one Sub{@code Project}).
+	 * 
+	 * @see BaseCommand#internalExecute(ResultOutputMethod)
+	 */
 	@Override
-	protected void internalExecute(ResultOutputMethod out) throws CommandException, IOException 
+	protected void internalExecute(ResultOutputMethod out)
+			throws CommandException, IOException
 	{
-		Project project = repository.getProjectById(getParameterAsLong(pathholderParameter));
+		Project project = repository
+				.getProjectById(getParameterAsLong(pathholderParameter));
 		out.giveResults(project.getContainerProject());
 	}
 

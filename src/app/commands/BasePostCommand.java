@@ -70,6 +70,7 @@ public abstract class BasePostCommand extends BaseCommand
 		if (authenticateUser(username, password))
 			internalPostExecute(out);
 		else
+			//TODO
 			throw new CommandException("Login Name and/or Password incorrect.");
 	}
 
