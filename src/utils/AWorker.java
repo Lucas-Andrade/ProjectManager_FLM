@@ -17,6 +17,7 @@ public abstract class AWorker extends Element implements WorkerInterface
 	 * @field name - String with the name of the worker.
 	 * @field costPerHour - price receive by the worker for one hour of work.
 	 * @field hoursWorked - total of hours worked by the worker.
+	 * @field cid - the ID of the worker.
 	 */
 	private final String name;
 	private final double costPerHour;

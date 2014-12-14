@@ -5,13 +5,13 @@ import java.util.Comparator;
 import utils.Project;
 
 /**
- * Produces a comparator that allows to compare {@code Project} objects using their {@code PID} to compare them.
- * Objects with higher {@code PID} will appear higher in a list ordered by this comparator. 
+ * Produces a comparator that allows to compare {@code Project} objects using
+ * their {@code PID} to compare them. Objects with higher {@code PID} will
+ * appear higher in a list ordered by this comparator.
  * 
- * The idea behind this is that, as the projects are created their PID increases. By showing first the projects
- * with higher PID, the more recent projects will be shown.
- * @author Grupo FLM
- *
+ * The idea behind this is that, as the projects are created their PID
+ * increases. By showing first the projects with higher PID, the more recent
+ * projects will be shown.
  */
 public class ProjectComparator implements Comparator<Project>{
 	

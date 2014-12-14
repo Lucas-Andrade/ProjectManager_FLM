@@ -58,9 +58,9 @@ public abstract class BasePostCommand extends BaseCommand
 	}
 
 	/**
-	 * Authenticates the {@code User}. If authentication is incorrect throws a
-	 * {@code CommandException}, if correct proceeds with the execution of the
-	 * {@code Command}.
+	 * Authenticates the {@code User}. If authentication is incorrect stops the
+	 * execution of the {@code Command}, if correct proceeds with the execution
+	 * of the {@code Command}.
 	 * 
 	 * @see BasePostCommand#authenticateUser(String, String)
 	 * @see app.commands.BaseCommand#internalExecute(app.resultsOutputMethods.
@@ -76,8 +76,7 @@ public abstract class BasePostCommand extends BaseCommand
 		if (authenticateUser(username, password))
 			internalPostExecute(out);
 		else
-			// TODO
-			throw new CommandException("Login Name and/or Password incorrect.");
+			out.giveResults("Login Name and/or Login Password incorrect.");
 	}
 
 	/**
