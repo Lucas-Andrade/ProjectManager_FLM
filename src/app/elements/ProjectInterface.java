@@ -16,5 +16,5 @@ public interface ProjectInterface extends DatabaseElement {
 	
 	public boolean addWorker(AWorker worker);
 	
-	
+	public String toString();
 }
