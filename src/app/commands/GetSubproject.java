@@ -23,14 +23,17 @@ public class GetSubproject extends BaseCommand
 	private final ProjectRepository repository;
 
 	/**
-	 * {@code String} with the {@code Project}ID argument's name.
+	 * {@code String} with the {@code Project}ID argument's name. The
+	 * {@link CommandParser.Node.content} to be used (between "{" and "}", see
+	 * {@link CommandParser#Node#isPlaceHolderNode()}) in one of the
+	 * {@link CommandParser#Node}s of this {@code Command}'s Path.
 	 */
-	public static final String pathholderParameter = "pid";
+	public static final String PID = "pid";
 
 	/**
 	 * An array of {@code String}s with the names of all mandatory arguments.
 	 */
-	public static final String[] demandingParameters = new String[] { pathholderParameter };
+	public static final String[] DEMANDING_PARAMETERS = new String[] { PID };
 
 	/**
 	 * Class that implements the {@code GetSubproject} factory, according to the
@@ -88,14 +91,14 @@ public class GetSubproject extends BaseCommand
 	@Override
 	protected String[] getMandatoryParameters()
 	{
-		return demandingParameters;
+		return DEMANDING_PARAMETERS;
 	}
 
 	/**
 	 * Get's the Sub{@code Project}s from the {@code Project} with the argument
 	 * PID stored in {@link GetSubproject#parameters} (argument's name is
-	 * {@link GetSubproject#pathholderParameter}), if the {@code Project} exists and
-	 * has at least one Sub{@code Project}).
+	 * {@link GetSubproject#PID}), if the {@code Project} exists and has at
+	 * least one Sub{@code Project}).
 	 * 
 	 * @see BaseCommand#internalExecute(ResultOutputMethod)
 	 */
@@ -103,8 +106,7 @@ public class GetSubproject extends BaseCommand
 	protected void internalExecute(ResultOutputMethod out)
 			throws CommandException, IOException
 	{
-		Project project = repository
-				.getProjectById(getParameterAsLong(pathholderParameter));
+		Project project = repository.getProjectById(getParameterAsLong(PID));
 		out.giveResults(project.getContainerProject());
 	}
 

@@ -20,11 +20,11 @@ public class GetUser extends BaseCommand
 	
 	/**
 	 * The {@link CommandParser.Node.content} to be used (between "{" and "}", see
-	 * {@link CommandParser.Node.isPlaceHolderNode}) in the
-	 * {@code CommandParser.Node} that has the {@code GetUser.Factory} in
-	 * the field {@link CommandParser.Node.factory}.
+	 * {@link CommandParser#Node#isPlaceHolderNode()}) in the
+	 * {@link CommandParser#Node} that has the {@code GetUser#Factory} in
+	 * the field {@link CommandParser#Node#factory}.
 	 */
-	public static final String pathholderParameter = "username";
+	public static final String USERNAME = "username";
 	
 	/**
 	 * Class that implements the {@link GetUser} factory, according to the 
@@ -56,13 +56,13 @@ public class GetUser extends BaseCommand
 	private GetUser(UserRepository repository, Map<String, String> parameters)
 	{
 		super(parameters);
-		this.username=parameters.get(pathholderParameter);
+		this.username=parameters.get(USERNAME);
 		this.repository=repository;
 	}
 
 	@Override
 	protected String[] getMandatoryParameters() {
-		return new String[] {pathholderParameter};
+		return new String[] {USERNAME};
 	}
 
 	@Override

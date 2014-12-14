@@ -54,7 +54,7 @@ public class PostProject extends BasePostCommand
 
 	/**
 	 * Class that implements the {@link PostProject} factory, according to the
-	 * AbstratFactory design pattern.
+	 * {@link CommandFactory}.
 	 */
 	public static class Factory implements CommandFactory
 	{

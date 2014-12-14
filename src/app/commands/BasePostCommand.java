@@ -30,6 +30,12 @@ public abstract class BasePostCommand extends BaseCommand
 	public static final String LOGINPASSWORD = "loginPassword";
 
 	/**
+	 * An array of {@code String}s with the names of all mandatory arguments.
+	 */
+	public static final String[] DEMANDING_PARAMETERS = new String[] {
+			LOGINNAME, LOGINPASSWORD };
+
+	/**
 	 * The {@link UserRepository} with the {@code User}s. This
 	 * {@code UserRepository} is accessed to authenticate the {@code User}
 	 * requesting the POST {@code Command}.
@@ -64,13 +70,13 @@ public abstract class BasePostCommand extends BaseCommand
 	protected void internalExecute(ResultOutputMethod out)
 			throws CommandException, IOException
 	{
-		validateDemandingParameters(LOGINNAME, LOGINPASSWORD);
+		validateDemandingParameters(DEMANDING_PARAMETERS);
 		String username = parameters.get(LOGINNAME);
 		String password = parameters.get(LOGINPASSWORD);
 		if (authenticateUser(username, password))
 			internalPostExecute(out);
 		else
-			//TODO
+			// TODO
 			throw new CommandException("Login Name and/or Password incorrect.");
 	}
 

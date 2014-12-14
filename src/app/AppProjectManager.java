@@ -81,10 +81,11 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class AppProjectManager {
+public class AppProjectManager
+{
 	/**
-	 * This method associate the path that the user will insert to the
-	 * corresponding command factory, and register the command
+	 * This method associates the method and the path that the user will insert
+	 * to reach the corresponding command factory, and register the command.
 	 * 
 	 * @param parser
 	 * @param userRepo
@@ -95,42 +96,60 @@ public class AppProjectManager {
 	 *            repository to store all created Consultants (and managers)
 	 * @throws InvalidRegisterException
 	 */
-	public static void RegisterCommand(CommandParser parser, UserRepository userRepo, ProjectRepository projectRepo,
-			WorkerRepository workersRepo) throws InvalidRegisterException {
+	public static void RegisterCommand(CommandParser parser,
+			UserRepository userRepo, ProjectRepository projectRepo,
+			WorkerRepository workersRepo) throws InvalidRegisterException
+	{
 
-		parser.registerCommand("POST", "/users", new PostUsers.Factory(userRepo));
-		parser.registerCommand("POST", "/consultant", new PostConsultant.Factory(userRepo, workersRepo));
-		parser.registerCommand("POST", "/project", new PostProject.Factory(userRepo, projectRepo));
-		parser.registerCommand("POST", "/project/{pid}/{type}",	new PostWorkerInProject.Factory(userRepo, projectRepo, workersRepo));
-		parser.registerCommand("POST", "/project/{pid}/subproject", new PostSubproject.Factory(userRepo, projectRepo));
-		parser.registerCommand("GET", "/users",	new GetUsers.Factory(userRepo));
-		parser.registerCommand("GET", "/users/{username}", new GetUser.Factory(userRepo));
-		parser.registerCommand("GET", "/project/{pid}/{type}",	new GetProjectWorkers.Factory(projectRepo));
-		parser.registerCommand("GET", "/project/{pid}/subproject", new GetSubproject.Factory(projectRepo));
-
+		parser.registerCommand("POST", "/users",
+				new PostUsers.Factory(userRepo));
+		parser.registerCommand("POST", "/consultant",
+				new PostConsultant.Factory(userRepo, workersRepo));
+		parser.registerCommand("POST", "/project", new PostProject.Factory(
+				userRepo, projectRepo));
+		parser.registerCommand("POST", "/project/{" + PostWorkerInProject.PID
+				+ "}/{" + PostWorkerInProject.WTYPE + "}",
+				new PostWorkerInProject.Factory(userRepo, projectRepo,
+						workersRepo));
+		parser.registerCommand("POST", "/project/{" + PostSubproject.PID
+				+ "}/subproject", new PostSubproject.Factory(userRepo,
+				projectRepo));
+		parser.registerCommand("GET", "/users", new GetUsers.Factory(userRepo));
+		parser.registerCommand("GET", "/users/{" + GetUser.USERNAME + "}",
+				new GetUser.Factory(userRepo));
+		parser.registerCommand("GET", "/project/{" + GetProjectWorkers.PID
+				+ "}/{" + GetProjectWorkers.WTYPE + "}",
+				new GetProjectWorkers.Factory(projectRepo));
+		parser.registerCommand("GET", "/project/{" + GetSubproject.PID
+				+ "}/subproject", new GetSubproject.Factory(projectRepo));
 
 	}
 
 	/**
-	 * This method has all information that the user has to know to correctecly
+	 * This method has all information that the user has to know to correctly
 	 * use this application: The actually available commands and the
 	 * implementation notes
 	 */
-	public static void helpCommand() 
+	public static void helpCommand()
 	{
 		System.out.println("IMPLEMENTATION NOTES:");
-		System.out.println(" - Only registered users can use POST commands;"
+		System.out
+				.println(" - Only registered users can use POST commands;"
 						+ "\n    Before start to use the commands, the user has to create the administrator data.");
 
-		System.out.println("     The user's LoginName and Password must be introduce with the parameters list of"
+		System.out
+				.println("     The user's LoginName and Password must be introduce with the parameters list of"
 						+ "\n    the POST Commands to authentication;"
 						+ "\n If the authentication data are not valid, the command is not performed.");
-		System.out.println("\n - All the commands have the same follow generic strutter:	\n              {method} {path} {parameter list}"
+		System.out
+				.println("\n - All the commands have the same follow generic strutter:	\n              {method} {path} {parameter list}"
 						+ "\n\nIn the list of parameters, the parameters must be separated by the '&' symbol and the words by the code '% 20'");
-		System.out.println(" Example:"
+		System.out
+				.println(" Example:"
 						+ "\n POST  /consultant/  loginName=FilipaG&password=123456&name=Filipe%20Maia&priceHour=20");
 
-		System.out.println("\nAVAIABLE COMMANDS:"
+		System.out
+				.println("\nAVAIABLE COMMANDS:"
 						+ "\n  POST /users {parameter list}  :  Add a user to the User Repository "
 						+ "\n  POST /project  {parameter list} : Add a Project to the Project repository"
 						+ "\n  POST /consultant  {parameter list}  :  Add a consultant to the Worker Repository"
@@ -143,15 +162,17 @@ public class AppProjectManager {
 						+ "\n  HELP: terminates the application"
 						+ "\n  END: terminates the application");
 
-		System.out.println("\nThe user must write the command in the console and press Enter to proceed.");
+		System.out
+				.println("\nThe user must write the command in the console and press Enter to proceed.");
 	}
 
 	/**
-	 * The variable that defines the kind of OutputStream we will use in this application
+	 * The variable that defines the kind of OutputStream we will use in this
+	 * application
 	 */
-	private ResultOutputMethodToStream out = new ResultOutputAsStringToStream(System.out);
+	private ResultOutputMethodToStream out = new ResultOutputAsStringToStream(
+			System.out);
 
-	
 	/**
 	 * Ask for a command and execute it, till the END command is called.
 	 * 
@@ -160,7 +181,8 @@ public class AppProjectManager {
 	 * @throws CommandException
 	 */
 	public void execute() throws CommandParserException, CommandException,
-			IOException {
+			IOException
+	{
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 
@@ -168,10 +190,13 @@ public class AppProjectManager {
 		ProjectRepository projectRepo = new InMemoryProjectRepo();
 		UserRepository userRepo = new InMemoryUserRepo();
 		WorkerRepository workersRepo = new InMemoryWorkerRepo();
-		try {
+		try
+		{
 			RegisterCommand(parser, userRepo, projectRepo, workersRepo);
-		} catch (InvalidRegisterException e) {
-			System.out.println("Invalid Registry! Verify RegisterCommand method.");
+		} catch (InvalidRegisterException e)
+		{
+			System.out
+					.println("Invalid Registry! Verify RegisterCommand method.");
 		}
 
 		System.out.println("*********************************");
@@ -185,37 +210,51 @@ public class AppProjectManager {
 		userRepo.addAdmin("Admin1", password);
 
 		System.out.println("\nInsert the command you want to execute:");
-		do {
+		do
+		{
 			String a = scanner.nextLine();
-			switch (a) {
+			switch (a)
+			{
 
-			case "HELP":
-				helpCommand();
-				scanner.nextLine();
-				break;
-
-			case "END":
-				scanner.nextLine();
-				return;
-			default:
-				try {
-					parser.getCommand(a.split(" ")).execute(out);
+				case "HELP":
+					helpCommand();
 					scanner.nextLine();
-				} catch (UnknownCommandException e) {
-					System.out.println("Args must have 2 or 3 elements");
-				} catch (InvalidCommandArgumentsException e) {
-					System.out.println("Inserted a parameter without value.");
-				} catch (DuplicateArgumentsException e) {
-					System.out.println("Parameters were entered in duplicate");
-				} catch (MandatoryParameterNotPresentException e) {
-					System.out.println("There were entered all required parameters");
-				} catch (InvalidParameterValueException e) {
-					System.out.println("Inserted a parameter with an invalid value.");
-				} catch (CommandException e) {
-					System.out.println("Invalid Command");
-				} catch (IOException e) {
-					System.out.println("Invalid output Stream.");
-				}
+					break;
+
+				case "END":
+					scanner.nextLine();
+					return;
+				default:
+					try
+					{
+						parser.getCommand(a.split(" ")).execute(out);
+						scanner.nextLine();
+					} catch (UnknownCommandException e)
+					{
+						System.out.println("Args must have 2 or 3 elements");
+					} catch (InvalidCommandArgumentsException e)
+					{
+						System.out
+								.println("Inserted a parameter without value.");
+					} catch (DuplicateArgumentsException e)
+					{
+						System.out
+								.println("Parameters were entered in duplicate");
+					} catch (MandatoryParameterNotPresentException e)
+					{
+						System.out
+								.println("There were entered all required parameters");
+					} catch (InvalidParameterValueException e)
+					{
+						System.out
+								.println("Inserted a parameter with an invalid value.");
+					} catch (CommandException e)
+					{
+						System.out.println("Invalid Command");
+					} catch (IOException e)
+					{
+						System.out.println("Invalid output Stream.");
+					}
 			}
 
 		} while (true);
@@ -223,7 +262,8 @@ public class AppProjectManager {
 	}
 
 	public static void main(String[] args) throws CommandParserException,
-			CommandException, IOException {
+			CommandException, IOException
+	{
 
 		AppProjectManager app = new AppProjectManager();
 		app.execute();

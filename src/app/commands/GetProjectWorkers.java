@@ -27,8 +27,9 @@ public class GetProjectWorkers extends BaseCommand
 	private final ProjectRepository projectRepository;
 
 	/**
-	 * {@code String} with the {@code AWorker}'s argument. This argument is used
-	 * for getting the right type of {@code AWorker} from the {@code Project}.
+	 * {@code String} with the {@code AWorker}'s Type argument. This argument is
+	 * used for getting the right type of {@code AWorker} from the
+	 * {@code Project}.
 	 */
 	private String typeWorker;
 
@@ -39,12 +40,19 @@ public class GetProjectWorkers extends BaseCommand
 	private long projectId;
 
 	/**
-	 * {@code String} with the {@code Project}ID argument's name.
+	 * {@code String} with the {@code Project}ID argument's name. The
+	 * {@link CommandParser.Node.content} to be used (between "{" and "}", see
+	 * {@link CommandParser#Node#isPlaceHolderNode()}) in one of the
+	 * {@link CommandParser#Node}s of this {@code Command}'s Path.
 	 */
 	public static final String PID = "pid";
 
 	/**
-	 * {@code String} with the {@code AWorker} type argument's name.
+	 * {@code String} with the {@code AWorker} type argument's name. The
+	 * {@link CommandParser.Node.content} to be used (between "{" and "}", see
+	 * {@link CommandParser#Node#isPlaceHolderNode()}) in the
+	 * {@link CommandParser#Node} that has the {@code GetProjectWorkers#Factory}
+	 * in the field {@link CommandParser#Node#factory}.
 	 */
 	public static final String WTYPE = "type";
 
@@ -118,7 +126,7 @@ public class GetProjectWorkers extends BaseCommand
 	 * has the {@code AWorker}(s)). If {@link GetProjectWorkers#typeWorker}
 	 * indicates Manager, then this {@code Command} get's the Manager (
 	 * {@link Leader}) from the {@code Project} ({@link Project#manager}). If
-	 * indicates Consultant get's all the @{@link Consultant}s in the
+	 * indicates Consultant get's all the {@link Consultant}s in the
 	 * {@link Team} of the {@code Project} ({@link Project#team}).
 	 * 
 	 * @see BaseCommand#internalExecute(ResultOutputMethod)
