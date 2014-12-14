@@ -145,13 +145,23 @@ public class PostUsers extends BasePostCommand
 	{
 		this.username = parameters.get(USERNAME);
 		this.password = parameters.get(PASSWORD);
+		
+		if(password.length() <= 3)
+		{
+			out.giveResults("User's password must have at least 4 characters.");
+			return;
+		}
+		
 		this.email = parameters.get(EMAIL);
 		this.fullname = parameters.get(FULLNAME);
 		UserInterface[] existingUsers = repository.getAllUsers();
 		for (UserInterface existingUser : existingUsers)
 		{
 			if (existingUser.getLoginName().equals(this.username))
+			{
 				out.giveResults("The Specified Username already exists in repository.");
+				return;
+			}
 		}
 		if (this.validEmail())
 		{

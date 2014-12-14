@@ -208,6 +208,12 @@ public class AppProjectManager
 		System.out.println("LoginName: Admin1");
 		System.out.print("Insert New password:");
 		String password = scanner.nextLine();
+		
+		while(password.length() <= 3)
+		{
+			System.out.println("Password must at least have 4 characters.\nInsert password:");
+			password = scanner.nextLine();
+		}
 		userRepo.addAdmin("Admin1", password);
 
 		do
@@ -219,11 +225,10 @@ public class AppProjectManager
 
 				case "HELP":
 					helpCommand();
-					scanner.nextLine();
 					break;
 
 				case "END":
-					scanner.nextLine();
+					System.out.println("App now closing.\nThank you for choosing Java Company!");
 					return;
 				default:
 					try
