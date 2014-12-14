@@ -1,10 +1,8 @@
 package app.commandParser;
 
 /**
- * Class whose instances represent parser errors that result from finding 
- * argument repetitions in a command. 
- * 
- * TODO: elaborate
+ * Class whose instances represent {@code CommandParser} errors that result from
+ * finding argument repetitions in a command.
  */
 @SuppressWarnings("serial")
 public class DuplicateArgumentsException extends CommandParserException 

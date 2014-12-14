@@ -1,24 +1,24 @@
 package app.commandParser;
 
 /**
- * Class whose instances represent parser errors that result from trying to obtain 
- * an unknown command. 
- * 
- * TODO: elaborate
+ * Class whose instances represent {@code CommandParser} errors that result from
+ * trying to obtain an unknown command.
  */
 @SuppressWarnings("serial")
-public class InvalidRegisterException extends CommandParserException 
+public class InvalidRegisterException extends CommandParserException
 {
-	public InvalidRegisterException() {
+	public InvalidRegisterException()
+	{
 	}
 
-	public InvalidRegisterException(String message) {
+	public InvalidRegisterException(String message)
+	{
 		super(message);
 	}
 
-
-	public InvalidRegisterException(String message, Throwable cause) {
+	public InvalidRegisterException(String message, Throwable cause)
+	{
 		super(message, cause);
 	}
- 
+
 }

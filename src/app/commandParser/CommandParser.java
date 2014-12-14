@@ -10,8 +10,6 @@ import app.commands.CommandFactory;
 /**
  * Class whose instances are responsible for translating Command Strings into
  * their {@link App.commands.Command} instance counterparts.
- * 
- * Implementation notes: (TODO)
  */
 public class CommandParser
 {

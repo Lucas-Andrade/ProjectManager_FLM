@@ -1,24 +1,24 @@
 package app.commandParser;
 
 /**
- * Class whose instances represent parser errors that result from trying to  
- * parse a command which has an illegal syntax. 
- * 
- * TODO: elaborate
+ * Class whose instances represent {@code CommandParser} errors that result from
+ * trying to parse a command which has an illegal syntax.
  */
 @SuppressWarnings("serial")
-public class InvalidCommandArgumentsException extends CommandParserException 
+public class InvalidCommandArgumentsException extends CommandParserException
 {
-	public InvalidCommandArgumentsException() {
+	public InvalidCommandArgumentsException()
+	{
 	}
 
-	public InvalidCommandArgumentsException(String message) {
+	public InvalidCommandArgumentsException(String message)
+	{
 		super(message);
 	}
 
-
-	public InvalidCommandArgumentsException(String message, Throwable cause) {
+	public InvalidCommandArgumentsException(String message, Throwable cause)
+	{
 		super(message, cause);
 	}
- 
+
 }

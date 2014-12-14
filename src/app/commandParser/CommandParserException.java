@@ -1,5 +1,9 @@
 package app.commandParser;
 
+/**
+ * {@link CommandParser} exceptions.
+ */
+@SuppressWarnings("serial")
 public class CommandParserException extends Exception {
 
 	public CommandParserException() {
