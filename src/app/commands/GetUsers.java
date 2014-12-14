@@ -86,7 +86,7 @@ public class GetUsers extends BaseCommand
 	@Override
 	protected String[] getMandatoryParameters()
 	{
-		return null;
+		return new String[] {};
 	}
 
 }

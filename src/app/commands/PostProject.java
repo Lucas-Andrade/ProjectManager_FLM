@@ -34,7 +34,7 @@ public class PostProject extends BasePostCommand
 	/**
 	 * {@code String} with the {@code Local} Longitude argument's name.
 	 */
-	private static final String LONGITUDE = "password";
+	private static final String LONGITUDE = "longitude";
 
 	/**
 	 * {@code String} with the {@code Local} Name argument's name.
@@ -146,7 +146,7 @@ public class PostProject extends BasePostCommand
 		Project project = new Project(local, pid);
 
 		repository.addProject(project);
-		out.giveResults(pid);
+		out.giveResults("Product identification (PID): " + pid);
 	}
 
 }

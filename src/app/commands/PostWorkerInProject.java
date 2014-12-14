@@ -193,17 +193,19 @@ public class PostWorkerInProject extends BasePostCommand
 		Project project = projectRepository.getProjectById(projectId);
 		if (project == null)
 		{
-			out.giveResults("The Specified Project do not exists in repository.");
+			out.giveResults("The Specified Project does not exists in repository.");
 			return;
 		}
 
 		if (typeWorker.equalsIgnoreCase("manager"))
 		{
-			out.giveResults(addManager(out, projectId, workerId));
+			out.giveResults(addManager(out, projectId, workerId) ? "Success." : 
+				"Not successfull. Manager may already be in the project.");
 			return;
-		} else if (typeWorker.equalsIgnoreCase("consultant"))
+		} else if (typeWorker.equalsIgnoreCase("consultant")) 
 		{
-			out.giveResults(addConsultant(out, projectId, workerId));
+			out.giveResults(addConsultant(out, projectId, workerId) ? "Success." : 
+				"Not successfull. Consultant may already be in the project.");
 
 			return;
 		} else

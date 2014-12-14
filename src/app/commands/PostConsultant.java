@@ -152,7 +152,7 @@ public class PostConsultant extends BasePostCommand
 			repository.addConsultant(consultant);
 		}
 
-		out.giveResults(cid);
+		out.giveResults("Worker's identification (CID): " + cid);
 	}
 
 }

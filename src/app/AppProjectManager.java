@@ -9,6 +9,7 @@ import app.commandParser.DuplicateArgumentsException;
 import app.commandParser.InvalidCommandArgumentsException;
 import app.commandParser.InvalidRegisterException;
 import app.commandParser.UnknownCommandException;
+import app.commands.GetProject;
 import app.commands.GetProjectWorkers;
 import app.commands.GetSubproject;
 import app.commands.GetUser;
@@ -109,8 +110,7 @@ public class AppProjectManager
 				userRepo, projectRepo));
 		parser.registerCommand("POST", "/project/{" + PostWorkerInProject.PID
 				+ "}/{" + PostWorkerInProject.WTYPE + "}",
-				new PostWorkerInProject.Factory(userRepo, projectRepo,
-						workersRepo));
+				new PostWorkerInProject.Factory(userRepo, projectRepo, workersRepo));
 		parser.registerCommand("POST", "/project/{" + PostSubproject.PID
 				+ "}/subproject", new PostSubproject.Factory(userRepo,
 				projectRepo));
@@ -122,7 +122,8 @@ public class AppProjectManager
 				new GetProjectWorkers.Factory(projectRepo));
 		parser.registerCommand("GET", "/project/{" + GetSubproject.PID
 				+ "}/subproject", new GetSubproject.Factory(projectRepo));
-
+		parser.registerCommand("GET", "/project/{" + GetProject.PID
+				+ "}", new GetProject.Factory(projectRepo));
 	}
 
 	/**
@@ -209,9 +210,9 @@ public class AppProjectManager
 		String password = scanner.nextLine();
 		userRepo.addAdmin("Admin1", password);
 
-		System.out.println("\nInsert the command you want to execute:");
 		do
 		{
+			System.out.println("\nInsert the command you want to execute:");
 			String a = scanner.nextLine();
 			switch (a)
 			{
@@ -228,10 +229,9 @@ public class AppProjectManager
 					try
 					{
 						parser.getCommand(a.split(" ")).execute(out);
-						scanner.nextLine();
 					} catch (UnknownCommandException e)
 					{
-						System.out.println("Args must have 2 or 3 elements");
+						System.out.println("Args must have 2 or 3 elements.");
 					} catch (InvalidCommandArgumentsException e)
 					{
 						System.out
@@ -239,21 +239,24 @@ public class AppProjectManager
 					} catch (DuplicateArgumentsException e)
 					{
 						System.out
-								.println("Parameters were entered in duplicate");
+								.println("Duplicate parameters entered.");
 					} catch (MandatoryParameterNotPresentException e)
 					{
 						System.out
-								.println("There were entered all required parameters");
+								.println("Not all required parameters were entered.");
 					} catch (InvalidParameterValueException e)
 					{
 						System.out
 								.println("Inserted a parameter with an invalid value.");
 					} catch (CommandException e)
 					{
-						System.out.println("Invalid Command");
+						System.out.println("Invalid Command.");
 					} catch (IOException e)
 					{
 						System.out.println("Invalid output Stream.");
+					} catch(NullPointerException e)
+					{
+						System.out.println("Not found.");
 					}
 			}
 

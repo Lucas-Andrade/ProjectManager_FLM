@@ -90,8 +90,8 @@ public class Project extends Element implements ProjectInterface
 
 		if (worker == null)
 			throw new IllegalArgumentException();
-
-		if (worker.getName().equals(manager.getName()))
+		
+		if (manager != null && worker.getName().equals(manager.getName()))
 			return false;
 
 		return team.addElement(worker);
@@ -301,8 +301,12 @@ public class Project extends Element implements ProjectInterface
 		DecimalFormat df = new DecimalFormat("#.##");
 		builder.append(space).append("Project ID: ").append(pid).append("\n")
 				.append(space).append("Cost: ").append(df.format(getCost())).append(" Euros").append("\n")
-				.append(space).append("Local: ").append(local.toString()).append("\n")
-				.append(space).append("Team: ").append(team.toString()).append("\n")
+				.append(space).append("Local: ").append(local.toString()).append("\n");
+		if(manager != null)
+			builder.append(space).append("Manager: ").append(manager.toString()).append("\n");
+		
+		
+		builder.append(space).append("Team: ").append(team.toString()).append("\n")
 				.append(space).append("Subprojects: ")
 				.append(projectsContainer.size() == 0 ? "None." : "\n"
 						+ projectsContainer.toString(nr + 1)).append("\n");
