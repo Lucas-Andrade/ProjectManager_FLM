@@ -22,6 +22,8 @@ public class ProjectComparator implements Comparator<Project>{
 	 * @return 1 if {@code p1}'s {@code PID} is higher than {@code p2}'s {@code PID}
 	 * @return -1 if {@code p1}'s {@code PID} is lower than {@code p2}'s {@code PID}
 	 * @return 0 if {@code p1} and {@code p2}'s {@code PID} are equal
+	 * 
+	 * @see Comparator#compare(Object, Object)
 	 */
 	@Override
 	public int compare(Project p1, Project p2) 
