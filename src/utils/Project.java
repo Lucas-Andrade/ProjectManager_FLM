@@ -1,5 +1,7 @@
 package utils;
 
+import java.text.DecimalFormat;
+
 import app.elements.ProjectInterface;
 
 /**
@@ -296,26 +298,12 @@ public class Project extends Element implements ProjectInterface
 		String space = spaceBuilder.toString();
 
 		StringBuilder builder = new StringBuilder();
-
-		builder.append(space)
-				.append("Project ID: ")
-				.append(pid)
-				.append("\n")
-				.append(space)
-				.append("Cost: ")
-				.append(getCost())
-				.append(" Euros")
-				.append("\n")
-				.append(space)
-				.append("Local: ")
-				.append(local.toString())
-				.append("\n")
-				.append(space)
-				.append("Team: ")
-				.append(team.toString())
-				.append("\n")
-				.append(space)
-				.append("Subprojects: ")
+		DecimalFormat df = new DecimalFormat("#.##");
+		builder.append(space).append("Project ID: ").append(pid).append("\n")
+				.append(space).append("Cost: ").append(df.format(getCost())).append(" Euros").append("\n")
+				.append(space).append("Local: ").append(local.toString()).append("\n")
+				.append(space).append("Team: ").append(team.toString()).append("\n")
+				.append(space).append("Subprojects: ")
 				.append(projectsContainer.size() == 0 ? "None." : "\n"
 						+ projectsContainer.toString(nr + 1)).append("\n");
 

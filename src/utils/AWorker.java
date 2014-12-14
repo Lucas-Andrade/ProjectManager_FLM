@@ -1,5 +1,7 @@
 package utils;
 
+import java.text.DecimalFormat;
+
 import app.elements.WorkerInterface;
 
 /**
@@ -92,9 +94,10 @@ public abstract class AWorker extends Element implements WorkerInterface
 	public String toString()
 	{
 		StringBuilder builder = new StringBuilder();
-
+		DecimalFormat df = new DecimalFormat("#.##");
+		
 		builder.append("Name: ").append(name).append(", Payment per hour: ")
-				.append(costPerHour).append(" Euros, Cost: ").append(getCost())
+				.append(df.format(costPerHour)).append(" Euros, Cost: ").append(df.format(getCost()))
 				.append(" Euros");
 
 		return builder.toString();

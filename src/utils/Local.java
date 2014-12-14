@@ -1,5 +1,7 @@
 package utils;
 
+import java.text.DecimalFormat;
+
 /**
  * Class {@code Local} whose objects will represent the local of a project.
  * 
@@ -73,8 +75,8 @@ public class Local implements ICost, IName
 	@Override
 	public String toString()
 	{
-
+		DecimalFormat df = new DecimalFormat("#.##");
 		return getName() + ", " + "(" + latitude + ", " + longitude + ")"
-				+ ", cost: " + getCost() + " Euros";
+				+ ", cost: " + df.format(getCost()) + " Euros";
 	}
 }
