@@ -15,13 +15,25 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 		UserRepository
 {
 
+	/**
+	 * {@code Map} that stores the {@code User}s of this repository. The
+	 * {@code Key} stores the Username and the {@code Value} stores the
+	 * correspondig {@code User}.
+	 */
 	Map<String, UserInterface> users = new HashMap<String, UserInterface>();
 
+	/**
+	 * Contructor for {@code InMemoryUserRepo}. Also adds an {@link Admin}
+	 * {@link User} to the Repository.
+	 */
 	public InMemoryUserRepo()
 	{
 		users.put("admin", new ImmutableAdmin());
 	}
 
+	/**
+	 * @see UserRepository#getUserByUsername(String)
+	 */
 	@Override
 	public UserInterface getUserByUsername(String loginName)
 	{
@@ -29,6 +41,8 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	}
 
 	/**
+	 * @see Repository#getAll()
+	 * 
 	 * @return An array of {@link UserInterface} with all the Users in the
 	 *         repository.
 	 */
@@ -49,6 +63,9 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 		return userArray;
 	}
 
+	/**
+	 * @see Object#toString()
+	 */
 	public String toString()
 	{
 		StringBuilder builder = new StringBuilder();
@@ -61,6 +78,9 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 		return builder.toString();
 	}
 
+	/**
+	 * @see UserRepository#isPasswordCorrectForUser(String, String)
+	 */
 	@Override
 	public boolean isPasswordCorrectForUser(String username, String userPassword)
 	{
@@ -75,6 +95,12 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 			return false;
 	}
 
+	/**
+	 * Removes all Users from the Repository, then adds an
+	 * {@link ImmutableAdmin} {@code User} to the empty Rempository.
+	 * 
+	 * @see Repository#removeAll()
+	 */
 	@Override
 	public void removeAll()
 	{
@@ -82,6 +108,9 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 		users.put("admin", new ImmutableAdmin());
 	}
 
+	/**
+	 * @see UserRepository#addUser(User)
+	 */
 	@Override
 	public boolean addUser(User user)
 	{
@@ -98,11 +127,17 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 		}
 	}
 
+	/**
+	 * @see Repository#size()
+	 */
 	public int size()
 	{
 		return users.size();
 	}
 
+	/**
+	 * @see UserRepository#addAdmin(String, String)
+	 */
 	@Override
 	public boolean addAdmin(String username, String password)
 	{

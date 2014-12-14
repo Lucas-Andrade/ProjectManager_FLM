@@ -130,7 +130,11 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	@Override
 	public DatabaseElement[] getAll()
 	{
-		return (DatabaseElement[]) workers.toArray();
+		DatabaseElement[] all = new DatabaseElement[this.size()];
+		int i = -1;
+		for (DatabaseElement ele : workers)
+			all[++i] = ele;
+		return all;
 	}
 
 	/**

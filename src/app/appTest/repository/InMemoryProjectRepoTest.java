@@ -54,7 +54,7 @@ public class InMemoryProjectRepoTest {
 	public void shouldRemoveAllElements()
 	{
 		repo.removeAll();
-		assertEquals(0, repo.getAll().length);
+		assertEquals(0, repo.size());
 	}
 	
 	@Test

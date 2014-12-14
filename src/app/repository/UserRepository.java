@@ -39,7 +39,7 @@ public interface UserRepository extends Repository<DatabaseElement>
 	public boolean isPasswordCorrectForUser(String username, String userPassword);
 
 	/**
-	 * Adds to the repository an Admin {@code User}.
+	 * Adds to the repository an {@code Admin} {@code User}.
 	 * 
 	 * @param username
 	 * @param password

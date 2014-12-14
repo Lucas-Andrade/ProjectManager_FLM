@@ -1,4 +1,3 @@
-
 package app.repository;
 
 import java.util.Collection;
@@ -9,16 +8,29 @@ import app.elements.ProjectComparator;
 import utils.Project;
 
 /**
- * Abstract class whose purpose will be to store all projects in the memory and control
- * the projects IDs (all PIDs have to be different).
+ * Abstract class whose purpose will be to store all projects in the memory and
+ * control the projects IDs (all PIDs have to be different).
  */
-public class InMemoryProjectRepo extends InMemoryRepo<Project> implements ProjectRepository{
-	
-	private static final Collection<Project> projects = new TreeSet<>(new ProjectComparator());
+public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
+		ProjectRepository
+{
 
+	/**
+	 * {@code Collection} that stores the {@code Project}s of this repository.
+	 */
+	private static final Collection<Project> projects = new TreeSet<>(
+			new ProjectComparator());
+
+	/**
+	 * The last PID attributed to a {@link Project} plus one.
+	 */
 	private static long NEXT_PID_TO_BE_USED = 1;
 
-	public boolean addProject(Project project) {
+	/**
+	 * @see ProjectRepository#addProject(Project)
+	 */
+	public boolean addProject(Project project)
+	{
 		if (projects.add(project))
 		{
 			NEXT_PID_TO_BE_USED++;
@@ -27,45 +39,80 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements Projec
 		return false;
 	}
 
-	public boolean removeProject(Project project) {
+	/**
+	 * Removes a project from the repository.
+	 * 
+	 * @param project
+	 *            The project to be removed.
+	 * @return True if successful, False if not.
+	 */
+	public boolean removeProject(Project project)
+	{
 		return projects.remove(project);
 	}
-	
-	public void removeAll() {
+
+	/**
+	 * @see Repository#removeAll()
+	 */
+	public void removeAll()
+	{
 		NEXT_PID_TO_BE_USED = 1;
 		projects.clear();
 	}
 
+	/**
+	 * @see Object#toString()
+	 */
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		StringBuilder builder = new StringBuilder();
 		for (Project project : projects)
 			builder.append(project.toString()).append("\n");
 		return builder.toString();
 	}
 
+	/**
+	 * @see ProjectRepository#getProjectById(long)
+	 */
 	@Override
-	public Project getProjectById(long projectId) {
+	public Project getProjectById(long projectId)
+	{
 		for (Project project : projects)
 			if (project.getPID() == projectId)
 				return project;
 		return null;
 	}
 
+	/**
+	 * @see ProjectRepository#getNextPID()
+	 */
 	@Override
-	public long getNextPID() {
+	public long getNextPID()
+	{
 		return NEXT_PID_TO_BE_USED;
 	}
 
+	/**
+	 * @see Repository#getAll()
+	 */
 	@Override
-	public DatabaseElement[] getAll() {
-		return (DatabaseElement[]) projects.toArray();
+	public DatabaseElement[] getAll()
+	{
+		DatabaseElement[] all = new DatabaseElement[this.size()];
+		int i = -1;
+		for (DatabaseElement ele : projects)
+			all[++i] = ele;
+		return all;
 	}
 
+	/**
+	 * @see Repository#size()
+	 */
 	@Override
-	public int size() {
+	public int size()
+	{
 		return projects.size();
 	}
-	
-	
+
 }
