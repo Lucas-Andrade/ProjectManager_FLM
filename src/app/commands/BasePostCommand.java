@@ -13,6 +13,9 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * Abstract POST {@link Command} to be supported by all POST {@code Command}s.
  * Establishes the model to be followed by these (all POST {@code Command}s
  * require an {@link User} authentication).
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public abstract class BasePostCommand extends BaseCommand
 {

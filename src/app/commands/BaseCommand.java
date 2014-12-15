@@ -10,6 +10,9 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
 /**
  * Abstract {@link Command} to be supported by all {@code Command}s. Establishes
  * the model to be followed by the {@code Command}s.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public abstract class BaseCommand implements Command
 {
