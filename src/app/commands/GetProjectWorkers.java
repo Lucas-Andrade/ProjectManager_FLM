@@ -15,6 +15,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
 /**
  * Class whose instances are {@link Command}s that return the {@link AWorker}s
  * in a {@link Project}.
+ * Caller {@code String}: GET /project/{pid}/{type}
  */
 public class GetProjectWorkers extends BaseCommand
 {

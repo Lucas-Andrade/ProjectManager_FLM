@@ -49,12 +49,14 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * to a project/subproject.
  * <li>POST /project/{pid}/subproject {parameter list} : add a subproject to a
  * project/subproject.
- * <li>GET /users {parameter list} : Return the information of all users in the
+ * <li>GET /users : Return the information of all users in the
  * User Repository
  * <li>GET /users/{username} : Return the information of the user with the
  * specify {@code username} of the User Repository
  * <li>GET /project/{pid}/{type} : Return the information of all consultants or
  * of the Manager of a project with the specify {@code ProjectId}.
+ * <li>GET /project/{pid} : Return the information of the project with the
+ * specify {@code ProjectId}.
  * <li>GET /project/{pid}/subproject : Return the information of all subprojects
  * of a project with the specify {@code ProjectId}.
  * <li>HELP: terminates the application.

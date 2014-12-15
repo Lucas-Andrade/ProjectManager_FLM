@@ -23,6 +23,7 @@ public class PostProject extends BasePostCommand
 	 * {@code ProjectRepository} (there can't be more than one {@code Project}
 	 * with the same PID). For creating a new {@code Project}, this
 	 * {@code Command} has to create the {@code Project}'s {@link Local}.
+	 * Caller {@code String}: POST /project {parameter list}
 	 */
 	private final ProjectRepository repository;
 

@@ -10,6 +10,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that return a {@link User}.
+ * Caller {@code String}: GET /users/{username}
  */
 public class GetUser extends BaseCommand
 {

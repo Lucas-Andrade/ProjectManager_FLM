@@ -13,6 +13,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * Class whose instances are {@link Command}s that add Sub{@link Project}s to
  * {@code Project}s. A Sub{@code Project} is a {@code Project} inside (that
  * belongs to) another {@code Project}.
+ * Caller {@code String}: POST /project/{pid}/subproject {parameter list}
  */
 public class PostSubproject extends BasePostCommand
 {

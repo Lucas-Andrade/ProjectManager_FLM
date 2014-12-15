@@ -11,6 +11,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that create new {@link User}s.
+ * Caller {@code String}: POST /users {parameter list}
  */
 public class PostUsers extends BasePostCommand
 {

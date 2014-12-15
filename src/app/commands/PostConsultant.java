@@ -12,6 +12,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that create new {@link AWorker}s.
+ * Caller {@code String}: POST /consultant {parameter list}
  */
 public class PostConsultant extends BasePostCommand
 {

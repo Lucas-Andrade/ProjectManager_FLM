@@ -11,6 +11,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
 /**
  * Class whose instances are {@link Command}s that return the Sub{@link Project}
  * s in a {@link Project}.
+ * Caller {@code String}: GET /project/{pid}/subproject
  */
 public class GetSubproject extends BaseCommand
 {

@@ -17,6 +17,7 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
 /**
  * Class whose instances are {@link Command}s that add {@link AWorker}s to
  * {@code Project}s.
+ * Caller {@code String}: POST /project/{pid}/{type} {parameter list}
  */
 public class PostWorkerInProject extends BasePostCommand
 {

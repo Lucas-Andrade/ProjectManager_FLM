@@ -9,6 +9,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that return the {@link User}s.
+ * Caller {@code String}: GET /users
  */
 public class GetUsers extends BaseCommand
 {

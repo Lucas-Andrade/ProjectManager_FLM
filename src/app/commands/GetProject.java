@@ -10,6 +10,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that return the {@link Project} with specified {@code PID}
+ * Caller {@code String}: GET /project/{pid}
  */
 public class GetProject extends BaseCommand
 {
