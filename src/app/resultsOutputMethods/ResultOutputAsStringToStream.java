@@ -52,7 +52,7 @@ public class ResultOutputAsStringToStream extends ResultOutputMethodToStream
 			{
 				rslts += rsWithSpaces[i] + " ";
 			}
-			rslts += rsWithSpaces[rsWithSpaces.length];
+			rslts += rsWithSpaces[rsWithSpaces.length - 1];
 			sb.append(rslts).append("\n");
 		}
 		return sb.toString().getBytes();
