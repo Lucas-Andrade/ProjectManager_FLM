@@ -28,8 +28,9 @@ public class ResultOutputAsStringToStream extends ResultOutputMethodToStream
 	 * Receives the results, inserts them in a {@code String} and gives them
 	 * back as an array of {@code byte}s (to be used by the {@code OutputStream}
 	 * ). The {@code String} with the results has each one of the results in a
-	 * different line. This method makes use of the method
-	 * {@link Object#toString()}.
+	 * different line. All instances of "%20" in the {@code String} with the
+	 * results will be replaced with a space (" "). This method makes use of
+	 * the method {@link Object#toString()}.
 	 * 
 	 * @param results
 	 *            The results to be output by the method.
@@ -45,7 +46,14 @@ public class ResultOutputAsStringToStream extends ResultOutputMethodToStream
 		StringBuilder sb = new StringBuilder();
 		for (Object rs : results)
 		{
-			sb.append(rs.toString()).append("\n");
+			String[] rsWithSpaces = rs.toString().split("%20");
+			String rslts = "";
+			for (int i = 0; i < rsWithSpaces.length - 1; i++)
+			{
+				rslts += rsWithSpaces[i] + " ";
+			}
+			rslts += rsWithSpaces[rsWithSpaces.length];
+			sb.append(rslts).append("\n");
 		}
 		return sb.toString().getBytes();
 	}
