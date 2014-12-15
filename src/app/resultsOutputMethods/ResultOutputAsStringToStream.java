@@ -9,6 +9,9 @@ import java.io.OutputStream;
  * 
  * @see 
  *      app.resultsOutputMethod.ResultsOutputMethodToStream(java.io.OutputStream)
+ *      
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public class ResultOutputAsStringToStream extends ResultOutputMethodToStream
 {

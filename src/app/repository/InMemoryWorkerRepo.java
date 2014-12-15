@@ -11,6 +11,9 @@ import utils.Leader;
 
 /**
  * An {@link AWorker}s in memory {@link Repository}.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 		WorkerRepository

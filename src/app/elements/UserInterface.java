@@ -4,6 +4,9 @@ package app.elements;
  * Class that defines the contract for the Users of use the App. A
  * {@code UserInterface} is defined by a Username, a Password, Email and Full
  * Name. Extends {@link DatabaseElement}.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public interface UserInterface extends DatabaseElement
 {

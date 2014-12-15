@@ -7,6 +7,9 @@ import app.elements.DatabaseElement;
 
 /**
  * The interface to be implemented by all {@link AWorker}s {@link Repository}.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public interface WorkerRepository extends Repository<DatabaseElement>
 {

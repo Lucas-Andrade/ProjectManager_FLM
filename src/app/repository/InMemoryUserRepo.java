@@ -11,6 +11,10 @@ import app.elements.ImmutableAdmin;
 import app.elements.User;
 import app.elements.UserInterface;
 
+/**
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
+ */
 public class InMemoryUserRepo extends InMemoryRepo<User> implements
 		UserRepository
 {

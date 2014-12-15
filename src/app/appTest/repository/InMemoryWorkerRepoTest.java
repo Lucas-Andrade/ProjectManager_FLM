@@ -11,6 +11,10 @@ import app.appTest.RepositoryConstructor;
 import app.elements.DatabaseElement;
 import app.repository.InMemoryWorkerRepo;
 
+/**
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
+ */
 public class InMemoryWorkerRepoTest {
 
 	private InMemoryWorkerRepo repo;

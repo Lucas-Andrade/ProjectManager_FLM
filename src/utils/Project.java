@@ -8,6 +8,9 @@ import app.elements.ProjectInterface;
  * Class {@code Project} whose instances will represent a project.
  * 
  * Extends {@link Element}.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public class Project extends Element implements ProjectInterface
 {

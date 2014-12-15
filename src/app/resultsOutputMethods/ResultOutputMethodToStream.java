@@ -10,6 +10,9 @@ import java.io.OutputStream;
  * Note: none of the methods from this class should {@link OutputStream#close()}
  * the {@code OutputStream} (that is not their responsibility, that's the
  * responsibility of who instantiates the {@code OutputStream}).
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public abstract class ResultOutputMethodToStream implements ResultOutputMethod
 {

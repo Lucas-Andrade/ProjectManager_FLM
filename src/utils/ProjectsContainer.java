@@ -4,6 +4,9 @@ import java.util.Collection;
 
 /**
  * Class that will represent a container of projects. Extends AContainer<Project>.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public class ProjectsContainer extends AContainer<Project> {
 

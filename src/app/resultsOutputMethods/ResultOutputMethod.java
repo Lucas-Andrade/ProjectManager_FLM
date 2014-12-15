@@ -4,6 +4,9 @@ import java.io.IOException;
 
 /**
  * Interface that defines the contract for all output methods of results.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public interface ResultOutputMethod
 {

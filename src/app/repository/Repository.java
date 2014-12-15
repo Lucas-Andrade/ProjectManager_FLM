@@ -8,6 +8,9 @@ import app.elements.DatabaseElement;
  * @param <T>
  *            The elements that can be stored in the Repository, extends
  *            {@code DatabaseElements}.
+ *            
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public interface Repository<T extends DatabaseElement>
 {

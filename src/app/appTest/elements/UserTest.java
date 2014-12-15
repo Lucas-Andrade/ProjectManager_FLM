@@ -8,6 +8,10 @@ import org.junit.Test;
 import app.appTest.RepositoryConstructor;
 import app.elements.User;
 
+/**
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
+ */
 public class UserTest {
 
 	private RepositoryConstructor constructor = new RepositoryConstructor();

@@ -5,6 +5,9 @@ import app.elements.DatabaseElement;
 
 /**
  * The interface to be implemented by all {@link Project}s {@link Repository}.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public interface ProjectRepository extends Repository<DatabaseElement>
 {

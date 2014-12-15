@@ -12,6 +12,9 @@ import utils.AWorker;
  * The idea behind this is that, as the Workers are created their CID
  * increases. By showing first the Workers with higher CID, the more recent
  * Workers will be shown.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public class WorkerComparator implements Comparator<AWorker>
 {

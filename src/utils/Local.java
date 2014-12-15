@@ -6,6 +6,9 @@ import java.text.DecimalFormat;
  * Class {@code Local} whose objects will represent the local of a project.
  * 
  * Implements the Interfaces {@link ICost}, {@link IName}.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public class Local implements ICost, IName
 {

@@ -13,6 +13,9 @@ import app.resultsOutputMethods.ResultOutputMethod;
 /**
  * Class whose instances are {@link Command}s that create new {@link AWorker}s.
  * Caller {@code String}: POST /consultant {parameter list}
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public class PostConsultant extends BasePostCommand
 {

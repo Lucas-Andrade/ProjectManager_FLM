@@ -5,6 +5,9 @@ package utils;
  * AContainer<AWorker>.
  * 
  * Implements the Interface {@link IName}.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public class Team extends AContainer<AWorker> implements IName
 {

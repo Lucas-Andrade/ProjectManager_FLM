@@ -12,6 +12,9 @@ import utils.Project;
  * The idea behind this is that, as the projects are created their PID
  * increases. By showing first the projects with higher PID, the more recent
  * projects will be shown.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public class ProjectComparator implements Comparator<Project>{
 	

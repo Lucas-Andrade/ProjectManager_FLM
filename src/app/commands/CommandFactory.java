@@ -6,6 +6,9 @@ import java.util.Map;
  * Contract to be supported by all {@link Command} Factories. Each
  * {@code Command} Factory should generate instances of the corresponding
  * {@code Command}.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public interface CommandFactory
 {

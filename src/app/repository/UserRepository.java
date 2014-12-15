@@ -6,6 +6,9 @@ import app.elements.UserInterface;
 
 /**
  * The interface to be implemented by all {@link User}s {@link Repository}.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/20
  */
 public interface UserRepository extends Repository<DatabaseElement>
 {

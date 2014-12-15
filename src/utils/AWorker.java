@@ -9,6 +9,9 @@ import app.elements.WorkerInterface;
  * all types of workers.
  * 
  * Extends {@link Element}.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public abstract class AWorker extends Element implements WorkerInterface
 {

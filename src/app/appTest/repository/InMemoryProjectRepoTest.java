@@ -9,7 +9,10 @@ import utils.Project;
 import app.appTest.RepositoryConstructor;
 import app.elements.DatabaseElement;
 import app.repository.InMemoryProjectRepo;
-
+/**
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
+ */
 public class InMemoryProjectRepoTest {
 
 	private InMemoryProjectRepo repo;

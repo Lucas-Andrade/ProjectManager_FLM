@@ -10,7 +10,10 @@ import app.elements.Admin;
 import app.elements.DatabaseElement;
 import app.elements.UserInterface;
 import app.repository.InMemoryUserRepo;
-
+/**
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
+ */
 public class InMemoryUserRepoTest {
 
 	private InMemoryUserRepo repo;

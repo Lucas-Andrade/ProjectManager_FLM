@@ -11,6 +11,9 @@ import app.resultsOutputMethods.ResultOutputMethod;
 /**
  * Class whose instances are {@link Command}s that return the {@link Project} with specified {@code PID}
  * Caller {@code String}: GET /project/{pid}
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public class GetProject extends BaseCommand
 {

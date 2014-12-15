@@ -9,6 +9,10 @@ import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
 import app.repository.InMemoryWorkerRepo;
 
+/**
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
+ */
 public class RepositoryConstructor {
 
 	public InMemoryProjectRepo constructProjectRepository()

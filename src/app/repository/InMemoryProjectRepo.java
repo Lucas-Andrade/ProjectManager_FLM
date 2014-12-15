@@ -10,6 +10,9 @@ import utils.Project;
 /**
  * Abstract class whose purpose will be to store all projects in the memory and
  * control the projects IDs (all PIDs have to be different).
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 		ProjectRepository

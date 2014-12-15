@@ -14,6 +14,9 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * {@code Project}s. A Sub{@code Project} is a {@code Project} inside (that
  * belongs to) another {@code Project}.
  * Caller {@code String}: POST /project/{pid}/subproject {parameter list}
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 08/12/2014
  */
 public class PostSubproject extends BasePostCommand
 {
