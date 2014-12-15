@@ -1,48 +1,85 @@
 package app.repository;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.TreeSet;
+
 import app.elements.DatabaseElement;
 import app.elements.WorkerComparator;
 import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
 
-public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements WorkerRepository{
+/**
+ * An {@link AWorker}s in memory {@link Repository}.
+ */
+public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
+		WorkerRepository
+{
 
-	private static final Collection<AWorker> workers = new TreeSet<>(new WorkerComparator());
+	/**
+	 * {@code Collection} that stores the {@code AWorker}s of this repository.
+	 */
+	private static final Collection<AWorker> workers = new TreeSet<>(
+			new WorkerComparator());
 
-	private static long nextCIDToBeUsed = 1;
-	
+	/**
+	 * The last CID attributed to an {@link AWorker} plus one.
+	 */
+	private static long NEXT_CID_TO_BE_USED = 1;
+
+	/**
+	 * @see WorkerRepository#nextCID()
+	 */
 	@Override
-	public long nextCID() {
-		return nextCIDToBeUsed;
+	public long nextCID()
+	{
+		return NEXT_CID_TO_BE_USED;
 	}
 
+	/**
+	 * @see WorkerRepository#addManager(Leader)
+	 */
 	@Override
-	public boolean addManager(Leader manager) {
+	public boolean addManager(Leader manager)
+	{
 		return addToRepo(manager);
 	}
 
+	/**
+	 * @see WorkerRepository#addManager(Leader)
+	 */
 	@Override
-	public boolean addConsultant(Consultant consultant) {
+	public boolean addConsultant(Consultant consultant)
+	{
 		return addToRepo(consultant);
 	}
-	
+
+	/**
+	 * Adds an {@code AWorker} to the repository if it doesn't exist already in
+	 * the repository (there can't be more than one {@code AWorker} with the
+	 * same CID).
+	 * 
+	 * @param worker
+	 *            The Worker to add.
+	 * @return True if successful, False if not.
+	 */
 	private boolean addToRepo(AWorker worker)
 	{
 		if (workers.add(worker))
 		{
-			nextCIDToBeUsed++;
+			NEXT_CID_TO_BE_USED++;
 			return true;
 		}
 		return false;
 	}
-	
+
+	/**
+	 * @see WorkerRepository#getConsultantByID(long)
+	 */
 	@Override
-	public Consultant getConsultantByID(long cid) {
-		for(AWorker worker : workers)
+	public Consultant getConsultantByID(long cid)
+	{
+		for (AWorker worker : workers)
 			if (worker.getCID() == cid)
 				if (!(worker instanceof Leader) && worker instanceof Consultant)
 					return (Consultant) worker;
@@ -51,9 +88,13 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements WorkerR
 		return null;
 	}
 
+	/**
+	 * @see WorkerRepository#getManagerByID(long)
+	 */
 	@Override
-	public Leader getManagerByID(long cid) {
-		for(AWorker worker : workers)
+	public Leader getManagerByID(long cid)
+	{
+		for (AWorker worker : workers)
 			if (worker.getCID() == cid)
 				if (worker instanceof Leader)
 					return (Leader) worker;
@@ -61,40 +102,48 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements WorkerR
 					return null;
 		return null;
 	}
-	
-	
-	public static Collection<AWorker> getWorkers() {
-		return Collections.unmodifiableCollection(workers);
-	}
 
+	/**
+	 * @see Object#toString()
+	 */
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		StringBuilder builder = new StringBuilder();
-		for (AWorker worker: workers)
+		for (AWorker worker : workers)
 			builder.append(worker.toString()).append("\n");
 		return builder.toString();
 	}
-	
+
+	/**
+	 * @see Repository#removeAll()
+	 */
 	@Override
 	public void removeAll()
 	{
 		workers.clear();
 	}
 
+	/**
+	 * @see Repository#getAll()
+	 */
 	@Override
-	public DatabaseElement[] getAll() {
-		Collection<AWorker> col = getWorkers();
-		DatabaseElement[] dataArr = new DatabaseElement[col.size()];
-		int index = 0;
-		
-		for(DatabaseElement elem : col)
-			dataArr[index++] = elem;
-		
-		return dataArr;
+	public DatabaseElement[] getAll()
+	{
+		DatabaseElement[] all = new DatabaseElement[this.size()];
+		int i = -1;
+		for (DatabaseElement ele : workers)
+			all[++i] = ele;
+		return all;
 	}
 
+	/**
+	 * @see Repository#size()
+	 */
 	@Override
-	public int size() {
+	public int size()
+	{
 		return workers.size();
 	}
+
 }

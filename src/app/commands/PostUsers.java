@@ -154,7 +154,7 @@ public class PostUsers extends BasePostCommand
 		
 		this.email = parameters.get(EMAIL);
 		this.fullname = parameters.get(FULLNAME);
-		UserInterface[] existingUsers = repository.getAllUsers();
+		UserInterface[] existingUsers = (UserInterface[]) repository.getAll();
 		for (UserInterface existingUser : existingUsers)
 		{
 			if (existingUser.getLoginName().equals(this.username))

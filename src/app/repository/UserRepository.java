@@ -39,13 +39,8 @@ public interface UserRepository extends Repository<DatabaseElement>
 	public boolean isPasswordCorrectForUser(String username, String userPassword);
 
 	/**
-	 * @return An array of {@link UserInterface} with all the Users in the
-	 *         repository.
-	 */
-	public UserInterface[] getAllUsers();
-
-	/**
-	 * Adds to the repository an Admin {@code User}.
+	 * Adds to the repository an {@code Admin} {@code User}.
+	 * 
 	 * @param username
 	 * @param password
 	 * @return

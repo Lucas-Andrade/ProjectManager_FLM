@@ -105,8 +105,7 @@ public class Project extends Element implements ProjectInterface
 	 * Throws {@link IllegalArgumentException} if the given parameter is null.
 	 * 
 	 * @param project
-	 *            - the subproject to the added to the {@code projectsContainer}
-	 *            .
+	 *            The subproject to the added to the {@code projectsContainer}.
 	 * 
 	 * @return true if the subproject is successfully added and false otherwise.
 	 */
