@@ -3,13 +3,19 @@
 .gradle
 bin/
 tmp/
+target/
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
+.settings/
 .loadpath
-a/
+.classpath
+.project
+
+# Dropbox
+.dropbox
 
 # External tool builders
 .externalToolBuilders/
