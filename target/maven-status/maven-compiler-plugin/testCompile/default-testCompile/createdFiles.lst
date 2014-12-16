@@ -1,7 +1,0 @@
-app\elements\UserTest.class
-app\repository\InMemoryUserRepoTest.class
-app\repository\InMemoryProjectRepoTest.class
-app\commandParser\CommandParserTest.class
-app\RepositoryConstructor.class
-utils\ProjectTest.class
-app\repository\InMemoryWorkerRepoTest.class

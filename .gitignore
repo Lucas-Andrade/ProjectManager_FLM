@@ -3,14 +3,13 @@
 .gradle
 bin/
 tmp/
-target/
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
-.settings/
 .loadpath
+a/
 
 # External tool builders
 .externalToolBuilders/
