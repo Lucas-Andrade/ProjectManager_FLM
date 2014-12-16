@@ -11,6 +11,9 @@ target/
 local.properties
 .settings/
 .loadpath
+.classpath
+.dropbox
+.project
 
 # External tool builders
 .externalToolBuilders/
