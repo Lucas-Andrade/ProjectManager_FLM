@@ -1,13 +1,13 @@
-package test.java.app;
+package app;
 
-import main.java.app.elements.User;
-import main.java.app.repository.InMemoryProjectRepo;
-import main.java.app.repository.InMemoryUserRepo;
-import main.java.app.repository.InMemoryWorkerRepo;
-import main.java.utils.Consultant;
-import main.java.utils.Leader;
-import main.java.utils.Local;
-import main.java.utils.Project;
+import utils.Consultant;
+import utils.Leader;
+import utils.Local;
+import utils.Project;
+import app.elements.User;
+import app.repository.InMemoryProjectRepo;
+import app.repository.InMemoryUserRepo;
+import app.repository.InMemoryWorkerRepo;
 
 /**
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.

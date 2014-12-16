@@ -1,15 +1,15 @@
-package test.java.app.repository;
+package app.repository;
 
 import static org.junit.Assert.*;
-import main.java.app.elements.Admin;
-import main.java.app.elements.DatabaseElement;
-import main.java.app.elements.UserInterface;
-import main.java.app.repository.InMemoryUserRepo;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import test.java.app.RepositoryConstructor;
+import app.RepositoryConstructor;
+import app.elements.Admin;
+import app.elements.DatabaseElement;
+import app.elements.UserInterface;
+import app.repository.InMemoryUserRepo;
 /**
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014

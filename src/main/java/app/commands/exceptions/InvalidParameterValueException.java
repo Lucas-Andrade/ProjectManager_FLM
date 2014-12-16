@@ -1,4 +1,4 @@
-package main.java.app.commands.exceptions;
+package app.commands.exceptions;
 
 import java.text.MessageFormat;
 

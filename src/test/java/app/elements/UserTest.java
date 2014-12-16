@@ -1,12 +1,12 @@
-package test.java.app.elements;
+package app.elements;
 
 import static org.junit.Assert.*;
-import main.java.app.elements.User;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import test.java.app.RepositoryConstructor;
+import app.RepositoryConstructor;
+import app.elements.User;
 
 /**
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.

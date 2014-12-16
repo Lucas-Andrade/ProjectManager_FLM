@@ -1,15 +1,15 @@
-package main.java.app.repository;
+package app.repository;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import main.java.app.elements.Admin;
-import main.java.app.elements.DatabaseElement;
-import main.java.app.elements.ImmutableAdmin;
-import main.java.app.elements.User;
-import main.java.app.elements.UserInterface;
+import app.elements.Admin;
+import app.elements.DatabaseElement;
+import app.elements.ImmutableAdmin;
+import app.elements.User;
+import app.elements.UserInterface;
 
 /**
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.

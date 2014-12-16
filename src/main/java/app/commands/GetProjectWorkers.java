@@ -1,16 +1,16 @@
-package main.java.app.commands;
+package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
 
-import main.java.app.commands.exceptions.CommandException;
-import main.java.app.repository.ProjectRepository;
-import main.java.app.resultsOutputMethods.ResultOutputMethod;
-import main.java.utils.AWorker;
-import main.java.utils.Consultant;
-import main.java.utils.Leader;
-import main.java.utils.Project;
-import main.java.utils.Team;
+import utils.AWorker;
+import utils.Consultant;
+import utils.Leader;
+import utils.Project;
+import utils.Team;
+import app.commands.exceptions.CommandException;
+import app.repository.ProjectRepository;
+import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that return the {@link AWorker}s
@@ -116,7 +116,7 @@ public class GetProjectWorkers extends BaseCommand
 	}
 
 	/**
-	 * @see main.java.app.commands.BaseCommand#getMandatoryParameters()
+	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
 	protected String[] getMandatoryParameters()

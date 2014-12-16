@@ -1,9 +1,9 @@
-package main.java.app.repository;
+package app.repository;
 
-import main.java.app.elements.DatabaseElement;
-import main.java.utils.AWorker;
-import main.java.utils.Consultant;
-import main.java.utils.Leader;
+import utils.AWorker;
+import utils.Consultant;
+import utils.Leader;
+import app.elements.DatabaseElement;
 
 /**
  * The interface to be implemented by all {@link AWorker}s {@link Repository}.

@@ -1,4 +1,4 @@
-package main.java.app.commandParser;
+package app.commandParser;
 
 /**
  * {@link CommandParser} exceptions.

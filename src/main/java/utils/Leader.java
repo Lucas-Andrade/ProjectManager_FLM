@@ -1,4 +1,4 @@
-package main.java.utils;
+package utils;
 
 /**
  * Class {@code Leader} whose objects will represent the managers and team

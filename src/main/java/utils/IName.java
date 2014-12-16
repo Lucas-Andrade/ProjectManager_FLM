@@ -1,4 +1,4 @@
-package main.java.utils;
+package utils;
 
 /**
  * {@code IName} Interface containing the method {@code getName()} to be

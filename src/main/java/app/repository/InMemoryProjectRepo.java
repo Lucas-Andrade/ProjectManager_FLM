@@ -1,11 +1,11 @@
-package main.java.app.repository;
+package app.repository;
 
 import java.util.Collection;
 import java.util.TreeSet;
 
-import main.java.app.elements.DatabaseElement;
-import main.java.app.elements.ProjectComparator;
-import main.java.utils.Project;
+import app.elements.DatabaseElement;
+import app.elements.ProjectComparator;
+import utils.Project;
 
 /**
  * Abstract class whose purpose will be to store all projects in the memory and

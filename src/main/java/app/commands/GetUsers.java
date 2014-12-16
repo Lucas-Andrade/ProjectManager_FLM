@@ -1,11 +1,11 @@
-package main.java.app.commands;
+package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
 
-import main.java.app.commands.exceptions.CommandException;
-import main.java.app.repository.UserRepository;
-import main.java.app.resultsOutputMethods.ResultOutputMethod;
+import app.commands.exceptions.CommandException;
+import app.repository.UserRepository;
+import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that return the {@link User}s.
@@ -85,7 +85,7 @@ public class GetUsers extends BaseCommand
 	}
 
 	/**
-	 * @see main.java.app.commands.BaseCommand#getMandatoryParameters()
+	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
 	protected String[] getMandatoryParameters()

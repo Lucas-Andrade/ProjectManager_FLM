@@ -1,4 +1,4 @@
-package main.java.app.commandParser;
+package app.commandParser;
 
 /**
  * Class whose instances represent {@code CommandParser} errors that result from

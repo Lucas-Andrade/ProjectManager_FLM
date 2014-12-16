@@ -1,4 +1,4 @@
-package main.java.utils;
+package utils;
 
 /**
  * Abstract class Element that will serve as an abstraction layer representing

@@ -1,8 +1,8 @@
-package main.java.utils;
+package utils;
 
 import java.text.DecimalFormat;
 
-import main.java.app.elements.WorkerInterface;
+import app.elements.WorkerInterface;
 
 /**
  * Abstract class {@code AWorker} that will define the general fields shared by

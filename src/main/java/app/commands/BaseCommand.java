@@ -1,11 +1,11 @@
-package main.java.app.commands;
+package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
 
-import main.java.app.commands.exceptions.MandatoryParameterNotPresentException;
-import main.java.app.resultsOutputMethods.ResultOutputMethod;
-import main.java.app.resultsOutputMethods.ResultOutputMethodToStream;
+import app.commands.exceptions.MandatoryParameterNotPresentException;
+import app.resultsOutputMethods.ResultOutputMethod;
+import app.resultsOutputMethods.ResultOutputMethodToStream;
 
 /**
  * Abstract {@link Command} to be supported by all {@code Command}s. Establishes
@@ -50,7 +50,7 @@ public abstract class BaseCommand implements Command
 	 */
 	@Override
 	public final void execute(ResultOutputMethodToStream out)
-			throws main.java.app.commands.exceptions.CommandException, IOException
+			throws app.commands.exceptions.CommandException, IOException
 	{
 		validateDemandingParameters(getMandatoryParameters());
 		internalExecute(out);
@@ -60,11 +60,11 @@ public abstract class BaseCommand implements Command
 	 * @see Command#execute(ResultOutputMethodToStream)
 	 * 
 	 * @param out
-	 * @throws main.java.app.commands.exceptions.CommandException
+	 * @throws app.commands.exceptions.CommandException
 	 * @throws IOException
 	 */
 	abstract protected void internalExecute(ResultOutputMethod out)
-			throws main.java.app.commands.exceptions.CommandException, IOException;
+			throws app.commands.exceptions.CommandException, IOException;
 
 	/**
 	 * Checks if all mandatory arguments are in the

@@ -1,4 +1,4 @@
-package main.java.app.commands.exceptions;
+package app.commands.exceptions;
 
 /**
  * Base class for {@link Command} exceptions.

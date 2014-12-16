@@ -1,8 +1,8 @@
-package main.java.app.elements;
+package app.elements;
 
-import main.java.utils.AWorker;
-import main.java.utils.Leader;
-import main.java.utils.Project;
+import utils.AWorker;
+import utils.Leader;
+import utils.Project;
 
 /**
  * Class that defines the contract for the {@link Project}s. Extends

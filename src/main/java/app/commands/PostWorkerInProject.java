@@ -1,18 +1,18 @@
-package main.java.app.commands;
+package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
 
-import main.java.app.commands.exceptions.CommandException;
-import main.java.app.repository.ProjectRepository;
-import main.java.app.repository.UserRepository;
-import main.java.app.repository.WorkerRepository;
-import main.java.app.resultsOutputMethods.ResultOutputMethod;
-import main.java.app.resultsOutputMethods.ResultOutputMethodToStream;
-import main.java.utils.Consultant;
-import main.java.utils.Leader;
-import main.java.utils.Project;
-import main.java.utils.Team;
+import utils.Consultant;
+import utils.Leader;
+import utils.Project;
+import utils.Team;
+import app.commands.exceptions.CommandException;
+import app.repository.ProjectRepository;
+import app.repository.UserRepository;
+import app.repository.WorkerRepository;
+import app.resultsOutputMethods.ResultOutputMethod;
+import app.resultsOutputMethods.ResultOutputMethodToStream;
 
 /**
  * Class whose instances are {@link Command}s that add {@link AWorker}s to
@@ -163,7 +163,7 @@ public class PostWorkerInProject extends BasePostCommand
 	}
 
 	/**
-	 * @see main.java.app.commands.BaseCommand#getMandatoryParameters()
+	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
 	protected String[] getMandatoryParameters()

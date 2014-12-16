@@ -1,12 +1,11 @@
-package test.java.utils;
-
-import main.java.utils.Consultant;
-import main.java.utils.Leader;
-import main.java.utils.Local;
-import main.java.utils.Project;
-import main.java.utils.Team;
+package utils;
 
 import org.junit.Test;
+import utils.Consultant;
+import utils.Leader;
+import utils.Local;
+import utils.Project;
+import utils.Team;
 
 public class ProjectTest
 {

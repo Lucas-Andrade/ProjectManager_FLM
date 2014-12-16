@@ -1,15 +1,15 @@
-package test.java.app.repository;
+package app.repository;
 
 import static org.junit.Assert.*;
-import main.java.app.elements.DatabaseElement;
-import main.java.app.repository.InMemoryWorkerRepo;
-import main.java.utils.Consultant;
-import main.java.utils.Leader;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import test.java.app.RepositoryConstructor;
+import utils.Consultant;
+import utils.Leader;
+import app.RepositoryConstructor;
+import app.elements.DatabaseElement;
+import app.repository.InMemoryWorkerRepo;
 
 /**
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.

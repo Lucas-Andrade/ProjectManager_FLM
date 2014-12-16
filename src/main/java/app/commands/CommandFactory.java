@@ -1,4 +1,4 @@
-package main.java.app.commands;
+package app.commands;
 
 import java.util.Map;
 

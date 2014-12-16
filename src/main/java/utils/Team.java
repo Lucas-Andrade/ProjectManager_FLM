@@ -1,4 +1,4 @@
-package main.java.utils;
+package utils;
 
 /**
  * Class that will represent a container of projects. Extends

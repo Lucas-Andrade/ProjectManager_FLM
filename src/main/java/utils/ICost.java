@@ -1,4 +1,4 @@
-package main.java.utils;
+package utils;
 
 /**
  * {@code ICost} Interface containing the method {@code getCost()} to be

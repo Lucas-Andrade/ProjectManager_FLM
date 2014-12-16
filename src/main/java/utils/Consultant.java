@@ -1,4 +1,4 @@
-package main.java.utils;
+package utils;
 
 /**
  * Class {@code Consultant} whose objects will represent the consultants that

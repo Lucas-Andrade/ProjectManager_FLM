@@ -1,6 +1,6 @@
-package main.java.app.repository;
+package app.repository;
 
-import main.java.app.elements.DatabaseElement;
+import app.elements.DatabaseElement;
 
 /**
  * Abstract class whose purpose will be to store all {link DatabaseElements} in

@@ -1,6 +1,6 @@
-package main.java.app.elements;
+package app.elements;
 
-import main.java.app.commands.BasePostCommand;
+import app.commands.BasePostCommand;
 
 /**
  * Class that represents the {@code User} created by the time the method

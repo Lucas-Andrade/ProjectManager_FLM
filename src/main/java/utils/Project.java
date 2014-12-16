@@ -1,8 +1,8 @@
-package main.java.utils;
+package utils;
 
 import java.text.DecimalFormat;
 
-import main.java.app.elements.ProjectInterface;
+import app.elements.ProjectInterface;
 
 /**
  * Class {@code Project} whose instances will represent a project.

@@ -1,6 +1,6 @@
-package main.java.app.repository;
+package app.repository;
 
-import main.java.app.elements.DatabaseElement;
+import app.elements.DatabaseElement;
 
 /**
  * The interface to be implemented by all Repositories.

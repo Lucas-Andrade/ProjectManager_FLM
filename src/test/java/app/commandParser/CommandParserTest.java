@@ -1,28 +1,28 @@
-package test.java.app.commandParser;
+package app.commandParser;
 
 import static org.junit.Assert.*;
-import main.java.app.commandParser.CommandParser;
-import main.java.app.commandParser.CommandParserException;
-import main.java.app.commandParser.InvalidRegisterException;
-import main.java.app.commands.GetProject;
-import main.java.app.commands.GetProjectWorkers;
-import main.java.app.commands.GetSubproject;
-import main.java.app.commands.GetUser;
-import main.java.app.commands.GetUsers;
-import main.java.app.commands.PostConsultant;
-import main.java.app.commands.PostProject;
-import main.java.app.commands.PostSubproject;
-import main.java.app.commands.PostUsers;
-import main.java.app.commands.PostWorkerInProject;
-import main.java.app.repository.ProjectRepository;
-import main.java.app.repository.UserRepository;
-import main.java.app.repository.WorkerRepository;
-import main.java.utils.Leader;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import test.java.app.RepositoryConstructor;
+import utils.Leader;
+import app.RepositoryConstructor;
+import app.commandParser.CommandParser;
+import app.commandParser.CommandParserException;
+import app.commandParser.InvalidRegisterException;
+import app.commands.GetProject;
+import app.commands.GetProjectWorkers;
+import app.commands.GetSubproject;
+import app.commands.GetUser;
+import app.commands.GetUsers;
+import app.commands.PostConsultant;
+import app.commands.PostProject;
+import app.commands.PostSubproject;
+import app.commands.PostUsers;
+import app.commands.PostWorkerInProject;
+import app.repository.ProjectRepository;
+import app.repository.UserRepository;
+import app.repository.WorkerRepository;
 
 /**
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.

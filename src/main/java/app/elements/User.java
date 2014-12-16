@@ -1,4 +1,4 @@
-package main.java.app.elements;
+package app.elements;
 
 /**
  * Class whose instances represent Users that use the App. A {@code User} is

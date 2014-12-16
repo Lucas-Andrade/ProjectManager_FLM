@@ -1,13 +1,13 @@
-package main.java.app.commands;
+package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
 
-import main.java.app.commands.exceptions.CommandException;
-import main.java.app.elements.User;
-import main.java.app.repository.UserRepository;
-import main.java.app.resultsOutputMethods.ResultOutputMethod;
-import main.java.app.resultsOutputMethods.ResultOutputMethodToStream;
+import app.commands.exceptions.CommandException;
+import app.elements.User;
+import app.repository.UserRepository;
+import app.resultsOutputMethods.ResultOutputMethod;
+import app.resultsOutputMethods.ResultOutputMethodToStream;
 
 /**
  * Abstract POST {@link Command} to be supported by all POST {@code Command}s.
@@ -66,7 +66,7 @@ public abstract class BasePostCommand extends BaseCommand
 	 * of the {@code Command}.
 	 * 
 	 * @see BasePostCommand#authenticateUser(String, String)
-	 * @see main.java.app.commands.BaseCommand#internalExecute(main.java.app.resultsOutputMethods.
+	 * @see app.commands.BaseCommand#internalExecute(app.resultsOutputMethods.
 	 *      ResultOutputMethod)
 	 */
 	@Override
@@ -102,10 +102,10 @@ public abstract class BasePostCommand extends BaseCommand
 	 * @see Command#execute(ResultOutputMethodToStream)
 	 * 
 	 * @param out
-	 * @throws main.java.app.commands.exceptions.CommandException
+	 * @throws app.commands.exceptions.CommandException
 	 * @throws IOException
 	 */
 	abstract protected void internalPostExecute(ResultOutputMethod out)
-			throws main.java.app.commands.exceptions.CommandException, IOException;
+			throws app.commands.exceptions.CommandException, IOException;
 
 }

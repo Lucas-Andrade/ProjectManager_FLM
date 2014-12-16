@@ -1,13 +1,13 @@
-package main.java.app.repository;
+package app.repository;
 
 import java.util.Collection;
 import java.util.TreeSet;
 
-import main.java.app.elements.DatabaseElement;
-import main.java.app.elements.WorkerComparator;
-import main.java.utils.AWorker;
-import main.java.utils.Consultant;
-import main.java.utils.Leader;
+import app.elements.DatabaseElement;
+import app.elements.WorkerComparator;
+import utils.AWorker;
+import utils.Consultant;
+import utils.Leader;
 
 /**
  * An {@link AWorker}s in memory {@link Repository}.

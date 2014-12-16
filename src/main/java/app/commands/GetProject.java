@@ -1,12 +1,12 @@
-package main.java.app.commands;
+package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
 
-import main.java.app.commands.exceptions.CommandException;
-import main.java.app.repository.ProjectRepository;
-import main.java.app.resultsOutputMethods.ResultOutputMethod;
-import main.java.utils.Project;
+import utils.Project;
+import app.commands.exceptions.CommandException;
+import app.repository.ProjectRepository;
+import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that return the {@link Project} with specified {@code PID}
@@ -87,7 +87,7 @@ public class GetProject extends BaseCommand
 	}
 
 	/**
-	 * @see main.java.app.commands.BaseCommand#getMandatoryParameters()
+	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
 	protected String[] getMandatoryParameters()

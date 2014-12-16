@@ -1,4 +1,4 @@
-package main.java.app.resultsOutputMethods;
+package app.resultsOutputMethods;
 
 import java.io.OutputStream;
 

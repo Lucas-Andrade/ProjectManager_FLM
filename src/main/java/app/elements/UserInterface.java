@@ -1,4 +1,4 @@
-package main.java.app.elements;
+package app.elements;
 
 /**
  * Class that defines the contract for the Users of use the App. A

@@ -1,7 +1,7 @@
-package main.java.app.repository;
+package app.repository;
 
-import main.java.app.elements.DatabaseElement;
-import main.java.utils.Project;
+import utils.Project;
+import app.elements.DatabaseElement;
 
 /**
  * The interface to be implemented by all {@link Project}s {@link Repository}.
