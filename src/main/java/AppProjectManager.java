@@ -208,7 +208,7 @@ public class AppProjectManager
 						+ "\n  	DELETE /project/{pid} : Deletes the project with the  specify {@code ProjectId} and all its subprojects"
 						+ "\n 		{parameter list: loginName, loginPassord}"
 						+ "\n\n  OPTION: Displays a description of all available commands."
-						+ "\n  HELP: Show un user guide to use the application"
+						+ "\n  HELP: Show an user guide to use the application"
 						+ "\n  EXIT: terminates the application");
 	}
 	
