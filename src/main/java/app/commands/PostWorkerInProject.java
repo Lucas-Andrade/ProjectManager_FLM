@@ -22,7 +22,7 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostWorkerInProject extends BasePostCommand
+public class PostWorkerInProject extends BaseCommandAuthentication
 {
 
 	/**
@@ -107,7 +107,7 @@ public class PostWorkerInProject extends BasePostCommand
 		private final WorkerRepository wRepository;
 
 		/**
-		 * @see BasePostCommand#repository
+		 * @see BaseCommandAuthentication#repository
 		 */
 		private final UserRepository uRepository;
 
@@ -184,7 +184,7 @@ public class PostWorkerInProject extends BasePostCommand
 	 * 
 	 * @see PostWorkerInProject#addConsultant(ResultOutputMethod, long, long)
 	 * @see PostWorkerInProject#addManager(ResultOutputMethod, long, long)
-	 * @see BasePostCommand#internalPostExecute(ResultOutputMethod)
+	 * @see BaseCommandAuthentication#internalPostExecute(ResultOutputMethod)
 	 */
 	@Override
 	protected void internalPostExecute(ResultOutputMethod out)

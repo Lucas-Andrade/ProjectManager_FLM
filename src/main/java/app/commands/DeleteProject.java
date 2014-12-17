@@ -5,9 +5,10 @@ import java.util.Map;
 
 import app.commands.exceptions.CommandException;
 import app.repository.ProjectRepository;
+import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
-public class DeleteProject extends BaseCommand{
+public class DeleteProject extends BaseCommandAuthentication{
 
 	/**
 	 * The {@link ProjectRepository} with the {@code Project}s. This
@@ -39,7 +40,9 @@ public class DeleteProject extends BaseCommand{
 		 * The {@link ProjectRepository} with the {@code Project}s. This
 		 * {@code ProjectRepository} is accessed to get the {@code Project}
 		 */
-		private final ProjectRepository repository;
+		private final ProjectRepository pRepository;
+		
+		private final UserRepository uRepository;
 
 		/**
 		 * The constructor for {@code Factory}.
@@ -47,9 +50,10 @@ public class DeleteProject extends BaseCommand{
 		 * @param repository
 		 *            The {@code ProjectRepository} with the {@code Project}.
 		 */
-		public Factory(ProjectRepository repository)
+		public Factory(UserRepository uRepository, ProjectRepository pRepository)
 		{
-			this.repository = repository;
+			this.pRepository = pRepository;
+			this.uRepository = uRepository;
 		}
 
 		/**
@@ -58,7 +62,7 @@ public class DeleteProject extends BaseCommand{
 		@Override
 		public Command newInstance(Map<String, String> parameters)
 		{
-			return new DeleteProject(repository, parameters);
+			return new DeleteProject(uRepository, pRepository, parameters);
 		}
 	}
 	
@@ -71,9 +75,9 @@ public class DeleteProject extends BaseCommand{
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	public DeleteProject(ProjectRepository repository,Map<String, String> parameters)
+	public DeleteProject(UserRepository uRepository, ProjectRepository repository, Map<String, String> parameters)
 	{
-		super(parameters);
+		super(uRepository, parameters);
 		this.repository = repository;
 	}
 
@@ -89,6 +93,14 @@ public class DeleteProject extends BaseCommand{
 	protected String[] getMandatoryParameters() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	protected void internalPostExecute(ResultOutputMethod out)
+			throws CommandException, IOException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

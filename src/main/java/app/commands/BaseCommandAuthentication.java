@@ -17,7 +17,7 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public abstract class BasePostCommand extends BaseCommand
+public abstract class BaseCommandAuthentication extends BaseCommand
 {
 
 	/**
@@ -53,11 +53,10 @@ public abstract class BasePostCommand extends BaseCommand
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	public BasePostCommand(UserRepository repository,
-			Map<String, String> parameters)
+	public BaseCommandAuthentication(UserRepository userRepository, Map<String, String> parameters)
 	{
 		super(parameters);
-		this.repository = repository;
+		repository = userRepository;
 	}
 
 	/**
@@ -65,7 +64,7 @@ public abstract class BasePostCommand extends BaseCommand
 	 * execution of the {@code Command}, if correct proceeds with the execution
 	 * of the {@code Command}.
 	 * 
-	 * @see BasePostCommand#authenticateUser(String, String)
+	 * @see BaseCommandAuthentication#authenticateUser(String, String)
 	 * @see app.commands.BaseCommand#internalExecute(app.resultsOutputMethods.
 	 *      ResultOutputMethod)
 	 */

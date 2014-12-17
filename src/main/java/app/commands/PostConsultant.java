@@ -17,7 +17,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostConsultant extends BasePostCommand
+public class PostConsultant extends BaseCommandAuthentication
 {
 
 	/**
@@ -67,7 +67,7 @@ public class PostConsultant extends BasePostCommand
 		private final WorkerRepository repository;
 
 		/**
-		 * @see BasePostCommand#repository
+		 * @see BaseCommandAuthentication#repository
 		 */
 		private final UserRepository uRepository;
 
@@ -127,7 +127,7 @@ public class PostConsultant extends BasePostCommand
 	 * Outputs the new {@code AWorker}'s ID. If it has Bonus, that it creates a
 	 * {@code Leader}, else creates a {@code Consultant}.
 	 * 
-	 * @see BasePostCommand#internalPostExecute(ResultOutputMethod)
+	 * @see BaseCommandAuthentication#internalPostExecute(ResultOutputMethod)
 	 */
 	@Override
 	protected void internalPostExecute(ResultOutputMethod out)

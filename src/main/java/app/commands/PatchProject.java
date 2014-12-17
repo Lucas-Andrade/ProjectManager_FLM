@@ -1,10 +1,14 @@
 package app.commands;
 
+import java.io.IOException;
 import java.util.Map;
 
+import app.commands.exceptions.CommandException;
 import app.repository.ProjectRepository;
+import app.repository.UserRepository;
+import app.resultsOutputMethods.ResultOutputMethod;
 
-public class PatchProject extends BasePatchCommand{
+public class PatchProject extends BaseCommandAuthentication{
 
 	/**
 	 * The {@link ProjectRepository} with the {@code Project}s. This
@@ -36,7 +40,9 @@ public class PatchProject extends BasePatchCommand{
 		 * The {@link ProjectRepository} with the {@code Project}s. This
 		 * {@code ProjectRepository} is accessed to get the {@code Project}
 		 */
-		private final ProjectRepository repository;
+		private final ProjectRepository pRepository;
+		
+		private final UserRepository uRepository;
 
 		/**
 		 * The constructor for {@code Factory}.
@@ -44,9 +50,10 @@ public class PatchProject extends BasePatchCommand{
 		 * @param repository
 		 *            The {@code ProjectRepository} with the {@code Project}.
 		 */
-		public Factory(ProjectRepository repository)
+		public Factory(UserRepository uRepository, ProjectRepository pRepository)
 		{
-			this.repository = repository;
+			this.pRepository = pRepository;
+			this.uRepository = uRepository;
 		}
 
 		/**
@@ -55,7 +62,7 @@ public class PatchProject extends BasePatchCommand{
 		@Override
 		public Command newInstance(Map<String, String> parameters)
 		{
-			return new PatchProject(repository, parameters);
+			return new PatchProject(uRepository, pRepository, parameters);
 		}
 	}
 	
@@ -68,10 +75,25 @@ public class PatchProject extends BasePatchCommand{
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	public PatchProject(ProjectRepository repository,Map<String, String> parameters)
+	public PatchProject(UserRepository uRepository, ProjectRepository pRepository, Map<String, String> parameters)
 	{
-		super(parameters);
-		this.repository = repository;
+		super(uRepository, parameters);
+		this.repository = pRepository;
+	}
+
+
+	@Override
+	protected void internalPostExecute(ResultOutputMethod out)
+			throws CommandException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	protected String[] getMandatoryParameters() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,10 +1,13 @@
 package app.commands;
 
+import java.io.IOException;
 import java.util.Map;
 
+import app.commands.exceptions.CommandException;
 import app.repository.UserRepository;
+import app.resultsOutputMethods.ResultOutputMethod;
 
-public class PatchUser extends BasePatchCommand{
+public class PatchUser extends BaseCommandAuthentication{
 
 	/**
 	 * {@code String} with the to be added {@code User}'s Username argument.
@@ -91,9 +94,9 @@ public class PatchUser extends BasePatchCommand{
 	 * @param repository   The {@code UserRepository}.
 	 * @param parameters   The {@code Command} arguments.
 	 */
-	public PatchUser(UserRepository repository,Map<String, String> parameters)
+	public PatchUser(UserRepository repository, Map<String, String> parameters)
 	{
-		super(parameters);
+		super(repository, parameters);
 		this.repository = repository;
 	}
 
@@ -103,5 +106,22 @@ public class PatchUser extends BasePatchCommand{
 	{
 		this.username = parameters.get(USERNAME);
 		
+	}
+
+
+
+	@Override
+	protected void internalPostExecute(ResultOutputMethod out)
+			throws CommandException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	protected String[] getMandatoryParameters() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

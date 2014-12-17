@@ -1,6 +1,6 @@
 package app.elements;
 
-import app.commands.BasePostCommand;
+import app.commands.BaseCommandAuthentication;
 
 /**
  * Class that represents the first {@code User} of the {@code AppProjectManager}
@@ -8,7 +8,7 @@ import app.commands.BasePostCommand;
  * instantiated in the {@link AppProjectManager} ({@see
  * InMemoryUserRepo#addAdmin(String, String)}). {@code AppProjectManager} needs
  * at least one {@code User} in the {@link UserRepository} or it won't be
- * possible to use {@link BasePostCommand}s.
+ * possible to use {@link BaseCommandAuthentication}s.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014

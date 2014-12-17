@@ -16,7 +16,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostProject extends BasePostCommand
+public class PostProject extends BaseCommandAuthentication
 {
 
 	/**
@@ -73,7 +73,7 @@ public class PostProject extends BasePostCommand
 		private final ProjectRepository repository;
 
 		/**
-		 * @see BasePostCommand#repository
+		 * @see BaseCommandAuthentication#repository
 		 */
 		private final UserRepository uRepository;
 
@@ -133,7 +133,7 @@ public class PostProject extends BasePostCommand
 	 * {@code ProjectRepository} and adds it to the {@code ProjectRepository}.
 	 * Outputs the new {@code Project}'s PID.
 	 * 
-	 * @see BasePostCommand#internalPostExecute(ResultOutputMethod)
+	 * @see BaseCommandAuthentication#internalPostExecute(ResultOutputMethod)
 	 */
 	@Override
 	protected void internalPostExecute(ResultOutputMethod out)

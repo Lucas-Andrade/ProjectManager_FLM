@@ -16,7 +16,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostUsers extends BasePostCommand
+public class PostUsers extends BaseCommandAuthentication
 {
 
 	/**
@@ -86,7 +86,7 @@ public class PostUsers extends BasePostCommand
 		 * {@code User}'s Username is checked to see if the {@code User} already
 		 * exists in the {@code UserRepository}.
 		 * 
-		 * @see BasePostCommand#repository
+		 * @see BaseCommandAuthentication#repository
 		 */
 		private final UserRepository uRepository;
 
@@ -141,7 +141,7 @@ public class PostUsers extends BasePostCommand
 	 * successful message if successful.
 	 * 
 	 * @see PostUsers#validEmail()
-	 * @see BasePostCommand#internalPostExecute(ResultOutputMethod)
+	 * @see BaseCommandAuthentication#internalPostExecute(ResultOutputMethod)
 	 */
 	@Override
 	protected void internalPostExecute(ResultOutputMethod out)

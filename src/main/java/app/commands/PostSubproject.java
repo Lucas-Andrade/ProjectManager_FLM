@@ -18,7 +18,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostSubproject extends BasePostCommand
+public class PostSubproject extends BaseCommandAuthentication
 {
 
 	/**
@@ -65,7 +65,7 @@ public class PostSubproject extends BasePostCommand
 		private final ProjectRepository repository;
 
 		/**
-		 * @see BasePostCommand#repository
+		 * @see BaseCommandAuthentication#repository
 		 */
 		private final UserRepository uRepository;
 
@@ -125,7 +125,7 @@ public class PostSubproject extends BasePostCommand
 	 * and if both exist. Outputs a successful message if successful and
 	 * vice-versa.
 	 * 
-	 * @see BasePostCommand#internalPostExecute(ResultOutputMethod)
+	 * @see BaseCommandAuthentication#internalPostExecute(ResultOutputMethod)
 	 */
 	@Override
 	protected void internalPostExecute(ResultOutputMethod out)
