@@ -150,7 +150,7 @@ public class PostUsers extends BaseCommandAuthentication
 		this.username = parameters.get(USERNAME);
 		this.password = parameters.get(PASSWORD);
 		
-		if(password.length() <= 3)
+		if(password.length() < User.minCharInPass)
 		{
 			out.giveResults("User's password must have at least 4 characters.");
 			return;
