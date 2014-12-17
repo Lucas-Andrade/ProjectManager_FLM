@@ -36,4 +36,13 @@ public interface ProjectRepository extends Repository<DatabaseElement>
 	 */
 	public boolean addProject(Project project);
 
+	/**
+	 * Removes a project from the repository.
+	 * 
+	 * @param project
+	 *            The project to be removed.
+	 * @return True if successful, False if not.
+	 */
+	boolean removeProject(Project project);
+
 }

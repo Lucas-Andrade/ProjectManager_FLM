@@ -121,7 +121,7 @@ public class PostSubproject extends BaseCommandAuthentication
 
 	/**
 	 * Adds a Sub{@code Project} to a {@code Project} if both {@code Project}s
-	 * have different IDs (if they are not the same) and have different Names
+	 * have different IDs (if they are not the same), have different Names
 	 * and if both exist. Outputs a successful message if successful and
 	 * vice-versa.
 	 * 

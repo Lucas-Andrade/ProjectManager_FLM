@@ -60,8 +60,11 @@ public class PatchConsultant extends BaseCommandAuthentication
 		 * The {@link WorkerRepository} with the {@code AWorker}s. The modified
 		 * {@code AWorker}s are stored in this {@code WorkerRepository}.
 		 */
-		private final WorkerRepository pRepository;
+		private final WorkerRepository wRepository;
 
+		/**
+		 * @see BaseCommandAuthentication#repository
+		 */
 		private final UserRepository uRepository;
 
 		/**
@@ -69,12 +72,12 @@ public class PatchConsultant extends BaseCommandAuthentication
 		 * 
 		 * @param uRepository
 		 *            The {@code UserRepository} with the {@code User}.
-		 * @param repository
+		 * @param wRepository
 		 *            The {@code WorkerRepository} with the {@code AWorker}s.
 		 */
-		public Factory(UserRepository uRepository, WorkerRepository pRepository)
+		public Factory(UserRepository uRepository, WorkerRepository wRepository)
 		{
-			this.pRepository = pRepository;
+			this.wRepository = wRepository;
 			this.uRepository = uRepository;
 		}
 
@@ -84,13 +87,15 @@ public class PatchConsultant extends BaseCommandAuthentication
 		@Override
 		public Command newInstance(Map<String, String> parameters)
 		{
-			return new PatchConsultant(uRepository, pRepository, parameters);
+			return new PatchConsultant(uRepository, wRepository, parameters);
 		}
 	}
 
 	/**
-	 * The constructor for {@code PostConsultant}.
+	 * The constructor for {@code PatchConsultant}.
 	 * 
+	 * @param uRepository
+	 *            The {@code UserRepository}.
 	 * @param repository
 	 *            The {@code WorkerRepository}.
 	 * @param parameters

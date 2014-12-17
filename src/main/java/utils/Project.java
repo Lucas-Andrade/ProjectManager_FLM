@@ -25,7 +25,7 @@ public class Project extends Element implements ProjectInterface
 	/**
 	 * Project constructor that will receive as parameter the name of the
 	 * project, the local it will take place, the manager in charge of the
-	 * project and the team that will work on it.
+	 * project, the team that will work on it and the Project ID.
 	 * 
 	 * Throws {@link IllegalArgumentException} if any of the given parameters
 	 * are null.
@@ -39,36 +39,34 @@ public class Project extends Element implements ProjectInterface
 	 * @param team
 	 *            - the {@code Team} that will be responsible for executing the
 	 *            project.
+	 * @param pid
+	 *            - the project's identification (PID).
 	 */
 	public Project(String name, Local local, Leader manager, Team team, long pid)
 	{
-		if (name == null || local == null || team == null) // o manager pode ser
-															// null.
+		if (name == null || local == null || team == null)
 			throw new IllegalArgumentException();
 
 		this.name = name;
 		this.local = local;
 		this.team = team;
 		this.manager = manager;
-		this.projectsContainer = new ProjectsContainer();
 		this.pid = pid;
+		projectsContainer = new ProjectsContainer();
 	}
 
 	/**
-	 * Project constructor that will receive as parameter the name of the
-	 * project, the local it will take place, the manager in charge of the
-	 * project and the team that will work on it.
+	 * Project constructor that will receive as parameter the local it will take place
+	 * and the Project ID. The name of the project will be equal to the PID and the
+	 * team will be a new empty one.
 	 * 
 	 * Throws {@link IllegalArgumentException} if any of the given parameters
 	 * are null.
 	 * 
-	 * @param name
-	 *            - the name of the project.
 	 * @param local
 	 *            - the local where the project will take place.
-	 * @param team
-	 *            - the {@code Team} that will be responsible for executing the
-	 *            project.
+	 * @param pid
+	 *            - the project's identification (PID).
 	 */
 	public Project(Local local, long pid)
 	{
@@ -101,8 +99,8 @@ public class Project extends Element implements ProjectInterface
 	}
 
 	/**
-	 * Method that will allow a subproject to be added to the
-	 * {@code projectsContainer}. If a sub_project with the same name already
+	 * Method that will allow a project to be added as a subproject (it is added to the
+	 * {@code projectsContainer}). If a sub_project with the same name already
 	 * exists it will not be added and the method will return false.
 	 * 
 	 * Throws {@link IllegalArgumentException} if the given parameter is null.
@@ -120,7 +118,6 @@ public class Project extends Element implements ProjectInterface
 
 		if (NameTester.addName(project.getName()))
 			return projectsContainer.addElement(project);
-
 		return false;
 	}
 

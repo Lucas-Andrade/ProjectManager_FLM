@@ -43,12 +43,9 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	}
 
 	/**
-	 * Removes a project from the repository.
-	 * 
-	 * @param project
-	 *            The project to be removed.
-	 * @return True if successful, False if not.
+	 * @see ProjectRepository#removeProject(Project)
 	 */
+	@Override
 	public boolean removeProject(Project project)
 	{
 		return projects.remove(project);
