@@ -22,8 +22,8 @@ public abstract class AWorker extends Element implements WorkerInterface
 	 * @field hoursWorked - total of hours worked by the worker.
 	 * @field cid - the ID of the worker.
 	 */
-	private final String name;
-	private final double costPerHour;
+	private String name;
+	private double costPerHour;
 	private final double hoursWorked;
 	private final long cid;
 
@@ -92,6 +92,37 @@ public abstract class AWorker extends Element implements WorkerInterface
 	}
 
 	/**
+	 * @return The worker identification number.
+	 */
+	@Override
+	public long getCID()
+	{
+		return cid;
+	}
+
+	/**
+	 * Patch the name of the worker.
+	 * 
+	 * @param name
+	 *            The name of the worker.
+	 */
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+
+	/**
+	 * Patch the worker cost per hour.
+	 * 
+	 * @param costPerHour
+	 *            The cost of the worker for one hour of work.
+	 */
+	public void setCostPerHour(double costPerHour)
+	{
+		this.costPerHour = costPerHour;
+	}
+
+	/**
 	 * Override of the method {@code toString()} from {@code Object}.
 	 */
 	@Override
@@ -99,10 +130,10 @@ public abstract class AWorker extends Element implements WorkerInterface
 	{
 		StringBuilder builder = new StringBuilder();
 		DecimalFormat df = new DecimalFormat("#.##");
-		
+
 		builder.append("Name: ").append(name).append(", Payment per hour: ")
-				.append(df.format(costPerHour)).append(" Euros, Cost: ").append(df.format(getCost()))
-				.append(" Euros");
+				.append(df.format(costPerHour)).append(" Euros, Cost: ")
+				.append(df.format(getCost())).append(" Euros");
 
 		return builder.toString();
 	}
@@ -176,12 +207,4 @@ public abstract class AWorker extends Element implements WorkerInterface
 		return true;
 	}
 
-	/**
-	 * @return the worker identification number
-	 */
-	@Override
-	public long getCID()
-	{
-		return cid;
-	}
 }

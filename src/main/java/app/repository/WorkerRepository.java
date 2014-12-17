@@ -56,5 +56,15 @@ public interface WorkerRepository extends Repository<DatabaseElement>
 	 * @return The Manager with the supplied CID, or null if none.
 	 */
 	public Leader getManagerByID(long cid);
+	
+	/**
+	 * Get's the Worker ({@link AWorker}) with the supplied CID from the
+	 * repository.
+	 * 
+	 * @param cid
+	 *            The CID of the Worker to search.
+	 * @return The Worker with the supplied CID, or null if none.
+	 */
+	public AWorker getAWorkerByID(long cid);
 
 }

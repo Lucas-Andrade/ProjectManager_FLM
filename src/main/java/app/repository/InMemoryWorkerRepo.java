@@ -149,4 +149,17 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 		return workers.size();
 	}
 
+	/**
+	 * @see WorkerRepository#getAWorkerByID(long)
+	 */
+	@Override
+	public AWorker getAWorkerByID(long cid)
+	{
+		AWorker aWorker = null;
+		for (AWorker worker : workers)
+			if (worker.getCID() == cid)
+				aWorker = worker;
+		return aWorker;
+	}
+
 }
