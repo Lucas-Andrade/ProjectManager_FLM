@@ -6,7 +6,7 @@ import app.elements.ProjectInterface;
 
 /**
  * Class {@code Project} whose instances will represent a project.
- * 
+ *  
  * Extends {@link Element}.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
@@ -430,6 +430,38 @@ public class Project extends Element implements ProjectInterface
 	public long getPID()
 	{
 		return pid;
+	}
+
+	/**
+	 * Override of the method {@code updateLongitude(double newLongitude)} from {@code ProjectInterface}
+	 */
+	@Override
+	public boolean updateLongitude(double newLongitude) {
+		return local.setLongitude(newLongitude);
+	}
+
+	/**
+	 * Override of the method {@code updateLatitude(double newLatitude)} from {@code ProjectInterface}
+	 */
+	@Override
+	public boolean updateLatitude(double newLatitude) {
+		return local.setLatitude(newLatitude);
+	}
+
+	/**
+	 * Override of the method {@code updateLocalName(String newName)} from {@code ProjectInterface}
+	 */
+	@Override
+	public void updateLocalName(String newName) {
+		local.setName(newName);
+	}
+
+	/**
+	 * Override of the method {@code updateLocalPrice(double newPrice)} from {@code ProjectInterface}
+	 */
+	@Override
+	public boolean updateLocalPrice(double newPrice) {
+		return local.setPrice(newPrice);
 	}
 
 }

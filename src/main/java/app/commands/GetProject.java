@@ -106,6 +106,13 @@ public class GetProject extends BaseCommand
 			throws CommandException, IOException
 	{
 		Project project = repository.getProjectById(getParameterAsLong(PID));
+		
+		if(project == null)
+		{
+			out.giveResults("Project not found!");
+			return;
+		}
+		
 		out.giveResults(project);
 	}
 

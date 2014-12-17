@@ -14,6 +14,7 @@ public class User implements UserInterface
 	private String password;
 	private String email;
 	private final String fullname;
+	public final static int minCharInPass = 4;
 
 	/**
 	 * The constructor of {@code User}.
@@ -29,6 +30,9 @@ public class User implements UserInterface
 	 */
 	public User(String username, String password, String email, String fullname)
 	{
+		if (password.length() < minCharInPass)
+			throw new IllegalArgumentException();
+		
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -108,6 +112,16 @@ public class User implements UserInterface
 			return true;
 		else
 			return false;
+	}
+
+	@Override
+	public boolean setNewPassword(String newPassword) {
+		
+		if (newPassword.length() < minCharInPass)
+			return false;
+		else
+			password = newPassword;
+		return true;
 	}
 
 }

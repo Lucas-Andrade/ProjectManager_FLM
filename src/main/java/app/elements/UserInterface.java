@@ -49,4 +49,13 @@ public interface UserInterface extends DatabaseElement
 	 */
 	public boolean equals(UserInterface user);
 
+	/**
+	 * allows to set a new password for the user, provided it has the minimum number of 
+	 * characters
+	 * @param newPassword - the new password
+	 * @return {@code true} if the new password was set as the user's password
+	 * @return {@code false} if the new password was not set as the user's password
+	 */
+	public boolean setNewPassword(String newPassword);
+
 }

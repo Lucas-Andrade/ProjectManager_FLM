@@ -50,5 +50,36 @@ public interface ProjectInterface extends DatabaseElement
 	 * @see Object#toString()
 	 */
 	public String toString();
+	
+	/**
+	 * updates the value of the {@code longitude} of the {@code Local} of the {@code project} to
+	 * the new value passed as parameter.
+	 * 
+	 * @param newLongitude - new longitude value
+	 */
+	public boolean updateLongitude(double newLongitude);
 
+	/**
+	 * updates the value of the {@code latitude} of the {@code Local} of the {@code project} to
+	 * the new value passed as parameter.
+	 * 
+	 * @param newLatitude - new latitude value
+	 */
+	public boolean updateLatitude(double newLatitude);
+
+	/**
+	 * updates the value of the {@code name} of the {@code Local} of the {@code project} to
+	 * the new value passed as parameter.
+	 * 
+	 * @param newName - the new name
+	 */
+	public void updateLocalName(String newName);
+
+	/**
+	 * updates the value of the {@code cost} of the {@code Local} of the {@code project} to
+	 * the new value passed as parameter.
+	 * 
+	 * @param newPrice - new value of the price
+	 */
+	public boolean updateLocalPrice(double newPrice);
 }

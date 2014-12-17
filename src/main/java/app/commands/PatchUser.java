@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import app.commands.exceptions.CommandException;
+import app.elements.UserInterface;
 import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
@@ -17,9 +18,7 @@ public class PatchUser extends BaseCommandAuthentication{
 	/**
 	 * {@code String} with the to be added {@code User}'s Password argument.
 	 */
-	private String password;
-
-
+	private String newPassword;
 
 	/**
 	 * {@code String} with the {@code User} Username argument's name.
@@ -100,28 +99,35 @@ public class PatchUser extends BaseCommandAuthentication{
 		this.repository = repository;
 	}
 
-	
-	
-	public void SetUserPassword(Map<String, String> parameters)
-	{
-		this.username = parameters.get(USERNAME);
-		
-	}
-
-
-
+	/**
+	 * @see BaseCommandAuthentication#internalPostExecute(ResultOutputMethod)
+	 */
 	@Override
 	protected void internalPostExecute(ResultOutputMethod out)
 			throws CommandException, IOException {
-		// TODO Auto-generated method stub
 		
+		newPassword = getParameterAsString(NEWPASSWORD);
+		this.username = getParameterAsString(USERNAME);
+		
+		UserInterface user = repository.getUserByUsername(username);
+		
+		if(!user.getLoginPassword().equals(parameters.get(OLDPASSWORD)))
+		{
+			out.giveResults("The old password is incorrect.");
+			return;
+		}
+		
+		if(user.setNewPassword(newPassword))
+			out.giveResults("Success.");
+		else
+			out.giveResults("New password must at least have 4 characters.");
 	}
 
-
-
+	/**
+	 * @see app.commands.BaseCommand#getMandatoryParameters()
+	 */
 	@Override
 	protected String[] getMandatoryParameters() {
-		// TODO Auto-generated method stub
-		return null;
+		return DEMANDING_PARAMETERS;
 	}
 }
