@@ -99,7 +99,7 @@ public class GetProject extends BaseCommandResultsOutputMethod
 	 * Gets the {@code Project} with the argument
 	 * PID stored in {@link GetProject#parameters} 
 	 * 
-	 * @see BaseCommand#internalExecute(ResultOutputMethod)
+	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
 	protected void internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod out)

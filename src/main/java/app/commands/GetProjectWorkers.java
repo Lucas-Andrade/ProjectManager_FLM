@@ -133,7 +133,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 * indicates Consultant get's all the {@link Consultant}s in the
 	 * {@link Team} of the {@code Project} ({@link Project#team}).
 	 * 
-	 * @see BaseCommand#internalExecute(ResultOutputMethod)
+	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
 	protected void internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod out)

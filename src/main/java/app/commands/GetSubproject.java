@@ -104,7 +104,7 @@ public class GetSubproject extends BaseCommandResultsOutputMethod
 	 * {@link GetSubproject#PID}), if the {@code Project} exists and has at
 	 * least one Sub{@code Project}).
 	 * 
-	 * @see BaseCommand#internalExecute(ResultOutputMethod)
+	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
 	protected void internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod out)

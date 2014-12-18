@@ -101,7 +101,7 @@ public class GetUser extends BaseCommandResultsOutputMethod
 	 * Get's the {@code User} with the {@code GetUser#username} in the
 	 * {@code UserRepository}, if it exists.
 	 * 
-	 * @see BaseCommand#internalExecute(ResultOutputMethod)
+	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
 	protected void internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod out)

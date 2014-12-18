@@ -75,7 +75,7 @@ public class GetUsers extends BaseCommandResultsOutputMethod
 	/**
 	 * Get's all the {@code User}s in the {@code UserRepository}.
 	 * 
-	 * @see BaseCommand#internalExecute(ResultOutputMethod)
+	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
 	public void internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod out)
