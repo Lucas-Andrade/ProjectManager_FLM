@@ -128,11 +128,19 @@ public abstract class AContainer<elements extends Element> implements ICost
 	@Override
 	public String toString()
 	{
-
+		return toString(0);	
+	}
+	
+	public String toString(int i) 
+	{
+		String spaces = "";
+		for(int n = 0; n < i; n++)
+			spaces += " ";
+		
 		StringBuilder builder = new StringBuilder();
 
 		for (elements element : elementsList)
-			builder.append(element.toString()).append(" / ");
+			builder.append(spaces).append(element.toString()).append("\n");
 
 		return builder.toString();
 	}
