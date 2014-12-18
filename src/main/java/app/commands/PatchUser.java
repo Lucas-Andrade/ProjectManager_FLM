@@ -8,7 +8,7 @@ import app.elements.UserInterface;
 import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
-public class PatchUser extends BaseCommandAuthentication{
+public class PatchUser extends BaseCommandUserAuthentication{
 
 	/**
 	 * {@code String} with the to be added {@code User}'s Username argument.
@@ -100,10 +100,10 @@ public class PatchUser extends BaseCommandAuthentication{
 	}
 
 	/**
-	 * @see BaseCommandAuthentication#internalPostExecute(ResultOutputMethod)
+	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
 	 */
 	@Override
-	protected void internalPostExecute(ResultOutputMethod out)
+	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
 			throws CommandException, IOException {
 		
 		newPassword = getParameterAsString(NEWPASSWORD);

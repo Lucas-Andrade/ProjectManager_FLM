@@ -15,7 +15,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class GetProject extends BaseCommand
+public class GetProject extends BaseCommandResultsOutputMethod
 {
 
 	/**
@@ -102,7 +102,7 @@ public class GetProject extends BaseCommand
 	 * @see BaseCommand#internalExecute(ResultOutputMethod)
 	 */
 	@Override
-	protected void internalExecute(ResultOutputMethod out)
+	protected void internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod out)
 			throws CommandException, IOException
 	{
 		Project project = repository.getProjectById(getParameterAsLong(PID));

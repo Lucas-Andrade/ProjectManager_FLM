@@ -16,7 +16,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostUsers extends BaseCommandAuthentication
+public class PostUsers extends BaseCommandUserAuthentication
 {
 
 	/**
@@ -86,7 +86,7 @@ public class PostUsers extends BaseCommandAuthentication
 		 * {@code User}'s Username is checked to see if the {@code User} already
 		 * exists in the {@code UserRepository}.
 		 * 
-		 * @see BaseCommandAuthentication#repository
+		 * @see BaseCommandUserAuthentication#repository
 		 */
 		private final UserRepository uRepository;
 
@@ -141,10 +141,10 @@ public class PostUsers extends BaseCommandAuthentication
 	 * successful message if successful.
 	 * 
 	 * @see PostUsers#validEmail()
-	 * @see BaseCommandAuthentication#internalPostExecute(ResultOutputMethod)
+	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
 	 */
 	@Override
-	protected void internalPostExecute(ResultOutputMethod out)
+	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
 			throws CommandException, IOException
 	{
 		this.username = parameters.get(USERNAME);

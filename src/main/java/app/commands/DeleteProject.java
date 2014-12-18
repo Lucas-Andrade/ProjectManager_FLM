@@ -21,7 +21,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 17/12/2014
  */
-public class DeleteProject extends BaseCommandAuthentication
+public class DeleteProject extends BaseCommandUserAuthentication
 {
 
 	/**
@@ -60,7 +60,7 @@ public class DeleteProject extends BaseCommandAuthentication
 		private final ProjectRepository pRepository;
 
 		/**
-		 * @see BaseCommandAuthentication#repository
+		 * @see BaseCommandUserAuthentication#repository
 		 */
 		private final UserRepository uRepository;
 
@@ -115,7 +115,7 @@ public class DeleteProject extends BaseCommandAuthentication
 	}
 
 	@Override
-	protected void internalPostExecute(ResultOutputMethod out)
+	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
 			throws CommandException, IOException
 	{
 		long pid = this.getParameterAsLong(PID);

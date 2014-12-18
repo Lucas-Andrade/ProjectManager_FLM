@@ -16,7 +16,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 17/12/2014
  */
-public class PatchConsultant extends BaseCommandAuthentication
+public class PatchConsultant extends BaseCommandUserAuthentication
 {
 
 	/**
@@ -63,7 +63,7 @@ public class PatchConsultant extends BaseCommandAuthentication
 		private final WorkerRepository wRepository;
 
 		/**
-		 * @see BaseCommandAuthentication#repository
+		 * @see BaseCommandUserAuthentication#repository
 		 */
 		private final UserRepository uRepository;
 
@@ -112,10 +112,10 @@ public class PatchConsultant extends BaseCommandAuthentication
 	 * Modifies an {@code AWorker}. Get's the {@code AWorker}'s from the
 	 * {@code WorkerRepository} and modifies it.
 	 * 
-	 * @see BaseCommandAuthentication#internalPostExecute(ResultOutputMethod)
+	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
 	 */
 	@Override
-	protected void internalPostExecute(ResultOutputMethod out)
+	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
 			throws CommandException, IOException
 	{
 		AWorker worker = repository

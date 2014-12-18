@@ -14,7 +14,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class GetUsers extends BaseCommand
+public class GetUsers extends BaseCommandResultsOutputMethod
 {
 
 	/**
@@ -78,7 +78,7 @@ public class GetUsers extends BaseCommand
 	 * @see BaseCommand#internalExecute(ResultOutputMethod)
 	 */
 	@Override
-	public void internalExecute(ResultOutputMethod out)
+	public void internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod out)
 			throws CommandException, IOException
 	{
 		out.giveResults((Object[]) repository.getAll());

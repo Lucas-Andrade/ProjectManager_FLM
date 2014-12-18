@@ -16,7 +16,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostProject extends BaseCommandAuthentication
+public class PostProject extends BaseCommandUserAuthentication
 {
 
 	/**
@@ -73,7 +73,7 @@ public class PostProject extends BaseCommandAuthentication
 		private final ProjectRepository repository;
 
 		/**
-		 * @see BaseCommandAuthentication#repository
+		 * @see BaseCommandUserAuthentication#repository
 		 */
 		private final UserRepository uRepository;
 
@@ -133,10 +133,10 @@ public class PostProject extends BaseCommandAuthentication
 	 * {@code ProjectRepository} and adds it to the {@code ProjectRepository}.
 	 * Outputs the new {@code Project}'s PID.
 	 * 
-	 * @see BaseCommandAuthentication#internalPostExecute(ResultOutputMethod)
+	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
 	 */
 	@Override
-	protected void internalPostExecute(ResultOutputMethod out)
+	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
 			throws CommandException, IOException
 	{
 		double latitude = getParameterAsDouble(LATITUDE);

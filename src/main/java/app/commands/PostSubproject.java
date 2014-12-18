@@ -19,7 +19,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostSubproject extends BaseCommandAuthentication
+public class PostSubproject extends BaseCommandUserAuthentication
 {
 
 	/**
@@ -66,7 +66,7 @@ public class PostSubproject extends BaseCommandAuthentication
 		private final ProjectRepository repository;
 
 		/**
-		 * @see BaseCommandAuthentication#repository
+		 * @see BaseCommandUserAuthentication#repository
 		 */
 		private final UserRepository uRepository;
 
@@ -127,10 +127,10 @@ public class PostSubproject extends BaseCommandAuthentication
 	 * {@code Project}s exist. Outputs a successful message if successful and
 	 * vice-versa.
 	 * 
-	 * @see BaseCommandAuthentication#internalPostExecute(ResultOutputMethod)
+	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
 	 */
 	@Override
-	protected void internalPostExecute(ResultOutputMethod out)
+	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
 			throws CommandException, IOException
 	{
 		long pid = getParameterAsLong(PID);

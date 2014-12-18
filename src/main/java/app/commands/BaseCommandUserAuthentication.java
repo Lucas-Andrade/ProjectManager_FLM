@@ -17,7 +17,7 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public abstract class BaseCommandAuthentication extends BaseCommand
+public abstract class BaseCommandUserAuthentication extends BaseCommand
 {
 
 	/**
@@ -53,7 +53,7 @@ public abstract class BaseCommandAuthentication extends BaseCommand
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	public BaseCommandAuthentication(UserRepository userRepository, Map<String, String> parameters)
+	public BaseCommandUserAuthentication(UserRepository userRepository, Map<String, String> parameters)
 	{
 		super(parameters);
 		repository = userRepository;
@@ -64,7 +64,7 @@ public abstract class BaseCommandAuthentication extends BaseCommand
 	 * execution of the {@code Command}, if correct proceeds with the execution
 	 * of the {@code Command}.
 	 * 
-	 * @see BaseCommandAuthentication#authenticateUser(String, String)
+	 * @see BaseCommandUserAuthentication#authenticateUser(String, String)
 	 * @see app.commands.BaseCommand#internalExecute(app.resultsOutputMethods.
 	 *      ResultOutputMethod)
 	 */
@@ -76,7 +76,7 @@ public abstract class BaseCommandAuthentication extends BaseCommand
 		String username = parameters.get(LOGINNAME);
 		String password = parameters.get(LOGINPASSWORD);
 		if (authenticateUser(username, password))
-			internalPostExecute(out);
+			internalExecuteAfterUserAuthentication(out);
 		else
 			out.giveResults("Login Name and/or Login Password incorrect.");
 	}
@@ -104,7 +104,7 @@ public abstract class BaseCommandAuthentication extends BaseCommand
 	 * @throws app.commands.exceptions.CommandException
 	 * @throws IOException
 	 */
-	abstract protected void internalPostExecute(ResultOutputMethod out)
+	abstract protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
 			throws app.commands.exceptions.CommandException, IOException;
 
 }

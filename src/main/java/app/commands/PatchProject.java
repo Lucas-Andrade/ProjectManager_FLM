@@ -9,7 +9,7 @@ import app.repository.ProjectRepository;
 import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
-public class PatchProject extends BaseCommandAuthentication{
+public class PatchProject extends BaseCommandUserAuthentication{
 
 	/**
 	 * The {@link ProjectRepository} with the {@code Project}s. This
@@ -104,7 +104,7 @@ public class PatchProject extends BaseCommandAuthentication{
 
 
 	@Override
-	protected void internalPostExecute(ResultOutputMethod out)
+	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
 			throws CommandException, IOException {
 
 		Project project = pRepository.getProjectById(getParameterAsLong(PID));

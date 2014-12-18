@@ -22,7 +22,7 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostWorkerInProject extends BaseCommandAuthentication
+public class PostWorkerInProject extends BaseCommandUserAuthentication
 {
 
 	/**
@@ -107,7 +107,7 @@ public class PostWorkerInProject extends BaseCommandAuthentication
 		private final WorkerRepository wRepository;
 
 		/**
-		 * @see BaseCommandAuthentication#repository
+		 * @see BaseCommandUserAuthentication#repository
 		 */
 		private final UserRepository uRepository;
 
@@ -184,10 +184,10 @@ public class PostWorkerInProject extends BaseCommandAuthentication
 	 * 
 	 * @see PostWorkerInProject#addConsultant(ResultOutputMethod, long, long)
 	 * @see PostWorkerInProject#addManager(ResultOutputMethod, long, long)
-	 * @see BaseCommandAuthentication#internalPostExecute(ResultOutputMethod)
+	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
 	 */
 	@Override
-	protected void internalPostExecute(ResultOutputMethod out)
+	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
 			throws CommandException, IOException
 	{
 		this.projectId = getParameterAsLong(PID);
@@ -218,7 +218,7 @@ public class PostWorkerInProject extends BaseCommandAuthentication
 	}
 
 	/**
-	 * @see PostWorkerInProject#internalPostExecute(ResultOutputMethod)
+	 * @see PostWorkerInProject#internalExecuteAfterUserAuthentication(ResultOutputMethod)
 	 * 
 	 * @param out
 	 *            The {@link ResultOutputMethodToStream} that receives the
@@ -245,7 +245,7 @@ public class PostWorkerInProject extends BaseCommandAuthentication
 	}
 
 	/**
-	 * @see PostWorkerInProject#internalPostExecute(ResultOutputMethod)
+	 * @see PostWorkerInProject#internalExecuteAfterUserAuthentication(ResultOutputMethod)
 	 * 
 	 * @param out
 	 *            The {@link ResultOutputMethodToStream} that receives the
