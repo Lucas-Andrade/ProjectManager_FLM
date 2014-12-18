@@ -32,7 +32,7 @@ import app.repository.InMemoryWorkerRepo;
 import app.repository.ProjectRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
-import app.resultsOutputMethods.ResultOutputAsStringToStream;
+import app.resultsOutputMethods.ResultOutputAsPlainTextToStream;
 import app.resultsOutputMethods.ResultOutputMethodToStream;
 
 /**
@@ -225,7 +225,7 @@ public class AppProjectManager
 	 * The variable that defines the kind of OutputStream we will use in this
 	 * application
 	 */
-	private ResultOutputMethodToStream out = new ResultOutputAsStringToStream(
+	private ResultOutputMethodToStream out = new ResultOutputAsPlainTextToStream(
 			System.out);
 
 	/**

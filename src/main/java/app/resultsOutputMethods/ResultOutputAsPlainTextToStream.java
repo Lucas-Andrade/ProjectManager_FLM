@@ -13,7 +13,7 @@ import java.io.OutputStream;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class ResultOutputAsStringToStream extends ResultOutputMethodToStream
+public class ResultOutputAsPlainTextToStream extends ResultOutputMethodToStream
 {
 
 	/**
@@ -22,7 +22,7 @@ public class ResultOutputAsStringToStream extends ResultOutputMethodToStream
 	 * @param out
 	 *            The {@link OutputStream} for the results.
 	 */
-	public ResultOutputAsStringToStream(OutputStream out)
+	public ResultOutputAsPlainTextToStream(OutputStream out)
 	{
 		super(out);
 	}

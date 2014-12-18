@@ -91,8 +91,9 @@ public abstract class AContainer<elements extends Element> implements ICost
 	 */
 	public boolean remove(Element element)
 	{
-
-		// Não remove subprojectos.
+		// Não remove subprojectos dos subprojectos dum projecto.
+		// No caso das equipas não há stresses.
+		// 
 		return this.elementsList.remove(element);
 	}
 

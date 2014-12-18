@@ -2,7 +2,8 @@
 <class-diagram version="1.1.7" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <interface id="1" language="java" name="app.resultsOutputMethods.ResultOutputMethod" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/app/resultsOutputMethods/ResultOutputMethod.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/app/resultsOutputMethods/ResultOutputMethod.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="355" y="66"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -11,7 +12,7 @@
     </display>  
   </interface>  
   <class id="2" language="java" name="app.resultsOutputMethods.ResultOutputMethodToStream" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/app/resultsOutputMethods/ResultOutputMethodToStream.java" binary="false" 
+    file="/ProjectManager_FLM/src/main/java/app/resultsOutputMethods/ResultOutputMethodToStream.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="204" y="208"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -20,10 +21,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="app.resultsOutputMethods.ResultOutputAsStringToStream" 
+  <class id="3" language="java" name="app.resultsOutputMethods.ResultOutputAsPlainTextToStream" 
     project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/app/resultsOutputMethods/ResultOutputAsStringToStream.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/app/resultsOutputMethods/ResultOutputAsPlainTextToStream.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="482" y="204"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -31,14 +32,14 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="4">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <realization id="5">    
+  <realization id="4">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
   </realization>  
+  <generalization id="5">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
