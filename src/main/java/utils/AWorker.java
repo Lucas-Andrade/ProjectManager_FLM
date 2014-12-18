@@ -2,6 +2,8 @@ package utils;
 
 import java.text.DecimalFormat;
 
+import org.json.JSONObject;
+
 import app.elements.WorkerInterface;
 
 /**
@@ -138,6 +140,51 @@ public abstract class AWorker extends Element implements WorkerInterface
 		return builder.toString();
 	}
 
+	
+	/**
+	 * This method represent the worker's information in HTLM format 
+	 */
+	public String toHtml()
+	{
+		StringBuilder builder = new StringBuilder();
+		DecimalFormat df = new DecimalFormat("#.##");
+		
+		builder.append("<html>");
+		
+		builder.append("<p>").append("<b>Name: </b>").append(name).append("<b>  Payment per hour: </b>")
+		.append(df.format(costPerHour)).append(" Euros,").append("<b> Cost: </b>")
+		.append(df.format(getCost())).append(" Euros").append("</p>");
+		builder.append("</html>");
+		
+		return builder.toString();
+	}
+	
+	
+	/**
+	 * This method represent the worker's information in Json's format 
+	 */
+	public String toJson()
+	{
+		DecimalFormat df = new DecimalFormat("#.##");
+
+		//instancia um novo JSONObject 
+		JSONObject worker = new JSONObject(); 
+		
+		//preenche o objeto com os campos: name, payment per hour e cost
+		worker.put("Cost", df.format(getCost())); 
+		worker.put("Payment per hour", df.format(costPerHour)); 
+		worker.put("Name", name); 
+		
+		//serializa para uma string e imprime 
+		String json_string = worker.toString();
+		
+		return json_string;
+	}
+	
+	
+	
+	
+	
 	/**
 	 * Override of the method {@code compareTo()} from the {@link Comparable}
 	 * Interface.
