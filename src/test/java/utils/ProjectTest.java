@@ -39,7 +39,9 @@ public class ProjectTest
 		proj2.addProject(proj3);
 		proj1.addProject(proj4);
 
-		System.out.println(proj1.toString());
+//		System.out.println(proj1.toString());
+//		System.out.println(proj1.toHtml());
+		System.out.println(proj1.toJson());
 	}
 
 }

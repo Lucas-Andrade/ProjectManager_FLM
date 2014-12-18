@@ -2,6 +2,8 @@ package utils;
 
 import java.util.Collection;
 
+import org.json.JSONObject;
+
 /**
  * Class that will represent a container of projects. Extends AContainer<Project>.
  * 
@@ -56,5 +58,37 @@ public class ProjectsContainer extends AContainer<Project> {
 			builder.append(element.toString(nr));
 		
 		return builder.toString();
+	}
+
+	public String toHtml(int nr) {
+		Collection<Project> elementsList = getElementsList();
+		
+		StringBuilder builder = new StringBuilder();
+
+		for (Project element : elementsList)
+			builder.append(element.toHtml(nr, 4));
+		
+		return builder.toString();
+	}
+	
+	public String toJson()
+	{
+		StringBuilder builder = new StringBuilder();
+
+		for (JSONObject element : getJson() )
+			builder.append(element.toString());
+		
+		return builder.toString();
+	}
+
+	public JSONObject[] getJson() 
+	{
+		Collection<Project> elementsList = getElementsList();
+		JSONObject[] jsonArray = new JSONObject[elementsList.size()];
+		int index = 0;
+		
+		for (Project element : elementsList)
+			jsonArray[index++] = element.getJson();
+		return jsonArray;
 	}
 }

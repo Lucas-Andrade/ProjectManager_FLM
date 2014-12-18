@@ -144,6 +144,16 @@ public abstract class AContainer<elements extends Element> implements ICost
 
 		return builder.toString();
 	}
+	
+	public String toHtml()
+	{
+		return "";
+	}
+	
+	public String toJson()
+	{
+		return "";
+	}
 
 	/**
 	 * @return the number of elements the container contains
