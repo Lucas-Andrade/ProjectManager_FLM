@@ -306,19 +306,15 @@ public class Project extends Element implements ProjectInterface
 		StringBuilder builder = new StringBuilder();
 		DecimalFormat df = new DecimalFormat("#.##");
 		builder.append(space).append("Project ID: ").append(pid).append("\n")
-				.append(space).append("Cost: ").append(df.format(getCost()))
-				.append(" Euros").append("\n").append(space).append("Local: ")
-				.append(local.toString()).append("\n");
-		if (manager != null)
-			builder.append(space).append("Manager: ")
-					.append(manager.toString()).append("\n");
-
-		builder.append(space)
-				.append("Team: ")
-				.append(team.toString())
-				.append("\n")
-				.append(space)
-				.append("Subprojects: ")
+				.append(space).append("Cost: ").append(df.format(getCost())).append(" Euros").append("\n")
+				.append(space).append("Local: ").append(local.toString()).append("\n");
+		if(manager != null)
+			builder.append(space).append("Manager: ").append(manager.toString()).append("\n");
+		
+		
+		builder.append(space).append("Team: ").append("\n")
+				.append(space).append(team.toString(5)).append("\n")
+				.append(space).append("Subprojects: ")
 				.append(projectsContainer.size() == 0 ? "None." : "\n"
 						+ projectsContainer.toString(nr + 1)).append("\n");
 
