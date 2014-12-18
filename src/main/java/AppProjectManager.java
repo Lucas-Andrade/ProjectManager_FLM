@@ -52,8 +52,7 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * to a project/subproject.
  * <li>POST /project/{pid}/subproject {parameter list} : add a subproject to a
  * project/subproject.
- * <li>GET /users : Return the information of all users in the
- * User Repository
+ * <li>GET /users : Return the information of all users in the User Repository
  * <li>GET /users/{username} : Return the information of the user with the
  * specify {@code username} of the User Repository
  * <li>GET /project/{pid}/{type} : Return the information of all consultants or
@@ -62,8 +61,17 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * specify {@code ProjectId}.
  * <li>GET /project/{pid}/subproject : Return the information of all subprojects
  * of a project with the specify {@code ProjectId}.
- * <li>HELP: terminates the application.
- * <li>END: terminates the application.
+ * <li>PATCH /users/{username} {parameter list} : Updates the password of the
+ * user identified by the specify {@code username}.
+ * <li>PATCH /project/{pid} {parameter list}: Update the information of the
+ * project identified by the specify {@code ProjectId}.
+ * <li>PATCH /consultant/{cid} {parameter list}: Updates the information of the
+ * consultant with the specify {@code WorkerId}.
+ * <li>DELETE /project/{pid} : Deletes the project with the specify
+ * {@code ProjectId} and all its subprojects
+ * <li>OPTION: Displays a description of all available commands.
+ * <li>HELP: Show an user guide to use the application
+ * <li>EXIT: terminates the application.
  * 
  * <p>
  * IMPLEMENTATION NOTES:
@@ -80,7 +88,7 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * <p>
  * Public methods:
  * 
- * <li>execute: Ask for a command and execute it, till the END_APP command is
+ * <li>execute: Ask for a command and execute it, till the EXIT command is
  * called.
  * <li>main: run the app.
  * 
@@ -177,39 +185,38 @@ public class AppProjectManager
 	 */
 	public static void optionCommand()
 	{
-		System.out
-				.println("\nAVAIABLE COMMANDS:"
-						+ "\n  POST COMMANDS:"
-						+ "\n  	POST /users {parameter list}  :  Add a user to the User Repository. "
-						+ "\n		{parameter list: loginName, loginPassord, username, password, email, fullname(optional)}"
-						+ "\n  	POST /project  {parameter list} : Add a Project to the Project repository."
-						+ "\n		{parameter list: loginName, loginPassord, Latitiude, longitude, name, price}"
-						+ "\n  	POST /consultant  {parameter list}  :  Add a consultant to the Worker Repository"
-						+ "\n		{parameter list: loginName, loginPassord, name, priceHour, bonus (optional)}"
-						+ "\n  	POST /project/{pid}/{type}  {parameter list} : add a consultant or Manager to a project/subproject"
-						+ "\n		{parameter list: loginName, loginPassord, WorkerId}"
-						+ "\n  	POST /project/{pid}/subproject  {parameter list} : add a subproject to a project/subproject."
-						+ "\n		{parameter list: loginName, loginPassord, ProjectId}"
-						+ "\n\n  GET COMMANDS: {parameter list: accept, output-file(optional)}"
-						+ "\n  	GET /users : Return the information of all users in the User Repository"
-						+ "\n  	GET /users/{username}  : Return the information of the user with the  specify {@code username} of the User Repository"
-						+ "\n  	GET /consultant/{cid} : Return the information of the consultant with the  specify {@code WorkerId}"						//extra ao enunciado
-						+ "\n  	GET /project/{pid}: Return the information of the project with the  specify {@code ProjectId}"                            //extra ao enunciado
-						+ "\n  	GET /project/{pid}/{type} : Return the information of all consultants or of the Manager of a project with the  specify {@code ProjectId}"
-						+ "\n  	GET /project/{pid}/subproject : Return the information of all subprojects of a project with the  specify {@code ProjectId}"
-						+ "\n\n  PATCH COMMANDS:"
-						+ "\n  	PATCH /users/{username} {parameter list} : Updates the password of the user identified by the  specify {@code username}. "
-						+ "\n		{parameter list: loginName, loginPassord, oldpassword, newPassword}"                            
-						+ "\n  	PATCH /project/{pid} {parameter list}: Update the information of the project identified by the  specify {@code ProjectId}."
-						+ "\n	 	{parameter list: loginName, loginPassord, Latitiude, longitude, name, price (the last four optional)}"						
-						+ "\n  	PATCH /consultant/{cid} {parameter list}: Updates the information of the consultant with the  specify {@code WorkerId}. "
-						+ "\n		{parameter list: loginName, loginPassord, name, priceHour (the last two optional)}"
-						+ "\n\n  DELETE COMMANDS:"
-						+ "\n  	DELETE /project/{pid} : Deletes the project with the  specify {@code ProjectId} and all its subprojects"
-						+ "\n 		{parameter list: loginName, loginPassord}"
-						+ "\n\n  OPTION: Displays a description of all available commands."
-						+ "\n  HELP: Show an user guide to use the application"
-						+ "\n  EXIT: terminates the application");
+		System.out.println("\nAVAIABLE COMMANDS:"
+			+ "\n  POST COMMANDS:"
+			+ "\n  	POST /users {parameter list}  :  Add a user to the User Repository. "
+			+ "\n		{parameter list: loginName, loginPassord, username, password, email, fullname(optional)}"
+			+ "\n  	POST /project  {parameter list} : Add a Project to the Project repository."
+			+ "\n		{parameter list: loginName, loginPassord, Latitiude, longitude, name, price}"
+			+ "\n  	POST /consultant  {parameter list}  :  Add a consultant to the Worker Repository"
+			+ "\n		{parameter list: loginName, loginPassord, name, priceHour, bonus (optional)}"
+			+ "\n  	POST /project/{pid}/{type}  {parameter list} : add a consultant or Manager to a project/subproject"
+			+ "\n		{parameter list: loginName, loginPassord, WorkerId}"
+			+ "\n  	POST /project/{pid}/subproject  {parameter list} : add a subproject to a project/subproject."
+			+ "\n		{parameter list: loginName, loginPassord, ProjectId}"
+			+ "\n\n  GET COMMANDS: {parameter list: accept, output-file(optional)}"
+			+ "\n  	GET /users : Return the information of all users in the User Repository"
+			+ "\n  	GET /users/{username}  : Return the information of the user with the  specify {@code username} of the User Repository"
+			+ "\n  	GET /consultant/{cid} : Return the information of the consultant with the  specify {@code WorkerId}"						//extra ao enunciado
+			+ "\n  	GET /project/{pid}: Return the information of the project with the  specify {@code ProjectId}"                            //extra ao enunciado
+			+ "\n  	GET /project/{pid}/{type} : Return the information of all consultants or of the Manager of a project with the  specify {@code ProjectId}"
+			+ "\n  	GET /project/{pid}/subproject : Return the information of all subprojects of a project with the  specify {@code ProjectId}"
+			+ "\n\n  PATCH COMMANDS:"
+			+ "\n  	PATCH /users/{username} {parameter list} : Updates the password of the user identified by the  specify {@code username}. "
+			+ "\n		{parameter list: loginName, loginPassord, oldpassword, newPassword}"                            
+			+ "\n  	PATCH /project/{pid} {parameter list}: Update the information of the project identified by the  specify {@code ProjectId}."
+			+ "\n	 	{parameter list: loginName, loginPassord, Latitiude, longitude, name, price (the last four optional)}"						
+			+ "\n  	PATCH /consultant/{cid} {parameter list}: Updates the information of the consultant with the  specify {@code WorkerId}. "
+			+ "\n		{parameter list: loginName, loginPassord, name, priceHour (the last two optional)}"
+			+ "\n\n  DELETE COMMANDS:"
+			+ "\n  	DELETE /project/{pid} : Deletes the project with the  specify {@code ProjectId} and all its subprojects"
+			+ "\n 		{parameter list: loginName, loginPassord}"
+			+ "\n\n  OPTION: Displays a description of all available commands."
+			+ "\n  HELP: Show an user guide to use the application"
+			+ "\n  EXIT: terminates the application");
 	}
 	
 
@@ -277,7 +284,7 @@ public class AppProjectManager
 					optionCommand();
 					break;
 
-				case "END":
+				case "EXIT":
 					System.out.println("App now closing.\nThank you for choosing Java Company!");
 					return;
 					
