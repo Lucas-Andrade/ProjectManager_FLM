@@ -15,6 +15,7 @@ import app.commands.GetProjectWorkers;
 import app.commands.GetSubproject;
 import app.commands.GetUser;
 import app.commands.GetUsers;
+import app.commands.PatchConsultant;
 import app.commands.PatchProject;
 import app.commands.PatchUser;
 import app.commands.PostConsultant;
@@ -138,11 +139,11 @@ public class AppProjectManager
 				+ "}/subproject", new GetSubproject.Factory(projectRepo));
 		parser.registerCommand("GET", "/project/{" + GetProject.PID + "}",
 				new GetProject.Factory(projectRepo));
-		parser.registerCommand("PATCH", "/users/{" + GetUser.USERNAME + "}",
+		parser.registerCommand("PATCH", "/users/{" + PatchUser.USERNAME + "}",
 				new PatchUser.Factory(userRepo));
-		parser.registerCommand("PATCH", "/project/{" + GetProject.PID + "}",
+		parser.registerCommand("PATCH", "/project/{" + PatchProject.PID + "}",
 				new PatchProject.Factory(userRepo, projectRepo));
-		parser.registerCommand("PATCH", "/consultant{" + GetWorker.CID + "}",
+		parser.registerCommand("PATCH", "/consultant{" + PatchConsultant.CID + "}",
 				new PostConsultant.Factory(userRepo, workersRepo));
 		parser.registerCommand("DELETE", "/project/{" + GetProject.PID  + "}",
 				new DeleteProject.Factory(userRepo,projectRepo));

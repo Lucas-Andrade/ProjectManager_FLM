@@ -23,7 +23,7 @@ public class PatchUser extends BaseCommandAuthentication{
 	/**
 	 * {@code String} with the {@code User} Username argument's name.
 	 */
-	private static final String USERNAME = "username";
+	public static final String USERNAME = "username";
 	
 	/**
 	 * {@code String} with the {@code User} Password argument's name.
