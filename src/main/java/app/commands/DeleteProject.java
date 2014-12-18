@@ -138,6 +138,7 @@ public class DeleteProject extends BaseCommandAuthentication
 		}
 	}
 
+	// because of removeproject in project also removes from nametester
 	private void removeAllProjectsToDeleteFromAllProjectContainers(
 			List<Long> allPIDsToDelete)
 	{

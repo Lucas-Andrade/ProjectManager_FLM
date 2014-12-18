@@ -10,9 +10,10 @@ import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
- * Class whose instances are {@link Command}s that add Sub{@link Project}s to
- * {@code Project}s. A Sub{@code Project} is a {@code Project} inside (that
- * belongs to) another {@code Project}.
+ * Class whose instances are {@link Command}s that add {@link Project}s as
+ * subprojects to other {@code Project}s. A Sub{@code Project} is a
+ * {@code Project} inside (that belongs to) another {@code Project}.
+ * 
  * Caller {@code String}: POST /project/{pid}/subproject {parameter list}
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
@@ -120,9 +121,10 @@ public class PostSubproject extends BaseCommandAuthentication
 	}
 
 	/**
-	 * Adds a Sub{@code Project} to a {@code Project} if both {@code Project}s
-	 * have different IDs (if they are not the same), have different Names
-	 * and if both exist. Outputs a successful message if successful and
+	 * Adds a {@code Project} as a subproject of another {@code Project} if both
+	 * {@code Project}s have different IDs (if they are not the same), if the
+	 * {@code Project} to be added as subproject isn't a subproject and if both
+	 * {@code Project}s exist. Outputs a successful message if successful and
 	 * vice-versa.
 	 * 
 	 * @see BaseCommandAuthentication#internalPostExecute(ResultOutputMethod)
@@ -157,7 +159,7 @@ public class PostSubproject extends BaseCommandAuthentication
 		if (project.addProject(subProject))
 			out.giveResults("Success.");
 		else
-			out.giveResults("Could not add subproject to project, because both have the same name.");
+			out.giveResults("Could not add subproject to project, because subproject already is a subproject (of this or another project).");
 	}
 
 }

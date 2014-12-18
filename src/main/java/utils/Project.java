@@ -6,7 +6,7 @@ import app.elements.ProjectInterface;
 
 /**
  * Class {@code Project} whose instances will represent a project.
- *  
+ * 
  * Extends {@link Element}.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
@@ -56,9 +56,9 @@ public class Project extends Element implements ProjectInterface
 	}
 
 	/**
-	 * Project constructor that will receive as parameter the local it will take place
-	 * and the Project ID. The name of the project will be equal to the PID and the
-	 * team will be a new empty one.
+	 * Project constructor that will receive as parameter the local it will take
+	 * place and the Project ID. The name of the project will be equal to the
+	 * PID and the team will be a new empty one.
 	 * 
 	 * Throws {@link IllegalArgumentException} if any of the given parameters
 	 * are null.
@@ -91,7 +91,7 @@ public class Project extends Element implements ProjectInterface
 
 		if (worker == null)
 			throw new IllegalArgumentException();
-		
+
 		if (manager != null && worker.getName().equals(manager.getName()))
 			return false;
 
@@ -99,9 +99,13 @@ public class Project extends Element implements ProjectInterface
 	}
 
 	/**
-	 * Method that will allow a project to be added as a subproject (it is added to the
-	 * {@code projectsContainer}). If a sub_project with the same name already
-	 * exists it will not be added and the method will return false.
+	 * Method that will allow a project to be added as a Sub{@code Project} (it
+	 * is added to {@code this} {@code Project#projectsContainer}). If the
+	 * project's to be added as Sub{@code Project} name already exists in
+	 * {@link NameTester}, the project won't be added as a Sub{@code Project}
+	 * and the method will return false. If successful this method also adds the
+	 * added Sub{@code Project}'s name to the {@link NameTester} ({@see
+	 * NameTester#addName(String)}; {@see Project#removeProject(Project)}).
 	 * 
 	 * Throws {@link IllegalArgumentException} if the given parameter is null.
 	 * 
@@ -147,10 +151,13 @@ public class Project extends Element implements ProjectInterface
 	}
 
 	/**
-	 * Method that will allow a subproject to be removed from the
-	 * {@code projectsContainer} given its name. If a subproject with the same
-	 * name doesn't exist on the {@code projectsContainer} no project will be
-	 * removed and the method will return false.
+	 * Method that will allow a Sub{@code Project} to be removed from the
+	 * {@code this} {@code ProjectsContainer} given its name. If a subproject
+	 * with the same name doesn't exist on the {@code this}
+	 * {@code Project#projectsContainer} no project will be removed and the
+	 * method will return false. If successful this method also removes the
+	 * removed Sub{@code Project}'s name from the {@link NameTester} ({@see
+	 * NameTester#removeName(String)}; {@see Project#addProject(Project)}).
 	 * 
 	 * Uses the method {@code getSubProjectByName()} from this same class as an
 	 * auxiliary method.
@@ -299,14 +306,19 @@ public class Project extends Element implements ProjectInterface
 		StringBuilder builder = new StringBuilder();
 		DecimalFormat df = new DecimalFormat("#.##");
 		builder.append(space).append("Project ID: ").append(pid).append("\n")
-				.append(space).append("Cost: ").append(df.format(getCost())).append(" Euros").append("\n")
-				.append(space).append("Local: ").append(local.toString()).append("\n");
-		if(manager != null)
-			builder.append(space).append("Manager: ").append(manager.toString()).append("\n");
-		
-		
-		builder.append(space).append("Team: ").append(team.toString()).append("\n")
-				.append(space).append("Subprojects: ")
+				.append(space).append("Cost: ").append(df.format(getCost()))
+				.append(" Euros").append("\n").append(space).append("Local: ")
+				.append(local.toString()).append("\n");
+		if (manager != null)
+			builder.append(space).append("Manager: ")
+					.append(manager.toString()).append("\n");
+
+		builder.append(space)
+				.append("Team: ")
+				.append(team.toString())
+				.append("\n")
+				.append(space)
+				.append("Subprojects: ")
 				.append(projectsContainer.size() == 0 ? "None." : "\n"
 						+ projectsContainer.toString(nr + 1)).append("\n");
 
@@ -430,34 +442,42 @@ public class Project extends Element implements ProjectInterface
 	}
 
 	/**
-	 * Override of the method {@code updateLongitude(double newLongitude)} from {@code ProjectInterface}
+	 * Override of the method {@code updateLongitude(double newLongitude)} from
+	 * {@code ProjectInterface}
 	 */
 	@Override
-	public boolean updateLongitude(double newLongitude) {
+	public boolean updateLongitude(double newLongitude)
+	{
 		return local.setLongitude(newLongitude);
 	}
 
 	/**
-	 * Override of the method {@code updateLatitude(double newLatitude)} from {@code ProjectInterface}
+	 * Override of the method {@code updateLatitude(double newLatitude)} from
+	 * {@code ProjectInterface}
 	 */
 	@Override
-	public boolean updateLatitude(double newLatitude) {
+	public boolean updateLatitude(double newLatitude)
+	{
 		return local.setLatitude(newLatitude);
 	}
 
 	/**
-	 * Override of the method {@code updateLocalName(String newName)} from {@code ProjectInterface}
+	 * Override of the method {@code updateLocalName(String newName)} from
+	 * {@code ProjectInterface}
 	 */
 	@Override
-	public void updateLocalName(String newName) {
+	public void updateLocalName(String newName)
+	{
 		local.setName(newName);
 	}
 
 	/**
-	 * Override of the method {@code updateLocalPrice(double newPrice)} from {@code ProjectInterface}
+	 * Override of the method {@code updateLocalPrice(double newPrice)} from
+	 * {@code ProjectInterface}
 	 */
 	@Override
-	public boolean updateLocalPrice(double newPrice) {
+	public boolean updateLocalPrice(double newPrice)
+	{
 		return local.setPrice(newPrice);
 	}
 

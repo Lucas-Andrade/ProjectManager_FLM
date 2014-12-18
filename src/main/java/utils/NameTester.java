@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.TreeSet;
 
 /**
- * Abstract class whose purpose will be to validate if a project with a given
- * name already exists or can be added to a super project at any level.
+ * Abstract class whose purpose will be to validate if a {@code Project} with a
+ * given name already exists as a Sub{@code Project} of another {@code Project}.
  */
 public abstract class NameTester
 {
