@@ -61,9 +61,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>JSON-java</groupId>
-			<artifactId>JSON-java</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20090211</version>
 		</dependency>
 	</dependencies>
 </project>

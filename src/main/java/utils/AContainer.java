@@ -93,7 +93,7 @@ public abstract class AContainer<elements extends Element> implements ICost
 	{
 		// Não remove subprojectos dos subprojectos dum projecto.
 		// No caso das equipas não há stresses.
-		// 
+		// @see Project#removeProject(String)
 		return this.elementsList.remove(element);
 	}
 

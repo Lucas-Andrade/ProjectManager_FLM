@@ -49,11 +49,11 @@ public abstract class BaseCommand implements Command
 	 * @see BaseCommand#internalExecute(ResultOutputMethodToStream)
 	 */
 	@Override
-	public final void execute()
+	public final void execute(ResultOutputMethodToStream out)
 			throws app.commands.exceptions.CommandException, IOException
 	{
 		validateDemandingParameters(getMandatoryParameters());
-		internalExecute(this.getOutputFromMap());
+		internalExecute(out);
 	}
 
 	/**
