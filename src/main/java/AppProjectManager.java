@@ -8,8 +8,8 @@ import app.commandParser.DuplicateArgumentsException;
 import app.commandParser.InvalidCommandArgumentsException;
 import app.commandParser.InvalidRegisterException;
 import app.commandParser.UnknownCommandException;
-import app.commands.DeleteProject;
-import app.commands.GetProject;
+import app.commands.DeleteProjects;
+import app.commands.GetProjects;
 import app.commands.GetProjectWorkers;
 import app.commands.GetSubproject;
 import app.commands.GetUser;
@@ -18,8 +18,8 @@ import app.commands.PatchConsultant;
 import app.commands.PatchProject;
 import app.commands.PatchUser;
 import app.commands.PostConsultant;
-import app.commands.PostProject;
-import app.commands.PostSubproject;
+import app.commands.PostProjects;
+import app.commands.PostSubprojects;
 import app.commands.PostUsers;
 import app.commands.PostWorkerInProject;
 import app.commands.exceptions.CommandException;
@@ -28,7 +28,7 @@ import app.commands.exceptions.MandatoryParameterNotPresentException;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
 import app.repository.InMemoryWorkerRepo;
-import app.repository.ProjectRepository;
+import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
 import app.resultsOutputMethods.ResultOutputAsPlainTextToStream;
@@ -45,29 +45,29 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * <p>
  * AVAIABLE COMMANDS:
  * <li>POST /users {parameter list} : add a user to the User Repository
- * <li>POST /project {parameter list} : add a Project to the Project repository.
- * <li>POST /consultant {parameter list} : add a consultant to the Worker
+ * <li>POST /projects {parameter list} : add a Project to the Project repository.
+ * <li>POST /consultants {parameter list} : add a consultant to the Worker
  * Repository.
- * <li>POST /project/{pid}/{type} {parameter list} : add a consultant or Manager
+ * <li>POST /projects/{pid}/{type} {parameter list} : add a consultant or Manager
  * to a project/subproject.
- * <li>POST /project/{pid}/subproject {parameter list} : add a subproject to a
- * project/subproject.
+ * <li>POST /projects/{pid}/subproject {parameter list} : add a subproject to a
+ * projects/subprojects.
  * <li>GET /users : Return the information of all users in the User Repository
  * <li>GET /users/{username} : Return the information of the user with the
  * specify {@code username} of the User Repository
- * <li>GET /project/{pid}/{type} : Return the information of all consultants or
+ * <li>GET /projects/{pid}/{type} : Return the information of all consultants or
  * of the Manager of a project with the specify {@code ProjectId}.
- * <li>GET /project/{pid} : Return the information of the project with the
+ * <li>GET /projects/{pid} : Return the information of the project with the
  * specify {@code ProjectId}.
- * <li>GET /project/{pid}/subproject : Return the information of all subprojects
+ * <li>GET /projects/{pid}/subproject : Return the information of all subprojects
  * of a project with the specify {@code ProjectId}.
  * <li>PATCH /users/{username} {parameter list} : Updates the password of the
  * user identified by the specify {@code username}.
- * <li>PATCH /project/{pid} {parameter list}: Update the information of the
+ * <li>PATCH /projects/{pid} {parameter list}: Update the information of the
  * project identified by the specify {@code ProjectId}.
- * <li>PATCH /consultant/{cid} {parameter list}: Updates the information of the
+ * <li>PATCH /consultants/{cid} {parameter list}: Updates the information of the
  * consultant with the specify {@code WorkerId}.
- * <li>DELETE /project/{pid} : Deletes the project with the specify
+ * <li>DELETE /projects/{pid} : Deletes the project with the specify
  * {@code ProjectId} and all its subprojects
  * <li>OPTION: Displays a description of all available commands.
  * <li>HELP: Show an user guide to use the application
@@ -82,7 +82,7 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * <li>The user's LoginName and Password must be introduce with the parameters
  * list of the POST Commands to authentication;
  * <li>All the commands have the same follow generic strutter: {method} {path}
- * {parameter list} Example: POST /consultant/
+ * {parameter list} Example: POST /consultants/
  * loginName=FilipaG&password=123456&name=Filipe%20Maia&priceHour=20
  * 
  * <p>
@@ -125,41 +125,41 @@ public class AppProjectManager
 	 * @throws InvalidRegisterException
 	 */
 	public static void RegisterCommand(CommandParser parser,
-			UserRepository userRepo, ProjectRepository projectRepo,
+			UserRepository userRepo, ProjectsRepository projectRepo,
 			WorkerRepository workersRepo) throws InvalidRegisterException
 	{
 
 		parser.registerCommand("POST", "/users",
 				new PostUsers.Factory(userRepo));
-		parser.registerCommand("POST", "/consultant",
+		parser.registerCommand("POST", "/consultants",
 				new PostConsultant.Factory(userRepo, workersRepo));
-		parser.registerCommand("POST", "/project", new PostProject.Factory(
+		parser.registerCommand("POST", "/projects", new PostProjects.Factory(
 				userRepo, projectRepo));
-		parser.registerCommand("POST", "/project/{" + PostWorkerInProject.PID
+		parser.registerCommand("POST", "/projects/{" + PostWorkerInProject.PID
 				+ "}/{" + PostWorkerInProject.WTYPE + "}",
 				new PostWorkerInProject.Factory(userRepo, projectRepo,
 						workersRepo));
-		parser.registerCommand("POST", "/project/{" + PostSubproject.PID
-				+ "}/subproject", new PostSubproject.Factory(userRepo,
+		parser.registerCommand("POST", "/projects/{" + PostSubprojects.PID
+				+ "}/subproject", new PostSubprojects.Factory(userRepo,
 				projectRepo));
 		parser.registerCommand("GET", "/users", new GetUsers.Factory(userRepo));
 		parser.registerCommand("GET", "/users/{" + GetUser.USERNAME + "}",
 				new GetUser.Factory(userRepo));
-		parser.registerCommand("GET", "/project/{" + GetProjectWorkers.PID
+		parser.registerCommand("GET", "/projects/{" + GetProjectWorkers.PID
 				+ "}/{" + GetProjectWorkers.WTYPE + "}",
 				new GetProjectWorkers.Factory(projectRepo));
-		parser.registerCommand("GET", "/project/{" + GetSubproject.PID
+		parser.registerCommand("GET", "/projects/{" + GetSubproject.PID
 				+ "}/subproject", new GetSubproject.Factory(projectRepo));
-		parser.registerCommand("GET", "/project/{" + GetProject.PID + "}",
-				new GetProject.Factory(projectRepo));
+		parser.registerCommand("GET", "/projects/{" + GetProjects.PID + "}",
+				new GetProjects.Factory(projectRepo));
 		parser.registerCommand("PATCH", "/users/{" + PatchUser.USERNAME + "}",
 				new PatchUser.Factory(userRepo));
-		parser.registerCommand("PATCH", "/project/{" + PatchProject.PID + "}",
+		parser.registerCommand("PATCH", "/projects/{" + PatchProject.PID + "}",
 				new PatchProject.Factory(userRepo, projectRepo));
-		parser.registerCommand("PATCH", "/consultant{" + PatchConsultant.CID
+		parser.registerCommand("PATCH", "/consultants/{" + PatchConsultant.CID
 				+ "}", new PostConsultant.Factory(userRepo, workersRepo));
-		parser.registerCommand("DELETE", "/project/{" + GetProject.PID + "}",
-				new DeleteProject.Factory(userRepo, projectRepo));
+		parser.registerCommand("DELETE", "/projects/{" + GetProjects.PID + "}",
+				new DeleteProjects.Factory(userRepo, projectRepo));
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class AppProjectManager
 						+ "\n\nIn the list of parameters, the parameters must be separated by the '&' symbol and the words by the code '% 20'");
 		systemOut
 				.println(" Example:"
-						+ "\n POST  /consultant/  loginName=FilipaG&password=123456&name=Filipe%20Maia&priceHour=20");
+						+ "\n POST  /consultants/  loginName=FilipaG&password=123456&name=Filipe%20Maia&priceHour=20");
 		systemOut
 				.println("\nThe user must write the command in the console and press Enter to proceed.");
 
@@ -204,34 +204,29 @@ public class AppProjectManager
 						+ "\n  POST COMMANDS:"
 						+ "\n  	POST /users {parameter list: loginName, loginPassord, username, password, email, fullname(optional)}  "
 						+ "\n	  Add a user to the User Repository. "
-						+ "\n  	POST /project  {parameter list: loginName, loginPassord, Latitiude, longitude, name, price} "
+						+ "\n  	POST /projects  {parameter list: loginName, loginPassord, Latitiude, longitude, name, price} "
 						+ "\n	  Add a Project to the Project repository."
-						+ "\n  	POST /consultant {parameter list: loginName, loginPassord, name, priceHour, bonus (optional)}"
+						+ "\n  	POST /consultants {parameter list: loginName, loginPassord, name, priceHour, bonus (optional)}"
 						+ "\n	  Add a consultant to the Worker Repository"
-						+ "\n  	POST /project/{pid}/{type} {parameter list: loginName, loginPassord, WorkerId}"
+						+ "\n  	POST /projects/{pid}/{type} {parameter list: loginName, loginPassord, WorkerId}"
 						+ "\n	  Add a consultant or Manager to a project/subproject"
-						+ "\n  	POST /project/{pid}/subproject {parameter list: loginName, loginPassord, ProjectId}"
+						+ "\n  	POST /projects/{pid}/subproject {parameter list: loginName, loginPassord, ProjectId}"
 						+ "\n	  Add a subproject to a project/subproject."
 						+ "\n\n  GET COMMANDS: {parameter list: accept, output-file(optional)}"
 						+ "\n  	GET /users : Return the information of all users in the User Repository"
-						+ "\n  	GET /users/{username}  : Return the information of the user with the  specify {@code username} of the User Repository"
-						+ "\n  	GET /consultant/{cid} : Return the information of the consultant with the  specify {@code WorkerId}" // extra
-																																		// ao
-																																		// enunciado
-						+ "\n  	GET /project/{pid}: Return the information of the project with the  specify {@code ProjectId}" // extra
-																																// ao
-																																// enunciado
-						+ "\n  	GET /project/{pid}/{type} : Return the information of all consultants or of the Manager of a project with the  specify {@code ProjectId}"
-						+ "\n  	GET /project/{pid}/subproject : Return the information of all subprojects of a project with the  specify {@code ProjectId}"
+						+ "\n  	GET /users/{username}  : Return the information of the user with the  specify {@code username} of the User Repository"																												// enunciado
+						+ "\n  	GET /projects/{pid}: Return the information of the project with the  specify {@code ProjectId}" // extra ao enunciado
+						+ "\n  	GET /projects/{pid}/{type} : Return the information of all consultants or of the Manager of a project with the  specify {@code ProjectId}"
+						+ "\n  	GET /projects/{pid}/subproject : Return the information of all subprojects of a project with the  specify {@code ProjectId}"
 						+ "\n\n  PATCH COMMANDS:"
 						+ "\n  	PATCH /users/{username} {parameter list: loginName, loginPassord, oldpassword, newPassword} "
 						+ "\n	  Updates the password of the user identified by the  specify {@code username}. "
-						+ "\n  	PATCH /project/{pid} {parameter list: loginName, loginPassord, Latitiude, longitude, name, price (the last four optional)} "
+						+ "\n  	PATCH /projects/{pid} {parameter list: loginName, loginPassord, Latitiude, longitude, name, price (the last four optional)} "
 						+ "\n	  Update the information of the project identified by the  specify {@code ProjectId}."
-						+ "\n  	PATCH /consultant/{cid} {parameter list: loginName, loginPassord, name, priceHour (the last two optional)} "
+						+ "\n  	PATCH /consultants/{cid} {parameter list: loginName, loginPassord, name, priceHour (the last two optional)} "
 						+ "\n	  Updates the information of the consultant with the  specify {@code WorkerId}. "
 						+ "\n\n  DELETE COMMANDS:"
-						+ "\n  	DELETE /project/{pid} {parameter list: loginName, loginPassord} "
+						+ "\n  	DELETE /projects/{pid} {parameter list: loginName, loginPassord} "
 						+ "\n	  Deletes the project with the  specify {@code ProjectId} and all its subprojects"
 						+ "\n\n  OPTION: Displays a description of all available commands."
 						+ "\n  HELP: Show an user guide to use the application"

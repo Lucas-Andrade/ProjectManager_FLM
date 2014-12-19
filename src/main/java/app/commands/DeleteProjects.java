@@ -8,7 +8,7 @@ import java.util.Map;
 import utils.Project;
 import app.commands.exceptions.CommandException;
 import app.elements.DatabaseElement;
-import app.repository.ProjectRepository;
+import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
@@ -21,15 +21,15 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 17/12/2014
  */
-public class DeleteProject extends BaseCommandUserAuthentication
+public class DeleteProjects extends BaseCommandUserAuthentication
 {
 
 	/**
-	 * The {@link ProjectRepository} with the {@code Project}s. This
+	 * The {@link ProjectsRepository} with the {@code Project}s. This
 	 * {@code ProjectRepository} is accessed to get the {@code Project}s (and
 	 * Sub{@code Project}s) to be deleted.
 	 */
-	private final ProjectRepository repository;
+	private final ProjectsRepository repository;
 
 	/**
 	 * {@code String} with the {@code Project}ID argument's name. The
@@ -53,11 +53,11 @@ public class DeleteProject extends BaseCommandUserAuthentication
 	{
 
 		/**
-		 * The {@link ProjectRepository} with the {@code Project}s. This
+		 * The {@link ProjectsRepository} with the {@code Project}s. This
 		 * {@code ProjectRepository} is accessed to get the {@code Project}s
 		 * (and Sub{@code Project}s) to be deleted.
 		 */
-		private final ProjectRepository pRepository;
+		private final ProjectsRepository pRepository;
 
 		/**
 		 * @see BaseCommandUserAuthentication#repository
@@ -72,7 +72,7 @@ public class DeleteProject extends BaseCommandUserAuthentication
 		 * @param pRepository
 		 *            The {@code ProjectRepository} with the {@code Project}s.
 		 */
-		public Factory(UserRepository uRepository, ProjectRepository pRepository)
+		public Factory(UserRepository uRepository, ProjectsRepository pRepository)
 		{
 			this.pRepository = pRepository;
 			this.uRepository = uRepository;
@@ -84,7 +84,7 @@ public class DeleteProject extends BaseCommandUserAuthentication
 		@Override
 		public Command newInstance(Map<String, String> parameters)
 		{
-			return new DeleteProject(uRepository, pRepository, parameters);
+			return new DeleteProjects(uRepository, pRepository, parameters);
 		}
 	}
 
@@ -98,8 +98,8 @@ public class DeleteProject extends BaseCommandUserAuthentication
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	public DeleteProject(UserRepository uRepository,
-			ProjectRepository repository, Map<String, String> parameters)
+	public DeleteProjects(UserRepository uRepository,
+			ProjectsRepository repository, Map<String, String> parameters)
 	{
 		super(uRepository, parameters);
 		this.repository = repository;

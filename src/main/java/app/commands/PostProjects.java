@@ -6,7 +6,7 @@ import java.util.Map;
 import utils.Local;
 import utils.Project;
 import app.commands.exceptions.CommandException;
-import app.repository.ProjectRepository;
+import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
@@ -16,11 +16,11 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostProject extends BaseCommandUserAuthentication
+public class PostProjects extends BaseCommandUserAuthentication
 {
 
 	/**
-	 * The {@link ProjectRepository} with the {@code Project}s. The created
+	 * The {@link ProjectsRepository} with the {@code Project}s. The created
 	 * {@code Project}s are stored in this {@code ProjectRepository}. Also, the
 	 * PID for the new {@code Project}s is obtained from the
 	 * {@code ProjectRepository} (there can't be more than one {@code Project}
@@ -28,7 +28,7 @@ public class PostProject extends BaseCommandUserAuthentication
 	 * {@code Command} has to create the {@code Project}'s {@link Local}.
 	 * Caller {@code String}: POST /project {parameter list}
 	 */
-	private final ProjectRepository repository;
+	private final ProjectsRepository repository;
 
 	/**
 	 * {@code String} with the {@code Local} Latitude argument's name.
@@ -57,20 +57,20 @@ public class PostProject extends BaseCommandUserAuthentication
 			NAME, PRICE };
 
 	/**
-	 * Class that implements the {@link PostProject} factory, according to the
+	 * Class that implements the {@link PostProjects} factory, according to the
 	 * {@link CommandFactory}.
 	 */
 	public static class Factory implements CommandFactory
 	{
 
 		/**
-		 * The {@link ProjectRepository} with the {@code Project}s. The created
+		 * The {@link ProjectsRepository} with the {@code Project}s. The created
 		 * {@code Project}s are stored in this {@code ProjectRepository}. Also,
 		 * the PID for the new {@code Project}s is obtained from the
 		 * {@code ProjectRepository} (there can't be more than one
 		 * {@code Project} with the same PID).
 		 */
-		private final ProjectRepository repository;
+		private final ProjectsRepository repository;
 
 		/**
 		 * @see BaseCommandUserAuthentication#repository
@@ -85,7 +85,7 @@ public class PostProject extends BaseCommandUserAuthentication
 		 * @param repository
 		 *            The {@code ProjectRepository} with the {@code Project}.
 		 */
-		public Factory(UserRepository uRepository, ProjectRepository repository)
+		public Factory(UserRepository uRepository, ProjectsRepository repository)
 		{
 			this.repository = repository;
 			this.uRepository = uRepository;
@@ -97,7 +97,7 @@ public class PostProject extends BaseCommandUserAuthentication
 		@Override
 		public Command newInstance(Map<String, String> parameters)
 		{
-			return new PostProject(uRepository, repository, parameters);
+			return new PostProjects(uRepository, repository, parameters);
 		}
 	}
 
@@ -111,8 +111,8 @@ public class PostProject extends BaseCommandUserAuthentication
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	public PostProject(UserRepository uRepository,
-			ProjectRepository repository, Map<String, String> parameters)
+	public PostProjects(UserRepository uRepository,
+			ProjectsRepository repository, Map<String, String> parameters)
 	{
 		super(uRepository, parameters);
 		this.repository = repository;

@@ -2,7 +2,7 @@
 <class-diagram version="1.1.7" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <interface id="1" language="java" name="app.repository.Repository" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/app/repository/Repository.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/app/repository/Repository.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="330" y="115"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -11,7 +11,7 @@
     </display>  
   </interface>  
   <interface id="2" language="java" name="app.repository.WorkerRepository" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/app/repository/WorkerRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/app/repository/WorkerRepository.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="87" y="303"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -20,7 +20,7 @@
     </display>  
   </interface>  
   <interface id="3" language="java" name="app.repository.UserRepository" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/app/repository/UserRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/app/repository/UserRepository.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="332" y="294"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="4" language="java" name="app.repository.ProjectRepository" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/app/repository/ProjectRepository.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="4" language="java" name="app.repository.ProjectsRepository" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/main/java/app/repository/ProjectsRepository.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="562" y="284"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -38,7 +38,7 @@
     </display>  
   </interface>  
   <class id="5" language="java" name="app.repository.InMemoryRepo" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/app/repository/InMemoryRepo.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/app/repository/InMemoryRepo.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="765" y="373"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -47,7 +47,8 @@
     </display>  
   </class>  
   <class id="6" language="java" name="app.repository.InMemoryProjectRepo" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/app/repository/InMemoryProjectRepo.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/app/repository/InMemoryProjectRepo.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="572" y="550"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -56,7 +57,7 @@
     </display>  
   </class>  
   <class id="7" language="java" name="app.repository.InMemoryUserRepo" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/app/repository/InMemoryUserRepo.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/app/repository/InMemoryUserRepo.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="336" y="541"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -65,7 +66,7 @@
     </display>  
   </class>  
   <class id="8" language="java" name="app.repository.InMemoryWorkerRepo" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/app/repository/InMemoryWorkerRepo.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/app/repository/InMemoryWorkerRepo.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="89" y="568"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -73,51 +74,51 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="9">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <generalization id="10">    
-    <bendpoint x="340" y="703"/>    
-    <bendpoint x="766" y="703"/>    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <realization id="11">    
+  <realization id="9">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="3"/>  
   </realization>  
-  <generalization id="12">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <realization id="13">    
+  <realization id="10">    
     <bendpoint x="765" y="113"/>    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="1"/>  
   </realization>  
-  <realization id="14">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <generalization id="15">    
+  <generalization id="11">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="12">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="13">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="14">    
     <bendpoint x="82" y="748"/>    
     <bendpoint x="766" y="749"/>    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="5"/>  
   </generalization>  
+  <realization id="15">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
   <generalization id="16">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <generalization id="17">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <realization id="18">    
+  <realization id="17">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
+  <generalization id="18">    
+    <bendpoint x="340" y="703"/>    
+    <bendpoint x="766" y="703"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

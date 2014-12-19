@@ -9,7 +9,7 @@ import app.elements.DatabaseElement;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface ProjectRepository extends Repository<DatabaseElement>
+public interface ProjectsRepository extends Repository<DatabaseElement>
 {
 
 	/**

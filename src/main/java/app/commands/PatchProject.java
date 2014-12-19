@@ -5,17 +5,17 @@ import java.util.Map;
 
 import utils.Project;
 import app.commands.exceptions.CommandException;
-import app.repository.ProjectRepository;
+import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
 public class PatchProject extends BaseCommandUserAuthentication{
 
 	/**
-	 * The {@link ProjectRepository} with the {@code Project}s. This
+	 * The {@link ProjectsRepository} with the {@code Project}s. This
 	 * {@code ProjectRepository} is accessed to get the {@code Project}.
 	 */
-	private final ProjectRepository pRepository;
+	private final ProjectsRepository pRepository;
 	
 	/**
 	 * {@code String} with the {@code Project}ID argument's name. The
@@ -58,10 +58,10 @@ public class PatchProject extends BaseCommandUserAuthentication{
 	{
 
 		/**
-		 * The {@link ProjectRepository} with the {@code Project}s. This
+		 * The {@link ProjectsRepository} with the {@code Project}s. This
 		 * {@code ProjectRepository} is accessed to get the {@code Project}
 		 */
-		private final ProjectRepository pRepository;
+		private final ProjectsRepository pRepository;
 		
 		private final UserRepository uRepository;
 
@@ -71,7 +71,7 @@ public class PatchProject extends BaseCommandUserAuthentication{
 		 * @param repository
 		 *            The {@code ProjectRepository} with the {@code Project}.
 		 */
-		public Factory(UserRepository uRepository, ProjectRepository pRepository)
+		public Factory(UserRepository uRepository, ProjectsRepository pRepository)
 		{
 			this.pRepository = pRepository;
 			this.uRepository = uRepository;
@@ -96,7 +96,7 @@ public class PatchProject extends BaseCommandUserAuthentication{
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	public PatchProject(UserRepository uRepository, ProjectRepository pRepository, Map<String, String> parameters)
+	public PatchProject(UserRepository uRepository, ProjectsRepository pRepository, Map<String, String> parameters)
 	{
 		super(uRepository, parameters);
 		this.pRepository = pRepository;

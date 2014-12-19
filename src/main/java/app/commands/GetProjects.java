@@ -5,7 +5,7 @@ import java.util.Map;
 
 import utils.Project;
 import app.commands.exceptions.CommandException;
-import app.repository.ProjectRepository;
+import app.repository.ProjectsRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
@@ -15,14 +15,14 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class GetProject extends BaseCommandResultsOutputMethod
+public class GetProjects extends BaseCommandResultsOutputMethod
 {
 
 	/**
-	 * The {@link ProjectRepository} with the {@code Project}s. This
+	 * The {@link ProjectsRepository} with the {@code Project}s. This
 	 * {@code ProjectRepository} is accessed to get the {@code Project}.
 	 */
-	private final ProjectRepository repository;
+	private final ProjectsRepository repository;
 
 	/**
 	 * {@code String} with the {@code Project}ID argument's name. The
@@ -45,10 +45,10 @@ public class GetProject extends BaseCommandResultsOutputMethod
 	{
 
 		/**
-		 * The {@link ProjectRepository} with the {@code Project}s. This
+		 * The {@link ProjectsRepository} with the {@code Project}s. This
 		 * {@code ProjectRepository} is accessed to get the {@code Project}
 		 */
-		private final ProjectRepository repository;
+		private final ProjectsRepository repository;
 
 		/**
 		 * The constructor for {@code Factory}.
@@ -56,7 +56,7 @@ public class GetProject extends BaseCommandResultsOutputMethod
 		 * @param repository
 		 *            The {@code ProjectRepository} with the {@code Project}.
 		 */
-		public Factory(ProjectRepository repository)
+		public Factory(ProjectsRepository repository)
 		{
 			this.repository = repository;
 		}
@@ -67,7 +67,7 @@ public class GetProject extends BaseCommandResultsOutputMethod
 		@Override
 		public Command newInstance(Map<String, String> parameters)
 		{
-			return new GetProject(repository, parameters);
+			return new GetProjects(repository, parameters);
 		}
 	}
 
@@ -79,7 +79,7 @@ public class GetProject extends BaseCommandResultsOutputMethod
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	public GetProject(ProjectRepository repository,
+	public GetProjects(ProjectsRepository repository,
 			Map<String, String> parameters)
 	{
 		super(parameters);
@@ -97,7 +97,7 @@ public class GetProject extends BaseCommandResultsOutputMethod
 
 	/**
 	 * Gets the {@code Project} with the argument
-	 * PID stored in {@link GetProject#parameters} 
+	 * PID stored in {@link GetProjects#parameters} 
 	 * 
 	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
