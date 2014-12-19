@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 import app.commandParser.CommandParser;
@@ -98,6 +99,19 @@ public class AppProjectManager
 {
 
 	/**
+	 * The variable that defines the default Output used in this application.
+	 */
+	private static PrintStream systemOut = System.out;
+
+	/**
+	 * The variable that defines the default Output Method (for the
+	 * {@code Command#execute(ResultOutputMethodToStream)}'s results) used in
+	 * this application.
+	 */
+	private static ResultOutputMethodToStream resultOutput = new ResultOutputAsPlainTextToStream(
+			systemOut);
+
+	/**
 	 * This method associates the method and the path that the user will insert
 	 * to reach the corresponding command factory, and register the command.
 	 * 
@@ -155,25 +169,25 @@ public class AppProjectManager
 	 */
 	public static void helpCommand()
 	{
-		System.out.println("IMPLEMENTATION NOTES:");
-		System.out
+		systemOut.println("IMPLEMENTATION NOTES:");
+		systemOut
 				.println(" - Only registered users can use POST commands;"
 						+ "\n    Before start to use the commands, the user has to create the administrator data.");
 
-		System.out
+		systemOut
 				.println("     The user's LoginName and Password must be introduce with the parameters list of"
 						+ "\n    the POST Commands to authentication;"
 						+ "\n If the authentication data are not valid, the command is not performed.");
-		System.out
+		systemOut
 				.println("\n - All the commands have the same follow generic strutter:	\n              {method} {path} {parameter list}"
 						+ "\n\nIn the list of parameters, the parameters must be separated by the '&' symbol and the words by the code '% 20'");
-		System.out
+		systemOut
 				.println(" Example:"
 						+ "\n POST  /consultant/  loginName=FilipaG&password=123456&name=Filipe%20Maia&priceHour=20");
-		System.out
+		systemOut
 				.println("\nThe user must write the command in the console and press Enter to proceed.");
 
-		System.out
+		systemOut
 				.println("\nTo learn the commands that are available in this application enter the OPTION command that displays "
 						+ "a description of all available commands.");
 
@@ -185,19 +199,19 @@ public class AppProjectManager
 	 */
 	public static void optionCommand()
 	{
-		System.out
-				.println("\nAVAIABLE COMMANDS:"
+		systemOut
+				.println("\nAVALABLE COMMANDS:"
 						+ "\n  POST COMMANDS:"
-						+ "\n  	POST /users {parameter list}  :  Add a user to the User Repository. "
-						+ "\n		{parameter list: loginName, loginPassord, username, password, email, fullname(optional)}"
-						+ "\n  	POST /project  {parameter list} : Add a Project to the Project repository."
-						+ "\n		{parameter list: loginName, loginPassord, Latitiude, longitude, name, price}"
-						+ "\n  	POST /consultant  {parameter list}  :  Add a consultant to the Worker Repository"
-						+ "\n		{parameter list: loginName, loginPassord, name, priceHour, bonus (optional)}"
-						+ "\n  	POST /project/{pid}/{type}  {parameter list} : add a consultant or Manager to a project/subproject"
-						+ "\n		{parameter list: loginName, loginPassord, WorkerId}"
-						+ "\n  	POST /project/{pid}/subproject  {parameter list} : add a subproject to a project/subproject."
-						+ "\n		{parameter list: loginName, loginPassord, ProjectId}"
+						+ "\n  	POST /users {parameter list: loginName, loginPassord, username, password, email, fullname(optional)}  "
+						+ "\n	  Add a user to the User Repository. "
+						+ "\n  	POST /project  {parameter list: loginName, loginPassord, Latitiude, longitude, name, price} "
+						+ "\n	  Add a Project to the Project repository."
+						+ "\n  	POST /consultant {parameter list: loginName, loginPassord, name, priceHour, bonus (optional)}"
+						+ "\n	  Add a consultant to the Worker Repository"
+						+ "\n  	POST /project/{pid}/{type} {parameter list: loginName, loginPassord, WorkerId}"
+						+ "\n	  Add a consultant or Manager to a project/subproject"
+						+ "\n  	POST /project/{pid}/subproject {parameter list: loginName, loginPassord, ProjectId}"
+						+ "\n	  Add a subproject to a project/subproject."
 						+ "\n\n  GET COMMANDS: {parameter list: accept, output-file(optional)}"
 						+ "\n  	GET /users : Return the information of all users in the User Repository"
 						+ "\n  	GET /users/{username}  : Return the information of the user with the  specify {@code username} of the User Repository"
@@ -210,26 +224,19 @@ public class AppProjectManager
 						+ "\n  	GET /project/{pid}/{type} : Return the information of all consultants or of the Manager of a project with the  specify {@code ProjectId}"
 						+ "\n  	GET /project/{pid}/subproject : Return the information of all subprojects of a project with the  specify {@code ProjectId}"
 						+ "\n\n  PATCH COMMANDS:"
-						+ "\n  	PATCH /users/{username} {parameter list} : Updates the password of the user identified by the  specify {@code username}. "
-						+ "\n		{parameter list: loginName, loginPassord, oldpassword, newPassword}"
-						+ "\n  	PATCH /project/{pid} {parameter list}: Update the information of the project identified by the  specify {@code ProjectId}."
-						+ "\n	 	{parameter list: loginName, loginPassord, Latitiude, longitude, name, price (the last four optional)}"
-						+ "\n  	PATCH /consultant/{cid} {parameter list}: Updates the information of the consultant with the  specify {@code WorkerId}. "
-						+ "\n		{parameter list: loginName, loginPassord, name, priceHour (the last two optional)}"
+						+ "\n  	PATCH /users/{username} {parameter list: loginName, loginPassord, oldpassword, newPassword} "
+						+ "\n	  Updates the password of the user identified by the  specify {@code username}. "
+						+ "\n  	PATCH /project/{pid} {parameter list: loginName, loginPassord, Latitiude, longitude, name, price (the last four optional)} "
+						+ "\n	  Update the information of the project identified by the  specify {@code ProjectId}."
+						+ "\n  	PATCH /consultant/{cid} {parameter list: loginName, loginPassord, name, priceHour (the last two optional)} "
+						+ "\n	  Updates the information of the consultant with the  specify {@code WorkerId}. "
 						+ "\n\n  DELETE COMMANDS:"
-						+ "\n  	DELETE /project/{pid} : Deletes the project with the  specify {@code ProjectId} and all its subprojects"
-						+ "\n 		{parameter list: loginName, loginPassord}"
+						+ "\n  	DELETE /project/{pid} {parameter list: loginName, loginPassord} "
+						+ "\n	  Deletes the project with the  specify {@code ProjectId} and all its subprojects"
 						+ "\n\n  OPTION: Displays a description of all available commands."
 						+ "\n  HELP: Show an user guide to use the application"
 						+ "\n  EXIT: terminates the application");
 	}
-
-	/**
-	 * The variable that defines the kind of OutputStream we will use in this
-	 * application
-	 */
-	private static ResultOutputMethodToStream out = new ResultOutputAsPlainTextToStream(
-			System.out);
 
 	/**
 	 * Ask for a command and execute it, till the END command is called.
@@ -238,36 +245,24 @@ public class AppProjectManager
 	 * @throws IOException
 	 * @throws CommandException
 	 */
-	public void execute() throws CommandParserException, CommandException,
-			IOException
+	public static void execute(CommandParser parser, UserRepository userRepo)
+			throws CommandParserException, CommandException, IOException
 	{
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 
-		CommandParser parser = new CommandParser();
-		UserRepository userRepo = new InMemoryUserRepo();
-		try
-		{
-			RegisterCommand(parser, userRepo, new InMemoryProjectRepo(),
-					new InMemoryWorkerRepo());
-		} catch (InvalidRegisterException e)
-		{
-			System.out
-					.println("Invalid Registry! Verify RegisterCommand method.");
-		}
+		systemOut.println("*********************************");
+		systemOut.println("********** JAVA COMPANY *********");
+		systemOut.println("*********************************");
 
-		System.out.println("*********************************");
-		System.out.println("********** JAVA COMPANY *********");
-		System.out.println("*********************************");
-
-		System.out.println("\n Create Administrator");
-		System.out.println("LoginName: Admin1");
-		System.out.print("Insert New password:");
+		systemOut.println("\n Create Administrator");
+		systemOut.println("LoginName: Admin1");
+		systemOut.print("Insert New password:");
 		String password = scanner.nextLine();
 
 		while (password.length() <= 3)
 		{
-			System.out
+			systemOut
 					.println("Password must at least have 4 characters.\nInsert password:");
 			password = scanner.nextLine();
 		}
@@ -275,7 +270,7 @@ public class AppProjectManager
 
 		do
 		{
-			System.out.println("\nInsert the command you want to execute:");
+			systemOut.println("\nInsert the command you want to execute:");
 			String cmd = scanner.nextLine();
 			switch (cmd)
 			{
@@ -289,7 +284,7 @@ public class AppProjectManager
 					break;
 
 				case "EXIT":
-					System.out
+					systemOut
 							.println("App now closing.\nThank you for choosing Java Company!");
 					return;
 
@@ -298,7 +293,6 @@ public class AppProjectManager
 			}
 
 		} while (true);
-
 	}
 
 	/**
@@ -316,48 +310,59 @@ public class AppProjectManager
 	{
 		try
 		{
-			parser.getCommand(cmd.split(" ")).execute(out);
+			parser.getCommand(cmd.split(" ")).execute(resultOutput);
 		} catch (UnknownCommandException e)
 		{
-			System.out.println("Args must have 2 or 3 elements.");
+			systemOut.println("Args must have 2 or 3 elements.");
 		} catch (InvalidCommandArgumentsException e)
 		{
-			System.out.println("Inserted a parameter without value.");
+			systemOut.println("Inserted a parameter without value.");
 		} catch (DuplicateArgumentsException e)
 		{
-			System.out.println("Duplicate parameters entered.");
+			systemOut.println("Duplicate parameters entered.");
 		} catch (MandatoryParameterNotPresentException e)
 		{
-			System.out.println("Not all required parameters were entered.");
+			systemOut.println("Not all required parameters were entered.");
 		} catch (InvalidParameterValueException e)
 		{
-			System.out.println("Inserted a parameter with an invalid value.");
+			systemOut.println("Inserted a parameter with an invalid value.");
 		} catch (CommandException e)
 		{
-			System.out.println("Invalid Command.");
+			systemOut.println("Invalid Command.");
 		} catch (IOException e)
 		{
-			System.out.println("Invalid output Stream.");
+			systemOut.println("Invalid output Stream.");
 		} catch (NullPointerException e)
 		{
-			System.out.println("Not found.");
+			systemOut.println("Not found.");
 		}
 	}
 
 	public static void main(String[] args) throws CommandParserException,
 			CommandException, IOException
 	{
-		AppProjectManager app = new AppProjectManager();
-		if (args.length == 0)
-			app.execute();
-		else
+		CommandParser parser = new CommandParser();
+		UserRepository userRepo = new InMemoryUserRepo();
+		try
 		{
-			CommandParser parser = new CommandParser();
-			UserRepository userRepo = new InMemoryUserRepo();
 			RegisterCommand(parser, userRepo, new InMemoryProjectRepo(),
 					new InMemoryWorkerRepo());
-			for (String cmd : args)
-				commandPrompt(parser, cmd);
+		} catch (InvalidRegisterException e)
+		{
+			systemOut
+					.println("Invalid Registry! Verify RegisterCommand method.");
 		}
+
+		while (args.length == 0)
+		{
+			execute(parser, userRepo);
+			systemOut.close();
+			return;
+		}
+
+		for (String cmd : args)
+			commandPrompt(parser, cmd);
+		systemOut.close();
 	}
+
 }

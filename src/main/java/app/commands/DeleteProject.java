@@ -122,8 +122,8 @@ public class DeleteProject extends BaseCommandUserAuthentication
 		List<Long> allPIDsToDelete = new ArrayList<Long>();
 		allPIDsToDelete = this.getAllPIDsToDelete(pid, allPIDsToDelete);
 
-		this.removeAllProjectsToDeleteFromTheRepository(allPIDsToDelete);
 		this.removeAllProjectsToDeleteFromAllProjectContainers(allPIDsToDelete);
+		this.removeAllProjectsToDeleteFromTheRepository(allPIDsToDelete);
 
 		out.giveResults("Done.");
 	}
@@ -138,7 +138,8 @@ public class DeleteProject extends BaseCommandUserAuthentication
 		}
 	}
 
-	// because of removeproject in project also removes from nametester
+	// because of removeproject in project also removes from nametester ,this should go first before
+	// removeallprojectsfromrepository
 	private void removeAllProjectsToDeleteFromAllProjectContainers(
 			List<Long> allPIDsToDelete)
 	{

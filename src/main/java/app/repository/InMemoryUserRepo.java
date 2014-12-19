@@ -27,7 +27,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	Map<String, UserInterface> users = new HashMap<String, UserInterface>();
 
 	/**
-	 * Contructor for {@code InMemoryUserRepo}. Also adds an {@link Admin}
+	 * Contructor for {@code InMemoryUserRepo}. Also adds an {@link ImmutableAdmin}
 	 * {@link User} to the Repository.
 	 */
 	public InMemoryUserRepo()
