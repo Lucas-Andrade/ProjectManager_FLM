@@ -93,10 +93,10 @@ public class Local implements ICost, IName
 		DecimalFormat df = new DecimalFormat("#.##");
 		
 		builder.append("<html>");
-		builder.append("<h2> Local </h2>");
-		builder.append("<p>").append("<b>Name: </b>").append(getName()).append("<b>Location: </b>").append(" (").append(latitude)
-		.append(", ").append(longitude).append(")").append("</p>");
-		builder.append("<p>").append("<b>Cost: </b>").append(df.format(getCost())).append(" Euros").append("</p>");		
+//		builder.append("<h2> Local </h2>");
+		builder.append("<b>Name: </b>").append(getName()).append("<b> Location: </b>")
+			.append(" (").append(latitude).append(", ").append(longitude).append(")").append("<b>Cost: </b>")
+			.append(df.format(getCost())).append(" Euros");		
 		builder.append("</html>");
 		
 		return builder.toString();

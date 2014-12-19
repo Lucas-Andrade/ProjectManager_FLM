@@ -32,4 +32,7 @@ public class Consultant extends AWorker
 
 		super(name, costPerHour, hoursWorked, cid);
 	}
+
+
+
 }

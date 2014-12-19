@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.TreeSet;
 
+import org.json.JSONObject;
+
 /**
  * Abstract class {@code AContainer} that will allow homogeneous collections of
  * {@code Project} and {@code AWorker} to be created.
@@ -147,14 +149,35 @@ public abstract class AContainer<elements extends Element> implements ICost
 	
 	public String toHtml()
 	{
-		return "";
+		return toHtml(0);
 	}
 	
-	public String toJson()
-	{
-		return "";
+	protected String toHtml(int i) 
+	{	
+		StringBuilder builder = new StringBuilder();
+		
+		for (elements element : elementsList)
+			builder.append(element.toHtml(i)).append("\n");
+
+		return builder.toString();
 	}
 
+	public String toJson()
+	{
+		return getJson().toString();
+	}
+	
+	public JSONObject[] getJson() 
+	{
+		Collection<elements> elementsList = getElementsList();
+		JSONObject[] jsonArray = new JSONObject[elementsList.size()];
+		int index = 0;
+		
+		for (elements element : elementsList)
+			jsonArray[index++] = element.getJson();
+		return jsonArray;
+	}
+	
 	/**
 	 * @return the number of elements the container contains
 	 */

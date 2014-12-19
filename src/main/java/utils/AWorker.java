@@ -146,12 +146,17 @@ public abstract class AWorker extends Element implements WorkerInterface
 	 */
 	public String toHtml()
 	{
+		return toHtml(0);
+	}
+	
+	@Override
+	protected String toHtml(int indentation) {
 		StringBuilder builder = new StringBuilder();
 		DecimalFormat df = new DecimalFormat("#.##");
 		
 		builder.append("<html>");
 		
-		builder.append("<p>").append("<b>Name: </b>").append(name).append("<b>  Payment per hour: </b>")
+		builder.append("<p" + indentation + ">").append("<b>Name: </b>").append(name).append("<b>  Payment per hour: </b>")
 		.append(df.format(costPerHour)).append(" Euros,").append("<b> Cost: </b>")
 		.append(df.format(getCost())).append(" Euros").append("</p>");
 		builder.append("</html>");
@@ -159,12 +164,16 @@ public abstract class AWorker extends Element implements WorkerInterface
 		return builder.toString();
 	}
 	
-	
 	/**
 	 * This method represent the worker's information in Json's format 
 	 */
 	public String toJson()
 	{
+		return getJson().toString();
+	}
+
+	@Override
+	protected JSONObject getJson() {
 		DecimalFormat df = new DecimalFormat("#.##");
 
 		//instancia um novo JSONObject 
@@ -175,14 +184,8 @@ public abstract class AWorker extends Element implements WorkerInterface
 		worker.put("Payment per hour", df.format(costPerHour)); 
 		worker.put("Name", name); 
 		
-		//serializa para uma string e imprime 
-		String json_string = worker.toString();
-		
-		return json_string;
+		return worker;
 	}
-	
-	
-	
 	
 	
 	/**
