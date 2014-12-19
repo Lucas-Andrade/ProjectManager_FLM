@@ -2,6 +2,8 @@ package utils;
 
 import java.text.DecimalFormat;
 
+import org.json.JSONObject;
+
 /**
  * Class {@code Local} whose objects will represent the local of a project.
  * 
@@ -82,6 +84,50 @@ public class Local implements ICost, IName
 				+ ", cost: " + df.format(getCost()) + " Euros";
 	}
 
+	/**
+	 * This method represent the worker's information in HTLM format 
+	 */
+	public String toHtml()
+	{
+		StringBuilder builder = new StringBuilder();
+		DecimalFormat df = new DecimalFormat("#.##");
+		
+		builder.append("<html>");
+//		builder.append("<h2> Local </h2>");
+		builder.append("<b>Name: </b>").append(getName()).append("<b> Location: </b>")
+			.append(" (").append(latitude).append(", ").append(longitude).append(")").append("<b>Cost: </b>")
+			.append(df.format(getCost())).append(" Euros");		
+		builder.append("</html>");
+		
+		return builder.toString();
+	}
+	
+	
+	/**
+	 * This method represent the worker's information in Json's format 
+	 */
+	public String toJson()
+	{
+		DecimalFormat df = new DecimalFormat("#.##");
+
+		//instancia um novo JSONObject 
+		JSONObject local = new JSONObject(); 
+		
+		//preenche o objeto com os campos: name, payment per hour e cost
+		local.put("Cost", df.format(getCost())); 
+		local.put("Longitude", longitude); 
+		local.put("Latitude", latitude); 
+		local.put("Name", name); 
+		//serializa para uma string e imprime 
+		String json_string = local.toString();
+		
+		return json_string;
+	}
+	
+	
+	
+	
+	
 	/**
 	 * sets the value of the {@code longitude} to the new value passed as parameter, provided 
 	 * it is between the correct bounds

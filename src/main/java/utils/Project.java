@@ -2,6 +2,8 @@ package utils;
 
 import java.text.DecimalFormat;
 
+import org.json.JSONObject;
+
 import app.elements.ProjectInterface;
 
 /**
@@ -313,12 +315,67 @@ public class Project extends Element implements ProjectInterface
 		
 		
 		builder.append(space).append("Team: ").append("\n")
-				.append(space).append(team.toString(5)).append("\n")
+				.append(space).append(team.toString(5))//.append("\n")
 				.append(space).append("Subprojects: ")
 				.append(projectsContainer.size() == 0 ? "None." : "\n"
 						+ projectsContainer.toString(nr + 1)).append("\n");
 
 		return builder.toString();
+	}
+	
+	@Override
+	public String toHtml()
+	{
+		return toHtml(0);
+	}
+	
+	@Override
+	protected String toHtml(int indent) 
+	{
+		return toHtml(indent, 2);
+	}
+
+	protected String toHtml(int nr, int header)
+	{
+		String indentation = " style=\"text-indent: " + (nr * 3) + "em;\"";
+
+		StringBuilder builder = new StringBuilder();
+		builder.append("<html>");
+		DecimalFormat df = new DecimalFormat("#.##");
+		builder.append("<h"+ header + " style=\"text-indent: " + (nr * 1.9) + "em;\">").append("Project ID: ").append(pid).append("</h" + header + ">").append("\n")
+			.append("<p" + indentation + ">").append("<b>Cost:</b> ").append(df.format(getCost())).append(" Euros</p>\n")
+			.append("<p" + indentation + ">").append("<b>Local:</b> ").append(local.toHtml()).append("</p>\n");
+		if(manager != null)
+			builder.append("<p" + indentation + ">").append("<b>Manager:</b> ").append(manager.toHtml()).append("</p>\n");
+		
+		builder.append("<p" + indentation + ">").append("<b>Team:</b> ").append("</p>\n")
+			.append("<p" + indentation + ">").append(team.toHtml(5)).append("</p>\n")
+			.append("<p" + indentation + ">").append("<b>Subprojects:</b> ")
+			.append(projectsContainer.size() == 0 ? "None.</p>" : "</p>\n"
+						+ projectsContainer.toHtml(nr + 1)).append("\n");
+		return builder.toString();
+	}
+	
+	@Override
+	public String toJson()
+	{
+		return getJson().toString();
+	}
+	
+	@Override
+	protected JSONObject getJson()
+	{
+		DecimalFormat df = new DecimalFormat("#.##");
+		JSONObject json = new JSONObject();
+		json.put("Project ID", pid);
+		json.put("Cost", df.format(getCost()) + " Euros");
+		json.put("Local", local.toString()); //TODO toJson
+		if(manager != null)
+			json.put("Manager", manager.toString());//TODO toJson
+		json.put("Team", team.toJson());
+		json.put("Subprojects", projectsContainer.size() == 0 ? "None." : projectsContainer.getJson());
+		
+		return json;
 	}
 
 	/**
@@ -476,5 +533,7 @@ public class Project extends Element implements ProjectInterface
 	{
 		return local.setPrice(newPrice);
 	}
+
+
 
 }
