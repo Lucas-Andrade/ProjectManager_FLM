@@ -15,7 +15,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class GetUser extends BaseCommandResultsOutputMethod
+public class GetUser extends BaseCommand
 {
 
 	/**
@@ -104,8 +104,7 @@ public class GetUser extends BaseCommandResultsOutputMethod
 	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
-	protected void internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod out)
-			throws CommandException, IOException
+	public DatabaseElements call() throws Exception
 	{
 		UserInterface user = repository.getUserByUsername(username);
 		out.giveResults(user);

@@ -2,6 +2,7 @@ package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import app.commands.exceptions.MandatoryParameterNotPresentException;
 import app.resultsOutputMethods.ResultOutputMethod;
@@ -12,9 +13,10 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * the model to be followed by the {@code Command}s.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @param <T>
  * @since 08/12/2014
  */
-public abstract class BaseCommand implements Command
+public abstract class BaseCommand<T extends DatabaseElements> implements Command, Callable<T>
 {
 
 	/**
@@ -56,15 +58,15 @@ public abstract class BaseCommand implements Command
 		internalExecute(out);
 	}
 
-	/**
-	 * @see Command#execute(ResultOutputMethodToStream)
-	 * 
-	 * @param out
-	 * @throws app.commands.exceptions.CommandException
-	 * @throws IOException
-	 */
-	abstract protected void internalExecute(ResultOutputMethod out)
-			throws app.commands.exceptions.CommandException, IOException;
+//	/**
+//	 * @see Command#execute(ResultOutputMethodToStream)
+//	 * 
+//	 * @param out
+//	 * @throws app.commands.exceptions.CommandException
+//	 * @throws IOException
+//	 */
+//	abstract protected void internalExecute(ResultOutputMethod out)
+//			throws app.commands.exceptions.CommandException, IOException;
 
 	/**
 	 * Checks if all mandatory arguments are in the
@@ -142,5 +144,8 @@ public abstract class BaseCommand implements Command
 	{
 		return Long.parseLong(parameters.get(name));
 	}
+
+	@Override
+	public abstract T call() throws Exception;
 
 }

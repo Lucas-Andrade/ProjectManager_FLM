@@ -20,7 +20,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class GetProjectWorkers extends BaseCommandResultsOutputMethod
+public class GetProjectWorkers extends BaseCommand
 {
 
 	/**
@@ -136,8 +136,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
-	protected void internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod out)
-			throws CommandException, IOException
+	public DatabaseElements call() throws Exception
 	{
 
 		projectId = getParameterAsLong(PID);
