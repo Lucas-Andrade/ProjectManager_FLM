@@ -1,7 +1,5 @@
 package app.commands;
 
-import java.io.IOException;
-
 import app.resultsOutputMethods.ResultOutputMethodToStream;
 
 /**
@@ -19,9 +17,7 @@ public interface Command
 	 * @param out
 	 *            The {@link ResultOutputMethodToStream} that receives the
 	 *            Results, treats them and gives them to a Stream.
-	 * @throws app.commands.exceptions.CommandException
-	 * @throws IOException
+	 * @throws Exception
 	 */
-	void execute(ResultOutputMethodToStream out)
-			throws app.commands.exceptions.CommandException, IOException;
+	void execute(ResultOutputMethodToStream out) throws Exception;
 }

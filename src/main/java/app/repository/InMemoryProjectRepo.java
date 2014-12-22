@@ -15,7 +15,7 @@ import utils.Project;
  * @since 08/12/2014
  */
 public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
-		ProjectRepository
+		ProjectsRepository
 {
 
 	/**
@@ -30,7 +30,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	private static long NEXT_PID_TO_BE_USED = 1;
 
 	/**
-	 * @see ProjectRepository#addProject(Project)
+	 * @see ProjectsRepository#addProject(Project)
 	 */
 	public boolean addProject(Project project)
 	{
@@ -43,7 +43,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	}
 
 	/**
-	 * @see ProjectRepository#removeProject(Project)
+	 * @see ProjectsRepository#removeProject(Project)
 	 */
 	@Override
 	public boolean removeProject(Project project)
@@ -73,7 +73,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	}
 
 	/**
-	 * @see ProjectRepository#getProjectById(long)
+	 * @see ProjectsRepository#getProjectById(long)
 	 */
 	@Override
 	public Project getProjectById(long projectId)
@@ -85,7 +85,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	}
 
 	/**
-	 * @see ProjectRepository#getNextPID()
+	 * @see ProjectsRepository#getNextPID()
 	 */
 	@Override
 	public long getNextPID()

@@ -1,77 +1,78 @@
 package app.commands;
 
-import java.io.IOException;
 import java.util.Map;
 
-import app.commands.exceptions.CommandException;
-import app.elements.UserInterface;
+import utils.Project;
+import app.commands.exceptions.InvalidParameterValueException;
+import app.elements.DatabaseElement;
+import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
-import app.resultsOutputMethods.ResultOutputMethod;
 
-public class PatchUser extends BaseCommandUserAuthentication{
-
-	/**
-	 * {@code String} with the to be added {@code User}'s Username argument.
-	 */
-	private String username;
+public class PatchProject extends BaseCommandUserAuthentication{
 
 	/**
-	 * {@code String} with the to be added {@code User}'s Password argument.
+	 * The {@link ProjectsRepository} with the {@code Project}s. This
+	 * {@code ProjectRepository} is accessed to get the {@code Project}.
 	 */
-	private String newPassword;
-
-	/**
-	 * {@code String} with the {@code User} Username argument's name.
-	 */
-	public static final String USERNAME = "username";
+	private final ProjectsRepository pRepository;
 	
 	/**
-	 * {@code String} with the {@code User} Password argument's name.
+	 * {@code String} with the {@code Project}ID argument's name. The
+	 * {@link CommandParser.Node.content} to be used (between "{" and "}", see
+	 * {@link CommandParser#Node#isPlaceHolderNode()}) in one of the
+	 * {@link CommandParser#Node}s of this {@code Command}'s Path.
 	 */
-	private static final String NEWPASSWORD = "newPassword";
-	
-	/**
-	 * {@code String} with the {@code User} Password argument's name.
-	 */
-	private static final String OLDPASSWORD = "oldPassword";
+	public static final String PID = "pid";
 
+	/**
+	 * {@code String} with the {@code Local} Latitude argument's name.
+	 */
+	private static final String LATITUDE = "latitude";
+
+	/**
+	 * {@code String} with the {@code Local} Longitude argument's name.
+	 */
+	private static final String LONGITUDE = "longitude";
+
+	/**
+	 * {@code String} with the {@code Local} Name argument's name.
+	 */
+	private static final String NAME = "name";
+
+	/**
+	 * {@code String} with the {@code Local} Price argument's name.
+	 */
+	private static final String PRICE = "price";
+	
 	/**
 	 * An array of {@code String}s with the names of all mandatory arguments.
 	 */
-	private static final String[] DEMANDING_PARAMETERS = { USERNAME, OLDPASSWORD, NEWPASSWORD };
+	public static final String[] DEMANDING_PARAMETERS = new String[] { PID };
 
 	/**
-	 * The {@link UserRepository} with the {@code User}s. The created
-	 * {@code User}s are stored in this {@code UserRepository}. Also, the
-	 * {@code User}'s Username is checked to see if the {@code User} already
-	 * exists in the {@code UserRepository}.
-	 */
-	private final UserRepository repository;
-
-	/**
-	 * Class that implements the {@link PostUsers} factory, according to the
+	 * Class that implements the {@code GetSubproject} factory, according to the
 	 * {@link CommandFactory}.
 	 */
 	public static class Factory implements CommandFactory
 	{
 
 		/**
-		 * The {@link UserRepository} with the {@code User}s. The created
-		 * {@code User}s are stored in this {@code UserRepository}. Also, the
-		 * {@code User}'s Username is checked to see if the {@code User} already
-		 * exists in the {@code UserRepository}.
-		 * 
-		 * @see BasePostCommand#repository
+		 * The {@link ProjectsRepository} with the {@code Project}s. This
+		 * {@code ProjectRepository} is accessed to get the {@code Project}
 		 */
+		private final ProjectsRepository pRepository;
+		
 		private final UserRepository uRepository;
 
 		/**
 		 * The constructor for {@code Factory}.
 		 * 
-		 * @param uRepository The {@code UserRepository}.
+		 * @param repository
+		 *            The {@code ProjectRepository} with the {@code Project}.
 		 */
-		public Factory(UserRepository uRepository)
+		public Factory(UserRepository uRepository, ProjectsRepository pRepository)
 		{
+			this.pRepository = pRepository;
 			this.uRepository = uRepository;
 		}
 
@@ -81,53 +82,67 @@ public class PatchUser extends BaseCommandUserAuthentication{
 		@Override
 		public Command newInstance(Map<String, String> parameters)
 		{
-			return new PatchUser(uRepository, parameters);
-			
+			return new PatchProject(uRepository, pRepository, parameters);
 		}
-
 	}
-
+	
+	
 	/**
-	 * The constructor for {@code PostUsers}.
+	 * The constructor for {@code GetProject}.
 	 * 
-	 * @param repository   The {@code UserRepository}.
-	 * @param parameters   The {@code Command} arguments.
+	 * @param repository
+	 *            The {@code ProjectRepository}.
+	 * @param parameters
+	 *            The {@code Command} arguments.
 	 */
-	public PatchUser(UserRepository repository, Map<String, String> parameters)
+	public PatchProject(UserRepository uRepository, ProjectsRepository pRepository, Map<String, String> parameters)
 	{
-		super(repository, parameters);
-		this.repository = repository;
+		super(uRepository, parameters);
+		this.pRepository = pRepository;
 	}
 
-	/**
-	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
-	 */
+
 	@Override
-	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
-			throws CommandException, IOException {
+	protected DatabaseElement internalExecuteAfterUserAuthentication()
+			throws Exception {
+
+		Project project = pRepository.getProjectById(getParameterAsLong(PID));
 		
-		newPassword = getParameterAsString(NEWPASSWORD);
-		this.username = getParameterAsString(USERNAME);
-		
-		UserInterface user = repository.getUserByUsername(username);
-		
-		if(!user.getLoginPassword().equals(parameters.get(OLDPASSWORD)))
+		if(project == null)
 		{
-			out.giveResults("The old password is incorrect.");
-			return;
+			throw new InvalidParameterValueException("Project not found!");
 		}
 		
-		if(user.setNewPassword(newPassword))
-			out.giveResults("Success.");
-		else
-			out.giveResults("New password must at least have 4 characters.");
+		if (parameters.containsKey(LONGITUDE))
+		{
+			if( ! project.updateLongitude(getParameterAsDouble(LONGITUDE)))
+				throw new InvalidParameterValueException("Longitude out of bounds.");
+		}
+		
+		if(parameters.containsKey(LATITUDE))
+		{
+			if( ! project.updateLatitude(getParameterAsDouble(LATITUDE)))
+				throw new InvalidParameterValueException("Latitude out of bounds.");
+		}
+		
+		if(parameters.containsKey(NAME))
+		{
+			project.updateLocalName(getParameterAsString(NAME));
+		}
+		
+		if(parameters.containsKey(PRICE))
+		{
+			if( ! project.updateLocalPrice(getParameterAsDouble(PRICE)))
+				throw new InvalidParameterValueException("A negative price is not allowed.");
+		}
+		
+		return project;
 	}
 
-	/**
-	 * @see app.commands.BaseCommand#getMandatoryParameters()
-	 */
+
 	@Override
 	protected String[] getMandatoryParameters() {
 		return DEMANDING_PARAMETERS;
 	}
+
 }

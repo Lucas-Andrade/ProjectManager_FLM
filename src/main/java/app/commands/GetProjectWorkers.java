@@ -9,7 +9,7 @@ import utils.Leader;
 import utils.Project;
 import utils.Team;
 import app.commands.exceptions.CommandException;
-import app.repository.ProjectRepository;
+import app.repository.ProjectsRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
@@ -24,11 +24,11 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 {
 
 	/**
-	 * The {@link ProjectRepository} with the {@code Project}s. This
+	 * The {@link ProjectsRepository} with the {@code Project}s. This
 	 * {@code ProjectRepository} is accessed to get the {@code AWorker}s from an
 	 * existing {@code Project}.
 	 */
-	private final ProjectRepository projectRepository;
+	private final ProjectsRepository projectRepository;
 
 	/**
 	 * {@code String} with the {@code AWorker}'s Type argument. This argument is
@@ -73,11 +73,11 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	{
 
 		/**
-		 * The {@link ProjectRepository} with the {@code Project}s. This
+		 * The {@link ProjectsRepository} with the {@code Project}s. This
 		 * {@code ProjectRepository} is accessed to get the {@code AWorker}s
 		 * from an existing {@code Project}.
 		 */
-		private final ProjectRepository pRepository;
+		private final ProjectsRepository pRepository;
 
 		/**
 		 * The constructor for {@code Factory}.
@@ -85,7 +85,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 		 * @param pRepository
 		 *            The {@code ProjectRepository} with the {@code Project}.
 		 */
-		public Factory(ProjectRepository pRepository)
+		public Factory(ProjectsRepository pRepository)
 		{
 			this.pRepository = pRepository;
 		}
@@ -108,7 +108,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	private GetProjectWorkers(ProjectRepository pRepository,
+	private GetProjectWorkers(ProjectsRepository pRepository,
 			Map<String, String> parameters)
 	{
 		super(parameters);

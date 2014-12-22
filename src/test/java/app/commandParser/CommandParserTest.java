@@ -10,17 +10,17 @@ import app.RepositoryConstructor;
 import app.commandParser.CommandParser;
 import app.commandParser.CommandParserException;
 import app.commandParser.InvalidRegisterException;
-import app.commands.GetProject;
+import app.commands.GetProjects;
 import app.commands.GetProjectWorkers;
 import app.commands.GetSubproject;
 import app.commands.GetUser;
 import app.commands.GetUsers;
 import app.commands.PostConsultant;
-import app.commands.PostProject;
-import app.commands.PostSubproject;
+import app.commands.PostProjects;
+import app.commands.PostSubprojects;
 import app.commands.PostUsers;
 import app.commands.PostWorkerInProject;
-import app.repository.ProjectRepository;
+import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
 
@@ -33,7 +33,7 @@ public class CommandParserTest {
 	CommandParser parser = new CommandParser();
 	WorkerRepository wRepo = new RepositoryConstructor().constructWorkerRepo();
 	UserRepository uRepo = new RepositoryConstructor().constructUserRepository();
-	ProjectRepository pRepo = new RepositoryConstructor().constructProjectRepository();
+	ProjectsRepository pRepo = new RepositoryConstructor().constructProjectRepository();
 	
 	@Before
 	public void registerCommands() throws InvalidRegisterException
@@ -45,12 +45,12 @@ public class CommandParserTest {
 		parser.registerCommand("GET", "/users",	new GetUsers.Factory(uRepo));
 		parser.registerCommand("POST", "/consultant", new PostConsultant.Factory(uRepo, wRepo));
 		parser.registerCommand("POST", "/consultant", new PostConsultant.Factory(uRepo, wRepo));
-		parser.registerCommand("POST", "/project", new PostProject.Factory(uRepo, pRepo));
-		parser.registerCommand("POST", "/project/{pid}/subproject", new PostSubproject.Factory(uRepo, pRepo));
+		parser.registerCommand("POST", "/project", new PostProjects.Factory(uRepo, pRepo));
+		parser.registerCommand("POST", "/project/{pid}/subproject", new PostSubprojects.Factory(uRepo, pRepo));
 		parser.registerCommand("POST", "/users", new PostUsers.Factory(uRepo));
 		parser.registerCommand("POST", "/project/{" + PostWorkerInProject.PID
 				+ "}/{" + PostWorkerInProject.WTYPE + "}",	new PostWorkerInProject.Factory(uRepo, pRepo, wRepo));
-		parser.registerCommand("GET", "/project/{" + GetProject.PID	+ "}", new GetProject.Factory(pRepo));
+		parser.registerCommand("GET", "/project/{" + GetProjects.PID	+ "}", new GetProjects.Factory(pRepo));
 	}
 	
 	@Test
@@ -91,13 +91,13 @@ public class CommandParserTest {
 	@Test
 	public void shouldReturnAPostProjectCommand() throws CommandParserException
 	{
-		assertTrue(parser.getCommand("POST", "/project", "latitude=1.2&longitude=2.3&name=local&price=2.3") instanceof PostProject);
+		assertTrue(parser.getCommand("POST", "/project", "latitude=1.2&longitude=2.3&name=local&price=2.3") instanceof PostProjects);
 	}
 	
 	@Test
 	public void shouldReturnAPostSubprojectCommand() throws CommandParserException
 	{
-		assertTrue(parser.getCommand("POST", "/project/1/subproject", "subPid=5") instanceof PostSubproject);
+		assertTrue(parser.getCommand("POST", "/project/1/subproject", "subPid=5") instanceof PostSubprojects);
 	}
 	
 	@Test
@@ -115,6 +115,6 @@ public class CommandParserTest {
 	@Test
 	public void shouldReturnAGetProjectCommand() throws CommandParserException
 	{
-		assertTrue(parser.getCommand("GET", "/project/2") instanceof GetProject);
+		assertTrue(parser.getCommand("GET", "/project/2") instanceof GetProjects);
 	}
 }

@@ -128,8 +128,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="app.commands.PostProject" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/main/java/app/commands/PostProject.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="15" language="java" name="app.commands.PostProjects" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/main/java/app/commands/PostProjects.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1022" y="1216"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -137,8 +137,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="app.commands.PostProject.Factory" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/main/java/app/commands/PostProject.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="16" language="java" name="app.commands.PostProjects.Factory" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/main/java/app/commands/PostProjects.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1018" y="1010"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -146,8 +146,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="app.commands.PostSubproject.Factory" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/main/java/app/commands/PostSubproject.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="17" language="java" name="app.commands.PostSubprojects.Factory" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/main/java/app/commands/PostSubprojects.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1392" y="1012"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -155,8 +155,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="app.commands.PostSubproject" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/main/java/app/commands/PostSubproject.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="18" language="java" name="app.commands.PostSubprojects" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/main/java/app/commands/PostSubprojects.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1402" y="1200"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -200,142 +200,124 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <nesting id="23">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="21"/>  
-  </nesting>  
-  <generalization id="24">    
-    <bendpoint x="1021" y="1484"/>    
-    <bendpoint x="438" y="1485"/>    
-    <bendpoint x="438" y="956"/>    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <generalization id="25">    
-    <bendpoint x="638" y="1484"/>    
-    <bendpoint x="438" y="1484"/>    
-    <bendpoint x="438" y="956"/>    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <realization id="26">    
-    <bendpoint x="1400" y="626"/>    
-    <end type="SOURCE" refId="12"/>    
+  <realization id="23">    
+    <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <nesting id="27">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="10"/>  
-  </nesting>  
-  <generalization id="28">    
-    <bendpoint x="426" y="684"/>    
-    <bendpoint x="426" y="264"/>    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <generalization id="29">    
+  <realization id="24">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <generalization id="25">    
     <bendpoint x="2110" y="1485"/>    
     <bendpoint x="438" y="1485"/>    
     <bendpoint x="439" y="955"/>    
     <end type="SOURCE" refId="22"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
-  <generalization id="30">    
-    <bendpoint x="1092" y="240"/>    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <realization id="31">    
+  <realization id="26">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="27">    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <realization id="32">    
-    <end type="SOURCE" refId="14"/>    
+  <realization id="28">    
+    <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <nesting id="33">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="17"/>  
-  </nesting>  
-  <generalization id="34">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <nesting id="35">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="16"/>  
-  </nesting>  
-  <nesting id="36">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="14"/>  
-  </nesting>  
-  <nesting id="37">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="20"/>  
-  </nesting>  
-  <generalization id="38">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <generalization id="39">    
+  <generalization id="29">    
     <bendpoint x="1401" y="1485"/>    
     <bendpoint x="438" y="1484"/>    
     <bendpoint x="438" y="956"/>    
     <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
-  <realization id="40">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
+  <realization id="30">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="4"/>  
   </realization>  
-  <generalization id="41">    
+  <nesting id="31">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="14"/>  
+  </nesting>  
+  <nesting id="32">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="17"/>  
+  </nesting>  
+  <nesting id="33">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </nesting>  
+  <nesting id="34">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="16"/>  
+  </nesting>  
+  <generalization id="35">    
     <bendpoint x="1730" y="1485"/>    
     <bendpoint x="438" y="1484"/>    
     <bendpoint x="439" y="955"/>    
     <end type="SOURCE" refId="19"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
-  <realization id="42">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <nesting id="43">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="5"/>  
+  <generalization id="36">    
+    <bendpoint x="426" y="684"/>    
+    <bendpoint x="426" y="264"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <nesting id="37">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="10"/>  
   </nesting>  
-  <nesting id="44">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="8"/>  
+  <nesting id="38">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="21"/>  
   </nesting>  
-  <realization id="45">    
+  <nesting id="39">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="20"/>  
+  </nesting>  
+  <realization id="40">    
     <end type="SOURCE" refId="21"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <realization id="46">    
-    <end type="SOURCE" refId="10"/>    
+  <generalization id="41">    
+    <bendpoint x="638" y="1484"/>    
+    <bendpoint x="438" y="1484"/>    
+    <bendpoint x="438" y="956"/>    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <realization id="42">    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
+  <realization id="43">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="44">    
+    <bendpoint x="1400" y="626"/>    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <nesting id="45">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </nesting>  
+  <generalization id="46">    
+    <bendpoint x="1021" y="1484"/>    
+    <bendpoint x="438" y="1485"/>    
+    <bendpoint x="438" y="956"/>    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
   <nesting id="47">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="12"/>  
   </nesting>  
-  <realization id="48">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="49">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <generalization id="50">    
-    <bendpoint x="1370" y="242"/>    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <realization id="51">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

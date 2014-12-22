@@ -5,7 +5,7 @@ import java.util.Map;
 
 import utils.Project;
 import app.commands.exceptions.CommandException;
-import app.repository.ProjectRepository;
+import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
@@ -19,16 +19,16 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostSubproject extends BaseCommandUserAuthentication
+public class PostSubprojects extends BaseCommandUserAuthentication
 {
 
 	/**
-	 * The {@link ProjectRepository} with the {@code Project}s. Sub
+	 * The {@link ProjectsRepository} with the {@code Project}s. Sub
 	 * {@code Project}s are {@code Project}s. This {@code ProjectRepository} is
 	 * accessed to get the {@code Project}s where the Sub{@code Project}s are
 	 * going to be added, and is accessed to get the Sub{@code Project}s.
 	 */
-	private final ProjectRepository repository;
+	private final ProjectsRepository repository;
 
 	/**
 	 * {@code String} with the {@code Project}ID argument's name. The
@@ -50,20 +50,20 @@ public class PostSubproject extends BaseCommandUserAuthentication
 			SUBPID };
 
 	/**
-	 * Class that implements the {@link PostSubproject} factory, according to
+	 * Class that implements the {@link PostSubprojects} factory, according to
 	 * the {@link CommandFactory}.
 	 */
 	public static class Factory implements CommandFactory
 	{
 
 		/**
-		 * The {@link ProjectRepository} with the {@code Project}s. Sub
+		 * The {@link ProjectsRepository} with the {@code Project}s. Sub
 		 * {@code Project}s are {@code Project}s. This {@code ProjectRepository}
 		 * is accessed to get the {@code Project}s where the Sub{@code Project}s
 		 * are going to be added, and is accessed to get the Sub{@code Project}
 		 * s.
 		 */
-		private final ProjectRepository repository;
+		private final ProjectsRepository repository;
 
 		/**
 		 * @see BaseCommandUserAuthentication#repository
@@ -78,7 +78,7 @@ public class PostSubproject extends BaseCommandUserAuthentication
 		 * @param repository
 		 *            The {@code ProjectRepository} with the {@code Project}.
 		 */
-		public Factory(UserRepository uRepository, ProjectRepository repository)
+		public Factory(UserRepository uRepository, ProjectsRepository repository)
 		{
 			this.repository = repository;
 			this.uRepository = uRepository;
@@ -90,7 +90,7 @@ public class PostSubproject extends BaseCommandUserAuthentication
 		@Override
 		public Command newInstance(Map<String, String> parameters)
 		{
-			return new PostSubproject(uRepository, repository, parameters);
+			return new PostSubprojects(uRepository, repository, parameters);
 		}
 	}
 
@@ -104,8 +104,8 @@ public class PostSubproject extends BaseCommandUserAuthentication
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	public PostSubproject(UserRepository uRepository,
-			ProjectRepository repository, Map<String, String> parameters)
+	public PostSubprojects(UserRepository uRepository,
+			ProjectsRepository repository, Map<String, String> parameters)
 	{
 		super(uRepository, parameters);
 		this.repository = repository;

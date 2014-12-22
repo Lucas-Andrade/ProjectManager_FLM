@@ -8,7 +8,7 @@ import utils.Leader;
 import utils.Project;
 import utils.Team;
 import app.commands.exceptions.CommandException;
-import app.repository.ProjectRepository;
+import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
@@ -49,11 +49,11 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	public static final String CID = "cid";
 
 	/**
-	 * The {@link ProjectRepository} with the {@code Project}s. This
+	 * The {@link ProjectsRepository} with the {@code Project}s. This
 	 * {@code ProjectRepository} is accessed to get the {@code Project} where
 	 * the {@code AWorker} is going to be added.
 	 */
-	private final ProjectRepository projectRepository;
+	private final ProjectsRepository projectRepository;
 
 	/**
 	 * The {@link WorkerRepository} with the {@code AWorker}s. This
@@ -93,11 +93,11 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	{
 
 		/**
-		 * The {@link ProjectRepository} with the {@code Project}s. This
+		 * The {@link ProjectsRepository} with the {@code Project}s. This
 		 * {@code ProjectRepository} is accessed to get the {@code Project}
 		 * where the {@code AWorker} is going to be added.
 		 */
-		private final ProjectRepository pRepository;
+		private final ProjectsRepository pRepository;
 
 		/**
 		 * The {@link WorkerRepository} with the {@code AWorker}s. This
@@ -122,7 +122,7 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 		 *            The {@code WorkerRepository} with the {@code AWorker}.
 		 */
 		public Factory(UserRepository uRepository,
-				ProjectRepository pRepository, WorkerRepository wRepository)
+				ProjectsRepository pRepository, WorkerRepository wRepository)
 		{
 			this.pRepository = pRepository;
 			this.wRepository = wRepository;
@@ -154,7 +154,7 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 *            The {@code Command} arguments.
 	 */
 	public PostWorkerInProject(UserRepository uRepository,
-			ProjectRepository pRepository, WorkerRepository wRepository,
+			ProjectsRepository pRepository, WorkerRepository wRepository,
 			Map<String, String> parameters)
 	{
 		super(uRepository, parameters);

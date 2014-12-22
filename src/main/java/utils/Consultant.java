@@ -8,7 +8,6 @@ package utils;
  */
 public class Consultant extends AWorker
 {
-
 	/**
 	 * Consultant constructor that will receive as parameters the worker's name,
 	 * cost per hour and the total amount of hours worked.

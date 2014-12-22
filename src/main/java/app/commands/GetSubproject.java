@@ -5,7 +5,7 @@ import java.util.Map;
 
 import utils.Project;
 import app.commands.exceptions.CommandException;
-import app.repository.ProjectRepository;
+import app.repository.ProjectsRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
@@ -20,11 +20,11 @@ public class GetSubproject extends BaseCommandResultsOutputMethod
 {
 
 	/**
-	 * The {@link ProjectRepository} with the {@code Project}s. This
+	 * The {@link ProjectsRepository} with the {@code Project}s. This
 	 * {@code ProjectRepository} is accessed to get the {@code Project} with the
 	 * wanted Sub{@code Project}s.
 	 */
-	private final ProjectRepository repository;
+	private final ProjectsRepository repository;
 
 	/**
 	 * {@code String} with the {@code Project}ID argument's name. The
@@ -47,11 +47,11 @@ public class GetSubproject extends BaseCommandResultsOutputMethod
 	{
 
 		/**
-		 * The {@link ProjectRepository} with the {@code Project}s. This
+		 * The {@link ProjectsRepository} with the {@code Project}s. This
 		 * {@code ProjectRepository} is accessed to get the {@code Project} with
 		 * the wanted Sub{@code Project}s.
 		 */
-		private final ProjectRepository repository;
+		private final ProjectsRepository repository;
 
 		/**
 		 * The constructor for {@code Factory}.
@@ -59,7 +59,7 @@ public class GetSubproject extends BaseCommandResultsOutputMethod
 		 * @param repository
 		 *            The {@code ProjectRepository} with the {@code Project}.
 		 */
-		public Factory(ProjectRepository repository)
+		public Factory(ProjectsRepository repository)
 		{
 			this.repository = repository;
 		}
@@ -82,7 +82,7 @@ public class GetSubproject extends BaseCommandResultsOutputMethod
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	public GetSubproject(ProjectRepository repository,
+	public GetSubproject(ProjectsRepository repository,
 			Map<String, String> parameters)
 	{
 		super(parameters);

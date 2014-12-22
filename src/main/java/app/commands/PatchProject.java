@@ -1,21 +1,20 @@
 package app.commands;
 
-import java.io.IOException;
 import java.util.Map;
 
 import utils.Project;
-import app.commands.exceptions.CommandException;
-import app.repository.ProjectRepository;
+import app.commands.exceptions.InvalidParameterValueException;
+import app.elements.DatabaseElement;
+import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
-import app.resultsOutputMethods.ResultOutputMethod;
 
 public class PatchProject extends BaseCommandUserAuthentication{
 
 	/**
-	 * The {@link ProjectRepository} with the {@code Project}s. This
+	 * The {@link ProjectsRepository} with the {@code Project}s. This
 	 * {@code ProjectRepository} is accessed to get the {@code Project}.
 	 */
-	private final ProjectRepository pRepository;
+	private final ProjectsRepository pRepository;
 	
 	/**
 	 * {@code String} with the {@code Project}ID argument's name. The
@@ -58,10 +57,10 @@ public class PatchProject extends BaseCommandUserAuthentication{
 	{
 
 		/**
-		 * The {@link ProjectRepository} with the {@code Project}s. This
+		 * The {@link ProjectsRepository} with the {@code Project}s. This
 		 * {@code ProjectRepository} is accessed to get the {@code Project}
 		 */
-		private final ProjectRepository pRepository;
+		private final ProjectsRepository pRepository;
 		
 		private final UserRepository uRepository;
 
@@ -71,7 +70,7 @@ public class PatchProject extends BaseCommandUserAuthentication{
 		 * @param repository
 		 *            The {@code ProjectRepository} with the {@code Project}.
 		 */
-		public Factory(UserRepository uRepository, ProjectRepository pRepository)
+		public Factory(UserRepository uRepository, ProjectsRepository pRepository)
 		{
 			this.pRepository = pRepository;
 			this.uRepository = uRepository;
@@ -96,7 +95,7 @@ public class PatchProject extends BaseCommandUserAuthentication{
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	public PatchProject(UserRepository uRepository, ProjectRepository pRepository, Map<String, String> parameters)
+	public PatchProject(UserRepository uRepository, ProjectsRepository pRepository, Map<String, String> parameters)
 	{
 		super(uRepository, parameters);
 		this.pRepository = pRepository;
@@ -104,27 +103,26 @@ public class PatchProject extends BaseCommandUserAuthentication{
 
 
 	@Override
-	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
-			throws CommandException, IOException {
+	protected DatabaseElement internalExecuteAfterUserAuthentication()
+			throws Exception {
 
 		Project project = pRepository.getProjectById(getParameterAsLong(PID));
 		
 		if(project == null)
 		{
-			out.giveResults("Project not found!");
-			return;
+			throw new InvalidParameterValueException("Project not found!");
 		}
 		
 		if (parameters.containsKey(LONGITUDE))
 		{
 			if( ! project.updateLongitude(getParameterAsDouble(LONGITUDE)))
-				out.giveResults("Longitude out of bounds.");
+				throw new InvalidParameterValueException("Longitude out of bounds.");
 		}
 		
 		if(parameters.containsKey(LATITUDE))
 		{
 			if( ! project.updateLatitude(getParameterAsDouble(LATITUDE)))
-				out.giveResults("Latitude out of bounds.");
+				throw new InvalidParameterValueException("Latitude out of bounds.");
 		}
 		
 		if(parameters.containsKey(NAME))
@@ -135,10 +133,10 @@ public class PatchProject extends BaseCommandUserAuthentication{
 		if(parameters.containsKey(PRICE))
 		{
 			if( ! project.updateLocalPrice(getParameterAsDouble(PRICE)))
-				out.giveResults("A negative price is not allowed.");
+				throw new InvalidParameterValueException("A negative price is not allowed.");
 		}
 		
-		out.giveResults("Success.");
+		return project;
 	}
 
 

@@ -1,6 +1,5 @@
-
-
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 import app.commandParser.CommandParser;
@@ -9,8 +8,8 @@ import app.commandParser.DuplicateArgumentsException;
 import app.commandParser.InvalidCommandArgumentsException;
 import app.commandParser.InvalidRegisterException;
 import app.commandParser.UnknownCommandException;
-import app.commands.DeleteProject;
-import app.commands.GetProject;
+import app.commands.DeleteProjects;
+import app.commands.GetProjects;
 import app.commands.GetProjectWorkers;
 import app.commands.GetSubproject;
 import app.commands.GetUser;
@@ -19,8 +18,8 @@ import app.commands.PatchConsultant;
 import app.commands.PatchProject;
 import app.commands.PatchUser;
 import app.commands.PostConsultant;
-import app.commands.PostProject;
-import app.commands.PostSubproject;
+import app.commands.PostProjects;
+import app.commands.PostSubprojects;
 import app.commands.PostUsers;
 import app.commands.PostWorkerInProject;
 import app.commands.exceptions.CommandException;
@@ -29,7 +28,7 @@ import app.commands.exceptions.MandatoryParameterNotPresentException;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
 import app.repository.InMemoryWorkerRepo;
-import app.repository.ProjectRepository;
+import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
 import app.resultsOutputMethods.ResultOutputAsPlainTextToStream;
@@ -46,29 +45,29 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * <p>
  * AVAIABLE COMMANDS:
  * <li>POST /users {parameter list} : add a user to the User Repository
- * <li>POST /project {parameter list} : add a Project to the Project repository.
- * <li>POST /consultant {parameter list} : add a consultant to the Worker
+ * <li>POST /projects {parameter list} : add a Project to the Project repository.
+ * <li>POST /consultants {parameter list} : add a consultant to the Worker
  * Repository.
- * <li>POST /project/{pid}/{type} {parameter list} : add a consultant or Manager
+ * <li>POST /projects/{pid}/{type} {parameter list} : add a consultant or Manager
  * to a project/subproject.
- * <li>POST /project/{pid}/subproject {parameter list} : add a subproject to a
- * project/subproject.
+ * <li>POST /projects/{pid}/subproject {parameter list} : add a subproject to a
+ * projects/subprojects.
  * <li>GET /users : Return the information of all users in the User Repository
  * <li>GET /users/{username} : Return the information of the user with the
  * specify {@code username} of the User Repository
- * <li>GET /project/{pid}/{type} : Return the information of all consultants or
+ * <li>GET /projects/{pid}/{type} : Return the information of all consultants or
  * of the Manager of a project with the specify {@code ProjectId}.
- * <li>GET /project/{pid} : Return the information of the project with the
+ * <li>GET /projects/{pid} : Return the information of the project with the
  * specify {@code ProjectId}.
- * <li>GET /project/{pid}/subproject : Return the information of all subprojects
+ * <li>GET /projects/{pid}/subproject : Return the information of all subprojects
  * of a project with the specify {@code ProjectId}.
  * <li>PATCH /users/{username} {parameter list} : Updates the password of the
  * user identified by the specify {@code username}.
- * <li>PATCH /project/{pid} {parameter list}: Update the information of the
+ * <li>PATCH /projects/{pid} {parameter list}: Update the information of the
  * project identified by the specify {@code ProjectId}.
- * <li>PATCH /consultant/{cid} {parameter list}: Updates the information of the
+ * <li>PATCH /consultants/{cid} {parameter list}: Updates the information of the
  * consultant with the specify {@code WorkerId}.
- * <li>DELETE /project/{pid} : Deletes the project with the specify
+ * <li>DELETE /projects/{pid} : Deletes the project with the specify
  * {@code ProjectId} and all its subprojects
  * <li>OPTION: Displays a description of all available commands.
  * <li>HELP: Show an user guide to use the application
@@ -83,7 +82,7 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * <li>The user's LoginName and Password must be introduce with the parameters
  * list of the POST Commands to authentication;
  * <li>All the commands have the same follow generic strutter: {method} {path}
- * {parameter list} Example: POST /consultant/
+ * {parameter list} Example: POST /consultants/
  * loginName=FilipaG&password=123456&name=Filipe%20Maia&priceHour=20
  * 
  * <p>
@@ -98,6 +97,20 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  */
 public class AppProjectManager
 {
+
+	/**
+	 * The variable that defines the default Output used in this application.
+	 */
+	private static PrintStream systemOut = System.out;
+
+	/**
+	 * The variable that defines the default Output Method (for the
+	 * {@code Command#execute(ResultOutputMethodToStream)}'s results) used in
+	 * this application.
+	 */
+	private static ResultOutputMethodToStream resultOutput = new ResultOutputAsPlainTextToStream(
+			systemOut);
+
 	/**
 	 * This method associates the method and the path that the user will insert
 	 * to reach the corresponding command factory, and register the command.
@@ -112,41 +125,41 @@ public class AppProjectManager
 	 * @throws InvalidRegisterException
 	 */
 	public static void RegisterCommand(CommandParser parser,
-			UserRepository userRepo, ProjectRepository projectRepo,
+			UserRepository userRepo, ProjectsRepository projectRepo,
 			WorkerRepository workersRepo) throws InvalidRegisterException
- {
+	{
 
 		parser.registerCommand("POST", "/users",
 				new PostUsers.Factory(userRepo));
-		parser.registerCommand("POST", "/consultant",
+		parser.registerCommand("POST", "/consultants",
 				new PostConsultant.Factory(userRepo, workersRepo));
-		parser.registerCommand("POST", "/project", new PostProject.Factory(
+		parser.registerCommand("POST", "/projects", new PostProjects.Factory(
 				userRepo, projectRepo));
-		parser.registerCommand("POST", "/project/{" + PostWorkerInProject.PID
+		parser.registerCommand("POST", "/projects/{" + PostWorkerInProject.PID
 				+ "}/{" + PostWorkerInProject.WTYPE + "}",
 				new PostWorkerInProject.Factory(userRepo, projectRepo,
 						workersRepo));
-		parser.registerCommand("POST", "/project/{" + PostSubproject.PID
-				+ "}/subproject", new PostSubproject.Factory(userRepo,
+		parser.registerCommand("POST", "/projects/{" + PostSubprojects.PID
+				+ "}/subproject", new PostSubprojects.Factory(userRepo,
 				projectRepo));
 		parser.registerCommand("GET", "/users", new GetUsers.Factory(userRepo));
 		parser.registerCommand("GET", "/users/{" + GetUser.USERNAME + "}",
 				new GetUser.Factory(userRepo));
-		parser.registerCommand("GET", "/project/{" + GetProjectWorkers.PID
+		parser.registerCommand("GET", "/projects/{" + GetProjectWorkers.PID
 				+ "}/{" + GetProjectWorkers.WTYPE + "}",
 				new GetProjectWorkers.Factory(projectRepo));
-		parser.registerCommand("GET", "/project/{" + GetSubproject.PID
+		parser.registerCommand("GET", "/projects/{" + GetSubproject.PID
 				+ "}/subproject", new GetSubproject.Factory(projectRepo));
-		parser.registerCommand("GET", "/project/{" + GetProject.PID + "}",
-				new GetProject.Factory(projectRepo));
+		parser.registerCommand("GET", "/projects/{" + GetProjects.PID + "}",
+				new GetProjects.Factory(projectRepo));
 		parser.registerCommand("PATCH", "/users/{" + PatchUser.USERNAME + "}",
 				new PatchUser.Factory(userRepo));
-		parser.registerCommand("PATCH", "/project/{" + PatchProject.PID + "}",
+		parser.registerCommand("PATCH", "/projects/{" + PatchProject.PID + "}",
 				new PatchProject.Factory(userRepo, projectRepo));
-		parser.registerCommand("PATCH", "/consultant{" + PatchConsultant.CID + "}",
-				new PostConsultant.Factory(userRepo, workersRepo));
-		parser.registerCommand("DELETE", "/project/{" + GetProject.PID  + "}",
-				new DeleteProject.Factory(userRepo,projectRepo));
+		parser.registerCommand("PATCH", "/consultants/{" + PatchConsultant.CID
+				+ "}", new PostConsultant.Factory(userRepo, workersRepo));
+		parser.registerCommand("DELETE", "/projects/{" + GetProjects.PID + "}",
+				new DeleteProjects.Factory(userRepo, projectRepo));
 	}
 
 	/**
@@ -156,77 +169,69 @@ public class AppProjectManager
 	 */
 	public static void helpCommand()
 	{
-		System.out.println("IMPLEMENTATION NOTES:");
-		System.out
+		systemOut.println("IMPLEMENTATION NOTES:");
+		systemOut
 				.println(" - Only registered users can use POST commands;"
 						+ "\n    Before start to use the commands, the user has to create the administrator data.");
 
-		System.out
+		systemOut
 				.println("     The user's LoginName and Password must be introduce with the parameters list of"
 						+ "\n    the POST Commands to authentication;"
 						+ "\n If the authentication data are not valid, the command is not performed.");
-		System.out
+		systemOut
 				.println("\n - All the commands have the same follow generic strutter:	\n              {method} {path} {parameter list}"
 						+ "\n\nIn the list of parameters, the parameters must be separated by the '&' symbol and the words by the code '% 20'");
-		System.out
+		systemOut
 				.println(" Example:"
-						+ "\n POST  /consultant/  loginName=FilipaG&password=123456&name=Filipe%20Maia&priceHour=20");
-		System.out
-		.println("\nThe user must write the command in the console and press Enter to proceed.");
+						+ "\n POST  /consultants/  loginName=FilipaG&password=123456&name=Filipe%20Maia&priceHour=20");
+		systemOut
+				.println("\nThe user must write the command in the console and press Enter to proceed.");
 
-		System.out
+		systemOut
 				.println("\nTo learn the commands that are available in this application enter the OPTION command that displays "
 						+ "a description of all available commands.");
 
-		
 	}
-	
+
 	/**
-	 * This method shows an description of all available commands in this application
+	 * This method shows an description of all available commands in this
+	 * application
 	 */
 	public static void optionCommand()
 	{
-		System.out.println("\nAVALABLE COMMANDS:"
-				+ "\n  POST COMMANDS:"
-				+ "\n  	POST /users {parameter list: loginName, loginPassord, username, password, email, fullname(optional)}  "
-				+ "\n	  Add a user to the User Repository. "
-				+ "\n  	POST /project  {parameter list: loginName, loginPassord, Latitiude, longitude, name, price} "
-				+ "\n	  Add a Project to the Project repository."
-				+ "\n  	POST /consultant {parameter list: loginName, loginPassord, name, priceHour, bonus (optional)}"
-				+ "\n	  Add a consultant to the Worker Repository"
-				+ "\n  	POST /project/{pid}/{type} {parameter list: loginName, loginPassord, WorkerId}"
-				+ "\n	  Add a consultant or Manager to a project/subproject"
-				+ "\n  	POST /project/{pid}/subproject {parameter list: loginName, loginPassord, ProjectId}"
-				+ "\n	  Add a subproject to a project/subproject."
-				+ "\n\n  GET COMMANDS: {parameter list: accept, output-file(optional)}"
-				+ "\n  	GET /users : Return the information of all users in the User Repository"
-				+ "\n  	GET /users/{username}  : Return the information of the user with the  specify {@code username} of the User Repository"
-				+ "\n  	GET /consultant/{cid} : Return the information of the consultant with the  specify {@code WorkerId}"						//extra ao enunciado
-				+ "\n  	GET /project/{pid}: Return the information of the project with the  specify {@code ProjectId}"                            //extra ao enunciado
-				+ "\n  	GET /project/{pid}/{type} : Return the information of all consultants or of the Manager of a project with the  specify {@code ProjectId}"
-				+ "\n  	GET /project/{pid}/subproject : Return the information of all subprojects of a project with the  specify {@code ProjectId}"
-				+ "\n\n  PATCH COMMANDS:"
-				+ "\n  	PATCH /users/{username} {parameter list: loginName, loginPassord, oldpassword, newPassword} "
-				+ "\n	  Updates the password of the user identified by the  specify {@code username}. "                          
-				+ "\n  	PATCH /project/{pid} {parameter list: loginName, loginPassord, Latitiude, longitude, name, price (the last four optional)} "
-				+ "\n	  Update the information of the project identified by the  specify {@code ProjectId}."					
-				+ "\n  	PATCH /consultant/{cid} {parameter list: loginName, loginPassord, name, priceHour (the last two optional)} "
-				+ "\n	  Updates the information of the consultant with the  specify {@code WorkerId}. "
-				+ "\n\n  DELETE COMMANDS:"
-				+ "\n  	DELETE /project/{pid} {parameter list: loginName, loginPassord} "
-				+ "\n	  Deletes the project with the  specify {@code ProjectId} and all its subprojects"
-				+ "\n\n  OPTION: Displays a description of all available commands."
-				+ "\n  HELP: Show an user guide to use the application"
-				+ "\n  EXIT: terminates the application");
+		systemOut
+				.println("\nAVALABLE COMMANDS:"
+						+ "\n  POST COMMANDS:"
+						+ "\n  	POST /users {parameter list: loginName, loginPassord, username, password, email, fullname(optional)}  "
+						+ "\n	  Add a user to the User Repository. "
+						+ "\n  	POST /projects  {parameter list: loginName, loginPassord, Latitiude, longitude, name, price} "
+						+ "\n	  Add a Project to the Project repository."
+						+ "\n  	POST /consultants {parameter list: loginName, loginPassord, name, priceHour, bonus (optional)}"
+						+ "\n	  Add a consultant to the Worker Repository"
+						+ "\n  	POST /projects/{pid}/{type} {parameter list: loginName, loginPassord, WorkerId}"
+						+ "\n	  Add a consultant or Manager to a project/subproject"
+						+ "\n  	POST /projects/{pid}/subproject {parameter list: loginName, loginPassord, ProjectId}"
+						+ "\n	  Add a subproject to a project/subproject."
+						+ "\n\n  GET COMMANDS: {parameter list: accept, output-file(optional)}"
+						+ "\n  	GET /users : Return the information of all users in the User Repository"
+						+ "\n  	GET /users/{username}  : Return the information of the user with the  specify {@code username} of the User Repository"																												// enunciado
+						+ "\n  	GET /projects/{pid}: Return the information of the project with the  specify {@code ProjectId}" // extra ao enunciado
+						+ "\n  	GET /projects/{pid}/{type} : Return the information of all consultants or of the Manager of a project with the  specify {@code ProjectId}"
+						+ "\n  	GET /projects/{pid}/subproject : Return the information of all subprojects of a project with the  specify {@code ProjectId}"
+						+ "\n\n  PATCH COMMANDS:"
+						+ "\n  	PATCH /users/{username} {parameter list: loginName, loginPassord, oldpassword, newPassword} "
+						+ "\n	  Updates the password of the user identified by the  specify {@code username}. "
+						+ "\n  	PATCH /projects/{pid} {parameter list: loginName, loginPassord, Latitiude, longitude, name, price (the last four optional)} "
+						+ "\n	  Update the information of the project identified by the  specify {@code ProjectId}."
+						+ "\n  	PATCH /consultants/{cid} {parameter list: loginName, loginPassord, name, priceHour (the last two optional)} "
+						+ "\n	  Updates the information of the consultant with the  specify {@code WorkerId}. "
+						+ "\n\n  DELETE COMMANDS:"
+						+ "\n  	DELETE /projects/{pid} {parameter list: loginName, loginPassord} "
+						+ "\n	  Deletes the project with the  specify {@code ProjectId} and all its subprojects"
+						+ "\n\n  OPTION: Displays a description of all available commands."
+						+ "\n  HELP: Show an user guide to use the application"
+						+ "\n  EXIT: terminates the application");
 	}
-	
-
-	/**
-	 * The variable that defines the kind of OutputStream we will use in this
-	 * application
-	 */
-	private ResultOutputMethodToStream out = new ResultOutputAsPlainTextToStream(
-			System.out);
 
 	/**
 	 * Ask for a command and execute it, till the END command is called.
@@ -235,105 +240,130 @@ public class AppProjectManager
 	 * @throws IOException
 	 * @throws CommandException
 	 */
-	public void execute() throws CommandParserException, CommandException,
-			IOException
+	public static void execute(CommandParser parser, UserRepository userRepo)
+			throws CommandParserException, CommandException, IOException
 	{
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 
-		CommandParser parser = new CommandParser();
-		ProjectRepository projectRepo = new InMemoryProjectRepo();
-		UserRepository userRepo = new InMemoryUserRepo();
-		WorkerRepository workersRepo = new InMemoryWorkerRepo();
-		try
-		{
-			RegisterCommand(parser, userRepo, projectRepo, workersRepo);
-		} catch (InvalidRegisterException e)
-		{
-			System.out
-					.println("Invalid Registry! Verify RegisterCommand method.");
-		}
+		systemOut.println("*********************************");
+		systemOut.println("********** JAVA COMPANY *********");
+		systemOut.println("*********************************");
 
-		System.out.println("*********************************");
-		System.out.println("********** JAVA COMPANY *********");
-		System.out.println("*********************************");
-
-		System.out.println("\n Create Administrator");
-		System.out.println("LoginName: Admin1");
-		System.out.print("Insert New password:");
+		systemOut.println("\n Create Administrator");
+		systemOut.println("LoginName: Admin1");
+		systemOut.print("Insert New password:");
 		String password = scanner.nextLine();
-		
-		while(password.length() <= 3)
+
+		while (password.length() <= 3)
 		{
-			System.out.println("Password must at least have 4 characters.\nInsert password:");
+			systemOut
+					.println("Password must at least have 4 characters.\nInsert password:");
 			password = scanner.nextLine();
 		}
 		userRepo.addAdmin("Admin1", password);
 
 		do
 		{
-			System.out.println("\nInsert the command you want to execute:");
-			String a = scanner.nextLine();
-			switch (a)
+			systemOut.println("\nInsert the command you want to execute:");
+			String cmd = scanner.nextLine();
+			switch (cmd)
 			{
 
 				case "HELP":
 					helpCommand();
 					break;
-					
+
 				case "OPTION":
 					optionCommand();
 					break;
 
 				case "EXIT":
-					System.out.println("App now closing.\nThank you for choosing Java Company!");
+					systemOut
+							.println("App now closing.\nThank you for choosing Java Company!");
 					return;
-					
+
 				default:
-					try
-					{
-						parser.getCommand(a.split(" ")).execute(out);
-					} catch (UnknownCommandException e)
-					{
-						System.out.println("Args must have 2 or 3 elements.");
-					} catch (InvalidCommandArgumentsException e)
-					{
-						System.out
-								.println("Inserted a parameter without value.");
-					} catch (DuplicateArgumentsException e)
-					{
-						System.out
-								.println("Duplicate parameters entered.");
-					} catch (MandatoryParameterNotPresentException e)
-					{
-						System.out
-								.println("Not all required parameters were entered.");
-					} catch (InvalidParameterValueException e)
-					{
-						System.out
-								.println("Inserted a parameter with an invalid value.");
-					} catch (CommandException e)
-					{
-						System.out.println("Invalid Command.");
-					} catch (IOException e)
-					{
-						System.out.println("Invalid output Stream.");
-					} catch(NullPointerException e)
-					{
-						System.out.println("Not found.");
-					}
+					commandPrompt(parser, cmd);
 			}
 
 		} while (true);
+	}
 
+	/**
+	 * Execute the command.
+	 * 
+	 * @param parser
+	 *            The {@code CommandParser} to use for getting the
+	 *            {@code Command} to execute.
+	 * @param cmd
+	 *            A {@code String} of the {@code Command} to execute.
+	 * @throws CommandParserException
+	 */
+	private static void commandPrompt(CommandParser parser, String cmd)
+			throws CommandParserException
+	{
+		try
+		{
+			parser.getCommand(cmd.split(" ")).execute(resultOutput);
+		} catch (UnknownCommandException e)
+		{
+			systemOut.println("Args must have 2 or 3 elements.");
+		} catch (InvalidCommandArgumentsException e)
+		{
+			systemOut.println("Inserted a parameter without value.");
+		} catch (DuplicateArgumentsException e)
+		{
+			systemOut.println("Duplicate parameters entered.");
+		} catch (MandatoryParameterNotPresentException e)
+		{
+			systemOut.println("Not all required parameters were entered.");
+		} catch (InvalidParameterValueException e)
+		{
+			systemOut.println("Inserted a parameter with an invalid value.");
+		} catch (CommandException e)
+		{
+			systemOut.println("Invalid Command.");
+		} catch (IOException e)
+		{
+			systemOut.println("Invalid output Stream.");
+		} catch (NullPointerException e)
+		{
+			systemOut.println("Not found.");
+		} catch (Exception e)
+		{
+			//TODO testar e/ou melhorar...
+			systemOut.println(e.getMessage());
+			systemOut.println(e.getCause().toString());
+			systemOut.println(e.getLocalizedMessage());
+		}
 	}
 
 	public static void main(String[] args) throws CommandParserException,
 			CommandException, IOException
 	{
+		CommandParser parser = new CommandParser();
+		UserRepository userRepo = new InMemoryUserRepo();
+		try
+		{
+			RegisterCommand(parser, userRepo, new InMemoryProjectRepo(),
+					new InMemoryWorkerRepo());
+		} catch (InvalidRegisterException e)
+		{
+			systemOut
+					.println("Invalid Registry! Verify RegisterCommand method.");
+		}
 
-		AppProjectManager app = new AppProjectManager();
-		app.execute();
+		while (args.length == 0)
+		{
+			execute(parser, userRepo);
+			systemOut.close();
+			return;
+		}
 
+		for (String cmd : args)
+			commandPrompt(parser, cmd);
+		systemOut.close();
 	}
+
 }
