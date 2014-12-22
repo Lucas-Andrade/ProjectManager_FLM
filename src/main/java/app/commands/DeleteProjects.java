@@ -1,16 +1,13 @@
 package app.commands;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import utils.Project;
-import app.commands.exceptions.CommandException;
 import app.elements.DatabaseElement;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
-import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that deletes {@link Project}s and
@@ -114,18 +111,26 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 		return DEMANDING_PARAMETERS;
 	}
 
+	/**
+	 * Deletes a {@code Project} and all it's subprojects.
+	 * 
+	 * @return The deleted {@code Project}.
+	 * 
+	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication()
+	 */
 	@Override
-	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
-			throws CommandException, IOException
+	protected DatabaseElement internalExecuteAfterUserAuthentication()
+			throws Exception
 	{
 		long pid = this.getParameterAsLong(PID);
+		Project parentProjectToDelete = repository.getProjectById(pid);
 		List<Long> allPIDsToDelete = new ArrayList<Long>();
 		allPIDsToDelete = this.getAllPIDsToDelete(pid, allPIDsToDelete);
 
 		this.removeAllProjectsToDeleteFromAllProjectContainers(allPIDsToDelete);
 		this.removeAllProjectsToDeleteFromTheRepository(allPIDsToDelete);
 
-		out.giveResults("Done.");
+		return parentProjectToDelete;
 	}
 
 	private void removeAllProjectsToDeleteFromTheRepository(
@@ -138,7 +143,8 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 		}
 	}
 
-	// because of removeproject in project also removes from nametester ,this should go first before
+	// because of removeproject in project also removes from nametester ,this should go
+	// first before
 	// removeallprojectsfromrepository
 	private void removeAllProjectsToDeleteFromAllProjectContainers(
 			List<Long> allPIDsToDelete)

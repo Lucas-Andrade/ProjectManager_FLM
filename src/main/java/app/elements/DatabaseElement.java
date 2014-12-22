@@ -8,14 +8,4 @@ package app.elements;
  */
 public interface DatabaseElement
 {
-
-	/**
-	 * This method represent the worker's information in HTLM format 
-	 */
-	String toHtml();
-	
-	/**
-	 * This method represent the worker's information in Json's format 
-	 */
-	String toJson();
 }

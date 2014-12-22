@@ -1,10 +1,8 @@
 package app.commands;
 
-import java.io.IOException;
 import java.util.Map;
 
-import app.commands.exceptions.CommandException;
-import app.resultsOutputMethods.ResultOutputMethod;
+import app.elements.DatabaseElement;
 
 public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 {
@@ -16,21 +14,20 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 	}
 
 	@Override
-	protected void internalExecute(ResultOutputMethod out)
-			throws CommandException, IOException
+	protected DatabaseElement internalExecute() throws Exception
 	{
 		// TODO Auto-generated method stub
 
 	}
 
-	abstract protected void internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod out)
-			throws app.commands.exceptions.CommandException, IOException;
+	abstract protected DatabaseElement internalExecuteAfterDefiningTheOutputMethodForResults()
+			throws Exception;
 
 	@Override
 	protected String[] getMandatoryParameters()
 	{
 		// TODO Auto-generated method stub
-		return null;
+
 	}
 
 }

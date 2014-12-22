@@ -1,12 +1,11 @@
 package app.commands;
 
-import java.io.IOException;
 import java.util.Map;
 
-import app.commands.exceptions.CommandException;
+import app.commands.exceptions.InvalidUserException;
+import app.elements.DatabaseElement;
 import app.elements.User;
 import app.repository.UserRepository;
-import app.resultsOutputMethods.ResultOutputMethod;
 import app.resultsOutputMethods.ResultOutputMethodToStream;
 
 /**
@@ -53,32 +52,30 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	public BaseCommandUserAuthentication(UserRepository userRepository, Map<String, String> parameters)
+	public BaseCommandUserAuthentication(UserRepository userRepository,
+			Map<String, String> parameters)
 	{
 		super(parameters);
 		repository = userRepository;
 	}
 
 	/**
-	 * Authenticates the {@code User}. If authentication is incorrect stops the
-	 * execution of the {@code Command}, if correct proceeds with the execution
-	 * of the {@code Command}.
+	 * Authenticates the {@code User}. If authentication is incorrect throws
+	 * {@link InvalidUserException}, if correct proceeds with the execution.
 	 * 
 	 * @see BaseCommandUserAuthentication#authenticateUser(String, String)
-	 * @see app.commands.BaseCommand#internalExecute(app.resultsOutputMethods.
-	 *      ResultOutputMethod)
+	 * @see app.commands.BaseCommand#internalExecute()
 	 */
 	@Override
-	protected void internalExecute(ResultOutputMethod out)
-			throws CommandException, IOException
+	protected DatabaseElement internalExecute() throws Exception
 	{
 		validateDemandingParameters(DEMANDING_PARAMETERS);
 		String username = parameters.get(LOGINNAME);
 		String password = parameters.get(LOGINPASSWORD);
 		if (authenticateUser(username, password))
-			internalExecuteAfterUserAuthentication(out);
+			return internalExecuteAfterUserAuthentication();
 		else
-			out.giveResults("Login Name and/or Login Password incorrect.");
+			throw new InvalidUserException(username);
 	}
 
 	/**
@@ -100,11 +97,9 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	/**
 	 * @see Command#execute(ResultOutputMethodToStream)
 	 * 
-	 * @param out
-	 * @throws app.commands.exceptions.CommandException
-	 * @throws IOException
+	 * @throws Exception
 	 */
-	abstract protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
-			throws app.commands.exceptions.CommandException, IOException;
+	abstract protected DatabaseElement internalExecuteAfterUserAuthentication()
+			throws Exception;
 
 }

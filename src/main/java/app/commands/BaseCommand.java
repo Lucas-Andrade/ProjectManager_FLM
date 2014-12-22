@@ -1,11 +1,10 @@
 package app.commands;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
 import app.commands.exceptions.MandatoryParameterNotPresentException;
-import app.resultsOutputMethods.ResultOutputMethod;
+import app.elements.DatabaseElement;
 import app.resultsOutputMethods.ResultOutputMethodToStream;
 
 /**
@@ -16,7 +15,8 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * @param <T>
  * @since 08/12/2014
  */
-public abstract class BaseCommand<T extends DatabaseElements> implements Command, Callable<T>
+public abstract class BaseCommand implements
+		Command, Callable<DatabaseElement>
 {
 
 	/**
@@ -44,29 +44,35 @@ public abstract class BaseCommand<T extends DatabaseElements> implements Command
 
 	/**
 	 * Checks if all mandatory arguments are in the
-	 * {@link BaseCommand#parameters}, if yes proceeds with the execution of the
-	 * {@code Command}.
+	 * {@link BaseCommand#parameters}, if yes proceeds with the execution.
 	 * 
 	 * @see BaseCommand#validateDemandingParameters(String...)
-	 * @see BaseCommand#internalExecute(ResultOutputMethodToStream)
+	 * @see BaseCommand#internalExecute()
+	 * 
+	 * @throws Exception
 	 */
 	@Override
-	public final void execute(ResultOutputMethodToStream out)
-			throws app.commands.exceptions.CommandException, IOException
+	public final void execute(ResultOutputMethodToStream out) throws Exception
 	{
 		validateDemandingParameters(getMandatoryParameters());
-		internalExecute(out);
+		out.giveResults(this.call());
 	}
 
-//	/**
-//	 * @see Command#execute(ResultOutputMethodToStream)
-//	 * 
-//	 * @param out
-//	 * @throws app.commands.exceptions.CommandException
-//	 * @throws IOException
-//	 */
-//	abstract protected void internalExecute(ResultOutputMethod out)
-//			throws app.commands.exceptions.CommandException, IOException;
+	/**
+	 * @see Callable#call()
+	 * @see Command#execute(ResultOutputMethodToStream)
+	 */
+	@Override
+	public DatabaseElement call() throws Exception
+	{
+		return internalExecute();
+	}
+//TODO call() é public, internalExecute() é protected. Sendo assim o call() deveria substituir o execute(out), certo?
+	 /**
+	 * @see Callable#call()
+	 * @see Command#execute(ResultOutputMethodToStream)
+	 */
+	 abstract protected DatabaseElement internalExecute() throws Exception;
 
 	/**
 	 * Checks if all mandatory arguments are in the
@@ -144,8 +150,5 @@ public abstract class BaseCommand<T extends DatabaseElements> implements Command
 	{
 		return Long.parseLong(parameters.get(name));
 	}
-
-	@Override
-	public abstract T call() throws Exception;
 
 }

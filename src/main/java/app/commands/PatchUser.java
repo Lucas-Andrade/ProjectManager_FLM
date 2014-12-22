@@ -1,12 +1,12 @@
 package app.commands;
 
-import java.io.IOException;
 import java.util.Map;
 
-import app.commands.exceptions.CommandException;
+import app.commands.exceptions.InvalidParameterValueException;
+import app.commands.exceptions.InvalidUserException;
+import app.elements.DatabaseElement;
 import app.elements.UserInterface;
 import app.repository.UserRepository;
-import app.resultsOutputMethods.ResultOutputMethod;
 
 public class PatchUser extends BaseCommandUserAuthentication{
 
@@ -100,27 +100,26 @@ public class PatchUser extends BaseCommandUserAuthentication{
 	}
 
 	/**
-	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
+	 * @return The modified {@code User}.
+	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication()
 	 */
 	@Override
-	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
-			throws CommandException, IOException {
-		
-		newPassword = getParameterAsString(NEWPASSWORD);
+	protected DatabaseElement internalExecuteAfterUserAuthentication()
+			throws Exception {
+
+		this.newPassword = getParameterAsString(NEWPASSWORD);
+		String oldPassword = parameters.get(OLDPASSWORD);
 		this.username = getParameterAsString(USERNAME);
-		
+
+		if(!super.authenticateUser(this.username, oldPassword))
+			throw new InvalidUserException(this.username);
+
 		UserInterface user = repository.getUserByUsername(username);
 		
-		if(!user.getLoginPassword().equals(parameters.get(OLDPASSWORD)))
-		{
-			out.giveResults("The old password is incorrect.");
-			return;
-		}
-		
 		if(user.setNewPassword(newPassword))
-			out.giveResults("Success.");
+			return user;
 		else
-			out.giveResults("New password must at least have 4 characters.");
+			throw new InvalidParameterValueException("New password must at least have 4 characters.");
 	}
 
 	/**

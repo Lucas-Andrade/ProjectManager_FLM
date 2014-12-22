@@ -15,7 +15,12 @@ public class InvalidParameterValueException extends CommandException
 				"Demanding parameter with name {0} has invalid value {1}.",
 				name, value));
 	}
-
+	
+	public InvalidParameterValueException(String message)
+	{
+		super(message);
+	}
+	
 	public InvalidParameterValueException(String message, Throwable cause)
 	{
 		super(message, cause);

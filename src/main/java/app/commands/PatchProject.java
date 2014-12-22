@@ -1,13 +1,12 @@
 package app.commands;
 
-import java.io.IOException;
 import java.util.Map;
 
 import utils.Project;
-import app.commands.exceptions.CommandException;
+import app.commands.exceptions.InvalidParameterValueException;
+import app.elements.DatabaseElement;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
-import app.resultsOutputMethods.ResultOutputMethod;
 
 public class PatchProject extends BaseCommandUserAuthentication{
 
@@ -104,27 +103,26 @@ public class PatchProject extends BaseCommandUserAuthentication{
 
 
 	@Override
-	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
-			throws CommandException, IOException {
+	protected DatabaseElement internalExecuteAfterUserAuthentication()
+			throws Exception {
 
 		Project project = pRepository.getProjectById(getParameterAsLong(PID));
 		
 		if(project == null)
 		{
-			out.giveResults("Project not found!");
-			return;
+			throw new InvalidParameterValueException("Project not found!");
 		}
 		
 		if (parameters.containsKey(LONGITUDE))
 		{
 			if( ! project.updateLongitude(getParameterAsDouble(LONGITUDE)))
-				out.giveResults("Longitude out of bounds.");
+				throw new InvalidParameterValueException("Longitude out of bounds.");
 		}
 		
 		if(parameters.containsKey(LATITUDE))
 		{
 			if( ! project.updateLatitude(getParameterAsDouble(LATITUDE)))
-				out.giveResults("Latitude out of bounds.");
+				throw new InvalidParameterValueException("Latitude out of bounds.");
 		}
 		
 		if(parameters.containsKey(NAME))
@@ -135,10 +133,10 @@ public class PatchProject extends BaseCommandUserAuthentication{
 		if(parameters.containsKey(PRICE))
 		{
 			if( ! project.updateLocalPrice(getParameterAsDouble(PRICE)))
-				out.giveResults("A negative price is not allowed.");
+				throw new InvalidParameterValueException("A negative price is not allowed.");
 		}
 		
-		out.giveResults("Success.");
+		return project;
 	}
 
 

@@ -1,16 +1,15 @@
 package app.commands;
 
-import java.io.IOException;
 import java.util.Map;
 
 import utils.AWorker;
-import app.commands.exceptions.CommandException;
+import app.elements.DatabaseElement;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
-import app.resultsOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that modifies {@link AWorker}s.
+ * 
  * Caller {@code String}: PATCH /consultants/{cid} {parameter list}
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
@@ -112,11 +111,13 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 	 * Modifies an {@code AWorker}. Get's the {@code AWorker}'s from the
 	 * {@code WorkerRepository} and modifies it.
 	 * 
-	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
+	 * @return The modified {@code AWorker}.
+	 * 
+	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication()
 	 */
 	@Override
-	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
-			throws CommandException, IOException
+	protected DatabaseElement internalExecuteAfterUserAuthentication()
+			throws Exception
 	{
 		AWorker worker = repository
 				.getAWorkerByID(this.getParameterAsLong(CID));
@@ -124,6 +125,7 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 			worker.setName(parameters.get(NAME));
 		if (parameters.containsKey(PRICE_HOUR))
 			worker.setCostPerHour(this.getParameterAsDouble(PRICE_HOUR));
+		return worker;
 	}
 
 	/**
