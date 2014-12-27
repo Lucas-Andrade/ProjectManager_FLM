@@ -64,10 +64,10 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	 * {@link InvalidUserException}, if correct proceeds with the execution.
 	 * 
 	 * @see BaseCommandUserAuthentication#authenticateUser(String, String)
-	 * @see app.commands.BaseCommand#internalExecute()
+	 * @see app.commands.BaseCommand#internalCall()
 	 */
 	@Override
-	protected DatabaseElement internalExecute() throws Exception
+	protected DatabaseElement internalCall() throws Exception
 	{
 		validateDemandingParameters(DEMANDING_PARAMETERS);
 		String username = parameters.get(LOGINNAME);

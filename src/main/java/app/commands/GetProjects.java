@@ -5,6 +5,7 @@ import java.util.Map;
 
 import utils.Project;
 import app.commands.exceptions.CommandException;
+import app.elements.DatabaseElement;
 import app.repository.ProjectsRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
@@ -15,7 +16,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class GetProjects extends BaseCommand
+public class GetProjects extends BaseCommandResultsOutputMethod
 {
 
 	/**
@@ -113,6 +114,19 @@ public class GetProjects extends BaseCommand
 		}
 		
 		out.giveResults(project);
+	}
+
+	@Override
+	public DatabaseElement call() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected DatabaseElement resultsOutputFormatAndDestination()
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

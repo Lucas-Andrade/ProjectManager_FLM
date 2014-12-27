@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import app.commands.exceptions.CommandException;
+import app.elements.DatabaseElement;
 import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
@@ -14,7 +15,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class GetUsers extends BaseCommand
+public class GetUsers extends BaseCommandResultsOutputMethod
 {
 
 	/**
@@ -78,7 +79,7 @@ public class GetUsers extends BaseCommand
 	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
-	public DatabaseElements call() throws Exception
+	public DatabaseElement call() throws Exception
 	{
 		out.giveResults((Object[]) repository.getAll());
 	}
@@ -90,6 +91,14 @@ public class GetUsers extends BaseCommand
 	protected String[] getMandatoryParameters()
 	{
 		return new String[] {};
+	}
+
+
+	@Override
+	protected DatabaseElement resultsOutputFormatAndDestination()
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

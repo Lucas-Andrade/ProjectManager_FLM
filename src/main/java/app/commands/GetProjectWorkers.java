@@ -9,6 +9,7 @@ import utils.Leader;
 import utils.Project;
 import utils.Team;
 import app.commands.exceptions.CommandException;
+import app.elements.DatabaseElement;
 import app.repository.ProjectsRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
@@ -20,7 +21,7 @@ import app.resultsOutputMethods.ResultOutputMethod;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class GetProjectWorkers extends BaseCommand
+public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 {
 
 	/**
@@ -136,7 +137,7 @@ public class GetProjectWorkers extends BaseCommand
 	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
-	public DatabaseElements call() throws Exception
+	public DatabaseElement call() throws Exception
 	{
 
 		projectId = getParameterAsLong(PID);
@@ -157,6 +158,14 @@ public class GetProjectWorkers extends BaseCommand
 			return;
 		} else
 			out.giveResults("Unrecognised type of worker.");
+	}
+
+
+	@Override
+	protected DatabaseElement resultsOutputFormatAndDestination()
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

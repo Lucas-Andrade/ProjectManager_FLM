@@ -47,7 +47,7 @@ public abstract class BaseCommand implements
 	 * {@link BaseCommand#parameters}, if yes proceeds with the execution.
 	 * 
 	 * @see BaseCommand#validateDemandingParameters(String...)
-	 * @see BaseCommand#internalExecute()
+	 * @see BaseCommand#internalCall()
 	 * 
 	 * @throws Exception
 	 */
@@ -65,14 +65,14 @@ public abstract class BaseCommand implements
 	@Override
 	public DatabaseElement call() throws Exception
 	{
-		return internalExecute();
+		return internalCall();
 	}
 //TODO call() é public, internalExecute() é protected. Sendo assim o call() deveria substituir o execute(out), certo?
 	 /**
 	 * @see Callable#call()
 	 * @see Command#execute(ResultOutputMethodToStream)
 	 */
-	 abstract protected DatabaseElement internalExecute() throws Exception;
+	 abstract protected DatabaseElement internalCall() throws Exception;
 
 	/**
 	 * Checks if all mandatory arguments are in the
