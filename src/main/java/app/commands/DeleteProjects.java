@@ -116,10 +116,10 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 	 * 
 	 * @return The deleted {@code Project}.
 	 * 
-	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication()
+	 * @see BaseCommandUserAuthentication#internalCallAfterUserAuthentication()
 	 */
 	@Override
-	protected DatabaseElement internalExecuteAfterUserAuthentication()
+	protected DatabaseElement internalCallAfterUserAuthentication()
 			throws Exception
 	{
 		long pid = this.getParameterAsLong(PID);

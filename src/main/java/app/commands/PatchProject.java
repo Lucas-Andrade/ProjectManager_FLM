@@ -103,7 +103,7 @@ public class PatchProject extends BaseCommandUserAuthentication{
 
 
 	@Override
-	protected DatabaseElement internalExecuteAfterUserAuthentication()
+	protected DatabaseElement internalCallAfterUserAuthentication()
 			throws Exception {
 
 		Project project = pRepository.getProjectById(getParameterAsLong(PID));
