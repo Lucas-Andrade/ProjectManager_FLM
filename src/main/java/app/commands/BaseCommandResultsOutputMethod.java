@@ -14,13 +14,13 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 	}
 
 	@Override
-	protected DatabaseElement internalExecute() throws Exception
+	protected DatabaseElement internalCall() throws Exception
 	{
 		// TODO Auto-generated method stub
 
 	}
 
-	abstract protected DatabaseElement internalExecuteAfterDefiningTheOutputMethodForResults()
+	abstract protected DatabaseElement internalCallAfterDefiningTheOutputMethodForResults()
 			throws Exception;
 
 	@Override

@@ -15,6 +15,8 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  * @param <T>
  * @since 08/12/2014
  */
+//TODO
+//apagar interface command
 public abstract class BaseCommand implements
 		Command, Callable<DatabaseElement>
 {
@@ -42,19 +44,20 @@ public abstract class BaseCommand implements
 		this.parameters = parameters;
 	}
 
+	//TODO
+	// substituir este método pelo call, apagar a interface commad e colocar a interface callable
 	/**
 	 * Checks if all mandatory arguments are in the
 	 * {@link BaseCommand#parameters}, if yes proceeds with the execution.
 	 * 
 	 * @see BaseCommand#validateDemandingParameters(String...)
-	 * @see BaseCommand#internalExecute()
+	 * @see BaseCommand#internalCall()
 	 * 
 	 * @throws Exception
 	 */
 	@Override
 	public final void execute(ResultOutputMethodToStream out) throws Exception
 	{
-		validateDemandingParameters(getMandatoryParameters());
 		out.giveResults(this.call());
 	}
 
@@ -65,14 +68,15 @@ public abstract class BaseCommand implements
 	@Override
 	public DatabaseElement call() throws Exception
 	{
-		return internalExecute();
+		validateDemandingParameters(getMandatoryParameters());
+		return internalCall();
 	}
-//TODO call() é public, internalExecute() é protected. Sendo assim o call() deveria substituir o execute(out), certo?
+
 	 /**
 	 * @see Callable#call()
 	 * @see Command#execute(ResultOutputMethodToStream)
 	 */
-	 abstract protected DatabaseElement internalExecute() throws Exception;
+	 abstract protected DatabaseElement internalCall() throws Exception;
 
 	/**
 	 * Checks if all mandatory arguments are in the
