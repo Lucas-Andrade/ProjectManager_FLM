@@ -79,7 +79,7 @@ public class GetUsers extends BaseCommandResultsOutputMethod
 	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
-	public DatabaseElement call() throws Exception
+	protected DatabaseElement internalCall() throws Exception
 	{
 		out.giveResults((Object[]) repository.getAll());
 	}
@@ -93,12 +93,5 @@ public class GetUsers extends BaseCommandResultsOutputMethod
 		return new String[] {};
 	}
 
-
-	@Override
-	protected DatabaseElement resultsOutputFormatAndDestination()
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

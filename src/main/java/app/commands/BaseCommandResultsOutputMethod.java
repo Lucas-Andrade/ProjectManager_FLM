@@ -47,7 +47,7 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 	{
 		String format = getResultsOutputFormat();
 		String destination = getParameterAsString(OUTPUT);
-		DatabaseElement dbElment =internalCall();
+		DatabaseElement dbElement =internalCall();
 		return new result(dbElement, format, destination);
 	}
 	

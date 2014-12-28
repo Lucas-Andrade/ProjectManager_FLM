@@ -103,7 +103,7 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
-	public DatabaseElements call() throws Exception
+	protected DatabaseElement internalCall() throws Exception
 	{
 		Project project = repository.getProjectById(getParameterAsLong(PID));
 		
@@ -113,20 +113,7 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 			return;
 		}
 		
-		out.giveResults(project);
-	}
-
-	@Override
-	public DatabaseElement call() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected DatabaseElement resultsOutputFormatAndDestination()
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return project;
 	}
 
 }

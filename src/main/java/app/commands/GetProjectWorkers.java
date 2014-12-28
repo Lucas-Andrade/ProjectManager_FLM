@@ -137,7 +137,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
-	public DatabaseElement call() throws Exception
+	protected DatabaseElement internalCall() throws Exception
 	{
 
 		projectId = getParameterAsLong(PID);
@@ -147,25 +147,16 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 		{
 			Leader manager = projectRepository.getProjectById(projectId)
 					.getManager();
-			out.giveResults(manager);
-			return;
+			return manager;
 		} else if (typeWorker.equalsIgnoreCase("Consultant"))
 		{
 			Iterable<AWorker> workers = projectRepository.getProjectById(
 					projectId).getTeam();
-			out.giveResults(workers);
 
-			return;
+			return workers;
 		} else
 			out.giveResults("Unrecognised type of worker.");
 	}
 
-
-	@Override
-	protected DatabaseElement resultsOutputFormatAndDestination()
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

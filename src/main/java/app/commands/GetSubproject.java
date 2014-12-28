@@ -108,19 +108,14 @@ public class GetSubproject extends BaseCommandResultsOutputMethod
 	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
-	public DatabaseElement call() throws Exception
+	protected DatabaseElement internalCall() throws Exception
 	{
 		Project project = repository.getProjectById(getParameterAsLong(PID));
-		out.giveResults(project.getContainerProject());
+		return project.getContainerProject();
 	}
 
 
 
-	@Override
-	protected DatabaseElement resultsOutputFormatAndDestination()
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }
