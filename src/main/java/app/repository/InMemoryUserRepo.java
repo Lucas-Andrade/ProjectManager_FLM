@@ -150,4 +150,15 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 		return addUser(new Admin(username, password));
 	}
 
+	@Override
+	public JSONObject getJson() 
+	{
+		DatabaseElement[] allElements = getAll();
+		JSONObject json = new JSONObject();
+		for (DatabaseElement ele : allElements)
+			json.accumulate("Users", ele.getJson());
+		
+		return json;
+	}
+
 }

@@ -35,5 +35,12 @@ public class UserTest {
 	{
 		assertTrue(user1.equals(constructor.constructUser(1)));
 	}
+	
+	@Test
+	public void visualTest()
+	{
+		System.out.println(user1.getJson());
+		System.out.println(user2.getJson());
+	}
 
 }

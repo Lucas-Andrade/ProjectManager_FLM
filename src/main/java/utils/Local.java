@@ -1,7 +1,6 @@
 package utils;
 
 import java.text.DecimalFormat;
-
 import org.json.JSONObject;
 
 /**
@@ -80,52 +79,21 @@ public class Local implements ICost, IName
 	public String toString()
 	{
 		DecimalFormat df = new DecimalFormat("#.##");
-		return getName() + ", " + "(" + latitude + ", " + longitude + ")"
+		return name + ", " + "(" + latitude + ", " + longitude + ")"
 				+ ", cost: " + df.format(getCost()) + " Euros";
 	}
 
-	/**
-	 * This method represent the worker's information in HTLM format 
-	 */
-	public String toHtml()
-	{
-		StringBuilder builder = new StringBuilder();
-		DecimalFormat df = new DecimalFormat("#.##");
-		
-		builder.append("<html>");
-//		builder.append("<h2> Local </h2>");
-		builder.append("<b>Name: </b>").append(getName()).append("<b> Location: </b>")
-			.append(" (").append(latitude).append(", ").append(longitude).append(")").append("<b>Cost: </b>")
-			.append(df.format(getCost())).append(" Euros");		
-		builder.append("</html>");
-		
-		return builder.toString();
-	}
 	
-	
-	/**
-	 * This method represent the worker's information in Json's format 
-	 */
-	public String toJson()
+	public JSONObject getJson() 
 	{
 		DecimalFormat df = new DecimalFormat("#.##");
-
-		//instancia um novo JSONObject 
-		JSONObject local = new JSONObject(); 
-		
-		//preenche o objeto com os campos: name, payment per hour e cost
-		local.put("Cost", df.format(getCost())); 
-		local.put("Longitude", longitude); 
-		local.put("Latitude", latitude); 
-		local.put("Name", name); 
-		//serializa para uma string e imprime 
-		String json_string = local.toString();
-		
-		return json_string;
+		JSONObject json = new JSONObject();
+		json.put("Cost (Euros)", df.format(getCost()));
+		json.put("Longitude", longitude);
+		json.put("Latitude", latitude);
+		json.put("Name", name);
+		return json;
 	}
-	
-	
-	
 	
 	
 	/**
@@ -223,4 +191,6 @@ public class Local implements ICost, IName
 	{
 		return price >= 0;
 	}
+
+
 }

@@ -1,7 +1,5 @@
 package app.elements;
 
-import java.text.DecimalFormat;
-
 import org.json.JSONObject;
 
 /**
@@ -41,6 +39,11 @@ public class User implements UserInterface
 		this.password = password;
 		this.email = email;
 		this.fullname = fullname;
+	}
+	
+	public User(String username, String password, String email)
+	{
+		this(username, password, email, "No full name has been introduced.");
 	}
 
 	/**
@@ -99,42 +102,16 @@ public class User implements UserInterface
 
 		return builder.toString();
 	}
-
 	
-	/**
-	 * This method represent the worker's information in HTLM format 
-	 */
-	public String toHtml()
+	@Override
+	public JSONObject getJson() 
 	{
-		StringBuilder builder = new StringBuilder();		
-		builder.append("<h3>").append("<b> Username: </b>").append(username).append("</h3>");
-		builder.append("<p>").append("<b>Name: </b>").append(fullname).append("</p>");
-		builder.append("<p>").append("<b> Email: </b>").append(email).append("</p>");
-		
-		return builder.toString();
+		JSONObject json = new JSONObject();
+		json.put("Username", username);
+		json.put("Email", email);
+		json.put("Full name:", fullname);
+		return json;
 	}
-	
-	
-	/**
-	 * This method represent the worker's information in Json's format 
-	 */
-	public String toJson()
-	{
-		//instancia um novo JSONObject 
-		JSONObject user = new JSONObject(); 
-		
-		//preenche o objeto com os campos: name, payment per hour e cost
-		user.put("Email", email); 
-		user.put("Name", fullname); 
-		user.put("Username", username); 
-		
-		//serializa para uma string e imprime 
-		String json_string = user.toString();
-		
-		return json_string;
-	}
-	
-	
 	
 	/**
 	 * @see Object#equals(Object)
@@ -163,5 +140,7 @@ public class User implements UserInterface
 			password = newPassword;
 		return true;
 	}
+
+
 
 }

@@ -328,14 +328,13 @@ public class Project extends Element implements ProjectInterface
 	{
 		DecimalFormat df = new DecimalFormat("#.##");
 		JSONObject json = new JSONObject();
-		json.put("Project ID", pid);
-		json.put("Cost", df.format(getCost()) + " Euros");
-		json.put("Local", local.toString()); //TODO toJson
-		if(manager != null)
-			json.put("Manager", manager.toString());//TODO toJson
-		json.put("Team", team.getJson());
 		json.put("Subprojects", projectsContainer.size() == 0 ? "None." : projectsContainer.getJson());
-		
+		json.put("Team", team.getJson());
+		if(manager != null)
+			json.put("Manager", manager.getJson());
+		json.put("Local", local.getJson());
+		json.put("Cost (Euros)", df.format(getCost()));
+		json.put("Project ID", pid);
 		return json;
 	}
 

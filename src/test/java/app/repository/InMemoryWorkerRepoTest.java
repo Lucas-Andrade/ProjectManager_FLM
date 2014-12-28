@@ -100,4 +100,10 @@ public class InMemoryWorkerRepoTest {
 		System.out.println(repo.toString());
 	}
 
+
+	@Test
+	public void visualTest()
+	{
+		System.out.println(repo.getJson().toString());
+	}
 }

@@ -1,5 +1,7 @@
 package utils;
 
+import org.json.JSONObject;
+
 /**
  * Class {@code Consultant} whose objects will represent the consultants that
  * will constitute a {@code Team}
@@ -32,7 +34,5 @@ public class Consultant extends AWorker
 
 		super(name, costPerHour, hoursWorked, cid);
 	}
-
-
 
 }

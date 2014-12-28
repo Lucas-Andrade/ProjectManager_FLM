@@ -3,6 +3,9 @@ package app.repository;
 import java.util.Collection;
 import java.util.TreeSet;
 
+import org.json.JSONObject;
+import org.junit.Test;
+
 import app.elements.DatabaseElement;
 import app.elements.WorkerComparator;
 import utils.AWorker;
@@ -162,4 +165,14 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 		return aWorker;
 	}
 
+	@Override
+	public JSONObject getJson() {
+		JSONObject json = new JSONObject();
+		for (DatabaseElement ele : workers)
+			json.accumulate("Workers", ele.getJson());
+		
+		return json;
+	}
+
+	
 }

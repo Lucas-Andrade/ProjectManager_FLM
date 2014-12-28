@@ -1,5 +1,7 @@
 package app.repository;
 
+import org.json.JSONObject;
+
 import app.elements.DatabaseElement;
 
 /**
@@ -16,7 +18,8 @@ import app.elements.DatabaseElement;
 public abstract class InMemoryRepo<T extends DatabaseElement> implements
 		Repository<DatabaseElement>
 {
-
+	public abstract JSONObject getJson();
+	
 	// Devia aqui estar um Map e não uma Collection. Todos os outros InMemoryRepos
 	// deviam usar correctamente esta classe (neste momento quase nem a usam...).
 	//TODO

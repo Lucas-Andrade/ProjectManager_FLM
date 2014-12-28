@@ -88,4 +88,10 @@ public class InMemoryUserRepoTest {
 		
 //		System.out.println(repo.toString());
 	}
+	
+	@Test
+	public void visualTest()
+	{
+		System.out.println(repo.getJson().toString());
+	}
 }

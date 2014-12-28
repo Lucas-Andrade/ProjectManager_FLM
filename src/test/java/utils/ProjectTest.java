@@ -40,7 +40,7 @@ public class ProjectTest
 		proj1.addProject(proj4);
 
 //		System.out.println(proj1.toString());
-		System.out.println(proj1.getJson());
+		System.out.println(proj1.getJson().toString());
 	}
 
 }

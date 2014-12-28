@@ -1,5 +1,7 @@
 package utils;
 
+import org.json.JSONObject;
+
 /**
  * Class {@code Leader} whose objects will represent the managers and team
  * leader of a project.
@@ -64,7 +66,14 @@ public class Leader extends Consultant
 	 */
 	public double getBonus()
 	{
-
 		return bonus;
+	}
+	
+	@Override
+	public JSONObject getJson() 
+	{
+		JSONObject worker = super.getJson();
+		worker.put("Bonus", bonus);
+		return worker;
 	}
 }
