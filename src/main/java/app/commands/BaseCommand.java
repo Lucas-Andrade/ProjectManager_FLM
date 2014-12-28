@@ -65,7 +65,7 @@ public abstract class BaseCommand implements Callable<Result>
 	 * @see Callable#call()
 	 * @see Command#execute(ResultOutputMethodToStream)
 	 */
-	 abstract protected DatabaseElement internalCall() throws Exception;
+	 abstract protected DatabaseElement[] internalCall() throws Exception;
 
 	/**
 	 * Checks if all mandatory arguments are in the

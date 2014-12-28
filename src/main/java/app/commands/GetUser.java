@@ -6,7 +6,6 @@ import java.util.concurrent.Callable;
 import app.commandParser.CommandParser;
 import app.elements.DatabaseElement;
 import app.elements.User;
-import app.elements.UserInterface;
 import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
 import app.resultsAndOutputMethods.ResultOutputMethod;
@@ -107,9 +106,9 @@ public class GetUser extends BaseCommandResultsOutputMethod
 	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
-	protected DatabaseElement internalCall() throws Exception
+	protected DatabaseElement[] internalCall() throws Exception
 	{
-		UserInterface user = repository.getUserByUsername(username);
+		DatabaseElement[] user = {repository.getUserByUsername(username)};
 		return user;
 	}
 

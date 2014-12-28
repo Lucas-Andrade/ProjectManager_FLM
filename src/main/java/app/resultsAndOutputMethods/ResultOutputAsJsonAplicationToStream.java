@@ -14,7 +14,7 @@ import java.io.OutputStream;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 18/12/2014
  */
-public class ResultOutputAsJsonTextToStream extends ResultOutputMethodToStream
+public class ResultOutputAsJsonAplicationToStream extends ResultOutputMethodToStream
 {
 
 	/**
@@ -23,7 +23,7 @@ public class ResultOutputAsJsonTextToStream extends ResultOutputMethodToStream
 	 * @param out
 	 *            The {@link OutputStream} for the results.
 	 */
-	public ResultOutputAsJsonTextToStream(OutputStream out)
+	public ResultOutputAsJsonAplicationToStream(OutputStream out)
 	{
 		super(out);
 	}

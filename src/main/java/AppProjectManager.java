@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
+
 import app.commandParser.CommandParser;
 import app.commandParser.CommandParserException;
 import app.commandParser.DuplicateArgumentsException;
@@ -30,6 +31,7 @@ import app.repository.InMemoryWorkerRepo;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
+import app.resultsAndOutputMethods.Result;
 import app.resultsAndOutputMethods.ResultOutputAsPlainTextToStream;
 import app.resultsAndOutputMethods.ResultOutputMethodToStream;
 
@@ -309,10 +311,9 @@ public class AppProjectManager
 	{
 		try
 		{
-			parser.getCommand(cmd.split(" ")).execute(resultOutput);
-
-			// TODO excepções:
-
+			Result results = parser.getCommand(cmd.split(" ")).call();
+			results.outputMethod.giveResults(results.results);
+// TODO excepções:
 		} catch (UnknownCommandException e)
 		{
 			DEFAULT_SYSTEM_OUT.println("Args must have 2 or 3 elements.");

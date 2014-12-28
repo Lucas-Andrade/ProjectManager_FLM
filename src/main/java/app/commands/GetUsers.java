@@ -80,9 +80,9 @@ public class GetUsers extends BaseCommandResultsOutputMethod
 	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
-	protected DatabaseElement internalCall() throws Exception
+	protected DatabaseElement[] internalCall() throws Exception
 	{
-		out.giveResults((Object[]) repository.getAll());
+		return repository.getAll();
 	}
 
 	/**

@@ -3,6 +3,8 @@ package app.resultsAndOutputMethods;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import app.elements.DatabaseElement;
+
 /**
  * Class that defines the contract for all output methods of results that give
  * the results to an {@link OutputStream}.
@@ -35,7 +37,7 @@ public abstract class ResultOutputMethodToStream implements ResultOutputMethod
 	}
 
 	/**
-	 * @see app.resultsOutputMethod.ResultsOutputMethod#giveResults(java.io.OutputStream)
+	 * @see app.resultsOutputMethod.ResultsOutputMethod#giveResults(DatabaseElement[])
 	 * 
 	 *      Sends the results to
 	 *      {@link ResultOutputMethodToStream#internalGiveResults(Object[])} ,
@@ -52,9 +54,9 @@ public abstract class ResultOutputMethodToStream implements ResultOutputMethod
 	 *      elements is passed as a parameter.
 	 */
 	@Override
-	public void giveResults(Object... result) throws IOException
+	public void giveResults(DatabaseElement... results) throws IOException
 	{
-		this.writeAndFlushOutputStream(this.internalGiveResults(result));
+		this.writeAndFlushOutputStream(this.internalGiveResults(results));
 	}
 
 	/**

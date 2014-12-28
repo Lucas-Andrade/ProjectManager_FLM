@@ -3,9 +3,10 @@ package app.commandParser;
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
-import app.commands.Command;
 import app.commands.CommandFactory;
+import app.resultsAndOutputMethods.Result;
 
 /**
  * Class whose instances are responsible for translating Command Strings into
@@ -240,7 +241,7 @@ public class CommandParser
 	 * @return The associated command instance
 	 * @throws CommandParserException
 	 */
-	public Command getCommand(String... args) throws CommandParserException
+	public Callable<Result> getCommand(String... args) throws CommandParserException
 	{
 		if (args.length < 2 || args.length > 3)
 		{
@@ -253,7 +254,7 @@ public class CommandParser
 		Map<String, String> parametersMap = (args.length == 2) ? new HashMap<String, String>()
 				: getParameters(args[2]);
 
-		Command c = getCommandInternal(root, pathElements, 0, parametersMap);
+		Callable<Result> c = getCommandInternal(root, pathElements, 0, parametersMap);
 
 		return c;
 	}
@@ -307,7 +308,7 @@ public class CommandParser
 	 * @return
 	 * @throws UnknownCommandException
 	 */
-	private Command getCommandInternal(Node rootNode, String[] pathElements,
+	private Callable<Result> getCommandInternal(Node rootNode, String[] pathElements,
 			int pathStartIndex, Map<String, String> parameters)
 			throws UnknownCommandException
 	{
