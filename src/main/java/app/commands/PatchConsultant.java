@@ -7,6 +7,7 @@ import utils.AWorker;
 import app.elements.DatabaseElement;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
+import app.resultsAndOutputMethods.Result;
 
 /**
  * Class whose instances are {@link Command}s that modifies {@link AWorker}s.

@@ -1,4 +1,4 @@
-package app.resultsOutputMethods;
+package app.resultsAndOutputMethods;
 
 import java.io.IOException;
 

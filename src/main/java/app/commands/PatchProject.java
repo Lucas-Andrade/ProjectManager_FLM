@@ -9,6 +9,7 @@ import app.commands.exceptions.InvalidParameterValueException;
 import app.elements.DatabaseElement;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
+import app.resultsAndOutputMethods.Result;
 
 public class PatchProject extends BaseCommandUserAuthentication{
 

@@ -1,6 +1,6 @@
 package app.commands;
 
-import app.resultsOutputMethods.ResultOutputMethodToStream;
+import app.resultsAndOutputMethods.ResultOutputMethodToStream;
 
 /**
  * Contract to be supported by all {@code Command}s. Instances cannot be

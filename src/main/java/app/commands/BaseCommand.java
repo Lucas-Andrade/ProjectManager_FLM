@@ -5,7 +5,8 @@ import java.util.concurrent.Callable;
 
 import app.commands.exceptions.MandatoryParameterNotPresentException;
 import app.elements.DatabaseElement;
-import app.resultsOutputMethods.ResultOutputMethodToStream;
+import app.resultsAndOutputMethods.Result;
+import app.resultsAndOutputMethods.ResultOutputMethodToStream;
 
 /**
  * Abstract {@link Command} to be supported by all {@code Command}s. Establishes

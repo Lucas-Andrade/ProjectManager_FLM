@@ -8,7 +8,8 @@ import app.elements.DatabaseElement;
 import app.elements.User;
 import app.elements.UserInterface;
 import app.repository.UserRepository;
-import app.resultsOutputMethods.ResultOutputMethod;
+import app.resultsAndOutputMethods.Result;
+import app.resultsAndOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that return a {@link User}.

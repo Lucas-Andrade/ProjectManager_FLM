@@ -8,7 +8,8 @@ import app.commands.exceptions.InvalidUserException;
 import app.elements.DatabaseElement;
 import app.elements.UserInterface;
 import app.repository.UserRepository;
-import app.resultsOutputMethods.ResultOutputMethodToStream;
+import app.resultsAndOutputMethods.Result;
+import app.resultsAndOutputMethods.ResultOutputMethodToStream;
 
 public class PatchUser extends BaseCommandUserAuthentication{
 

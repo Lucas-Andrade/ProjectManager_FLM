@@ -10,7 +10,8 @@ import app.commands.exceptions.CommandException;
 import app.elements.DatabaseElement;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
-import app.resultsOutputMethods.ResultOutputMethod;
+import app.resultsAndOutputMethods.Result;
+import app.resultsAndOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that create new {@link Project}s.

@@ -5,6 +5,7 @@ import java.util.concurrent.Callable;
 
 import app.commands.exceptions.InvalidParameterValueException;
 import app.elements.DatabaseElement;
+import app.resultsAndOutputMethods.Result;
 
 public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 {

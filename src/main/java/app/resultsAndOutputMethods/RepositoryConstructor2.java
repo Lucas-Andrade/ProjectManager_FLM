@@ -1,4 +1,4 @@
-package app.resultsOutputMethods;
+package app.resultsAndOutputMethods;
 
 import utils.Consultant;
 import utils.Leader;

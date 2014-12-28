@@ -6,7 +6,8 @@ import app.commands.exceptions.InvalidUserException;
 import app.elements.DatabaseElement;
 import app.elements.User;
 import app.repository.UserRepository;
-import app.resultsOutputMethods.ResultOutputMethodToStream;
+import app.resultsAndOutputMethods.Result;
+import app.resultsAndOutputMethods.ResultOutputMethodToStream;
 
 /**
  * Abstract POST {@link Command} to be supported by all POST {@code Command}s.

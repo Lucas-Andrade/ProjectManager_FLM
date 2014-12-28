@@ -31,8 +31,8 @@ import app.repository.InMemoryWorkerRepo;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
-import app.resultsOutputMethods.ResultOutputAsPlainTextToStream;
-import app.resultsOutputMethods.ResultOutputMethodToStream;
+import app.resultsAndOutputMethods.ResultOutputAsPlainTextToStream;
+import app.resultsAndOutputMethods.ResultOutputMethodToStream;
 
 /**
  * Class for Project Management.
@@ -101,7 +101,7 @@ public class AppProjectManager
 	/**
 	 * The variable that defines the default Output used in this application.
 	 */
-	private static PrintStream systemOut = System.out;
+	private static final PrintStream DEFAULT_SYSTEM_OUT = System.out;
 
 	/**
 	 * The variable that defines the default Output Method (for the
@@ -109,7 +109,8 @@ public class AppProjectManager
 	 * this application.
 	 */
 	private static ResultOutputMethodToStream resultOutput = new ResultOutputAsPlainTextToStream(
-			systemOut);
+			DEFAULT_SYSTEM_OUT);
+	//TODO em cima.
 
 	/**
 	 * This method associates the method and the path that the user will insert
@@ -169,25 +170,25 @@ public class AppProjectManager
 	 */
 	public static void helpCommand()
 	{
-		systemOut.println("IMPLEMENTATION NOTES:");
-		systemOut
+		DEFAULT_SYSTEM_OUT.println("IMPLEMENTATION NOTES:");
+		DEFAULT_SYSTEM_OUT
 				.println(" - Only registered users can use POST commands;"
 						+ "\n    Before start to use the commands, the user has to create the administrator data.");
 
-		systemOut
+		DEFAULT_SYSTEM_OUT
 				.println("     The user's LoginName and Password must be introduce with the parameters list of"
 						+ "\n    the POST Commands to authentication;"
 						+ "\n If the authentication data are not valid, the command is not performed.");
-		systemOut
+		DEFAULT_SYSTEM_OUT
 				.println("\n - All the commands have the same follow generic strutter:	\n              {method} {path} {parameter list}"
 						+ "\n\nIn the list of parameters, the parameters must be separated by the '&' symbol and the words by the code '% 20'");
-		systemOut
+		DEFAULT_SYSTEM_OUT
 				.println(" Example:"
 						+ "\n POST  /consultants/  loginName=FilipaG&password=123456&name=Filipe%20Maia&priceHour=20");
-		systemOut
+		DEFAULT_SYSTEM_OUT
 				.println("\nThe user must write the command in the console and press Enter to proceed.");
 
-		systemOut
+		DEFAULT_SYSTEM_OUT
 				.println("\nTo learn the commands that are available in this application enter the OPTION command that displays "
 						+ "a description of all available commands.");
 
@@ -199,7 +200,7 @@ public class AppProjectManager
 	 */
 	public static void optionCommand()
 	{
-		systemOut
+		DEFAULT_SYSTEM_OUT
 				.println("\nAVALABLE COMMANDS:"
 						+ "\n  POST COMMANDS:"
 						+ "\n  	POST /users {parameter list: loginName, loginPassord, username, password, email, fullname(optional)}  "
@@ -246,18 +247,18 @@ public class AppProjectManager
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 
-		systemOut.println("*********************************");
-		systemOut.println("********** JAVA COMPANY *********");
-		systemOut.println("*********************************");
+		DEFAULT_SYSTEM_OUT.println("*********************************");
+		DEFAULT_SYSTEM_OUT.println("********** JAVA COMPANY *********");
+		DEFAULT_SYSTEM_OUT.println("*********************************");
 
-		systemOut.println("\n Create Administrator");
-		systemOut.println("LoginName: Admin1");
-		systemOut.print("Insert New password:");
+		DEFAULT_SYSTEM_OUT.println("\n Create Administrator");
+		DEFAULT_SYSTEM_OUT.println("LoginName: Admin1");
+		DEFAULT_SYSTEM_OUT.print("Insert New password:");
 		String password = scanner.nextLine();
 
 		while (password.length() <= 3)
 		{
-			systemOut
+			DEFAULT_SYSTEM_OUT
 					.println("Password must at least have 4 characters.\nInsert password:");
 			password = scanner.nextLine();
 		}
@@ -265,7 +266,7 @@ public class AppProjectManager
 
 		do
 		{
-			systemOut.println("\nInsert the command you want to execute:");
+			DEFAULT_SYSTEM_OUT.println("\nInsert the command you want to execute:");
 			String cmd = scanner.nextLine();
 			switch (cmd)
 			{
@@ -279,7 +280,7 @@ public class AppProjectManager
 					break;
 
 				case "EXIT":
-					systemOut
+					DEFAULT_SYSTEM_OUT
 							.println("App now closing.\nThank you for choosing Java Company!");
 					return;
 
@@ -303,33 +304,39 @@ public class AppProjectManager
 	private static void commandPrompt(CommandParser parser, String cmd)
 			throws CommandParserException
 	{
+		
+		//TODO confirmar que esta versão é mais recente que a do outro ramo.
+		
 		try
 		{
 			parser.getCommand(cmd.split(" ")).execute(resultOutput);
+			
+			//TODO excepções:
+			
 		} catch (UnknownCommandException e)
 		{
-			systemOut.println("Args must have 2 or 3 elements.");
+			DEFAULT_SYSTEM_OUT.println("Args must have 2 or 3 elements.");
 		} catch (InvalidCommandArgumentsException e)
 		{
-			systemOut.println("Inserted a parameter without value.");
+			DEFAULT_SYSTEM_OUT.println("Inserted a parameter without value.");
 		} catch (DuplicateArgumentsException e)
 		{
-			systemOut.println("Duplicate parameters entered.");
+			DEFAULT_SYSTEM_OUT.println("Duplicate parameters entered.");
 		} catch (MandatoryParameterNotPresentException e)
 		{
-			systemOut.println("Not all required parameters were entered.");
+			DEFAULT_SYSTEM_OUT.println("Not all required parameters were entered.");
 		} catch (InvalidParameterValueException e)
 		{
-			systemOut.println("Inserted a parameter with an invalid value.");
+			DEFAULT_SYSTEM_OUT.println("Inserted a parameter with an invalid value.");
 		} catch (CommandException e)
 		{
-			systemOut.println("Invalid Command.");
+			DEFAULT_SYSTEM_OUT.println("Invalid Command.");
 		} catch (IOException e)
 		{
-			systemOut.println("Invalid output Stream.");
+			DEFAULT_SYSTEM_OUT.println("Invalid output Stream.");
 		} catch (NullPointerException e)
 		{
-			systemOut.println("Not found.");
+			DEFAULT_SYSTEM_OUT.println("Not found.");
 		}
 	}
 
@@ -344,20 +351,20 @@ public class AppProjectManager
 					new InMemoryWorkerRepo());
 		} catch (InvalidRegisterException e)
 		{
-			systemOut
+			DEFAULT_SYSTEM_OUT
 					.println("Invalid Registry! Verify RegisterCommand method.");
 		}
 
 		while (args.length == 0)
 		{
 			execute(parser, userRepo);
-			systemOut.close();
+			DEFAULT_SYSTEM_OUT.close();
 			return;
 		}
 
 		for (String cmd : args)
 			commandPrompt(parser, cmd);
-		systemOut.close();
+		DEFAULT_SYSTEM_OUT.close();
 	}
 
 }

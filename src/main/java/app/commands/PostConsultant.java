@@ -11,7 +11,8 @@ import app.commands.exceptions.CommandException;
 import app.elements.DatabaseElement;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
-import app.resultsOutputMethods.ResultOutputMethod;
+import app.resultsAndOutputMethods.Result;
+import app.resultsAndOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that create new {@link AWorker}s.
