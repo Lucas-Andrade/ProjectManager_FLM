@@ -43,14 +43,18 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 	 * 
 	 */
 	@Override
-	public Result call() throws Exception
+	protected DatabaseElement internalCall() throws Exception
 	{
 		String format = getResultsOutputFormat();
 		String destination = getParameterAsString(OUTPUT);
 		DatabaseElement dbElement =internalCall();
 		return new result(dbElement, format, destination);
 	}
-	
+
+	abstract protected DatabaseElement internalCallAfterDefiningTheOutputMethodForResults()
+			throws Exception;
+
+
 	@Override
 	abstract protected DatabaseElement internalCall() throws Exception;
 	

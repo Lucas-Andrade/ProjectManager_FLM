@@ -73,7 +73,7 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 		String username = parameters.get(LOGINNAME);
 		String password = parameters.get(LOGINPASSWORD);
 		if (authenticateUser(username, password))
-			return internalExecuteAfterUserAuthentication();
+			return internalCallAfterUserAuthentication();
 		else
 			throw new InvalidUserException(username);
 	}
@@ -99,7 +99,7 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	 * 
 	 * @throws Exception
 	 */
-	abstract protected DatabaseElement internalExecuteAfterUserAuthentication()
+	abstract protected DatabaseElement internalCallAfterUserAuthentication()
 			throws Exception;
 
 }

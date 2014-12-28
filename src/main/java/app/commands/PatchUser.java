@@ -104,7 +104,7 @@ public class PatchUser extends BaseCommandUserAuthentication{
 	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication()
 	 */
 	@Override
-	protected DatabaseElement internalExecuteAfterUserAuthentication()
+	protected DatabaseElement internalCallAfterUserAuthentication()
 			throws Exception {
 
 		this.newPassword = getParameterAsString(NEWPASSWORD);
@@ -130,3 +130,4 @@ public class PatchUser extends BaseCommandUserAuthentication{
 		return DEMANDING_PARAMETERS;
 	}
 }
+

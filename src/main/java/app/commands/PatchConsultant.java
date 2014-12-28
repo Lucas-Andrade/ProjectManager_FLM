@@ -113,10 +113,10 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 	 * 
 	 * @return The modified {@code AWorker}.
 	 * 
-	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication()
+	 * @see BaseCommandUserAuthentication#internalCallAfterUserAuthentication()
 	 */
 	@Override
-	protected DatabaseElement internalExecuteAfterUserAuthentication()
+	protected DatabaseElement internalCallAfterUserAuthentication()
 			throws Exception
 	{
 		AWorker worker = repository
