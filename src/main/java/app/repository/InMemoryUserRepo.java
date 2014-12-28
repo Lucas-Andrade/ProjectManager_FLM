@@ -83,49 +83,6 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 
 		return builder.toString();
 	}
-
-	
-	/**
-	 * This method represent the worker's information in HTLM format 
-	 */
-	public String toHtml()
-	{
-		StringBuilder builder = new StringBuilder();		
-		builder.append("<html>");
-		
-		for (DatabaseElement user : getAll())
-		{
-			builder.append(user.toHtml()).append("\n");
-		}
-		builder.append("</html>");
-		
-		return builder.toString();
-	}
-	
-	
-	/**
-	 * This method represent the worker's information in Json's format 
-	 */
-	public String toJson()
-	{
-		//instancia um novo JSONObject 
-		JSONObject allUsers = new JSONObject(); 
-		
-		StringBuilder builder = new StringBuilder();		
-		
-		for (DatabaseElement user : getAll())
-		{
-			builder.append(user.toJson()).append("\n");
-		}
-		
-		//serializa para uma string e imprime 
-		String json_string = allUsers.toString();
-		
-		return json_string;
-	}
-	
-	
-	
 	
 	/**
 	 * @see UserRepository#isPasswordCorrectForUser(String, String)

@@ -57,17 +57,6 @@ public class ProjectsContainer extends AContainer<Project> {
 		
 		return builder.toString();
 	}
-
-	public String toHtml(int nr) {
-		Collection<Project> elementsList = getElementsList();
-		
-		StringBuilder builder = new StringBuilder();
-
-		for (Project element : elementsList)
-			builder.append(element.toHtml(nr, 4));
-		
-		return builder.toString();
-	}
 	
 //	public String toJson()
 //	{

@@ -140,40 +140,8 @@ public abstract class AWorker extends Element implements WorkerInterface
 		return builder.toString();
 	}
 
-	
-	/**
-	 * This method represent the worker's information in HTLM format 
-	 */
-	public String toHtml()
-	{
-		return toHtml(0);
-	}
-	
 	@Override
-	protected String toHtml(int indentation) {
-		StringBuilder builder = new StringBuilder();
-		DecimalFormat df = new DecimalFormat("#.##");
-		
-		builder.append("<html>");
-		
-		builder.append("<p" + indentation + ">").append("<b>Name: </b>").append(name).append("<b>  Payment per hour: </b>")
-		.append(df.format(costPerHour)).append(" Euros,").append("<b> Cost: </b>")
-		.append(df.format(getCost())).append(" Euros").append("</p>");
-		builder.append("</html>");
-		
-		return builder.toString();
-	}
-	
-	/**
-	 * This method represent the worker's information in Json's format 
-	 */
-	public String toJson()
-	{
-		return getJson().toString();
-	}
-
-	@Override
-	protected JSONObject getJson() {
+	public JSONObject getJson() {
 		DecimalFormat df = new DecimalFormat("#.##");
 
 		//instancia um novo JSONObject 

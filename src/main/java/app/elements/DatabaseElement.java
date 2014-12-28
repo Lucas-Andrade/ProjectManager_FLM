@@ -1,5 +1,7 @@
 package app.elements;
 
+import org.json.JSONObject;
+
 /**
  * Parent interface for all Objects that can be stored in {@link Repository}s.
  * 
@@ -8,4 +10,6 @@ package app.elements;
  */
 public interface DatabaseElement
 {
+	
+	public JSONObject getJson();
 }

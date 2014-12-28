@@ -147,26 +147,6 @@ public abstract class AContainer<elements extends Element> implements ICost
 		return builder.toString();
 	}
 	
-	public String toHtml()
-	{
-		return toHtml(0);
-	}
-	
-	protected String toHtml(int i) 
-	{	
-		StringBuilder builder = new StringBuilder();
-		
-		for (elements element : elementsList)
-			builder.append(element.toHtml(i)).append("\n");
-
-		return builder.toString();
-	}
-
-	public String toJson()
-	{
-		return getJson().toString();
-	}
-	
 	public JSONObject[] getJson() 
 	{
 		Collection<elements> elementsList = getElementsList();
