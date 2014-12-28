@@ -192,7 +192,7 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
 	 */
 	@Override
-	protected DatabaseElement internalCall()
+	protected DatabaseElement[] internalCall()
 			throws CommandException, IOException
 	{
 		this.projectId = getParameterAsLong(PID);

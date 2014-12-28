@@ -55,17 +55,13 @@ public abstract class BaseCommand implements Callable<Result>
 	 * @throws Exception
 	 */
 	@Override
-	public Result call() throws Exception
-	{
-		validateDemandingParameters(getMandatoryParameters());
-		return null;
-	}
+	abstract public Result call() throws Exception;
 
 	 /**
 	 * @see Callable#call()
 	 * @see Command#execute(ResultOutputMethodToStream)
 	 */
-	 abstract protected DatabaseElement internalCall() throws Exception;
+	 abstract protected DatabaseElement[] internalCall() throws Exception;
 
 	/**
 	 * Checks if all mandatory arguments are in the

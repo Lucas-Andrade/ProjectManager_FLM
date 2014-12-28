@@ -105,7 +105,7 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
-	protected DatabaseElement internalCall() throws Exception
+	protected DatabaseElement[] internalCall() throws Exception
 	{
 		Project project = repository.getProjectById(getParameterAsLong(PID));
 		

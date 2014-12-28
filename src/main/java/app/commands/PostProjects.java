@@ -139,7 +139,7 @@ public class PostProjects extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
 	 */
 	@Override
-	protected DatabaseElement internalCall()
+	protected DatabaseElement[] internalCall()
 			throws CommandException, IOException
 	{
 		double latitude = getParameterAsDouble(LATITUDE);

@@ -42,7 +42,7 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 		validateDemandingParameters(getMandatoryParameters());
 		String format = getResultsOutputFormat();
 		String destination = getParameterAsString(OUTPUT);
-		DatabaseElement dbElement =internalCall();
+		DatabaseElement[] dbElement =internalCall();
 		return new Result(dbElement, format, destination);
 	}
 

@@ -107,7 +107,7 @@ public class GetUser extends BaseCommandResultsOutputMethod
 	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
 	 */
 	@Override
-	protected DatabaseElement internalCall() throws Exception
+	protected DatabaseElement[] internalCall() throws Exception
 	{
 		UserInterface user = repository.getUserByUsername(username);
 		return user;

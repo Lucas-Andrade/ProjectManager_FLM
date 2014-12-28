@@ -134,7 +134,7 @@ public class PostConsultant extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
 	 */
 	@Override
-	protected DatabaseElement internalCall()
+	protected DatabaseElement[] internalCall()
 			throws CommandException, IOException
 	{
 		String name = getParameterAsString(NAME);
