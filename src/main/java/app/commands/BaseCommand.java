@@ -17,8 +17,7 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
  */
 //TODO
 //apagar interface command
-public abstract class BaseCommand implements
-		Command, Callable<DatabaseElement>
+public abstract class BaseCommand implements Callable<Result>
 {
 
 	/**
@@ -44,32 +43,21 @@ public abstract class BaseCommand implements
 		this.parameters = parameters;
 	}
 
-	//TODO
-	// substituir este método pelo call, apagar a interface commad e colocar a interface callable
+
 	/**
 	 * Checks if all mandatory arguments are in the
 	 * {@link BaseCommand#parameters}, if yes proceeds with the execution.
-	 * 
+	 * @see Callable#call()
 	 * @see BaseCommand#validateDemandingParameters(String...)
 	 * @see BaseCommand#internalCall()
 	 * 
 	 * @throws Exception
 	 */
 	@Override
-	public final void execute(ResultOutputMethodToStream out) throws Exception
-	{
-		out.giveResults(this.call());
-	}
-
-	/**
-	 * @see Callable#call()
-	 * @see Command#execute(ResultOutputMethodToStream)
-	 */
-	@Override
-	public DatabaseElement call() throws Exception
+	public Result call() throws Exception
 	{
 		validateDemandingParameters(getMandatoryParameters());
-		return internalCall();
+		return null;
 	}
 
 	 /**

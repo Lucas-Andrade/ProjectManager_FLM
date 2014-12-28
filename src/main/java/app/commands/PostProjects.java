@@ -2,10 +2,12 @@ package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import utils.Local;
 import utils.Project;
 import app.commands.exceptions.CommandException;
+import app.elements.DatabaseElement;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
@@ -95,7 +97,7 @@ public class PostProjects extends BaseCommandUserAuthentication
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Command newInstance(Map<String, String> parameters)
+		public Callable<Result> newInstance(Map<String, String> parameters)
 		{
 			return new PostProjects(uRepository, repository, parameters);
 		}
@@ -136,7 +138,7 @@ public class PostProjects extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
 	 */
 	@Override
-	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
+	protected DatabaseElement internalCall()
 			throws CommandException, IOException
 	{
 		double latitude = getParameterAsDouble(LATITUDE);

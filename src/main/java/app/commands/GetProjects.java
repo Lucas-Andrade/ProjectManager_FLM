@@ -2,6 +2,7 @@ package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import utils.Project;
 import app.commands.exceptions.CommandException;
@@ -66,7 +67,7 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Command newInstance(Map<String, String> parameters)
+		public Callable<Result> newInstance(Map<String, String> parameters)
 		{
 			return new GetProjects(repository, parameters);
 		}

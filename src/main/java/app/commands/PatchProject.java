@@ -1,8 +1,10 @@
 package app.commands;
 
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import utils.Project;
+import app.commandParser.CommandParser;
 import app.commands.exceptions.InvalidParameterValueException;
 import app.elements.DatabaseElement;
 import app.repository.ProjectsRepository;
@@ -80,7 +82,7 @@ public class PatchProject extends BaseCommandUserAuthentication{
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Command newInstance(Map<String, String> parameters)
+		public Callable<Result> newInstance(Map<String, String> parameters)
 		{
 			return new PatchProject(uRepository, pRepository, parameters);
 		}
@@ -103,7 +105,7 @@ public class PatchProject extends BaseCommandUserAuthentication{
 
 
 	@Override
-	protected DatabaseElement internalCallAfterUserAuthentication()
+	protected DatabaseElement internalCall()
 			throws Exception {
 
 		Project project = pRepository.getProjectById(getParameterAsLong(PID));
