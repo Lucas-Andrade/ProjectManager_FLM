@@ -118,7 +118,7 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected DatabaseElement internalCall()
+	protected DatabaseElement[] internalCall()
 			throws Exception
 	{
 		AWorker worker = repository

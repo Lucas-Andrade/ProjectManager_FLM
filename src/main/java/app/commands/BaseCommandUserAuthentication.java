@@ -101,7 +101,7 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	 * 
 	 * @throws Exception
 	 */
-	abstract protected DatabaseElement internalCall()
+	abstract protected DatabaseElement[] internalCall()
 			throws Exception;
 
 }

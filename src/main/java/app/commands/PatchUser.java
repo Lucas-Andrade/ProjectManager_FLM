@@ -107,7 +107,7 @@ public class PatchUser extends BaseCommandUserAuthentication{
 	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication()
 	 */
 	@Override
-	protected DatabaseElement internalCall()
+	protected DatabaseElement[] internalCall()
 			throws Exception {
 
 		this.newPassword = getParameterAsString(NEWPASSWORD);

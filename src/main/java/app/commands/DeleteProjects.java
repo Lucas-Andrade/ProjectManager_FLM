@@ -122,7 +122,7 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected DatabaseElement internalCall()
+	protected DatabaseElement[] internalCall()
 			throws Exception
 	{
 		long pid = this.getParameterAsLong(PID);

@@ -106,7 +106,7 @@ public class PatchProject extends BaseCommandUserAuthentication{
 
 
 	@Override
-	protected DatabaseElement internalCall()
+	protected DatabaseElement[] internalCall()
 			throws Exception {
 
 		Project project = pRepository.getProjectById(getParameterAsLong(PID));
