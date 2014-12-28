@@ -5,7 +5,6 @@ import java.util.concurrent.Callable;
 
 import app.commands.exceptions.InvalidParameterValueException;
 import app.elements.DatabaseElement;
-import app.resultsOutputMethods.ResultOutputMethodToStream;
 
 public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 {
@@ -21,13 +20,7 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 	 * {@code String} with the results output destination. This argument is used to define where the 
 	 * results will be presented (console or an output file).
 	 */
-	public static final String OUTPUT = "output";
-
-	/**
-	 * An array of {@code String}s with the names of all mandatory arguments.
-	 */
-	public static final String[] OUTPUT_PARAMETERS = new String[] {ACCEPT, OUTPUT};
-
+	public static String OUTPUT = "output";
 	
 	
 	public BaseCommandResultsOutputMethod(Map<String, String> parameters)
@@ -43,21 +36,14 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 	 * 
 	 */
 	@Override
-	protected DatabaseElement internalCall() throws Exception
+	public Result call() throws Exception
 	{
+		validateDemandingParameters(getMandatoryParameters());
 		String format = getResultsOutputFormat();
 		String destination = getParameterAsString(OUTPUT);
 		DatabaseElement dbElement =internalCall();
-		return new result(dbElement, format, destination);
+		return new Result(dbElement, format, destination);
 	}
-
-	abstract protected DatabaseElement internalCallAfterDefiningTheOutputMethodForResults()
-			throws Exception;
-
-
-	@Override
-	abstract protected DatabaseElement internalCall() throws Exception;
-	
 
 	/**
 	 * This method checks if the user entered the format in which he want to display the results output 
@@ -89,7 +75,22 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 			throw new InvalidParameterValueException("Unrecognised accept format.");
 		return ACCEPT;
 	}
-
 	
-
+	/**
+	 * This method checks if the user entered the destination in which he want to display the 
+	 * results output ("output").
+	 * If the user has not entered the format in which he want to display the output, it will be presented 
+	 * in text; 
+	 * @param parameters
+	 * @return
+	 * @throws Exception
+	 */
+	protected String getResultsOutputDestination()
+			throws Exception
+	{
+		String output = getParameterAsString(ACCEPT);
+		
+		return (output == null)?"console":output;
+	}
+	
 }

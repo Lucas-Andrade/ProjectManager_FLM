@@ -2,9 +2,12 @@ package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import utils.Project;
+import app.commandParser.CommandParser;
 import app.commands.exceptions.CommandException;
+import app.elements.DatabaseElement;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
@@ -88,7 +91,7 @@ public class PostSubprojects extends BaseCommandUserAuthentication
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Command newInstance(Map<String, String> parameters)
+		public Callable<Result> newInstance(Map<String, String> parameters)
 		{
 			return new PostSubprojects(uRepository, repository, parameters);
 		}
@@ -130,7 +133,7 @@ public class PostSubprojects extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
 	 */
 	@Override
-	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
+	protected DatabaseElement internalCall()
 			throws CommandException, IOException
 	{
 		long pid = getParameterAsLong(PID);

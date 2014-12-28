@@ -3,8 +3,10 @@ package app.commands;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import utils.Project;
+import app.commandParser.CommandParser;
 import app.elements.DatabaseElement;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
@@ -79,7 +81,7 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Command newInstance(Map<String, String> parameters)
+		public Callable<Result> newInstance(Map<String, String> parameters)
 		{
 			return new DeleteProjects(uRepository, pRepository, parameters);
 		}
@@ -116,10 +118,10 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 	 * 
 	 * @return The deleted {@code Project}.
 	 * 
-	 * @see BaseCommandUserAuthentication#internalCallAfterUserAuthentication()
+	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected DatabaseElement internalCallAfterUserAuthentication()
+	protected DatabaseElement internalCall()
 			throws Exception
 	{
 		long pid = this.getParameterAsLong(PID);

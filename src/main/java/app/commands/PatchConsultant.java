@@ -1,6 +1,7 @@
 package app.commands;
 
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import utils.AWorker;
 import app.elements.DatabaseElement;
@@ -84,7 +85,7 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Command newInstance(Map<String, String> parameters)
+		public Callable<Result> newInstance(Map<String, String> parameters)
 		{
 			return new PatchConsultant(uRepository, wRepository, parameters);
 		}
@@ -113,10 +114,10 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 	 * 
 	 * @return The modified {@code AWorker}.
 	 * 
-	 * @see BaseCommandUserAuthentication#internalCallAfterUserAuthentication()
+	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected DatabaseElement internalCallAfterUserAuthentication()
+	protected DatabaseElement internalCall()
 			throws Exception
 	{
 		AWorker worker = repository

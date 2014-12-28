@@ -19,6 +19,7 @@ import app.resultsOutputMethods.ResultOutputMethodToStream;
 public abstract class BaseCommandUserAuthentication extends BaseCommand
 {
 
+	private final String ACCEPT = "text";
 	/**
 	 * {@code String} with the Login Name argument's name. This argument is used
 	 * for {@code User}'s authentication.
@@ -67,13 +68,13 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	 * @see app.commands.BaseCommand#internalCall()
 	 */
 	@Override
-	protected DatabaseElement internalCall() throws Exception
+	public Result call() throws Exception
 	{
 		validateDemandingParameters(DEMANDING_PARAMETERS);
 		String username = parameters.get(LOGINNAME);
 		String password = parameters.get(LOGINPASSWORD);
 		if (authenticateUser(username, password))
-			return internalCallAfterUserAuthentication();
+			return new Result(internalCall(),ACCEPT,null);
 		else
 			throw new InvalidUserException(username);
 	}
@@ -99,7 +100,7 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	 * 
 	 * @throws Exception
 	 */
-	abstract protected DatabaseElement internalCallAfterUserAuthentication()
+	abstract protected DatabaseElement internalCall()
 			throws Exception;
 
 }

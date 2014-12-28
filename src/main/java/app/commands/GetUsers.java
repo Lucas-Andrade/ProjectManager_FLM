@@ -1,10 +1,10 @@
 package app.commands;
 
-import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
-import app.commands.exceptions.CommandException;
 import app.elements.DatabaseElement;
+import app.elements.User;
 import app.repository.UserRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
 
@@ -52,7 +52,7 @@ public class GetUsers extends BaseCommandResultsOutputMethod
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Command newInstance(Map<String, String> parameters)
+		public Callable<Result> newInstance(Map<String, String> parameters)
 		{
 			return new GetUsers(repository, parameters);
 		}

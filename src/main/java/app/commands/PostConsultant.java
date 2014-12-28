@@ -2,10 +2,13 @@ package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
+import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
 import app.commands.exceptions.CommandException;
+import app.elements.DatabaseElement;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
 import app.resultsOutputMethods.ResultOutputMethod;
@@ -89,7 +92,7 @@ public class PostConsultant extends BaseCommandUserAuthentication
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Command newInstance(Map<String, String> parameters)
+		public Callable<Result> newInstance(Map<String, String> parameters)
 		{
 			return new PostConsultant(uRepository, repository, parameters);
 		}
@@ -130,7 +133,7 @@ public class PostConsultant extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
 	 */
 	@Override
-	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
+	protected DatabaseElement internalCall()
 			throws CommandException, IOException
 	{
 		String name = getParameterAsString(NAME);

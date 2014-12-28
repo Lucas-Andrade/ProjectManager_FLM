@@ -2,8 +2,10 @@ package app.commands;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import app.commands.exceptions.CommandException;
+import app.elements.DatabaseElement;
 import app.elements.User;
 import app.elements.UserInterface;
 import app.repository.UserRepository;
@@ -105,7 +107,7 @@ public class PostUsers extends BaseCommandUserAuthentication
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Command newInstance(Map<String, String> parameters)
+		public Callable<Result> newInstance(Map<String, String> parameters)
 		{
 			return new PostUsers(uRepository, parameters);
 		}
@@ -144,7 +146,7 @@ public class PostUsers extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
 	 */
 	@Override
-	protected void internalExecuteAfterUserAuthentication(ResultOutputMethod out)
+	protected DatabaseElement internalCall()
 			throws CommandException, IOException
 	{
 		this.username = parameters.get(USERNAME);

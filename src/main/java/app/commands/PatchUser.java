@@ -1,12 +1,14 @@
 package app.commands;
 
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import app.commands.exceptions.InvalidParameterValueException;
 import app.commands.exceptions.InvalidUserException;
 import app.elements.DatabaseElement;
 import app.elements.UserInterface;
 import app.repository.UserRepository;
+import app.resultsOutputMethods.ResultOutputMethodToStream;
 
 public class PatchUser extends BaseCommandUserAuthentication{
 
@@ -79,7 +81,7 @@ public class PatchUser extends BaseCommandUserAuthentication{
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Command newInstance(Map<String, String> parameters)
+		public Callable<Result> newInstance(Map<String, String> parameters)
 		{
 			return new PatchUser(uRepository, parameters);
 			
@@ -104,7 +106,7 @@ public class PatchUser extends BaseCommandUserAuthentication{
 	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication()
 	 */
 	@Override
-	protected DatabaseElement internalCallAfterUserAuthentication()
+	protected DatabaseElement internalCall()
 			throws Exception {
 
 		this.newPassword = getParameterAsString(NEWPASSWORD);
@@ -122,12 +124,13 @@ public class PatchUser extends BaseCommandUserAuthentication{
 			throw new InvalidParameterValueException("New password must at least have 4 characters.");
 	}
 
-	/**
-	 * @see app.commands.BaseCommand#getMandatoryParameters()
-	 */
 	@Override
-	protected String[] getMandatoryParameters() {
+	protected String[] getMandatoryParameters() 
+	{
 		return DEMANDING_PARAMETERS;
 	}
+
+	
+
 }
 
