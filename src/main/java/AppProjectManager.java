@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
-
 import app.commandParser.CommandParser;
 import app.commandParser.CommandParserException;
 import app.commandParser.DuplicateArgumentsException;
@@ -45,11 +44,12 @@ import app.resultsAndOutputMethods.ResultOutputMethodToStream;
  * <p>
  * AVAIABLE COMMANDS:
  * <li>POST /users {parameter list} : add a user to the User Repository
- * <li>POST /projects {parameter list} : add a Project to the Project repository.
+ * <li>POST /projects {parameter list} : add a Project to the Project
+ * repository.
  * <li>POST /consultants {parameter list} : add a consultant to the Worker
  * Repository.
- * <li>POST /projects/{pid}/{type} {parameter list} : add a consultant or Manager
- * to a project/subproject.
+ * <li>POST /projects/{pid}/{type} {parameter list} : add a consultant or
+ * Manager to a project/subproject.
  * <li>POST /projects/{pid}/subproject {parameter list} : add a subproject to a
  * projects/subprojects.
  * <li>GET /users : Return the information of all users in the User Repository
@@ -59,8 +59,8 @@ import app.resultsAndOutputMethods.ResultOutputMethodToStream;
  * of the Manager of a project with the specify {@code ProjectId}.
  * <li>GET /projects/{pid} : Return the information of the project with the
  * specify {@code ProjectId}.
- * <li>GET /projects/{pid}/subproject : Return the information of all subprojects
- * of a project with the specify {@code ProjectId}.
+ * <li>GET /projects/{pid}/subproject : Return the information of all
+ * subprojects of a project with the specify {@code ProjectId}.
  * <li>PATCH /users/{username} {parameter list} : Updates the password of the
  * user identified by the specify {@code username}.
  * <li>PATCH /projects/{pid} {parameter list}: Update the information of the
@@ -101,7 +101,7 @@ public class AppProjectManager
 	/**
 	 * The variable that defines the default Output used in this application.
 	 */
-	private static final PrintStream DEFAULT_SYSTEM_OUT = System.out;
+	private static PrintStream DEFAULT_SYSTEM_OUT = System.out;
 
 	/**
 	 * The variable that defines the default Output Method (for the
@@ -110,8 +110,8 @@ public class AppProjectManager
 	 */
 	private static ResultOutputMethodToStream resultOutput = new ResultOutputAsPlainTextToStream(
 			DEFAULT_SYSTEM_OUT);
-	//TODO em cima.
 
+	// TODO em cima.
 	/**
 	 * This method associates the method and the path that the user will insert
 	 * to reach the corresponding command factory, and register the command.
@@ -215,8 +215,10 @@ public class AppProjectManager
 						+ "\n	  Add a subproject to a project/subproject."
 						+ "\n\n  GET COMMANDS: {parameter list: accept, output-file(optional)}"
 						+ "\n  	GET /users : Return the information of all users in the User Repository"
-						+ "\n  	GET /users/{username}  : Return the information of the user with the  specify {@code username} of the User Repository"																												// enunciado
-						+ "\n  	GET /projects/{pid}: Return the information of the project with the  specify {@code ProjectId}" // extra ao enunciado
+						+ "\n  	GET /users/{username}  : Return the information of the user with the  specify {@code username} of the User Repository" // enunciado
+						+ "\n  	GET /projects/{pid}: Return the information of the project with the  specify {@code ProjectId}" // extra
+																																// ao
+																																// enunciado
 						+ "\n  	GET /projects/{pid}/{type} : Return the information of all consultants or of the Manager of a project with the  specify {@code ProjectId}"
 						+ "\n  	GET /projects/{pid}/subproject : Return the information of all subprojects of a project with the  specify {@code ProjectId}"
 						+ "\n\n  PATCH COMMANDS:"
@@ -266,7 +268,8 @@ public class AppProjectManager
 
 		do
 		{
-			DEFAULT_SYSTEM_OUT.println("\nInsert the command you want to execute:");
+			DEFAULT_SYSTEM_OUT
+					.println("\nInsert the command you want to execute:");
 			String cmd = scanner.nextLine();
 			switch (cmd)
 			{
@@ -304,15 +307,12 @@ public class AppProjectManager
 	private static void commandPrompt(CommandParser parser, String cmd)
 			throws CommandParserException
 	{
-		
-		//TODO confirmar que esta versão é mais recente que a do outro ramo.
-		
 		try
 		{
 			parser.getCommand(cmd.split(" ")).execute(resultOutput);
-			
-			//TODO excepções:
-			
+
+			// TODO excepções:
+
 		} catch (UnknownCommandException e)
 		{
 			DEFAULT_SYSTEM_OUT.println("Args must have 2 or 3 elements.");
@@ -324,10 +324,12 @@ public class AppProjectManager
 			DEFAULT_SYSTEM_OUT.println("Duplicate parameters entered.");
 		} catch (MandatoryParameterNotPresentException e)
 		{
-			DEFAULT_SYSTEM_OUT.println("Not all required parameters were entered.");
+			DEFAULT_SYSTEM_OUT
+					.println("Not all required parameters were entered.");
 		} catch (InvalidParameterValueException e)
 		{
-			DEFAULT_SYSTEM_OUT.println("Inserted a parameter with an invalid value.");
+			DEFAULT_SYSTEM_OUT
+					.println("Inserted a parameter with an invalid value.");
 		} catch (CommandException e)
 		{
 			DEFAULT_SYSTEM_OUT.println("Invalid Command.");
@@ -337,6 +339,12 @@ public class AppProjectManager
 		} catch (NullPointerException e)
 		{
 			DEFAULT_SYSTEM_OUT.println("Not found.");
+		} catch (Exception e)
+		{
+			// TODO testar e/ou melhorar...
+			DEFAULT_SYSTEM_OUT.println(e.getMessage());
+			DEFAULT_SYSTEM_OUT.println(e.getCause().toString());
+			DEFAULT_SYSTEM_OUT.println(e.getLocalizedMessage());
 		}
 	}
 
