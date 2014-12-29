@@ -1,4 +1,4 @@
-package app.ideiaParaEscolherParaOndeMandarImprimirAsCoisas;
+package app.resultsAndOutputMethods.outputDestination;
 
 public class ToConsole implements Writable{
 
