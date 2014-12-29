@@ -8,6 +8,7 @@ import utils.Project;
 import app.commandParser.CommandParser;
 import app.commands.exceptions.CommandException;
 import app.elements.DatabaseElement;
+import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
@@ -139,31 +140,49 @@ public class PostSubprojects extends BaseCommandUserAuthentication
 	{
 		long pid = getParameterAsLong(PID);
 		long subPid = getParameterAsLong(SUBPID);
+		DatabaseElement[] messageAux = new DatabaseElement[1];
 
 		if (pid == subPid)
 		{
-			out.giveResults("Specified project identifications are equal!");
-			return;
+			//acrescentei ... 
+			Message message = new Message("Specified project identifications are equal!");
+			messageAux[0] = message;
+			return messageAux;
 		}
 
 		Project project = repository.getProjectById(pid);
 		if (project == null)
 		{
-			out.giveResults("Specified project does not exist.");
-			return;
+			//acrescentei ... 
+			Message message = new Message("Specified project does not exist.");
+			messageAux[0] = message;
+			return messageAux;
 		}
 
 		Project subProject = repository.getProjectById(subPid);
 		if (subProject == null)
 		{
-			out.giveResults("Specified subproject does not exist.");
-			return;
+			//acrescentei ... 
+			Message message = new Message("Specified subproject does not exist.");
+			messageAux[0] = message;
+			return messageAux;
 		}
 
 		if (project.addProject(subProject))
-			out.giveResults("Success.");
+		{
+			//acrescentei ... 
+			Message message = new Message("Success.");
+			messageAux[0] = message;
+			
+		}
 		else
-			out.giveResults("Could not add subproject to project, because subproject already is a subproject (of this or another project).");
+		{
+			//acrescentei ... 
+			Message message = new Message("Could not add subproject to project, because subproject already is a subproject (of this or another project).");
+			messageAux[0] = message;
+		}
+		
+		return messageAux;
 	}
 
 }
