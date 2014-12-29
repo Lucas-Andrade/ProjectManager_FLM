@@ -8,6 +8,7 @@ import utils.Local;
 import utils.Project;
 import app.commands.exceptions.CommandException;
 import app.elements.DatabaseElement;
+import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
@@ -153,7 +154,11 @@ public class PostProjects extends BaseCommandUserAuthentication
 		Project project = new Project(local, pid);
 
 		repository.addProject(project);
-		out.giveResults("Product identification (PID): " + pid);
+		
+		//acrescentei ... 
+		Message message = new Message("Product identification (PID): " + pid);
+		DatabaseElement[] messageAux = {message};
+		return messageAux;
 	}
 
 }
