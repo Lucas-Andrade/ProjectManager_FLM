@@ -8,7 +8,9 @@ import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
 import app.commands.exceptions.CommandException;
+import app.commands.exceptions.InvalidParameterValueException;
 import app.elements.DatabaseElement;
+import app.elements.Message;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
 import app.resultsAndOutputMethods.Result;
@@ -142,8 +144,7 @@ public class PostConsultant extends BaseCommandUserAuthentication
 
 		if (priceHour < 0)
 		{
-			out.giveResults("Specified price per hour of the worker is less than zero.");
-			return;
+			throw new InvalidParameterValueException("Specified price per hour of the worker is less than zero.");
 		}
 
 		long cid = repository.nextCID();
@@ -160,7 +161,10 @@ public class PostConsultant extends BaseCommandUserAuthentication
 			repository.addConsultant(consultant);
 		}
 
-		out.giveResults("Worker's identification (CID): " + cid);
+		//acrescentei ... 
+		Message message = new Message("Worker's identification (CID): " + cid);
+		DatabaseElement[] messageAux = {message};
+		return messageAux;
 	}
 
 }

@@ -147,15 +147,14 @@ public abstract class AContainer<elements extends Element> implements ICost
 		return builder.toString();
 	}
 	
-	public JSONObject[] getJson() 
+	public JSONObject getJson()
 	{
 		Collection<elements> elementsList = getElementsList();
-		JSONObject[] jsonArray = new JSONObject[elementsList.size()];
-		int index = 0;
+		JSONObject json = new JSONObject();
 		
 		for (elements element : elementsList)
-			jsonArray[index++] = element.getJson();
-		return jsonArray;
+			json.append("", element.getJson());
+		return json;
 	}
 	
 	/**
