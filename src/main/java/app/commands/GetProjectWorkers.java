@@ -1,5 +1,6 @@
 package app.commands;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
@@ -9,6 +10,7 @@ import utils.Leader;
 import utils.Project;
 import utils.Team;
 import app.commandParser.CommandParser;
+import app.commands.exceptions.InvalidParameterValueException;
 import app.elements.DatabaseElement;
 import app.repository.ProjectsRepository;
 import app.resultsAndOutputMethods.Result;
@@ -148,15 +150,19 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 		{
 			Leader manager = projectRepository.getProjectById(projectId)
 					.getManager();
-			return manager;
+			
+			DatabaseElement[] managerAux = {manager};
+			return managerAux;
+			
 		} else if (typeWorker.equalsIgnoreCase("Consultant"))
 		{
-			Iterable<AWorker> workers = projectRepository.getProjectById(
-					projectId).getTeam();
-
-			return workers;
+			Collection<AWorker> workers = projectRepository.getProjectById(
+					projectId).getTeam();				
+			  
+			return (DatabaseElement[]) workers.toArray();
+			
 		} else
-			out.giveResults("Unrecognised type of worker.");
+			throw new InvalidParameterValueException("Unrecognised type of worker.");
 	}
 
 

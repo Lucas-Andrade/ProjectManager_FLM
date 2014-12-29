@@ -133,7 +133,8 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 		this.removeAllProjectsToDeleteFromAllProjectContainers(allPIDsToDelete);
 		this.removeAllProjectsToDeleteFromTheRepository(allPIDsToDelete);
 
-		return parentProjectToDelete;
+		DatabaseElement[]ProjectToDelete = {parentProjectToDelete}; 
+		return ProjectToDelete;
 	}
 
 	private void removeAllProjectsToDeleteFromTheRepository(

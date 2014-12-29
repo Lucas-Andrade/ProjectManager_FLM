@@ -1,11 +1,10 @@
 package app.commands;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
 import utils.Project;
-import app.commands.exceptions.CommandException;
+import app.commandParser.CommandParser;
 import app.elements.DatabaseElement;
 import app.repository.ProjectsRepository;
 import app.resultsAndOutputMethods.Result;
@@ -111,11 +110,10 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 		
 		if(project == null)
 		{
-			out.giveResults("Project not found!");
-			return;
+			throw new NullPointerException("Project not found!");
 		}
-		
-		return project;
+		DatabaseElement[] projectAux = {project};
+		return projectAux;
 	}
 
 }

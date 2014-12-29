@@ -138,8 +138,8 @@ public class PatchProject extends BaseCommandUserAuthentication{
 			if( ! project.updateLocalPrice(getParameterAsDouble(PRICE)))
 				throw new InvalidParameterValueException("A negative price is not allowed.");
 		}
-		
-		return project;
+		DatabaseElement[] projectAux = {project};
+		return projectAux;
 	}
 
 

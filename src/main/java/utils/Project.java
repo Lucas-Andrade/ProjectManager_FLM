@@ -1,6 +1,7 @@
 package utils;
 
 import java.text.DecimalFormat;
+import java.util.Collection;
 
 import org.json.JSONObject;
 
@@ -243,7 +244,7 @@ public class Project extends Element implements ProjectInterface
 	 * @return returns and unmodifiable view of {@code team} provided by the
 	 *         method {@code getElementsList()}.
 	 */
-	public Iterable<AWorker> getTeam()
+	public Collection<AWorker> getTeam()
 	{
 
 		return this.team.getElementsList();

@@ -127,7 +127,8 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 			worker.setName(parameters.get(NAME));
 		if (parameters.containsKey(PRICE_HOUR))
 			worker.setCostPerHour(this.getParameterAsDouble(PRICE_HOUR));
-		return worker;
+		DatabaseElement[] workerAux = {worker};
+		return workerAux;
 	}
 
 	/**

@@ -112,7 +112,9 @@ public class GetSubproject extends BaseCommandResultsOutputMethod
 	protected DatabaseElement[] internalCall() throws Exception
 	{
 		Project project = repository.getProjectById(getParameterAsLong(PID));
-		return project.getContainerProject();
+		
+		DatabaseElement[] subproject = project.getContainerProject();
+		return subproject;
 	}
 
 
