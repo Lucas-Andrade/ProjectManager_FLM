@@ -6,6 +6,7 @@ import java.util.concurrent.Callable;
 
 import app.commands.exceptions.CommandException;
 import app.elements.DatabaseElement;
+import app.elements.Message;
 import app.elements.User;
 import app.elements.UserInterface;
 import app.repository.UserRepository;
@@ -150,34 +151,50 @@ public class PostUsers extends BaseCommandUserAuthentication
 	protected DatabaseElement[] internalCall()
 			throws CommandException, IOException
 	{
+		DatabaseElement[] messageAux = new DatabaseElement[1];
+		Message message;
+		
 		this.username = parameters.get(USERNAME);
 		this.password = parameters.get(PASSWORD);
 		
 		if(password.length() < User.minCharInPass)
 		{
-			out.giveResults("User's password must have at least 4 characters.");
-			return;
+			message = new Message("User's password must have at least 4 characters.");
+			messageAux[0] = message;
+			
+			return messageAux;
 		}
 		
 		this.email = parameters.get(EMAIL);
 		this.fullname = parameters.get(FULLNAME);
 		UserInterface[] existingUsers = (UserInterface[]) repository.getAll();
+		
 		for (UserInterface existingUser : existingUsers)
 		{
 			if (existingUser.getLoginName().equals(this.username))
 			{
-				out.giveResults("The Specified Username already exists in repository.");
-				return;
+				message = new Message("The Specified Username already exists in repository.");
+				messageAux[0] = message;
+				
+				return messageAux;
 			}
 		}
 		if (this.validEmail())
 		{
 			repository.addUser(new User(this.username, this.password,
 					this.email, this.fullname));
-			out.giveResults("Success.");
-			return;
+			
+			message = new Message("Success.");
+			messageAux[0] = message;
+			
+		
 		} else
-			out.giveResults("The Email is not valid.");
+		{
+			message = new Message("The Email is not valid.");
+			messageAux[0] = message;
+		}
+		
+		return messageAux;
 	}
 
 	/**

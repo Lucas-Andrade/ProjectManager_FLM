@@ -12,6 +12,7 @@ import utils.Team;
 import app.commandParser.CommandParser;
 import app.commands.exceptions.CommandException;
 import app.elements.DatabaseElement;
+import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
@@ -198,27 +199,36 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 		this.projectId = getParameterAsLong(PID);
 		this.typeWorker = getParameterAsString(WTYPE);
 		this.workerId = getParameterAsLong(CID);
+		DatabaseElement[] messageAux = new DatabaseElement[1];
+		Message message;
 
 		Project project = projectRepository.getProjectById(projectId);
 		if (project == null)
 		{
-			out.giveResults("The Specified Project does not exists in repository.");
-			return;
+			message = new Message("The Specified Project does not exists in repository.");
+			messageAux[0] = message;
+			
+			return messageAux;
 		}
 
 		if (typeWorker.equalsIgnoreCase("manager"))
 		{
-			out.giveResults(addManager(out, projectId, workerId) ? "Success." : 
+			message = new Message(addManager(projectId, workerId) ? "Success." : 
 				"Not successfull. Manager may already be in the project.");
-			return;
+			messageAux[0] = message;
+				
 		} else if (typeWorker.equalsIgnoreCase("consultant")) 
 		{
-			out.giveResults(addConsultant(out, projectId, workerId) ? "Success." : 
+			message = new Message(addConsultant(projectId, workerId) ? "Success." : 
 				"Not successfull. Consultant may already be in the project.");
+				messageAux[0] = message;
 
-			return;
 		} else
-			out.giveResults("Unrecognised type of worker.");
+		{
+			message = new Message("Unrecognised type of worker.");
+			messageAux[0] = message;
+		}		
+			return messageAux;
 
 	}
 
@@ -235,9 +245,9 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 * @return True if successful, False if not.
 	 * @throws IOException
 	 */
-	private Boolean addConsultant(ResultOutputMethod out, long projectId,
-			long workerId) throws IOException
+	private Boolean addConsultant( long projectId,long workerId) throws IOException
 	{
+		DatabaseElement[] messageAux = new DatabaseElement[1];
 		Consultant consultant = workerRepository.getConsultantByID(workerId);
 
 		if (consultant != null)
@@ -245,7 +255,9 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 			projectRepository.getProjectById(projectId).addWorker(consultant);
 			return true;
 		}
-		out.giveResults("The Specified Consultant does not exists in repository.");
+		
+		Message message = new Message("The Specified Consultant does not exists in repository.");
+		messageAux[0] = message;
 		return false;
 	}
 
@@ -262,16 +274,17 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 * @return True if successful, False if not.
 	 * @throws IOException
 	 */
-	private Boolean addManager(ResultOutputMethod out, long projectId,
-			long workerId) throws IOException
+	private Boolean addManager(long projectId, long workerId) throws IOException
 	{
+		DatabaseElement[] messageAux = new DatabaseElement[1];
 		Leader manager = workerRepository.getManagerByID(workerId);
 		if (manager != null)
 		{
 			projectRepository.getProjectById(projectId).setManager(manager);
 			return true;
 		}
-		out.giveResults("The Specified Manager does not exists in repository.");
+		Message message = new Message("The Specified Manager does not exists in repository.");
+		messageAux[0] = message;
 		return false;
 	}
 }
