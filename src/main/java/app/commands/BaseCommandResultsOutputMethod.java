@@ -5,6 +5,9 @@ import java.util.concurrent.Callable;
 
 import app.commands.exceptions.InvalidParameterValueException;
 import app.resultsAndOutputMethods.Result;
+import app.resultsAndOutputMethods.outputFormat.ToHtml;
+import app.resultsAndOutputMethods.outputFormat.ToJson;
+import app.resultsAndOutputMethods.outputFormat.ToPlainText;
 
 public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 {
@@ -58,13 +61,55 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 
 		if (accept == null || accept.equalsIgnoreCase("text/plain"))
 		{
-			return "text/plain";
+			return new ToPlainText().getClass().getName().substring(2); // This
+																		// String
+																		// is
+																		// case
+																		// sensitive
+																		// and
+																		// must
+																		// match
+																		// the
+																		// name
+																		// of
+																		// the
+																		// Object
+																		// that
+																		// is
+																		// going
+																		// to be
+																		// used.
+			// {@see Result}
 		} else if (accept.equalsIgnoreCase("text/html"))
 		{
-			return accept;
+			return new ToHtml().getClass().getName().substring(2); // This
+																	// String is
+																	// case
+																	// sensitive
+																	// and must
+																	// match the
+																	// name of
+																	// the
+																	// Object
+																	// that is
+																	// going to
+																	// be used.
+			// {@see Result}
 		} else if (accept.equalsIgnoreCase("application/json"))
 		{
-			return accept;
+			return new ToJson().getClass().getName().substring(2); // This
+																	// String is
+																	// case
+																	// sensitive
+																	// and must
+																	// match the
+																	// name of
+																	// the
+																	// Object
+																	// that is
+																	// going to
+																	// be used.
+			// {@see Result}
 		} else
 			throw new InvalidParameterValueException(
 					"Unrecognised accept format.");

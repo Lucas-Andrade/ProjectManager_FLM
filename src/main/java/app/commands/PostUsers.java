@@ -11,7 +11,6 @@ import app.elements.User;
 import app.elements.UserInterface;
 import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
-import app.resultsAndOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that create new {@link User}s.

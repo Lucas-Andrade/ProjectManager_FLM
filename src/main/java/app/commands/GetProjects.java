@@ -8,7 +8,6 @@ import app.commandParser.CommandParser;
 import app.elements.DatabaseElement;
 import app.repository.ProjectsRepository;
 import app.resultsAndOutputMethods.Result;
-import app.resultsAndOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that return the {@link Project} with specified {@code PID}

@@ -14,7 +14,6 @@ import app.elements.Message;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
 import app.resultsAndOutputMethods.Result;
-import app.resultsAndOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that create new {@link AWorker}s.

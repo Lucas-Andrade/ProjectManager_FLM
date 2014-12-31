@@ -1,19 +1,22 @@
 package app.resultsAndOutputMethods;
 
+import java.io.IOException;
+
+import app.elements.Admin;
+import app.elements.DatabaseElement;
+import app.elements.ImmutableAdmin;
+
 public class testeResultIntroReflex
 {
 
-	public testeResultIntroReflex()
+	public static void main(String[] args) throws ClassNotFoundException,
+			InstantiationException, IllegalAccessException, IOException
 	{
-		// TODO Auto-generated constructor stub
-	}
-
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException
-	{
-		newResult a = new newResult(null, "html");
-		a.showTeste();
-		
-		
+		DatabaseElement c = new ImmutableAdmin();
+		DatabaseElement d = new Admin("aaaaa", "bbbbb");
+		DatabaseElement[] b = { c, d };
+		Result a = new Result(b, "console", "PlainText");
+		a.showResults();
 	}
 
 }
