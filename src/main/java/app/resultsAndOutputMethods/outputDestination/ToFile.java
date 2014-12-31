@@ -8,23 +8,19 @@ import java.io.OutputStream;
 public class ToFile implements Writable
 {
 
-	private OutputStream outStream;
+	private String pathToDestinationFile;
 
 	public ToFile(String pathToDestinationFile) throws FileNotFoundException
 	{
-		this.outStream = new FileOutputStream(pathToDestinationFile);
+		this.pathToDestinationFile = pathToDestinationFile;
 	}
 
 	@Override
 	public void write(String info) throws IOException
 	{
-		this.outStream.write(info.getBytes());
-	}
-
-	public void flushAndClose() throws IOException
-	{
-		this.outStream.flush();
-		this.outStream.close();
+		OutputStream outStream = new FileOutputStream(pathToDestinationFile);
+		outStream.write(info.getBytes());
+		outStream.close();
 	}
 
 }
