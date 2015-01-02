@@ -255,7 +255,7 @@ public class Project extends Element implements ProjectInterface
 	 *         the method {@code getElementsList()}.
 	 */
 	@Override
-	public Iterable<Project> getContainerProject()
+	public Collection<Project> getContainerProject()
 	{
 
 		return this.projectsContainer.getElementsList();
