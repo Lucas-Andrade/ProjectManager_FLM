@@ -26,7 +26,6 @@ public class ToPlainText implements TextParser{
 			else
 				builder.append(jsonObject.get(key)).append(elementSeparator);
 		}
-			
 		return builder.toString();
 	}
 
