@@ -119,7 +119,10 @@ public class PatchUser extends BaseCommandUserAuthentication{
 		UserInterface user = repository.getUserByUsername(username);
 		
 		if(user.setNewPassword(newPassword))
-			return user;
+		{
+			DatabaseElement[] userAux = {user};
+			return userAux;
+		}
 		else
 			throw new InvalidParameterValueException("New password must at least have 4 characters.");
 	}
