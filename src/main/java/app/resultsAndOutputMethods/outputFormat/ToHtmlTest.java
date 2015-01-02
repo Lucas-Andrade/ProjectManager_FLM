@@ -46,9 +46,9 @@ public class ToHtmlTest {
 		proj1.addProject(proj4);
 		
 		
-		System.out.println(new ToPlainText().parse(proj1.getJson()));
-		System.out.println("\n\n");
-		System.out.println(new ToPlainText().parse(new User("username", "password", "email", "fullname").getJson()));
+		System.out.println(new ToHtml().parse(proj1.getJson()));
+//		System.out.println("\n\n");
+//		System.out.println(new ToPlainText().parse(new User("username", "password", "email", "fullname").getJson()));
 	}
 
 }
