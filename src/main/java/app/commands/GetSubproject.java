@@ -112,8 +112,8 @@ public class GetSubproject extends BaseCommandResultsOutputMethod
 	{
 		Project project = repository.getProjectById(getParameterAsLong(PID));
 		
-		DatabaseElement[] subproject = project.getContainerProject();
-		return subproject;
+		DatabaseElement[] subprojectAux = {(DatabaseElement) project.getContainerProject()};
+		return subprojectAux;
 	}
 
 
