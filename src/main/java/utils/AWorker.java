@@ -148,8 +148,8 @@ public abstract class AWorker extends Element implements WorkerInterface
 		JSONObject worker = new JSONObject(); 
 		
 		//preenche o objeto com os campos: name, payment per hour e cost
-		worker.put("Cost (Euros)", df.format(getCost())); 
-		worker.put("Payment per hour (Euros)", df.format(costPerHour)); 
+		worker.put("Cost (Euros)", df.format(getCost()).replaceAll(",", ".")); 
+		worker.put("Payment per hour (Euros)", df.format(costPerHour).replaceAll(",", ".")); 
 		worker.put("Consultant ID", cid);
 		worker.put("Name", name); 
 		

@@ -4,14 +4,14 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import app.elements.User;
 import utils.Consultant;
 import utils.Leader;
 import utils.Local;
 import utils.Project;
 import utils.Team;
+import app.elements.User;
 
-public class ToPlainTextTest {
+public class ToHtmlTest {
 
 	@Test
 	public void visualTest()

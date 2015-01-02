@@ -88,7 +88,7 @@ public class Local implements ICost, IName
 	{
 		DecimalFormat df = new DecimalFormat("#.##");
 		JSONObject json = new JSONObject();
-		json.put("Cost (Euros)", df.format(getCost()));
+		json.put("Cost (Euros)", df.format(getCost()).replaceAll(",", "."));
 		json.put("Longitude", longitude);
 		json.put("Latitude", latitude);
 		json.put("Name", name);

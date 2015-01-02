@@ -2,9 +2,7 @@ package utils;
 
 import java.text.DecimalFormat;
 import java.util.Collection;
-
 import org.json.JSONObject;
-
 import app.elements.ProjectInterface;
 
 /**
@@ -330,11 +328,11 @@ public class Project extends Element implements ProjectInterface
 		DecimalFormat df = new DecimalFormat("#.##");
 		JSONObject json = new JSONObject();
 		json.put("Subprojects", projectsContainer.size() == 0 ? "None." : projectsContainer.getJson());
-		json.put("Team", team.getJson());
+		json.put("Project team", team.getJson());
 		if(manager != null)
 			json.put("Manager", manager.getJson());
 		json.put("Local", local.getJson());
-		json.put("Cost (Euros)", df.format(getCost()));
+		json.put("Cost (Euros)", df.format(getCost()).replaceAll(",", "."));
 		json.put("Project ID", pid);
 		return json;
 	}
