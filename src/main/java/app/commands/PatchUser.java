@@ -9,7 +9,6 @@ import app.elements.DatabaseElement;
 import app.elements.UserInterface;
 import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
-import app.resultsAndOutputMethods.ResultOutputMethodToStream;
 
 public class PatchUser extends BaseCommandUserAuthentication{
 
@@ -120,7 +119,10 @@ public class PatchUser extends BaseCommandUserAuthentication{
 		UserInterface user = repository.getUserByUsername(username);
 		
 		if(user.setNewPassword(newPassword))
-			return user;
+		{
+			DatabaseElement[] userAux = {user};
+			return userAux;
+		}
 		else
 			throw new InvalidParameterValueException("New password must at least have 4 characters.");
 	}

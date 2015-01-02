@@ -5,23 +5,22 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class ToFile implements Writable{
+public class ToFile implements Writable
+{
 
-	private OutputStream outStream;
-	
+	private String pathToDestinationFile;
+
 	public ToFile(String pathToDestinationFile) throws FileNotFoundException
 	{
-		this.outStream = new FileOutputStream(pathToDestinationFile);
+		this.pathToDestinationFile = pathToDestinationFile;
 	}
-	
-	//TODO concordam?
-	// Each ToFile object can only be use the write method once,
-	// because the stream is closed in the end.
+
 	@Override
-	public void write(String info) throws IOException {
-		this.outStream.write(info.getBytes());
-		this.outStream.flush();
-		this.outStream.close();
+	public void write(String info) throws IOException
+	{
+		OutputStream outStream = new FileOutputStream(pathToDestinationFile);
+		outStream.write(info.getBytes());
+		outStream.close();
 	}
 
 }

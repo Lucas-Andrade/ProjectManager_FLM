@@ -17,8 +17,6 @@ import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
 import app.resultsAndOutputMethods.Result;
-import app.resultsAndOutputMethods.ResultOutputMethod;
-import app.resultsAndOutputMethods.ResultOutputMethodToStream;
 
 /**
  * Class whose instances are {@link Command}s that add {@link AWorker}s to

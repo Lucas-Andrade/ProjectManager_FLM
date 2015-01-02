@@ -1,4 +1,4 @@
-package app.ideiaParaTraduzirAsCoisas;
+package app.resultsAndOutputMethods.outputFormat;
 
 import org.json.JSONObject;
 

@@ -7,7 +7,6 @@ import app.elements.DatabaseElement;
 import app.elements.User;
 import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
-import app.resultsAndOutputMethods.ResultOutputMethodToStream;
 
 /**
  * Abstract POST {@link Command} to be supported by all POST {@code Command}s.

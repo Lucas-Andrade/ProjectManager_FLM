@@ -12,7 +12,6 @@ import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
-import app.resultsAndOutputMethods.ResultOutputMethod;
 
 /**
  * Class whose instances are {@link Command}s that create new {@link Project}s.

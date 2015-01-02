@@ -32,8 +32,6 @@ import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
 import app.resultsAndOutputMethods.Result;
-import app.resultsAndOutputMethods.ResultOutputAsPlainTextToStream;
-import app.resultsAndOutputMethods.ResultOutputMethodToStream;
 
 /**
  * Class for Project Management.
@@ -104,14 +102,6 @@ public class AppProjectManager
 	 * The variable that defines the default Output used in this application.
 	 */
 	private static PrintStream DEFAULT_SYSTEM_OUT = System.out;
-
-	/**
-	 * The variable that defines the default Output Method (for the
-	 * {@code Command#execute(ResultOutputMethodToStream)}'s results) used in
-	 * this application.
-	 */
-	private static ResultOutputMethodToStream resultOutput = new ResultOutputAsPlainTextToStream(
-			DEFAULT_SYSTEM_OUT);
 
 	// TODO em cima.
 	/**
@@ -312,7 +302,7 @@ public class AppProjectManager
 		try
 		{
 			Result results = parser.getCommand(cmd.split(" ")).call();
-			results.outputMethod.giveResults(results.results);
+			results.showResults();
 // TODO excepções:
 		} catch (UnknownCommandException e)
 		{
