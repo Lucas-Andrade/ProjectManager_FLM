@@ -322,22 +322,25 @@ public class AppProjectManager
 		} catch (CommandException e)
 		{
 			DEFAULT_SYSTEM_OUT.println("Invalid Command.");
-		} catch (NullPointerException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Not found.");
-		} catch (FileNotFoundException e)
+		} 
+//		catch (NullPointerException e)
+//		{
+//			DEFAULT_SYSTEM_OUT.println("Not found.");
+//		} 
+		catch (FileNotFoundException e)
 		{
 			DEFAULT_SYSTEM_OUT.println("Invalid destination for results.");
 		} catch (ClassNotFoundException e)
 		{
 			DEFAULT_SYSTEM_OUT.println("Invalid format for results.");
-		} catch (Exception e)
-		{
-			// TODO testar e/ou melhorar...
-			DEFAULT_SYSTEM_OUT.println(e.getMessage());
-			DEFAULT_SYSTEM_OUT.println(e.getCause().toString());
-			DEFAULT_SYSTEM_OUT.println(e.getLocalizedMessage());
-		}
+		} 
+//		catch (Exception e)
+//		{
+//			// TODO testar e/ou melhorar...
+//			DEFAULT_SYSTEM_OUT.println(e.getMessage());
+//			DEFAULT_SYSTEM_OUT.println(e.getCause().toString());
+//			DEFAULT_SYSTEM_OUT.println(e.getLocalizedMessage());
+//		}
 	}
 
 	public static void main(String[] args) throws Exception //TODO tirar throws
