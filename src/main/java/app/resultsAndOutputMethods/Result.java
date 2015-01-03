@@ -76,6 +76,7 @@ public class Result
 			
 		String formatClassCompleteName = TextParser.class.getPackage()
 				.getName() + ".To" + format;
+		System.out.println(formatClassCompleteName);
 		this.format = (TextParser) Class.forName(formatClassCompleteName)
 				.newInstance();
 

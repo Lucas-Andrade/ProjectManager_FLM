@@ -107,7 +107,7 @@ public class GetUser extends BaseCommandResultsOutputMethod
 	@Override
 	protected DatabaseElement[] internalCall() throws Exception
 	{
-		DatabaseElement[] user = {repository.getUserByUsername(username)};
+		DatabaseElement[] user = new DatabaseElement[]{repository.getUserByUsername(username)};
 		return user;
 	}
 
