@@ -1,6 +1,7 @@
 package app.repository;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 import org.json.JSONObject;
@@ -117,14 +118,24 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 		return projects.size();
 	}
 
+//	@Override
+//	public JSONObject[] getJson() 
+//	{
+//		JSONObject[] json = new JSONObject[projects.size()];
+//		Iterator<Project> iterator = projects.iterator();
+//		int i = 0;
+//		while(iterator.hasNext())
+//			json[i++] = iterator.next().getJson();
+//		return json;
+//	}
+
 	@Override
 	public JSONObject getJson() 
 	{
 		JSONObject json = new JSONObject();
 		for (DatabaseElement ele : projects)
-			json.accumulate("Projects", ele.getJson());
+			json.accumulate("All projects", ele.getJson());
 		
 		return json;
 	}
-
 }

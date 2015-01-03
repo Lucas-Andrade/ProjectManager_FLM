@@ -149,6 +149,17 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	{
 		return addUser(new Admin(username, password));
 	}
+//
+//	@Override
+//	public JSONObject[] getJson() 
+//	{
+//		DatabaseElement[] allElements = getAll();
+//		JSONObject[] json = new JSONObject[users.size()];
+//		int i = 0;
+//		for (DatabaseElement ele : allElements)
+//			json[i++] = ele.getJson();
+//		return json;
+//	}
 
 	@Override
 	public JSONObject getJson() 
@@ -156,9 +167,8 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 		DatabaseElement[] allElements = getAll();
 		JSONObject json = new JSONObject();
 		for (DatabaseElement ele : allElements)
-			json.accumulate("Users", ele.getJson());
+			json.accumulate("All users", ele.getJson());
 		
 		return json;
 	}
-
 }

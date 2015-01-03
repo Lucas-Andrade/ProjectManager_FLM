@@ -1,6 +1,7 @@
 package app.repository;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.TreeSet;
 
 import org.json.JSONObject;
@@ -11,6 +12,7 @@ import app.elements.WorkerComparator;
 import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
+import utils.Project;
 
 /**
  * An {@link AWorker}s in memory {@link Repository}.
@@ -165,14 +167,23 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 		return aWorker;
 	}
 
+//	@Override
+//	public JSONObject[] getJson() {
+//		JSONObject[] json = new JSONObject[workers.size()];
+//		Iterator<AWorker> iterator = workers.iterator(); 
+//		int i = 0;
+//		while(iterator.hasNext())
+//			json[i++] = iterator.next().getJson();
+//		return json;
+//	}
+
 	@Override
 	public JSONObject getJson() {
 		JSONObject json = new JSONObject();
 		for (DatabaseElement ele : workers)
-			json.accumulate("Workers", ele.getJson());
+			json.accumulate("All workers", ele.getJson());
 		
 		return json;
 	}
-
 	
 }

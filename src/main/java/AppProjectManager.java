@@ -231,13 +231,10 @@ public class AppProjectManager
 
 	/**
 	 * Ask for a command and execute it, till the END command is called.
-	 * 
-	 * @throws CommandParserException
-	 * @throws IOException
-	 * @throws CommandException
+	 * @throws Exception  //TODO tirar throws
 	 */
 	public static void execute(CommandParser parser, UserRepository userRepo)
-			throws CommandParserException, CommandException, IOException
+			throws Exception
 	{
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
@@ -295,10 +292,10 @@ public class AppProjectManager
 	 *            {@code Command} to execute.
 	 * @param cmd
 	 *            A {@code String} of the {@code Command} to execute.
-	 * @throws CommandParserException
+	 * @throws Exception //TODO tirar throws
 	 */
 	private static void commandPrompt(CommandParser parser, String cmd)
-			throws CommandParserException
+			throws Exception
 	{
 		try
 		{
@@ -343,8 +340,7 @@ public class AppProjectManager
 		}
 	}
 
-	public static void main(String[] args) throws CommandParserException,
-			CommandException, IOException
+	public static void main(String[] args) throws Exception //TODO tirar throws
 	{
 		CommandParser parser = new CommandParser();
 		UserRepository userRepo = new InMemoryUserRepo();

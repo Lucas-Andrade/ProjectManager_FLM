@@ -70,6 +70,7 @@ public class Result
 		// + format.substring(1, format.length()).toLowerCase();
 		if (format == null || format == "")
 			format = ToPlainText.class.getName().substring(2);
+
 		String formatClassCompleteName = TextParser.class.getPackage()
 				.getName() + ".To" + format;
 		this.format = (TextParser) Class.forName(formatClassCompleteName)
@@ -77,6 +78,7 @@ public class Result
 
 		this.destination = (destination == "console" || destination == ""
 				|| destination == null) ? new ToConsole()
+
 				: new ToFile(destination);
 
 		this.results = results;
@@ -94,4 +96,5 @@ public class Result
 			destination.write(format.parse(result.getJson()));
 	}
 
+	
 }

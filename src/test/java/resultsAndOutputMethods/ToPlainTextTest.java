@@ -1,17 +1,21 @@
-package app.resultsAndOutputMethods.outputFormat;
+package resultsAndOutputMethods;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import app.RepositoryConstructor;
+import app.elements.User;
+import app.repository.InMemoryProjectRepo;
+import app.resultsAndOutputMethods.outputFormat.ToHtml;
+import app.resultsAndOutputMethods.outputFormat.ToPlainText;
 import utils.Consultant;
 import utils.Leader;
 import utils.Local;
 import utils.Project;
 import utils.Team;
-import app.elements.User;
 
-public class ToHtmlTest {
+public class ToPlainTextTest {
 
 	@Test
 	public void visualTest()
@@ -45,10 +49,22 @@ public class ToHtmlTest {
 		proj2.addProject(proj3);
 		proj1.addProject(proj4);
 		
+		InMemoryProjectRepo repo = new InMemoryProjectRepo();
+		repo.addProject(proj1);
+		repo.addProject(proj2);
+		repo.addProject(proj3);
+		repo.addProject(proj4);
 		
-		System.out.println(new ToHtml().parse(proj1.getJson()));
-//		System.out.println("\n\n");
-//		System.out.println(new ToPlainText().parse(new User("username", "password", "email", "fullname").getJson()));
+		System.out.println(new ToPlainText().parse(proj1.getJson()));
+		System.out.println("\n\n");
+		System.out.println(new ToPlainText().parse(new User("username", "password", "email", "fullname").getJson()));
+		System.out.println("\n\n");
+		System.out.println(new ToPlainText().parse(worker1.getJson()));
+		System.out.println("\n\n");
+		System.out.println(new ToPlainText().parse(repo.getJson()));
+		System.out.println("\n\n");
+		System.out.println(new ToPlainText().parse(new RepositoryConstructor().constructWorkerRepo().getJson()));
+		System.out.println("\n\n");
+		System.out.println(new ToPlainText().parse(new RepositoryConstructor().constructUserRepository().getJson()));
 	}
-
 }
