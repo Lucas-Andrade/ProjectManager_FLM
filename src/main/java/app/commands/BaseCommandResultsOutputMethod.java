@@ -58,7 +58,7 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 
 	private String getResultsOutputFormat() throws Exception
 	{
-		String accept = getParameterAsString(ACCEPT).toLowerCase();
+		String accept = getParameterAsString(ACCEPT);
 
 		if (accept == null || accept == ""
 				|| accept.equalsIgnoreCase("text/plain"))

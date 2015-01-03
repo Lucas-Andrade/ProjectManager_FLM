@@ -19,7 +19,10 @@ public class testeResultIntroReflex
 		Result a = new Result(b, "console", null );
 		a.showResults();
 		
-		System.out.println(new ToPlainText().getClass().getName().substring(2));
+		System.out.println(new ToPlainText()
+		.getClass()
+		.getName()
+		.substring(ToPlainText.class.getName().lastIndexOf('.') + 3));
 	}
 
 }
