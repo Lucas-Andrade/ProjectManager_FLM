@@ -73,14 +73,15 @@ public class Result
 			format = ToPlainText.class.getName();
 			format = format.substring(format.lastIndexOf('.') + 3);
 		}
-		
+
 		String formatClassCompleteName = TextParser.class.getPackage()
 				.getName() + ".To" + format;
 		this.format = (TextParser) Class.forName(formatClassCompleteName)
 				.newInstance();
 
-		this.destination = (destination == "console" || destination == ""
-				|| destination == null) ? new ToConsole()
+		this.destination = (destination == null
+				|| destination.equalsIgnoreCase("console") || destination.equalsIgnoreCase(""))
+				? new ToConsole()
 
 				: new ToFile(destination);
 
@@ -99,5 +100,4 @@ public class Result
 			destination.write(format.parse(result.getJson()));
 	}
 
-	
 }
