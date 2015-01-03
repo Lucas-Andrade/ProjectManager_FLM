@@ -134,7 +134,7 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 	 */
 	protected String getResultsOutputDestination() throws Exception
 	{
-		return getParameterAsString(OUTPUT).toLowerCase();
+		return getParameterAsString(OUTPUT);
 	}
 
 }
