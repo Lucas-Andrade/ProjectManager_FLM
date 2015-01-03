@@ -15,7 +15,7 @@ public class testeResultIntroReflex
 		DatabaseElement c = new ImmutableAdmin();
 		DatabaseElement d = new Admin("aaaaa", "bbbbb");
 		DatabaseElement[] b = { c, d };
-		Result a = new Result(b, "console", "PlainText");
+		Result a = new Result(b, "console", null );
 		a.showResults();
 	}
 

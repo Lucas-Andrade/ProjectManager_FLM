@@ -69,8 +69,11 @@ public class Result
 		// + format.substring(0, 1).toUpperCase()
 		// + format.substring(1, format.length()).toLowerCase();
 		if (format == null || format == "")
-			format = ToPlainText.class.getName().substring(2);
-
+		{
+			format = ToPlainText.class.getName();
+			format = format.substring(format.lastIndexOf('.') + 3);
+		}
+			
 		String formatClassCompleteName = TextParser.class.getPackage()
 				.getName() + ".To" + format;
 		this.format = (TextParser) Class.forName(formatClassCompleteName)
