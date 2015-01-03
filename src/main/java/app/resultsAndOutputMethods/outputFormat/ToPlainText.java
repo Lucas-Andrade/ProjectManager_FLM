@@ -1,5 +1,6 @@
 package app.resultsAndOutputMethods.outputFormat;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ToPlainText implements TextParser{
@@ -24,11 +25,27 @@ public class ToPlainText implements TextParser{
 					.append(lineSeparator);
 			
 			else if (jsonObject.get(key) instanceof JSONObject[])
-				builder.append("\n")
+				builder.append(lineSeparator)
 					.append(parseArray((JSONObject[]) jsonObject.get(key), lineSeparator, indentation + 5));
+			
+			else if (jsonObject.get(key) instanceof JSONArray)
+				builder.append(lineSeparator)
+					.append(parseJSONArray((JSONArray)jsonObject.get(key), lineSeparator, indentation));
+			
 			else
 				builder.append(jsonObject.get(key))
 					.append(lineSeparator);
+		}
+		return builder.toString();
+	}
+
+	private static Object parseJSONArray(JSONArray jsonArray, String lineSeparator,	int indentation) 
+	{
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < jsonArray.length(); i++)
+		{
+			builder.append("-----\n")
+				.append(parse((JSONObject) jsonArray.get(i), lineSeparator, indentation));
 		}
 		return builder.toString();
 	}

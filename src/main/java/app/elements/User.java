@@ -109,7 +109,7 @@ public class User implements UserInterface, DatabaseElement
 		JSONObject json = new JSONObject();
 		json.put("Username", username);
 		json.put("Email", email);
-		json.put("Full name:", fullname);
+		json.put("Full name", fullname);
 		return json;
 	}
 	
