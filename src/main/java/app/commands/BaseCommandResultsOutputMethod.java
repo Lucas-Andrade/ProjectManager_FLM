@@ -52,8 +52,8 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 	public Result call() throws Exception
 	{
 		validateDemandingParameters(getMandatoryParameters());
-		return new Result(internalCall(), getResultsOutputFormat(),
-				getResultsOutputDestination());
+		return new Result(internalCall(), getResultsOutputDestination(),
+					getResultsOutputFormat());
 	}
 
 	private String getResultsOutputFormat() throws Exception

@@ -73,7 +73,7 @@ public class Result
 			format = ToPlainText.class.getName();
 			format = format.substring(format.lastIndexOf('.') + 3);
 		}
-			
+		
 		String formatClassCompleteName = TextParser.class.getPackage()
 				.getName() + ".To" + format;
 		this.format = (TextParser) Class.forName(formatClassCompleteName)
