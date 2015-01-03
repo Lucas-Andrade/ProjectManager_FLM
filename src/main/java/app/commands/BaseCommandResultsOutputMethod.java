@@ -58,7 +58,63 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 
 	private String getResultsOutputFormat() throws Exception
 	{
-		return getParameterAsString(ACCEPT).toLowerCase();
+		String accept = getParameterAsString(ACCEPT).toLowerCase();
+
+		if (accept == null || accept == ""
+				|| accept.equalsIgnoreCase("text/plain"))
+		{
+			return new ToPlainText().getClass().getName().substring(2); // This
+																		// String
+																		// is
+																		// case
+																		// sensitive
+																		// and
+																		// must
+																		// match
+																		// the
+																		// name
+																		// of
+																		// the
+																		// Object
+																		// that
+																		// is
+																		// going
+																		// to be
+																		// used.
+			// {@see Result}
+		} else if (accept.equalsIgnoreCase("text/html"))
+		{
+			return new ToHtml().getClass().getName().substring(2); // This
+																	// String is
+																	// case
+																	// sensitive
+																	// and must
+																	// match the
+																	// name of
+																	// the
+																	// Object
+																	// that is
+																	// going to
+																	// be used.
+			// {@see Result}
+		} else if (accept.equalsIgnoreCase("application/json"))
+		{
+			return new ToJson().getClass().getName().substring(2); // This
+																	// String is
+																	// case
+																	// sensitive
+																	// and must
+																	// match the
+																	// name of
+																	// the
+																	// Object
+																	// that is
+																	// going to
+																	// be used.
+			// {@see Result}
+		} else
+			throw new InvalidParameterValueException(
+					"Unrecognised accept format.");
 	}
 
 	/**
