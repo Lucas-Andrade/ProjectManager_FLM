@@ -13,8 +13,9 @@ public class Message implements DatabaseElement{
 	
 	@Override
 	public JSONObject getJson() {
-		// TODO Auto-generated method stub
-		return null;
+		JSONObject json = new JSONObject();
+		json.put("Message", message);
+		return json;
 	}
 
 }

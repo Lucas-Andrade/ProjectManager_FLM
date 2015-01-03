@@ -5,6 +5,10 @@ import org.json.JSONObject;
 
 public class ToHtml implements TextParser {
 
+	/**
+	 * Parses the information contained in the {@code JSONObject} into the HTML format.
+	 * @see TextParser#parse(jsonObject)
+	 */
 	@Override
 	public String parse(JSONObject jsonObject) 
 	{
@@ -12,6 +16,19 @@ public class ToHtml implements TextParser {
 		return builder.append("<html>").append(parse(jsonObject, "</p>\n", 0)).append("</html>").toString();
 	}
 
+	/**
+	 * Parses the information contained in the {@code JSONObject} passed as parameter 
+	 * into the HTML format, using the specified separation between lines (in HTML format) 
+	 * and the required indentation of the line.
+	 * 
+	 * @param jsonObject - the object to be parsed
+	 * @param lineSeparator - the separation to be used between the lines
+	 * @param indentation - the number of spaces needed in the beginning of the line. 
+	 * If a negative number is introduced, the information will not be added in a new line (and will continue 
+	 * writing in the same line). If zero is introduced, there will not be any blank space at the beginning of the 
+	 * line, but the information will be written in a new line.
+	 * @return the information contained in the {@code JSONObject} passed as parameter in HTML format
+	 */
 	private static String parse(JSONObject jsonObject, String lineSeparator, int indentation) 
 	{
 		Iterable<String> jsonKeys = TextParser.getOrderedKeySet(jsonObject);
@@ -41,6 +58,18 @@ public class ToHtml implements TextParser {
 		return builder.toString();
 	}
 	
+	/**
+	 * the information in each of the elements of the {@code JSONArray} passed as parameter will be parsed 
+	 * into HTML format. The information of each element is separated from the others using an horizontal bar
+	 * 
+	 * @param jsonArray - the object to be parsed
+	 * @param lineSeparator - the separation to be used between the lines
+	 * @param indentation - the number of spaces needed in the beginning of the line. 
+	 * If a negative number is introduced, the information will not be added in a new line (and will continue 
+	 * writing in the same line). If zero is introduced, there will not be any blank space at the beginning of the 
+	 * line, but the information will be written in a new line.
+	 * @return the information contained in the {@code JSONArray} parsed into HTML format
+	 */
 	private static Object parseJSONArray(JSONArray jsonArray, String lineSeparator,	int indentation) 
 	{
 		StringBuilder builder = new StringBuilder();
@@ -52,11 +81,34 @@ public class ToHtml implements TextParser {
 		return builder.toString();
 	}
 
+	/**
+	 * The integer number passed as parameter is parsed into HTML format.
+	 * 
+	 * If a negative number is introduced, the information will not be added in a new line (and will continue 
+	 * writing in the same line). 
+	 * If zero is introduced, there will not be any blank space at the beginning of the 
+	 * line, but the information will be written in a new line.
+	 * 
+	 * @param indentation - the number of blank spaces to be left at the 
+	 * beginning of the line
+	 * @return the correct HTML code to begin a new line with the desired indentation
+	 */
 	private static String indent(int indentation) 
 	{
 		return indentation >= 0 ? "<p style=\"text-indent: " + indentation + "em;\">" : "";
 	}
 
+	/**
+	 * The information in each element of the array of {@code JSONObject} is parsed into HTML format.
+	 * 
+	 * @param jsonArray - the array to be parsed
+	 * @param lineSeparator - the separation to be used between the lines
+	 * @param indentation - the number of spaces needed in the beginning of the line. 
+	 * If a negative number is introduced, the information will not be added in a new line (and will continue 
+	 * writing in the same line). If zero is introduced, there will not be any blank space at the beginning of the 
+	 * line, but the information will be written in a new line.
+	 * @return the information contained in the elements of the array passed as parameter in the HTML format
+	 */
 	private static String parseArray(JSONObject[] jsonArray, String lineSeparator, int indentation) 
 	{
 		StringBuilder builder = new StringBuilder();

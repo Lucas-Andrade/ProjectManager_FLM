@@ -45,75 +45,82 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 				getResultsOutputDestination());
 	}
 
-	/**
-	 * This method checks if the user entered the format in which he want to
-	 * display the results output ("accept"). If the user has not entered the
-	 * format in which he want to display the output, it will be presented in
-	 * text;
-	 * 
-	 * @param parameters
-	 * @return
-	 * @throws Exception
-	 */
 	private String getResultsOutputFormat() throws Exception
 	{
 		String accept = getParameterAsString(ACCEPT).toLowerCase();
-
-		if (accept == null || accept.equalsIgnoreCase("text/plain"))
-		{
-			return new ToPlainText().getClass().getName().substring(2); // This
-																		// String
-																		// is
-																		// case
-																		// sensitive
-																		// and
-																		// must
-																		// match
-																		// the
-																		// name
-																		// of
-																		// the
-																		// Object
-																		// that
-																		// is
-																		// going
-																		// to be
-																		// used.
-			// {@see Result}
-		} else if (accept.equalsIgnoreCase("text/html"))
-		{
-			return new ToHtml().getClass().getName().substring(2); // This
-																	// String is
-																	// case
-																	// sensitive
-																	// and must
-																	// match the
-																	// name of
-																	// the
-																	// Object
-																	// that is
-																	// going to
-																	// be used.
-			// {@see Result}
-		} else if (accept.equalsIgnoreCase("application/json"))
-		{
-			return new ToJson().getClass().getName().substring(2); // This
-																	// String is
-																	// case
-																	// sensitive
-																	// and must
-																	// match the
-																	// name of
-																	// the
-																	// Object
-																	// that is
-																	// going to
-																	// be used.
-			// {@see Result}
-		} else
-			throw new InvalidParameterValueException(
-					"Unrecognised accept format.");
+		return (accept == null) ? "PlainText" : accept;
 	}
+	
+	
+//	/**
+//	 * This method checks if the user entered the format in which he want to
+//	 * display the results output ("accept"). If the user has not entered the
+//	 * format in which he want to display the output, it will be presented in
+//	 * text;
+//	 * 
+//	 * @param parameters
+//	 * @return
+//	 * @throws Exception
+//	 */
+//	private String getResultsOutputFormat() throws Exception
+//	{
+//		String accept = getParameterAsString(ACCEPT).toLowerCase();
+//
+//		if (accept == null || accept.equalsIgnoreCase("text/plain"))
+//		{
+//			return new ToPlainText().getClass().getName().substring(2); // This
+//																		// String
+//																		// is
+//																		// case
+//																		// sensitive
+//																		// and
+//																		// must
+//																		// match
+//																		// the
+//																		// name
+//																		// of
+//																		// the
+//																		// Object
+//																		// that
+//																		// is
+//																		// going
+//																		// to be
+//																		// used.
+//			// {@see Result}
+//		} else if (accept.equalsIgnoreCase("text/html"))
+//		{
+//			return new ToHtml().getClass().getName().substring(2); // This
+//																	// String is
+//																	// case
+//																	// sensitive
+//																	// and must
+//																	// match the
+//																	// name of
+//																	// the
+//																	// Object
+//																	// that is
+//																	// going to
+//																	// be used.
+//			// {@see Result}
+//		} else if (accept.equalsIgnoreCase("application/json"))
+//		{
+//			return new ToJson().getClass().getName().substring(2); // This
+//																	// String is
+//																	// case
+//																	// sensitive
+//																	// and must
+//																	// match the
+//																	// name of
+//																	// the
+//																	// Object
+//																	// that is
+//																	// going to
+//																	// be used.
+//			// {@see Result}
+//		} else
+//			throw new InvalidParameterValueException(
+//					"Unrecognised accept format.");
+//	}
 
 	/**
 	 * This method checks if the user entered the destination in which he want

@@ -19,7 +19,9 @@ import app.resultsAndOutputMethods.Result;
 public abstract class BaseCommandUserAuthentication extends BaseCommand
 {
 
-	private final String ACCEPT = "text";
+	private final String DefaultStream = "console";
+	
+	private final String DefaultFormat = "PlainText";
 	/**
 	 * {@code String} with the Login Name argument's name. This argument is used
 	 * for {@code User}'s authentication.
@@ -74,7 +76,7 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 		String username = parameters.get(LOGINNAME);
 		String password = parameters.get(LOGINPASSWORD);
 		if (authenticateUser(username, password))
-			return new Result(internalCall(),ACCEPT,null);
+			return new Result(internalCall(), DefaultStream, DefaultFormat);
 		else
 			throw new InvalidUserException(username);
 	}

@@ -1,16 +1,33 @@
 package app.resultsAndOutputMethods.outputFormat;
 
+import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import app.commands.CommandFactory;
+
 public class ToPlainText implements TextParser{
 
+	/**
+	 * Parses the information contained in the {@code JSONObject} into plain text.
+	 * @see TextParser#parse(jsonObject)
+	 */
 	@Override
 	public String parse(JSONObject jsonObject) 
 	{
 		return parse(jsonObject, "\n", 0);
 	}
 
+	/**
+	 * Parses the information contained in the {@code JSONObject} passed as parameter 
+	 * into plain text, using the specified separation between lines and the required indentation of the line.
+	 * 
+	 * @param jsonObject - the object to be parsed
+	 * @param lineSeparator - the separation to be used between the lines
+	 * @param indentation - the number of spaces needed in the beginning of the line. 
+	 * @return the information contained in the {@code JSONObject} passed as parameter parsed into plain text
+	 */
 	private static String parse(JSONObject jsonObject, String lineSeparator, int indentation) 
 	{
 		Iterable<String> jsonKeys = TextParser.getOrderedKeySet(jsonObject);
@@ -39,6 +56,15 @@ public class ToPlainText implements TextParser{
 		return builder.toString();
 	}
 
+	/**
+	 * the information in each of the elements of the {@code JSONArray} passed as parameter will be parsed 
+	 * into plain text. The information of each element is separated from the others using five dashes
+	 * 
+	 * @param jsonArray - the object to be parsed
+	 * @param lineSeparator - the separation to be used between the lines
+	 * @param indentation - the number of spaces needed in the beginning of the line. 
+	 * @return the information contained in the {@code JSONArray} as plain text
+	 */
 	private static Object parseJSONArray(JSONArray jsonArray, String lineSeparator,	int indentation) 
 	{
 		StringBuilder builder = new StringBuilder();
@@ -50,6 +76,13 @@ public class ToPlainText implements TextParser{
 		return builder.toString();
 	}
 
+	/**
+	 * The integer number passed as parameter is parsed into plain text.
+	 * 
+	 * @param indentation - the number of blank spaces to be left at the 
+	 * beginning of the line
+	 * @return a string with the desired number of spaces
+	 */
 	private static String indent(int indentation) 
 	{
 		StringBuilder builder = new StringBuilder();
@@ -58,6 +91,14 @@ public class ToPlainText implements TextParser{
 		return builder.toString();
 	}
 
+	/**
+	 * The information in each element of the array of {@code JSONObject} is parsed into plain text.
+	 * 
+	 * @param jsonArray - the array to be parsed
+	 * @param lineSeparator - the separation to be used between the lines
+	 * @param indentation - the number of spaces needed in the beginning of the line. 
+	 * @return the information contained in the elements of the array passed as parameter as plain text
+	 */
 	private static String parseArray(JSONObject[] jsonArray, String lineSeparator, int indentation) 
 	{
 		StringBuilder builder = new StringBuilder();

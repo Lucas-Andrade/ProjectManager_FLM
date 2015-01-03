@@ -230,13 +230,10 @@ public class AppProjectManager
 
 	/**
 	 * Ask for a command and execute it, till the END command is called.
-	 * 
-	 * @throws CommandParserException
-	 * @throws IOException
-	 * @throws CommandException
+	 * @throws Exception  //TODO tirar throws
 	 */
 	public static void execute(CommandParser parser, UserRepository userRepo)
-			throws CommandParserException, CommandException, IOException
+			throws Exception
 	{
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
@@ -294,53 +291,54 @@ public class AppProjectManager
 	 *            {@code Command} to execute.
 	 * @param cmd
 	 *            A {@code String} of the {@code Command} to execute.
-	 * @throws CommandParserException
+	 * @throws Exception //TODO tirar throws
 	 */
 	private static void commandPrompt(CommandParser parser, String cmd)
-			throws CommandParserException
+			throws Exception
 	{
-		try
-		{
+//		try
+//		{
 			Result results = parser.getCommand(cmd.split(" ")).call();
 			results.showResults();
-// TODO excepções:
-		} catch (UnknownCommandException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Args must have 2 or 3 elements.");
-		} catch (InvalidCommandArgumentsException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Inserted a parameter without value.");
-		} catch (DuplicateArgumentsException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Duplicate parameters entered.");
-		} catch (MandatoryParameterNotPresentException e)
-		{
-			DEFAULT_SYSTEM_OUT
-					.println("Not all required parameters were entered.");
-		} catch (InvalidParameterValueException e)
-		{
-			DEFAULT_SYSTEM_OUT
-					.println("Inserted a parameter with an invalid value.");
-		} catch (CommandException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Invalid Command.");
-		} catch (IOException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Invalid output Stream.");
-		} catch (NullPointerException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Not found.");
-		} catch (Exception e)
-		{
-			// TODO testar e/ou melhorar...
-			DEFAULT_SYSTEM_OUT.println(e.getMessage());
-			DEFAULT_SYSTEM_OUT.println(e.getCause().toString());
-			DEFAULT_SYSTEM_OUT.println(e.getLocalizedMessage());
-		}
+//// TODO excepções:
+//		} catch (UnknownCommandException e)
+//		{
+//			DEFAULT_SYSTEM_OUT.println("Args must have 2 or 3 elements.");
+//		} catch (InvalidCommandArgumentsException e)
+//		{
+//			DEFAULT_SYSTEM_OUT.println("Inserted a parameter without value.");
+//		} catch (DuplicateArgumentsException e)
+//		{
+//			DEFAULT_SYSTEM_OUT.println("Duplicate parameters entered.");
+//		} catch (MandatoryParameterNotPresentException e)
+//		{
+//			DEFAULT_SYSTEM_OUT
+//					.println("Not all required parameters were entered.");
+//		} catch (InvalidParameterValueException e)
+//		{
+//			DEFAULT_SYSTEM_OUT
+//					.println("Inserted a parameter with an invalid value.");
+//		} catch (CommandException e)
+//		{
+//			DEFAULT_SYSTEM_OUT.println("Invalid Command.");
+//		} catch (IOException e)
+//		{
+//			DEFAULT_SYSTEM_OUT.println("Invalid output Stream.");
+//		} catch (NullPointerException e)
+//		{
+//			DEFAULT_SYSTEM_OUT.println("Not found.");
+//		} 
+//		catch (Exception e)
+//		{
+//			// TODO testar e/ou melhorar...
+//			DEFAULT_SYSTEM_OUT.println("excepção!");
+////			DEFAULT_SYSTEM_OUT.println(e.getMessage());
+////			DEFAULT_SYSTEM_OUT.println(e.getCause().toString());
+////			DEFAULT_SYSTEM_OUT.println(e.getLocalizedMessage());
+//		}
 	}
 
-	public static void main(String[] args) throws CommandParserException,
-			CommandException, IOException
+	public static void main(String[] args) throws Exception //TODO tirar throws
 	{
 		CommandParser parser = new CommandParser();
 		UserRepository userRepo = new InMemoryUserRepo();
