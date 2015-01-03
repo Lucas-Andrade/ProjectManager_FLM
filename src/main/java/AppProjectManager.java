@@ -304,7 +304,8 @@ public class AppProjectManager
 // TODO excepções:
 		} catch (UnknownCommandException e)
 		{
-			DEFAULT_SYSTEM_OUT.println("Args must have 2 or 3 elements.");
+		//	DEFAULT_SYSTEM_OUT.println("Args must have 2 or 3 elements.");
+			DEFAULT_SYSTEM_OUT.println(e);
 		} catch (InvalidCommandArgumentsException e)
 		{
 			DEFAULT_SYSTEM_OUT.println("Inserted a parameter without value.");
@@ -334,13 +335,13 @@ public class AppProjectManager
 		{
 			DEFAULT_SYSTEM_OUT.println("Invalid format for results.");
 		} 
-//		catch (Exception e)
-//		{
-//			// TODO testar e/ou melhorar...
-//			DEFAULT_SYSTEM_OUT.println(e.getMessage());
-//			DEFAULT_SYSTEM_OUT.println(e.getCause().toString());
-//			DEFAULT_SYSTEM_OUT.println(e.getLocalizedMessage());
-//		}
+		catch (Exception e)
+		{
+			// TODO testar e/ou melhorar...
+			DEFAULT_SYSTEM_OUT.println(e.getMessage());
+			DEFAULT_SYSTEM_OUT.println(e.getCause().toString());
+			DEFAULT_SYSTEM_OUT.println(e.getLocalizedMessage());
+		}
 	}
 
 	public static void main(String[] args) throws Exception //TODO tirar throws
