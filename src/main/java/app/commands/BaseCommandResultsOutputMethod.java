@@ -63,54 +63,59 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 		if (accept == null || accept == ""
 				|| accept.equalsIgnoreCase("text/plain"))
 		{
-			return new ToPlainText().getClass().getName().substring(2); // This
-																		// String
-																		// is
-																		// case
-																		// sensitive
-																		// and
-																		// must
-																		// match
-																		// the
-																		// name
-																		// of
-																		// the
-																		// Object
-																		// that
-																		// is
-																		// going
-																		// to be
-																		// used.
+			return new ToPlainText()
+					.getClass()
+					.getName()
+					.substring(ToPlainText.class.getName().lastIndexOf('.') + 3); // This
+			// String
+			// is
+			// case
+			// sensitive
+			// and
+			// must
+			// match
+			// the
+			// name
+			// of
+			// the
+			// Object
+			// that
+			// is
+			// going
+			// to be
+			// used.
 			// {@see Result}
 		} else if (accept.equalsIgnoreCase("text/html"))
 		{
-			return new ToHtml().getClass().getName().substring(2); // This
-																	// String is
-																	// case
-																	// sensitive
-																	// and must
-																	// match the
-																	// name of
-																	// the
-																	// Object
-																	// that is
-																	// going to
-																	// be used.
+			return new ToHtml().getClass().getName()
+					.substring(ToHtml.class.getName().lastIndexOf('.') + 3); // This
+			// String is
+			// case
+			// sensitive
+			// and must
+			// match the
+			// name of
+			// the
+			// Object
+			// that is
+			// going to
+			// be used.
 			// {@see Result}
 		} else if (accept.equalsIgnoreCase("application/json"))
 		{
-			return new ToJson().getClass().getName().substring(2); // This
-																	// String is
-																	// case
-																	// sensitive
-																	// and must
-																	// match the
-																	// name of
-																	// the
-																	// Object
-																	// that is
-																	// going to
-																	// be used.
+			return new ToJson().getClass().getName()
+					.substring(ToJson.class.getName().lastIndexOf('.') + 3); // This
+			// String is
+			// case
+			// sensitive
+			// and must
+			// match the
+			// name of
+			// the
+			// Object
+			// that is
+			// going to
+			// be used.
 			// {@see Result}
 		} else
 			throw new InvalidParameterValueException(

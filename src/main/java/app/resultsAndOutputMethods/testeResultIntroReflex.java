@@ -5,6 +5,7 @@ import java.io.IOException;
 import app.elements.Admin;
 import app.elements.DatabaseElement;
 import app.elements.ImmutableAdmin;
+import app.resultsAndOutputMethods.outputFormat.ToPlainText;
 
 public class testeResultIntroReflex
 {
@@ -17,6 +18,8 @@ public class testeResultIntroReflex
 		DatabaseElement[] b = { c, d };
 		Result a = new Result(b, "console", null );
 		a.showResults();
+		
+		System.out.println(new ToPlainText().getClass().getName().substring(2));
 	}
 
 }
