@@ -9,9 +9,8 @@ import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
 
 /**
- * Abstract POST {@link Command} to be supported by all POST {@code Command}s.
- * Establishes the model to be followed by these (all POST {@code Command}s
- * require an {@link User} authentication).
+ * Abstract Command to be supported by all Commands that require an {@link User}
+ * authentication. The end result of this Command is a {@link Result}.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
@@ -19,7 +18,6 @@ import app.resultsAndOutputMethods.Result;
 public abstract class BaseCommandUserAuthentication extends BaseCommand
 {
 
-	private final String ACCEPT = "text";
 	/**
 	 * {@code String} with the Login Name argument's name. This argument is used
 	 * for {@code User}'s authentication.
@@ -61,11 +59,11 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	}
 
 	/**
-	 * Authenticates the {@code User}. If authentication is incorrect throws
+	 * This method creates an object Result with the {@code DatabaseElement}s
+	 * returned by {@code this#internalCall()}, after validating the mandatory
+	 * parameters (if not stops the execution) and after authenticates the
+	 * {@code User}. If authentication is incorrect throws
 	 * {@link InvalidUserException}, if correct proceeds with the execution.
-	 * 
-	 * @see BaseCommandUserAuthentication#authenticateUser(String, String)
-	 * @see app.commands.BaseCommand#internalCall()
 	 */
 	@Override
 	public Result call() throws Exception
@@ -74,7 +72,7 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 		String username = parameters.get(LOGINNAME);
 		String password = parameters.get(LOGINPASSWORD);
 		if (authenticateUser(username, password))
-			return new Result(internalCall(),ACCEPT,null);
+			return new Result(internalCall(), null, null);
 		else
 			throw new InvalidUserException(username);
 	}
@@ -100,7 +98,6 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	 * 
 	 * @throws Exception
 	 */
-	abstract protected DatabaseElement[] internalCall()
-			throws Exception;
+	abstract protected DatabaseElement[] internalCall() throws Exception;
 
 }

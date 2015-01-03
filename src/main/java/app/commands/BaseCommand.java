@@ -8,15 +8,16 @@ import app.elements.DatabaseElement;
 import app.resultsAndOutputMethods.Result;
 
 /**
- * Abstract {@link Command} to be supported by all {@code Command}s. Establishes
- * the model to be followed by the {@code Command}s.
+ * Abstract Command to be supported by all Commands. Establishes the model to be
+ * followed by the Commands and implements the {@link Callable<Result>}.
+ * interface.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
- * @param <T>
+ * @param <Result>
+ *            The object containing the results of a Command execution ({@see
+ *            this#call()}).
  * @since 08/12/2014
  */
-//TODO
-//apagar interface command
 public abstract class BaseCommand implements Callable<Result>
 {
 
@@ -43,24 +44,23 @@ public abstract class BaseCommand implements Callable<Result>
 		this.parameters = parameters;
 	}
 
-
 	/**
-	 * Checks if all mandatory arguments are in the
-	 * {@link BaseCommand#parameters}, if yes proceeds with the execution.
-	 * @see Callable#call()
-	 * @see BaseCommand#validateDemandingParameters(String...)
-	 * @see BaseCommand#internalCall()
-	 * 
-	 * @throws Exception
+	 * This method creates an object Result with the {@code DatabaseElement}s
+	 * returned by {@code this#internalCall()}, after validating the mandatory
+	 * parameters (if not stops the execution).
 	 */
 	@Override
-	abstract public Result call() throws Exception;
+	public Result call() throws Exception
+	{
+		validateDemandingParameters(getMandatoryParameters());
+		return new Result(internalCall(), null, null);
+	}
 
-	 /**
+	/**
 	 * @see Callable#call()
 	 * @see Command#execute(ResultOutputMethodToStream)
 	 */
-	 abstract protected DatabaseElement[] internalCall() throws Exception;
+	abstract protected DatabaseElement[] internalCall() throws Exception;
 
 	/**
 	 * Checks if all mandatory arguments are in the

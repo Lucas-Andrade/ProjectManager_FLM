@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -324,12 +325,15 @@ public class AppProjectManager
 		} catch (CommandException e)
 		{
 			DEFAULT_SYSTEM_OUT.println("Invalid Command.");
-		} catch (IOException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Invalid output Stream.");
 		} catch (NullPointerException e)
 		{
 			DEFAULT_SYSTEM_OUT.println("Not found.");
+		} catch (FileNotFoundException e)
+		{
+			DEFAULT_SYSTEM_OUT.println("Invalid destination for results.");
+		} catch (ClassNotFoundException e)
+		{
+			DEFAULT_SYSTEM_OUT.println("Invalid format for results.");
 		} catch (Exception e)
 		{
 			// TODO testar e/ou melhorar...
