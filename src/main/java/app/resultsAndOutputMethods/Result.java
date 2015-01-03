@@ -59,15 +59,6 @@ public class Result
 			throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, FileNotFoundException
 	{
-		// String formatClassCompleteName = new
-		// TextParser().getClass().getPackage().getName() + ".To" +
-		// format.substring(0, 1).toUpperCase() + format.substring(1,
-		// format.length()).toLowerCase();
-		// String formatClassCompleteName = TextParser.class.getPackage()
-		// .getName()
-		// + ".To"
-		// + format.substring(0, 1).toUpperCase()
-		// + format.substring(1, format.length()).toLowerCase();
 		if (format == null || format == "")
 		{
 			format = ToPlainText.class.getName();
