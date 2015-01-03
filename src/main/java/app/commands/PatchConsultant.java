@@ -121,8 +121,7 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 	protected DatabaseElement[] internalCall()
 			throws Exception
 	{
-		AWorker worker = repository
-				.getAWorkerByID(this.getParameterAsLong(CID));
+		AWorker worker = repository.getAWorkerByID(this.getParameterAsLong(CID));
 		if (parameters.containsKey(NAME))
 			worker.setName(parameters.get(NAME));
 		if (parameters.containsKey(PRICE_HOUR))

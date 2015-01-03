@@ -158,7 +158,11 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 			Collection<AWorker> workers = projectRepository.getProjectById(
 					projectId).getTeam();				
 			  
-			return (DatabaseElement[]) workers.toArray();
+			DatabaseElement[] workersArray = new DatabaseElement[workers.size()];
+			int i = 0;
+			for (AWorker worker : workers)
+				workersArray[i++] = worker;
+			return workersArray;
 			
 		} else
 			throw new InvalidParameterValueException("Unrecognised type of worker.");

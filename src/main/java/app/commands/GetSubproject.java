@@ -6,6 +6,7 @@ import java.util.concurrent.Callable;
 import utils.Project;
 import app.commandParser.CommandParser;
 import app.elements.DatabaseElement;
+import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.resultsAndOutputMethods.Result;
 
@@ -111,8 +112,17 @@ public class GetSubproject extends BaseCommandResultsOutputMethod
 	protected DatabaseElement[] internalCall() throws Exception
 	{
 		Project project = repository.getProjectById(getParameterAsLong(PID));
+		int subprojectsNumber = project.getSubprojectsNumber();
+		if(subprojectsNumber == 0)
+			return new DatabaseElement[]{new Message("Project with ID " + getParameterAsLong(PID) + " has no subprojects")};
 		
-		DatabaseElement[] subprojectAux = {(DatabaseElement) project.getContainerProject()};
+		Iterable<Project> subprojects = project.getContainerProject();
+		DatabaseElement[] subprojectAux = new DatabaseElement[subprojectsNumber];
+		int i = 0;
+		
+		for (Project subproject : subprojects)
+			subprojectAux[i++] = subproject;
+
 		return subprojectAux;
 	}
 

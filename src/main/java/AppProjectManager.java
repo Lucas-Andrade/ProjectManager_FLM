@@ -25,6 +25,7 @@ import app.commands.PostUsers;
 import app.commands.PostWorkerInProject;
 import app.commands.exceptions.CommandException;
 import app.commands.exceptions.InvalidParameterValueException;
+import app.commands.exceptions.InvalidUserException;
 import app.commands.exceptions.MandatoryParameterNotPresentException;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
@@ -151,7 +152,7 @@ public class AppProjectManager
 		parser.registerCommand("PATCH", "/projects/{" + PatchProject.PID + "}",
 				new PatchProject.Factory(userRepo, projectRepo));
 		parser.registerCommand("PATCH", "/consultants/{" + PatchConsultant.CID
-				+ "}", new PostConsultant.Factory(userRepo, workersRepo));
+				+ "}", new PatchConsultant.Factory(userRepo, workersRepo));
 		parser.registerCommand("DELETE", "/projects/{" + GetProjects.PID + "}",
 				new DeleteProjects.Factory(userRepo, projectRepo));
 	}
@@ -306,42 +307,48 @@ public class AppProjectManager
 		{
 		//	DEFAULT_SYSTEM_OUT.println("Args must have 2 or 3 elements.");
 			DEFAULT_SYSTEM_OUT.println(e);
-		} catch (InvalidCommandArgumentsException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Inserted a parameter without value.");
-		} catch (DuplicateArgumentsException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Duplicate parameters entered.");
-		} catch (MandatoryParameterNotPresentException e)
-		{
-			DEFAULT_SYSTEM_OUT
-					.println("Not all required parameters were entered.");
-		} catch (InvalidParameterValueException e)
-		{
-			DEFAULT_SYSTEM_OUT
-					.println("Inserted a parameter with an invalid value.");
-		} catch (CommandException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Invalid Command.");
 		} 
+//		catch (InvalidCommandArgumentsException e)
+//		{
+//			DEFAULT_SYSTEM_OUT.println("Inserted a parameter without value.");
+//		} catch (DuplicateArgumentsException e)
+//		{
+//			DEFAULT_SYSTEM_OUT.println("Duplicate parameters entered.");
+//		} catch (MandatoryParameterNotPresentException e)
+//		{
+//			DEFAULT_SYSTEM_OUT
+//					.println("Not all required parameters were entered.");
+//		} catch (InvalidParameterValueException e)
+//		{
+//			DEFAULT_SYSTEM_OUT
+//					.println("Inserted a parameter with an invalid value.");
+//		} 
+//		catch (CommandException e)
+//		{
+//			DEFAULT_SYSTEM_OUT.println("Invalid Command.");
+//		} 
 //		catch (NullPointerException e)
 //		{
 //			DEFAULT_SYSTEM_OUT.println("Not found.");
 //		} 
-		catch (FileNotFoundException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Invalid destination for results.");
-		} catch (ClassNotFoundException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Invalid format for results.");
-		} 
-		catch (Exception e)
-		{
-			// TODO testar e/ou melhorar...
-			DEFAULT_SYSTEM_OUT.println(e.getMessage());
-			DEFAULT_SYSTEM_OUT.println(e.getCause().toString());
-			DEFAULT_SYSTEM_OUT.println(e.getLocalizedMessage());
-		}
+//		catch (FileNotFoundException e)
+//		{
+//			DEFAULT_SYSTEM_OUT.println("Invalid destination for results.");
+//		} catch (ClassNotFoundException e)
+//		{
+//			DEFAULT_SYSTEM_OUT.println("Invalid format for results.");
+//		} 
+//		catch (InvalidUserException e)
+//		{
+//			DEFAULT_SYSTEM_OUT.println(e);
+//		}
+//		catch (Exception e)
+//		{
+//			// TODO testar e/ou melhorar...
+//			DEFAULT_SYSTEM_OUT.println(e.getMessage());
+//			DEFAULT_SYSTEM_OUT.println(e.getCause().toString());
+//			DEFAULT_SYSTEM_OUT.println(e.getLocalizedMessage());
+//		}
 	}
 
 	public static void main(String[] args) throws Exception //TODO tirar throws

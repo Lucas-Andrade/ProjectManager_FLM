@@ -493,4 +493,12 @@ public class Project extends Element implements ProjectInterface
 		return local.setPrice(newPrice);
 	}
 
+	/**
+	 * Returns how many subprojects {@code this} project has
+	 * @return the number of subprojects
+	 */
+	public int getSubprojectsNumber()
+	{
+		return projectsContainer.size();
+	}
 }

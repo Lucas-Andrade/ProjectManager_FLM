@@ -68,7 +68,7 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	@Override
 	public Result call() throws Exception
 	{
-		validateDemandingParameters(DEMANDING_PARAMETERS);
+		validateDemandingParameters(getMandatoryParameters());
 		String username = parameters.get(LOGINNAME);
 		String password = parameters.get(LOGINPASSWORD);
 		if (authenticateUser(username, password))
