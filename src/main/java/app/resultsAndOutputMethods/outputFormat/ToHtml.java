@@ -119,7 +119,13 @@ public class ToHtml implements TextParser {
 
 	@Override
 	public String parse(JSONObject[] toWrite) {
-		return TextParser.parseArray(toWrite, "<hr>", this);
+		StringBuilder builder = new StringBuilder();
+		builder.append("<html>");
+		
+		for(JSONObject json : toWrite)
+			builder.append(parse(json, "</p>\n", 0)).append("<hr>\n");
+		
+		return builder.append("</html>").toString();
 	}
 
 }

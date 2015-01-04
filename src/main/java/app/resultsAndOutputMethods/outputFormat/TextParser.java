@@ -41,6 +41,18 @@ public interface TextParser {
 		return keySet;
 	}
 
+	/**
+	 * Basic method that allows to parse an array of {@code JSONObject}s using the method
+	 * {@code parse(JSONObject jsonObject)}. It also allows to define a {@code String} that will be used 
+	 * to separate the different elements of the array.
+	 * 
+	 * @param toWrite - array of {@code JSONObject}s that is to be parsed
+	 * @param separator - {@code String} that will fill the line that separates the different elements 
+	 * of the array
+	 * @param parser - which parser is to be used
+	 * @return a {@code String} with the information contained in all elements of the array of 
+	 * {@code JSONObject}s parsed into the desired format
+	 */
 	static String parseArray(JSONObject[] toWrite, String separator, TextParser parser)
 	{
 		if (toWrite.length == 1)
@@ -49,7 +61,7 @@ public interface TextParser {
 		{
 			StringBuilder builder = new StringBuilder();
 			for(JSONObject json : toWrite)
-				builder.append(parser.parse(json)).append("\n").append(separator).append("\n");
+				builder.append(parser.parse(json)).append(separator).append("\n");
 			return builder.toString();
 		}
 	}
