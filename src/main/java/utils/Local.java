@@ -91,7 +91,7 @@ public class Local implements ICost, IName
 		json.put("Cost (Euros)", df.format(getCost()).replaceAll(",", "."));
 		json.put("Longitude", longitude);
 		json.put("Latitude", latitude);
-		json.put("Name", name);
+		json.put("Name", name.replaceAll("%20", " "));
 		return json;
 	}
 	

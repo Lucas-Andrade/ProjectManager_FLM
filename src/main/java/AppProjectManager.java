@@ -365,7 +365,7 @@ public class AppProjectManager
 					.println("Invalid Registry! Verify RegisterCommand method.");
 		}
 
-		while (args.length == 0)
+		if (args.length == 0)
 		{
 			execute(parser, userRepo);
 			DEFAULT_SYSTEM_OUT.close();

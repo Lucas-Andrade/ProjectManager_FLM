@@ -146,7 +146,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 		Project project = projectRepository.getProjectById(projectId);
 		if (project == null)
 			return new DatabaseElement[]{new Message("Project with ID: " + projectId 
-					+ "was not found!")};
+					+ " was not found!")};
 		
 		if (typeWorker.equalsIgnoreCase("Manager"))
 		{
@@ -168,7 +168,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 		Collection<AWorker> workers = project.getTeam();
 		if (workers.size() == 0)
 			return new DatabaseElement[]{new Message("Project with ID: " + projectId 
-					+ "has no assigned workers.")};
+					+ " has no assigned workers.")};
 		  
 		DatabaseElement[] workersArray = new DatabaseElement[workers.size()];
 		int i = 0;
@@ -187,7 +187,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 		Leader manager = project.getManager();
 		if(manager == null)
 			return new DatabaseElement[]{new Message("Project with ID: " + projectId 
-					+ "has no manager.")};
+					+ " has no manager.")};
 		
 		DatabaseElement[] managerAux = {manager};
 		return managerAux;

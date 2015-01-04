@@ -107,9 +107,9 @@ public class User implements UserInterface, DatabaseElement
 	public JSONObject getJson() 
 	{
 		JSONObject json = new JSONObject();
-		json.put("Username", username);
+		json.put("Username", username.replaceAll("%20", " "));
 		json.put("Email", email);
-		json.put("Full name", fullname);
+		json.put("Full name", fullname.replaceAll("%20", " "));
 		return json;
 	}
 	

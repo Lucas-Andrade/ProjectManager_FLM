@@ -117,4 +117,9 @@ public class ToHtml implements TextParser {
 		return builder.toString();
 	}
 
+	@Override
+	public String parse(JSONObject[] toWrite) {
+		return TextParser.parseArray(toWrite, "<hr>", this);
+	}
+
 }

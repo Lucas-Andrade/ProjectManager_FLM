@@ -3,6 +3,8 @@ package app.resultsAndOutputMethods;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.json.JSONObject;
+
 import app.elements.DatabaseElement;
 import app.resultsAndOutputMethods.outputDestination.ToConsole;
 import app.resultsAndOutputMethods.outputDestination.ToFile;
@@ -87,8 +89,11 @@ public class Result
 	 */
 	public void showResults() throws IOException
 	{
+		JSONObject[] toWrite = new JSONObject[results.length];
+		int i = 0;
 		for (DatabaseElement result : results)
-			destination.write(format.parse(result.getJson()));
+			toWrite[i++] = result.getJson();
+		destination.write(format.parse(toWrite));
 	}
 
 }

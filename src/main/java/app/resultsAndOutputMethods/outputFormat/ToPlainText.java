@@ -1,11 +1,8 @@
 package app.resultsAndOutputMethods.outputFormat;
 
-import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import app.commands.CommandFactory;
 
 public class ToPlainText implements TextParser{
 
@@ -105,5 +102,11 @@ public class ToPlainText implements TextParser{
 		for (int i = 0; i < jsonArray.length; i++)
 			builder.append(parse(jsonArray[i], "\n", indentation)).append("\n");
 		return builder.toString();
+	}
+
+	@Override
+	public String parse(JSONObject[] toWrite) 
+	{
+		return TextParser.parseArray(toWrite, "----", this);
 	}
 }
