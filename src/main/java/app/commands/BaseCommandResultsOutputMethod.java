@@ -56,67 +56,40 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 					getResultsOutputFormat());
 	}
 
+	/**
+	 * This method checks if the user entered the format in which he want to
+	 * display the results output ("accept"). If the user has not entered the
+	 * format in which he want to display the output, it will be presented in
+	 * text/plain;
+	 * 
+	 * This String is case sensitive and must match the name of the Object that
+	 * is going to be used. {@see Result}
+	 * 
+	 * @return String represent the format in which he want to display the
+	 *         output (can be text/plain, text/html or Json)
+	 * @throws Exception if the inserted format is not one of the expected
+	 */
 	private String getResultsOutputFormat() throws Exception
 	{
 		String accept = getParameterAsString(ACCEPT);
 
-		if (accept == null || accept == ""
-				|| accept.equalsIgnoreCase("text/plain"))
+		if (accept == null || accept == "" || accept.equalsIgnoreCase("text/plain"))
 		{
 			return new ToPlainText()
 					.getClass()
 					.getName()
-					.substring(ToPlainText.class.getName().lastIndexOf('.') + 3); // This
-			// String
-			// is
-			// case
-			// sensitive
-			// and
-			// must
-			// match
-			// the
-			// name
-			// of
-			// the
-			// Object
-			// that
-			// is
-			// going
-			// to be
-			// used.
-			// {@see Result}
+					.substring(ToPlainText.class.getName().lastIndexOf('.') + 3); 
+			
 		} else if (accept.equalsIgnoreCase("text/html"))
 		{
 			return new ToHtml().getClass().getName()
-					.substring(ToHtml.class.getName().lastIndexOf('.') + 3); // This
-			// String is
-			// case
-			// sensitive
-			// and must
-			// match the
-			// name of
-			// the
-			// Object
-			// that is
-			// going to
-			// be used.
-			// {@see Result}
+					.substring(ToHtml.class.getName().lastIndexOf('.') + 3); 
+			
 		} else if (accept.equalsIgnoreCase("application/json"))
 		{
 			return new ToJson().getClass().getName()
-					.substring(ToJson.class.getName().lastIndexOf('.') + 3); // This
-			// String is
-			// case
-			// sensitive
-			// and must
-			// match the
-			// name of
-			// the
-			// Object
-			// that is
-			// going to
-			// be used.
-			// {@see Result}
+					.substring(ToJson.class.getName().lastIndexOf('.') + 3); 
+			
 		} else
 			throw new InvalidParameterValueException(
 					"Unrecognised accept format.");
@@ -125,8 +98,8 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 	/**
 	 * This method checks if the user entered the destination in which he want
 	 * to display the results output ("output"). If the user has not entered the
-	 * format in which he want to display the output, it will be presented in
-	 * text;
+	 * destination in which he want to display the output, it will be presented in
+	 * console;
 	 * 
 	 * @param parameters
 	 * @return

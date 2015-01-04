@@ -79,10 +79,8 @@ public class GetSubproject extends BaseCommandResultsOutputMethod
 	/**
 	 * The constructor for {@code GetSubproject}.
 	 * 
-	 * @param repository
-	 *            The {@code ProjectRepository}.
-	 * @param parameters
-	 *            The {@code Command} arguments.
+	 * @param repository    The {@code ProjectRepository}.
+	 * @param parameters    The {@code Command} arguments.
 	 */
 	public GetSubproject(ProjectsRepository repository,
 			Map<String, String> parameters)
@@ -106,7 +104,7 @@ public class GetSubproject extends BaseCommandResultsOutputMethod
 	 * {@link GetSubproject#PID}), if the {@code Project} exists and has at
 	 * least one Sub{@code Project}).
 	 * 
-	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
+	 * @see BaseCommandResultsOutputMethod#internalCall()
 	 */
 	@Override
 	protected DatabaseElement[] internalCall() throws Exception

@@ -16,7 +16,7 @@ import app.repository.WorkerRepository;
 import app.resultsAndOutputMethods.Result;
 
 /**
- * Class whose instances are {@link Command}s that create new {@link AWorker}s.
+ * Class whose instances are commands that create new {@link AWorker}s.
  * Caller {@code String}: POST /consultant {parameter list}
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
@@ -79,10 +79,8 @@ public class PostConsultant extends BaseCommandUserAuthentication
 		/**
 		 * The constructor for {@code Factory}.
 		 * 
-		 * @param uRepository
-		 *            The {@code UserRepository} with the {@code User}.
-		 * @param repository
-		 *            The {@code WorkerRepository} with the {@code AWorker}s.
+		 * @param uRepository    The {@code UserRepository} with the {@code User}.
+		 * @param repository     The {@code WorkerRepository} with the {@code AWorker}s.
 		 */
 		public Factory(UserRepository uRepository, WorkerRepository repository)
 		{
@@ -103,12 +101,9 @@ public class PostConsultant extends BaseCommandUserAuthentication
 	/**
 	 * The constructor for {@code PostConsultant}.
 	 * 
-	 * @param uRepository
-	 *            The {@code UserRepository}.
-	 * @param repository
-	 *            The {@code WorkerRepository}.
-	 * @param parameters
-	 *            The {@code Command} arguments.
+	 * @param uRepository    The {@code UserRepository}.
+	 * @param repository     The {@code WorkerRepository}.
+	 * @param parameters     The {@code Command} arguments.
 	 */
 	public PostConsultant(UserRepository uRepository,
 			WorkerRepository repository, Map<String, String> parameters)
@@ -132,11 +127,10 @@ public class PostConsultant extends BaseCommandUserAuthentication
 	 * Outputs the new {@code AWorker}'s ID. If it has Bonus, that it creates a
 	 * {@code Leader}, else creates a {@code Consultant}.
 	 * 
-	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
+	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected DatabaseElement[] internalCall()
-			throws CommandException, IOException
+	protected DatabaseElement[] internalCall()	throws CommandException, IOException
 	{
 		String name = getParameterAsString(NAME);
 		double priceHour = getParameterAsDouble(PRICE_HOUR);
@@ -154,13 +148,13 @@ public class PostConsultant extends BaseCommandUserAuthentication
 
 			Leader manager = new Leader(name, priceHour, 0, bonus, cid);
 			repository.addManager(manager);
+			
 		} catch (NullPointerException e)
 		{
 			Consultant consultant = new Consultant(name, priceHour, 0, cid);
 			repository.addConsultant(consultant);
 		}
 
-		//acrescentei ... 
 		Message message = new Message("Worker's identification (CID): " + cid);
 		DatabaseElement[] messageAux = {message};
 		return messageAux;
