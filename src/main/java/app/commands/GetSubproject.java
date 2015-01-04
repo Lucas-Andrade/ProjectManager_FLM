@@ -1,5 +1,6 @@
 package app.commands;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
@@ -104,17 +105,22 @@ public class GetSubproject extends BaseCommandResultsOutputMethod
 	 * {@link GetSubproject#PID}), if the {@code Project} exists and has at
 	 * least one Sub{@code Project}).
 	 * 
-	 * @see BaseCommandResultsOutputMethod#internalCall()
+	 * @return An array of {@code DatabaseElement} with all the sub{@code Project}s
 	 */
 	@Override
 	protected DatabaseElement[] internalCall() throws Exception
 	{
 		Project project = repository.getProjectById(getParameterAsLong(PID));
+		if(project == null)
+			return new DatabaseElement[]{new Message("Project with ID: " + getParameterAsLong(PID) 
+					+ " was not found!")};
+			
 		int subprojectsNumber = project.getSubprojectsNumber();
 		if(subprojectsNumber == 0)
-			return new DatabaseElement[]{new Message("Project with ID " + getParameterAsLong(PID) + " has no subprojects")};
+			return new DatabaseElement[]{new Message("Project with ID: " + getParameterAsLong(PID) 
+					+ " has no subprojects.")};
 		
-		Iterable<Project> subprojects = project.getContainerProject();
+		Collection<Project> subprojects = project.getContainerProject();
 		DatabaseElement[] subprojectAux = new DatabaseElement[subprojectsNumber];
 		int i = 0;
 		

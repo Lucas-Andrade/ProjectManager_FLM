@@ -3,15 +3,14 @@ package app.commands;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.Callable;
-
 import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
 import utils.Project;
 import utils.Team;
 import app.commandParser.CommandParser;
-import app.commands.exceptions.InvalidParameterValueException;
 import app.elements.DatabaseElement;
+import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.resultsAndOutputMethods.Result;
 
@@ -136,36 +135,62 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 * indicates Consultant get's all the {@link Consultant}s in the
 	 * {@link Team} of the {@code Project} ({@link Project#team}).
 	 * 
-	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
+	 * @return An array of {@code DatabaseElement} with one element carrying 
+	 * the {@code AWorker}
 	 */
 	@Override
 	protected DatabaseElement[] internalCall() throws Exception
 	{
-
 		projectId = getParameterAsLong(PID);
 		this.typeWorker = getParameterAsString(WTYPE);
-
+		Project project = projectRepository.getProjectById(projectId);
+		if (project == null)
+			return new DatabaseElement[]{new Message("Project with ID: " + projectId 
+					+ "was not found!")};
+		
 		if (typeWorker.equalsIgnoreCase("Manager"))
 		{
-			Leader manager = projectRepository.getProjectById(projectId)
-					.getManager();
-			
-			DatabaseElement[] managerAux = {manager};
-			return managerAux;
-			
+			return getManager(project);
 		} else if (typeWorker.equalsIgnoreCase("Consultant"))
 		{
-			Collection<AWorker> workers = projectRepository.getProjectById(
-					projectId).getTeam();				
-			  
-			DatabaseElement[] workersArray = new DatabaseElement[workers.size()];
-			int i = 0;
-			for (AWorker worker : workers)
-				workersArray[i++] = worker;
-			return workersArray;
-			
+			return getWorkers(project);
 		} else
-			throw new InvalidParameterValueException("Unrecognised type of worker.");
+			return new DatabaseElement[]{new Message("Unrecognised type of worker.")};
+	}
+
+	/**
+	 * Returns the {@code Manager} of the {@code Project}, if one has been assigned.
+	 * @param project
+	 * @return An array of {@code DatabaseElement} with one element carrying 
+	 * the {@code Manager} of the {@code Project}
+	 */
+	private DatabaseElement[] getWorkers(Project project) {
+		Collection<AWorker> workers = project.getTeam();
+		if (workers.size() == 0)
+			return new DatabaseElement[]{new Message("Project with ID: " + projectId 
+					+ "has no assigned workers.")};
+		  
+		DatabaseElement[] workersArray = new DatabaseElement[workers.size()];
+		int i = 0;
+		for (AWorker worker : workers)
+			workersArray[i++] = worker;
+		return workersArray;
+	}
+
+	/**
+	 * Returns and array with the {@code Consultant}s working on the {@code Project}, 
+	 * if any have been assigned.
+	 * @param project
+	 * @return An array of {@code DatabaseElement} with the workers of the {@code Project}
+	 */
+	private DatabaseElement[] getManager(Project project) {
+		Leader manager = project.getManager();
+		if(manager == null)
+			return new DatabaseElement[]{new Message("Project with ID: " + projectId 
+					+ "has no manager.")};
+		
+		DatabaseElement[] managerAux = {manager};
+		return managerAux;
 	}
 
 

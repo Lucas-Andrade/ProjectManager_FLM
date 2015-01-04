@@ -5,6 +5,7 @@ import java.util.concurrent.Callable;
 
 import utils.AWorker;
 import app.elements.DatabaseElement;
+import app.elements.Message;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
 import app.resultsAndOutputMethods.Result;
@@ -113,15 +114,17 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 	 * Modifies an {@code AWorker}. Get's the {@code AWorker}'s from the
 	 * {@code WorkerRepository} and modifies it.
 	 * 
-	 * @return The modified {@code AWorker}.
-	 * 
-	 * @see BaseCommandUserAuthentication#internalCall()
+	 * @return An array of {@code DatabaseElement} with one element carrying 
+	 * the modified {@code AWorker}.
 	 */
 	@Override
 	protected DatabaseElement[] internalCall()
 			throws Exception
 	{
 		AWorker worker = repository.getAWorkerByID(this.getParameterAsLong(CID));
+		if (worker == null)
+			return new DatabaseElement[]{new Message("Worker with CID: " + getParameterAsLong(CID)
+					+ "was not found!")};
 		if (parameters.containsKey(NAME))
 			worker.setName(parameters.get(NAME));
 		if (parameters.containsKey(PRICE_HOUR))

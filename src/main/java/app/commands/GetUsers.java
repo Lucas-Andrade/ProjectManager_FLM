@@ -74,9 +74,10 @@ public class GetUsers extends BaseCommandResultsOutputMethod
 	}
 
 	/**
-	 * Get's all the {@code User}s in the {@code UserRepository}.
+	 * Gets all the {@code User}s in the {@code UserRepository}.
 	 * 
-	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
+	 * @return An array of {@code DatabaseElement} with all the {@code User}s in the
+	 * {@code UserRepository}.
 	 */
 	@Override
 	protected DatabaseElement[] internalCall() throws Exception
