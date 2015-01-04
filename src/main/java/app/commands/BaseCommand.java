@@ -57,8 +57,10 @@ public abstract class BaseCommand implements Callable<Result>
 	}
 
 	/**
+	 * This method performs the specific instructions for each command that extends this class.
 	 * @see Callable#call()
-	 * @see Command#execute(ResultOutputMethodToStream)
+	 * 
+	 * @return An array of {@code DatabaseElement} 
 	 */
 	abstract protected DatabaseElement[] internalCall() throws Exception;
 
@@ -67,8 +69,7 @@ public abstract class BaseCommand implements Callable<Result>
 	 * {@link BaseCommand#parameters} (by searching their names), if not throws
 	 * {@code MandatoryParameterNotPresentException}.
 	 * 
-	 * @param parameterNames
-	 *            The mandatory arguments names.
+	 * @param parameterNames    The mandatory arguments names.
 	 * @throws MandatoryParameterNotPresentException
 	 *             The exception to be thrown if not all mandatory arguments are
 	 *             present in the {@link BaseCommand#parameters}.
@@ -94,8 +95,7 @@ public abstract class BaseCommand implements Callable<Result>
 	/**
 	 * Gives the argument as a {@code double}.
 	 * 
-	 * @param name
-	 *            The name of the argument to be returned.
+	 * @param name   The name of the argument to be returned.
 	 * @return The command argument.
 	 */
 	protected double getParameterAsDouble(String name)
@@ -106,8 +106,7 @@ public abstract class BaseCommand implements Callable<Result>
 	/**
 	 * Gives the argument as a {@code String}.
 	 * 
-	 * @param name
-	 *            The name of the argument to be returned.
+	 * @param name   The name of the argument to be returned.
 	 * @return The command argument.
 	 */
 	protected String getParameterAsString(String name)
@@ -118,8 +117,7 @@ public abstract class BaseCommand implements Callable<Result>
 	/**
 	 * Gives the argument as an {@code int}.
 	 * 
-	 * @param name
-	 *            The name of the argument to be returned.
+	 * @param name    The name of the argument to be returned.
 	 * @return The command argument.
 	 */
 	protected int getParameterAsInt(String name)
@@ -130,8 +128,7 @@ public abstract class BaseCommand implements Callable<Result>
 	/**
 	 * Gives the argument as a {@code long}.
 	 * 
-	 * @param name
-	 *            The name of the argument to be returned.
+	 * @param name    The name of the argument to be returned.
 	 * @return The command argument.
 	 */
 	protected long getParameterAsLong(String name)

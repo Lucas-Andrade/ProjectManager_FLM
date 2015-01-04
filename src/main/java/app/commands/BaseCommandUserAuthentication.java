@@ -46,10 +46,8 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	/**
 	 * The constructor for {@code BasePostCommand}.
 	 * 
-	 * @param repository
-	 *            The {@code UserRepository} with the {@code User}s.
-	 * @param parameters
-	 *            The {@code Command} arguments.
+	 * @param repository   The {@code UserRepository} with the {@code User}s.
+	 * @param parameters   The {@code Command} arguments.
 	 */
 	public BaseCommandUserAuthentication(UserRepository userRepository,
 			Map<String, String> parameters)
@@ -82,10 +80,8 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	 * Username and if the Login Password corresponds to the Password, returns
 	 * {@code True}, if not returns {@code False}.
 	 * 
-	 * @param loginName
-	 *            The Login Name.
-	 * @param loginPassword
-	 *            The Login Password.
+	 * @param loginName   The Login Name.
+	 * @param loginPassword   The Login Password.
 	 * @return {@code True} if authentication success, {@code False} otherwise.
 	 */
 	protected boolean authenticateUser(String loginName, String loginPassword)
@@ -94,7 +90,7 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	}
 
 	/**
-	 * @see Command#execute(ResultOutputMethodToStream)
+	* @see BaseCommand#internalCall()
 	 * 
 	 * @throws Exception
 	 */

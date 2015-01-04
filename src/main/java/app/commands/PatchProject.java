@@ -70,8 +70,7 @@ public class PatchProject extends BaseCommandUserAuthentication{
 		/**
 		 * The constructor for {@code Factory}.
 		 * 
-		 * @param repository
-		 *            The {@code ProjectRepository} with the {@code Project}.
+		 * @param repository   The {@code ProjectRepository} with the {@code Project}.
 		 */
 		public Factory(UserRepository uRepository, ProjectsRepository pRepository)
 		{
@@ -93,10 +92,8 @@ public class PatchProject extends BaseCommandUserAuthentication{
 	/**
 	 * The constructor for {@code GetProject}.
 	 * 
-	 * @param repository
-	 *            The {@code ProjectRepository}.
-	 * @param parameters
-	 *            The {@code Command} arguments.
+	 * @param repository   The {@code ProjectRepository}.
+	 * @param parameters   The {@code Command} arguments.
 	 */
 	public PatchProject(UserRepository uRepository, ProjectsRepository pRepository, Map<String, String> parameters)
 	{
@@ -105,6 +102,12 @@ public class PatchProject extends BaseCommandUserAuthentication{
 	}
 
 
+	/**
+	 * Modifies the information stored in the parameters of the {@code Project} with the specified ID. 
+	 * Outputs the modified {@code Project}.
+	 * 
+	 * @see BaseCommandUserAuthentication#internalCall()
+	 */
 	@Override
 	protected DatabaseElement[] internalCall()
 			throws Exception {
@@ -142,7 +145,9 @@ public class PatchProject extends BaseCommandUserAuthentication{
 		return projectAux;
 	}
 
-
+	/**
+	 * @see app.commands.BaseCommand#getMandatoryParameters()
+	 */
 	@Override
 	protected String[] getMandatoryParameters() {
 		return DEMANDING_PARAMETERS;

@@ -10,7 +10,7 @@ import app.repository.ProjectsRepository;
 import app.resultsAndOutputMethods.Result;
 
 /**
- * Class whose instances are {@link Command}s that return the {@link Project} with specified {@code PID}
+ * Class whose instances are commands that return the {@link Project} with specified {@code PID}
  * Caller {@code String}: GET /project/{pid}
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
@@ -54,8 +54,7 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 		/**
 		 * The constructor for {@code Factory}.
 		 * 
-		 * @param repository
-		 *            The {@code ProjectRepository} with the {@code Project}.
+		 * @param repository    The {@code ProjectRepository} with the {@code Project}.
 		 */
 		public Factory(ProjectsRepository repository)
 		{
@@ -75,10 +74,8 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 	/**
 	 * The constructor for {@code GetProject}.
 	 * 
-	 * @param repository
-	 *            The {@code ProjectRepository}.
-	 * @param parameters
-	 *            The {@code Command} arguments.
+	 * @param repository    The {@code ProjectRepository}.
+	 * @param parameters    The {@code Command} arguments.
 	 */
 	public GetProjects(ProjectsRepository repository,
 			Map<String, String> parameters)
@@ -100,7 +97,7 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 	 * Gets the {@code Project} with the argument
 	 * PID stored in {@link GetProjects#parameters} 
 	 * 
-	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
+	 * @see BaseCommandResultsOutputMethod#internalCall()
 	 */
 	@Override
 	protected DatabaseElement[] internalCall() throws Exception

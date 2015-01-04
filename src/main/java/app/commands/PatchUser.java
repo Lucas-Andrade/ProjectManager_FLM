@@ -3,6 +3,7 @@ package app.commands;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import utils.Project;
 import app.commands.exceptions.InvalidParameterValueException;
 import app.commands.exceptions.InvalidUserException;
 import app.elements.DatabaseElement;
@@ -10,6 +11,13 @@ import app.elements.UserInterface;
 import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
 
+/**
+ * Class whose instances are commands that return the {@link Project} with specified {@code PID}
+ * Caller {@code String}: GET /project/{pid}
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 05/01/2015
+ */
 public class PatchUser extends BaseCommandUserAuthentication{
 
 	/**

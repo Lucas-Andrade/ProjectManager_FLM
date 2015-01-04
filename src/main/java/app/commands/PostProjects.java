@@ -136,7 +136,7 @@ public class PostProjects extends BaseCommandUserAuthentication
 	 * {@code ProjectRepository} and adds it to the {@code ProjectRepository}.
 	 * Outputs the new {@code Project}'s PID.
 	 * 
-	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
+	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
 	protected DatabaseElement[] internalCall()

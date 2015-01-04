@@ -19,7 +19,7 @@ import app.repository.WorkerRepository;
 import app.resultsAndOutputMethods.Result;
 
 /**
- * Class whose instances are {@link Command}s that add {@link AWorker}s to
+ * Class whose instances are commands that add {@link AWorker}s to
  * {@code Project}s.
  * Caller {@code String}: POST /project/{pid}/{type} {parameter list}
  * 
@@ -33,7 +33,7 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 * {@code String} with the {@code Project}ID argument's name. The
 	 * {@link CommandParser.Node.content} to be used (between "{" and "}", see
 	 * {@link CommandParser#Node#isPlaceHolderNode()}) in one of the
-	 * {@link CommandParser#Node}s of this {@code Command}'s Path.
+	 * {@link CommandParser#Node}s of this command's Path.
 	 */
 	public static final String PID = "pid";
 
