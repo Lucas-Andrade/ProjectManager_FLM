@@ -78,10 +78,8 @@ public class GetUser extends BaseCommandResultsOutputMethod
 	/**
 	 * The constructor for {@code GetUser}.
 	 * 
-	 * @param repository
-	 *            The {@code UserRepository}.
-	 * @param parameters
-	 *            The {@code Command} arguments.
+	 * @param repository  The {@code UserRepository}.
+	 * @param parameters  The {@code Command} arguments.
 	 */
 	private GetUser(UserRepository repository, Map<String, String> parameters)
 	{
@@ -105,6 +103,7 @@ public class GetUser extends BaseCommandResultsOutputMethod
 	 * 
 	 * @return An array of {@code DatabaseElement} with one element carrying 
 	 * the {@code User}.
+	 * @see BaseCommandResultsOutputMethod#internalCall()
 	 */
 	@Override
 	protected DatabaseElement[] internalCall() throws Exception

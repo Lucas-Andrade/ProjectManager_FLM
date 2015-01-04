@@ -3,6 +3,7 @@ package app.commands;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.Callable;
+
 import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
@@ -84,8 +85,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 		/**
 		 * The constructor for {@code Factory}.
 		 * 
-		 * @param pRepository
-		 *            The {@code ProjectRepository} with the {@code Project}.
+		 * @param pRepository  The {@code ProjectRepository} with the {@code Project}.
 		 */
 		public Factory(ProjectsRepository pRepository)
 		{
@@ -105,10 +105,8 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	/**
 	 * The constructor for {@code GetProjectWorkers}.
 	 * 
-	 * @param pRepository
-	 *            The {@code ProjectRepository}.
-	 * @param parameters
-	 *            The {@code Command} arguments.
+	 * @param pRepository  The {@code ProjectRepository}.
+	 * @param parameters   The {@code Command} arguments.
 	 */
 	private GetProjectWorkers(ProjectsRepository pRepository,
 			Map<String, String> parameters)
@@ -137,6 +135,8 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 * 
 	 * @return An array of {@code DatabaseElement} with one element carrying 
 	 * the {@code AWorker}
+	 * 
+	 * @see BaseCommandResultsOutputMethod#internalCall()
 	 */
 	@Override
 	protected DatabaseElement[] internalCall() throws Exception

@@ -3,17 +3,17 @@ package app.commands;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import utils.Project;
-import app.commands.exceptions.InvalidParameterValueException;
 import app.commands.exceptions.InvalidUserException;
 import app.elements.DatabaseElement;
+import app.elements.Message;
+import app.elements.User;
 import app.elements.UserInterface;
 import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
 
 /**
- * Class whose instances are commands that return the {@link Project} with specified {@code PID}
- * Caller {@code String}: GET /project/{pid}
+ * Class whose instances are commands that modifies {@link User}s {@code password}.
+ * Caller {@code String}: PATCH /users/{username} {parameter list}
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 05/01/2015
@@ -94,7 +94,6 @@ public class PatchUser extends BaseCommandUserAuthentication{
 			return new PatchUser(uRepository, parameters);
 			
 		}
-
 	}
 
 	/**
@@ -111,7 +110,7 @@ public class PatchUser extends BaseCommandUserAuthentication{
 
 	/**
 	 * @return The modified {@code User}.
-	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication()
+	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
 	protected DatabaseElement[] internalCall()
@@ -126,13 +125,26 @@ public class PatchUser extends BaseCommandUserAuthentication{
 
 		UserInterface user = repository.getUserByUsername(username);
 		
+		DatabaseElement[] messageAux = new DatabaseElement[1];
+		
+		if(user == null)
+		{
+			Message message = new Message("User not found!");
+			messageAux[0] = message;
+			return messageAux;
+		}
+		
 		if(user.setNewPassword(newPassword))
 		{
 			DatabaseElement[] userAux = {user};
 			return userAux;
 		}
 		else
-			throw new InvalidParameterValueException("New password must at least have 4 characters.");
+		{
+			Message message = new Message("New password must at least have 4 characters.");
+			messageAux[0] = message;
+			return messageAux;
+		}
 	}
 
 	@Override

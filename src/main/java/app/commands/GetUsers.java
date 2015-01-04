@@ -94,5 +94,4 @@ public class GetUsers extends BaseCommandResultsOutputMethod
 		return new String[] {};
 	}
 
-
 }

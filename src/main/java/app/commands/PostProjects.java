@@ -14,7 +14,7 @@ import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
 
 /**
- * Class whose instances are {@link Command}s that create new {@link Project}s.
+ * Class whose instances are commands that create new {@link Project}s.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
@@ -28,7 +28,8 @@ public class PostProjects extends BaseCommandUserAuthentication
 	 * PID for the new {@code Project}s is obtained from the
 	 * {@code ProjectRepository} (there can't be more than one {@code Project}
 	 * with the same PID). For creating a new {@code Project}, this
-	 * {@code Command} has to create the {@code Project}'s {@link Local}.
+	 * command has to create the {@code Project}'s {@link Local}.
+	 * 
 	 * Caller {@code String}: POST /project {parameter list}
 	 */
 	private final ProjectsRepository repository;
@@ -83,10 +84,8 @@ public class PostProjects extends BaseCommandUserAuthentication
 		/**
 		 * The constructor for {@code Factory}.
 		 * 
-		 * @param uRepository
-		 *            The {@code UserRepository} with the {@code User}.
-		 * @param repository
-		 *            The {@code ProjectRepository} with the {@code Project}.
+		 * @param uRepository   The {@code UserRepository} with the {@code User}.
+		 * @param repository    The {@code ProjectRepository} with the {@code Project}.
 		 */
 		public Factory(UserRepository uRepository, ProjectsRepository repository)
 		{
@@ -107,12 +106,9 @@ public class PostProjects extends BaseCommandUserAuthentication
 	/**
 	 * The constructor for {@code GetProjectWorkers}.
 	 * 
-	 * @param uRepository
-	 *            The {@code UserRepository}.
-	 * @param repository
-	 *            The {@code ProjectRepository}.
-	 * @param parameters
-	 *            The {@code Command} arguments.
+	 * @param uRepository   The {@code UserRepository}.
+	 * @param repository    The {@code ProjectRepository}.
+	 * @param parameters    The Command arguments.
 	 */
 	public PostProjects(UserRepository uRepository,
 			ProjectsRepository repository, Map<String, String> parameters)
@@ -154,7 +150,6 @@ public class PostProjects extends BaseCommandUserAuthentication
 
 		repository.addProject(project);
 		
-		//acrescentei ... 
 		Message message = new Message("Product identification (PID): " + pid);
 		DatabaseElement[] messageAux = {message};
 		return messageAux;

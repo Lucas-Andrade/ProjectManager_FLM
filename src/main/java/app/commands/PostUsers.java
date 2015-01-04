@@ -13,7 +13,7 @@ import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
 
 /**
- * Class whose instances are {@link Command}s that create new {@link User}s.
+ * Class whose instances are commands that create new {@link User}s.
  * Caller {@code String}: POST /users {parameter list}
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
@@ -96,8 +96,7 @@ public class PostUsers extends BaseCommandUserAuthentication
 		/**
 		 * The constructor for {@code Factory}.
 		 * 
-		 * @param uRepository
-		 *            The {@code UserRepository}.
+		 * @param uRepository   The {@code UserRepository}.
 		 */
 		public Factory(UserRepository uRepository)
 		{
@@ -118,10 +117,8 @@ public class PostUsers extends BaseCommandUserAuthentication
 	/**
 	 * The constructor for {@code PostUsers}.
 	 * 
-	 * @param repository
-	 *            The {@code UserRepository}.
-	 * @param parameters
-	 *            The {@code Command} arguments.
+	 * @param repository   The {@code UserRepository}.
+	 * @param parameters   The {@code Command} arguments.
 	 */
 	public PostUsers(UserRepository repository, Map<String, String> parameters)
 	{
@@ -144,7 +141,7 @@ public class PostUsers extends BaseCommandUserAuthentication
 	 * successful message if successful.
 	 * 
 	 * @see PostUsers#validEmail()
-	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
+	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
 	protected DatabaseElement[] internalCall()

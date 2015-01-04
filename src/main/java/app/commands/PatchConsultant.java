@@ -11,7 +11,7 @@ import app.repository.WorkerRepository;
 import app.resultsAndOutputMethods.Result;
 
 /**
- * Class whose instances are {@link Command}s that modifies {@link AWorker}s.
+ * Class whose instances are commands that modifies {@link AWorker}s.
  * 
  * Caller {@code String}: PATCH /consultants/{cid} {parameter list}
  * 
@@ -72,10 +72,8 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 		/**
 		 * The constructor for {@code Factory}.
 		 * 
-		 * @param uRepository
-		 *            The {@code UserRepository} with the {@code User}.
-		 * @param wRepository
-		 *            The {@code WorkerRepository} with the {@code AWorker}s.
+		 * @param uRepository   The {@code UserRepository} with the {@code User}.
+		 * @param wRepository   The {@code WorkerRepository} with the {@code AWorker}s.
 		 */
 		public Factory(UserRepository uRepository, WorkerRepository wRepository)
 		{
@@ -96,12 +94,9 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 	/**
 	 * The constructor for {@code PatchConsultant}.
 	 * 
-	 * @param uRepository
-	 *            The {@code UserRepository}.
-	 * @param repository
-	 *            The {@code WorkerRepository}.
-	 * @param parameters
-	 *            The {@code Command} arguments.
+	 * @param uRepository    The {@code UserRepository}.
+	 * @param repository     The {@code WorkerRepository}.
+	 * @param parameters     The {@code Command} arguments.
 	 */
 	public PatchConsultant(UserRepository uRepository,
 			WorkerRepository repository, Map<String, String> parameters)
