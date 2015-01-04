@@ -5,12 +5,17 @@ import java.util.concurrent.Callable;
 
 import utils.Project;
 import app.commandParser.CommandParser;
-import app.commands.exceptions.InvalidParameterValueException;
 import app.elements.DatabaseElement;
+import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
-
+/**
+ * Class whose instances are commands that modifies {@link Project}s.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 05/01/2015
+ */
 public class PatchProject extends BaseCommandUserAuthentication{
 
 	/**
@@ -93,7 +98,7 @@ public class PatchProject extends BaseCommandUserAuthentication{
 	 * The constructor for {@code GetProject}.
 	 * 
 	 * @param repository   The {@code ProjectRepository}.
-	 * @param parameters   The {@code Command} arguments.
+	 * @param parameters   The command arguments.
 	 */
 	public PatchProject(UserRepository uRepository, ProjectsRepository pRepository, Map<String, String> parameters)
 	{
@@ -113,22 +118,33 @@ public class PatchProject extends BaseCommandUserAuthentication{
 			throws Exception {
 
 		Project project = pRepository.getProjectById(getParameterAsLong(PID));
+		DatabaseElement[] messageAux = new DatabaseElement[1];
 		
 		if(project == null)
 		{
-			throw new InvalidParameterValueException("Project not found!");
+			Message message = new Message("Project not found!");
+			messageAux[0] = message;
+			return messageAux;
 		}
 		
 		if (parameters.containsKey(LONGITUDE))
 		{
 			if( ! project.updateLongitude(getParameterAsDouble(LONGITUDE)))
-				throw new InvalidParameterValueException("Longitude out of bounds.");
+			{
+				Message message = new Message("Longitude out of bounds.");
+				messageAux[0] = message;
+				return messageAux;
+			}
 		}
 		
 		if(parameters.containsKey(LATITUDE))
 		{
 			if( ! project.updateLatitude(getParameterAsDouble(LATITUDE)))
-				throw new InvalidParameterValueException("Latitude out of bounds.");
+			{
+				Message message = new Message("Latitude out of bounds.");
+				messageAux[0] = message;
+				return messageAux;
+			}
 		}
 		
 		if(parameters.containsKey(NAME))
@@ -139,7 +155,11 @@ public class PatchProject extends BaseCommandUserAuthentication{
 		if(parameters.containsKey(PRICE))
 		{
 			if( ! project.updateLocalPrice(getParameterAsDouble(PRICE)))
-				throw new InvalidParameterValueException("A negative price is not allowed.");
+			{
+				Message message = new Message("A negative price is not allowed.");
+				messageAux[0] = message;
+				return messageAux;
+			}
 		}
 		DatabaseElement[] projectAux = {project};
 		return projectAux;

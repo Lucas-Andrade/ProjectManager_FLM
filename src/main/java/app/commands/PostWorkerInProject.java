@@ -118,12 +118,9 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 		/**
 		 * The constructor for {@code Factory}.
 		 * 
-		 * @param uRepository
-		 *            The {@code UserRepository} with the {@code User}.
-		 * @param pRepository
-		 *            The {@code ProjectRepository} with the {@code Project}.
-		 * @param wRepository
-		 *            The {@code WorkerRepository} with the {@code AWorker}.
+		 * @param uRepository  The {@code UserRepository} with the {@code User}.
+		 * @param pRepository  The {@code ProjectRepository} with the {@code Project}.
+		 * @param wRepository  The {@code WorkerRepository} with the {@code AWorker}.
 		 */
 		public Factory(UserRepository uRepository,
 				ProjectsRepository pRepository, WorkerRepository wRepository)
@@ -148,14 +145,10 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	/**
 	 * The constructor for {@code PostWorkerInProject}.
 	 * 
-	 * @param uRepository
-	 *            The {@code UserRepository}.
-	 * @param pRepository
-	 *            The {@code ProjectRepository}.
-	 * @param wRepository
-	 *            The {@code WorkerRepository}.
-	 * @param parameters
-	 *            The {@code Command} arguments.
+	 * @param uRepository  The {@code UserRepository}.
+	 * @param pRepository  The {@code ProjectRepository}.
+	 * @param wRepository  The {@code WorkerRepository}.
+	 * @param parameters   The Command arguments.
 	 */
 	public PostWorkerInProject(UserRepository uRepository,
 			ProjectsRepository pRepository, WorkerRepository wRepository,
@@ -179,16 +172,17 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 * Adds the {@code AWorker} with the {@code AWorker}ID (
 	 * {@link PostWorkerInProject#workerId}; if the {@code AWorker} exists) to
 	 * the {@code Project} with the PID {@link PostWorkerInProject#projectId}
-	 * (if the {@code Project} exists). If
-	 * {@link PostWorkerInProject#typeWorker} indicates Manager, then this
+	 * (if the {@code Project} exists). 
+	 * If {@link PostWorkerInProject#typeWorker} indicates Manager, then this
 	 * {@code Command} adds {@code AWorker} as a Manager ( {@link Leader};
-	 * {@link Project#manager}). If indicates Consultant adds {@code AWorker} as
+	 * {@link Project#manager}). 
+	 * If indicates Consultant adds {@code AWorker} as
 	 * a {@link Consultant} in the {@link Team} of the {@code Project} (
 	 * {@link Project#team}). Outputs True if successful, False if not.
 	 * 
-	 * @see PostWorkerInProject#addConsultant(ResultOutputMethod, long, long)
-	 * @see PostWorkerInProject#addManager(ResultOutputMethod, long, long)
-	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
+	 * @see PostWorkerInProject#addConsultant(long, long)
+	 * @see PostWorkerInProject#addManager(long, long)
+	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
 	protected DatabaseElement[] internalCall()
@@ -231,15 +225,14 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	}
 
 	/**
-	 * @see PostWorkerInProject#internalExecuteAfterUserAuthentication(ResultOutputMethod)
+	 * @see PostWorkerInProject#internalCall()
 	 * 
 	 * @param out
 	 *            The {@link ResultOutputMethodToStream} that receives the
 	 *            Results, treats them and gives them to a Stream.
-	 * @param projectId
-	 *            {@code long} with the argument PID.
-	 * @param workerId
-	 *            {@code long} with the argument {@code AWorker}ID.
+	 *            
+	 * @param projectId  {@code long} with the argument PID.
+	 * @param workerId   {@code long} with the argument {@code AWorker}ID.
 	 * @return True if successful, False if not.
 	 * @throws IOException
 	 */
@@ -260,15 +253,14 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	}
 
 	/**
-	 * @see PostWorkerInProject#internalExecuteAfterUserAuthentication(ResultOutputMethod)
+	 * @see PostWorkerInProject#internalCall()
 	 * 
 	 * @param out
 	 *            The {@link ResultOutputMethodToStream} that receives the
 	 *            Results, treats them and gives them to a Stream.
-	 * @param projectId
-	 *            {@code long} with the argument PID.
-	 * @param workerId
-	 *            {@code long} with the argument {@code AWorker}ID.
+	 *            
+	 * @param projectId  {@code long} with the argument PID.
+	 * @param workerId   {@code long} with the argument {@code AWorker}ID.
 	 * @return True if successful, False if not.
 	 * @throws IOException
 	 */

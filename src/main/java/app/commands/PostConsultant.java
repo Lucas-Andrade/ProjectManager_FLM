@@ -8,7 +8,6 @@ import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
 import app.commands.exceptions.CommandException;
-import app.commands.exceptions.InvalidParameterValueException;
 import app.elements.DatabaseElement;
 import app.elements.Message;
 import app.repository.UserRepository;
@@ -103,7 +102,7 @@ public class PostConsultant extends BaseCommandUserAuthentication
 	 * 
 	 * @param uRepository    The {@code UserRepository}.
 	 * @param repository     The {@code WorkerRepository}.
-	 * @param parameters     The {@code Command} arguments.
+	 * @param parameters     The command arguments.
 	 */
 	public PostConsultant(UserRepository uRepository,
 			WorkerRepository repository, Map<String, String> parameters)
@@ -134,10 +133,13 @@ public class PostConsultant extends BaseCommandUserAuthentication
 	{
 		String name = getParameterAsString(NAME);
 		double priceHour = getParameterAsDouble(PRICE_HOUR);
-
+		DatabaseElement[] messageAux = new DatabaseElement[1];
+		
 		if (priceHour < 0)
 		{
-			throw new InvalidParameterValueException("Specified price per hour of the worker is less than zero.");
+			Message message = new Message("Specified price per hour of the worker is less than zero.");
+			messageAux[0] = message;
+			return messageAux;
 		}
 
 		long cid = repository.nextCID();
@@ -155,8 +157,8 @@ public class PostConsultant extends BaseCommandUserAuthentication
 			repository.addConsultant(consultant);
 		}
 
-		Message message = new Message("Worker's identification (CID): " + cid);
-		DatabaseElement[] messageAux = {message};
+		Message message1 = new Message("Worker's identification (CID): " + cid);
+		messageAux[0] = message1;
 		return messageAux;
 	}
 

@@ -85,8 +85,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 		/**
 		 * The constructor for {@code Factory}.
 		 * 
-		 * @param pRepository
-		 *            The {@code ProjectRepository} with the {@code Project}.
+		 * @param pRepository  The {@code ProjectRepository} with the {@code Project}.
 		 */
 		public Factory(ProjectsRepository pRepository)
 		{
@@ -106,10 +105,8 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	/**
 	 * The constructor for {@code GetProjectWorkers}.
 	 * 
-	 * @param pRepository
-	 *            The {@code ProjectRepository}.
-	 * @param parameters
-	 *            The {@code Command} arguments.
+	 * @param pRepository  The {@code ProjectRepository}.
+	 * @param parameters   The {@code Command} arguments.
 	 */
 	private GetProjectWorkers(ProjectsRepository pRepository,
 			Map<String, String> parameters)
@@ -136,7 +133,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 * indicates Consultant get's all the {@link Consultant}s in the
 	 * {@link Team} of the {@code Project} ({@link Project#team}).
 	 * 
-	 * @see BaseCommandResultsOutputMethod#internalExecuteAfterDefiningTheOutputMethodForResults(ResultOutputMethod)
+	 * @see BaseCommandResultsOutputMethod#internalCall()
 	 */
 	@Override
 	protected DatabaseElement[] internalCall() throws Exception

@@ -14,7 +14,7 @@ import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
 
 /**
- * Class whose instances are {@link Command}s that add {@link Project}s as
+ * Class whose instances are commands that add {@link Project}s as
  * subprojects to other {@code Project}s. A Sub{@code Project} is a
  * {@code Project} inside (that belongs to) another {@code Project}.
  * 
@@ -101,12 +101,9 @@ public class PostSubprojects extends BaseCommandUserAuthentication
 	/**
 	 * The constructor for {@code PostSubproject}.
 	 * 
-	 * @param uRepository
-	 *            The {@code UserRepository}.
-	 * @param repository
-	 *            The {@code ProjectRepository}.
-	 * @param parameters
-	 *            The {@code Command} arguments.
+	 * @param uRepository   The {@code UserRepository}.
+	 * @param repository    The {@code ProjectRepository}.
+	 * @param parameters    The {@code Command} arguments.
 	 */
 	public PostSubprojects(UserRepository uRepository,
 			ProjectsRepository repository, Map<String, String> parameters)
@@ -131,7 +128,7 @@ public class PostSubprojects extends BaseCommandUserAuthentication
 	 * {@code Project}s exist. Outputs a successful message if successful and
 	 * vice-versa.
 	 * 
-	 * @see BaseCommandUserAuthentication#internalExecuteAfterUserAuthentication(ResultOutputMethod)
+	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
 	protected DatabaseElement[] internalCall()
@@ -143,7 +140,6 @@ public class PostSubprojects extends BaseCommandUserAuthentication
 
 		if (pid == subPid)
 		{
-			//acrescentei ... 
 			Message message = new Message("Specified project identifications are equal!");
 			messageAux[0] = message;
 			return messageAux;
@@ -152,7 +148,6 @@ public class PostSubprojects extends BaseCommandUserAuthentication
 		Project project = repository.getProjectById(pid);
 		if (project == null)
 		{
-			//acrescentei ... 
 			Message message = new Message("Specified project does not exist.");
 			messageAux[0] = message;
 			return messageAux;
@@ -161,22 +156,19 @@ public class PostSubprojects extends BaseCommandUserAuthentication
 		Project subProject = repository.getProjectById(subPid);
 		if (subProject == null)
 		{
-			//acrescentei ... 
 			Message message = new Message("Specified subproject does not exist.");
 			messageAux[0] = message;
 			return messageAux;
 		}
 
 		if (project.addProject(subProject))
-		{
-			//acrescentei ... 
+		{ 
 			Message message = new Message("Success.");
 			messageAux[0] = message;
 			
 		}
 		else
 		{
-			//acrescentei ... 
 			Message message = new Message("Could not add subproject to project, because subproject already is a subproject (of this or another project).");
 			messageAux[0] = message;
 		}
