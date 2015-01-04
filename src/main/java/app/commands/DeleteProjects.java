@@ -1,13 +1,14 @@
 package app.commands;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
 import utils.Project;
 import app.commandParser.CommandParser;
 import app.elements.DatabaseElement;
+import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
@@ -126,49 +127,78 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 			throws Exception
 	{
 		long pid = this.getParameterAsLong(PID);
-		Project parentProjectToDelete = repository.getProjectById(pid);
-		List<Long> allPIDsToDelete = new ArrayList<Long>();
-		allPIDsToDelete = this.getAllPIDsToDelete(pid, allPIDsToDelete);
-
-		this.removeAllProjectsToDeleteFromAllProjectContainers(allPIDsToDelete);
-		this.removeAllProjectsToDeleteFromTheRepository(allPIDsToDelete);
-
-		DatabaseElement[]ProjectToDelete = {parentProjectToDelete}; 
-		return ProjectToDelete;
+		Project parent = repository.getProjectById(pid);
+		if(parent == null)
+			return new DatabaseElement[]{new Message("Project not found!")};
+		
+		Collection<Project> projectsToRemove = getAllProjectsToRemove(parent);
+		
+		for (Project project : projectsToRemove)
+			repository.removeProject(project);
+		
+		return new DatabaseElement[]{new Message("Success!")};
 	}
-
-	private void removeAllProjectsToDeleteFromTheRepository(
-			List<Long> allPIDsToDelete)
+	
+	private Collection<Project> getAllProjectsToRemove(Project parent)
 	{
-		for (long pidToDelete : allPIDsToDelete)
-		{
-			Project projectToDelete = repository.getProjectById(pidToDelete);
-			this.repository.removeProject(projectToDelete);
-		}
+		Collection<Project> toRemove = new ArrayList<Project>();
+		toRemove.add(parent);
+		
+		Collection<Project> subprojects = parent.getContainerProject();
+		for(Project project : subprojects)
+			toRemove.addAll(getAllProjectsToRemove(project));
+		
+		return toRemove;
 	}
-
-	// because of removeproject in project also removes from nametester ,this should go
-	// first before
-	// removeallprojectsfromrepository
-	private void removeAllProjectsToDeleteFromAllProjectContainers(
-			List<Long> allPIDsToDelete)
-	{
-		for (DatabaseElement project : this.repository.getAll())
-			for (Long pidToDelete : allPIDsToDelete)
-				((Project) project).removeProject(this.repository
-						.getProjectById(pidToDelete).getName());
-	}
-
-	private List<Long> getAllPIDsToDelete(long pid, List<Long> allPIDsToDelete)
-	{
-		allPIDsToDelete.add(pid);
-
-		for (Project projectToDelete : repository.getProjectById(pid)
-				.getContainerProject())
-			allPIDsToDelete = this.getAllPIDsToDelete(projectToDelete.getPID(),
-					allPIDsToDelete);
-
-		return allPIDsToDelete;
-	}
+	
+//	@Override
+//	protected DatabaseElement[] internalCall()
+//			throws Exception
+//	{
+//		long pid = this.getParameterAsLong(PID);
+//		Project parentProjectToDelete = repository.getProjectById(pid);
+//		List<Long> allPIDsToDelete = new ArrayList<Long>();
+//		allPIDsToDelete = this.getAllPIDsToDelete(pid, allPIDsToDelete);
+//
+//		this.removeAllProjectsToDeleteFromAllProjectContainers(allPIDsToDelete);
+//		this.removeAllProjectsToDeleteFromTheRepository(allPIDsToDelete);
+//
+//		DatabaseElement[]ProjectToDelete = {parentProjectToDelete}; 
+//		return ProjectToDelete;
+//	}
+//
+//	private void removeAllProjectsToDeleteFromTheRepository(
+//			List<Long> allPIDsToDelete)
+//	{
+//		for (long pidToDelete : allPIDsToDelete)
+//		{
+//			Project projectToDelete = repository.getProjectById(pidToDelete);
+//			this.repository.removeProject(projectToDelete);
+//		}
+//	}
+//
+//	// because of removeproject in project also removes from nametester ,this should go
+//	// first before
+//	// removeallprojectsfromrepository
+//	private void removeAllProjectsToDeleteFromAllProjectContainers(
+//			List<Long> allPIDsToDelete)
+//	{
+//		for (DatabaseElement project : this.repository.getAll())
+//			for (Long pidToDelete : allPIDsToDelete)
+//				((Project) project).removeProject(this.repository
+//						.getProjectById(pidToDelete).getName());
+//	}
+//
+//	private List<Long> getAllPIDsToDelete(long pid, List<Long> allPIDsToDelete)
+//	{
+//		allPIDsToDelete.add(pid);
+//
+//		for (Project projectToDelete : repository.getProjectById(pid)
+//				.getContainerProject())
+//			allPIDsToDelete = this.getAllPIDsToDelete(projectToDelete.getPID(),
+//					allPIDsToDelete);
+//
+//		return allPIDsToDelete;
+//	}
 
 }

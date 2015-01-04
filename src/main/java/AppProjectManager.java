@@ -308,36 +308,36 @@ public class AppProjectManager
 		//	DEFAULT_SYSTEM_OUT.println("Args must have 2 or 3 elements.");
 			DEFAULT_SYSTEM_OUT.println(e);
 		} 
-//		catch (InvalidCommandArgumentsException e)
-//		{
-//			DEFAULT_SYSTEM_OUT.println("Inserted a parameter without value.");
-//		} catch (DuplicateArgumentsException e)
-//		{
-//			DEFAULT_SYSTEM_OUT.println("Duplicate parameters entered.");
-//		} catch (MandatoryParameterNotPresentException e)
-//		{
-//			DEFAULT_SYSTEM_OUT
-//					.println("Not all required parameters were entered.");
-//		} catch (InvalidParameterValueException e)
-//		{
-//			DEFAULT_SYSTEM_OUT
-//					.println("Inserted a parameter with an invalid value.");
-//		} 
-//		catch (CommandException e)
-//		{
-//			DEFAULT_SYSTEM_OUT.println("Invalid Command.");
-//		} 
-//		catch (NullPointerException e)
-//		{
-//			DEFAULT_SYSTEM_OUT.println("Not found.");
-//		} 
-//		catch (FileNotFoundException e)
-//		{
-//			DEFAULT_SYSTEM_OUT.println("Invalid destination for results.");
-//		} catch (ClassNotFoundException e)
-//		{
-//			DEFAULT_SYSTEM_OUT.println("Invalid format for results.");
-//		} 
+		catch (InvalidCommandArgumentsException e)
+		{
+			DEFAULT_SYSTEM_OUT.println("Inserted a parameter without value.");
+		} catch (DuplicateArgumentsException e)
+		{
+			DEFAULT_SYSTEM_OUT.println("Duplicate parameters entered.");
+		} catch (MandatoryParameterNotPresentException e)
+		{
+			DEFAULT_SYSTEM_OUT
+					.println("Not all required parameters were entered.");
+		} catch (InvalidParameterValueException e)
+		{
+			DEFAULT_SYSTEM_OUT
+					.println("Inserted a parameter with an invalid value.");
+		} 
+		catch (CommandException e)
+		{
+			DEFAULT_SYSTEM_OUT.println("Invalid Command.");
+		} 
+		catch (NullPointerException e)
+		{
+			DEFAULT_SYSTEM_OUT.println("Not found.");
+		} 
+		catch (FileNotFoundException e)
+		{
+			DEFAULT_SYSTEM_OUT.println("Invalid destination for results.");
+		} catch (ClassNotFoundException e)
+		{
+			DEFAULT_SYSTEM_OUT.println("Invalid format for results.");
+		} 
 //		catch (InvalidUserException e)
 //		{
 //			DEFAULT_SYSTEM_OUT.println(e);

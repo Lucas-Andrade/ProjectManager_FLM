@@ -104,7 +104,6 @@ public abstract class AContainer<elements extends Element> implements ICost
 	 */
 	public Collection<elements> getElementsList()
 	{
-
 		return Collections.unmodifiableCollection(elementsList);
 	}
 
