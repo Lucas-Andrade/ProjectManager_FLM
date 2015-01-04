@@ -2,8 +2,6 @@ package app.commands;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
-
-import app.commands.exceptions.InvalidUserException;
 import app.elements.DatabaseElement;
 import app.elements.Message;
 import app.elements.User;
@@ -121,10 +119,9 @@ public class PatchUser extends BaseCommandUserAuthentication{
 		this.username = getParameterAsString(USERNAME);
 
 		if(!super.authenticateUser(this.username, oldPassword))
-			throw new InvalidUserException(this.username);
+			return new DatabaseElement[]{new Message("Old password is not correct for user: " + username)};;
 
 		UserInterface user = repository.getUserByUsername(username);
-		
 		DatabaseElement[] messageAux = new DatabaseElement[1];
 		
 		if(user == null)
