@@ -1,6 +1,6 @@
 package app.repository;
 
-import app.elements.Element;
+import app.elements.DatabaseElement;
 
 /**
  * The interface to be implemented by all Repositories.
@@ -12,7 +12,7 @@ import app.elements.Element;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface Repository<T extends Element>
+public interface Repository<T extends DatabaseElement>
 {
 
 	/**
@@ -24,7 +24,7 @@ public interface Repository<T extends Element>
 	 * @return An array with all {@link DatabaseElements} that are in the
 	 *         Repository.
 	 */
-	public Element[] getAll();
+	public DatabaseElement[] getAll();
 
 	/**
 	 * @return The size of the {@code Repository}.

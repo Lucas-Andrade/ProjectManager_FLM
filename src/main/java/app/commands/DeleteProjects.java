@@ -7,7 +7,7 @@ import java.util.concurrent.Callable;
 
 import utils.Project;
 import app.commandParser.CommandParser;
-import app.elements.Element;
+import app.elements.DatabaseElement;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
@@ -125,20 +125,20 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected Element[] internalCall()
+	protected DatabaseElement[] internalCall()
 			throws Exception
 	{
 		long pid = this.getParameterAsLong(PID);
 		Project parent = repository.getProjectById(pid);
 		if(parent == null)
-			return new Element[]{new Message("Project not found!")};
+			return new DatabaseElement[]{new Message("Project not found!")};
 		
 		Collection<Project> projectsToRemove = getAllProjectsToRemove(parent);
 		
 		for (Project project : projectsToRemove)
 			repository.removeProject(project);
 		
-		return new Element[]{new Message("Success!")};
+		return new DatabaseElement[]{new Message("Success!")};
 	}
 	
 	/**

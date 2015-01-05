@@ -6,7 +6,7 @@ import java.util.TreeSet;
 
 import org.json.JSONObject;
 
-import app.elements.Element;
+import app.elements.DatabaseElement;
 import app.elements.ProjectComparator;
 import utils.Project;
 
@@ -100,11 +100,11 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	 * @see Repository#getAll()
 	 */
 	@Override
-	public Element[] getAll()
+	public DatabaseElement[] getAll()
 	{
-		Element[] all = new Element[this.size()];
+		DatabaseElement[] all = new DatabaseElement[this.size()];
 		int i = 0;
-		for (Element ele : projects)
+		for (DatabaseElement ele : projects)
 			all[i++] = ele;
 		return all;
 	}
@@ -133,7 +133,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	public JSONObject getJson() 
 	{
 		JSONObject json = new JSONObject();
-		for (Element ele : projects)
+		for (DatabaseElement ele : projects)
 			json.accumulate("All projects", ele.getJson());
 		
 		return json;

@@ -3,7 +3,7 @@ package app.commands;
 import java.util.Map;
 
 import app.commands.exceptions.InvalidUserException;
-import app.elements.Element;
+import app.elements.DatabaseElement;
 import app.elements.User;
 import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
@@ -94,6 +94,6 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	 * 
 	 * @throws Exception
 	 */
-	abstract protected Element[] internalCall() throws Exception;
+	abstract protected DatabaseElement[] internalCall() throws Exception;
 
 }

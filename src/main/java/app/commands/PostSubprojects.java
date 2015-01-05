@@ -7,7 +7,7 @@ import java.util.concurrent.Callable;
 import utils.Project;
 import app.commandParser.CommandParser;
 import app.commands.exceptions.CommandException;
-import app.elements.Element;
+import app.elements.DatabaseElement;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
@@ -131,12 +131,12 @@ public class PostSubprojects extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected Element[] internalCall()
+	protected DatabaseElement[] internalCall()
 			throws CommandException, IOException
 	{
 		long pid = getParameterAsLong(PID);
 		long subPid = getParameterAsLong(SUBPID);
-		Element[] messageAux = new Element[1];
+		DatabaseElement[] messageAux = new DatabaseElement[1];
 
 		if (pid == subPid)
 		{

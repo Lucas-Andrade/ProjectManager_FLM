@@ -3,7 +3,7 @@ package app.resultsAndOutputMethods;
 import java.io.IOException;
 
 import app.elements.Admin;
-import app.elements.Element;
+import app.elements.DatabaseElement;
 import app.elements.ImmutableAdmin;
 import app.resultsAndOutputMethods.outputFormat.ToPlainText;
 
@@ -13,9 +13,9 @@ public class testeResultIntroReflex
 	public static void main(String[] args) throws ClassNotFoundException,
 			InstantiationException, IllegalAccessException, IOException
 	{
-		Element c = new ImmutableAdmin();
-		Element d = new Admin("aaaaa", "bbbbb");
-		Element[] b = { c, d };
+		DatabaseElement c = new ImmutableAdmin();
+		DatabaseElement d = new Admin("aaaaa", "bbbbb");
+		DatabaseElement[] b = { c, d };
 		Result a = new Result(b, "console", null );
 		a.showResults();
 		

@@ -2,7 +2,7 @@ package utils;
 
 import org.json.JSONObject;
 
-import app.elements.Element;
+import app.elements.DatabaseElement;
 
 
 /**
@@ -11,7 +11,7 @@ import app.elements.Element;
  * 
  * Implements the Interfaces {@link ICost}, {@link IName}, {@link Comparable}.
  */
-public abstract class Element implements ICost, IName, Comparable<Element>, Element
+public abstract class Element implements ICost, IName, Comparable<Element>, DatabaseElement
 {	
 	public abstract String toString();
 	public abstract JSONObject getJson();

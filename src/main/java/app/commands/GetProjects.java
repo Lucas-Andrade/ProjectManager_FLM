@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 
 import utils.Project;
 import app.commandParser.CommandParser;
-import app.elements.Element;
+import app.elements.DatabaseElement;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.resultsAndOutputMethods.Result;
@@ -102,14 +102,14 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 	 * {@code Project}
 	 */
 	@Override
-	protected Element[] internalCall() throws Exception
+	protected DatabaseElement[] internalCall() throws Exception
 	{
 		Project project = repository.getProjectById(getParameterAsLong(PID));
 		
 		if(project == null)
-			return new Element[]{new Message("Project not found!")};
+			return new DatabaseElement[]{new Message("Project not found!")};
 
-		Element[] projectAux = {project};
+		DatabaseElement[] projectAux = {project};
 		return projectAux;
 	}
 

@@ -11,7 +11,7 @@ import utils.Project;
 import utils.Team;
 import app.commandParser.CommandParser;
 import app.commands.exceptions.CommandException;
-import app.elements.Element;
+import app.elements.DatabaseElement;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
@@ -185,13 +185,13 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected Element[] internalCall()
+	protected DatabaseElement[] internalCall()
 			throws CommandException, IOException
 	{
 		this.projectId = getParameterAsLong(PID);
 		this.typeWorker = getParameterAsString(WTYPE);
 		this.workerId = getParameterAsLong(CID);
-		Element[] messageAux = new Element[1];
+		DatabaseElement[] messageAux = new DatabaseElement[1];
 		Message message;
 
 		Project project = projectRepository.getProjectById(projectId);
@@ -238,7 +238,7 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 */
 	private Boolean addConsultant( long projectId,long workerId) throws IOException
 	{
-		Element[] messageAux = new Element[1];
+		DatabaseElement[] messageAux = new DatabaseElement[1];
 		Consultant consultant = workerRepository.getConsultantByID(workerId);
 
 		if (consultant != null)
@@ -266,7 +266,7 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 */
 	private Boolean addManager(long projectId, long workerId) throws IOException
 	{
-		Element[] messageAux = new Element[1];
+		DatabaseElement[] messageAux = new DatabaseElement[1];
 		Leader manager = workerRepository.getManagerByID(workerId);
 		if (manager != null)
 		{

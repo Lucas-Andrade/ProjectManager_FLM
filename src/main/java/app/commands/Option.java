@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import app.elements.Element;
+import app.elements.DatabaseElement;
 import app.elements.Message;
 import app.resultsAndOutputMethods.Result;
 
@@ -52,7 +52,7 @@ public class Option extends BaseCommandResultsOutputMethod{
 	 * {@code Project}
 	 */
 	@Override
-	protected Element[] internalCall() throws Exception {
+	protected DatabaseElement[] internalCall() throws Exception {
 		
 		Message[] options = availableCommands(); 		
 		return options;

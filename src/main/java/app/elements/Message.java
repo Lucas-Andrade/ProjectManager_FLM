@@ -2,7 +2,7 @@ package app.elements;
 
 import org.json.JSONObject;
 
-public class Message implements Element{
+public class Message implements DatabaseElement{
 
 	private String message;
 	private String msg;

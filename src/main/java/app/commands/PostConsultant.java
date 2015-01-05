@@ -8,7 +8,7 @@ import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
 import app.commands.exceptions.CommandException;
-import app.elements.Element;
+import app.elements.DatabaseElement;
 import app.elements.Message;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
@@ -129,11 +129,11 @@ public class PostConsultant extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected Element[] internalCall()	throws CommandException, IOException
+	protected DatabaseElement[] internalCall()	throws CommandException, IOException
 	{
 		String name = getParameterAsString(NAME);
 		double priceHour = getParameterAsDouble(PRICE_HOUR);
-		Element[] messageAux = new Element[1];
+		DatabaseElement[] messageAux = new DatabaseElement[1];
 		
 		if (priceHour < 0)
 		{

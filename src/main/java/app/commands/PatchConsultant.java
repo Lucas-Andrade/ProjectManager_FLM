@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 import utils.AWorker;
-import app.elements.Element;
+import app.elements.DatabaseElement;
 import app.elements.Message;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
@@ -113,18 +113,18 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 	 * the modified {@code AWorker}.
 	 */
 	@Override
-	protected Element[] internalCall()
+	protected DatabaseElement[] internalCall()
 			throws Exception
 	{
 		AWorker worker = repository.getAWorkerByID(this.getParameterAsLong(CID));
 		if (worker == null)
-			return new Element[]{new Message("Worker with CID: " + getParameterAsLong(CID)
+			return new DatabaseElement[]{new Message("Worker with CID: " + getParameterAsLong(CID)
 					+ "was not found!")};
 		if (parameters.containsKey(NAME))
 			worker.setName(parameters.get(NAME));
 		if (parameters.containsKey(PRICE_HOUR))
 			worker.setCostPerHour(this.getParameterAsDouble(PRICE_HOUR));
-		Element[] workerAux = {worker};
+		DatabaseElement[] workerAux = {worker};
 		return workerAux;
 	}
 

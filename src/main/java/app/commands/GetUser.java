@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 import app.commandParser.CommandParser;
-import app.elements.Element;
+import app.elements.DatabaseElement;
 import app.elements.Message;
 import app.elements.User;
 import app.repository.UserRepository;
@@ -106,11 +106,11 @@ public class GetUser extends BaseCommandResultsOutputMethod
 	 * @see BaseCommandResultsOutputMethod#internalCall()
 	 */
 	@Override
-	protected Element[] internalCall() throws Exception
+	protected DatabaseElement[] internalCall() throws Exception
 	{
-		Element[] user = new Element[]{repository.getUserByUsername(username)};
+		DatabaseElement[] user = new DatabaseElement[]{repository.getUserByUsername(username)};
 		if(user[0] == null)
-			return new Element[]{new Message("User " + username + " not found!")};
+			return new DatabaseElement[]{new Message("User " + username + " not found!")};
 		return user;
 	}
 
