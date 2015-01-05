@@ -3,7 +3,7 @@ package app.resultsAndOutputMethods.outputFormat;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class ToHtml implements TextParser {
+public class ToTextHtml implements TextParser {
 
 	/**
 	 * Parses the information contained in the {@code JSONObject} into the HTML format.

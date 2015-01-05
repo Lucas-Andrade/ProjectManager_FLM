@@ -4,7 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 
-public class ToPlainText implements TextParser{
+public class ToTextPlain implements TextParser{
 
 	/**
 	 * Parses the information contained in the {@code JSONObject} into plain text.

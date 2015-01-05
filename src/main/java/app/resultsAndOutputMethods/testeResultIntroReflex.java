@@ -5,7 +5,7 @@ import java.io.IOException;
 import app.elements.Admin;
 import app.elements.DatabaseElement;
 import app.elements.ImmutableAdmin;
-import app.resultsAndOutputMethods.outputFormat.ToPlainText;
+import app.resultsAndOutputMethods.outputFormat.ToTextPlain;
 
 public class testeResultIntroReflex
 {
@@ -16,18 +16,8 @@ public class testeResultIntroReflex
 		DatabaseElement c = new ImmutableAdmin();
 		DatabaseElement d = new Admin("aaaaa", "bbbbb");
 		DatabaseElement[] b = { c, d };
-		Result a = new Result(b, "console", null );
+		Result a = new Result(b, "console", "text/html" );
 		a.showResults();
-		
-		System.out.println(new ToPlainText()
-		.getClass()
-		.getName()
-		.substring(ToPlainText.class.getName().lastIndexOf('.') + 3));
-		String s1 ="a";
-		String s2=s1;
-		s2="b";
-		System.out.print("");
-		short l = 3;
 	}
 
 }

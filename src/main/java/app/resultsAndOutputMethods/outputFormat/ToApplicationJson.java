@@ -2,7 +2,7 @@ package app.resultsAndOutputMethods.outputFormat;
 
 import org.json.JSONObject;
 
-public class ToJson implements TextParser{
+public class ToApplicationJson implements TextParser{
 
 	@Override
 	public String parse(JSONObject jsonObject) {

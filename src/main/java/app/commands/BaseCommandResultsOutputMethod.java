@@ -1,11 +1,7 @@
 package app.commands;
 
 import java.util.Map;
-import app.commands.exceptions.InvalidParameterValueException;
 import app.resultsAndOutputMethods.Result;
-import app.resultsAndOutputMethods.outputFormat.ToHtml;
-import app.resultsAndOutputMethods.outputFormat.ToJson;
-import app.resultsAndOutputMethods.outputFormat.ToPlainText;
 
 /**
  * Abstract Command to be supported by all Commands that support different
@@ -53,59 +49,25 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 	{
 		validateDemandingParameters(getMandatoryParameters());
 		return new Result(internalCall(), getResultsOutputDestination(),
-					getResultsOutputFormat());
+				getResultsOutputFormat());
 	}
 
 	/**
-	 * This method checks if the user entered the format in which he want to
-	 * display the results output ("accept"). If the user has not entered the
-	 * format in which he want to display the output, it will be presented in
-	 * text/plain;
+	 * This method returns the entered format by the User, if it exists.
 	 * 
-	 * This String is case sensitive and must match the name of the Object that
-	 * is going to be used. {@see Result}
-	 * 
-	 * @return String represent the format in which he want to display the
-	 *         output (can be text/plain, text/html or Json)
-	 * @throws Exception if the inserted format is not one of the expected
+	 * @return The format for the results.
 	 */
-	private String getResultsOutputFormat() throws Exception
+	private String getResultsOutputFormat()
 	{
-		String accept = getParameterAsString(ACCEPT);
-
-		if (accept == null || accept == "" || accept.equalsIgnoreCase("text/plain"))
-		{
-			return new ToPlainText()
-					.getClass()
-					.getName()
-					.substring(ToPlainText.class.getName().lastIndexOf('.') + 3); 
-			
-		} else if (accept.equalsIgnoreCase("text/html"))
-		{
-			return new ToHtml().getClass().getName()
-					.substring(ToHtml.class.getName().lastIndexOf('.') + 3); 
-			
-		} else if (accept.equalsIgnoreCase("application/json"))
-		{
-			return new ToJson().getClass().getName()
-					.substring(ToJson.class.getName().lastIndexOf('.') + 3); 
-			
-		} else
-			throw new InvalidParameterValueException(
-					"Unrecognised accept format.");
+		return getParameterAsString(ACCEPT);
 	}
 
 	/**
-	 * This method checks if the user entered the destination in which he want
-	 * to display the results output ("output"). If the user has not entered the
-	 * destination in which he want to display the output, it will be presented in
-	 * console;
+	 * This method returns the entered destination by the User, if it exists.
 	 * 
-	 * @param parameters
-	 * @return
-	 * @throws Exception
+	 * @return The destination for the results.
 	 */
-	protected String getResultsOutputDestination() throws Exception
+	protected String getResultsOutputDestination()
 	{
 		return getParameterAsString(OUTPUT);
 	}

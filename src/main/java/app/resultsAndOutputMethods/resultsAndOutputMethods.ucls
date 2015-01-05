@@ -22,8 +22,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="3" language="java" name="app.resultsAndOutputMethods.outputFormat.ToPlainText" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/main/java/app/resultsAndOutputMethods/outputFormat/ToPlainText.java" binary="false" 
+  <class id="3" language="java" name="app.resultsAndOutputMethods.outputFormat.ToTextPlain" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/main/java/app/resultsAndOutputMethods/outputFormat/ToTextPlain.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="143" y="101"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -32,9 +32,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="app.resultsAndOutputMethods.outputFormat.ToJson" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/main/java/app/resultsAndOutputMethods/outputFormat/ToJson.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="app.resultsAndOutputMethods.outputFormat.ToApplicationJson" 
+    project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/main/java/app/resultsAndOutputMethods/outputFormat/ToApplicationJson.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="137" y="441"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -42,8 +43,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="app.resultsAndOutputMethods.outputFormat.ToHtml" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/main/java/app/resultsAndOutputMethods/outputFormat/ToHtml.java" binary="false" 
+  <class id="5" language="java" name="app.resultsAndOutputMethods.outputFormat.ToTextHtml" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/main/java/app/resultsAndOutputMethods/outputFormat/ToTextHtml.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="412" y="487"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -85,44 +86,48 @@
     </display>  
   </class>  
   <realization id="9">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
-  <realization id="10">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
-  <realization id="11">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <realization id="12">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="2"/>  
   </realization>  
-  <association id="13">    
+  <realization id="10">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <realization id="11">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <association id="12">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="14" name="format"/>      
-      <multiplicity id="15" minimum="0" maximum="1">        
+      <attribute id="13" name="format">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="0" maximum="1">        
         <position height="15" width="23" x="382" y="197"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <realization id="15">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
   <association id="16">    
     <end type="SOURCE" refId="1" navigable="false">      
       <attribute id="17" name="destination">        
         <position height="17" width="59" x="448" y="151"/>      
       </attribute>      
-      <multiplicity id="18" minimum="0" maximum="1"/>    
+      <multiplicity id="18" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <realization id="19">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="7"/>  
   </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
