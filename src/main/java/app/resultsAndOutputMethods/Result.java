@@ -6,11 +6,8 @@ import java.io.IOException;
 import org.json.JSONObject;
 
 import app.elements.DatabaseElement;
-import app.resultsAndOutputMethods.outputDestination.ToConsole;
-import app.resultsAndOutputMethods.outputDestination.ToFile;
 import app.resultsAndOutputMethods.outputDestination.Writable;
 import app.resultsAndOutputMethods.outputFormat.TextParser;
-import app.resultsAndOutputMethods.outputFormat.ToPlainText;
 
 /**
  * Class that stores the results of a Command execution and sends them to a
@@ -61,10 +58,19 @@ public class Result
 			throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, FileNotFoundException
 	{
-		if (format == null || format == "")
+		if (format == null || format == "" || !format.contains("/"))
 		{
-			format = ToPlainText.class.getName();
+			format = ToTextPlain.class.getName();
 			format = format.substring(format.lastIndexOf('.') + 3);
+		}
+		else
+		{
+			String[] formats = format.split("/");
+			for (int i=0; i<formats.length; i++)
+				formats[i]=formats[i].substring(0, 1).toUpperCase()+formats[i].substring(1);
+			format="";
+			for (String fmt:formats)
+				format+=fmt;
 		}
 
 		String formatClassCompleteName = TextParser.class.getPackage()
