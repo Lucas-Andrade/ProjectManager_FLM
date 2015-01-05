@@ -23,6 +23,11 @@ public class testeResultIntroReflex
 		.getClass()
 		.getName()
 		.substring(ToPlainText.class.getName().lastIndexOf('.') + 3));
+		String s1 ="a";
+		String s2=s1;
+		s2="b";
+		System.out.print("");
+		short l = 3;
 	}
 
 }
