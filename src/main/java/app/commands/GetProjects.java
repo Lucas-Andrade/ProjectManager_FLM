@@ -76,7 +76,7 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 	 * The constructor for {@code GetProject}.
 	 * 
 	 * @param repository    The {@code ProjectRepository}.
-	 * @param parameters    The {@code Command} arguments.
+	 * @param parameters    The Command arguments.
 	 */
 	public GetProjects(ProjectsRepository repository,
 			Map<String, String> parameters)

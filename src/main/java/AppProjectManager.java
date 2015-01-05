@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.Scanner;
+
 import app.commandParser.CommandParser;
 import app.commandParser.DuplicateArgumentsException;
 import app.commandParser.InvalidCommandArgumentsException;
@@ -12,6 +13,7 @@ import app.commands.GetProjectWorkers;
 import app.commands.GetSubproject;
 import app.commands.GetUser;
 import app.commands.GetUsers;
+import app.commands.Option;
 import app.commands.PatchConsultant;
 import app.commands.PatchProject;
 import app.commands.PatchUser;
@@ -151,6 +153,7 @@ public class AppProjectManager
 				+ "}", new PatchConsultant.Factory(userRepo, workersRepo));
 		parser.registerCommand("DELETE", "/projects/{" + GetProjects.PID + "}",
 				new DeleteProjects.Factory(userRepo, projectRepo));
+		parser.registerCommand("OPTION", "/",new Option.Factory());
 	}
 
 	/**
@@ -181,50 +184,11 @@ public class AppProjectManager
 		DEFAULT_SYSTEM_OUT
 				.println("\nTo learn the commands that are available in this application enter the OPTION command that displays "
 						+ "a description of all available commands.");
-
-	}
-
-	/**
-	 * This method shows an description of all available commands in this
-	 * application
-	 */
-	public static void optionCommand()
-	{
 		DEFAULT_SYSTEM_OUT
-				.println("\nAVALABLE COMMANDS:"
-						+ "\n  POST COMMANDS:"
-						+ "\n  	POST /users {parameter list: loginName, loginPassord, username, password, email, fullname(optional)}  "
-						+ "\n	  Add a user to the User Repository. "
-						+ "\n  	POST /projects  {parameter list: loginName, loginPassord, Latitiude, longitude, name, price} "
-						+ "\n	  Add a Project to the Project repository."
-						+ "\n  	POST /consultants {parameter list: loginName, loginPassord, name, priceHour, bonus (optional)}"
-						+ "\n	  Add a consultant to the Worker Repository"
-						+ "\n  	POST /projects/{pid}/{type} {parameter list: loginName, loginPassord, WorkerId}"
-						+ "\n	  Add a consultant or Manager to a project/subproject"
-						+ "\n  	POST /projects/{pid}/subproject {parameter list: loginName, loginPassord, ProjectId}"
-						+ "\n	  Add a subproject to a project/subproject."
-						+ "\n\n  GET COMMANDS: {parameter list: accept, output-file(optional)}"
-						+ "\n  	GET /users : Return the information of all users in the User Repository"
-						+ "\n  	GET /users/{username}  : Return the information of the user with the  specify {@code username} of the User Repository" // enunciado
-						+ "\n  	GET /projects/{pid}: Return the information of the project with the  specify {@code ProjectId}" // extra
-																																// ao
-																																// enunciado
-						+ "\n  	GET /projects/{pid}/{type} : Return the information of all consultants or of the Manager of a project with the  specify {@code ProjectId}"
-						+ "\n  	GET /projects/{pid}/subproject : Return the information of all subprojects of a project with the  specify {@code ProjectId}"
-						+ "\n\n  PATCH COMMANDS:"
-						+ "\n  	PATCH /users/{username} {parameter list: loginName, loginPassord, oldpassword, newPassword} "
-						+ "\n	  Updates the password of the user identified by the  specify {@code username}. "
-						+ "\n  	PATCH /projects/{pid} {parameter list: loginName, loginPassord, Latitiude, longitude, name, price (the last four optional)} "
-						+ "\n	  Update the information of the project identified by the  specify {@code ProjectId}."
-						+ "\n  	PATCH /consultants/{cid} {parameter list: loginName, loginPassord, name, priceHour (the last two optional)} "
-						+ "\n	  Updates the information of the consultant with the  specify {@code WorkerId}. "
-						+ "\n\n  DELETE COMMANDS:"
-						+ "\n  	DELETE /projects/{pid} {parameter list: loginName, loginPassord} "
-						+ "\n	  Deletes the project with the  specify {@code ProjectId} and all its subprojects"
-						+ "\n\n  OPTION: Displays a description of all available commands."
-						+ "\n  HELP: Show an user guide to use the application"
-						+ "\n  EXIT: terminates the application");
+				.println("\nTo end and exit of this aplication, enter the END command.");
+
 	}
+
 
 	/**
 	 * Ask for a command and execute it, till the END command is called.
@@ -263,10 +227,6 @@ public class AppProjectManager
 
 				case "HELP":
 					helpCommand();
-					break;
-
-				case "OPTION":
-					optionCommand();
 					break;
 
 				case "EXIT":
