@@ -1,9 +1,9 @@
 package app.resultsAndOutputMethods.outputDestination;
 
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
 
 public class ToFile implements Writable
 {
@@ -18,9 +18,14 @@ public class ToFile implements Writable
 	@Override
 	public void write(String info) throws IOException
 	{
-		OutputStream outStream = new FileOutputStream(pathToDestinationFile);
-		outStream.write(info.getBytes());
-		outStream.close();
+		BufferedWriter writer = new BufferedWriter(new FileWriter(pathToDestinationFile));
+		String[] lines = info.split("\n");
+		for (String line : lines)
+		{
+			writer.write(line);
+			writer.newLine();
+		}
+		writer.close();
 	}
-
+	
 }

@@ -1,10 +1,7 @@
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
-
 import app.commandParser.CommandParser;
-import app.commandParser.CommandParserException;
 import app.commandParser.DuplicateArgumentsException;
 import app.commandParser.InvalidCommandArgumentsException;
 import app.commandParser.InvalidRegisterException;
@@ -25,7 +22,6 @@ import app.commands.PostUsers;
 import app.commands.PostWorkerInProject;
 import app.commands.exceptions.CommandException;
 import app.commands.exceptions.InvalidParameterValueException;
-import app.commands.exceptions.InvalidUserException;
 import app.commands.exceptions.MandatoryParameterNotPresentException;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
@@ -305,8 +301,8 @@ public class AppProjectManager
 // TODO excepções:
 		} catch (UnknownCommandException e)
 		{
-		//	DEFAULT_SYSTEM_OUT.println("Args must have 2 or 3 elements.");
-			DEFAULT_SYSTEM_OUT.println(e);
+			DEFAULT_SYSTEM_OUT.println("Args must have 2 or 3 elements.");
+//			DEFAULT_SYSTEM_OUT.println(e);
 		} 
 		catch (InvalidCommandArgumentsException e)
 		{

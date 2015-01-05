@@ -2,7 +2,6 @@ package app.resultsAndOutputMethods.outputFormat;
 
 import java.util.Iterator;
 import java.util.TreeSet;
-
 import org.json.JSONObject;
 
 public interface TextParser {
