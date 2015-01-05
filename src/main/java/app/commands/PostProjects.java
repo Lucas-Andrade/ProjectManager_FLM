@@ -7,7 +7,7 @@ import java.util.concurrent.Callable;
 import utils.Local;
 import utils.Project;
 import app.commands.exceptions.CommandException;
-import app.elements.DatabaseElement;
+import app.elements.Element;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
@@ -135,7 +135,7 @@ public class PostProjects extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected DatabaseElement[] internalCall()
+	protected Element[] internalCall()
 			throws CommandException, IOException
 	{
 		double latitude = getParameterAsDouble(LATITUDE);
@@ -151,7 +151,7 @@ public class PostProjects extends BaseCommandUserAuthentication
 		repository.addProject(project);
 		
 		Message message = new Message("Product identification (PID): " + pid);
-		DatabaseElement[] messageAux = {message};
+		Element[] messageAux = {message};
 		return messageAux;
 	}
 

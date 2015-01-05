@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import org.json.JSONObject;
 
-import app.elements.DatabaseElement;
+import app.elements.Element;
 import app.resultsAndOutputMethods.outputDestination.ToConsole;
 import app.resultsAndOutputMethods.outputDestination.ToFile;
 import app.resultsAndOutputMethods.outputDestination.Writable;
@@ -25,7 +25,7 @@ public class Result
 	/**
 	 * The results from a Command execution.
 	 */
-	private final DatabaseElement[] results;
+	private final Element[] results;
 
 	/**
 	 * The destination to where the results are to be sent.
@@ -57,7 +57,7 @@ public class Result
 	 *             Exception thrown when the name of the destination doesn't
 	 *             correspond to a valid destination.
 	 */
-	public Result(DatabaseElement[] results, String destination, String format)
+	public Result(Element[] results, String destination, String format)
 			throws ClassNotFoundException, InstantiationException,
 			IllegalAccessException, FileNotFoundException
 	{
@@ -91,7 +91,7 @@ public class Result
 	{
 		JSONObject[] toWrite = new JSONObject[results.length];
 		int i = 0;
-		for (DatabaseElement result : results)
+		for (Element result : results)
 			toWrite[i++] = result.getJson();
 		destination.write(format.parse(toWrite));
 	}

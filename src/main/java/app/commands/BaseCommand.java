@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 import app.commands.exceptions.MandatoryParameterNotPresentException;
-import app.elements.DatabaseElement;
+import app.elements.Element;
 import app.resultsAndOutputMethods.Result;
 
 /**
@@ -62,7 +62,7 @@ public abstract class BaseCommand implements Callable<Result>
 	 * 
 	 * @return An array of {@code DatabaseElement} 
 	 */
-	abstract protected DatabaseElement[] internalCall() throws Exception;
+	abstract protected Element[] internalCall() throws Exception;
 
 	/**
 	 * Checks if all mandatory arguments are in the

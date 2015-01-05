@@ -3,7 +3,7 @@ package app.commands;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import app.elements.DatabaseElement;
+import app.elements.Element;
 import app.elements.User;
 import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
@@ -80,7 +80,7 @@ public class GetUsers extends BaseCommandResultsOutputMethod
 	 * {@code UserRepository}.
 	 */
 	@Override
-	protected DatabaseElement[] internalCall() throws Exception
+	protected Element[] internalCall() throws Exception
 	{
 		return repository.getAll();
 	}

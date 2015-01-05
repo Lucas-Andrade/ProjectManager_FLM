@@ -8,7 +8,7 @@ import java.util.Set;
 import org.json.JSONObject;
 
 import app.elements.Admin;
-import app.elements.DatabaseElement;
+import app.elements.Element;
 import app.elements.ImmutableAdmin;
 import app.elements.User;
 import app.elements.UserInterface;
@@ -53,7 +53,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 *         repository.
 	 */
 	@Override
-	public DatabaseElement[] getAll()
+	public Element[] getAll()
 	{
 		UserInterface[] userArray = new UserInterface[users.size()];
 
@@ -76,7 +76,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	{
 		StringBuilder builder = new StringBuilder();
 
-		for (DatabaseElement user : getAll())
+		for (Element user : getAll())
 		{
 			builder.append(user.toString()).append("\n");
 		}
@@ -164,9 +164,9 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	@Override
 	public JSONObject getJson() 
 	{
-		DatabaseElement[] allElements = getAll();
+		Element[] allElements = getAll();
 		JSONObject json = new JSONObject();
-		for (DatabaseElement ele : allElements)
+		for (Element ele : allElements)
 			json.accumulate("All users", ele.getJson());
 		
 		return json;

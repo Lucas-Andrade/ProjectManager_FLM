@@ -3,7 +3,7 @@ package app.repository;
 import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
-import app.elements.DatabaseElement;
+import app.elements.Element;
 
 /**
  * The interface to be implemented by all {@link AWorker}s {@link Repository}.
@@ -11,7 +11,7 @@ import app.elements.DatabaseElement;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface WorkerRepository extends Repository<DatabaseElement>
+public interface WorkerRepository extends Repository<Element>
 {
 
 	/**

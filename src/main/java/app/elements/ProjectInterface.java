@@ -6,12 +6,12 @@ import utils.Project;
 
 /**
  * Class that defines the contract for the {@link Project}s. Extends
- * {@link DatabaseElement}.
+ * {@link Element}.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface ProjectInterface extends DatabaseElement
+public interface ProjectInterface extends Element
 {
 
 	/**
