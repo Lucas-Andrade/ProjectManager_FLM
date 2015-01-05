@@ -15,7 +15,7 @@ import org.json.JSONObject;
  * @param <elements>
  *            - any instances of a type compatible with {@code Element}.
  */
-public abstract class AContainer<elements extends Element> implements ICost
+public abstract class AContainer<elements extends UtilsElement> implements ICost
 {
 
 	private final Collection<elements> elementsList;
@@ -53,7 +53,7 @@ public abstract class AContainer<elements extends Element> implements ICost
 	 * @return returns the {@code Element} with corresponding name or null if no
 	 *         {@code Element} has the given name.
 	 */
-	public abstract Element getElementByName(String name);
+	public abstract UtilsElement getElementByName(String name);
 
 	/**
 	 * Method that will allow a given {@code Element} to be added to the the
@@ -91,7 +91,7 @@ public abstract class AContainer<elements extends Element> implements ICost
 	 * @return true if the {@code Element} is successfully added and false
 	 *         Otherwise.
 	 */
-	public boolean remove(Element element)
+	public boolean remove(UtilsElement element)
 	{
 		// Não remove subprojectos dos subprojectos dum projecto.
 		// No caso das equipas não há stresses.

@@ -289,10 +289,10 @@ public class AppProjectManager
 		} 
 		catch (FileNotFoundException e)
 		{
-			DEFAULT_SYSTEM_OUT.println("Invalid destination for results.");
+			DEFAULT_SYSTEM_OUT.println("Invalid output destination for results.");
 		} catch (ClassNotFoundException e)
 		{
-			DEFAULT_SYSTEM_OUT.println("Invalid format for results.");
+			DEFAULT_SYSTEM_OUT.println("Invalid accept format for results.");
 		} 
 //		catch (InvalidUserException e)
 //		{

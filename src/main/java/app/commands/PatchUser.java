@@ -2,7 +2,7 @@ package app.commands;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
-import app.elements.DatabaseElement;
+import app.elements.AppElement;
 import app.elements.Message;
 import app.elements.User;
 import app.elements.UserInterface;
@@ -111,7 +111,7 @@ public class PatchUser extends BaseCommandUserAuthentication{
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected DatabaseElement[] internalCall()
+	protected AppElement[] internalCall()
 			throws Exception {
 
 		this.newPassword = getParameterAsString(NEWPASSWORD);
@@ -119,10 +119,10 @@ public class PatchUser extends BaseCommandUserAuthentication{
 		this.username = getParameterAsString(USERNAME);
 
 		if(!super.authenticateUser(this.username, oldPassword))
-			return new DatabaseElement[]{new Message("Old password is not correct for user: " + username)};;
+			return new AppElement[]{new Message("Old password is not correct for user: " + username)};;
 
 		UserInterface user = repository.getUserByUsername(username);
-		DatabaseElement[] messageAux = new DatabaseElement[1];
+		AppElement[] messageAux = new AppElement[1];
 		
 		if(user == null)
 		{
@@ -133,7 +133,7 @@ public class PatchUser extends BaseCommandUserAuthentication{
 		
 		if(user.setNewPassword(newPassword))
 		{
-			DatabaseElement[] userAux = {user};
+			AppElement[] userAux = {user};
 			return userAux;
 		}
 		else

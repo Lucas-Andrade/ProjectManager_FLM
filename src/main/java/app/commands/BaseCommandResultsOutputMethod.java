@@ -22,8 +22,7 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 
 	/**
 	 * {@code String} with the results output destination argument's name. This
-	 * argument is used to define where the results will be presented (console
-	 * or other).
+	 * argument is used to define where the results will be presented.
 	 */
 	public static final String OUTPUT = "output";
 

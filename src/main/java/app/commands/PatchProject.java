@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 
 import utils.Project;
 import app.commandParser.CommandParser;
-import app.elements.DatabaseElement;
+import app.elements.AppElement;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
@@ -114,11 +114,11 @@ public class PatchProject extends BaseCommandUserAuthentication{
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected DatabaseElement[] internalCall()
+	protected AppElement[] internalCall()
 			throws Exception {
 
 		Project project = pRepository.getProjectById(getParameterAsLong(PID));
-		DatabaseElement[] messageAux = new DatabaseElement[1];
+		AppElement[] messageAux = new AppElement[1];
 		
 		if(project == null)
 		{
@@ -161,7 +161,7 @@ public class PatchProject extends BaseCommandUserAuthentication{
 				return messageAux;
 			}
 		}
-		DatabaseElement[] projectAux = {project};
+		AppElement[] projectAux = {project};
 		return projectAux;
 	}
 

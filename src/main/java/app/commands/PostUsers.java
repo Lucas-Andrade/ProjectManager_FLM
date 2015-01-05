@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 import app.commands.exceptions.CommandException;
-import app.elements.DatabaseElement;
+import app.elements.AppElement;
 import app.elements.Message;
 import app.elements.User;
 import app.elements.UserInterface;
@@ -144,10 +144,10 @@ public class PostUsers extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected DatabaseElement[] internalCall()
+	protected AppElement[] internalCall()
 			throws CommandException, IOException
 	{
-		DatabaseElement[] messageAux = new DatabaseElement[1];
+		AppElement[] messageAux = new AppElement[1];
 		Message message;
 		
 		this.username = parameters.get(USERNAME);

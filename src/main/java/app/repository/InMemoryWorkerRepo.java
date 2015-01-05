@@ -7,7 +7,7 @@ import java.util.TreeSet;
 import org.json.JSONObject;
 import org.junit.Test;
 
-import app.elements.DatabaseElement;
+import app.elements.AppElement;
 import app.elements.WorkerComparator;
 import utils.AWorker;
 import utils.Consultant;
@@ -136,11 +136,11 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 * @see Repository#getAll()
 	 */
 	@Override
-	public DatabaseElement[] getAll()
+	public AppElement[] getAll()
 	{
-		DatabaseElement[] all = new DatabaseElement[this.size()];
+		AppElement[] all = new AppElement[this.size()];
 		int i = -1;
-		for (DatabaseElement ele : workers)
+		for (AppElement ele : workers)
 			all[++i] = ele;
 		return all;
 	}
@@ -180,7 +180,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	@Override
 	public JSONObject getJson() {
 		JSONObject json = new JSONObject();
-		for (DatabaseElement ele : workers)
+		for (AppElement ele : workers)
 			json.accumulate("All workers", ele.getJson());
 		
 		return json;

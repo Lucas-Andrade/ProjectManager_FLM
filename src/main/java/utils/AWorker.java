@@ -10,12 +10,12 @@ import app.elements.WorkerInterface;
  * Abstract class {@code AWorker} that will define the general fields shared by
  * all types of workers.
  * 
- * Extends {@link Element}.
+ * Extends {@link UtilsElement}.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public abstract class AWorker extends Element implements WorkerInterface
+public abstract class AWorker extends UtilsElement implements WorkerInterface
 {
 
 	/**
@@ -169,7 +169,7 @@ public abstract class AWorker extends Element implements WorkerInterface
 	 * {@code equals} from {@code Object}.
 	 */
 	@Override
-	public int compareTo(Element element)
+	public int compareTo(UtilsElement element)
 	{
 		if (element == null)
 			throw new IllegalArgumentException();

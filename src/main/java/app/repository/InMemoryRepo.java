@@ -2,7 +2,7 @@ package app.repository;
 
 import org.json.JSONObject;
 
-import app.elements.DatabaseElement;
+import app.elements.AppElement;
 
 /**
  * Abstract class whose purpose will be to store all {link DatabaseElements} in
@@ -15,8 +15,8 @@ import app.elements.DatabaseElement;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public abstract class InMemoryRepo<T extends DatabaseElement> implements
-		Repository<DatabaseElement>
+public abstract class InMemoryRepo<T extends AppElement> implements
+		Repository<AppElement>
 {
 	public abstract JSONObject getJson();
 	

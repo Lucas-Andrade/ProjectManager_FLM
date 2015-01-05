@@ -13,14 +13,14 @@ public class ProjectsContainer extends AContainer<Project> {
 	/**
 	 * Override of the method {@code getELementByName()} from {@code AContainer}.
 	 */
-	public Element getElementByName(String name) {
+	public UtilsElement getElementByName(String name) {
 
 		if (name == null)
 			throw new IllegalArgumentException();
 
 		for (Project element : this.getElementsList()) {
 			
-			Element project = element.getSubProjectByName(name);
+			UtilsElement project = element.getSubProjectByName(name);
 			
 			if(project == null)
 				continue;

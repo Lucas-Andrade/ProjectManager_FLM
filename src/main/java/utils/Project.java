@@ -8,12 +8,12 @@ import app.elements.ProjectInterface;
 /**
  * Class {@code Project} whose instances will represent a project.
  * 
- * Extends {@link Element}.
+ * Extends {@link UtilsElement}.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class Project extends Element implements ProjectInterface
+public class Project extends UtilsElement implements ProjectInterface
 {
 
 	private final String name;
@@ -370,7 +370,7 @@ public class Project extends Element implements ProjectInterface
 	 * {@code equals} from {@code Object}.
 	 */
 	@Override
-	public int compareTo(Element element)
+	public int compareTo(UtilsElement element)
 	{
 
 		if (element == null)

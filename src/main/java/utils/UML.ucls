@@ -2,7 +2,7 @@
 <class-diagram version="1.1.7" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="utils.AContainer" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/utils/AContainer.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/utils/AContainer.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1272" y="382"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -11,7 +11,7 @@
     </display>  
   </class>  
   <class id="2" language="java" name="utils.AWorker" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/utils/AWorker.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/utils/AWorker.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="504" y="514"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -20,7 +20,7 @@
     </display>  
   </class>  
   <class id="3" language="java" name="utils.Consultant" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/utils/Consultant.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/utils/Consultant.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="488" y="732"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="utils.Element" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/utils/Element.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="utils.UtilsElement" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/main/java/utils/UtilsElement.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="764" y="135"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -38,7 +38,7 @@
     </display>  
   </class>  
   <interface id="5" language="java" name="utils.ICost" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/utils/ICost.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/utils/ICost.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1169" y="155"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -47,7 +47,7 @@
     </display>  
   </interface>  
   <interface id="6" language="java" name="utils.IName" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/utils/IName.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/utils/IName.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="957" y="159"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -56,7 +56,7 @@
     </display>  
   </interface>  
   <class id="7" language="java" name="utils.Leader" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/utils/Leader.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/utils/Leader.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="563" y="876"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -65,7 +65,7 @@
     </display>  
   </class>  
   <class id="8" language="java" name="utils.Local" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/utils/Local.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/utils/Local.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1010" y="383"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -74,7 +74,7 @@
     </display>  
   </class>  
   <class id="9" language="java" name="utils.Project" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/utils/Project.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/utils/Project.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="760" y="524"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -83,7 +83,7 @@
     </display>  
   </class>  
   <class id="10" language="java" name="utils.ProjectsContainer" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/utils/ProjectsContainer.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/utils/ProjectsContainer.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1061" y="744"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -92,7 +92,7 @@
     </display>  
   </class>  
   <class id="11" language="java" name="utils.Team" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/utils/Team.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/utils/Team.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1059" y="570"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -101,7 +101,7 @@
     </display>  
   </class>  
   <class id="12" language="java" name="utils.NameTester" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/utils/NameTester.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/ProjectManager_FLM/src/main/java/utils/NameTester.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="504" y="136"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -113,118 +113,118 @@
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="5"/>  
   </realization>  
-  <association id="14">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="15" name="local">        
-        <position height="0" width="0" x="563" y="216"/>      
-      </attribute>      
-      <multiplicity id="16" minimum="0" maximum="1">        
-        <position height="0" width="0" x="563" y="216"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="17">    
-    <end type="SOURCE" refId="11"/>    
+  <generalization id="14">    
+    <bendpoint x="1199" y="653"/>    
+    <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <association id="18">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="19" name="projectsContainer">        
-        <position height="0" width="0" x="37" y="86"/>      
-      </attribute>      
-      <multiplicity id="20" minimum="0" maximum="1">        
-        <position height="0" width="0" x="37" y="86"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="21">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
-  <association id="22">    
-    <bendpoint x="1272" y="47"/>    
-    <bendpoint x="767" y="47"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="23" name="elementsList">        
-        <position height="0" width="0" x="151" y="-117"/>      
-      </attribute>      
-      <multiplicity id="24" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="151" y="-117"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="25">    
+  <realization id="15">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="6"/>  
   </realization>  
-  <association id="26">    
+  <generalization id="16">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="17">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="18">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <realization id="19">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <association id="20">    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="27" name="manager">        
+      <attribute id="21" name="manager">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="28" minimum="0" maximum="1">        
+      <multiplicity id="22" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="29">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <realization id="30">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="6"/>  
-  </realization>  
-  <realization id="31">    
+  <realization id="23">    
     <bendpoint x="1133" y="476"/>    
     <bendpoint x="1134" y="272"/>    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="6"/>  
   </realization>  
-  <generalization id="32">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="33">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="34">    
+  <realization id="24">    
+    <bendpoint x="887" y="91"/>    
+    <bendpoint x="1054" y="91"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <association id="25">    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="35" name="team">        
+      <attribute id="26" name="team">        
         <position height="0" width="0" x="-179" y="-107"/>      
       </attribute>      
-      <multiplicity id="36" minimum="0" maximum="1">        
+      <multiplicity id="27" minimum="0" maximum="1">        
         <position height="0" width="0" x="-179" y="-107"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="37">    
-    <bendpoint x="1199" y="653"/>    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <realization id="38">    
-    <bendpoint x="887" y="91"/>    
-    <bendpoint x="1054" y="91"/>    
-    <end type="SOURCE" refId="4"/>    
+  <realization id="28">    
+    <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="5"/>  
   </realization>  
-  <generalization id="39">    
+  <association id="29">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="30" name="local">        
+        <position height="0" width="0" x="563" y="216"/>      
+      </attribute>      
+      <multiplicity id="31" minimum="0" maximum="1">        
+        <position height="0" width="0" x="563" y="216"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <bendpoint x="1272" y="47"/>    
+    <bendpoint x="767" y="47"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="33" name="elementsList">        
+        <position height="0" width="0" x="151" y="-117"/>      
+      </attribute>      
+      <multiplicity id="34" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="151" y="-117"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="35">    
     <bendpoint x="633" y="258"/>    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
+  <generalization id="36">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="37">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="38" name="projectsContainer">        
+        <position height="0" width="0" x="37" y="86"/>      
+      </attribute>      
+      <multiplicity id="39" minimum="0" maximum="1">        
+        <position height="0" width="0" x="37" y="86"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

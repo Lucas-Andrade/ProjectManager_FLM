@@ -1,7 +1,7 @@
 package app.repository;
 
 import utils.Project;
-import app.elements.DatabaseElement;
+import app.elements.AppElement;
 
 /**
  * The interface to be implemented by all {@link Project}s {@link Repository}.
@@ -9,7 +9,7 @@ import app.elements.DatabaseElement;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface ProjectsRepository extends Repository<DatabaseElement>
+public interface ProjectsRepository extends Repository<AppElement>
 {
 
 	/**

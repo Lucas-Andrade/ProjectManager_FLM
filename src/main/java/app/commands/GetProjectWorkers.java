@@ -10,7 +10,7 @@ import utils.Leader;
 import utils.Project;
 import utils.Team;
 import app.commandParser.CommandParser;
-import app.elements.DatabaseElement;
+import app.elements.AppElement;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.resultsAndOutputMethods.Result;
@@ -139,13 +139,13 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 * @see BaseCommandResultsOutputMethod#internalCall()
 	 */
 	@Override
-	protected DatabaseElement[] internalCall() throws Exception
+	protected AppElement[] internalCall() throws Exception
 	{
 		projectId = getParameterAsLong(PID);
 		this.typeWorker = getParameterAsString(WTYPE);
 		Project project = projectRepository.getProjectById(projectId);
 		if (project == null)
-			return new DatabaseElement[]{new Message("Project with ID: " + projectId 
+			return new AppElement[]{new Message("Project with ID: " + projectId 
 					+ " was not found!")};
 		
 		if (typeWorker.equalsIgnoreCase("Manager"))
@@ -155,7 +155,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 		{
 			return getWorkers(project);
 		} else
-			return new DatabaseElement[]{new Message("Unrecognised type of worker.")};
+			return new AppElement[]{new Message("Unrecognised type of worker.")};
 	}
 
 	/**
@@ -164,13 +164,13 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 * @return An array of {@code DatabaseElement} with one element carrying 
 	 * the {@code Manager} of the {@code Project}
 	 */
-	private DatabaseElement[] getWorkers(Project project) {
+	private AppElement[] getWorkers(Project project) {
 		Collection<AWorker> workers = project.getTeam();
 		if (workers.size() == 0)
-			return new DatabaseElement[]{new Message("Project with ID: " + projectId 
+			return new AppElement[]{new Message("Project with ID: " + projectId 
 					+ " has no assigned workers.")};
 		  
-		DatabaseElement[] workersArray = new DatabaseElement[workers.size()];
+		AppElement[] workersArray = new AppElement[workers.size()];
 		int i = 0;
 		for (AWorker worker : workers)
 			workersArray[i++] = worker;
@@ -183,13 +183,13 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 * @param project
 	 * @return An array of {@code DatabaseElement} with the workers of the {@code Project}
 	 */
-	private DatabaseElement[] getManager(Project project) {
+	private AppElement[] getManager(Project project) {
 		Leader manager = project.getManager();
 		if(manager == null)
-			return new DatabaseElement[]{new Message("Project with ID: " + projectId 
+			return new AppElement[]{new Message("Project with ID: " + projectId 
 					+ " has no manager.")};
 		
-		DatabaseElement[] managerAux = {manager};
+		AppElement[] managerAux = {manager};
 		return managerAux;
 	}
 

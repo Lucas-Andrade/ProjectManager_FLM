@@ -21,13 +21,13 @@ public class Team extends AContainer<AWorker> implements IName
 	 * Override of the method {@code getELementByName()} from {@code AContainer}
 	 * .
 	 */
-	public Element getElementByName(String name)
+	public UtilsElement getElementByName(String name)
 	{
 
 		if (name == null)
 			throw new IllegalArgumentException();
 
-		for (Element element : this.getElementsList())
+		for (UtilsElement element : this.getElementsList())
 			if (element.getName().equals(name))
 				return element;
 
