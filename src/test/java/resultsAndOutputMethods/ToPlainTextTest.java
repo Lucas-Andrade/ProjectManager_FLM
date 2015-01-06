@@ -1,13 +1,10 @@
 package resultsAndOutputMethods;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import app.RepositoryConstructor;
 import app.elements.User;
 import app.repository.InMemoryProjectRepo;
-import app.resultsAndOutputMethods.outputFormat.ToTextHtml;
 import app.resultsAndOutputMethods.outputFormat.ToTextPlain;
 import utils.Consultant;
 import utils.Leader;
@@ -63,8 +60,8 @@ public class ToPlainTextTest {
 		System.out.println("\n\n");
 		System.out.println(new ToTextPlain().parse(repo.getJson()));
 		System.out.println("\n\n");
-		System.out.println(new ToTextPlain().parse(new RepositoryConstructor().constructWorkerRepo().getJson()));
+		System.out.println(new ToTextPlain().parse(RepositoryConstructor.constructWorkerRepo().getJson()));
 		System.out.println("\n\n");
-		System.out.println(new ToTextPlain().parse(new RepositoryConstructor().constructUserRepo().getJson()));
+		System.out.println(new ToTextPlain().parse(RepositoryConstructor.constructUserRepo().getJson()));
 	}
 }

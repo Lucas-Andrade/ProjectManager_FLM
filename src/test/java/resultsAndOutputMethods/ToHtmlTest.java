@@ -1,7 +1,5 @@
 package resultsAndOutputMethods;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import utils.Consultant;
@@ -62,9 +60,9 @@ public class ToHtmlTest {
 		System.out.println("\n\n");
 		System.out.println(new ToTextHtml().parse(repo.getJson()));
 		System.out.println("\n\n");
-		System.out.println(new ToTextHtml().parse(new RepositoryConstructor().constructWorkerRepo().getJson()));
+		System.out.println(new ToTextHtml().parse(RepositoryConstructor.constructWorkerRepo().getJson()));
 		System.out.println("\n\n");
-		System.out.println(new ToTextHtml().parse(new RepositoryConstructor().constructUserRepo().getJson()));
+		System.out.println(new ToTextHtml().parse(RepositoryConstructor.constructUserRepo().getJson()));
 	}
 
 }

@@ -14,15 +14,14 @@ import app.elements.User;
  */
 public class UserTest {
 
-	private RepositoryConstructor constructor = new RepositoryConstructor();
 	private User user1;
 	private User user2;
 	
 	@Before
 	public void constructUsers()
 	{
-		user1 = constructor.constructUser(1);
-		user2 = constructor.constructUser(2);
+		user1 = RepositoryConstructor.constructUser(1);
+		user2 = RepositoryConstructor.constructUser(2);
 	}
 	
 	@Test
@@ -33,7 +32,7 @@ public class UserTest {
 	@Test
 	public void shouldBeEqual()
 	{
-		assertTrue(user1.equals(constructor.constructUser(1)));
+		assertTrue(user1.equals(RepositoryConstructor.constructUser(1)));
 	}
 	
 	@Test
