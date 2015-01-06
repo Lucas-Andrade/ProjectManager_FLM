@@ -1,18 +1,15 @@
 package app.repository;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.TreeSet;
 
 import org.json.JSONObject;
-import org.junit.Test;
 
-import app.elements.AppElement;
-import app.elements.WorkerComparator;
 import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
-import utils.Project;
+import app.elements.AppElement;
+import app.elements.WorkerComparator;
 
 /**
  * An {@link AWorker}s in memory {@link Repository}.

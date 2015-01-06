@@ -1,10 +1,3 @@
-Consultant ID: 2
-Cost (Euros): 0
-Name: lucas
-Payment per hour (Euros): 1
-----
-Consultant ID: 1
-Cost (Euros): 0
-Name: maia
-Payment per hour (Euros): 1
-----
+Email: maia@gof.com
+Full name: Filipe Maia
+Username: maia
