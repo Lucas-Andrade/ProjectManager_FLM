@@ -283,10 +283,10 @@ public class AppProjectManager
 		{
 			DEFAULT_SYSTEM_OUT.println(e.getMessage());
 		} 
-		catch (NullPointerException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Not found.");
-		} 
+//		catch (NullPointerException e)
+//		{
+//			DEFAULT_SYSTEM_OUT.println("Not found.");
+//		} 
 		catch (FileNotFoundException e)
 		{
 			DEFAULT_SYSTEM_OUT.println("Invalid output destination for results.");
