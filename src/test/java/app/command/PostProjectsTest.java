@@ -1,4 +1,4 @@
-package app.commands;
+package app.command;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +11,7 @@ import org.junit.Test;
 import utils.Local;
 import utils.Project;
 import app.RepositoryConstructor;
+import app.commands.PostProjects;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
 
@@ -43,7 +44,7 @@ public class PostProjectsTest {
 	}
 	
 	@Test
-	public void shouldNotPostProjectWithLatitudeOutOfBounds() throws Exception
+	public void shouldNotPostProjectWithPriceOutOfBounds() throws Exception
 	{
 		parameters.put("latitude", "50");
 		parameters.put("longitude", "100");
@@ -54,4 +55,27 @@ public class PostProjectsTest {
 		assertNull(pRepo.getProjectById(6));
 	}
 
+	@Test
+	public void shouldNotPostProjectWithLatitudeOutOfBounds() throws Exception
+	{
+		parameters.put("latitude", "518198");
+		parameters.put("longitude", "100");
+		parameters.put("price", "520.1");
+		parameters.put("name", "Randstad");
+		new PostProjects(uRepo, pRepo, parameters).call();
+		
+		assertNull(pRepo.getProjectById(6));
+	}
+	
+	@Test
+	public void shouldNotPostProjectWithLongitudeOutOfBounds() throws Exception
+	{
+		parameters.put("latitude", "50");
+		parameters.put("longitude", "9952951");
+		parameters.put("price", "520.1");
+		parameters.put("name", "Randstad");
+		new PostProjects(uRepo, pRepo, parameters).call();
+		
+		assertNull(pRepo.getProjectById(6));
+	}
 }
