@@ -119,6 +119,9 @@ public class User implements UserInterface, AppElement
 	@Override
 	public boolean equals(UserInterface user)
 	{
+		if (this == user)
+			return true;
+		
 		if (user == null)
 			return false;
 

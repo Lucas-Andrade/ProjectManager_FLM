@@ -65,6 +65,6 @@ public class ToPlainTextTest {
 		System.out.println("\n\n");
 		System.out.println(new ToTextPlain().parse(new RepositoryConstructor().constructWorkerRepo().getJson()));
 		System.out.println("\n\n");
-		System.out.println(new ToTextPlain().parse(new RepositoryConstructor().constructUserRepository().getJson()));
+		System.out.println(new ToTextPlain().parse(new RepositoryConstructor().constructUserRepo().getJson()));
 	}
 }

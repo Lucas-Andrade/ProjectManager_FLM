@@ -22,7 +22,7 @@ public class InMemoryUserRepoTest {
 	public void constructARepository()
 	{
 		repo = new InMemoryUserRepo();
-		repo = RepositoryConstructor.constructUserRepository();
+		repo = RepositoryConstructor.constructUserRepo();
 	}
 	
 	@Test

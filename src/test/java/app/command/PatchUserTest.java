@@ -20,7 +20,7 @@ public class PatchUserTest {
 	@Before
 	public void constructNewProjectRepo()
 	{
-		uRepo = RepositoryConstructor.constructUserRepository();
+		uRepo = RepositoryConstructor.constructUserRepo();
 		parameters = new HashMap<String, String>();
 		parameters.put("loginName", "admin");
 		parameters.put("loginPassword", "admin");

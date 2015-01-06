@@ -38,7 +38,7 @@ public class RepositoryConstructor {
 	 * 
 	 * @return A {@code InMemoryProjectRepo} with 5 projects in it.
 	 */
-	public static InMemoryProjectRepo constructProjectRepository()
+	public static InMemoryProjectRepo constructProjectRepo()
 	{
 		InMemoryProjectRepo repo = new InMemoryProjectRepo();
 		repo.removeAll();
@@ -63,7 +63,7 @@ public class RepositoryConstructor {
 	 * 
 	 * @return A {@code InMemoryUserRepo} with five {@code User}s.
 	 */
-	public static InMemoryUserRepo constructUserRepository()
+	public static InMemoryUserRepo constructUserRepo()
 	{
 		InMemoryUserRepo repo = new InMemoryUserRepo();
 		repo.removeAll();

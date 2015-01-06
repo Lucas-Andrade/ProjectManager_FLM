@@ -235,7 +235,7 @@ public abstract class AWorker extends UtilsElement implements WorkerInterface
 		if(hoursWorked != ((AWorker)worker).getWorkerHours())
 			return false;
 		
-		if(name != ((AWorker)worker).getName())
+		if(! name.equals(((AWorker)worker).getName()))
 			return false;
 		
 		if(costPerHour != ((AWorker)worker).getCostPerHour())

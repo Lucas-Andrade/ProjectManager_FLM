@@ -37,8 +37,8 @@ public class CommandParserTest {
 
 	CommandParser parser = new CommandParser();
 	WorkerRepository wRepo = new RepositoryConstructor().constructWorkerRepo();
-	UserRepository uRepo = new RepositoryConstructor().constructUserRepository();
-	ProjectsRepository pRepo = new RepositoryConstructor().constructProjectRepository();
+	UserRepository uRepo = new RepositoryConstructor().constructUserRepo();
+	ProjectsRepository pRepo = new RepositoryConstructor().constructProjectRepo();
 	
 	@Before
 	public void registerCommands() throws InvalidRegisterException

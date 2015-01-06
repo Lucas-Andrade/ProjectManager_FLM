@@ -16,13 +16,13 @@ import app.repository.InMemoryUserRepo;
 public class PatchProjectTest {
 
 	private Map<String, String> parameters;
-	private InMemoryUserRepo uRepo = RepositoryConstructor.constructUserRepository();
+	private InMemoryUserRepo uRepo = RepositoryConstructor.constructUserRepo();
 	private InMemoryProjectRepo pRepo;
 	
 	@Before
 	public void constructNewProjectRepo()
 	{
-		pRepo = RepositoryConstructor.constructProjectRepository();
+		pRepo = RepositoryConstructor.constructProjectRepo();
 		parameters = new HashMap<String, String>();
 		parameters.put("loginName", "admin");
 		parameters.put("loginPassword", "admin");

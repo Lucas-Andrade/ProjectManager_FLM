@@ -64,7 +64,7 @@ public class ToHtmlTest {
 		System.out.println("\n\n");
 		System.out.println(new ToTextHtml().parse(new RepositoryConstructor().constructWorkerRepo().getJson()));
 		System.out.println("\n\n");
-		System.out.println(new ToTextHtml().parse(new RepositoryConstructor().constructUserRepository().getJson()));
+		System.out.println(new ToTextHtml().parse(new RepositoryConstructor().constructUserRepo().getJson()));
 	}
 
 }

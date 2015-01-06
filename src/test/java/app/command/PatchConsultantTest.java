@@ -17,7 +17,7 @@ public class PatchConsultantTest {
 
 	
 	private Map<String, String> parameters;
-	private InMemoryUserRepo uRepo = RepositoryConstructor.constructUserRepository();
+	private InMemoryUserRepo uRepo = RepositoryConstructor.constructUserRepo();
 	private InMemoryWorkerRepo wRepo;
 	
 	@Before

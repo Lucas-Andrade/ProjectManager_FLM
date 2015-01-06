@@ -155,6 +155,11 @@ public class PostConsultant extends BaseCommandUserAuthentication
 		{
 			Consultant consultant = new Consultant(name, priceHour, 0, cid);
 			repository.addConsultant(consultant);
+		} catch (IllegalArgumentException e)
+		{
+			Message message1 = new Message("Cannot post a manager with negative bonus.");
+			messageAux[0] = message1;
+			return messageAux;
 		}
 
 		Message message1 = new Message("Worker's identification (CID): " + cid);

@@ -20,7 +20,7 @@ public class InMemoryProjectRepoTest {
 	@Before
 	public void constructARepository()
 	{
-		repo = RepositoryConstructor.constructProjectRepository();
+		repo = RepositoryConstructor.constructProjectRepo();
 	}
 	
 	@Test
