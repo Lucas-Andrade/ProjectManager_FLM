@@ -138,7 +138,7 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 		for (Project project : projectsToRemove)
 			repository.removeProject(project);
 
-		return new AppElement[] { new Message("Success!") };
+		return new AppElement[]{new Message("Project successfully deleted.")};
 	}
 
 	/**

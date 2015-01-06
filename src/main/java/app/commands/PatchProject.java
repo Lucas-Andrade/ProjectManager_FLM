@@ -167,8 +167,10 @@ public class PatchProject extends BaseCommandUserAuthentication
 				return messageAux;
 			}
 		}
-		AppElement[] projectAux = { project };
-		return projectAux;
+		Message message = new Message("The Project parameters were successfully changed!");
+		messageAux[0] = message;
+		
+		return messageAux;
 	}
 
 	/**
