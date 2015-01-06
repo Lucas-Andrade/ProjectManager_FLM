@@ -281,7 +281,7 @@ public class AppProjectManager
 		} 
 		catch (CommandException e)
 		{
-			DEFAULT_SYSTEM_OUT.println("Invalid Command.");
+			DEFAULT_SYSTEM_OUT.println(e.getMessage());
 		} 
 		catch (NullPointerException e)
 		{

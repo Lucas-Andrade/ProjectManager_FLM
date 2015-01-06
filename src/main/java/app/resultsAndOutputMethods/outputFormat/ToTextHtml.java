@@ -13,7 +13,7 @@ public class ToTextHtml implements TextParser {
 	public String parse(JSONObject jsonObject) 
 	{
 		StringBuilder builder = new StringBuilder();
-		return builder.append("<html>").append(parse(jsonObject, "</p>\n", 0)).append("</html>").toString();
+		return builder.append("<html>\n").append(parse(jsonObject, "</p>\n", 0)).append("</html>").toString();
 	}
 
 	/**

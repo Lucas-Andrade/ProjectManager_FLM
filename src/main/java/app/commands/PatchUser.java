@@ -133,15 +133,15 @@ public class PatchUser extends BaseCommandUserAuthentication{
 		
 		if(user.setNewPassword(newPassword))
 		{
-			AppElement[] userAux = {user};
-			return userAux;
+			Message message = new Message("Password successfully changed");
+			messageAux[0] = message;
 		}
 		else
 		{
 			Message message = new Message("New password must at least have 4 characters.");
 			messageAux[0] = message;
-			return messageAux;
 		}
+		return messageAux;
 	}
 
 	@Override

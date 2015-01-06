@@ -3,9 +3,9 @@ package app.repository;
 import java.util.Collection;
 import java.util.TreeSet;
 import org.json.JSONObject;
+import utils.Project;
 import app.elements.AppElement;
 import app.elements.ProjectComparator;
-import utils.Project;
 
 /**
  * Abstract class whose purpose will be to store all projects in the memory and

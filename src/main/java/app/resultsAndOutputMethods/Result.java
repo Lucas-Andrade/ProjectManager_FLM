@@ -66,8 +66,6 @@ public class Result
 			format = ToTextPlain.class.getName();
 			format = format.substring(format.lastIndexOf('.') + 3);
 		}
-		else if (!format.contains("/"))
-			throw new ClassNotFoundException("Invalid accept format for results.");
 		else
 		{
 			String[] formats = format.split("/");
