@@ -6,7 +6,7 @@ public class ToApplicationJson implements TextParser{
 
 	@Override
 	public String parse(JSONObject jsonObject) {
-		return jsonObject.toString();
+		return jsonObject.toString().replaceAll("\n","").replace("\t", " ");
 	}
 
 	@Override

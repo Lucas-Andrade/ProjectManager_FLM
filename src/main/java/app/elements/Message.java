@@ -23,7 +23,7 @@ public class Message implements AppElement{
 	@Override
 	public JSONObject getJson() {
 		JSONObject json = new JSONObject();
-		json.put(msg, message.replaceAll("\n", ""));
+		json.put(msg, message);
 		return json;
 	}
 
