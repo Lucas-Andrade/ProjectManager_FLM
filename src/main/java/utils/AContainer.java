@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.TreeSet;
+
 import org.json.JSONObject;
 
 /**
@@ -176,5 +177,33 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	public void removeAll()
 	{
 		elementsList.clear();
+	}
+	
+	/**
+	 * Override of the method {@code equals()} from {@code Object} to be
+	 * consistent with the {@code compareTo()} method.
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean equals(Object pContainer)
+	{
+		if (this == pContainer)
+			return true;
+
+		if (pContainer == null)
+			return false;
+
+		if (getClass() != pContainer.getClass())
+			return false;
+		
+		if(size() != ((AContainer<UtilsElement>)pContainer).size())
+			return false;
+		
+		Iterator<UtilsElement> iterator = ((AContainer<UtilsElement>)pContainer).getElementsList().iterator();
+		for (UtilsElement element : elementsList)
+			if (element.equals(iterator.next())) //TreeSet is ordered, so we can compare elements in pairs
+				return false;
+		
+		return true;
 	}
 }

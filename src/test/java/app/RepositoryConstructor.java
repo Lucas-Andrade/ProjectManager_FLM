@@ -86,14 +86,14 @@ public class RepositoryConstructor {
 	 * {@code CID} of the {@code Consultants} (from 1 to 4). For
 	 * more details on the properties of these {@code Consultants}s see
 	 * app.RepositoryConstructor.constructConsultant.
-	 * @see app.RepositoryConstructor.constructConsultant
-	 * 
 	 * The {@code Leader}s were constructed using the method
 	 * {@code constructLeader(long i)} where {@code i} was the value of the 
 	 * {@code CID} of the {@code Consultants} (from 5 to 6). For
 	 * more details on the properties of these {@code Leader}s see
 	 * app.RepositoryConstructor.constructConsultant
+	 * 
 	 * @see app.RepositoryConstructor.constructLeader
+	 * @see app.RepositoryConstructor.constructConsultant
 	 * 
 	 * @return A {@code InMemoryWorkerRepo} with a total of six {@code AWorker}s
 	 */

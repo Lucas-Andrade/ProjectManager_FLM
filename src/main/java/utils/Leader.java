@@ -76,4 +76,20 @@ public class Leader extends Consultant
 		worker.put("Bonus", bonus);
 		return worker;
 	}
+	
+	/**
+	 * Override of the method {@code equals()} from {@code Object} to be
+	 * consistent with the {@code compareTo()} method.
+	 */
+	@Override
+	public boolean equals(Object worker)
+	{
+		if(! (worker instanceof Leader))
+			return false;
+		
+		if(bonus != ((Leader) worker).getBonus())
+			return false;
+		
+		return super.equals(worker);
+	}
 }

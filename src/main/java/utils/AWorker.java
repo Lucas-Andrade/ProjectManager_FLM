@@ -214,16 +214,31 @@ public abstract class AWorker extends UtilsElement implements WorkerInterface
 	@Override
 	public boolean equals(Object worker)
 	{
-		if (this == worker)
-			return true;
-
 		if (worker == null)
 			return false;
+		
+		if (! (worker instanceof AWorker))
+			return false;
+		
+		if (this == worker)
+			return true;
 
 		if (getClass() != worker.getClass())
 			return false;
 
 		if (((AWorker) worker).compareTo(this) != 0)
+			return false;
+		
+		if(cid != ((AWorker)worker).getCID())
+			return false;
+		
+		if(hoursWorked != ((AWorker)worker).getWorkerHours())
+			return false;
+		
+		if(name != ((AWorker)worker).getName())
+			return false;
+		
+		if(costPerHour != ((AWorker)worker).getCostPerHour())
 			return false;
 
 		return true;

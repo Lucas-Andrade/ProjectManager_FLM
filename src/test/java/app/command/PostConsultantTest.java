@@ -8,6 +8,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import utils.Consultant;
 import app.RepositoryConstructor;
 import app.commands.PostConsultant;
 import app.repository.InMemoryUserRepo;
@@ -29,11 +30,12 @@ public class PostConsultantTest {
 	}
 	
 	@Test
-	public void shouldDeleteTheProject3And4() throws Exception 
+	public void shouldPostCorrectConsultant() throws Exception 
 	{
-		parameters.put("pid", "3");
+		parameters.put("name", "maia");
+		parameters.put("priceHour", "10");
 		new PostConsultant(uRepo, wRepo, parameters).call();
-
+		assertEquals(wRepo.getConsultantByID(7), new Consultant("maia", 10, 0, 7));
 	}
 
 }

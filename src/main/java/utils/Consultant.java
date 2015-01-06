@@ -30,7 +30,6 @@ public class Consultant extends AWorker
 	public Consultant(String name, double costPerHour, double hoursWorked,
 			long cid)
 	{
-
 		super(name, costPerHour, hoursWorked, cid);
 	}
 

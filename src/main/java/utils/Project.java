@@ -451,6 +451,11 @@ public class Project extends UtilsElement implements ProjectInterface
 
 		if (((Project) project).compareTo(this) != 0)
 			return false;
+		
+		if( pid != ((Project)project).getPID())
+			return false;
+		
+		if( )
 
 		return true;
 	}
