@@ -10,11 +10,16 @@ import app.RepositoryConstructor;
 import app.commandParser.CommandParser;
 import app.commandParser.CommandParserException;
 import app.commandParser.InvalidRegisterException;
+import app.commands.DeleteProjects;
 import app.commands.GetProjects;
 import app.commands.GetProjectWorkers;
 import app.commands.GetSubproject;
 import app.commands.GetUser;
 import app.commands.GetUsers;
+import app.commands.Option;
+import app.commands.PatchConsultant;
+import app.commands.PatchProject;
+import app.commands.PatchUser;
 import app.commands.PostConsultant;
 import app.commands.PostProjects;
 import app.commands.PostSubprojects;
@@ -51,6 +56,15 @@ public class CommandParserTest {
 		parser.registerCommand("POST", "/project/{" + PostWorkerInProject.PID
 				+ "}/{" + PostWorkerInProject.WTYPE + "}",	new PostWorkerInProject.Factory(uRepo, pRepo, wRepo));
 		parser.registerCommand("GET", "/project/{" + GetProjects.PID	+ "}", new GetProjects.Factory(pRepo));
+		parser.registerCommand("PATCH", "/users/{" + PatchUser.USERNAME + "}",
+				new PatchUser.Factory(uRepo));
+		parser.registerCommand("PATCH", "/projects/{" + PatchProject.PID + "}",
+				new PatchProject.Factory(uRepo, pRepo));
+		parser.registerCommand("PATCH", "/consultants/{" + PatchConsultant.CID
+				+ "}", new PatchConsultant.Factory(uRepo, wRepo));
+		parser.registerCommand("DELETE", "/projects/{" + GetProjects.PID + "}",
+				new DeleteProjects.Factory(uRepo, pRepo));
+		parser.registerCommand("OPTION", "/", new Option.Factory());
 	}
 	
 	@Test

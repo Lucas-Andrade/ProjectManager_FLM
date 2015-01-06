@@ -1,6 +1,5 @@
 package app.commands;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
@@ -10,7 +9,6 @@ import utils.Leader;
 import utils.Project;
 import utils.Team;
 import app.commandParser.CommandParser;
-import app.commands.exceptions.CommandException;
 import app.elements.AppElement;
 import app.elements.Message;
 import app.repository.ProjectsRepository;

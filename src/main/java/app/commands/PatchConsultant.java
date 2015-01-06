@@ -131,8 +131,8 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 			if (!worker.setCostPerHour(this.getParameterAsDouble(PRICE_HOUR)))
 				return new AppElement[] { new Message(
 						"Worker's cost per hour cannot be negative.") };
-		AppElement[] workerAux = { worker };
-		return workerAux;
+		
+		return new AppElement[] { new Message("The Consultant parameters were successfully changed!")};
 	}
 
 	/**
