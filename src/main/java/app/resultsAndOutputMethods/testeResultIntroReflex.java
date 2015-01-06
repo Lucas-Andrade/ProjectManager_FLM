@@ -15,7 +15,7 @@ public class testeResultIntroReflex
 		AppElement c = new ImmutableAdmin();
 		AppElement d = new Admin("aaaaa", "bbbbb");
 		AppElement[] b = { c, d };
-		Result a = new Result(b, "console", "texthtml" );
+		Result a = new Result(b, "console", "text/html" );
 		a.showResults();
 	}
 
