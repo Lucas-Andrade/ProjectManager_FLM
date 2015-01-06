@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import app.RepositoryConstructor;
@@ -16,21 +15,17 @@ import app.repository.InMemoryUserRepo;
 
 public class PatchProjectTest {
 
-	private static Map<String, String> parameters = new HashMap<String, String>();
+	private Map<String, String> parameters;
 	private InMemoryUserRepo uRepo = RepositoryConstructor.constructUserRepository();
 	private InMemoryProjectRepo pRepo;
-	
-	@BeforeClass
-	public static void putValidationParametersInTheParametersMap()
-	{
-		parameters.put("loginName", "admin");
-		parameters.put("loginPassword", "admin");
-	}
 	
 	@Before
 	public void constructNewProjectRepo()
 	{
 		pRepo = RepositoryConstructor.constructProjectRepository();
+		parameters = new HashMap<String, String>();
+		parameters.put("loginName", "admin");
+		parameters.put("loginPassword", "admin");
 	}
 	
 	@Test
@@ -76,6 +71,24 @@ public class PatchProjectTest {
 		parameters.put("latitude", "984564");
 		new PatchProject(uRepo, pRepo, parameters).call();
 		assertEquals(pRepo.getProjectById(4).getLocal().getLatitude(), 4, 0.0001);
+	}
+	
+	@Test
+	public void shouldNotPatchAnOutOfBoundsLongitude() throws Exception
+	{
+		parameters.put("pid", "4");
+		parameters.put("longitude", "984564");
+		new PatchProject(uRepo, pRepo, parameters).call();
+		assertEquals(pRepo.getProjectById(4).getLocal().getLongitude(), 4, 0.0001);
+	}
+	
+	@Test
+	public void shouldNotPatchAnOutOfBoundsPrice() throws Exception
+	{
+		parameters.put("pid", "4");
+		parameters.put("price", "-10");
+		new PatchProject(uRepo, pRepo, parameters).call();
+		assertEquals(pRepo.getProjectById(4).getLocal().getCost(), 4, 0.0001);
 	}
 
 }

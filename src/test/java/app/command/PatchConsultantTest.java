@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import app.RepositoryConstructor;
@@ -17,21 +16,17 @@ import app.repository.InMemoryWorkerRepo;
 public class PatchConsultantTest {
 
 	
-	private static Map<String, String> parameters = new HashMap<String, String>();
+	private Map<String, String> parameters;
 	private InMemoryUserRepo uRepo = RepositoryConstructor.constructUserRepository();
 	private InMemoryWorkerRepo wRepo;
-	
-	@BeforeClass
-	public static void putValidationParametersInTheParametersMap()
-	{
-		parameters.put("loginName", "admin");
-		parameters.put("loginPassword", "admin");
-	}
 	
 	@Before
 	public void constructNewProjectRepo()
 	{
 		wRepo = RepositoryConstructor.constructWorkerRepo();
+		parameters = new HashMap<String, String>();
+		parameters.put("loginName", "admin");
+		parameters.put("loginPassword", "admin");
 	}
 	
 	@Test

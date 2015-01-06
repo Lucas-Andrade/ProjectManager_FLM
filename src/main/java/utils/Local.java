@@ -16,7 +16,7 @@ public class Local implements ICost, IName
 
 	/**
 	 * @field name - String with the name of the local.
-	 * @field localization - String with the address of the local.
+	 * @field localisation - String with the address of the local.
 	 * @field cost - the cost associated with the local.
 	 */
 	private String name;
@@ -181,7 +181,7 @@ public class Local implements ICost, IName
 	 */
 	private boolean checkLatitude(double latitude)
 	{
-		return latitude >= -90 || latitude <= 90;
+		return latitude >= -90 && latitude <= 90;
 	}
 	
 	/**
@@ -192,7 +192,7 @@ public class Local implements ICost, IName
 	 */
 	private boolean checkLongitude(double longitude)
 	{
-		return longitude >= -180 || longitude <= 180;
+		return longitude >= -180 && longitude <= 180;
 	}
 	
 	/**
