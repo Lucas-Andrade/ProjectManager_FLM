@@ -36,26 +36,29 @@ import app.repository.WorkerRepository;
 public class CommandParserTest {
 
 	CommandParser parser = new CommandParser();
+	@SuppressWarnings("static-access")
 	WorkerRepository wRepo = new RepositoryConstructor().constructWorkerRepo();
+	@SuppressWarnings("static-access")
 	UserRepository uRepo = new RepositoryConstructor().constructUserRepository();
+	@SuppressWarnings("static-access")
 	ProjectsRepository pRepo = new RepositoryConstructor().constructProjectRepository();
 	
 	@Before
 	public void registerCommands() throws InvalidRegisterException
 	{
 		pRepo.getProjectById(1).setManager(new Leader("str", 0, 0, 0, 0));
-		parser.registerCommand("GET", "/project/{pid}/{type}",	new GetProjectWorkers.Factory(pRepo));
-		parser.registerCommand("GET", "/project/{pid}/subproject", new GetSubproject.Factory(pRepo));
+		parser.registerCommand("GET", "/projects/{pid}/{type}",	new GetProjectWorkers.Factory(pRepo));
+		parser.registerCommand("GET", "/projects/{pid}/subproject", new GetSubproject.Factory(pRepo));
 		parser.registerCommand("GET", "/users/{username}", new GetUser.Factory(uRepo));
 		parser.registerCommand("GET", "/users",	new GetUsers.Factory(uRepo));
-		parser.registerCommand("POST", "/consultant", new PostConsultant.Factory(uRepo, wRepo));
-		parser.registerCommand("POST", "/consultant", new PostConsultant.Factory(uRepo, wRepo));
-		parser.registerCommand("POST", "/project", new PostProjects.Factory(uRepo, pRepo));
-		parser.registerCommand("POST", "/project/{pid}/subproject", new PostSubprojects.Factory(uRepo, pRepo));
+		parser.registerCommand("POST", "/consultants", new PostConsultant.Factory(uRepo, wRepo));
+		parser.registerCommand("POST", "/consultants", new PostConsultant.Factory(uRepo, wRepo));
+		parser.registerCommand("POST", "/projects", new PostProjects.Factory(uRepo, pRepo));
+		parser.registerCommand("POST", "/projects/{pid}/subproject", new PostSubprojects.Factory(uRepo, pRepo));
 		parser.registerCommand("POST", "/users", new PostUsers.Factory(uRepo));
-		parser.registerCommand("POST", "/project/{" + PostWorkerInProject.PID
+		parser.registerCommand("POST", "/projects/{" + PostWorkerInProject.PID
 				+ "}/{" + PostWorkerInProject.WTYPE + "}",	new PostWorkerInProject.Factory(uRepo, pRepo, wRepo));
-		parser.registerCommand("GET", "/project/{" + GetProjects.PID	+ "}", new GetProjects.Factory(pRepo));
+		parser.registerCommand("GET", "/projects/{" + GetProjects.PID	+ "}", new GetProjects.Factory(pRepo));
 		parser.registerCommand("PATCH", "/users/{" + PatchUser.USERNAME + "}",
 				new PatchUser.Factory(uRepo));
 		parser.registerCommand("PATCH", "/projects/{" + PatchProject.PID + "}",
@@ -70,13 +73,13 @@ public class CommandParserTest {
 	@Test
 	public void shouldReturnAGetProjectWorkersCommand() throws CommandParserException
 	{
-		assertTrue(parser.getCommand("GET", "/project/1/manager") instanceof GetProjectWorkers);
+		assertTrue(parser.getCommand("GET", "/projects/1/manager") instanceof GetProjectWorkers);
 	}
 	
 	@Test
 	public void shouldReturnAGetSubprojectCommand() throws CommandParserException
 	{
-		assertTrue(parser.getCommand("GET", "/project/3/subproject") instanceof GetSubproject);
+		assertTrue(parser.getCommand("GET", "/projects/3/subproject") instanceof GetSubproject);
 	}
 	
 	@Test
@@ -93,25 +96,25 @@ public class CommandParserTest {
 	@Test
 	public void shouldReturnAPostConsultantCommand() throws CommandParserException
 	{
-		assertTrue(parser.getCommand("POST", "/consultant", "name=maia&priceHour=1") instanceof PostConsultant);
+		assertTrue(parser.getCommand("POST", "/consultants", "name=maia&priceHour=1") instanceof PostConsultant);
 	}
 	
 	@Test
 	public void shouldReturnAPostConsultantCommandWithBonus() throws CommandParserException
 	{
-		assertTrue(parser.getCommand("POST", "/consultant", "name=maia&priceHour=1&bonus=3.2") instanceof PostConsultant);
+		assertTrue(parser.getCommand("POST", "/consultants", "name=maia&priceHour=1&bonus=3.2") instanceof PostConsultant);
 	}
 	
 	@Test
 	public void shouldReturnAPostProjectCommand() throws CommandParserException
 	{
-		assertTrue(parser.getCommand("POST", "/project", "latitude=1.2&longitude=2.3&name=local&price=2.3") instanceof PostProjects);
+		assertTrue(parser.getCommand("POST", "/projects", "latitude=1.2&longitude=2.3&name=local&price=2.3") instanceof PostProjects);
 	}
 	
 	@Test
 	public void shouldReturnAPostSubprojectCommand() throws CommandParserException
 	{
-		assertTrue(parser.getCommand("POST", "/project/1/subproject", "subPid=5") instanceof PostSubprojects);
+		assertTrue(parser.getCommand("POST", "/projects/1/subproject", "subPid=5") instanceof PostSubprojects);
 	}
 	
 	@Test
@@ -123,12 +126,44 @@ public class CommandParserTest {
 	@Test
 	public void shouldReturnAPostWorkerInProjectCommand() throws CommandParserException
 	{
-		assertTrue(parser.getCommand("POST", "/project/1/consultant", "cid=1") instanceof PostWorkerInProject);
+		assertTrue(parser.getCommand("POST", "/projects/1/consultant", "cid=1") instanceof PostWorkerInProject);
 	}
 	
 	@Test
 	public void shouldReturnAGetProjectCommand() throws CommandParserException
 	{
-		assertTrue(parser.getCommand("GET", "/project/2") instanceof GetProjects);
+		assertTrue(parser.getCommand("GET", "/projects/2") instanceof GetProjects);
 	}
+	
+	@Test
+	public void shouldReturnAPatchProjectCommand() throws CommandParserException
+	{
+		assertTrue(parser.getCommand("PATCH", "/projects/2", "loginName=admin&loginPassword=admin&latitude=1.3") instanceof PatchProject);
+	}
+	
+	@Test
+	public void shouldReturnAPatchUserCommand() throws CommandParserException
+	{
+		assertTrue(parser.getCommand("PATCH", "/users/maia", "loginName=maia&loginPassword=1234&oldPassword=1234&newPassword=12345") instanceof PatchUser);
+	}
+	
+	@Test
+	public void shouldReturnAPatchConsultantCommand() throws CommandParserException
+	{
+		assertTrue(parser.getCommand("PATCH", "/consultants/1", "loginName=admin&loginPassword=admin&name=Filipe%20Maia") instanceof PatchConsultant);
+	}
+	
+	@Test
+	public void shouldReturnADeleteProjectCommand() throws CommandParserException
+	{
+		assertTrue(parser.getCommand("DELETE", "/projects/1") instanceof DeleteProjects);
+	}
+	
+	@Test
+	public void shouldReturnAOptionCommand() throws CommandParserException
+	{
+		assertTrue(parser.getCommand("OPTION", "/") instanceof Option);
+	}
+	
+	
 }
