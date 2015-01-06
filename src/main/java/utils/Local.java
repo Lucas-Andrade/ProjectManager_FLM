@@ -1,6 +1,7 @@
 package utils;
 
 import java.text.DecimalFormat;
+
 import org.json.JSONObject;
 
 /**
@@ -206,5 +207,34 @@ public class Local implements ICost, IName
 		return price >= 0;
 	}
 
+	/**
+	 * Override of the method {@code equals()} from {@code Object} to be
+	 * consistent with the {@code compareTo()} method.
+	 */
+	@Override
+	public boolean equals(Object local)
+	{
+		if (this == local)
+			return true;
 
+		if (local == null)
+			return false;
+
+		if (getClass() != local.getClass())
+			return false;
+		
+		if (longitude != ((Local)local).getLongitude())
+			return false;
+		
+		if (latitude != ((Local)local).getLatitude())
+			return false;
+		
+		if (cost != ((Local)local).getCost())
+			return false;
+		
+		if (! name.equals(((Local)local).getName()))
+			return false;
+		
+		return true;
+	}
 }

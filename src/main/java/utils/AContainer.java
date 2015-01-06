@@ -185,23 +185,23 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean equals(Object pContainer)
+	public boolean equals(Object container)
 	{
-		if (this == pContainer)
+		if (this == container)
 			return true;
 
-		if (pContainer == null)
+		if (container == null)
 			return false;
 
-		if (getClass() != pContainer.getClass())
+		if (getClass() != container.getClass())
 			return false;
 		
-		if(size() != ((AContainer<UtilsElement>)pContainer).size())
+		if(size() != ((AContainer<UtilsElement>)container).size())
 			return false;
 		
-		Iterator<UtilsElement> iterator = ((AContainer<UtilsElement>)pContainer).getElementsList().iterator();
+		Iterator<UtilsElement> iterator = ((AContainer<UtilsElement>)container).getElementsList().iterator();
 		for (UtilsElement element : elementsList)
-			if (element.equals(iterator.next())) //TreeSet is ordered, so we can compare elements in pairs
+			if (! element.equals(iterator.next())) //TreeSet is ordered, so we can compare elements in pairs
 				return false;
 		
 		return true;

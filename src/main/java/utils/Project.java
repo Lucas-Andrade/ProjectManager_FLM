@@ -283,7 +283,6 @@ public class Project extends UtilsElement implements ProjectInterface
 	@Override
 	public Collection<Project> getContainerProject()
 	{
-
 		return this.projectsContainer.getElementsList();
 	}
 
@@ -439,7 +438,6 @@ public class Project extends UtilsElement implements ProjectInterface
 	@Override
 	public boolean equals(Object project)
 	{
-
 		if (this == project)
 			return true;
 
@@ -455,7 +453,20 @@ public class Project extends UtilsElement implements ProjectInterface
 		if( pid != ((Project)project).getPID())
 			return false;
 		
-		if( )
+		if( ! local.equals(((Project)project).getLocal()))
+			return false;
+		
+		if( manager == null && ((Project)project).getManager() != null)
+			return false;
+		
+		if( manager != null && ! manager.equals(((Project)project).getManager()))
+			return false;
+		
+		if( ! getTeam().equals(((Project)project).getTeam()))
+			return false;
+		
+		if( ! getContainerProject().equals(((Project)project).getContainerProject()))
+			return false;
 
 		return true;
 	}
