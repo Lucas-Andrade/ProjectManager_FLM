@@ -2,7 +2,10 @@ package utils;
 
 import java.text.DecimalFormat;
 import java.util.Collection;
+import java.util.Iterator;
+
 import org.json.JSONObject;
+
 import app.elements.ProjectInterface;
 
 /**
@@ -462,11 +465,21 @@ public class Project extends UtilsElement implements ProjectInterface
 		if( manager != null && ! manager.equals(((Project)project).getManager()))
 			return false;
 		
-		if( ! getTeam().equals(((Project)project).getTeam()))
+		if( getTeam().size() != ((Project)project).getTeam().size())
 			return false;
 		
-		if( ! getContainerProject().equals(((Project)project).getContainerProject()))
+		Iterator<AWorker> team = ((Project)project).getTeam().iterator();
+		for(AWorker worker : getTeam())
+			if (! worker.equals(team.next()))
+				return false;
+		
+		if( getContainerProject().size() != ((Project)project).getContainerProject().size())
 			return false;
+		
+		Iterator<Project> subprojects = ((Project)project).getContainerProject().iterator();
+		for(Project proj : getContainerProject())
+			if (! proj.equals(subprojects.next()))
+				return false;
 
 		return true;
 	}
