@@ -142,10 +142,20 @@ public class PostProjects extends BaseCommandUserAuthentication
 		double longitude = getParameterAsDouble(LONGITUDE);
 		String name = getParameterAsString(NAME);
 		double price = getParameterAsDouble(PRICE);
-
-		Local local = new Local(latitude, longitude, name, price);
+		Local local;
+		
+		try
+		{ 
+			local = new Local(latitude, longitude, name, price);
+		}
+		catch(IllegalArgumentException e)
+		{
+			return new AppElement[]{
+					new Message("Price, latitude or longitude out of bounds.")
+			};
+		}
+		
 		long pid = repository.getNextPID();
-
 		Project project = new Project(local, pid);
 
 		repository.addProject(project);
