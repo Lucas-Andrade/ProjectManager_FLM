@@ -3,10 +3,8 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 import app.commandParser.CommandParser;
-import app.commandParser.DuplicateArgumentsException;
-import app.commandParser.InvalidCommandArgumentsException;
+import app.commandParser.CommandParserException;
 import app.commandParser.InvalidRegisterException;
-import app.commandParser.UnknownCommandException;
 import app.commands.DeleteProjects;
 import app.commands.GetProjects;
 import app.commands.GetProjectWorkers;
@@ -23,8 +21,6 @@ import app.commands.PostSubprojects;
 import app.commands.PostUsers;
 import app.commands.PostWorkerInProject;
 import app.commands.exceptions.CommandException;
-import app.commands.exceptions.InvalidParameterValueException;
-import app.commands.exceptions.MandatoryParameterNotPresentException;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
 import app.repository.InMemoryWorkerRepo;
@@ -103,7 +99,6 @@ public class AppProjectManager
 	 */
 	private static PrintStream DEFAULT_SYSTEM_OUT = System.out;
 
-	// TODO em cima.
 	/**
 	 * This method associates the method and the path that the user will insert
 	 * to reach the corresponding command factory, and register the command.
@@ -153,7 +148,7 @@ public class AppProjectManager
 				+ "}", new PatchConsultant.Factory(userRepo, workersRepo));
 		parser.registerCommand("DELETE", "/projects/{" + GetProjects.PID + "}",
 				new DeleteProjects.Factory(userRepo, projectRepo));
-		parser.registerCommand("OPTION", "/",new Option.Factory());
+		parser.registerCommand("OPTION", "/", new Option.Factory());
 	}
 
 	/**
@@ -186,13 +181,12 @@ public class AppProjectManager
 						+ "a description of all available commands.");
 		DEFAULT_SYSTEM_OUT
 				.println("\nTo end and exit of this aplication, enter the END command.");
-
 	}
-
 
 	/**
 	 * Ask for a command and execute it, till the END command is called.
-	 * @throws Exception  //TODO tirar throws
+	 * 
+	 * @throws Exception
 	 */
 	public static void execute(CommandParser parser, UserRepository userRepo)
 			throws Exception
@@ -249,7 +243,7 @@ public class AppProjectManager
 	 *            {@code Command} to execute.
 	 * @param cmd
 	 *            A {@code String} of the {@code Command} to execute.
-	 * @throws Exception //TODO tirar throws
+	 * @throws Exception
 	 */
 	private static void commandPrompt(CommandParser parser, String cmd)
 			throws Exception
@@ -258,56 +252,31 @@ public class AppProjectManager
 		{
 			Result results = parser.getCommand(cmd.split(" ")).call();
 			results.showResults();
-// TODO excepções:
-		} catch (UnknownCommandException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Args must have 2 or 3 elements.");
-//			DEFAULT_SYSTEM_OUT.println(e);
-		} 
-		catch (InvalidCommandArgumentsException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Inserted a parameter without value.");
-		} catch (DuplicateArgumentsException e)
-		{
-			DEFAULT_SYSTEM_OUT.println("Duplicate parameters entered.");
-		} catch (MandatoryParameterNotPresentException e)
-		{
-			DEFAULT_SYSTEM_OUT
-					.println("Not all required parameters were entered.");
-		} catch (InvalidParameterValueException e)
-		{
-			DEFAULT_SYSTEM_OUT
-					.println("Inserted a parameter with an invalid value.");
-		} 
-		catch (CommandException e)
+		} catch (CommandException e) // Excepções relacionadas com os comandos.
 		{
 			DEFAULT_SYSTEM_OUT.println(e.getMessage());
-		} 
-		catch (NullPointerException e)
+		} catch (CommandParserException e) // Excepções relacionadas com o
+											// CommandParser.
+		{
+			DEFAULT_SYSTEM_OUT.println(e.getMessage());
+		} catch (NullPointerException e)
 		{
 			DEFAULT_SYSTEM_OUT.println("Not found.");
-		} 
-		catch (FileNotFoundException e)
+		} catch (FileNotFoundException e) // Excepção relacionada com o Result.
 		{
-			DEFAULT_SYSTEM_OUT.println("Invalid output destination for results.");
-		} catch (ClassNotFoundException e)
+			DEFAULT_SYSTEM_OUT
+					.println("Invalid output destination for results.");
+		} catch (ClassNotFoundException e) // Excepção relacionada com o Result.
 		{
 			DEFAULT_SYSTEM_OUT.println("Invalid accept format for results.");
-		} 
-//		catch (InvalidUserException e)
-//		{
-//			DEFAULT_SYSTEM_OUT.println(e);
-//		}
-//		catch (Exception e)
-//		{
-//			// TODO testar e/ou melhorar...
-//			DEFAULT_SYSTEM_OUT.println(e.getMessage());
-//			DEFAULT_SYSTEM_OUT.println(e.getCause().toString());
-//			DEFAULT_SYSTEM_OUT.println(e.getLocalizedMessage());
-//		}
+		} catch (Exception e) // Todas as restantes excepções.
+		{
+			DEFAULT_SYSTEM_OUT.println(e.getMessage());
+			DEFAULT_SYSTEM_OUT.println(e.getClass().getName());
+		}
 	}
 
-	public static void main(String[] args) throws Exception //TODO tirar throws
+	public static void main(String[] args) throws Exception
 	{
 		CommandParser parser = new CommandParser();
 		UserRepository userRepo = new InMemoryUserRepo();
@@ -317,8 +286,7 @@ public class AppProjectManager
 					new InMemoryWorkerRepo());
 		} catch (InvalidRegisterException e)
 		{
-			DEFAULT_SYSTEM_OUT
-					.println("Invalid Registry! Verify RegisterCommand method.");
+			DEFAULT_SYSTEM_OUT.println(e.getMessage());
 		}
 
 		if (args.length == 0)

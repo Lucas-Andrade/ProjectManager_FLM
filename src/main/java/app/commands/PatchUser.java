@@ -10,13 +10,15 @@ import app.repository.UserRepository;
 import app.resultsAndOutputMethods.Result;
 
 /**
- * Class whose instances are commands that modifies {@link User}s {@code password}.
- * Caller {@code String}: PATCH /users/{username} {parameter list}
+ * Class whose instances are commands that modifies {@link User}s
+ * {@code password}. Caller {@code String}: PATCH /users/{username} {parameter
+ * list}
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 05/01/2015
  */
-public class PatchUser extends BaseCommandUserAuthentication{
+public class PatchUser extends BaseCommandUserAuthentication
+{
 
 	/**
 	 * {@code String} with the to be added {@code User}'s Username argument.
@@ -32,12 +34,12 @@ public class PatchUser extends BaseCommandUserAuthentication{
 	 * {@code String} with the {@code User} Username argument's name.
 	 */
 	public static final String USERNAME = "username";
-	
+
 	/**
 	 * {@code String} with the {@code User} Password argument's name.
 	 */
 	private static final String NEWPASSWORD = "newPassword";
-	
+
 	/**
 	 * {@code String} with the {@code User} Password argument's name.
 	 */
@@ -46,7 +48,8 @@ public class PatchUser extends BaseCommandUserAuthentication{
 	/**
 	 * An array of {@code String}s with the names of all mandatory arguments.
 	 */
-	private static final String[] DEMANDING_PARAMETERS = { USERNAME, OLDPASSWORD, NEWPASSWORD };
+	private static final String[] DEMANDING_PARAMETERS = { USERNAME,
+			OLDPASSWORD, NEWPASSWORD };
 
 	/**
 	 * The {@link UserRepository} with the {@code User}s. The created
@@ -76,7 +79,8 @@ public class PatchUser extends BaseCommandUserAuthentication{
 		/**
 		 * The constructor for {@code Factory}.
 		 * 
-		 * @param uRepository The {@code UserRepository}.
+		 * @param uRepository
+		 *            The {@code UserRepository}.
 		 */
 		public Factory(UserRepository uRepository)
 		{
@@ -90,15 +94,17 @@ public class PatchUser extends BaseCommandUserAuthentication{
 		public Callable<Result> newInstance(Map<String, String> parameters)
 		{
 			return new PatchUser(uRepository, parameters);
-			
+
 		}
 	}
 
 	/**
 	 * The constructor for {@code PostUsers}.
 	 * 
-	 * @param repository   The {@code UserRepository}.
-	 * @param parameters   The {@code Command} arguments.
+	 * @param repository
+	 *            The {@code UserRepository}.
+	 * @param parameters
+	 *            The {@code Command} arguments.
 	 */
 	public PatchUser(UserRepository repository, Map<String, String> parameters)
 	{
@@ -111,46 +117,48 @@ public class PatchUser extends BaseCommandUserAuthentication{
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall()
-			throws Exception {
+	protected AppElement[] internalCall() throws Exception
+	{
 
 		this.newPassword = getParameterAsString(NEWPASSWORD);
 		String oldPassword = parameters.get(OLDPASSWORD);
 		this.username = getParameterAsString(USERNAME);
 
-		if(!super.authenticateUser(this.username, oldPassword))
-			return new AppElement[]{new Message("Old password is not correct for user: " + username)};;
+		if (!super.authenticateUser(this.username, oldPassword))
+			return new AppElement[] { new Message(
+					"Old password is not correct for user: " + username) };
+		;
 
 		UserInterface user = repository.getUserByUsername(username);
 		AppElement[] messageAux = new AppElement[1];
-		
-		if(user == null)
+
+		if (user == null)
 		{
 			Message message = new Message("User not found!");
 			messageAux[0] = message;
 			return messageAux;
 		}
-		
-		if(user.setNewPassword(newPassword))
+
+		if (user.setNewPassword(newPassword))
 		{
 			Message message = new Message("Password successfully changed");
 			messageAux[0] = message;
-		}
-		else
+		} else
 		{
-			Message message = new Message("New password must at least have 4 characters.");
+			Message message = new Message(
+					"New password must at least have 4 characters.");
 			messageAux[0] = message;
 		}
 		return messageAux;
 	}
 
+	/**
+	 * @see app.commands.BaseCommand#getMandatoryParameters()
+	 */
 	@Override
-	protected String[] getMandatoryParameters() 
+	protected String[] getMandatoryParameters()
 	{
 		return DEMANDING_PARAMETERS;
 	}
 
-	
-
 }
-
