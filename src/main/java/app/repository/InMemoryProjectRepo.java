@@ -1,11 +1,8 @@
 package app.repository;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.TreeSet;
-
 import org.json.JSONObject;
-
 import app.elements.AppElement;
 import app.elements.ProjectComparator;
 import utils.Project;
@@ -30,8 +27,17 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	/**
 	 * The last PID attributed to a {@link Project} plus one.
 	 */
-	private static long NEXT_PID_TO_BE_USED = 1;
+	private static long NEXT_PID_TO_BE_USED;
 
+	/**
+	 * Constructs a new empty {@code InMemoryProjectRepo}, in which the next {@code PID}
+	 * to be used is set to 1.
+	 */
+	public InMemoryProjectRepo()
+	{
+		NEXT_PID_TO_BE_USED = 1;
+	}
+	
 	/**
 	 * @see ProjectsRepository#addProject(Project)
 	 */

@@ -17,15 +17,12 @@ import app.repository.InMemoryUserRepo;
 public class InMemoryUserRepoTest {
 
 	private InMemoryUserRepo repo;
-	private RepositoryConstructor constructor;
 	
 	@Before
 	public void constructARepository()
 	{
 		repo = new InMemoryUserRepo();
-		constructor = new RepositoryConstructor();
-		
-		repo = constructor.constructUserRepository();
+		repo = RepositoryConstructor.constructUserRepository();
 	}
 	
 	@Test
@@ -34,8 +31,8 @@ public class InMemoryUserRepoTest {
 		UserInterface user1 = repo.getUserByUsername("user1");
 		UserInterface user2 = repo.getUserByUsername("user2");
 		
-		UserInterface user1_ = constructor.constructUser(1);
-		UserInterface user2_ = constructor.constructUser(2);
+		UserInterface user1_ = RepositoryConstructor.constructUser(1);
+		UserInterface user2_ = RepositoryConstructor.constructUser(2);
 		
 		assertTrue(user1_.equals(user1));
 		assertTrue(user2_.equals(user2));
@@ -66,13 +63,13 @@ public class InMemoryUserRepoTest {
 	@Test
 	public void shouldNotAddAUserWithUsernameAlreadyUsed()
 	{
-		assertFalse(repo.addUser(constructor.constructUser(1)));
+		assertFalse(repo.addUser(RepositoryConstructor.constructUser(1)));
 	}
 	
 	@Test
 	public void shouldAddAUser()
 	{
-		assertTrue(repo.addUser(constructor.constructUser(25489)));
+		assertTrue(repo.addUser(RepositoryConstructor.constructUser(25489)));
 	}
 
 	@Test

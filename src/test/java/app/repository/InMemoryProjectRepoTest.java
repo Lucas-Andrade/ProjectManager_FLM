@@ -16,22 +16,17 @@ import app.repository.InMemoryProjectRepo;
 public class InMemoryProjectRepoTest {
 
 	private InMemoryProjectRepo repo;
-	private RepositoryConstructor constructor;
 	
 	@Before
 	public void constructARepository()
 	{
-		repo = new InMemoryProjectRepo();
-//		repo.removeAll();
-		constructor = new RepositoryConstructor();
-		
-		repo = constructor.constructProjectRepository();
+		repo = RepositoryConstructor.constructProjectRepository();
 	}
 	
 	@Test
 	public void shouldNotAddARepeatedElement() {
-		Project proj = constructor.constructProject((int) repo.getNextPID());
-		
+		Project proj = RepositoryConstructor.constructProject((int) repo.getNextPID());
+		System.out.println(repo.getNextPID());
 		assertTrue(repo.addProject(proj));
 		assertFalse(repo.addProject(proj));
 	}
@@ -39,14 +34,15 @@ public class InMemoryProjectRepoTest {
 	@Test
 	public void cannotRemoveAnElementThatIsNotThere()
 	{
-		Project proj = constructor.constructProject((int) repo.getNextPID());
+		System.out.println(repo.getNextPID());
+		Project proj = RepositoryConstructor.constructProject(repo.getNextPID());
 		assertFalse(repo.removeProject(proj));
 	}
 	
 	@Test
 	public void shouldRemoveTheElement()
 	{
-		Project proj = constructor.constructProject((int) repo.getNextPID());
+		Project proj = RepositoryConstructor.constructProject((int) repo.getNextPID());
 		
 		assertTrue(repo.addProject(proj));
 		assertTrue(repo.removeProject(proj));
@@ -82,7 +78,7 @@ public class InMemoryProjectRepoTest {
 	@Test
 	public void shouldNotAddProjectWithTheSamePID()
 	{
-		assertFalse(repo.addProject(constructor.constructProject(2)));
+		assertFalse(repo.addProject(RepositoryConstructor.constructProject(2)));
 	}
 	
 	@Test
@@ -95,13 +91,5 @@ public class InMemoryProjectRepoTest {
 			builder.append(elem.toString()).append("\n");
 		
 		assertEquals(repo.toString(), builder.toString());
-		
-		System.out.println(repo.toString());
-	}
-	
-	@Test
-	public void visualTest()
-	{
-		System.out.println(repo.getJson().toString());
 	}
 }

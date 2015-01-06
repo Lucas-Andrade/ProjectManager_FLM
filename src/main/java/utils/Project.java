@@ -89,7 +89,6 @@ public class Project extends UtilsElement implements ProjectInterface
 	 */
 	public boolean addWorker(AWorker worker)
 	{
-
 		if (worker == null)
 			throw new IllegalArgumentException();
 
@@ -117,7 +116,6 @@ public class Project extends UtilsElement implements ProjectInterface
 	 */
 	public boolean addProject(Project project)
 	{
-
 		if (project == null)
 			throw new IllegalArgumentException();
 
@@ -174,14 +172,44 @@ public class Project extends UtilsElement implements ProjectInterface
 	 */
 	public boolean removeProject(String name)
 	{
-
+		return removeProject(getSubProjectByName(name));
+	}
+	
+	/**
+	 * Method that will allow a Sub{@code Project} to be removed from the
+	 * {@code this} {@code ProjectsContainer}. If the {@code Project}
+	 * doesn't exist on {@code this} {@code Project#projectsContainer} no project 
+	 * will be removed and the method will return false. If successful this method 
+	 * also removes the removed Sub{@code Project}'s name from the {@link NameTester} ({@see
+	 * NameTester#removeName(String)}; {@see Project#addProject(Project)}).
+	 * 
+	 * Uses the method {@code getSubProjectByName()} from this same class as an
+	 * auxiliary method.
+	 * 
+	 * Throws {@link IllegalArgumentException} if the given parameter is null.
+	 * 
+	 * @param project
+	 *            - The {@code Project} to be removed from the
+	 *            {@code projectsContainer} .
+	 * 
+	 * @return true if the subproject is successfully removed and false
+	 *         otherwise.
+	 */
+	public boolean removeProject(Project project)
+	{
 		if (name == null)
 			throw new IllegalArgumentException();
 
-		if (projectsContainer.remove(getSubProjectByName(name)))
+		if (projectsContainer.remove(project))
 			return NameTester.removeName(name);
 
 		return false;
+	}
+	
+	public void removeAllSubprojects()
+	{
+		NameTester.removeAll();
+		projectsContainer.removeAll();
 	}
 
 	/**

@@ -1,6 +1,5 @@
 package utils;
 
-import org.json.JSONObject;
 
 /**
  * Class {@code Consultant} whose objects will represent the consultants that

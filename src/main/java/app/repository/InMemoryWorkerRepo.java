@@ -1,18 +1,13 @@
 package app.repository;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.TreeSet;
-
 import org.json.JSONObject;
-import org.junit.Test;
-
 import app.elements.AppElement;
 import app.elements.WorkerComparator;
 import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
-import utils.Project;
 
 /**
  * An {@link AWorker}s in memory {@link Repository}.
@@ -33,8 +28,17 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	/**
 	 * The last CID attributed to an {@link AWorker} plus one.
 	 */
-	private static long NEXT_CID_TO_BE_USED = 1;
+	private static long NEXT_CID_TO_BE_USED;
 
+	/**
+	 * Constructs a new empty {@code InMemoryWorkerRepo}, in which the next {@code CID}
+	 * to be used is set to 1.
+	 */
+	public InMemoryWorkerRepo()
+	{
+		NEXT_CID_TO_BE_USED = 1;
+	}
+	
 	/**
 	 * @see WorkerRepository#nextCID()
 	 */

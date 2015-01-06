@@ -39,8 +39,9 @@ public class ProjectTest
 		proj2.addProject(proj3);
 		proj1.addProject(proj4);
 
+		proj1.removeAllSubprojects();
 //		System.out.println(proj1.toString());
-		System.out.println(proj1.getJson().toString());
+		System.out.println(proj1.toString());
 	}
 
 }

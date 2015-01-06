@@ -119,9 +119,12 @@ public abstract class AWorker extends UtilsElement implements WorkerInterface
 	 * @param costPerHour
 	 *            The cost of the worker for one hour of work.
 	 */
-	public void setCostPerHour(double costPerHour)
+	public boolean setCostPerHour(double costPerHour)
 	{
+		if(costPerHour < 0)
+			return false;
 		this.costPerHour = costPerHour;
+		return true;
 	}
 
 	/**

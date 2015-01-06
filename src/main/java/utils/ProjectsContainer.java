@@ -57,25 +57,5 @@ public class ProjectsContainer extends AContainer<Project> {
 		
 		return builder.toString();
 	}
-	
-//	public String toJson()
-//	{
-//		StringBuilder builder = new StringBuilder();
-//
-//		for (JSONObject element : getJson() )
-//			builder.append(element.toString());
-//		
-//		return builder.toString();
-//	}
-//
-//	public JSONObject[] getJson() 
-//	{
-//		Collection<Project> elementsList = getElementsList();
-//		JSONObject[] jsonArray = new JSONObject[elementsList.size()];
-//		int index = 0;
-//		
-//		for (Project element : elementsList)
-//			jsonArray[index++] = element.getJson();
-//		return jsonArray;
-//	}
+
 }

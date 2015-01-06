@@ -2,8 +2,8 @@ package utils;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.TreeSet;
-
 import org.json.JSONObject;
 
 /**
@@ -15,7 +15,7 @@ import org.json.JSONObject;
  * @param <elements>
  *            - any instances of a type compatible with {@code Element}.
  */
-public abstract class AContainer<elements extends UtilsElement> implements ICost
+public abstract class AContainer<elements extends UtilsElement> implements ICost, Iterable<elements>
 {
 
 	private final Collection<elements> elementsList;
@@ -31,10 +31,19 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	 */
 	public AContainer()
 	{
-
 		this.elementsList = new TreeSet<elements>();
 	}
 
+	/**
+	 * @return An {@code Iterator<elements>} that goes over all elements in 
+	 * this {@code AContainer}.
+	 * 
+	 * @see java.util.Iterator
+	 */
+	public Iterator<elements> iterator() {
+		return elementsList.iterator();
+	}
+	
 	/**
 	 * Abstract method that will be implemented by the subclasses of
 	 * {@code ACointaner}.
@@ -70,7 +79,6 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	 */
 	public boolean addElement(elements element)
 	{
-
 		for (elements currentElement : elementsList)
 			if (currentElement.getName().equals(element.getName()))
 				return false;
@@ -163,5 +171,10 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	public int size()
 	{
 		return elementsList.size();
+	}
+	
+	public void removeAll()
+	{
+		elementsList.clear();
 	}
 }

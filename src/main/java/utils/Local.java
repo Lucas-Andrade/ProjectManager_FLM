@@ -40,7 +40,6 @@ public class Local implements ICost, IName
 	 */
 	public Local(double latitude, double longitude, String name, double cost)
 	{
-
 		if (name == null || !checkLatitude(latitude) || !checkLongitude(longitude) || 
 				!checkPrice(cost))
 			throw new IllegalArgumentException();
@@ -68,8 +67,23 @@ public class Local implements ICost, IName
 	@Override
 	public double getCost()
 	{
-
 		return cost;
+	}
+	
+	/**
+	 * @return The latitude of the {@code Local}
+	 */
+	public double getLatitude()
+	{
+		return latitude;
+	}
+	
+	/**
+	 * @return The longitude of the {@code Local}
+	 */
+	public double getLongitude()
+	{
+		return longitude;
 	}
 
 	/**
@@ -108,7 +122,7 @@ public class Local implements ICost, IName
 	public boolean setLongitude(double newLongitude) {
 		if(checkLongitude(newLongitude))
 		{
-			this.latitude = newLongitude;
+			longitude = newLongitude;
 			return true;
 		}
 		return false;
@@ -127,7 +141,7 @@ public class Local implements ICost, IName
 
 		if(checkLatitude(newLatitude))
 		{
-			this.latitude = newLatitude;
+			latitude = newLatitude;
 			return true;
 		}
 		return false;

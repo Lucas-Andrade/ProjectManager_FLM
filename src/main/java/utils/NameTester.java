@@ -10,30 +10,25 @@ import java.util.TreeSet;
  */
 public abstract class NameTester
 {
-
 	private static final Collection<String> usedNames = new TreeSet<>();
 
 	public static boolean addName(String name)
 	{
-
 		return usedNames.add(name);
 	}
 
 	public static boolean removeName(String name)
 	{
-
 		return usedNames.remove(name);
 	}
 
 	public static void removeAll()
 	{
-
 		usedNames.clear();
 	}
 
 	public static Collection<String> getUsedNames()
 	{
-
 		return Collections.unmodifiableCollection(usedNames);
 	}
 

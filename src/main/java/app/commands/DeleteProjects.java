@@ -156,59 +156,11 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 		
 		Collection<Project> subprojects = parent.getContainerProject();
 		for(Project project : subprojects)
+		{
 			toRemove.addAll(getAllProjectsToRemove(project));
-		
+		}
+		parent.removeAllSubprojects();
 		return toRemove;
 	}
-	
-//	@Override
-//	protected DatabaseElement[] internalCall()
-//			throws Exception
-//	{
-//		long pid = this.getParameterAsLong(PID);
-//		Project parentProjectToDelete = repository.getProjectById(pid);
-//		List<Long> allPIDsToDelete = new ArrayList<Long>();
-//		allPIDsToDelete = this.getAllPIDsToDelete(pid, allPIDsToDelete);
-//
-//		this.removeAllProjectsToDeleteFromAllProjectContainers(allPIDsToDelete);
-//		this.removeAllProjectsToDeleteFromTheRepository(allPIDsToDelete);
-//
-//		DatabaseElement[]ProjectToDelete = {parentProjectToDelete}; 
-//		return ProjectToDelete;
-//	}
-//
-//	private void removeAllProjectsToDeleteFromTheRepository(
-//			List<Long> allPIDsToDelete)
-//	{
-//		for (long pidToDelete : allPIDsToDelete)
-//		{
-//			Project projectToDelete = repository.getProjectById(pidToDelete);
-//			this.repository.removeProject(projectToDelete);
-//		}
-//	}
-//
-//	// because of removeproject in project also removes from nametester ,this should go
-//	// first before
-//	// removeallprojectsfromrepository
-//	private void removeAllProjectsToDeleteFromAllProjectContainers(
-//			List<Long> allPIDsToDelete)
-//	{
-//		for (DatabaseElement project : this.repository.getAll())
-//			for (Long pidToDelete : allPIDsToDelete)
-//				((Project) project).removeProject(this.repository
-//						.getProjectById(pidToDelete).getName());
-//	}
-//
-//	private List<Long> getAllPIDsToDelete(long pid, List<Long> allPIDsToDelete)
-//	{
-//		allPIDsToDelete.add(pid);
-//
-//		for (Project projectToDelete : repository.getProjectById(pid)
-//				.getContainerProject())
-//			allPIDsToDelete = this.getAllPIDsToDelete(projectToDelete.getPID(),
-//					allPIDsToDelete);
-//
-//		return allPIDsToDelete;
-//	}
 
 }

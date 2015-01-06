@@ -18,38 +18,35 @@ import app.repository.InMemoryWorkerRepo;
 public class InMemoryWorkerRepoTest {
 
 	private InMemoryWorkerRepo repo;
-	private RepositoryConstructor constructor;
 	
 	@Before
 	public void constructARepository()
 	{
 		repo = new InMemoryWorkerRepo();
 		repo.removeAll();
-		constructor = new RepositoryConstructor();
-		
-		repo = constructor.constructWorkerRepo();
+		repo = RepositoryConstructor.constructWorkerRepo();
 	}
 	
 	@Test
 	public void shouldNotAddAWorkerWithRepeatedCID()
 	{
-		repo.addConsultant(constructor.constructConsultant(5));
-		repo.addManager(constructor.constructLeader(1));
+		repo.addConsultant(RepositoryConstructor.constructConsultant(5));
+		repo.addManager(RepositoryConstructor.constructLeader(1));
 		
-		assertFalse(repo.addConsultant(constructor.constructConsultant(5)));
-		assertFalse(repo.addManager(constructor.constructLeader(1)));
+		assertFalse(repo.addConsultant(RepositoryConstructor.constructConsultant(5)));
+		assertFalse(repo.addManager(RepositoryConstructor.constructLeader(1)));
 	}
 	
 	@Test
 	public void shouldAddTheNewUser()
 	{
-		assertTrue(repo.addConsultant(constructor.constructConsultant(52365)));
+		assertTrue(repo.addConsultant(RepositoryConstructor.constructConsultant(52365)));
 	}
 	
 	@Test
 	public void shouldGetTheCorrectConsultant()
 	{
-		Consultant cons = constructor.constructConsultant(52365);
+		Consultant cons = RepositoryConstructor.constructConsultant(52365);
 		repo.addConsultant(cons);
 		
 		Consultant cons2 = repo.getConsultantByID(52365);
@@ -60,7 +57,7 @@ public class InMemoryWorkerRepoTest {
 	@Test
 	public void shouldGetTheCorrectManager()
 	{
-		Leader lead = constructor.constructLeader(52365);
+		Leader lead = RepositoryConstructor.constructLeader(52365);
 		repo.addConsultant(lead);
 		
 		Leader lead2 = repo.getManagerByID(52365);

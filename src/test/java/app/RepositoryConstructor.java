@@ -15,29 +15,32 @@ import app.repository.InMemoryWorkerRepo;
  */
 public class RepositoryConstructor {
 
-	public InMemoryProjectRepo constructProjectRepository()
+	public static InMemoryProjectRepo constructProjectRepository()
 	{
 		InMemoryProjectRepo repo = new InMemoryProjectRepo();
-		
-		Project project1 = constructProject((int) repo.getNextPID());
-		repo.addProject(project1);
-		Project project2 = constructProject((int) repo.getNextPID());
-		repo.addProject(project2);
-		Project project3 = constructProject((int) repo.getNextPID());
-		repo.addProject(project3);
-		Project project4 = constructProject((int) repo.getNextPID());
-		repo.addProject(project4);
-		
-		project3.addProject(project4);
-		
-		Project project5 = constructProject((int) repo.getNextPID());
-		repo.addProject(project5);
+		repo.removeAll();
 
+		Project project1 = constructProject(repo.getNextPID());
+		repo.addProject(project1);
+		
+		Project project2 = constructProject(repo.getNextPID());
+		repo.addProject(project2);
+		
+		Project project3 = constructProject(repo.getNextPID());
+		repo.addProject(project3);
+		
+		Project project4 = constructProject(repo.getNextPID());
+		repo.addProject(project4);
+		project3.addProject(project4);
+
+		Project project5 = constructProject(repo.getNextPID());
+		repo.addProject(project5);
+		
 		return repo;
 	}
 	
 	
-	public InMemoryUserRepo constructUserRepository()
+	public static InMemoryUserRepo constructUserRepository()
 	{
 		User user1 = constructUser(1);
 		User user2 = constructUser(2);
@@ -54,47 +57,47 @@ public class RepositoryConstructor {
 		return repo;
 	}
 	
-	public InMemoryWorkerRepo constructWorkerRepo()
+	public static InMemoryWorkerRepo constructWorkerRepo()
 	{
 		InMemoryWorkerRepo repo = new InMemoryWorkerRepo();
-		
-		Consultant cons1 = constructConsultant((int)repo.nextCID());
+		repo.removeAll();
+		Consultant cons1 = constructConsultant(repo.nextCID());
 		repo.addConsultant(cons1);
-		Consultant cons2 = constructConsultant((int)repo.nextCID());
+		Consultant cons2 = constructConsultant(repo.nextCID());
 		repo.addConsultant(cons2);
-		Consultant cons3 = constructConsultant((int)repo.nextCID());
+		Consultant cons3 = constructConsultant(repo.nextCID());
 		repo.addConsultant(cons3);
-		Consultant cons4 = constructConsultant((int)repo.nextCID());
+		Consultant cons4 = constructConsultant(repo.nextCID());
 		repo.addConsultant(cons4);
-		Leader mana5 = constructLeader((int)repo.nextCID());
+		Leader mana5 = constructLeader(repo.nextCID());
 		repo.addManager(mana5);
-		Leader mana6 = constructLeader((int)repo.nextCID());
+		Leader mana6 = constructLeader(repo.nextCID());
 		repo.addManager(mana6);
 		
 		return repo;
 	}
 	
-	public Consultant constructConsultant(int i)
+	public static Consultant constructConsultant(long i)
 	{
 		return new Consultant("worker" + i, i, 0, i);
 	}
 	
-	public Leader constructLeader(int i)
+	public static Leader constructLeader(long i)
 	{
 		return new Leader("worker" + i, i, 0, i, i);
 	}
 	
-	public User constructUser(int i)
+	public static User constructUser(int i)
 	{
 		return new User("user" + i, "userPass" + i, "user" + i + "@email.com", "User " + i);
 	}
 	
-	public Project constructProject(int i)
+	public static Project constructProject(long i)
 	{
-		return new Project(constructLocal(i), i);
+		return new Project(constructLocal((int)i), i);
 	}
 	
-	public Local constructLocal(int i)
+	public static Local constructLocal(int i)
 	{
 		return new Local(i, i, "local" + i, i);
 	}
