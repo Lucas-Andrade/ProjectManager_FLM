@@ -15,9 +15,9 @@ public class ToApplicationJson implements TextParser
 	 * @see TextParser#parse(JSONObject)
 	 */
 	@Override
-	public String parse(JSONObject jsonObject)
+	public String parse(JSONObject jsonObject) 
 	{
-		return jsonObject.toString().replaceAll("\n", "").replace("\t", " ");
+		return jsonObject.toString();
 	}
 
 	/**
