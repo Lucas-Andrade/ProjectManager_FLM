@@ -73,7 +73,8 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 		 * @param pRepository
 		 *            The {@code ProjectRepository} with the {@code Project}s.
 		 */
-		public Factory(UserRepository uRepository, ProjectsRepository pRepository)
+		public Factory(UserRepository uRepository,
+				ProjectsRepository pRepository)
 		{
 			this.pRepository = pRepository;
 			this.uRepository = uRepository;
@@ -116,46 +117,46 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 	}
 
 	/**
-	 * Deletes a {@code Project} and all it's subprojects, and their own subprojects
-	 * and so on.
+	 * Deletes a {@code Project} and all it's subprojects, and their own
+	 * subprojects and so on.
 	 * 
-	 * @return An array of {@code DatabaseElement} with one element carrying a 
-	 * {@code Message} with the success of unsuccess of the operation.
+	 * @return An array of {@code DatabaseElement} with one element carrying a
+	 *         {@code Message} with the success of unsuccess of the operation.
 	 * 
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall()
-			throws Exception
+	protected AppElement[] internalCall() throws Exception
 	{
 		long pid = this.getParameterAsLong(PID);
 		Project parent = repository.getProjectById(pid);
-		if(parent == null)
-			return new AppElement[]{new Message("Project not found!")};
-		
+		if (parent == null)
+			return new AppElement[] { new Message("Project not found!") };
+
 		Collection<Project> projectsToRemove = getAllProjectsToRemove(parent);
-		
+
 		for (Project project : projectsToRemove)
 			repository.removeProject(project);
-		
-		return new AppElement[]{new Message("Success!")};
+
+		return new AppElement[]{new Message("Project successfully deleted.")};
 	}
-	
+
 	/**
-	 * Constructs a {@code Collection<Project>} with all the subprojects of the parent {@code Project},
-	 * including all the subprojects of the subprojects and so on. The parent itself will be included 
-	 * in the {@code Collection}.
+	 * Constructs a {@code Collection<Project>} with all the subprojects of the
+	 * parent {@code Project}, including all the subprojects of the subprojects
+	 * and so on. The parent itself will be included in the {@code Collection}.
+	 * 
 	 * @param parent
-	 * @return A {@code Collection} with all the subprojects of a parent {@code Project}, and all of their
-	 * subprojects and so on.
+	 * @return A {@code Collection} with all the subprojects of a parent
+	 *         {@code Project}, and all of their subprojects and so on.
 	 */
 	private Collection<Project> getAllProjectsToRemove(Project parent)
 	{
 		Collection<Project> toRemove = new ArrayList<Project>();
 		toRemove.add(parent);
-		
+
 		Collection<Project> subprojects = parent.getContainerProject();
-		for(Project project : subprojects)
+		for (Project project : subprojects)
 		{
 			toRemove.addAll(getAllProjectsToRemove(project));
 		}

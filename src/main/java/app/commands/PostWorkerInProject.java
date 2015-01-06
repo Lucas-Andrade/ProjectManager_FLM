@@ -186,7 +186,6 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 */
 	@Override
 	protected AppElement[] internalCall()
-			throws CommandException, IOException
 	{
 		this.projectId = getParameterAsLong(PID);
 		this.typeWorker = getParameterAsString(WTYPE);
@@ -234,9 +233,8 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 * @param projectId  {@code long} with the argument PID.
 	 * @param workerId   {@code long} with the argument {@code AWorker}ID.
 	 * @return True if successful, False if not.
-	 * @throws IOException
 	 */
-	private Boolean addConsultant( long projectId,long workerId) throws IOException
+	private Boolean addConsultant( long projectId,long workerId)
 	{
 		AppElement[] messageAux = new AppElement[1];
 		Consultant consultant = workerRepository.getConsultantByID(workerId);
@@ -262,9 +260,8 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 * @param projectId  {@code long} with the argument PID.
 	 * @param workerId   {@code long} with the argument {@code AWorker}ID.
 	 * @return True if successful, False if not.
-	 * @throws IOException
 	 */
-	private Boolean addManager(long projectId, long workerId) throws IOException
+	private Boolean addManager(long projectId, long workerId)
 	{
 		AppElement[] messageAux = new AppElement[1];
 		Leader manager = workerRepository.getManagerByID(workerId);

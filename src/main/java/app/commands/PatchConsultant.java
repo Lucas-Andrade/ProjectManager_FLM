@@ -72,8 +72,10 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 		/**
 		 * The constructor for {@code Factory}.
 		 * 
-		 * @param uRepository   The {@code UserRepository} with the {@code User}.
-		 * @param wRepository   The {@code WorkerRepository} with the {@code AWorker}s.
+		 * @param uRepository
+		 *            The {@code UserRepository} with the {@code User}.
+		 * @param wRepository
+		 *            The {@code WorkerRepository} with the {@code AWorker}s.
 		 */
 		public Factory(UserRepository uRepository, WorkerRepository wRepository)
 		{
@@ -94,9 +96,12 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 	/**
 	 * The constructor for {@code PatchConsultant}.
 	 * 
-	 * @param uRepository    The {@code UserRepository}.
-	 * @param repository     The {@code WorkerRepository}.
-	 * @param parameters     The {@code Command} arguments.
+	 * @param uRepository
+	 *            The {@code UserRepository}.
+	 * @param repository
+	 *            The {@code WorkerRepository}.
+	 * @param parameters
+	 *            The {@code Command} arguments.
 	 */
 	public PatchConsultant(UserRepository uRepository,
 			WorkerRepository repository, Map<String, String> parameters)
@@ -109,23 +114,24 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 	 * Modifies an {@code AWorker}. Get's the {@code AWorker}'s from the
 	 * {@code WorkerRepository} and modifies it.
 	 * 
-	 * @return An array of {@code DatabaseElement} with one element carrying 
-	 * the modified {@code AWorker}.
+	 * @return An array of {@code DatabaseElement} with one element carrying the
+	 *         modified {@code AWorker}.
 	 */
 	@Override
-	protected AppElement[] internalCall()
-			throws Exception
+	protected AppElement[] internalCall() throws Exception
 	{
-		AWorker worker = repository.getAWorkerByID(this.getParameterAsLong(CID));
+		AWorker worker = repository
+				.getAWorkerByID(this.getParameterAsLong(CID));
 		if (worker == null)
-			return new AppElement[]{new Message("Worker with CID: " + getParameterAsLong(CID)
-					+ "was not found!")};
+			return new AppElement[] { new Message("Worker with CID: "
+					+ getParameterAsLong(CID) + "was not found!") };
 		if (parameters.containsKey(NAME))
 			worker.setName(parameters.get(NAME));
 		if (parameters.containsKey(PRICE_HOUR))
-			if(!worker.setCostPerHour(this.getParameterAsDouble(PRICE_HOUR)))
-				return new AppElement[]{new Message("Worker's cost per hour cannot be negative.")};
-		AppElement[] workerAux = {worker};
+			if (!worker.setCostPerHour(this.getParameterAsDouble(PRICE_HOUR)))
+				return new AppElement[] { new Message(
+						"Worker's cost per hour cannot be negative.") };
+		AppElement[] workerAux = { worker };
 		return workerAux;
 	}
 
