@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 
 import app.elements.AppElement;
 import app.elements.Message;
-import app.resultsAndOutputMethods.Result;
+import app.forConsole.resultsAndOutputMethods.Result;
 
 /**
  * Class whose instances are commands that return the Path and a description of all available commands

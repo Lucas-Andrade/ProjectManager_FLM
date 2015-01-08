@@ -2,12 +2,13 @@ package app.commands;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
+
 import app.elements.AppElement;
 import app.elements.Message;
 import app.elements.User;
 import app.elements.UserInterface;
+import app.forConsole.resultsAndOutputMethods.Result;
 import app.repository.UserRepository;
-import app.resultsAndOutputMethods.Result;
 
 /**
  * Class whose instances are commands that modifies {@link User}s

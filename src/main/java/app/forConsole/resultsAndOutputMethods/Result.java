@@ -1,4 +1,4 @@
-package app.resultsAndOutputMethods;
+package app.forConsole.resultsAndOutputMethods;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -6,11 +6,11 @@ import java.io.IOException;
 import org.json.JSONObject;
 
 import app.elements.AppElement;
-import app.resultsAndOutputMethods.outputDestination.ToConsole;
-import app.resultsAndOutputMethods.outputDestination.ToFile;
-import app.resultsAndOutputMethods.outputDestination.Writable;
-import app.resultsAndOutputMethods.outputFormat.TextParser;
-import app.resultsAndOutputMethods.outputFormat.ToTextPlain;
+import app.forConsole.resultsAndOutputMethods.outputDestination.ToConsole;
+import app.forConsole.resultsAndOutputMethods.outputDestination.ToFile;
+import app.forConsole.resultsAndOutputMethods.outputDestination.Writable;
+import app.forConsole.resultsAndOutputMethods.outputFormat.TextParser;
+import app.forConsole.resultsAndOutputMethods.outputFormat.ToTextPlain;
 
 /**
  * Class that stores the results of a Command execution and sends them to a

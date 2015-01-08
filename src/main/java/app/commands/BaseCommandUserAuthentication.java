@@ -5,8 +5,8 @@ import java.util.Map;
 import app.commands.exceptions.InvalidUserException;
 import app.elements.AppElement;
 import app.elements.User;
+import app.forConsole.resultsAndOutputMethods.Result;
 import app.repository.UserRepository;
-import app.resultsAndOutputMethods.Result;
 
 /**
  * Abstract Command to be supported by all Commands that require an {@link User}

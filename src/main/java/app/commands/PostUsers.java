@@ -9,8 +9,8 @@ import app.elements.AppElement;
 import app.elements.Message;
 import app.elements.User;
 import app.elements.UserInterface;
+import app.forConsole.resultsAndOutputMethods.Result;
 import app.repository.UserRepository;
-import app.resultsAndOutputMethods.Result;
 
 /**
  * Class whose instances are commands that create new {@link User}s.

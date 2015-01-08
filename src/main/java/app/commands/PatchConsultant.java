@@ -6,9 +6,9 @@ import java.util.concurrent.Callable;
 import utils.AWorker;
 import app.elements.AppElement;
 import app.elements.Message;
+import app.forConsole.resultsAndOutputMethods.Result;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
-import app.resultsAndOutputMethods.Result;
 
 /**
  * Class whose instances are commands that modifies {@link AWorker}s.

@@ -1,4 +1,4 @@
-package app;
+package app.forConsole;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -22,13 +22,13 @@ import app.commands.PostSubprojects;
 import app.commands.PostUsers;
 import app.commands.PostWorkerInProject;
 import app.commands.exceptions.CommandException;
+import app.forConsole.resultsAndOutputMethods.Result;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
 import app.repository.InMemoryWorkerRepo;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
-import app.resultsAndOutputMethods.Result;
 
 /**
  * Class for Project Management.

@@ -7,8 +7,8 @@ import app.commandParser.CommandParser;
 import app.elements.AppElement;
 import app.elements.Message;
 import app.elements.User;
+import app.forConsole.resultsAndOutputMethods.Result;
 import app.repository.UserRepository;
-import app.resultsAndOutputMethods.Result;
 
 /**
  * Class whose instances are {@link Command}s that return a {@link User}.

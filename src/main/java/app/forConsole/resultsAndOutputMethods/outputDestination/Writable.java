@@ -1,4 +1,4 @@
-package app.resultsAndOutputMethods.outputDestination;
+package app.forConsole.resultsAndOutputMethods.outputDestination;
 
 import java.io.IOException;
 

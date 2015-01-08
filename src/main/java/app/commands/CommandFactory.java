@@ -3,7 +3,7 @@ package app.commands;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import app.resultsAndOutputMethods.Result;
+import app.forConsole.resultsAndOutputMethods.Result;
 
 /**
  * Contract to be supported by all {@link Command} Factories. Each

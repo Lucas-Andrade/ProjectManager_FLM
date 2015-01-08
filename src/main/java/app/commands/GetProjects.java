@@ -7,8 +7,8 @@ import utils.Project;
 import app.commandParser.CommandParser;
 import app.elements.AppElement;
 import app.elements.Message;
+import app.forConsole.resultsAndOutputMethods.Result;
 import app.repository.ProjectsRepository;
-import app.resultsAndOutputMethods.Result;
 
 /**
  * Class whose instances are commands that return the {@link Project} with specified {@code PID}

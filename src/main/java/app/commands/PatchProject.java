@@ -7,9 +7,9 @@ import utils.Project;
 import app.commandParser.CommandParser;
 import app.elements.AppElement;
 import app.elements.Message;
+import app.forConsole.resultsAndOutputMethods.Result;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
-import app.resultsAndOutputMethods.Result;
 
 /**
  * Class whose instances are commands that modifies {@link Project}s.

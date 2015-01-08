@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 import app.commands.CommandFactory;
-import app.resultsAndOutputMethods.Result;
+import app.forConsole.resultsAndOutputMethods.Result;
 
 /**
  * Class whose instances are responsible for translating Command Strings into

@@ -1,4 +1,4 @@
-package app.resultsAndOutputMethods.outputFormat;
+package app.forConsole.resultsAndOutputMethods.outputFormat;
 
 import org.json.JSONObject;
 

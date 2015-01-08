@@ -1,7 +1,8 @@
 package app.commands;
 
 import java.util.Map;
-import app.resultsAndOutputMethods.Result;
+
+import app.forConsole.resultsAndOutputMethods.Result;
 
 /**
  * Abstract Command to be supported by all Commands that support different

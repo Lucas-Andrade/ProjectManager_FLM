@@ -10,9 +10,9 @@ import utils.Leader;
 import app.commands.exceptions.CommandException;
 import app.elements.AppElement;
 import app.elements.Message;
+import app.forConsole.resultsAndOutputMethods.Result;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
-import app.resultsAndOutputMethods.Result;
 
 /**
  * Class whose instances are commands that create new {@link AWorker}s.

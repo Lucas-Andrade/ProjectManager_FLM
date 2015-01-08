@@ -1,132 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.7" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="app.resultsAndOutputMethods.Result" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/main/java/app/resultsAndOutputMethods/Result.java" binary="false" 
+  <class id="1" language="java" name="app.forConsole.resultsAndOutputMethods.Result" project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/main/java/app/forConsole/resultsAndOutputMethods/Result.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="420" y="68"/>    
+    <position height="-1" width="-1" x="239" y="169"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="2" language="java" name="app.resultsAndOutputMethods.outputFormat.TextParser" 
+  <interface id="2" language="java" name="app.forConsole.resultsAndOutputMethods.outputFormat.TextParser" 
     project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/main/java/app/resultsAndOutputMethods/outputFormat/TextParser.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="340" y="288"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="3" language="java" name="app.resultsAndOutputMethods.outputFormat.ToTextPlain" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/main/java/app/resultsAndOutputMethods/outputFormat/ToTextPlain.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="143" y="101"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="4" language="java" name="app.resultsAndOutputMethods.outputFormat.ToApplicationJson" 
-    project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/main/java/app/resultsAndOutputMethods/outputFormat/ToApplicationJson.java" 
+    file="/ProjectManager_FLM/src/main/java/app/forConsole/resultsAndOutputMethods/outputFormat/TextParser.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="137" y="441"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="app.resultsAndOutputMethods.outputFormat.ToTextHtml" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/main/java/app/resultsAndOutputMethods/outputFormat/ToTextHtml.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="412" y="487"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="app.resultsAndOutputMethods.outputDestination.ToFile" project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/main/java/app/resultsAndOutputMethods/outputDestination/ToFile.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="659" y="354"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="7" language="java" name="app.resultsAndOutputMethods.outputDestination.Writable" 
-    project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/main/java/app/resultsAndOutputMethods/outputDestination/Writable.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="592" y="216"/>    
+    <position height="-1" width="-1" x="547" y="248"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="8" language="java" name="app.resultsAndOutputMethods.outputDestination.ToConsole" 
+  <class id="3" language="java" name="app.forConsole.resultsAndOutputMethods.outputFormat.ToTextPlain" 
     project="ProjectManager_FLM" 
-    file="/ProjectManager_FLM/src/main/java/app/resultsAndOutputMethods/outputDestination/ToConsole.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="683" y="100"/>    
+    file="/ProjectManager_FLM/src/main/java/app/forConsole/resultsAndOutputMethods/outputFormat/ToTextPlain.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="318" y="439"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <realization id="9">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <realization id="10">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <realization id="11">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
-  <association id="12">    
+  <class id="4" language="java" name="app.forConsole.resultsAndOutputMethods.outputFormat.ToApplicationJson" 
+    project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/main/java/app/forConsole/resultsAndOutputMethods/outputFormat/ToApplicationJson.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="554" y="404"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="app.forConsole.resultsAndOutputMethods.outputFormat.ToTextHtml" 
+    project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/main/java/app/forConsole/resultsAndOutputMethods/outputFormat/ToTextHtml.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="782" y="440"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="app.forConsole.resultsAndOutputMethods.outputDestination.ToFile" 
+    project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/main/java/app/forConsole/resultsAndOutputMethods/outputDestination/ToFile.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="76" y="403"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="7" language="java" name="app.forConsole.resultsAndOutputMethods.outputDestination.Writable" 
+    project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/main/java/app/forConsole/resultsAndOutputMethods/outputDestination/Writable.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-39" y="250"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="8" language="java" name="app.forConsole.resultsAndOutputMethods.outputDestination.ToConsole" 
+    project="ProjectManager_FLM" 
+    file="/ProjectManager_FLM/src/main/java/app/forConsole/resultsAndOutputMethods/outputDestination/ToConsole.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-147" y="393"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="9">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="13" name="format">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <attribute id="10" name="format">        
+        <position height="0" width="0" x="207" y="-40"/>      
       </attribute>      
-      <multiplicity id="14" minimum="0" maximum="1">        
-        <position height="15" width="23" x="382" y="197"/>      
+      <multiplicity id="11" minimum="0" maximum="1">        
+        <position height="15" width="23" x="589" y="157"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="15">    
-    <end type="SOURCE" refId="5"/>    
+  <realization id="12">    
+    <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="2"/>  
   </realization>  
-  <association id="16">    
+  <association id="13">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="17" name="destination">        
-        <position height="17" width="59" x="448" y="151"/>      
+      <attribute id="14" name="destination">        
+        <position height="17" width="59" x="-183" y="185"/>      
       </attribute>      
-      <multiplicity id="18" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="15" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-631" y="34"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="19">    
+  <realization id="16">    
     <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <realization id="17">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <realization id="18">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <realization id="19">    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="7"/>  
   </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
