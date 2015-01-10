@@ -2,7 +2,6 @@ package swing;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -18,8 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 public class PostProject extends JDialog {
 
@@ -119,13 +116,13 @@ public class PostProject extends JDialog {
 		
 		// Título do Comando : Post User
 		{
-			JLabel lblPostUser = DefaultComponentFactory.getInstance().createTitle("Post Project");
-			lblPostUser.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
+	//		JLabel lblPostUser = DefaultComponentFactory.getInstance().createTitle("Post Project");
+	//		lblPostUser.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
 			GridBagConstraints gbc_lblPostUser = new GridBagConstraints();
 			gbc_lblPostUser.insets = new Insets(0, 0, 5, 5);
 			gbc_lblPostUser.gridx = 3;
 			gbc_lblPostUser.gridy = 0;
-			postProjectPanel.add(lblPostUser, gbc_lblPostUser);
+	//		postProjectPanel.add(lblPostUser, gbc_lblPostUser);
 		}
 		
 		    // Labels e campos a ser preenchidos

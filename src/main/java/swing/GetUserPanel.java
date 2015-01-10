@@ -23,7 +23,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.jgoodies.forms.factories.DefaultComponentFactory;
+//import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 public class GetUserPanel extends JDialog {
 
@@ -78,14 +78,14 @@ public class GetUserPanel extends JDialog {
 			{
 				myPicture = ImageIO.read(new File("src\\main\\java\\swing\\imagens\\user.jpg"));
 				{
-					JLabel lblGetUsers = DefaultComponentFactory.getInstance().createTitle("Get Users");
-					lblGetUsers.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
+//					JLabel lblGetUsers = DefaultComponentFactory.getInstance().createTitle("Get Users");
+//					lblGetUsers.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
 					GridBagConstraints gbc_lblGetUsers = new GridBagConstraints();
 					gbc_lblGetUsers.gridwidth = 5;
 					gbc_lblGetUsers.insets = new Insets(0, 0, 5, 5);
 					gbc_lblGetUsers.gridx = 2;
 					gbc_lblGetUsers.gridy = 0;
-					getUsersPanel.add(lblGetUsers, gbc_lblGetUsers);
+//					getUsersPanel.add(lblGetUsers, gbc_lblGetUsers);
 				}
 				JLabel userLabel = new JLabel(new ImageIcon(myPicture));
 				GridBagConstraints gbc_lblUser = new GridBagConstraints();

@@ -1,11 +1,9 @@
 package app.forWindow;
 
 import java.awt.BorderLayout;
-import java.awt.Dialog;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -13,16 +11,11 @@ import javax.swing.JMenuItem;
 import javax.swing.JSplitPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingWorker;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JTree;
-import javax.swing.JTable;
-import javax.swing.JComboBox;
-import javax.swing.JList;
 import javax.swing.JScrollBar;
 
 public class app {
@@ -31,6 +24,7 @@ public class app {
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Project Manager");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(640, 420);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -64,19 +58,17 @@ public class app {
 		JMenuItem newProjectItem = new JMenuItem("New project");
 		projectsMenu.add(newProjectItem);
 		newProjectItem.addActionListener(new ActionListener(){
-
+			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new SwingWorker(){
-
-					@Override
-					protected Object doInBackground() throws Exception {
-						// TODO Auto-generated method stub
-						return null;
-					}
-					
-				};
 				
+				new NewProject().execute();
+
+				
+				JPanel panel = new JPanel();
+				splitPane.setRightComponent(panel);
+				JLabel lblStatus = new JLabel("    isto fez uma coisa    ");
+				panel.add(lblStatus, BorderLayout.SOUTH);
 			}
 			
 		});
