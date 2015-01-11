@@ -23,7 +23,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-//import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 public class GetUserPanel extends JDialog {
 
@@ -35,7 +34,7 @@ public class GetUserPanel extends JDialog {
 
 	private final JPanel getUsersPanel = new JPanel();
 	private JTextField userID;
-	private JTable table;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -64,9 +63,9 @@ public class GetUserPanel extends JDialog {
 		getUsersPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(getUsersPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_getUsersPanel = new GridBagLayout();
-		gbl_getUsersPanel.columnWidths = new int[]{0, 29, 100, 100, 0, 0, 48, 0};
+		gbl_getUsersPanel.columnWidths = new int[]{0, 29, 100, 100, 0, 0, 48, 0, 0};
 		gbl_getUsersPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
-		gbl_getUsersPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_getUsersPanel.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_getUsersPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		getUsersPanel.setLayout(gbl_getUsersPanel);
 		
@@ -77,16 +76,7 @@ public class GetUserPanel extends JDialog {
 			try 
 			{
 				myPicture = ImageIO.read(new File("src\\main\\java\\swing\\imagens\\user.jpg"));
-				{
-//					JLabel lblGetUsers = DefaultComponentFactory.getInstance().createTitle("Get Users");
-//					lblGetUsers.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
-					GridBagConstraints gbc_lblGetUsers = new GridBagConstraints();
-					gbc_lblGetUsers.gridwidth = 5;
-					gbc_lblGetUsers.insets = new Insets(0, 0, 5, 5);
-					gbc_lblGetUsers.gridx = 2;
-					gbc_lblGetUsers.gridy = 0;
-//					getUsersPanel.add(lblGetUsers, gbc_lblGetUsers);
-				}
+				
 				JLabel userLabel = new JLabel(new ImageIcon(myPicture));
 				GridBagConstraints gbc_lblUser = new GridBagConstraints();
 				gbc_lblUser.gridheight = 2;
@@ -139,28 +129,21 @@ public class GetUserPanel extends JDialog {
 			separator.setForeground(Color.GREEN);
 			GridBagConstraints gbc_separator = new GridBagConstraints();
 			gbc_separator.gridwidth = 5;
-			gbc_separator.insets = new Insets(0, 0, 5, 0);
+			gbc_separator.insets = new Insets(0, 0, 5, 5);
 			gbc_separator.gridx = 2;
 			gbc_separator.gridy = 4;
 			getUsersPanel.add(separator, gbc_separator);
 		}
-		
-		
-		//Painel onde queremos que apareça a lista de Users
 		{
-			JPanel panel = new JPanel();
-			FlowLayout flowLayout = (FlowLayout) panel.getLayout();
-			panel.setBackground(Color.WHITE);
-			GridBagConstraints gbc_panel = new GridBagConstraints();
-			gbc_panel.gridwidth = 7;
-			gbc_panel.fill = GridBagConstraints.BOTH;
-			gbc_panel.gridx = 0;
-			gbc_panel.gridy = 5;
-			getUsersPanel.add(panel, gbc_panel);
-			{
-				table = new JTable();
-				panel.add(table);
-			}
+			textField = new JTextField();
+			GridBagConstraints gbc_textField = new GridBagConstraints();
+			gbc_textField.insets = new Insets(0, 0, 0, 5);
+			gbc_textField.gridwidth = 6;
+			gbc_textField.fill = GridBagConstraints.BOTH;
+			gbc_textField.gridx = 1;
+			gbc_textField.gridy = 5;
+			getUsersPanel.add(textField, gbc_textField);
+			textField.setColumns(10);
 		}
 		
 		{
