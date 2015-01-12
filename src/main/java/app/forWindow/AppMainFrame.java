@@ -27,6 +27,8 @@ public class AppMainFrame {
 		rightPanel = newRightPanel;
 	}
 	
+	
+	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Project Manager");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,6 +86,9 @@ public class AppMainFrame {
 		
 		JMenuItem editProjectItem = new JMenuItem("Edit project");
 		projectsMenu.add(editProjectItem);
+		
+		JMenuItem mntmDeleteProject = new JMenuItem("Delete project");
+		projectsMenu.add(mntmDeleteProject);
 		
 		JMenu consultantsMenu = new JMenu("Consultants");
 		vert.add(consultantsMenu);

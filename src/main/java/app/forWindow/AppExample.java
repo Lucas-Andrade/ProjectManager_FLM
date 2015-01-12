@@ -8,6 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -21,11 +26,26 @@ import java.awt.BorderLayout;
 
 import javax.swing.JMenuItem;
 
+
 import app.forWindow.AppMainFrame.VerticalMenuBar;
+
+import javax.swing.JInternalFrame;
+
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.io.File;
+import java.io.IOException;
+
+import javax.swing.JTextField;
 
 public class AppExample {
 
 JPanel rightPanel;
+
+private static JTextField textField;
+private static JTextField textField_1;
+
 	
 	
 	
@@ -122,15 +142,39 @@ JPanel rightPanel;
 		JMenu searchMenu = new JMenu("Search");
 		vert.add(searchMenu);
 		
+		JPanel photoPanel = new JPanel();
+		vert.add(photoPanel);
+		
+		BufferedImage photoMain;
+		try {
+		photoMain = ImageIO.read(new File("src\\main\\java\\swing\\imagens\\Main.jpg"));
+		JLabel mainLogo = new JLabel(new ImageIcon(photoMain));
+		
+		GridBagConstraints gbc_lblMain = new GridBagConstraints();
+		gbc_lblMain.gridheight = 7;
+		gbc_lblMain.insets = new Insets(0, 0, 1, 1);
+		gbc_lblMain.anchor = GridBagConstraints.SOUTHEAST;
+		gbc_lblMain.gridx = 1;
+		gbc_lblMain.gridy = 1;
+		photoPanel.add(mainLogo, gbc_lblMain);
+	
+	} catch (IOException e) 
+	{
+		e.printStackTrace();
+	}
+		
+		
+		
 		JPanel panel = new JPanel();
 		splitPane.setRightComponent(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblWelcomeToProject = new JLabel("  Welcome to Project Manager");
-		JLabel lblWelcomeToProject1 = new JLabel("  registry");
+		
 		lblWelcomeToProject.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panel.add(lblWelcomeToProject, BorderLayout.NORTH);
-		panel.add(lblWelcomeToProject1, BorderLayout.NORTH);
+
+
 		
 		JScrollBar scrollBar = new JScrollBar();
 		panel.add(scrollBar, BorderLayout.EAST);
@@ -138,6 +182,56 @@ JPanel rightPanel;
 		JLabel lblStatus = new JLabel("Status: Ready");
 		panel.add(lblStatus, BorderLayout.SOUTH);
 		
+		JPanel panel_1 = new JPanel();
+		panel.add(panel_1, BorderLayout.CENTER);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 50, 0, 0, 50, 50, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 0};
+		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_1.setLayout(gbl_panel_1);
+		
+		JLabel lblResgistry = new JLabel("Resgistry:");
+		GridBagConstraints gbc_lblResgistry = new GridBagConstraints();
+		gbc_lblResgistry.anchor = GridBagConstraints.EAST;
+		gbc_lblResgistry.insets = new Insets(0, 0, 0, 5);
+		gbc_lblResgistry.gridx = 7;
+		gbc_lblResgistry.gridy = 0;
+		panel_1.add(lblResgistry, gbc_lblResgistry);
+		
+		JLabel lblUsername = new JLabel("Username:");
+		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
+		gbc_lblUsername.anchor = GridBagConstraints.EAST;
+		gbc_lblUsername.insets = new Insets(0, 0, 0, 5);
+		gbc_lblUsername.gridx = 8;
+		gbc_lblUsername.gridy = 0;
+		panel_1.add(lblUsername, gbc_lblUsername);
+		
+		textField = new JTextField();
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.insets = new Insets(0, 0, 0, 5);
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField.gridx = 9;
+		gbc_textField.gridy = 0;
+		panel_1.add(textField, gbc_textField);
+		textField.setColumns(10);
+		
+		JLabel lblPassword = new JLabel("Password:");
+		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
+		gbc_lblPassword.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblPassword.insets = new Insets(0, 0, 0, 5);
+		gbc_lblPassword.gridx = 11;
+		gbc_lblPassword.gridy = 0;
+		panel_1.add(lblPassword, gbc_lblPassword);
+		
+		textField_1 = new JTextField();
+		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.insets = new Insets(0, 0, 0, 5);
+		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_1.gridx = 12;
+		gbc_textField_1.gridy = 0;
+		panel_1.add(textField_1, gbc_textField_1);
+		textField_1.setColumns(10);
 		
 		
 		int panelSize = 120;
@@ -160,7 +254,5 @@ JPanel rightPanel;
 			setLayout(grid);
 		}
 	}
-	
-	
 
 }

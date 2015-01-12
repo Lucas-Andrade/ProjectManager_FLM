@@ -2,6 +2,7 @@ package swing;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -58,9 +59,9 @@ public class PostProject extends JDialog {
 		// Definição do Painel interno
 		GridBagLayout gbl_postProjectPanel = new GridBagLayout();  //Layout Manager
 		gbl_postProjectPanel.columnWidths = new int[]{20, 0, 100, 100, 0, 60, 100, 0, 0};
-		gbl_postProjectPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 10, 0, 0, 0, 0};
-		gbl_postProjectPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_postProjectPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_postProjectPanel.rowHeights = new int[]{0, 0, 30, 0, 0, 0, 30, 0, 0, 0, 0};
+		gbl_postProjectPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_postProjectPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		postProjectPanel.setLayout(gbl_postProjectPanel);
 		
 		
@@ -69,13 +70,25 @@ public class PostProject extends JDialog {
 			BufferedImage myPicture;
 			try {
 				myPicture = ImageIO.read(new File("src\\main\\java\\swing\\imagens\\Project.jpg"));
+					
+					// Título do Comando : Post User
+					{
+						JLabel lblPostConsultant = new JLabel("Post Project");
+						lblPostConsultant.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
+						GridBagConstraints gbc_lblPostConsultant = new GridBagConstraints();
+						gbc_lblPostConsultant.gridwidth = 5;
+						gbc_lblPostConsultant.insets = new Insets(0, 0, 5, 5);
+						gbc_lblPostConsultant.gridx = 2;
+						gbc_lblPostConsultant.gridy = 0;
+						postProjectPanel.add(lblPostConsultant, gbc_lblPostConsultant);
+					}
 				
 					{
 						JLabel lblLocation = new JLabel("Location:");
 						GridBagConstraints gbc_lblLocation = new GridBagConstraints();
 						gbc_lblLocation.insets = new Insets(0, 0, 5, 5);
 						gbc_lblLocation.gridx = 2;
-						gbc_lblLocation.gridy = 2;
+						gbc_lblLocation.gridy = 3;
 						postProjectPanel.add(lblLocation, gbc_lblLocation);
 					}
 				
@@ -85,7 +98,7 @@ public class PostProject extends JDialog {
 				gbc_lblUser.insets = new Insets(0, 0, 5, 5);
 				gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
 				gbc_lblUser.gridx = 1;
-				gbc_lblUser.gridy = 3;
+				gbc_lblUser.gridy = 4;
 				postProjectPanel.add(userLabel, gbc_lblUser);
 			
 			} catch (IOException e) 
@@ -114,17 +127,6 @@ public class PostProject extends JDialog {
 			postProjectPanel.add(lblRegistryuser, gbc_lblRegistryuser);
 		}
 		
-		// Título do Comando : Post User
-		{
-	//		JLabel lblPostUser = DefaultComponentFactory.getInstance().createTitle("Post Project");
-	//		lblPostUser.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
-			GridBagConstraints gbc_lblPostUser = new GridBagConstraints();
-			gbc_lblPostUser.insets = new Insets(0, 0, 5, 5);
-			gbc_lblPostUser.gridx = 3;
-			gbc_lblPostUser.gridy = 0;
-	//		postProjectPanel.add(lblPostUser, gbc_lblPostUser);
-		}
-		
 		    // Labels e campos a ser preenchidos
 		{
 			JLabel lblName = new JLabel("Name:");
@@ -132,7 +134,7 @@ public class PostProject extends JDialog {
 			gbc_lblName.anchor = GridBagConstraints.SOUTHEAST;
 			gbc_lblName.insets = new Insets(0, 0, 5, 5);
 			gbc_lblName.gridx = 2;
-			gbc_lblName.gridy = 4;
+			gbc_lblName.gridy = 5;
 			postProjectPanel.add(lblName, gbc_lblName);
 		}
 		{
@@ -142,7 +144,7 @@ public class PostProject extends JDialog {
 			gbc_nameField.insets = new Insets(0, 0, 5, 5);
 			gbc_nameField.fill = GridBagConstraints.HORIZONTAL;
 			gbc_nameField.gridx = 3;
-			gbc_nameField.gridy = 4;
+			gbc_nameField.gridy = 5;
 			postProjectPanel.add(nameField, gbc_nameField);
 		}
 		
@@ -152,7 +154,7 @@ public class PostProject extends JDialog {
 			gbc_lblPrice.anchor = GridBagConstraints.EAST;
 			gbc_lblPrice.insets = new Insets(0, 0, 5, 5);
 			gbc_lblPrice.gridx = 5;
-			gbc_lblPrice.gridy = 4;
+			gbc_lblPrice.gridy = 5;
 			postProjectPanel.add(lblPrice, gbc_lblPrice);
 			lblPrice.setToolTipText("Euros");
 
@@ -164,7 +166,7 @@ public class PostProject extends JDialog {
 			gbc_priceField.insets = new Insets(0, 0, 5, 5);
 			gbc_priceField.fill = GridBagConstraints.HORIZONTAL;
 			gbc_priceField.gridx = 6;
-			gbc_priceField.gridy = 4;
+			gbc_priceField.gridy = 5;
 			postProjectPanel.add(priceField, gbc_priceField);
 		}
 		
@@ -174,7 +176,7 @@ public class PostProject extends JDialog {
 			gbc_lblLatitude.anchor = GridBagConstraints.EAST;
 			gbc_lblLatitude.insets = new Insets(0, 0, 5, 5);
 			gbc_lblLatitude.gridx = 2;
-			gbc_lblLatitude.gridy = 6;
+			gbc_lblLatitude.gridy = 7;
 			postProjectPanel.add(lblLatitude, gbc_lblLatitude);
 		}
 		
@@ -184,7 +186,7 @@ public class PostProject extends JDialog {
 			gbc_latitudeField.fill = GridBagConstraints.HORIZONTAL;
 			gbc_latitudeField.insets = new Insets(0, 0, 5, 5);
 			gbc_latitudeField.gridx = 3;
-			gbc_latitudeField.gridy = 6;
+			gbc_latitudeField.gridy = 7;
 			postProjectPanel.add(LatitudeField, gbc_latitudeField);
 			LatitudeField.setColumns(10);
 		}
@@ -194,7 +196,7 @@ public class PostProject extends JDialog {
 			gbc_lblLongitude.anchor = GridBagConstraints.EAST;
 			gbc_lblLongitude.insets = new Insets(0, 0, 5, 5);
 			gbc_lblLongitude.gridx = 2;
-			gbc_lblLongitude.gridy = 7;
+			gbc_lblLongitude.gridy = 8;
 			postProjectPanel.add(lblLongitude, gbc_lblLongitude);
 		}
 		{
@@ -203,7 +205,7 @@ public class PostProject extends JDialog {
 			gbc_longitudeField.fill = GridBagConstraints.HORIZONTAL;
 			gbc_longitudeField.insets = new Insets(0, 0, 5, 5);
 			gbc_longitudeField.gridx = 3;
-			gbc_longitudeField.gridy = 7;
+			gbc_longitudeField.gridy = 8;
 			postProjectPanel.add(longitudeField, gbc_longitudeField);
 			longitudeField.setColumns(10);
 		}
