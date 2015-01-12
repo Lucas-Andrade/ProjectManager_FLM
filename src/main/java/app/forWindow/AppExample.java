@@ -7,10 +7,12 @@ import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -24,7 +26,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JMenuItem;
 
-import app.forWindow.app.VerticalMenuBar;
+
+import app.forWindow.AppMainFrame.VerticalMenuBar;
 
 import javax.swing.JInternalFrame;
 
@@ -35,13 +38,14 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JTextField;
-import javax.swing.JLayeredPane;
 
 public class AppExample {
 
 JPanel rightPanel;
+
 private static JTextField textField;
 private static JTextField textField_1;
+
 	
 	
 	
@@ -166,8 +170,10 @@ private static JTextField textField_1;
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblWelcomeToProject = new JLabel("  Welcome to Project Manager");
+		
 		lblWelcomeToProject.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panel.add(lblWelcomeToProject, BorderLayout.NORTH);
+
 
 		
 		JScrollBar scrollBar = new JScrollBar();
@@ -228,7 +234,6 @@ private static JTextField textField_1;
 		textField_1.setColumns(10);
 		
 		
-		
 		int panelSize = 120;
 		splitPane.setDividerLocation(panelSize);
 		
@@ -249,4 +254,5 @@ private static JTextField textField_1;
 			setLayout(grid);
 		}
 	}
+
 }

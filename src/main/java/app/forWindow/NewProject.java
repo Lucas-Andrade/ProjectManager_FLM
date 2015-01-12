@@ -31,14 +31,21 @@ public class NewProject extends SwingWorker<String, String>
 		PostProject dialog = new PostProject();
 		dialog.setVisible(true);
 		
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
 		
-		return "Ah, it worked.";
+		return "";
 	}
 	
 //	@Override
 //	protected 
 	
+	@Override
+	public void done()
+	{
+		JPanel panel = new JPanel();
+		panel.add(new JLabel("Ah, it worked."));
+		AppMainFrame.setRightPanel(panel);
+	}
 	
 	public class PostProject extends JDialog {
 		

@@ -18,9 +18,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JScrollBar;
 
-public class app {
+public class AppMainFrame {
 
-	JPanel rightPanel;
+	private static JPanel rightPanel = new JPanel();
+	
+	public static void setRightPanel(JPanel newRightPanel)
+	{
+		rightPanel = newRightPanel;
+	}
 	
 	
 	
@@ -67,10 +72,10 @@ public class app {
 				new NewProject().execute();
 
 				
-				JPanel panel = new JPanel();
-				splitPane.setRightComponent(panel);
-				JLabel lblStatus = new JLabel("    isto fez uma coisa    ");
-				panel.add(lblStatus, BorderLayout.SOUTH);
+//				JPanel panel = new JPanel();
+//				splitPane.setRightComponent(panel);
+//				JLabel lblStatus = new JLabel("    isto fez uma coisa    ");
+//				panel.add(lblStatus, BorderLayout.SOUTH);
 			}
 			
 		});
@@ -100,19 +105,18 @@ public class app {
 		JMenu searchMenu = new JMenu("Search");
 		vert.add(searchMenu);
 		
-		JPanel panel = new JPanel();
-		splitPane.setRightComponent(panel);
-		panel.setLayout(new BorderLayout(0, 0));
+		splitPane.setRightComponent(rightPanel);
+		rightPanel.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblWelcomeToProject = new JLabel("  Welcome to Project Manager");
 		lblWelcomeToProject.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		panel.add(lblWelcomeToProject, BorderLayout.NORTH);
+		rightPanel.add(lblWelcomeToProject, BorderLayout.NORTH);
 		
 		JScrollBar scrollBar = new JScrollBar();
-		panel.add(scrollBar, BorderLayout.EAST);
+		rightPanel.add(scrollBar, BorderLayout.EAST);
 		
 		JLabel lblStatus = new JLabel("Status: Ready");
-		panel.add(lblStatus, BorderLayout.SOUTH);
+		rightPanel.add(lblStatus, BorderLayout.SOUTH);
 		
 		
 		
