@@ -2,13 +2,11 @@ package app.forWindow.commandsFrames;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -24,7 +22,6 @@ import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -36,24 +33,23 @@ public class NewProject
 {
 	private JSplitPane pane;
 	private RepositoryHolder repositories;
+	Map<String, String> parameters;
 	
-	public NewProject(JSplitPane pane, RepositoryHolder repositories) 
+	public NewProject(JSplitPane pane, RepositoryHolder repositories, Map<String, String> authentication) 
 	{
 		this.pane = pane;
 		this.repositories = repositories;
+		parameters = authentication;
 		
 		new NewProjectFrame().setVisible(true);
 	}
 	
-	public class NewProjectWorker extends SwingWorker<String, String>
+	public class NewProjectWorker extends AppWorker
 	{
-		Map<String, String> parameters;
-		
-		public NewProjectWorker(Map<String, String> parameters)
-		{
-			this.parameters = parameters;
+		public NewProjectWorker(Map<String, String> parameters) {
+			super(parameters, pane);
 		}
-		
+
 		/**
 		 * @wbp.parser.entryPoint
 		 */
@@ -83,39 +79,6 @@ public class NewProject
 			
 			return "";
 		}
-		
-		@Override
-	    protected void process(List<String> chunks)
-		{
-			JPanel panel = new JPanel();
-	 		panel.add(new JLabel(chunks.get(0)));
-	 		pane.setRightComponent(panel);
-	     }
-		
-		@Override
-		public void done()
-		{
-			JPanel panel = new JPanel();
-			panel.add(new JLabel("Here is your result."));
-			pane.setRightComponent(panel);
-	//		pane.setDividerLocation(AppMainFrame.PANEL_DIVIDER_LOCATION);
-		}
-	}
-		
-	
-	public class CancelActionListener implements ActionListener
-	{
-		private JFrame frame;
-		
-		public CancelActionListener(JFrame frame)
-		{
-			this.frame = frame;
-		}
-		
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			frame.dispose();
-		}
 	}
 	
 	public class OkActionListener implements ActionListener
@@ -133,7 +96,7 @@ public class NewProject
 			//TODO ir buscar os parâmetros aos campos da janela, construir o mapa de parametros
 			// e fechar a janela
 			
-			Map<String, String> parameters = new HashMap<String, String>();
+			parameters.put("isto", "e aquilo");
 			
 			new NewProjectWorker(parameters).execute();
 			frame.dispose();

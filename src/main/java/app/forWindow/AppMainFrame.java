@@ -1,9 +1,12 @@
 package app.forWindow;
 
 import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.LayoutManager;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -15,6 +18,7 @@ import javax.swing.JPanel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 import javax.swing.JScrollBar;
 
@@ -27,6 +31,7 @@ public class AppMainFrame {
 	private static JSplitPane splitPane = new JSplitPane();
 	public static final int PANEL_DIVIDER_LOCATION = 120;
 	private static RepositoryHolder repositories = new InMemoryRepositoryHolder();
+	private static Map<String, String> authentication;
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Project Manager");
@@ -71,9 +76,28 @@ public class AppMainFrame {
 		rightPanel.add(lblStatus, BorderLayout.SOUTH);
 		
 		
+		JPanel leftPanel = new JPanel();
+		
+
 		
 		JMenuBar vert = new VerticalMenuBar();
-		splitPane.setLeftComponent(vert);
+		splitPane.setLeftComponent(leftPanel);
+		GridBagLayout gbl_leftPanel = new GridBagLayout();
+		gbl_leftPanel.columnWidths = new int[]{0};
+		gbl_leftPanel.rowHeights = new int[]{0};
+		gbl_leftPanel.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_leftPanel.rowWeights = new double[]{Double.MIN_VALUE};
+		leftPanel.setLayout(gbl_leftPanel);
+	//	leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.X_AXIS));
+	//	leftPanel.add(vert);
+		JLabel randstadGirlImageLabel = new JLabel("");
+		//load the image
+		ClassLoader cl = AppMainFrame.class.getClassLoader();
+		Image main = new ImageIcon(cl.getResource("images/Main.png")).getImage();
+		randstadGirlImageLabel.setIcon(new ImageIcon(main));
+		//leftPanel.add(randstadGirlImageLabel);
+	//	leftPanel.add(randstadGirlImageLabel);
+		
 		
 		JMenu projectsMenu = new JMenu("Projects");
 		vert.add(projectsMenu);
@@ -83,11 +107,9 @@ public class AppMainFrame {
 		newProjectItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new NewProject(splitPane, repositories);
+				new NewProject(splitPane, repositories, authentication);
 			}
-			
 		});
-
 		
 		JMenuItem getProjectItem = new JMenuItem("Get project");
 		projectsMenu.add(getProjectItem);
@@ -110,7 +132,7 @@ public class AppMainFrame {
 		JMenuItem mntmNewUser = new JMenuItem("New user");
 		usersMenu.add(mntmNewUser);
 		
-		JMenu searchMenu = new JMenu("Find");
+		JMenu searchMenu = new JMenu("Search");
 		vert.add(searchMenu);
 		
 		frame.setVisible(true);

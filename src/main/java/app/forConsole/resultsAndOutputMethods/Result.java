@@ -89,6 +89,14 @@ public class Result
 
 		this.results = results;
 	}
+	
+	/**
+	 * @return the results of the {@code internalCall}
+	 */
+	public AppElement[] getResults()
+	{
+		return results;
+	}
 
 	/**
 	 * Formats the results according to {@code format} and sends them to
