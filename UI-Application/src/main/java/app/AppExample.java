@@ -1,4 +1,4 @@
-package app.forWindow;
+package app;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -24,10 +24,6 @@ import javax.swing.JToolBar;
 import java.awt.BorderLayout;
 
 import javax.swing.JMenuItem;
-
-
-
-import app.forWindow.AppMainFrame.VerticalMenuBar;
 
 import javax.swing.JInternalFrame;
 

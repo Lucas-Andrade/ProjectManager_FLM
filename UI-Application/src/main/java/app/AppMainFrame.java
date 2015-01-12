@@ -1,4 +1,4 @@
-package app.forWindow;
+package app;
 
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
@@ -22,9 +22,12 @@ import java.util.Map;
 
 import javax.swing.JScrollBar;
 
-import app.forWindow.RepositoryHolders.InMemoryRepositoryHolder;
-import app.forWindow.RepositoryHolders.RepositoryHolder;
-import app.forWindow.commandsFrames.NewProject;
+import app.RepositoryHolders.InMemoryRepositoryHolder;
+import app.RepositoryHolders.RepositoryHolder;
+import app.commandsFrames.NewProject;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class AppMainFrame {
 
@@ -37,8 +40,7 @@ public class AppMainFrame {
 		JFrame frame = new JFrame("Project Manager");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(640, 420);
-		
-		splitPane.setDividerLocation(PANEL_DIVIDER_LOCATION);
+		splitPane.setContinuousLayout(true);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
@@ -77,63 +79,78 @@ public class AppMainFrame {
 		
 		
 		JPanel leftPanel = new JPanel();
+		splitPane.setLeftComponent(leftPanel);
+		GridBagLayout gbl_leftPanel = new GridBagLayout();
+		gbl_leftPanel.columnWidths = new int[]{119, 0};
+		gbl_leftPanel.rowHeights = new int[]{284, 179, 0};
+		gbl_leftPanel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_leftPanel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		leftPanel.setLayout(gbl_leftPanel);
+		
+		
+		
+		//load the image
+		ClassLoader cl = AppMainFrame.class.getClassLoader();
+		Image main = new ImageIcon(cl.getResource("images/Main.png")).getImage();
 		
 
 		
 		JMenuBar vert = new VerticalMenuBar();
-		splitPane.setLeftComponent(leftPanel);
-		GridBagLayout gbl_leftPanel = new GridBagLayout();
-		gbl_leftPanel.columnWidths = new int[]{0};
-		gbl_leftPanel.rowHeights = new int[]{0};
-		gbl_leftPanel.columnWeights = new double[]{Double.MIN_VALUE};
-		gbl_leftPanel.rowWeights = new double[]{Double.MIN_VALUE};
-		leftPanel.setLayout(gbl_leftPanel);
-	//	leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.X_AXIS));
-	//	leftPanel.add(vert);
+		
+		//	leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.X_AXIS));
+			GridBagConstraints gbc_vert = new GridBagConstraints();
+			gbc_vert.fill = GridBagConstraints.BOTH;
+			gbc_vert.insets = new Insets(0, 0, 5, 0);
+			gbc_vert.gridx = 0;
+			gbc_vert.gridy = 0;
+			leftPanel.add(vert, gbc_vert);
+			
+			
+			JMenu projectsMenu = new JMenu("Projects");
+			vert.add(projectsMenu);
+			
+			JMenuItem newProjectItem = new JMenuItem("New project");
+			projectsMenu.add(newProjectItem);
+			newProjectItem.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					new NewProject(splitPane, repositories);
+				}
+			});
+			
+			JMenuItem getProjectItem = new JMenuItem("Get project");
+			projectsMenu.add(getProjectItem);
+			
+			JMenuItem editProjectItem = new JMenuItem("Edit project");
+			projectsMenu.add(editProjectItem);
+			
+			JMenuItem mntmDeleteProject = new JMenuItem("Delete project");
+			projectsMenu.add(mntmDeleteProject);
+			
+			JMenu consultantsMenu = new JMenu("Consultants");
+			vert.add(consultantsMenu);
+			
+			JMenuItem newConsultantItem = new JMenuItem("New consultant");
+			consultantsMenu.add(newConsultantItem);
+			
+			JMenu usersMenu = new JMenu("Users");
+			vert.add(usersMenu);
+			
+			JMenuItem mntmNewUser = new JMenuItem("New user");
+			usersMenu.add(mntmNewUser);
+			
+			JMenu searchMenu = new JMenu("Search");
+			vert.add(searchMenu);
+			
 		JLabel randstadGirlImageLabel = new JLabel("");
-		//load the image
-		ClassLoader cl = AppMainFrame.class.getClassLoader();
-		Image main = new ImageIcon(cl.getResource("images/Main.png")).getImage();
 		randstadGirlImageLabel.setIcon(new ImageIcon(main));
 		//leftPanel.add(randstadGirlImageLabel);
-	//	leftPanel.add(randstadGirlImageLabel);
-		
-		
-		JMenu projectsMenu = new JMenu("Projects");
-		vert.add(projectsMenu);
-		
-		JMenuItem newProjectItem = new JMenuItem("New project");
-		projectsMenu.add(newProjectItem);
-		newProjectItem.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				new NewProject(splitPane, repositories, authentication);
-			}
-		});
-		
-		JMenuItem getProjectItem = new JMenuItem("Get project");
-		projectsMenu.add(getProjectItem);
-		
-		JMenuItem editProjectItem = new JMenuItem("Edit project");
-		projectsMenu.add(editProjectItem);
-		
-		JMenuItem mntmDeleteProject = new JMenuItem("Delete project");
-		projectsMenu.add(mntmDeleteProject);
-		
-		JMenu consultantsMenu = new JMenu("Consultants");
-		vert.add(consultantsMenu);
-		
-		JMenuItem newConsultantItem = new JMenuItem("New consultant");
-		consultantsMenu.add(newConsultantItem);
-		
-		JMenu usersMenu = new JMenu("Users");
-		vert.add(usersMenu);
-		
-		JMenuItem mntmNewUser = new JMenuItem("New user");
-		usersMenu.add(mntmNewUser);
-		
-		JMenu searchMenu = new JMenu("Search");
-		vert.add(searchMenu);
+		GridBagConstraints gbc_randstadGirlImageLabel = new GridBagConstraints();
+		gbc_randstadGirlImageLabel.anchor = GridBagConstraints.NORTH;
+		gbc_randstadGirlImageLabel.fill = GridBagConstraints.HORIZONTAL;
+		gbc_randstadGirlImageLabel.gridx = 0;
+		gbc_randstadGirlImageLabel.gridy = 1;
+		leftPanel.add(randstadGirlImageLabel, gbc_randstadGirlImageLabel);
 		
 		frame.setVisible(true);
 	}

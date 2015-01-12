@@ -1,4 +1,4 @@
-package app.forWindow.RepositoryHolders;
+package app.RepositoryHolders;
 
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;

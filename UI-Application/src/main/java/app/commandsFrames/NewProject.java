@@ -1,4 +1,4 @@
-package app.forWindow.commandsFrames;
+package app.commandsFrames;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,12 +15,16 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import app.forWindow.RepositoryHolders.RepositoryHolder;
+import utils.Local;
+import utils.Project;
+import app.AppMainFrame;
+import app.RepositoryHolders.RepositoryHolder;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.Image;
 import java.awt.Insets;
 import java.io.File;
 import java.io.IOException;
@@ -33,21 +37,19 @@ public class NewProject
 {
 	private JSplitPane pane;
 	private RepositoryHolder repositories;
-	Map<String, String> parameters;
 	
-	public NewProject(JSplitPane pane, RepositoryHolder repositories, Map<String, String> authentication) 
+	public NewProject(JSplitPane pane, RepositoryHolder repositories) 
 	{
 		this.pane = pane;
 		this.repositories = repositories;
-		parameters = authentication;
 		
 		new NewProjectFrame().setVisible(true);
 	}
 	
-	public class NewProjectWorker extends AppWorker
+	public class NewProjectWorker extends AppSwingWorker
 	{
-		public NewProjectWorker(Map<String, String> parameters) {
-			super(parameters, pane);
+		public NewProjectWorker(Project project) {
+			super(pane);
 		}
 
 		/**
@@ -93,12 +95,12 @@ public class NewProject
 		@Override
 		public void actionPerformed(ActionEvent arg0) 
 		{	
-			//TODO ir buscar os parâmetros aos campos da janela, construir o mapa de parametros
-			// e fechar a janela
+			//TODO ir buscar os parâmetros aos campos da janela, construir o
+			//projecto
 			
-			parameters.put("isto", "e aquilo");
+			Project project = new Project(new Local(1, 1, "coisa", 1), 1);
 			
-			new NewProjectWorker(parameters).execute();
+			new NewProjectWorker(project).execute();
 			frame.dispose();
 		}
 	}
@@ -138,37 +140,27 @@ public class NewProject
 			gbl_postProjectPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 			postProjectPanel.setLayout(gbl_postProjectPanel);
 			
-			
-			     //Inserir imagem : user -> Path e localização no Painel
-			{ 
-				BufferedImage myPicture;
-				try {
-					myPicture = ImageIO.read(new File("src\\main\\java\\swing\\imagens\\Project.jpg"));
-					
-						{
-							JLabel lblLocation = new JLabel("Location:");
-							GridBagConstraints gbc_lblLocation = new GridBagConstraints();
-							gbc_lblLocation.insets = new Insets(0, 0, 5, 5);
-							gbc_lblLocation.gridx = 2;
-							gbc_lblLocation.gridy = 2;
-							postProjectPanel.add(lblLocation, gbc_lblLocation);
-						}
-					
-					JLabel userLabel = new JLabel(new ImageIcon(myPicture));
-					GridBagConstraints gbc_lblUser = new GridBagConstraints();
-					gbc_lblUser.gridheight = 3;
-					gbc_lblUser.insets = new Insets(0, 0, 5, 5);
-					gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
-					gbc_lblUser.gridx = 1;
-					gbc_lblUser.gridy = 3;
-					postProjectPanel.add(userLabel, gbc_lblUser);
+		    //Inserir imagem :
+			//myPicture = ImageIO.read(new File("src\\main\\java\\swing\\imagens\\Project.jpg"));
+			ClassLoader cl = AppMainFrame.class.getClassLoader();
+			Image myPicture = new ImageIcon(cl.getResource("images/Project.jpg")).getImage();
 				
-				} catch (IOException e) 
-				{
-					e.printStackTrace();
-				}
-	
-			}
+			JLabel lblLocation = new JLabel("Location:");
+			GridBagConstraints gbc_lblLocation = new GridBagConstraints();
+			gbc_lblLocation.insets = new Insets(0, 0, 5, 5);
+			gbc_lblLocation.gridx = 2;
+			gbc_lblLocation.gridy = 2;
+			postProjectPanel.add(lblLocation, gbc_lblLocation);
+			
+			JLabel userLabel = new JLabel(new ImageIcon(myPicture));
+			GridBagConstraints gbc_lblUser = new GridBagConstraints();
+			gbc_lblUser.gridheight = 3;
+			gbc_lblUser.insets = new Insets(0, 0, 5, 5);
+			gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
+			gbc_lblUser.gridx = 1;
+			gbc_lblUser.gridy = 3;
+			postProjectPanel.add(userLabel, gbc_lblUser);
+			
 			
 			// Informação sobre o user que está a usar o programa
 			{

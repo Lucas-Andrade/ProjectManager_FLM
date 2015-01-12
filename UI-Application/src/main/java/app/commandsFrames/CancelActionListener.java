@@ -1,4 +1,4 @@
-package app.forWindow.commandsFrames;
+package app.commandsFrames;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

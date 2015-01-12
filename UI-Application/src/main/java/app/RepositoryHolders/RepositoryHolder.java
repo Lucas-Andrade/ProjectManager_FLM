@@ -1,4 +1,4 @@
-package app.forWindow.RepositoryHolders;
+package app.RepositoryHolders;
 
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;

@@ -1,4 +1,4 @@
-package app.forWindow.commandsFrames;
+package app.commandsFrames;
 
 import java.util.concurrent.Callable;
 

@@ -1,7 +1,5 @@
 package app.elements;
 
-import app.commands.BaseCommandUserAuthentication;
-
 /**
  * Class that represents the {@code User} created by the time the method
  * {@link InMemoryUserRepo#addAdmin()} is used. {@code AppProjectManager} needs
