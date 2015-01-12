@@ -59,7 +59,7 @@ public class RepositoryConstructor {
 	 * using the method {@code constructUser(int i)} where {@code i} was varied 
 	 * from 1 to 5. For more details on the properties of these {@code User}s 
 	 * see app.RepositoryConstructor.constructUser
-	 * @see app.RepositoryConstructor.constructUser
+	 * @see AppMainFrame.RepositoryConstructor.constructUser
 	 * 
 	 * @return A {@code InMemoryUserRepo} with five {@code User}s.
 	 */
@@ -92,8 +92,8 @@ public class RepositoryConstructor {
 	 * more details on the properties of these {@code Leader}s see
 	 * app.RepositoryConstructor.constructConsultant
 	 * 
-	 * @see app.RepositoryConstructor.constructLeader
-	 * @see app.RepositoryConstructor.constructConsultant
+	 * @see AppMainFrame.RepositoryConstructor.constructLeader
+	 * @see AppMainFrame.RepositoryConstructor.constructConsultant
 	 * 
 	 * @return A {@code InMemoryWorkerRepo} with a total of six {@code AWorker}s
 	 */
@@ -166,7 +166,7 @@ public class RepositoryConstructor {
 	 * The {@code Local} is constructed using the method {@code constructLocal}
 	 * and passing {@code i} to it as parameter. For more details on the properties 
 	 * of the {@code Local} see app.RepositoryConstructor.constructLocal
-	 * @see app.RepositoryConstructor.constructLocal
+	 * @see AppMainFrame.RepositoryConstructor.constructLocal
 	 * 
 	 * @param i
 	 * @return A {@code Project} with {@code PID} i.
