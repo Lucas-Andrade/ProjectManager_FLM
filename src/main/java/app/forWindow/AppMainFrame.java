@@ -18,21 +18,22 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JScrollBar;
 
+import app.forWindow.RepositoryHolders.InMemoryRepositoryHolder;
+import app.forWindow.RepositoryHolders.RepositoryHolder;
+import app.forWindow.commandsFrames.NewProject;
+
 public class AppMainFrame {
 
-	private static JPanel rightPanel = new JPanel();
-	
-	public static void setRightPanel(JPanel newRightPanel)
-	{
-		rightPanel = newRightPanel;
-	}
-	
-	
+	private static JSplitPane splitPane = new JSplitPane();
+	public static final int PANEL_DIVIDER_LOCATION = 120;
+	private static RepositoryHolder repositories = new InMemoryRepositoryHolder();
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Project Manager");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(640, 420);
+		
+		splitPane.setDividerLocation(PANEL_DIVIDER_LOCATION);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
@@ -53,8 +54,23 @@ public class AppMainFrame {
 		mnHelp.add(mntmAbout);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
-		JSplitPane splitPane = new JSplitPane();
 		frame.getContentPane().add(splitPane, BorderLayout.CENTER);
+		
+		JPanel rightPanel = new JPanel();
+		splitPane.setRightComponent(rightPanel);
+		rightPanel.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblWelcomeToProject = new JLabel("  Welcome to Project Manager");
+		lblWelcomeToProject.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		rightPanel.add(lblWelcomeToProject, BorderLayout.NORTH);
+		
+		JScrollBar scrollBar = new JScrollBar();
+		rightPanel.add(scrollBar, BorderLayout.EAST);
+		
+		JLabel lblStatus = new JLabel("Status: Ready");
+		rightPanel.add(lblStatus, BorderLayout.SOUTH);
+		
+		
 		
 		JMenuBar vert = new VerticalMenuBar();
 		splitPane.setLeftComponent(vert);
@@ -65,17 +81,9 @@ public class AppMainFrame {
 		JMenuItem newProjectItem = new JMenuItem("New project");
 		projectsMenu.add(newProjectItem);
 		newProjectItem.addActionListener(new ActionListener(){
-			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				new NewProject().execute();
-
-				
-//				JPanel panel = new JPanel();
-//				splitPane.setRightComponent(panel);
-//				JLabel lblStatus = new JLabel("    isto fez uma coisa    ");
-//				panel.add(lblStatus, BorderLayout.SOUTH);
+				new NewProject(splitPane, repositories);
 			}
 			
 		});
@@ -102,26 +110,8 @@ public class AppMainFrame {
 		JMenuItem mntmNewUser = new JMenuItem("New user");
 		usersMenu.add(mntmNewUser);
 		
-		JMenu searchMenu = new JMenu("Search");
+		JMenu searchMenu = new JMenu("Find");
 		vert.add(searchMenu);
-		
-		splitPane.setRightComponent(rightPanel);
-		rightPanel.setLayout(new BorderLayout(0, 0));
-		
-		JLabel lblWelcomeToProject = new JLabel("  Welcome to Project Manager");
-		lblWelcomeToProject.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		rightPanel.add(lblWelcomeToProject, BorderLayout.NORTH);
-		
-		JScrollBar scrollBar = new JScrollBar();
-		rightPanel.add(scrollBar, BorderLayout.EAST);
-		
-		JLabel lblStatus = new JLabel("Status: Ready");
-		rightPanel.add(lblStatus, BorderLayout.SOUTH);
-		
-		
-		
-		int panelSize = 120;
-		splitPane.setDividerLocation(panelSize);
 		
 		frame.setVisible(true);
 	}

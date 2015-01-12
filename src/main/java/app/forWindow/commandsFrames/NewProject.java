@@ -1,54 +1,148 @@
-package app.forWindow;
+package app.forWindow.commandsFrames;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 import javax.swing.SwingWorker;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import app.forWindow.RepositoryHolders.RepositoryHolder;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class NewProject extends SwingWorker<String, String>
+
+public class NewProject
 {
+	private JSplitPane pane;
+	private RepositoryHolder repositories;
 	
-	/**
-	 * @wbp.parser.entryPoint
-	 */
-	@Override
-	protected String doInBackground() throws Exception {
-		PostProject dialog = new PostProject();
-		dialog.setVisible(true);
-		
-		//Thread.sleep(5000);
-		
-		return "";
-	}
-	
-//	@Override
-//	protected 
-	
-	@Override
-	public void done()
+	public NewProject(JSplitPane pane, RepositoryHolder repositories) 
 	{
-		JPanel panel = new JPanel();
-		panel.add(new JLabel("Ah, it worked."));
-		AppMainFrame.setRightPanel(panel);
+		this.pane = pane;
+		this.repositories = repositories;
+		
+		new NewProjectFrame().setVisible(true);
 	}
 	
-	public class PostProject extends JDialog {
+	public class NewProjectWorker extends SwingWorker<String, String>
+	{
+		Map<String, String> parameters;
 		
+		public NewProjectWorker(Map<String, String> parameters)
+		{
+			this.parameters = parameters;
+		}
+		
+		/**
+		 * @wbp.parser.entryPoint
+		 */
+		@Override
+		protected String doInBackground() {
+			
+			publish("Status: Accessing database");
+			
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			publish("Status: Computing changes.");
+			
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			//Thread.sleep(5000);
+			
+			return "";
+		}
+		
+		@Override
+	    protected void process(List<String> chunks)
+		{
+			JPanel panel = new JPanel();
+	 		panel.add(new JLabel(chunks.get(0)));
+	 		pane.setRightComponent(panel);
+	     }
+		
+		@Override
+		public void done()
+		{
+			JPanel panel = new JPanel();
+			panel.add(new JLabel("Here is your result."));
+			pane.setRightComponent(panel);
+	//		pane.setDividerLocation(AppMainFrame.PANEL_DIVIDER_LOCATION);
+		}
+	}
+		
+	
+	public class CancelActionListener implements ActionListener
+	{
+		private JFrame frame;
+		
+		public CancelActionListener(JFrame frame)
+		{
+			this.frame = frame;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			frame.dispose();
+		}
+	}
+	
+	public class OkActionListener implements ActionListener
+	{
+		private JFrame frame;
+		
+		public OkActionListener(JFrame frame)
+		{
+			this.frame = frame;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) 
+		{	
+			//TODO ir buscar os parâmetros aos campos da janela, construir o mapa de parametros
+			// e fechar a janela
+			
+			Map<String, String> parameters = new HashMap<String, String>();
+			
+			new NewProjectWorker(parameters).execute();
+			frame.dispose();
+		}
+	}
+	
+	
+	public class NewProjectFrame extends JFrame
+	{
 		/**
 		 * 
 		 */
@@ -59,26 +153,14 @@ public class NewProject extends SwingWorker<String, String>
 		private JTextField longitudeField;
 		private JTextField nameField;
 		private JTextField priceField;
-
-//		/**
-//		 * Launch the application.
-//		 */
-//		public static void main(String[] args) {
-//			try {
-//				PostProject dialog = new PostProject();
-//				//definimos o título da janel
-//				dialog.setTitle("Post Project");
-//				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//				dialog.setVisible(true);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-
+	
 		/**
-		 * Create the dialog.
+		 * Create the frame.
 		 */
-		public PostProject() {
+		public NewProjectFrame() {
+			
+			this.setTitle("Post project");
+			
 			//Definição da Caixa de Diálogo
 			setBounds(100, 100, 636, 387);
 			getContentPane().setLayout(new BorderLayout());
@@ -122,7 +204,7 @@ public class NewProject extends SwingWorker<String, String>
 				{
 					e.printStackTrace();
 				}
-
+	
 			}
 			
 			// Informação sobre o user que está a usar o programa
@@ -185,7 +267,7 @@ public class NewProject extends SwingWorker<String, String>
 				gbc_lblPrice.gridy = 4;
 				postProjectPanel.add(lblPrice, gbc_lblPrice);
 				lblPrice.setToolTipText("Euros");
-
+	
 			}
 			{
 				priceField = new JTextField();
@@ -249,49 +331,17 @@ public class NewProject extends SwingWorker<String, String>
 					okButton.setActionCommand("OK");
 					buttonPane.add(okButton);
 					getRootPane().setDefaultButton(okButton);
+					okButton.addActionListener(new OkActionListener(this));
 				}
 				{
 					JButton cancelButton = new JButton("Cancel");
 					cancelButton.setActionCommand("Cancel");
 					buttonPane.add(cancelButton);
+					cancelButton.addActionListener(new CancelActionListener(this));
 				}
 			}
+			
 		}
 	}
 }
-
-
-	
-	
-//	public static void main(String[] args)
-//	{
-//		JFrame frame = new JFrame();
-//		JDialog dialog = new JDialog(frame, "New project");
-//		frame.setSize(640, 420);
-//		GridBagLayout gridBagLayout = new GridBagLayout();
-//		gridBagLayout.columnWidths = new int[]{0, 59, 0, 306, 0, 0};
-//		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
-//		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-//		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-//		frame.getContentPane().setLayout(gridBagLayout);
-//		
-//		JLabel lblNewLabel = new JLabel("Local");
-//		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-//		gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
-//		gbc_lblNewLabel.gridx = 1;
-//		gbc_lblNewLabel.gridy = 2;
-//		frame.getContentPane().add(lblNewLabel, gbc_lblNewLabel);
-//		
-//		textField = new JTextField();
-//		GridBagConstraints gbc_textField = new GridBagConstraints();
-//		gbc_textField.insets = new Insets(0, 0, 0, 5);
-//		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_textField.gridx = 3;
-//		gbc_textField.gridy = 2;
-//		frame.getContentPane().add(textField, gbc_textField);
-//		textField.setColumns(10);
-//		
-//		frame.setVisible(true);
-//	}
-
 
