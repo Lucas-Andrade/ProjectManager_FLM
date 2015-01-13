@@ -18,14 +18,14 @@ import javax.swing.JPanel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Map;
 
 import javax.swing.JScrollBar;
 
 import app.RepositoryHolders.InMemoryRepositoryHolder;
 import app.RepositoryHolders.RepositoryHolder;
+import app.commandsFrames.Authentication;
 import app.commandsFrames.NewProject;
-import java.awt.FlowLayout;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
@@ -34,7 +34,7 @@ public class AppMainFrame {
 	private static JSplitPane splitPane = new JSplitPane();
 	public static final int PANEL_DIVIDER_LOCATION = 120;
 	private static RepositoryHolder repositories = new InMemoryRepositoryHolder();
-	private static Map<String, String> authentication;
+	private static Authentication authentication = new Authentication(repositories);
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Project Manager");
@@ -157,9 +157,6 @@ public class AppMainFrame {
 
 	public static class VerticalMenuBar extends JMenuBar
 	{
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = -651471821217764757L;
 		
 		private static final LayoutManager grid = new GridLayout(10,1);
@@ -169,7 +166,5 @@ public class AppMainFrame {
 			setLayout(grid);
 		}
 	}
-	
-	
 
 }

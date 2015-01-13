@@ -59,7 +59,7 @@ public class CommandParser
 		public Node(String content)
 		{
 			this.content = content;
-			this.fixedChilds = new HashMap<>();
+			this.fixedChilds = new HashMap<String, Node>();
 		}
 
 		/**

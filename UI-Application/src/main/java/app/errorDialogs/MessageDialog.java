@@ -1,4 +1,4 @@
-package app.commandsFrames;
+package app.errorDialogs;
 
 import javax.swing.JDialog;
 
@@ -6,9 +6,9 @@ import app.elements.Message;
 
 public class MessageDialog extends JDialog {
 	
-	public MessageDialog(Message messageToRead)
+	public MessageDialog(String message)
 	{
-		String message = messageToRead.read();
+		
 		
 	}
 }

@@ -11,7 +11,7 @@
 		<version>1.0-SNAPSHOT</version>
     </parent>
 
-	<name>UI-Application-pom</name>
+	<name>UI-Application</name>
 	<url>http://maven.apache.org</url>
 
 	<build>

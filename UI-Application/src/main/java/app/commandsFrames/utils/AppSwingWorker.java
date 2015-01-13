@@ -1,4 +1,4 @@
-package app.commandsFrames;
+package app.commandsFrames.utils;
 
 import java.util.List;
 import java.util.Map;

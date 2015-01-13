@@ -5,7 +5,7 @@
 	<artifactId>Console-Application-pom</artifactId>
 	<packaging>jar</packaging>
 
-	<name>Console-Application-pom</name>
+	<name>Console-Application</name>
 	<url>http://maven.apache.org</url>
 
 	<parent>
@@ -13,8 +13,8 @@
 		<artifactId>minimal-pom</artifactId>
 		<version>1.0-SNAPSHOT</version>
     </parent>
-
-	<build>
+    
+    <build>
 		<plugins>
 			<plugin>
 				<!-- Build an executable JAR -->
@@ -51,7 +51,6 @@
 			</plugin>
 		</plugins>
 	</build>
-	
 	
 	<dependencies>
 		<dependency>
