@@ -70,8 +70,9 @@ public class PatchConsultant extends JDialog {
 		
      //Inserir imagem : consultant -> Path e localização no Painel
 		{
+			
 			JLabel consultantLabel = new JLabel("");
-			consultantLabel.setIcon(PatchConsultant.class.getClassLoader("resources/images/user.jpg"));
+			consultantLabel.setIcon(new ImageIcon(PatchConsultant.class.getClassLoader().getResource("images/user.jpg")));
 			GridBagConstraints gbc_lblConsultant = new GridBagConstraints();
 			gbc_lblConsultant.gridheight = 2;
 			gbc_lblConsultant.insets = new Insets(0, 0, 5, 5);

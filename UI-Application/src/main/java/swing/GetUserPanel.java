@@ -74,17 +74,17 @@ public class GetUserPanel extends JDialog {
 			JLabel lblGetUser = new JLabel("Get Users");
 			lblGetUser .setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
 			GridBagConstraints gbc_lblGetUser  = new GridBagConstraints();
-			gbc_lblGetUser .gridwidth = 5;
+			gbc_lblGetUser .gridwidth = 8;
 			gbc_lblGetUser .insets = new Insets(0, 0, 5, 5);
-			gbc_lblGetUser .gridx = 2;
+			gbc_lblGetUser .gridx = 0;
 			gbc_lblGetUser .gridy = 0;
-			patchProjectPanel.add(lblGetUser , gbc_lblGetUser );
+			getUsersPanel.add(lblGetUser , gbc_lblGetUser );
 		}
 		
 		 //Inserir imagem : user -> Path e localização no Painel
 		{ 
 			JLabel userLabel = new JLabel("");
-			userLabel.setIcon(GetUserPanel.class.getClassLoader("resources/images/user.jpg"));
+			userLabel.setIcon(new ImageIcon(GetUserPanel.class.getClassLoader().getResource("images/user.jpg")));
 			GridBagConstraints gbc_lblUser = new GridBagConstraints();
 			gbc_lblUser.gridheight = 2;
 			gbc_lblUser.insets = new Insets(0, 0, 5, 5);

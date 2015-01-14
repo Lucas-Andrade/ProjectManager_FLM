@@ -15,7 +15,11 @@ import javax.swing.border.EmptyBorder;
 
 public class DeleteProject extends JDialog {
 
-	private final JPanel contentPanel = new JPanel();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private final JPanel deleteProjectPanel = new JPanel();
 
 	/**
 	 * Launch the application.
@@ -36,23 +40,22 @@ public class DeleteProject extends JDialog {
 	public DeleteProject() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		deleteProjectPanel.setLayout(new FlowLayout());
+		deleteProjectPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(deleteProjectPanel, BorderLayout.CENTER);
 		
 		
-	    //Inserir imagem : user -> Path e localização no Painel
+	    //Inserir imagem : project -> Path e localização no Painel
 		{ 
 			JLabel delProjectLabel = new JLabel("");
-			delProjectLabel.setIcon(DeleteProject.class.getClassLoader("resources/images/project-delete.png"));;
-			userLabel.setIcon(new ImageIcon(user));
-			GridBagConstraints gbc_lblUser = new GridBagConstraints();
-			gbc_lblUser.gridheight = 2;
-			gbc_lblUser.insets = new Insets(0, 0, 5, 5);
-			gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
-			gbc_lblUser.gridx = 1;
-			gbc_lblUser.gridy = 3;
-			patchUserPanel.add(userLabel, gbc_lblUser);
+			delProjectLabel.setIcon(new ImageIcon(DeleteProject.class.getClassLoader().getResource("images/project-delete.png")));;
+			GridBagConstraints gbc_lblDelProject = new GridBagConstraints();
+			gbc_lblDelProject.gridheight = 2;
+			gbc_lblDelProject.insets = new Insets(0, 0, 5, 5);
+			gbc_lblDelProject.anchor = GridBagConstraints.SOUTHEAST;
+			gbc_lblDelProject.gridx = 1;
+			gbc_lblDelProject.gridy = 3;
+			deleteProjectPanel.add(delProjectLabel, gbc_lblDelProject);
 
 		}
 		

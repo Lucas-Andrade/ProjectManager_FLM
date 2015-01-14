@@ -72,7 +72,7 @@ public class PostUserPanel extends JDialog {
 		     //Inserir imagem : user -> Path e localização no Painel
 		{ 
 			JLabel userLabel = new JLabel("");
-			userLabel.setIcon(PostUserPanel.class.getClassLoader("resources/images/user.jpg"));
+			userLabel.setIcon(new ImageIcon(PostUserPanel.class.getClassLoader().getResource("images/user.jpg")));
 			GridBagConstraints gbc_lblUser = new GridBagConstraints();
 			gbc_lblUser.gridheight = 2;
 			gbc_lblUser.insets = new Insets(0, 0, 5, 5);

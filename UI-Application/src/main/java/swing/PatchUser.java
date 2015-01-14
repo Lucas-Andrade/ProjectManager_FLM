@@ -60,19 +60,18 @@ public class PatchUser extends JDialog {
 		getContentPane().add(patchUserPanel, BorderLayout.CENTER);
 		
 		// Definição do Painel interno
-		GridBagLayout gbl_patchUserPanel = new GridBagLayout();  //Layout Manager
-		gbl_patchUserPanel.columnWidths = new int[]{20, 34, 10, 100, 200, 0, 0, 0, 0};
-		gbl_patchUserPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_patchUserPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_patchUserPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		patchUserPanel.setLayout(gbl_patchUserPanel);
+		GridBagLayout gbl_getWorkersInProjectPanel = new GridBagLayout();  //Layout Manager
+		gbl_getWorkersInProjectPanel.columnWidths = new int[]{20, 34, 10, 100, 200, 0, 0, 0, 0};
+		gbl_getWorkersInProjectPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_getWorkersInProjectPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_getWorkersInProjectPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		patchUserPanel.setLayout(gbl_getWorkersInProjectPanel);
 		
 		
 		     //Inserir imagem : user -> Path e localização no Painel
 		{ 
 			JLabel userLabel = new JLabel("");
-			userLabel.setIcon(GetUserPanel.class.getClassLoader("resources/images/user.jpg"));
-			userLabel.setIcon(new ImageIcon(user));
+			userLabel.setIcon(new ImageIcon(GetUserPanel.class.getClassLoader().getResource("images/user.jpg")));
 			GridBagConstraints gbc_lblUser = new GridBagConstraints();
 			gbc_lblUser.gridheight = 2;
 			gbc_lblUser.insets = new Insets(0, 0, 5, 5);
@@ -107,10 +106,11 @@ public class PatchUser extends JDialog {
 			JLabel lblPatchUser = new JLabel("Patch User");
 			lblPatchUser.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
 			GridBagConstraints gbc_lblPatchUser = new GridBagConstraints();
+			gbc_lblPatchUser.gridwidth = 8;
 			gbc_lblPatchUser.insets = new Insets(0, 0, 5, 5);
-			gbc_lblPatchUser.gridx = 3;
+			gbc_lblPatchUser.gridx = 0;
 			gbc_lblPatchUser.gridy = 0;
-			postUserPanel.add(lblPatchUser, gbc_lblPatchUser);
+			patchUserPanel.add(lblPatchUser, gbc_lblPatchUser);
 		}
 		
 		    // Labels e campos a ser preenchidos

@@ -55,9 +55,9 @@ public class PostWorker extends JDialog {
 			
 			// Definição do Painel interno
 			GridBagLayout gbl_postWorkerPanel = new GridBagLayout();  //Layout Manager
-			gbl_postWorkerPanel.columnWidths = new int[]{20, 100, 100, 100, 100, 60, 100, 100, 10, 0};
+			gbl_postWorkerPanel.columnWidths = new int[]{20, 100, 100, 100, 100, 60, 60, 100, 100, 10, 0};
 			gbl_postWorkerPanel.rowHeights = new int[]{0, 0, 50, 0, 10, 0, 0, 0, 0, 0};
-			gbl_postWorkerPanel.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_postWorkerPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 			gbl_postWorkerPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 			PostWorkerPanel.setLayout(gbl_postWorkerPanel);
 			
@@ -67,14 +67,14 @@ public class PostWorker extends JDialog {
 			//alterar imagem
 		{ 
 			JLabel workerLabel = new JLabel("");
-			workerLabel.setIcon(PostWorker.class.getClassLoader("resources/images/add-user.png"));
-			GridBagConstraints gbc_lblUser = new GridBagConstraints();
-			gbc_lblUser.gridheight = 3;
-			gbc_lblUser.insets = new Insets(0, 0, 5, 5);
-			gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
-			gbc_lblUser.gridx = 1;
-			gbc_lblUser.gridy = 3;
-			PostWorkerPanel.add(userLabel, gbc_lblUser);
+			workerLabel.setIcon(new ImageIcon(PostWorker.class.getClassLoader().getResource("images/add-user.png")));
+			GridBagConstraints gbc_lblWorker = new GridBagConstraints();
+			gbc_lblWorker.gridheight = 3;
+			gbc_lblWorker.insets = new Insets(0, 0, 5, 5);
+			gbc_lblWorker.anchor = GridBagConstraints.SOUTHEAST;
+			gbc_lblWorker.gridx = 1;
+			gbc_lblWorker.gridy = 3;
+			PostWorkerPanel.add(workerLabel, gbc_lblWorker);
 		}
 		
 		// Título do Comando : Post Worker In Project
@@ -82,7 +82,7 @@ public class PostWorker extends JDialog {
 			JLabel label = new JLabel("Post Worker In Project");
 			label.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
 			GridBagConstraints gbc_label = new GridBagConstraints();
-			gbc_label.gridwidth = 7;
+			gbc_label.gridwidth = 8;
 			gbc_label.insets = new Insets(0, 0, 5, 5);
 			gbc_label.gridx = 1;
 			gbc_label.gridy = 0;
@@ -96,7 +96,7 @@ public class PostWorker extends JDialog {
 				GridBagConstraints gbc_lblWellcome = new GridBagConstraints();
 				gbc_lblWellcome.anchor = GridBagConstraints.BELOW_BASELINE_TRAILING;
 				gbc_lblWellcome.insets = new Insets(0, 0, 5, 5);
-				gbc_lblWellcome.gridx = 6;
+				gbc_lblWellcome.gridx = 7;
 				gbc_lblWellcome.gridy = 1;
 				PostWorkerPanel.add(lblWellcome, gbc_lblWellcome);
 			}
@@ -105,7 +105,7 @@ public class PostWorker extends JDialog {
 				JLabel lblRegistryuser = new JLabel("RegistryUser");
 				GridBagConstraints gbc_lblRegistryuser = new GridBagConstraints();
 				gbc_lblRegistryuser.insets = new Insets(0, 0, 5, 5);
-				gbc_lblRegistryuser.gridx = 7;
+				gbc_lblRegistryuser.gridx = 8;
 				gbc_lblRegistryuser.gridy = 1;
 				PostWorkerPanel.add(lblRegistryuser, gbc_lblRegistryuser);
 			}
@@ -196,7 +196,7 @@ public class PostWorker extends JDialog {
 			{
 				previewField = new JTextField();
 				GridBagConstraints gbc_previewField = new GridBagConstraints();
-				gbc_previewField.gridwidth = 7;
+				gbc_previewField.gridwidth = 8;
 				gbc_previewField.insets = new Insets(0, 0, 0, 5);
 				gbc_previewField.fill = GridBagConstraints.BOTH;
 				gbc_previewField.gridx = 1;

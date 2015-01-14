@@ -55,15 +55,15 @@ public class PostSubproject extends JDialog {
 			
 			// Definição do Painel interno
 			GridBagLayout gbl_postProjectPanel = new GridBagLayout();  //Layout Manager
-			gbl_postProjectPanel.columnWidths = new int[]{20, 0, 100, 100, 0, 60, 100, 0, 10, 0};
+			gbl_postProjectPanel.columnWidths = new int[]{20, 128, 100, 100, 0, 60, 100, 0, 10, 0};
 			gbl_postProjectPanel.rowHeights = new int[]{0, 0, 50, 0, 30, 0, 0, 0, 0};
-			gbl_postProjectPanel.columnWeights = new double[]{0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_postProjectPanel.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 			gbl_postProjectPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 			postSubprojectPanel.setLayout(gbl_postProjectPanel);
 			
 			
 			{	// Título do Comando : Post Subproject
-				JLabel lblPostSubproject = new JLabel("Post Subroject");
+				JLabel lblPostSubproject = new JLabel("Post Subproject");
 				lblPostSubproject.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
 				GridBagConstraints gbc_lblPostSubproject = new GridBagConstraints();
 				gbc_lblPostSubproject.gridwidth = 10;
@@ -76,14 +76,14 @@ public class PostSubproject extends JDialog {
 			{ //Inserir imagem : subproject -> Path e localização no Painel
 									
 				JLabel subprojectLabel = new JLabel("");
-				subprojectLabel.setIcon(PostSubproject.class.getClassLoader("resources/images/subproject.jpg"));
-				GridBagConstraints gbc_lblUser = new GridBagConstraints();
-				gbc_lblUser.gridheight = 3;
-				gbc_lblUser.insets = new Insets(0, 0, 5, 5);
-				gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
-				gbc_lblUser.gridx = 1;
-				gbc_lblUser.gridy = 3;
-				postSubprojectPanel.add(userLabel, gbc_lblUser);	
+				subprojectLabel.setIcon(new ImageIcon(PostSubproject.class.getClassLoader().getResource("images/subproject.jpg")));
+				GridBagConstraints gbc_lblSubproject = new GridBagConstraints();
+				gbc_lblSubproject.gridheight = 3;
+				gbc_lblSubproject.insets = new Insets(0, 0, 5, 5);
+				gbc_lblSubproject.anchor = GridBagConstraints.SOUTHEAST;
+				gbc_lblSubproject.gridx = 1;
+				gbc_lblSubproject.gridy = 3;
+				postSubprojectPanel.add(subprojectLabel, gbc_lblSubproject);	
 			}
 			
 			// Informação sobre o user que está a usar o programa

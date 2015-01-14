@@ -61,7 +61,7 @@ public class PostConsultant extends JDialog {
 		
 		// Definição do Painel interno
 		GridBagLayout gbl_postConsultantPanel = new GridBagLayout();  //Layout Manager
-		gbl_postConsultantPanel.columnWidths = new int[]{20, 0, 50, 50, 0, 0, 50, 0, 50, 0};
+		gbl_postConsultantPanel.columnWidths = new int[]{20, 0, 50, 100, 100, 0, 80, 0, 50, 0};
 		gbl_postConsultantPanel.rowHeights = new int[]{0, 0, 50, 0, 0, 0, 0, 0};
 		gbl_postConsultantPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_postConsultantPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
@@ -70,7 +70,7 @@ public class PostConsultant extends JDialog {
 	    //Inserir imagem : consultant -> Path e localização no Painel
 		{ 	
 			JLabel consultantLabel = new JLabel("");
-			consultantLabel.setIcon(GetUserPanel.class.getClassLoader("resources/images/user.jpg"));
+			consultantLabel.setIcon(new ImageIcon(GetUserPanel.class.getClassLoader().getResource("images/user.jpg")));
 			GridBagConstraints gbc_lblConsultant = new GridBagConstraints();
 			gbc_lblConsultant.gridheight = 2;
 			gbc_lblConsultant.insets = new Insets(0, 0, 5, 5);
@@ -108,8 +108,9 @@ public class PostConsultant extends JDialog {
 			JLabel lblPostConsultant = new JLabel("Post Consultant");
 			lblPostConsultant.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
 			GridBagConstraints gbc_lblPostConsultant = new GridBagConstraints();
+			gbc_lblPostConsultant.gridwidth = 9;
 			gbc_lblPostConsultant.insets = new Insets(0, 0, 5, 5);
-			gbc_lblPostConsultant.gridx = 5;
+			gbc_lblPostConsultant.gridx = 0;
 			gbc_lblPostConsultant.gridy = 0;
 			postConsultantPanel.add(lblPostConsultant, gbc_lblPostConsultant);
 		}
@@ -128,6 +129,7 @@ public class PostConsultant extends JDialog {
 		{
 			nameField = new JTextField();
 			GridBagConstraints gbc_nameField = new GridBagConstraints();
+			gbc_nameField.gridwidth = 2;
 			gbc_nameField.fill = GridBagConstraints.HORIZONTAL;
 			gbc_nameField.insets = new Insets(0, 0, 5, 5);
 			gbc_nameField.anchor = GridBagConstraints.SOUTH;
