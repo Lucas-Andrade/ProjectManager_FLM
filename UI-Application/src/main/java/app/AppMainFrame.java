@@ -23,8 +23,8 @@ import javax.swing.JScrollBar;
 
 import app.RepositoryHolders.InMemoryRepositoryHolder;
 import app.RepositoryHolders.RepositoryHolder;
-import app.commandsFrames.Authentication;
-import app.commandsFrames.NewProject;
+import app.commands.Authentication;
+import app.commands.NewProject;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -111,12 +111,7 @@ public class AppMainFrame {
 			
 			JMenuItem newProjectItem = new JMenuItem("New project");
 			projectsMenu.add(newProjectItem);
-			newProjectItem.addActionListener(new ActionListener(){
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					new NewProject(splitPane, repositories);
-				}
-			});
+			newProjectItem.addActionListener(new NewProject(splitPane, repositories, authentication));
 			
 			JMenuItem getProjectItem = new JMenuItem("Get project");
 			projectsMenu.add(getProjectItem);

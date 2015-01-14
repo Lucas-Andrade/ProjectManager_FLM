@@ -1,16 +1,13 @@
-package app.commandsFrames;
+package app.commands;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.SwingWorker;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -19,8 +16,8 @@ import utils.Local;
 import utils.Project;
 import app.AppMainFrame;
 import app.RepositoryHolders.RepositoryHolder;
-import app.commandsFrames.utils.AppSwingWorker;
-import app.commandsFrames.utils.CancelActionListener;
+import app.commands.utils.AppSwingWorker;
+import app.commands.utils.CancelActionListener;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -28,28 +25,20 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Image;
 import java.awt.Insets;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
-public class NewProject
-{
-	private JSplitPane pane;
-	private RepositoryHolder repositories;
+public class NewProject extends BaseCommand{
 	
-	public NewProject(JSplitPane pane, RepositoryHolder repositories) 
-	{
-		this.pane = pane;
-		this.repositories = repositories;
-		
+	public NewProject(JSplitPane pane, RepositoryHolder repositories, Authentication authentication) {
+		super(pane, repositories, authentication);
+	}
+	
+	@Override
+	public void execute() {
 		new NewProjectFrame().setVisible(true);
 	}
 	
-	public class NewProjectWorker extends AppSwingWorker
-	{
+	public class NewProjectWorker extends AppSwingWorker{
 		public NewProjectWorker(Project project) {
 			super(pane);
 		}
@@ -85,18 +74,15 @@ public class NewProject
 		}
 	}
 	
-	public class OkActionListener implements ActionListener
-	{
+	public class OkActionListener implements ActionListener{
 		private JFrame frame;
 		
-		public OkActionListener(JFrame frame)
-		{
+		public OkActionListener(JFrame frame){
 			this.frame = frame;
 		}
 		
 		@Override
-		public void actionPerformed(ActionEvent arg0) 
-		{	
+		public void actionPerformed(ActionEvent arg0) {	
 			//TODO ir buscar os parâmetros aos campos da janela, construir o
 			//projecto
 			
@@ -108,8 +94,7 @@ public class NewProject
 	}
 	
 	
-	public class NewProjectFrame extends JFrame
-	{
+	public class NewProjectFrame extends JFrame{
 		/**
 		 * 
 		 */
