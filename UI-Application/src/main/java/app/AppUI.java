@@ -16,5 +16,4 @@ public class AppUI {
 	public static void main(String[] args) {
 		new MainFrame(splitPane, repositories, authentication).setVisible(true);
 	}
-
 }
