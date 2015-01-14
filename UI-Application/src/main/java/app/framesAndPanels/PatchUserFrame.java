@@ -1,4 +1,4 @@
-package swing;
+package app.framesAndPanels;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class PatchUser extends JDialog {
+public class PatchUserFrame extends JDialog {
 
 	/**
 	 * 
@@ -37,7 +37,7 @@ public class PatchUser extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			PatchUser dialog = new PatchUser();
+			PatchUserFrame dialog = new PatchUserFrame();
 			//definimos o título da janel
 			dialog.setTitle("Patch User");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -51,7 +51,7 @@ public class PatchUser extends JDialog {
 	 * Create the dialog.
 	 * @throws IOException 
 	 */
-	public PatchUser() 
+	public PatchUserFrame() 
 	{
 		//Definição da Caixa de Diálogo
 		setBounds(100, 100, 636, 387);

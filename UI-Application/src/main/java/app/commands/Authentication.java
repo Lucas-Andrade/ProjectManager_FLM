@@ -2,9 +2,9 @@ package app.commands;
 
 import javax.swing.JDialog;
 
-import app.RepositoryHolders.RepositoryHolder;
 import app.elements.UserInterface;
 import app.repository.UserRepository;
+import app.repositoryHolders.RepositoryHolder;
 
 public class Authentication implements IAuthentication {
 	

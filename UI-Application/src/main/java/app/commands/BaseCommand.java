@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JSplitPane;
 
-import app.RepositoryHolders.RepositoryHolder;
+import app.repositoryHolders.RepositoryHolder;
 
 public abstract class BaseCommand implements Command{
 	

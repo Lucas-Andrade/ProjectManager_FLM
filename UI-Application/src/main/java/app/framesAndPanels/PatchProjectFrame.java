@@ -1,4 +1,4 @@
-package swing;
+package app.framesAndPanels;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class PatchProject extends JDialog {
+public class PatchProjectFrame extends JDialog {
 
 	/**
 	 * 
@@ -37,7 +37,7 @@ public class PatchProject extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			PatchProject dialog = new PatchProject();
+			PatchProjectFrame dialog = new PatchProjectFrame();
 			//definimos o título da janel
 			dialog.setTitle("Patch Project");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -50,7 +50,7 @@ public class PatchProject extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public PatchProject() {
+	public PatchProjectFrame() {
 		//Definição da Caixa de Diálogo
 		setBounds(100, 100, 636, 387);
 		getContentPane().setLayout(new BorderLayout());
@@ -81,7 +81,7 @@ public class PatchProject extends JDialog {
 	    //Inserir imagem : user -> Path e localização no Painel
 		{ 
 			JLabel projectLabel = new JLabel("");
-			projectLabel.setIcon(new ImageIcon(PatchProject.class.getClassLoader().getResource("images/project.png")));
+			projectLabel.setIcon(new ImageIcon(PatchProjectFrame.class.getClassLoader().getResource("images/project.png")));
 			GridBagConstraints gbc_lblProject = new GridBagConstraints();
 			gbc_lblProject.gridheight = 3;
 			gbc_lblProject.insets = new Insets(0, 0, 5, 5);

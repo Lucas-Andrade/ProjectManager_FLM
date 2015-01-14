@@ -1,4 +1,4 @@
-package swing;
+package app.framesAndPanels;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 import javax.swing.JList;
 
-public class PostSubproject extends JDialog {
+public class PostSubprojectFrame extends JDialog {
 
 	private final JPanel postSubprojectPanel = new JPanel();
 	private JTextField textField;
@@ -32,7 +32,7 @@ public class PostSubproject extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostSubproject dialog = new PostSubproject();
+			PostSubprojectFrame dialog = new PostSubprojectFrame();
 			dialog.setTitle("Post Subproject");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -44,7 +44,7 @@ public class PostSubproject extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public PostSubproject() 
+	public PostSubprojectFrame() 
 	{
 
 			//Definição da Caixa de Diálogo
@@ -76,7 +76,7 @@ public class PostSubproject extends JDialog {
 			{ //Inserir imagem : subproject -> Path e localização no Painel
 									
 				JLabel subprojectLabel = new JLabel("");
-				subprojectLabel.setIcon(new ImageIcon(PostSubproject.class.getClassLoader().getResource("images/subproject.jpg")));
+				subprojectLabel.setIcon(new ImageIcon(PostSubprojectFrame.class.getClassLoader().getResource("images/subproject.jpg")));
 				GridBagConstraints gbc_lblSubproject = new GridBagConstraints();
 				gbc_lblSubproject.gridheight = 3;
 				gbc_lblSubproject.insets = new Insets(0, 0, 5, 5);

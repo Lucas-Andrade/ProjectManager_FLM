@@ -1,4 +1,4 @@
-package swing;
+package app.framesAndPanels;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JCheckBox;
 
-public class PostWorker extends JDialog {
+public class PostWorkerFrame extends JDialog {
 
 	private final JPanel PostWorkerPanel = new JPanel();
 	private JTextField previewField;
@@ -32,7 +32,7 @@ public class PostWorker extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostWorker dialog = new PostWorker();
+			PostWorkerFrame dialog = new PostWorkerFrame();
 			dialog.setTitle("Post Worker In Project");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -44,7 +44,7 @@ public class PostWorker extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public PostWorker() 
+	public PostWorkerFrame() 
 	{
 
 			//Definição da Caixa de Diálogo
@@ -67,7 +67,7 @@ public class PostWorker extends JDialog {
 			//alterar imagem
 		{ 
 			JLabel workerLabel = new JLabel("");
-			workerLabel.setIcon(new ImageIcon(PostWorker.class.getClassLoader().getResource("images/add-user.png")));
+			workerLabel.setIcon(new ImageIcon(PostWorkerFrame.class.getClassLoader().getResource("images/add-user.png")));
 			GridBagConstraints gbc_lblWorker = new GridBagConstraints();
 			gbc_lblWorker.gridheight = 3;
 			gbc_lblWorker.insets = new Insets(0, 0, 5, 5);

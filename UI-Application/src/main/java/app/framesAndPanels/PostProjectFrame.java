@@ -1,4 +1,4 @@
-package swing;
+package app.framesAndPanels;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -6,11 +6,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.event.ActionListener;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -19,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class PostProject extends JDialog {
+public class PostProjectFrame extends JDialog {
 
 	/**
 	 * 
@@ -36,7 +33,7 @@ public class PostProject extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostProject dialog = new PostProject();
+			PostProjectFrame dialog = new PostProjectFrame(null);
 			//definimos o título da janel
 			dialog.setTitle("Post Project");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -49,7 +46,7 @@ public class PostProject extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public PostProject() {
+	public PostProjectFrame(ActionListener okActionListener) {
 		//Definição da Caixa de Diálogo
 		setBounds(100, 100, 636, 387);
 		getContentPane().setLayout(new BorderLayout());
@@ -79,7 +76,7 @@ public class PostProject extends JDialog {
 	
 		{	//Inserir imagem : Project -> Path e localização no Painel
 			JLabel projectLabel = new JLabel("");
-			projectLabel.setIcon(new ImageIcon(PatchProject.class.getClassLoader().getResource("images/project.png")));
+			projectLabel.setIcon(new ImageIcon(PatchProjectFrame.class.getClassLoader().getResource("images/project.png")));
 			GridBagConstraints gbc_lblProject = new GridBagConstraints();
 			gbc_lblProject.gridheight = 3;
 			gbc_lblProject.insets = new Insets(0, 0, 5, 5);
@@ -212,11 +209,13 @@ public class PostProject extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
+				okButton.addActionListener(okActionListener);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
+				cancelButton.addActionListener(new CancelActionListener(this));
 			}
 		}
 	}

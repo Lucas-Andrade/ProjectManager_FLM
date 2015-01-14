@@ -1,4 +1,4 @@
-package swing;
+package app.framesAndPanels;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class DeleteProject extends JDialog {
+public class DeleteProjectFrame extends JDialog {
 
 	/**
 	 * 
@@ -26,7 +26,7 @@ public class DeleteProject extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			DeleteProject dialog = new DeleteProject();
+			DeleteProjectFrame dialog = new DeleteProjectFrame();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -37,7 +37,7 @@ public class DeleteProject extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public DeleteProject() {
+	public DeleteProjectFrame() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		deleteProjectPanel.setLayout(new FlowLayout());
@@ -48,7 +48,7 @@ public class DeleteProject extends JDialog {
 	    //Inserir imagem : project -> Path e localização no Painel
 		{ 
 			JLabel delProjectLabel = new JLabel("");
-			delProjectLabel.setIcon(new ImageIcon(DeleteProject.class.getClassLoader().getResource("images/project-delete.png")));;
+			delProjectLabel.setIcon(new ImageIcon(DeleteProjectFrame.class.getClassLoader().getResource("images/project-delete.png")));;
 			GridBagConstraints gbc_lblDelProject = new GridBagConstraints();
 			gbc_lblDelProject.gridheight = 2;
 			gbc_lblDelProject.insets = new Insets(0, 0, 5, 5);

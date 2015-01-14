@@ -1,16 +1,14 @@
-package app.commands.utils;
+package app.framesAndPanels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 
-public class CancelActionListener implements ActionListener
-{
-	private JFrame frame;
+public class CancelActionListener implements ActionListener{
+	private JDialog frame;
 	
-	public CancelActionListener(JFrame frame)
-	{
+	public CancelActionListener(JDialog frame){
 		this.frame = frame;
 	}
 	
