@@ -12,8 +12,7 @@ import app.elements.AppElement;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface Repository<T extends AppElement>
-{
+public interface Repository<T extends AppElement>{
 
 	/**
 	 * Removes all elements from the {@code Repository}.

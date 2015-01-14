@@ -8,8 +8,7 @@ import org.json.JSONObject;
  * 
  * Extends {@link Consultant}.
  */
-public class Leader extends Consultant
-{
+public class Leader extends Consultant{
 
 	/**
 	 * @field bonus - bonus received by the worker for being a leader or a
@@ -39,13 +38,13 @@ public class Leader extends Consultant
 	 *            manager.
 	 */
 	public Leader(String name, double costPerHour, double hoursWorked,
-			double bonus, long cid)
-	{
+			double bonus, long cid){
 
 		super(name, costPerHour, hoursWorked, cid);
 
-		if (bonus < 0)
+		if (bonus < 0){
 			throw new IllegalArgumentException();
+		}
 
 		this.bonus = bonus;
 	}
@@ -55,41 +54,47 @@ public class Leader extends Consultant
 	 * Interface.
 	 */
 	@Override
-	public double getCost()
-	{
-
+	public double getCost(){
 		return this.getCostPerHour() * this.getWorkerHours() + bonus;
 	}
 
 	/**
 	 * @return {@code bonus}.
 	 */
-	public double getBonus()
-	{
+	public double getBonus(){
 		return bonus;
 	}
 	
 	@Override
-	public JSONObject getJson() 
-	{
+	public JSONObject getJson() {
 		JSONObject worker = super.getJson();
 		worker.put("Bonus", bonus);
 		return worker;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		long temp;
+		temp = Double.doubleToLongBits(bonus);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
 	/**
 	 * Override of the method {@code equals()} from {@code Object} to be
 	 * consistent with the {@code compareTo()} method.
 	 */
 	@Override
-	public boolean equals(Object worker)
-	{
-		if(! (worker instanceof Leader))
+	public boolean equals(Object worker){
+		if(! (worker instanceof Leader)){
 			return false;
-		
-		if(bonus != ((Leader) worker).getBonus())
+		}
+		if(bonus != ((Leader) worker).getBonus()){
 			return false;
-		
+		}
 		return super.equals(worker);
 	}
+
 }

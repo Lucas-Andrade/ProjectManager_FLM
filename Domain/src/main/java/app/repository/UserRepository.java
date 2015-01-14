@@ -10,8 +10,7 @@ import app.elements.UserInterface;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/20
  */
-public interface UserRepository extends Repository<AppElement>
-{
+public interface UserRepository extends Repository<AppElement>{
 	/**
 	 * Gets the user with the given loginName, or {@code null} if none exists
 	 * 

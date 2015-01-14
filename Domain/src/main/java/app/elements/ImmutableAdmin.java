@@ -10,14 +10,12 @@ package app.elements;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class ImmutableAdmin extends Admin
-{
+public class ImmutableAdmin extends Admin {
 
 	/**
 	 * The constructor of {@code ImmutableAdmin}.
 	 */
-	public ImmutableAdmin()
-	{
+	public ImmutableAdmin(){
 		super("admin", "admin");
 	}
 

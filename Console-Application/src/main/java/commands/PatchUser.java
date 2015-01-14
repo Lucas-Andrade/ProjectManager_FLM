@@ -18,8 +18,7 @@ import app.repository.UserRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 05/01/2015
  */
-public class PatchUser extends BaseCommandUserAuthentication
-{
+public class PatchUser extends BaseCommandUserAuthentication{
 
 	/**
 	 * {@code String} with the to be added {@code User}'s Username argument.
@@ -64,8 +63,7 @@ public class PatchUser extends BaseCommandUserAuthentication
 	 * Class that implements the {@link PostUsers} factory, according to the
 	 * {@link CommandFactory}.
 	 */
-	public static class Factory implements CommandFactory
-	{
+	public static class Factory implements CommandFactory{
 
 		/**
 		 * The {@link UserRepository} with the {@code User}s. The created
@@ -83,8 +81,7 @@ public class PatchUser extends BaseCommandUserAuthentication
 		 * @param uRepository
 		 *            The {@code UserRepository}.
 		 */
-		public Factory(UserRepository uRepository)
-		{
+		public Factory(UserRepository uRepository){
 			this.uRepository = uRepository;
 		}
 
@@ -92,8 +89,7 @@ public class PatchUser extends BaseCommandUserAuthentication
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)
-		{
+		public Callable<Result> newInstance(Map<String, String> parameters)	{
 			return new PatchUser(uRepository, parameters);
 
 		}
@@ -107,8 +103,7 @@ public class PatchUser extends BaseCommandUserAuthentication
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	public PatchUser(UserRepository repository, Map<String, String> parameters)
-	{
+	public PatchUser(UserRepository repository, Map<String, String> parameters){
 		super(repository, parameters);
 		this.repository = repository;
 	}
@@ -118,34 +113,29 @@ public class PatchUser extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception
-	{
+	protected AppElement[] internalCall() throws Exception{
 
 		this.newPassword = getParameterAsString(NEWPASSWORD);
 		String oldPassword = parameters.get(OLDPASSWORD);
 		this.username = getParameterAsString(USERNAME);
 
-		if (!super.authenticateUser(this.username, oldPassword))
+		if (!super.authenticateUser(this.username, oldPassword)){
 			return new AppElement[] { new Message(
 					"Old password is not correct for user: " + username) };
-		;
+		}
 
 		UserInterface user = repository.getUserByUsername(username);
 		AppElement[] messageAux = new AppElement[1];
 
-		if (user == null)
-		{
+		if (user == null){
 			Message message = new Message("User not found!");
 			messageAux[0] = message;
 			return messageAux;
 		}
-
-		if (user.setNewPassword(newPassword))
-		{
+		if (user.setNewPassword(newPassword)){
 			Message message = new Message("Password successfully changed");
 			messageAux[0] = message;
-		} else
-		{
+		} else {
 			Message message = new Message(
 					"New password must at least have 4 characters.");
 			messageAux[0] = message;
@@ -157,9 +147,7 @@ public class PatchUser extends BaseCommandUserAuthentication
 	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
-	protected String[] getMandatoryParameters()
-	{
+	protected String[] getMandatoryParameters(){
 		return DEMANDING_PARAMETERS;
 	}
-
 }

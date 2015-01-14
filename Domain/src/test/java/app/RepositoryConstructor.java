@@ -38,13 +38,11 @@ public class RepositoryConstructor {
 	 * 
 	 * @return A {@code InMemoryProjectRepo} with 5 projects in it.
 	 */
-	public static InMemoryProjectRepo constructProjectRepo()
-	{
+	public static InMemoryProjectRepo constructProjectRepo(){
 		InMemoryProjectRepo repo = new InMemoryProjectRepo();
 		repo.removeAll();
 
-		for(int i = 1; i <= 5; i++)
-		{
+		for(int i = 1; i <= 5; i++){
 			Project project = constructProject(repo.getNextPID());
 			repo.addProject(project);
 		}
@@ -63,13 +61,11 @@ public class RepositoryConstructor {
 	 * 
 	 * @return A {@code InMemoryUserRepo} with five {@code User}s.
 	 */
-	public static InMemoryUserRepo constructUserRepo()
-	{
+	public static InMemoryUserRepo constructUserRepo(){
 		InMemoryUserRepo repo = new InMemoryUserRepo();
 		repo.removeAll();
 		
-		for(int i = 1; i <= 5; i++)
-		{
+		for(int i = 1; i <= 5; i++){
 			User user = constructUser(i);
 			repo.addUser(user);
 		}
@@ -97,18 +93,15 @@ public class RepositoryConstructor {
 	 * 
 	 * @return A {@code InMemoryWorkerRepo} with a total of six {@code AWorker}s
 	 */
-	public static InMemoryWorkerRepo constructWorkerRepo()
-	{
+	public static InMemoryWorkerRepo constructWorkerRepo(){
 		InMemoryWorkerRepo repo = new InMemoryWorkerRepo();
 		repo.removeAll();
 		
-		for(int i = 1; i <= 4; i++) //the value of i represents the value of the CID being used
-		{
+		for(int i = 1; i <= 4; i++){ //the value of i represents the value of the CID being used
 			Consultant cons = constructConsultant(repo.nextCID());
 			repo.addConsultant(cons);
 		}
-		for(int i = 5; i <= 6; i++) //the value of i represents the value of the CID being used
-		{
+		for(int i = 5; i <= 6; i++){ //the value of i represents the value of the CID being used
 			Leader mana = constructLeader(repo.nextCID());
 			repo.addManager(mana);
 		}
@@ -125,8 +118,7 @@ public class RepositoryConstructor {
 	 * @param i - the {@code CID} of the {@code Consultant}
 	 * @return A {@code Consultant} with {@code CID} {@code i}
 	 */
-	public static Consultant constructConsultant(long i)
-	{
+	public static Consultant constructConsultant(long i){
 		return new Consultant("worker" + i, i, 0, i);
 	}
 	
@@ -139,8 +131,7 @@ public class RepositoryConstructor {
 	 * @param i - the {@code CID} of the {@code Leader}
 	 * @return A {@code Leader} with {@code CID} i
 	 */
-	public static Leader constructLeader(long i)
-	{
+	public static Leader constructLeader(long i){
 		return new Leader("worker" + i, i, 0, i, i);
 	}
 	
@@ -156,8 +147,7 @@ public class RepositoryConstructor {
 	 * 
 	 * @return A {@code User}
 	 */
-	public static User constructUser(int i)
-	{
+	public static User constructUser(int i){
 		return new User("user" + i, "userPass" + i, "user" + i + "@email.com", "User " + i);
 	}
 	
@@ -171,8 +161,7 @@ public class RepositoryConstructor {
 	 * @param i
 	 * @return A {@code Project} with {@code PID} i.
 	 */
-	public static Project constructProject(long i)
-	{
+	public static Project constructProject(long i){
 		return new Project(constructLocal((int)i), i);
 	}
 	
@@ -185,8 +174,7 @@ public class RepositoryConstructor {
 	 * @param i
 	 * @return A {@code Local}.
 	 */
-	public static Local constructLocal(int i)
-	{
+	public static Local constructLocal(int i){
 		return new Local(i, i, "local" + i, i);
 	}
 }

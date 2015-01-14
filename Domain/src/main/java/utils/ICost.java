@@ -5,8 +5,6 @@ package utils;
  * implemented by the classes {@code Local}, {@code AContainer}, {@code Element}
  * and their subclasses.
  */
-public interface ICost
-{
-
+public interface ICost{
 	public double getCost();
 }

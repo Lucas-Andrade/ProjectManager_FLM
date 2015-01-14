@@ -9,8 +9,7 @@ package utils;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class Team extends AContainer<AWorker> implements IName
-{
+public class Team extends AContainer<AWorker> implements IName {
 
 	/**
 	 * @field name - the name of the team.
@@ -21,15 +20,16 @@ public class Team extends AContainer<AWorker> implements IName
 	 * Override of the method {@code getELementByName()} from {@code AContainer}
 	 * .
 	 */
-	public UtilsElement getElementByName(String name)
-	{
+	public UtilsElement getElementByName(String name){
 
-		if (name == null)
+		if (name == null){
 			throw new IllegalArgumentException();
-
-		for (UtilsElement element : this.getElementsList())
-			if (element.getName().equals(name))
+		}
+		for (UtilsElement element : this.getElementsList()){
+			if (element.getName().equals(name)){
 				return element;
+			}
+		}
 
 		return null;
 	}
@@ -39,8 +39,7 @@ public class Team extends AContainer<AWorker> implements IName
 	 * Interface.
 	 */
 	@Override
-	public String getName()
-	{
+	public String getName(){
 		return name;
 	}
 }

@@ -18,8 +18,7 @@ import app.elements.UserInterface;
  * @since 08/12/2014
  */
 public class InMemoryUserRepo extends InMemoryRepo<User> implements
-		UserRepository
-{
+		UserRepository {
 
 	/**
 	 * {@code Map} that stores the {@code User}s of this repository. The
@@ -32,8 +31,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * Contructor for {@code InMemoryUserRepo}. Also adds an {@link ImmutableAdmin}
 	 * {@link User} to the Repository.
 	 */
-	public InMemoryUserRepo()
-	{
+	public InMemoryUserRepo(){
 		users.put("admin", new ImmutableAdmin());
 	}
 
@@ -41,8 +39,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * @see UserRepository#getUserByUsername(String)
 	 */
 	@Override
-	public UserInterface getUserByUsername(String loginName)
-	{
+	public UserInterface getUserByUsername(String loginName){
 		return users.get(loginName);
 	}
 
@@ -53,15 +50,13 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 *         repository.
 	 */
 	@Override
-	public AppElement[] getAll()
-	{
+	public AppElement[] getAll(){
 		UserInterface[] userArray = new UserInterface[users.size()];
 
 		Set<Entry<String, UserInterface>> usersSet = users.entrySet();
 		int index = 0;
 
-		for (Entry<String, UserInterface> user : usersSet)
-		{
+		for (Entry<String, UserInterface> user : usersSet){
 			userArray[index] = user.getValue();
 			index++;
 		}
@@ -72,12 +67,10 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	/**
 	 * @see Object#toString()
 	 */
-	public String toString()
-	{
+	public String toString(){
 		StringBuilder builder = new StringBuilder();
 
-		for (AppElement user : getAll())
-		{
+		for (AppElement user : getAll()){
 			builder.append(user.toString()).append("\n");
 		}
 
@@ -88,16 +81,15 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * @see UserRepository#isPasswordCorrectForUser(String, String)
 	 */
 	@Override
-	public boolean isPasswordCorrectForUser(String username, String userPassword)
-	{
+	public boolean isPasswordCorrectForUser(String username, String userPassword){
 		UserInterface user = users.get(username);
 
-		if (user == null)
+		if (user == null){
 			return false;
-
-		if (user.getLoginPassword().equals(userPassword))
+		}
+		if (user.getLoginPassword().equals(userPassword)){
 			return true;
-		else
+		}
 			return false;
 	}
 
@@ -108,8 +100,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * @see Repository#removeAll()
 	 */
 	@Override
-	public void removeAll()
-	{
+	public void removeAll(){
 		users.clear();
 		users.put("admin", new ImmutableAdmin());
 	}
@@ -118,16 +109,13 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * @see UserRepository#addUser(User)
 	 */
 	@Override
-	public boolean addUser(User user)
-	{
+	public boolean addUser(User user){
 
 		String username = user.getLoginName();
 
-		if (users.containsKey(username))
-		{
+		if (users.containsKey(username)){
 			return false;
-		} else
-		{
+		} else{
 			users.put(username, user);
 			return true;
 		}
@@ -136,8 +124,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	/**
 	 * @see Repository#size()
 	 */
-	public int size()
-	{
+	public int size(){
 		return users.size();
 	}
 
@@ -145,30 +132,17 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * @see UserRepository#addAdmin(String, String)
 	 */
 	@Override
-	public boolean addAdmin(String username, String password)
-	{
+	public boolean addAdmin(String username, String password){
 		return addUser(new Admin(username, password));
 	}
-//
-//	@Override
-//	public JSONObject[] getJson() 
-//	{
-//		DatabaseElement[] allElements = getAll();
-//		JSONObject[] json = new JSONObject[users.size()];
-//		int i = 0;
-//		for (DatabaseElement ele : allElements)
-//			json[i++] = ele.getJson();
-//		return json;
-//	}
 
 	@Override
-	public JSONObject getJson() 
-	{
+	public JSONObject getJson() {
 		AppElement[] allElements = getAll();
 		JSONObject json = new JSONObject();
-		for (AppElement ele : allElements)
+		for (AppElement ele : allElements){
 			json.accumulate("All users", ele.getJson());
-		
+		}
 		return json;
 	}
 }

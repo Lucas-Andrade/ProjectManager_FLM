@@ -9,8 +9,7 @@ import app.elements.AppElement;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface ProjectsRepository extends Repository<AppElement>
-{
+public interface ProjectsRepository extends Repository<AppElement>{
 
 	/**
 	 * Get's the {@code Project} with the supplied PID from the repository.

@@ -10,8 +10,7 @@ import java.io.IOException;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 28/12/2014
  */
-public class ToFile implements Writable
-{
+public class ToFile implements Writable{
 
 	/**
 	 * String with the path and name of the destination file.
@@ -24,8 +23,7 @@ public class ToFile implements Writable
 	 * @param pathToDestinationFile
 	 *            String with the path and name of the destination file.
 	 */
-	public ToFile(String pathToDestinationFile)
-	{
+	public ToFile(String pathToDestinationFile){
 		this.pathToDestinationFile = pathToDestinationFile;
 	}
 
@@ -33,17 +31,14 @@ public class ToFile implements Writable
 	 * @see Writable#write(String)
 	 */
 	@Override
-	public void write(String info) throws IOException
-	{
+	public void write(String info) throws IOException{
 		BufferedWriter writer = new BufferedWriter(new FileWriter(
 				pathToDestinationFile));
 		String[] lines = info.split("\n");
-		for (String line : lines)
-		{
+		for (String line : lines){
 			writer.write(line);
 			writer.newLine();
 		}
 		writer.close();
 	}
-
 }

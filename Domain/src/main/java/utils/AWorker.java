@@ -15,8 +15,7 @@ import app.elements.WorkerInterface;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public abstract class AWorker extends UtilsElement implements WorkerInterface
-{
+public abstract class AWorker extends UtilsElement implements WorkerInterface {
 
 	/**
 	 * @field name - String with the name of the worker.
@@ -43,12 +42,11 @@ public abstract class AWorker extends UtilsElement implements WorkerInterface
 	 * @param hoursWorked
 	 *            - total amount of hours worked by the worker.
 	 */
-	public AWorker(String name, double costPerHour, double hoursWorked, long cid)
-	{
+	public AWorker(String name, double costPerHour, double hoursWorked, long cid){
 
-		if (name == null || costPerHour < 0 || hoursWorked < 0)
+		if (name == null || costPerHour < 0 || hoursWorked < 0){
 			throw new IllegalArgumentException();
-
+		}
 		this.costPerHour = costPerHour;
 		this.hoursWorked = hoursWorked;
 		this.name = name;
@@ -58,8 +56,7 @@ public abstract class AWorker extends UtilsElement implements WorkerInterface
 	/**
 	 * @return {@code costPerHour}.
 	 */
-	public double getCostPerHour()
-	{
+	public double getCostPerHour(){
 
 		return costPerHour;
 	}
@@ -67,8 +64,7 @@ public abstract class AWorker extends UtilsElement implements WorkerInterface
 	/**
 	 * @return {@code hoursWorked}.
 	 */
-	public double getWorkerHours()
-	{
+	public double getWorkerHours(){
 
 		return hoursWorked;
 	}
@@ -78,8 +74,7 @@ public abstract class AWorker extends UtilsElement implements WorkerInterface
 	 * Interface.
 	 */
 	@Override
-	public String getName()
-	{
+	public String getName(){
 		return name;
 	}
 
@@ -88,8 +83,7 @@ public abstract class AWorker extends UtilsElement implements WorkerInterface
 	 * Interface.
 	 */
 	@Override
-	public double getCost()
-	{
+	public double getCost(){
 		return costPerHour * hoursWorked;
 	}
 
@@ -97,8 +91,7 @@ public abstract class AWorker extends UtilsElement implements WorkerInterface
 	 * @return The worker identification number.
 	 */
 	@Override
-	public long getCID()
-	{
+	public long getCID(){
 		return cid;
 	}
 
@@ -108,8 +101,7 @@ public abstract class AWorker extends UtilsElement implements WorkerInterface
 	 * @param name
 	 *            The name of the worker.
 	 */
-	public void setName(String name)
-	{
+	public void setName(String name){
 		this.name = name;
 	}
 
@@ -119,10 +111,10 @@ public abstract class AWorker extends UtilsElement implements WorkerInterface
 	 * @param costPerHour
 	 *            The cost of the worker for one hour of work.
 	 */
-	public boolean setCostPerHour(double costPerHour)
-	{
-		if(costPerHour < 0)
+	public boolean setCostPerHour(double costPerHour){
+		if(costPerHour < 0){
 			return false;
+		}
 		this.costPerHour = costPerHour;
 		return true;
 	}
@@ -131,8 +123,7 @@ public abstract class AWorker extends UtilsElement implements WorkerInterface
 	 * Override of the method {@code toString()} from {@code Object}.
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString(){
 		StringBuilder builder = new StringBuilder();
 		DecimalFormat df = new DecimalFormat("#.##");
 
@@ -172,19 +163,18 @@ public abstract class AWorker extends UtilsElement implements WorkerInterface
 	 * {@code equals} from {@code Object}.
 	 */
 	@Override
-	public int compareTo(UtilsElement element)
-	{
-		if (element == null)
+	public int compareTo(UtilsElement element){
+		if (element == null){
 			throw new IllegalArgumentException();
-
-		if (!(element instanceof AWorker))
+		}
+		if (!(element instanceof AWorker)){
 			throw new ClassCastException();
-
+		}
 		AWorker worker = (AWorker) element;
 
-		if (this.costPerHour > worker.getCostPerHour())
+		if (this.costPerHour > worker.getCostPerHour()){
 			return 1;
-
+		}
 		return this.costPerHour < worker.getCostPerHour() ? -1 : this.getName()
 				.compareTo(worker.getName());
 	}
@@ -193,8 +183,7 @@ public abstract class AWorker extends UtilsElement implements WorkerInterface
 	 * Override of the method {@code hashCode()} from {@code Object}.
 	 */
 	@Override
-	public int hashCode()
-	{
+	public int hashCode(){
 		final int prime = 31;
 		int result = 1;
 		long temp;
@@ -212,35 +201,44 @@ public abstract class AWorker extends UtilsElement implements WorkerInterface
 	 * consistent with the {@code compareTo()} method.
 	 */
 	@Override
-	public boolean equals(Object worker)
-	{
-		if (worker == null)
+	public boolean equals(Object worker){
+		if (worker == null){
 			return false;
-		
-		if (! (worker instanceof AWorker))
+		}
+		if (! (worker instanceof AWorker)){
 			return false;
-		
-		if (this == worker)
+		}
+		if (this == worker){
 			return true;
-
-		if (getClass() != worker.getClass())
+		}
+		if (getClass() != worker.getClass()){
 			return false;
-
-		if (((AWorker) worker).compareTo(this) != 0)
-			return false;
+		}
 		
-		if(cid != ((AWorker)worker).getCID())
+		return hasSameProperties((AWorker)worker);
+	}
+	
+	/**
+	 * Verifies if the {@code AWorker} passed as parameter has the same properties as {@code this}.
+	 * @param worker
+	 * @return true if the {@code AWorker} passed as parameter has the same properties as {@code this}
+	 * @return false if the {@code AWorker} passed as parameter has not the same properties as 
+	 * {@code this}
+	 */
+	public boolean hasSameProperties(AWorker worker){
+		if(cid != worker.getCID()){
 			return false;
+		}
+		if(hoursWorked != worker.getWorkerHours()){
+			return false;
+		}
+		if(! name.equals(worker.getName())){
+			return false;
+		}
+		if(costPerHour != worker.getCostPerHour()){
+			return false;
+		}
 		
-		if(hoursWorked != ((AWorker)worker).getWorkerHours())
-			return false;
-		
-		if(! name.equals(((AWorker)worker).getName()))
-			return false;
-		
-		if(costPerHour != ((AWorker)worker).getCostPerHour())
-			return false;
-
 		return true;
 	}
 

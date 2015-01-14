@@ -21,8 +21,7 @@ import app.repository.WorkerRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostConsultant extends BaseCommandUserAuthentication
-{
+public class PostConsultant extends BaseCommandUserAuthentication{
 
 	/**
 	 * The {@link WorkerRepository} with the {@code AWorker}s. The created
@@ -58,8 +57,7 @@ public class PostConsultant extends BaseCommandUserAuthentication
 	 * Class that implements the {@link PostConsultant} factory, according to
 	 * the {@link CommandFactory}.
 	 */
-	public static class Factory implements CommandFactory
-	{
+	public static class Factory implements CommandFactory{
 
 		/**
 		 * The {@link WorkerRepository} with the {@code AWorker}s. The created
@@ -81,8 +79,7 @@ public class PostConsultant extends BaseCommandUserAuthentication
 		 * @param uRepository    The {@code UserRepository} with the {@code User}.
 		 * @param repository     The {@code WorkerRepository} with the {@code AWorker}s.
 		 */
-		public Factory(UserRepository uRepository, WorkerRepository repository)
-		{
+		public Factory(UserRepository uRepository, WorkerRepository repository){
 			this.repository = repository;
 			this.uRepository = uRepository;
 		}
@@ -91,8 +88,7 @@ public class PostConsultant extends BaseCommandUserAuthentication
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)
-		{
+		public Callable<Result> newInstance(Map<String, String> parameters){
 			return new PostConsultant(uRepository, repository, parameters);
 		}
 	}
@@ -105,8 +101,7 @@ public class PostConsultant extends BaseCommandUserAuthentication
 	 * @param parameters     The command arguments.
 	 */
 	public PostConsultant(UserRepository uRepository,
-			WorkerRepository repository, Map<String, String> parameters)
-	{
+			WorkerRepository repository, Map<String, String> parameters){
 		super(uRepository, parameters);
 		this.repository = repository;
 	}
@@ -115,8 +110,7 @@ public class PostConsultant extends BaseCommandUserAuthentication
 	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
-	protected String[] getMandatoryParameters()
-	{
+	protected String[] getMandatoryParameters(){
 		return DEMANDING_PARAMETERS;
 	}
 
@@ -129,14 +123,12 @@ public class PostConsultant extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall()	throws CommandException, IOException
-	{
+	protected AppElement[] internalCall()	throws CommandException, IOException{
 		String name = getParameterAsString(NAME);
 		double priceHour = getParameterAsDouble(PRICE_HOUR);
 		AppElement[] messageAux = new AppElement[1];
 		
-		if (priceHour < 0)
-		{
+		if (priceHour < 0){
 			Message message = new Message("Specified price per hour of the worker is less than zero.");
 			messageAux[0] = message;
 			return messageAux;
@@ -144,19 +136,16 @@ public class PostConsultant extends BaseCommandUserAuthentication
 
 		long cid = repository.nextCID();
 
-		try
-		{
+		try{
 			double bonus = getParameterAsDouble(BONUS);
 
 			Leader manager = new Leader(name, priceHour, 0, bonus, cid);
 			repository.addManager(manager);
 			
-		} catch (NullPointerException e)
-		{
+		} catch (NullPointerException e){
 			Consultant consultant = new Consultant(name, priceHour, 0, cid);
 			repository.addConsultant(consultant);
-		} catch (IllegalArgumentException e)
-		{
+		} catch (IllegalArgumentException e){
 			Message message1 = new Message("Cannot post a manager with negative bonus.");
 			messageAux[0] = message1;
 			return messageAux;
@@ -166,5 +155,4 @@ public class PostConsultant extends BaseCommandUserAuthentication
 		messageAux[0] = message1;
 		return messageAux;
 	}
-
 }

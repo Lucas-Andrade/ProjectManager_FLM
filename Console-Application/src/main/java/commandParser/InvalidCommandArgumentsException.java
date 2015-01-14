@@ -5,20 +5,15 @@ package commandParser;
  * trying to parse a command which has an illegal syntax.
  */
 @SuppressWarnings("serial")
-public class InvalidCommandArgumentsException extends CommandParserException
-{
-	public InvalidCommandArgumentsException()
-	{
+public class InvalidCommandArgumentsException extends CommandParserException{
+	public InvalidCommandArgumentsException(){
 	}
 
-	public InvalidCommandArgumentsException(String message)
-	{
+	public InvalidCommandArgumentsException(String message){
 		super(message);
 	}
 
-	public InvalidCommandArgumentsException(String message, Throwable cause)
-	{
+	public InvalidCommandArgumentsException(String message, Throwable cause){
 		super(message, cause);
 	}
-
 }

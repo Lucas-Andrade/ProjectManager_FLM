@@ -5,8 +5,7 @@ package commandParser;
  * finding argument repetitions in a command.
  */
 @SuppressWarnings("serial")
-public class DuplicateArgumentsException extends CommandParserException 
-{
+public class DuplicateArgumentsException extends CommandParserException {
 	public DuplicateArgumentsException() {
 	}
 
@@ -14,9 +13,8 @@ public class DuplicateArgumentsException extends CommandParserException
 		super(message);
 	}
 
-
 	public DuplicateArgumentsException(String message, Throwable cause) {
 		super(message, cause);
 	}
- 
+
 }

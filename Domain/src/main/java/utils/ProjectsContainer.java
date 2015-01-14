@@ -15,16 +15,16 @@ public class ProjectsContainer extends AContainer<Project> {
 	 */
 	public UtilsElement getElementByName(String name) {
 
-		if (name == null)
+		if (name == null){
 			throw new IllegalArgumentException();
-
+		}
 		for (Project element : this.getElementsList()) {
 			
 			UtilsElement project = element.getSubProjectByName(name);
 			
-			if(project == null)
+			if(project == null){
 				continue;
-				
+			}
 			return project;
 		}
 
@@ -34,8 +34,7 @@ public class ProjectsContainer extends AContainer<Project> {
 	/**
 	 * @return a string with information about all the projects in the container
 	 */
-	public String toString()
-	{
+	public String toString(){
 		return toString(0);
 	}
 	
@@ -46,15 +45,14 @@ public class ProjectsContainer extends AContainer<Project> {
 	 * @param nr 
 	 * @return information about all the projects in the container
 	 */
-	public String toString(int nr)
-	{
+	public String toString(int nr){
 		Collection<Project> elementsList = getElementsList();
 		
 		StringBuilder builder = new StringBuilder();
 
-		for (Project element : elementsList)
+		for (Project element : elementsList){
 			builder.append(element.toString(nr));
-		
+		}
 		return builder.toString();
 	}
 

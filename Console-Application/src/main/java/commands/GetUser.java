@@ -16,8 +16,7 @@ import app.repository.UserRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class GetUser extends BaseCommandResultsOutputMethod
-{
+public class GetUser extends BaseCommandResultsOutputMethod{
 
 	/**
 	 * {@code String} with the {@code User}'s Username argument. This argument
@@ -44,9 +43,7 @@ public class GetUser extends BaseCommandResultsOutputMethod
 	 * Class that implements the {@link GetUser} factory, according to the
 	 * AbstratFactory design pattern.
 	 */
-	public static class Factory implements CommandFactory
-	{
-
+	public static class Factory implements CommandFactory{
 		/**
 		 * The {@link UserRepository} with the {@code User}s. This
 		 * {@code UserRepository} is accessed to get the {@code User}.
@@ -59,8 +56,7 @@ public class GetUser extends BaseCommandResultsOutputMethod
 		 * @param repository
 		 *            The {@code UserRepository}.
 		 */
-		public Factory(UserRepository repository)
-		{
+		public Factory(UserRepository repository){
 			this.repository = repository;
 		}
 
@@ -68,8 +64,7 @@ public class GetUser extends BaseCommandResultsOutputMethod
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)
-		{
+		public Callable<Result> newInstance(Map<String, String> parameters){
 			return new GetUser(repository, parameters);
 		}
 	}
@@ -80,8 +75,7 @@ public class GetUser extends BaseCommandResultsOutputMethod
 	 * @param repository  The {@code UserRepository}.
 	 * @param parameters  The {@code Command} arguments.
 	 */
-	private GetUser(UserRepository repository, Map<String, String> parameters)
-	{
+	private GetUser(UserRepository repository, Map<String, String> parameters){
 		super(parameters);
 		this.username = parameters.get(USERNAME);
 		this.repository = repository;
@@ -91,8 +85,7 @@ public class GetUser extends BaseCommandResultsOutputMethod
 	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
-	protected String[] getMandatoryParameters()
-	{
+	protected String[] getMandatoryParameters(){
 		return new String[] { USERNAME };
 	}
 
@@ -105,13 +98,11 @@ public class GetUser extends BaseCommandResultsOutputMethod
 	 * @see BaseCommandResultsOutputMethod#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception
-	{
+	protected AppElement[] internalCall() throws Exception{
 		AppElement[] user = new AppElement[]{repository.getUserByUsername(username)};
-		if(user[0] == null)
+		if(user[0] == null){
 			return new AppElement[]{new Message("User " + username + " not found!")};
+		}
 		return user;
 	}
-
-
 }

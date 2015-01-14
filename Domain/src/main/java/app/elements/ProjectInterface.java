@@ -11,8 +11,7 @@ import utils.Project;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface ProjectInterface extends AppElement
-{
+public interface ProjectInterface extends AppElement{
 
 	/**
 	 * Gives the Container with all subprojects of the project.

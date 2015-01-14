@@ -16,8 +16,7 @@ import app.repository.UserRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 05/01/2015
  */
-public class PatchProject extends BaseCommandUserAuthentication
-{
+public class PatchProject extends BaseCommandUserAuthentication {
 
 	/**
 	 * The {@link ProjectsRepository} with the {@code Project}s. This
@@ -62,8 +61,7 @@ public class PatchProject extends BaseCommandUserAuthentication
 	 * Class that implements the {@code GetSubproject} factory, according to the
 	 * {@link CommandFactory}.
 	 */
-	public static class Factory implements CommandFactory
-	{
+	public static class Factory implements CommandFactory{
 
 		/**
 		 * The {@link ProjectsRepository} with the {@code Project}s. This
@@ -80,8 +78,7 @@ public class PatchProject extends BaseCommandUserAuthentication
 		 *            The {@code ProjectRepository} with the {@code Project}.
 		 */
 		public Factory(UserRepository uRepository,
-				ProjectsRepository pRepository)
-		{
+				ProjectsRepository pRepository){
 			this.pRepository = pRepository;
 			this.uRepository = uRepository;
 		}
@@ -90,8 +87,7 @@ public class PatchProject extends BaseCommandUserAuthentication
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)
-		{
+		public Callable<Result> newInstance(Map<String, String> parameters){
 			return new PatchProject(uRepository, pRepository, parameters);
 		}
 	}
@@ -105,8 +101,7 @@ public class PatchProject extends BaseCommandUserAuthentication
 	 *            The command arguments.
 	 */
 	public PatchProject(UserRepository uRepository,
-			ProjectsRepository pRepository, Map<String, String> parameters)
-	{
+			ProjectsRepository pRepository, Map<String, String> parameters){
 		super(uRepository, parameters);
 		this.pRepository = pRepository;
 	}
@@ -118,67 +113,73 @@ public class PatchProject extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception
-	{
+	protected AppElement[] internalCall() throws Exception{
 
 		Project project = pRepository.getProjectById(getParameterAsLong(PID));
 		AppElement[] messageAux = new AppElement[1];
 
-		if (project == null)
-		{
-			Message message = new Message("Project not found!");
-			messageAux[0] = message;
+		if (project == null){
+			messageAux[0] = new Message("Project not found!");
 			return messageAux;
 		}
-
-		if (parameters.containsKey(LONGITUDE))
-		{
-			if (!project.updateLongitude(getParameterAsDouble(LONGITUDE)))
-			{
-				Message message = new Message("Longitude out of bounds.");
-				messageAux[0] = message;
-				return messageAux;
-			}
+		
+		AppElement patch = patchParameters(project);
+		if(patch != null){
+			messageAux[0] = patch;
+			return messageAux;
 		}
-
-		if (parameters.containsKey(LATITUDE))
-		{
-			if (!project.updateLatitude(getParameterAsDouble(LATITUDE)))
-			{
-				Message message = new Message("Latitude out of bounds.");
-				messageAux[0] = message;
-				return messageAux;
-			}
-		}
-
-		if (parameters.containsKey(NAME))
-		{
+		
+		messageAux[0] = new Message("The Project parameters were successfully changed!");
+		return messageAux;
+	}
+	
+	/**
+	 * Verifies which parameters of the {@code Project} were parsed into the parameter's {@code Map},
+	 * and updates the {@code Project} accordingly. If any parameter is out of bounds a {@code Message}
+	 * will be returned.
+	 * @param project
+	 * @return A {@code Message} if a parameter is out of bounds
+	 * @return {@code null} if no {@code Message} was needed 
+	 */
+	private AppElement patchParameters(Project project){
+		if (parameters.containsKey(NAME)){
 			project.updateLocalName(getParameterAsString(NAME));
 		}
-
-		if (parameters.containsKey(PRICE))
-		{
-			if (!project.updateLocalPrice(getParameterAsDouble(PRICE)))
-			{
-				Message message = new Message(
-						"A negative price is not allowed.");
-				messageAux[0] = message;
-				return messageAux;
-			}
+		return checkParametersToPatch(project);
+	}
+	
+	/**
+	 * Verifies any parameter of the {@code Project} that could be out of bounds was parsed 
+	 * to the parameters {@code Map}. If any parameter is out of bounds a {@code Message}
+	 * will be returned.
+	 * @param project
+	 * @return A {@code Message} if a parameter is out of bounds
+	 * @return {@code null} if no {@code Message} was needed 
+	 */
+	private AppElement checkParametersToPatch(Project project){
+		if (parameters.containsKey(LONGITUDE) && 
+				!project.updateLongitude(getParameterAsDouble(LONGITUDE))){
+			return new Message("Longitude out of bounds.");
 		}
-		Message message = new Message("The Project parameters were successfully changed!");
-		messageAux[0] = message;
+	
+		if (parameters.containsKey(LATITUDE) && 
+					!project.updateLatitude(getParameterAsDouble(LATITUDE))){
+			return new Message("Latitude out of bounds.");
+		}
+	
+		if (parameters.containsKey(PRICE) &&
+					!project.updateLocalPrice(getParameterAsDouble(PRICE))){
+			return new Message("A negative price is not allowed.");
+		}
 		
-		return messageAux;
+		return null;
 	}
 
 	/**
 	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
-	protected String[] getMandatoryParameters()
-	{
+	protected String[] getMandatoryParameters(){
 		return DEMANDING_PARAMETERS;
 	}
-
 }

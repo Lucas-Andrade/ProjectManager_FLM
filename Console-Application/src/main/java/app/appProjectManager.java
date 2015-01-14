@@ -92,8 +92,7 @@ import commands.exceptions.CommandException;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class AppProjectManager
-{
+public class appProjectManager{
 
 	/**
 	 * The variable that defines the default Output used in this application.
@@ -115,8 +114,7 @@ public class AppProjectManager
 	 */
 	public static void RegisterCommand(CommandParser parser,
 			UserRepository userRepo, ProjectsRepository projectRepo,
-			WorkerRepository workersRepo) throws InvalidRegisterException
-	{
+			WorkerRepository workersRepo) throws InvalidRegisterException{
 
 		parser.registerCommand("POST", "/users",
 				new PostUsers.Factory(userRepo));
@@ -157,8 +155,7 @@ public class AppProjectManager
 	 * use this application: The actually available commands and the
 	 * implementation notes
 	 */
-	public static void helpCommand()
-	{
+	public static void helpCommand(){
 		DEFAULT_SYSTEM_OUT.println("IMPLEMENTATION NOTES:");
 		DEFAULT_SYSTEM_OUT
 				.println(" - Only registered users can use POST commands;"
@@ -190,8 +187,7 @@ public class AppProjectManager
 	 * @throws Exception
 	 */
 	public static void execute(CommandParser parser, UserRepository userRepo)
-			throws Exception
-	{
+			throws Exception{
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 
@@ -204,21 +200,18 @@ public class AppProjectManager
 		DEFAULT_SYSTEM_OUT.print("Insert New password:");
 		String password = scanner.nextLine();
 
-		while (password.length() <= 3)
-		{
+		while (password.length() <= 3){
 			DEFAULT_SYSTEM_OUT
 					.println("Password must at least have 4 characters.\nInsert password:");
 			password = scanner.nextLine();
 		}
 		userRepo.addAdmin("Admin1", password);
 
-		do
-		{
+		do{
 			DEFAULT_SYSTEM_OUT
 					.println("\nInsert the command you want to execute:");
 			String cmd = scanner.nextLine();
-			switch (cmd)
-			{
+			switch (cmd){
 
 				case "HELP":
 					helpCommand();
@@ -247,58 +240,46 @@ public class AppProjectManager
 	 * @throws Exception
 	 */
 	private static void commandPrompt(CommandParser parser, String cmd)
-			throws Exception
-	{
-		try
-		{
+			throws Exception{
+		try{
 			Result results = parser.getCommand(cmd.split(" ")).call();
 			results.showResults();
-		} catch (CommandException e) // Excepções relacionadas com os comandos.
-		{
+		} catch (CommandException e){ //commands related exceptions.
 			DEFAULT_SYSTEM_OUT.println(e.getMessage());
-		} catch (CommandParserException e) // Excepções relacionadas com o
-											// CommandParser.
-		{
+		} catch (CommandParserException e){// Command Parser related exceptions.
 			DEFAULT_SYSTEM_OUT.println(e.getMessage());
-		} catch (NullPointerException e)
-		{
+		} catch (NullPointerException e){
 			DEFAULT_SYSTEM_OUT.println("Not found.");
-		} catch (FileNotFoundException e) // Excepção relacionada com o Result.
-		{
+		} catch (FileNotFoundException e){ //Result related exceptions
 			DEFAULT_SYSTEM_OUT
 					.println("Invalid output destination for results.");
-		} catch (ClassNotFoundException e) // Excepção relacionada com o Result.
-		{
+		} catch (ClassNotFoundException e){ //Result related exceptions.
 			DEFAULT_SYSTEM_OUT.println("Invalid accept format for results.");
-		} catch (Exception e) // Todas as restantes excepções.
-		{
+		} catch (Exception e) { // Every other exception
 			DEFAULT_SYSTEM_OUT.println(e.getMessage());
 			DEFAULT_SYSTEM_OUT.println(e.getClass().getName());
 		}
 	}
 
-	public static void main(String[] args) throws Exception
-	{
+	public static void main(String[] args) throws Exception{
 		CommandParser parser = new CommandParser();
 		UserRepository userRepo = new InMemoryUserRepo();
-		try
-		{
+		try{
 			RegisterCommand(parser, userRepo, new InMemoryProjectRepo(),
 					new InMemoryWorkerRepo());
-		} catch (InvalidRegisterException e)
-		{
+		} catch (InvalidRegisterException e){
 			DEFAULT_SYSTEM_OUT.println(e.getMessage());
 		}
 
-		if (args.length == 0)
-		{
+		if (args.length == 0){
 			execute(parser, userRepo);
 			DEFAULT_SYSTEM_OUT.close();
 			return;
 		}
 
-		for (String cmd : args)
+		for (String cmd : args){
 			commandPrompt(parser, cmd);
+		}
 		DEFAULT_SYSTEM_OUT.close();
 	}
 

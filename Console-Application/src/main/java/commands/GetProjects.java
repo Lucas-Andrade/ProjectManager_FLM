@@ -16,8 +16,7 @@ import app.repository.ProjectsRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class GetProjects extends BaseCommandResultsOutputMethod
-{
+public class GetProjects extends BaseCommandResultsOutputMethod{
 
 	/**
 	 * The {@link ProjectsRepository} with the {@code Project}s. This
@@ -42,9 +41,7 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 	 * Class that implements the {@code GetSubproject} factory, according to the
 	 * {@link CommandFactory}.
 	 */
-	public static class Factory implements CommandFactory
-	{
-
+	public static class Factory implements CommandFactory{
 		/**
 		 * The {@link ProjectsRepository} with the {@code Project}s. This
 		 * {@code ProjectRepository} is accessed to get the {@code Project}
@@ -56,8 +53,7 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 		 * 
 		 * @param repository    The {@code ProjectRepository} with the {@code Project}.
 		 */
-		public Factory(ProjectsRepository repository)
-		{
+		public Factory(ProjectsRepository repository){
 			this.repository = repository;
 		}
 
@@ -65,8 +61,7 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)
-		{
+		public Callable<Result> newInstance(Map<String, String> parameters)	{
 			return new GetProjects(repository, parameters);
 		}
 	}
@@ -78,8 +73,7 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 	 * @param parameters    The Command arguments.
 	 */
 	public GetProjects(ProjectsRepository repository,
-			Map<String, String> parameters)
-	{
+			Map<String, String> parameters){
 		super(parameters);
 		this.repository = repository;
 	}
@@ -88,8 +82,7 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
-	protected String[] getMandatoryParameters()
-	{
+	protected String[] getMandatoryParameters(){
 		return DEMANDING_PARAMETERS;
 	}
 
@@ -101,15 +94,13 @@ public class GetProjects extends BaseCommandResultsOutputMethod
 	 * {@code Project}
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception
-	{
+	protected AppElement[] internalCall() throws Exception{
 		Project project = repository.getProjectById(getParameterAsLong(PID));
 		
-		if(project == null)
+		if(project == null){
 			return new AppElement[]{new Message("Project not found!")};
-
+		}
 		AppElement[] projectAux = {project};
 		return projectAux;
 	}
-
 }

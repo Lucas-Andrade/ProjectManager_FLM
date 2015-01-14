@@ -13,8 +13,7 @@ import outputMethods.Result;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface CommandFactory
-{
+public interface CommandFactory{
 	/**
 	 * Generates a new instance of {@code Command}.
 	 * 

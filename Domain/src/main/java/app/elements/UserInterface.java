@@ -8,8 +8,7 @@ package app.elements;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface UserInterface extends AppElement
-{
+public interface UserInterface extends AppElement{
 
 	/**
 	 * Method for getting the User's Username.
@@ -47,7 +46,14 @@ public interface UserInterface extends AppElement
 	/**
 	 * @see Object#equals(Object)
 	 */
-	public boolean equals(UserInterface user);
+	@Override
+	public boolean equals(Object user);
+	
+	/**
+	 * @see Object#hashCode(Object)
+	 */
+	@Override
+	public int hashCode();
 
 	/**
 	 * allows to set a new password for the user, provided it has the minimum number of 

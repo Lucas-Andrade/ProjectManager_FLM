@@ -21,8 +21,7 @@ import app.repository.UserRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 17/12/2014
  */
-public class DeleteProjects extends BaseCommandUserAuthentication
-{
+public class DeleteProjects extends BaseCommandUserAuthentication{
 
 	/**
 	 * The {@link ProjectsRepository} with the {@code Project}s. This
@@ -49,9 +48,7 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 	 * Class that implements the {@code DeleteProject} factory, according to the
 	 * {@link CommandFactory}.
 	 */
-	public static class Factory implements CommandFactory
-	{
-
+	public static class Factory implements CommandFactory{
 		/**
 		 * The {@link ProjectsRepository} with the {@code Project}s. This
 		 * {@code ProjectRepository} is accessed to get the {@code Project}s
@@ -73,8 +70,7 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 		 *            The {@code ProjectRepository} with the {@code Project}s.
 		 */
 		public Factory(UserRepository uRepository,
-				ProjectsRepository pRepository)
-		{
+				ProjectsRepository pRepository){
 			this.pRepository = pRepository;
 			this.uRepository = uRepository;
 		}
@@ -83,8 +79,7 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)
-		{
+		public Callable<Result> newInstance(Map<String, String> parameters){
 			return new DeleteProjects(uRepository, pRepository, parameters);
 		}
 	}
@@ -100,8 +95,7 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 	 *            The {@code Command} arguments.
 	 */
 	public DeleteProjects(UserRepository uRepository,
-			ProjectsRepository repository, Map<String, String> parameters)
-	{
+			ProjectsRepository repository, Map<String, String> parameters){
 		super(uRepository, parameters);
 		this.repository = repository;
 	}
@@ -110,8 +104,7 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
-	protected String[] getMandatoryParameters()
-	{
+	protected String[] getMandatoryParameters(){
 		return DEMANDING_PARAMETERS;
 	}
 
@@ -125,18 +118,17 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception
-	{
+	protected AppElement[] internalCall() throws Exception{
 		long pid = this.getParameterAsLong(PID);
 		Project parent = repository.getProjectById(pid);
-		if (parent == null)
+		if (parent == null){
 			return new AppElement[] { new Message("Project not found!") };
-
+		}
 		Collection<Project> projectsToRemove = getAllProjectsToRemove(parent);
 
-		for (Project project : projectsToRemove)
+		for (Project project : projectsToRemove){
 			repository.removeProject(project);
-
+		}
 		return new AppElement[]{new Message("Project successfully deleted.")};
 	}
 
@@ -149,18 +141,15 @@ public class DeleteProjects extends BaseCommandUserAuthentication
 	 * @return A {@code Collection} with all the subprojects of a parent
 	 *         {@code Project}, and all of their subprojects and so on.
 	 */
-	private Collection<Project> getAllProjectsToRemove(Project parent)
-	{
+	private Collection<Project> getAllProjectsToRemove(Project parent){
 		Collection<Project> toRemove = new ArrayList<Project>();
 		toRemove.add(parent);
 
 		Collection<Project> subprojects = parent.getContainerProject();
-		for (Project project : subprojects)
-		{
+		for (Project project : subprojects){
 			toRemove.addAll(getAllProjectsToRemove(project));
 		}
 		parent.removeAllSubprojects();
 		return toRemove;
 	}
-
 }

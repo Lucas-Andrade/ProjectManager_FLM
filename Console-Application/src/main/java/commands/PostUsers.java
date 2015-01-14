@@ -19,8 +19,7 @@ import app.repository.UserRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostUsers extends BaseCommandUserAuthentication
-{
+public class PostUsers extends BaseCommandUserAuthentication{
 
 	/**
 	 * {@code String} with the to be added {@code User}'s Username argument.
@@ -80,8 +79,7 @@ public class PostUsers extends BaseCommandUserAuthentication
 	 * Class that implements the {@link PostUsers} factory, according to the
 	 * {@link CommandFactory}.
 	 */
-	public static class Factory implements CommandFactory
-	{
+	public static class Factory implements CommandFactory{
 
 		/**
 		 * The {@link UserRepository} with the {@code User}s. The created
@@ -98,8 +96,7 @@ public class PostUsers extends BaseCommandUserAuthentication
 		 * 
 		 * @param uRepository   The {@code UserRepository}.
 		 */
-		public Factory(UserRepository uRepository)
-		{
+		public Factory(UserRepository uRepository){
 			this.uRepository = uRepository;
 		}
 
@@ -107,8 +104,7 @@ public class PostUsers extends BaseCommandUserAuthentication
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)
-		{
+		public Callable<Result> newInstance(Map<String, String> parameters){
 			return new PostUsers(uRepository, parameters);
 		}
 
@@ -120,8 +116,7 @@ public class PostUsers extends BaseCommandUserAuthentication
 	 * @param repository   The {@code UserRepository}.
 	 * @param parameters   The {@code Command} arguments.
 	 */
-	public PostUsers(UserRepository repository, Map<String, String> parameters)
-	{
+	public PostUsers(UserRepository repository, Map<String, String> parameters){
 		super(repository, parameters);
 		this.repository = repository;
 	}
@@ -130,8 +125,7 @@ public class PostUsers extends BaseCommandUserAuthentication
 	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
-	protected String[] getMandatoryParameters()
-	{
+	protected String[] getMandatoryParameters(){
 		return DEMANDING_PARAMETERS;
 	}
 
@@ -145,16 +139,14 @@ public class PostUsers extends BaseCommandUserAuthentication
 	 */
 	@Override
 	protected AppElement[] internalCall()
-			throws CommandException, IOException
-	{
+			throws CommandException, IOException{
 		AppElement[] messageAux = new AppElement[1];
 		Message message;
 		
 		this.username = parameters.get(USERNAME);
 		this.password = parameters.get(PASSWORD);
 		
-		if(password.length() < User.minCharInPass)
-		{
+		if(password.length() < User.minCharInPass){
 			message = new Message("User's password must have at least 4 characters.");
 			messageAux[0] = message;
 			
@@ -165,31 +157,24 @@ public class PostUsers extends BaseCommandUserAuthentication
 		this.fullname = parameters.get(FULLNAME);
 		UserInterface[] existingUsers = (UserInterface[]) repository.getAll();
 		
-		for (UserInterface existingUser : existingUsers)
-		{
-			if (existingUser.getLoginName().equals(this.username))
-			{
+		for (UserInterface existingUser : existingUsers){
+			if (existingUser.getLoginName().equals(this.username)){
 				message = new Message("The Specified Username already exists in repository.");
 				messageAux[0] = message;
 				
 				return messageAux;
 			}
 		}
-		if (this.validEmail())
-		{
+		if (this.validEmail()){
 			repository.addUser(new User(this.username, this.password,
 					this.email, this.fullname));
 			
 			message = new Message("Success.");
 			messageAux[0] = message;
-			
-		
-		} else
-		{
+		} else {
 			message = new Message("The Email is not valid.");
 			messageAux[0] = message;
 		}
-		
 		return messageAux;
 	}
 
@@ -198,16 +183,16 @@ public class PostUsers extends BaseCommandUserAuthentication
 	 * 
 	 * @return Returns True if valid, False if not.
 	 */
-	private boolean validEmail()
-	{
-		if (!(email.contains("@")))
+	private boolean validEmail(){
+		if (!(email.contains("@"))){
 			return false;
-		if (email.substring(email.indexOf("@") + 1, email.length()).contains(
-				"@"))
+		}
+		if (email.substring(email.indexOf("@") + 1, email.length()).contains("@")){
 			return false;
-		if (email.lastIndexOf(".") < email.lastIndexOf("@"))
+		}
+		if (email.lastIndexOf(".") < email.lastIndexOf("@")){
 			return false;
+		}
 		return true;
 	}
-
 }

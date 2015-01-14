@@ -22,8 +22,7 @@ import app.repository.ProjectsRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class GetProjectWorkers extends BaseCommandResultsOutputMethod
-{
+public class GetProjectWorkers extends BaseCommandResultsOutputMethod {
 
 	/**
 	 * The {@link ProjectsRepository} with the {@code Project}s. This
@@ -71,8 +70,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 * Class that implements the {@code GetProjectWorkers} factory, according to
 	 * the {@link CommandFactory}.
 	 */
-	public static class Factory implements CommandFactory
-	{
+	public static class Factory implements CommandFactory{
 
 		/**
 		 * The {@link ProjectsRepository} with the {@code Project}s. This
@@ -86,8 +84,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 		 * 
 		 * @param pRepository  The {@code ProjectRepository} with the {@code Project}.
 		 */
-		public Factory(ProjectsRepository pRepository)
-		{
+		public Factory(ProjectsRepository pRepository){
 			this.pRepository = pRepository;
 		}
 
@@ -95,8 +92,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)
-		{
+		public Callable<Result> newInstance(Map<String, String> parameters){
 			return new GetProjectWorkers(pRepository, parameters);
 		}
 	}
@@ -108,8 +104,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 * @param parameters   The {@code Command} arguments.
 	 */
 	private GetProjectWorkers(ProjectsRepository pRepository,
-			Map<String, String> parameters)
-	{
+			Map<String, String> parameters){
 		super(parameters);
 		this.projectRepository = pRepository;
 	}
@@ -118,8 +113,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
-	protected String[] getMandatoryParameters()
-	{
+	protected String[] getMandatoryParameters(){
 		return DEMANDING_PARAMETERS;
 	}
 
@@ -138,20 +132,18 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 * @see BaseCommandResultsOutputMethod#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception
-	{
+	protected AppElement[] internalCall() throws Exception{
 		projectId = getParameterAsLong(PID);
 		this.typeWorker = getParameterAsString(WTYPE);
 		Project project = projectRepository.getProjectById(projectId);
-		if (project == null)
+		if (project == null){
 			return new AppElement[]{new Message("Project with ID: " + projectId 
 					+ " was not found!")};
+		}
 		
-		if (typeWorker.equalsIgnoreCase("Manager"))
-		{
+		if (typeWorker.equalsIgnoreCase("Manager")){
 			return getManager(project);
-		} else if (typeWorker.equalsIgnoreCase("Consultant"))
-		{
+		} else if (typeWorker.equalsIgnoreCase("Consultant")){
 			return getWorkers(project);
 		} else
 			return new AppElement[]{new Message("Unrecognised type of worker.")};
@@ -165,14 +157,16 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 */
 	private AppElement[] getWorkers(Project project) {
 		Collection<AWorker> workers = project.getTeam();
-		if (workers.size() == 0)
+		if (workers.isEmpty()){
 			return new AppElement[]{new Message("Project with ID: " + projectId 
 					+ " has no assigned workers.")};
+		}
 		  
 		AppElement[] workersArray = new AppElement[workers.size()];
 		int i = 0;
-		for (AWorker worker : workers)
+		for (AWorker worker : workers){
 			workersArray[i++] = worker;
+		}
 		return workersArray;
 	}
 
@@ -184,13 +178,11 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod
 	 */
 	private AppElement[] getManager(Project project) {
 		Leader manager = project.getManager();
-		if(manager == null)
+		if(manager == null){
 			return new AppElement[]{new Message("Project with ID: " + projectId 
 					+ " has no manager.")};
-		
+		}
 		AppElement[] managerAux = {manager};
 		return managerAux;
 	}
-
-
 }

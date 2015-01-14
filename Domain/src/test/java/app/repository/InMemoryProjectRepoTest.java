@@ -18,8 +18,7 @@ public class InMemoryProjectRepoTest {
 	private InMemoryProjectRepo repo;
 	
 	@Before
-	public void constructARepository()
-	{
+	public void constructARepository(){
 		repo = RepositoryConstructor.constructProjectRepo();
 	}
 	
@@ -32,16 +31,14 @@ public class InMemoryProjectRepoTest {
 	}
 	
 	@Test
-	public void cannotRemoveAnElementThatIsNotThere()
-	{
+	public void cannotRemoveAnElementThatIsNotThere(){
 		System.out.println(repo.getNextPID());
 		Project proj = RepositoryConstructor.constructProject(repo.getNextPID());
 		assertFalse(repo.removeProject(proj));
 	}
 	
 	@Test
-	public void shouldRemoveTheElement()
-	{
+	public void shouldRemoveTheElement(){
 		Project proj = RepositoryConstructor.constructProject((int) repo.getNextPID());
 		
 		assertTrue(repo.addProject(proj));
@@ -50,15 +47,13 @@ public class InMemoryProjectRepoTest {
 	}
 	
 	@Test
-	public void shouldRemoveAllElements()
-	{
+	public void shouldRemoveAllElements(){
 		repo.removeAll();
 		assertEquals(0, repo.size());
 	}
 	
 	@Test
-	public void shouldReturnTheCorrectElement()
-	{
+	public void shouldReturnTheCorrectElement(){
 		Project proj2 = repo.getProjectById(2);
 		Project proj3 = repo.getProjectById(3);
 		
@@ -70,20 +65,17 @@ public class InMemoryProjectRepoTest {
 	}
 	
 	@Test
-	public void cannotReturnAnElementIfThePIDIsInvalid()
-	{
+	public void cannotReturnAnElementIfThePIDIsInvalid(){
 		assertNull(repo.getProjectById(55426));
 	}
 	
 	@Test
-	public void shouldNotAddProjectWithTheSamePID()
-	{
+	public void shouldNotAddProjectWithTheSamePID(){
 		assertFalse(repo.addProject(RepositoryConstructor.constructProject(2)));
 	}
 	
 	@Test
-	public void shouldReturnTheWholeRepository()
-	{
+	public void shouldReturnTheWholeRepository(){
 		AppElement[] rep = repo.getAll();
 		StringBuilder builder = new StringBuilder();
 		

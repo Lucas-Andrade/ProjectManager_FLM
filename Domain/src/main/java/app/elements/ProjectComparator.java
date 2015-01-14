@@ -29,28 +29,22 @@ public class ProjectComparator implements Comparator<Project>{
 	 * @see Comparator#compare(Object, Object)
 	 */
 	@Override
-	public int compare(Project p1, Project p2) 
-	{
+	public int compare(Project p1, Project p2) {
 		long p1PID;
 		long p2PID;
 		
 		try{
 			p1PID = p1.getPID();
-		}
-		catch (NullPointerException e)
-		{
+		} catch (NullPointerException e) {
 			p1PID = -1;
 		}
 		
 		try{
 			p2PID = p2.getPID();
-		}
-		catch(NullPointerException e)
-		{
+		}catch(NullPointerException e){
 			p2PID = -1;
 		}
 		
 		return p1PID > p2PID ? -1 : p1PID < p2PID ? 1 : 0;
 	}
-
 }

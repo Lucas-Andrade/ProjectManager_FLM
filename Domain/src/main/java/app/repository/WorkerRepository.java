@@ -11,8 +11,7 @@ import app.elements.AppElement;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface WorkerRepository extends Repository<AppElement>
-{
+public interface WorkerRepository extends Repository<AppElement>{
 
 	/**
 	 * @return The next available CID ({@link AWorker} ID, there can't be more

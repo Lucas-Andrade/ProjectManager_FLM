@@ -18,8 +18,7 @@ public class UserTest {
 	private User user2;
 	
 	@Before
-	public void constructUsers()
-	{
+	public void constructUsers(){
 		user1 = RepositoryConstructor.constructUser(1);
 		user2 = RepositoryConstructor.constructUser(2);
 	}
@@ -30,16 +29,8 @@ public class UserTest {
 	}
 	
 	@Test
-	public void shouldBeEqual()
-	{
+	public void shouldBeEqual(){
 		assertTrue(user1.equals(RepositoryConstructor.constructUser(1)));
-	}
-	
-	@Test
-	public void visualTest()
-	{
-		System.out.println(user1.getJson());
-		System.out.println(user2.getJson());
 	}
 
 }

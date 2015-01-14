@@ -19,15 +19,13 @@ public class InMemoryUserRepoTest {
 	private InMemoryUserRepo repo;
 	
 	@Before
-	public void constructARepository()
-	{
+	public void constructARepository(){
 		repo = new InMemoryUserRepo();
 		repo = RepositoryConstructor.constructUserRepo();
 	}
 	
 	@Test
-	public void shouldGetTheCorrectUser()
-	{
+	public void shouldGetTheCorrectUser(){
 		UserInterface user1 = repo.getUserByUsername("user1");
 		UserInterface user2 = repo.getUserByUsername("user2");
 		
@@ -39,8 +37,7 @@ public class InMemoryUserRepoTest {
 	}
 	
 	@Test
-	public void thePasswordShouldBeCorrectForTheUser()
-	{
+	public void thePasswordShouldBeCorrectForTheUser(){
 		assertTrue(repo.isPasswordCorrectForUser("user1", "userPass1"));
 		assertTrue(repo.isPasswordCorrectForUser("user2", "userPass2"));
 		assertTrue(repo.isPasswordCorrectForUser("user3", "userPass3"));
@@ -53,28 +50,24 @@ public class InMemoryUserRepoTest {
 	}
 	
 	@Test
-	public void shouldCorrectlyResetTheRepositoryLeavingOnlyTheAdmin()
-	{
+	public void shouldCorrectlyResetTheRepositoryLeavingOnlyTheAdmin(){
 		repo.removeAll();
 		assertEquals(1, repo.size());
 		assertTrue(repo.getAll()[0] instanceof Admin);
 	}
 	
 	@Test
-	public void shouldNotAddAUserWithUsernameAlreadyUsed()
-	{
+	public void shouldNotAddAUserWithUsernameAlreadyUsed(){
 		assertFalse(repo.addUser(RepositoryConstructor.constructUser(1)));
 	}
 	
 	@Test
-	public void shouldAddAUser()
-	{
+	public void shouldAddAUser(){
 		assertTrue(repo.addUser(RepositoryConstructor.constructUser(25489)));
 	}
 
 	@Test
-	public void shouldReturnTheWholeRepository()
-	{
+	public void shouldReturnTheWholeRepository(){
 		AppElement[] rep = repo.getAll();
 		StringBuilder builder = new StringBuilder();
 		
@@ -87,8 +80,7 @@ public class InMemoryUserRepoTest {
 	}
 	
 	@Test
-	public void visualTest()
-	{
+	public void visualTest(){
 		System.out.println(repo.getJson().toString());
 	}
 }

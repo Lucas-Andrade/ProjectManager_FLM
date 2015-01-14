@@ -5,8 +5,6 @@ package utils;
  * implemented by the classes {@code Local}, {@code Team} and {@code Element}
  * and its subclasses.
  */
-public interface IName
-{
-
+public interface IName{
 	public String getName();
 }

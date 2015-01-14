@@ -15,8 +15,7 @@ import app.repository.UserRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class GetUsers extends BaseCommandResultsOutputMethod
-{
+public class GetUsers extends BaseCommandResultsOutputMethod{
 
 	/**
 	 * The {@link UserRepository} with the {@code User}s. This
@@ -28,8 +27,7 @@ public class GetUsers extends BaseCommandResultsOutputMethod
 	 * Class that implements the {@link GetUsers} factory, according to the
 	 * {@link CommandFactory}.
 	 */
-	public static class Factory implements CommandFactory
-	{
+	public static class Factory implements CommandFactory{
 
 		/**
 		 * The {@link UserRepository} with the {@code User}s. This
@@ -43,8 +41,7 @@ public class GetUsers extends BaseCommandResultsOutputMethod
 		 * @param uRepository
 		 *            The {@code UserRepository}.
 		 */
-		public Factory(UserRepository repository)
-		{
+		public Factory(UserRepository repository){
 			this.repository = repository;
 		}
 
@@ -52,11 +49,9 @@ public class GetUsers extends BaseCommandResultsOutputMethod
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)
-		{
+		public Callable<Result> newInstance(Map<String, String> parameters)	{
 			return new GetUsers(repository, parameters);
 		}
-
 	}
 
 	/**
@@ -67,8 +62,7 @@ public class GetUsers extends BaseCommandResultsOutputMethod
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	public GetUsers(UserRepository repository, Map<String, String> parameters)
-	{
+	public GetUsers(UserRepository repository, Map<String, String> parameters){
 		super(parameters);
 		this.repository = repository;
 	}
@@ -80,8 +74,7 @@ public class GetUsers extends BaseCommandResultsOutputMethod
 	 * {@code UserRepository}.
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception
-	{
+	protected AppElement[] internalCall() throws Exception	{
 		return repository.getAll();
 	}
 
@@ -89,9 +82,7 @@ public class GetUsers extends BaseCommandResultsOutputMethod
 	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
-	protected String[] getMandatoryParameters()
-	{
+	protected String[] getMandatoryParameters()	{
 		return new String[] {};
 	}
-
 }

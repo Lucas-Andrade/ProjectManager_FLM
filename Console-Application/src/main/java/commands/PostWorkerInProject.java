@@ -23,8 +23,7 @@ import app.repository.WorkerRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostWorkerInProject extends BaseCommandUserAuthentication
-{
+public class PostWorkerInProject extends BaseCommandUserAuthentication{
 
 	/**
 	 * {@code String} with the {@code Project}ID argument's name. The
@@ -90,9 +89,7 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 * Class that implements the {@link PostWorkerInProject} factory, according to
 	 * the {@link CommandFactory}.
 	 */
-	public static class Factory implements CommandFactory
-	{
-
+	public static class Factory implements CommandFactory{
 		/**
 		 * The {@link ProjectsRepository} with the {@code Project}s. This
 		 * {@code ProjectRepository} is accessed to get the {@code Project}
@@ -120,8 +117,7 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 		 * @param wRepository  The {@code WorkerRepository} with the {@code AWorker}.
 		 */
 		public Factory(UserRepository uRepository,
-				ProjectsRepository pRepository, WorkerRepository wRepository)
-		{
+				ProjectsRepository pRepository, WorkerRepository wRepository){
 			this.pRepository = pRepository;
 			this.wRepository = wRepository;
 			this.uRepository = uRepository;
@@ -131,12 +127,10 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)
-		{
+		public Callable<Result> newInstance(Map<String, String> parameters)	{
 			return new PostWorkerInProject(uRepository, pRepository,
 					wRepository, parameters);
 		}
-
 	}
 
 	/**
@@ -149,8 +143,7 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 */
 	public PostWorkerInProject(UserRepository uRepository,
 			ProjectsRepository pRepository, WorkerRepository wRepository,
-			Map<String, String> parameters)
-	{
+			Map<String, String> parameters){
 		super(uRepository, parameters);
 		this.projectRepository = pRepository;
 		this.workerRepository = wRepository;
@@ -160,8 +153,7 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
-	protected String[] getMandatoryParameters()
-	{
+	protected String[] getMandatoryParameters(){
 		return DEMANDING_PARAMETERS;
 	}
 
@@ -182,8 +174,7 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall()
-	{
+	protected AppElement[] internalCall(){
 		this.projectId = getParameterAsLong(PID);
 		this.typeWorker = getParameterAsString(WTYPE);
 		this.workerId = getParameterAsLong(CID);
@@ -191,33 +182,27 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 		Message message;
 
 		Project project = projectRepository.getProjectById(projectId);
-		if (project == null)
-		{
+		if (project == null){
 			message = new Message("The Specified Project does not exists in repository.");
 			messageAux[0] = message;
 			
 			return messageAux;
 		}
 
-		if (typeWorker.equalsIgnoreCase("manager"))
-		{
+		if (typeWorker.equalsIgnoreCase("manager")){
 			message = new Message(addManager(projectId, workerId) ? "Success." : 
 				"Not successfull. Manager may already be in the project.");
 			messageAux[0] = message;
 				
-		} else if (typeWorker.equalsIgnoreCase("consultant")) 
-		{
+		} else if (typeWorker.equalsIgnoreCase("consultant")) {
 			message = new Message(addConsultant(projectId, workerId) ? "Success." : 
 				"Not successfull. Consultant may already be in the project.");
 				messageAux[0] = message;
-
-		} else
-		{
+		} else{
 			message = new Message("Unrecognised type of worker.");
 			messageAux[0] = message;
 		}		
 			return messageAux;
-
 	}
 
 	/**
@@ -231,13 +216,11 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 * @param workerId   {@code long} with the argument {@code AWorker}ID.
 	 * @return True if successful, False if not.
 	 */
-	private Boolean addConsultant( long projectId,long workerId)
-	{
+	private Boolean addConsultant( long projectId,long workerId){
 		AppElement[] messageAux = new AppElement[1];
 		Consultant consultant = workerRepository.getConsultantByID(workerId);
 
-		if (consultant != null)
-		{
+		if (consultant != null){
 			projectRepository.getProjectById(projectId).addWorker(consultant);
 			return true;
 		}
@@ -258,12 +241,10 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication
 	 * @param workerId   {@code long} with the argument {@code AWorker}ID.
 	 * @return True if successful, False if not.
 	 */
-	private Boolean addManager(long projectId, long workerId)
-	{
+	private Boolean addManager(long projectId, long workerId){
 		AppElement[] messageAux = new AppElement[1];
 		Leader manager = workerRepository.getManagerByID(workerId);
-		if (manager != null)
-		{
+		if (manager != null){
 			projectRepository.getProjectById(projectId).setManager(manager);
 			return true;
 		}

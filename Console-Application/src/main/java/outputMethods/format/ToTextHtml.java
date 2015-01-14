@@ -9,8 +9,7 @@ import org.json.JSONObject;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 28/12/2014
  */
-public class ToTextHtml implements TextParser
-{
+public class ToTextHtml implements TextParser{
 
 	/**
 	 * Parses the information contained in the {@code JSONObject} into the HTML
@@ -19,8 +18,7 @@ public class ToTextHtml implements TextParser
 	 * @see TextParser#parse(jsonObject)
 	 */
 	@Override
-	public String parse(JSONObject jsonObject)
-	{
+	public String parse(JSONObject jsonObject){
 		StringBuilder builder = new StringBuilder();
 		return builder.append("<html>\n")
 				.append(parse(jsonObject, "</p>\n", 0)).append("</html>")
@@ -47,33 +45,31 @@ public class ToTextHtml implements TextParser
 	 *         parameter in HTML format
 	 */
 	private static String parse(JSONObject jsonObject, String lineSeparator,
-			int indentation)
-	{
+			int indentation){
 		Iterable<String> jsonKeys = TextParser.getOrderedKeySet(jsonObject);
 		StringBuilder builder = new StringBuilder();
 
-		for (String key : jsonKeys)
-		{
+		for (String key : jsonKeys){
 			builder.append(indent(indentation)).append("<b>").append(key)
 					.append("</b>: ");
 
 			if ((jsonObject.get(key).getClass()).equals(new JSONObject()
-					.getClass()))
+					.getClass())){
 				builder.append(
 						parse((JSONObject) jsonObject.get(key), ", ", -1))
 						.append(lineSeparator);
-
-			else if (jsonObject.get(key) instanceof JSONObject[])
+			}
+			else if (jsonObject.get(key) instanceof JSONObject[]){
 				builder.append(lineSeparator).append(
 						parseArray((JSONObject[]) jsonObject.get(key),
 								lineSeparator, indentation + 5));
-
-			else if (jsonObject.get(key) instanceof JSONArray)
+			}
+			else if (jsonObject.get(key) instanceof JSONArray){
 				builder.append(parseJSONArray((JSONArray) jsonObject.get(key),
 						lineSeparator, indentation));
-
-			else
+			}else {
 				builder.append(jsonObject.get(key)).append(lineSeparator);
+			}
 		}
 		return builder.toString();
 	}
@@ -98,11 +94,9 @@ public class ToTextHtml implements TextParser
 	 *         HTML format
 	 */
 	private static Object parseJSONArray(JSONArray jsonArray,
-			String lineSeparator, int indentation)
-	{
+			String lineSeparator, int indentation){
 		StringBuilder builder = new StringBuilder();
-		for (int i = 0; i < jsonArray.length(); i++)
-		{
+		for (int i = 0; i < jsonArray.length(); i++){
 			builder.append("<hr>\n").append(
 					parse((JSONObject) jsonArray.get(i), lineSeparator,
 							indentation));
@@ -124,8 +118,7 @@ public class ToTextHtml implements TextParser
 	 * @return the correct HTML code to begin a new line with the desired
 	 *         indentation
 	 */
-	private static String indent(int indentation)
-	{
+	private static String indent(int indentation){
 		return indentation >= 0 ? "<p style=\"text-indent: " + indentation
 				+ "em;\">" : "";
 	}
@@ -149,12 +142,12 @@ public class ToTextHtml implements TextParser
 	 *         parameter in the HTML format
 	 */
 	private static String parseArray(JSONObject[] jsonArray,
-			String lineSeparator, int indentation)
-	{
+			String lineSeparator, int indentation){
 		StringBuilder builder = new StringBuilder();
-		for (int i = 0; i < jsonArray.length; i++)
+		for (int i = 0; i < jsonArray.length; i++){
 			builder.append(parse(jsonArray[i], lineSeparator, indentation))
 					.append(lineSeparator);
+		}
 		return builder.toString();
 	}
 
@@ -162,15 +155,13 @@ public class ToTextHtml implements TextParser
 	 * @see TextParser#parse(JSONObject[])
 	 */
 	@Override
-	public String parse(JSONObject[] toWrite)
-	{
+	public String parse(JSONObject[] toWrite){
 		StringBuilder builder = new StringBuilder();
 		builder.append("<html>");
 
-		for (JSONObject json : toWrite)
+		for (JSONObject json : toWrite){
 			builder.append(parse(json, "</p>\n", 0)).append("<hr>\n");
-
+		}
 		return builder.append("</html>").toString();
 	}
-
 }

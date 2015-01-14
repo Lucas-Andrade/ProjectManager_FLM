@@ -19,8 +19,7 @@ import app.repository.UserRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostProjects extends BaseCommandUserAuthentication
-{
+public class PostProjects extends BaseCommandUserAuthentication{
 
 	/**
 	 * The {@link ProjectsRepository} with the {@code Project}s. The created
@@ -64,9 +63,7 @@ public class PostProjects extends BaseCommandUserAuthentication
 	 * Class that implements the {@link PostProjects} factory, according to the
 	 * {@link CommandFactory}.
 	 */
-	public static class Factory implements CommandFactory
-	{
-
+	public static class Factory implements CommandFactory{
 		/**
 		 * The {@link ProjectsRepository} with the {@code Project}s. The created
 		 * {@code Project}s are stored in this {@code ProjectRepository}. Also,
@@ -87,8 +84,7 @@ public class PostProjects extends BaseCommandUserAuthentication
 		 * @param uRepository   The {@code UserRepository} with the {@code User}.
 		 * @param repository    The {@code ProjectRepository} with the {@code Project}.
 		 */
-		public Factory(UserRepository uRepository, ProjectsRepository repository)
-		{
+		public Factory(UserRepository uRepository, ProjectsRepository repository){
 			this.repository = repository;
 			this.uRepository = uRepository;
 		}
@@ -97,8 +93,7 @@ public class PostProjects extends BaseCommandUserAuthentication
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)
-		{
+		public Callable<Result> newInstance(Map<String, String> parameters){
 			return new PostProjects(uRepository, repository, parameters);
 		}
 	}
@@ -111,8 +106,7 @@ public class PostProjects extends BaseCommandUserAuthentication
 	 * @param parameters    The Command arguments.
 	 */
 	public PostProjects(UserRepository uRepository,
-			ProjectsRepository repository, Map<String, String> parameters)
-	{
+			ProjectsRepository repository, Map<String, String> parameters){
 		super(uRepository, parameters);
 		this.repository = repository;
 	}
@@ -121,8 +115,7 @@ public class PostProjects extends BaseCommandUserAuthentication
 	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
-	protected String[] getMandatoryParameters()
-	{
+	protected String[] getMandatoryParameters(){
 		return DEMANDING_PARAMETERS;
 	}
 
@@ -136,23 +129,19 @@ public class PostProjects extends BaseCommandUserAuthentication
 	 */
 	@Override
 	protected AppElement[] internalCall()
-			throws CommandException, IOException
-	{
+			throws CommandException, IOException{
 		double latitude = getParameterAsDouble(LATITUDE);
 		double longitude = getParameterAsDouble(LONGITUDE);
 		String name = getParameterAsString(NAME);
 		double price = getParameterAsDouble(PRICE);
 		Local local;
 		
-		try
-		{ 
+		try{ 
 			local = new Local(latitude, longitude, name, price);
 		}
-		catch(IllegalArgumentException e)
-		{
+		catch(IllegalArgumentException e){
 			return new AppElement[]{
-					new Message("Price, latitude or longitude out of bounds.")
-			};
+					new Message("Price, latitude or longitude out of bounds.")};
 		}
 		
 		long pid = repository.getNextPID();
@@ -164,5 +153,4 @@ public class PostProjects extends BaseCommandUserAuthentication
 		AppElement[] messageAux = {message};
 		return messageAux;
 	}
-
 }

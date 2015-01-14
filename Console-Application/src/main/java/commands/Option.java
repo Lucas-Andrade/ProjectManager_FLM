@@ -20,14 +20,12 @@ public class Option extends BaseCommandResultsOutputMethod{
 	 * Class that implements the {@code Option} factory, according to the
 	 * {@link CommandFactory}.
 	 */
-	public static class Factory implements CommandFactory
-	{
+	public static class Factory implements CommandFactory{
 		/**
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)
-		{
+		public Callable<Result> newInstance(Map<String, String> parameters){
 			return new Option( parameters);
 		}
 	}
@@ -51,7 +49,6 @@ public class Option extends BaseCommandResultsOutputMethod{
 	 */
 	@Override
 	protected AppElement[] internalCall() throws Exception {
-		
 		Message[] options = availableCommands(); 		
 		return options;
 	}
@@ -61,9 +58,7 @@ public class Option extends BaseCommandResultsOutputMethod{
 	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
-	protected String[] getMandatoryParameters() 
-	{
-		
+	protected String[] getMandatoryParameters() 	{
 		return new String[]{};
 	}
 
@@ -71,8 +66,7 @@ public class Option extends BaseCommandResultsOutputMethod{
 	 * This method create an array with an description of all available commands in this
 	 * application
 	 */
-	private Message[] availableCommands()
-	{
+	private Message[] availableCommands(){
 		Message[] options = {
 				new Message("POST COMMANDS", "\n"),
 				new Message(
@@ -133,6 +127,5 @@ public class Option extends BaseCommandResultsOutputMethod{
 								+ "\n	  Deletes the project with the  specify {@code ProjectId} and all its subprojects") };
 
 		return options;
-		
 	}
 }

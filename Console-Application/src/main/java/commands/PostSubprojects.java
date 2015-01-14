@@ -22,8 +22,7 @@ import app.repository.UserRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class PostSubprojects extends BaseCommandUserAuthentication
-{
+public class PostSubprojects extends BaseCommandUserAuthentication {
 
 	/**
 	 * The {@link ProjectsRepository} with the {@code Project}s. Sub
@@ -56,8 +55,7 @@ public class PostSubprojects extends BaseCommandUserAuthentication
 	 * Class that implements the {@link PostSubprojects} factory, according to
 	 * the {@link CommandFactory}.
 	 */
-	public static class Factory implements CommandFactory
-	{
+	public static class Factory implements CommandFactory{
 
 		/**
 		 * The {@link ProjectsRepository} with the {@code Project}s. Sub
@@ -81,8 +79,7 @@ public class PostSubprojects extends BaseCommandUserAuthentication
 		 * @param repository
 		 *            The {@code ProjectRepository} with the {@code Project}.
 		 */
-		public Factory(UserRepository uRepository, ProjectsRepository repository)
-		{
+		public Factory(UserRepository uRepository, ProjectsRepository repository){
 			this.repository = repository;
 			this.uRepository = uRepository;
 		}
@@ -91,8 +88,7 @@ public class PostSubprojects extends BaseCommandUserAuthentication
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)
-		{
+		public Callable<Result> newInstance(Map<String, String> parameters){
 			return new PostSubprojects(uRepository, repository, parameters);
 		}
 	}
@@ -105,8 +101,7 @@ public class PostSubprojects extends BaseCommandUserAuthentication
 	 * @param parameters    The {@code Command} arguments.
 	 */
 	public PostSubprojects(UserRepository uRepository,
-			ProjectsRepository repository, Map<String, String> parameters)
-	{
+			ProjectsRepository repository, Map<String, String> parameters){
 		super(uRepository, parameters);
 		this.repository = repository;
 	}
@@ -115,8 +110,7 @@ public class PostSubprojects extends BaseCommandUserAuthentication
 	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
-	protected String[] getMandatoryParameters()
-	{
+	protected String[] getMandatoryParameters(){
 		return DEMANDING_PARAMETERS;
 	}
 
@@ -131,48 +125,36 @@ public class PostSubprojects extends BaseCommandUserAuthentication
 	 */
 	@Override
 	protected AppElement[] internalCall()
-			throws CommandException, IOException
-	{
+			throws CommandException, IOException {
 		long pid = getParameterAsLong(PID);
 		long subPid = getParameterAsLong(SUBPID);
 		AppElement[] messageAux = new AppElement[1];
 
-		if (pid == subPid)
-		{
+		if (pid == subPid){
 			Message message = new Message("Specified project identifications are equal!");
 			messageAux[0] = message;
 			return messageAux;
 		}
-
 		Project project = repository.getProjectById(pid);
-		if (project == null)
-		{
+		if (project == null){
 			Message message = new Message("Specified project does not exist.");
 			messageAux[0] = message;
 			return messageAux;
 		}
-
 		Project subProject = repository.getProjectById(subPid);
-		if (subProject == null)
-		{
+		if (subProject == null){
 			Message message = new Message("Specified subproject does not exist.");
 			messageAux[0] = message;
 			return messageAux;
 		}
-
-		if (project.addProject(subProject))
-		{ 
+		if (project.addProject(subProject)){ 
 			Message message = new Message("Success.");
 			messageAux[0] = message;
-			
 		}
-		else
-		{
+		else{
 			Message message = new Message("Could not add subproject to project, because subproject already is a subproject (of this or another project).");
 			messageAux[0] = message;
 		}
-		
 		return messageAux;
 	}
-
 }

@@ -9,14 +9,12 @@ package app.elements;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class Admin extends User
-{
+public class Admin extends User{
 
 	/**
 	 * The constructor of {@code Admin}.
 	 */
-	public Admin(String username, String password)
-	{
+	public Admin(String username, String password){
 		super(username, password, "admin_" + username + "@administration.com",
 				"Administator");
 	}

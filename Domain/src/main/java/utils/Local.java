@@ -12,8 +12,7 @@ import org.json.JSONObject;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class Local implements ICost, IName
-{
+public class Local implements ICost, IName {
 
 	/**
 	 * @field name - String with the name of the local.
@@ -39,12 +38,11 @@ public class Local implements ICost, IName
 	 * @param cost
 	 *            - the cost associated with the local.
 	 */
-	public Local(double latitude, double longitude, String name, double cost)
-	{
+	public Local(double latitude, double longitude, String name, double cost){
 		if (name == null || !checkLatitude(latitude) || !checkLongitude(longitude) || 
-				!checkPrice(cost))
+				!checkPrice(cost)){
 			throw new IllegalArgumentException();
-
+		}
 		this.name = name;
 		this.cost = cost;
 		this.latitude = latitude;
@@ -56,8 +54,7 @@ public class Local implements ICost, IName
 	 * Interface.
 	 */
 	@Override
-	public String getName()
-	{
+	public String getName(){
 		return name;
 	}
 
@@ -66,24 +63,21 @@ public class Local implements ICost, IName
 	 * Interface.
 	 */
 	@Override
-	public double getCost()
-	{
+	public double getCost(){
 		return cost;
 	}
 	
 	/**
 	 * @return The latitude of the {@code Local}
 	 */
-	public double getLatitude()
-	{
+	public double getLatitude(){
 		return latitude;
 	}
 	
 	/**
 	 * @return The longitude of the {@code Local}
 	 */
-	public double getLongitude()
-	{
+	public double getLongitude(){
 		return longitude;
 	}
 
@@ -91,16 +85,14 @@ public class Local implements ICost, IName
 	 * Override of the method {@code toString()} from {@code Object}.
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString(){
 		DecimalFormat df = new DecimalFormat("#.##");
 		return name + ", " + "(" + latitude + ", " + longitude + ")"
 				+ ", cost: " + df.format(getCost()) + " Euros";
 	}
 
 	
-	public JSONObject getJson() 
-	{
+	public JSONObject getJson() {
 		DecimalFormat df = new DecimalFormat("#.##");
 		JSONObject json = new JSONObject();
 		json.put("Cost (Euros)", df.format(getCost()).replaceAll(",", "."));
@@ -121,8 +113,7 @@ public class Local implements ICost, IName
 	 * @return {@code false} if the {@code longitude} was not in the correct bounds
 	 */
 	public boolean setLongitude(double newLongitude) {
-		if(checkLongitude(newLongitude))
-		{
+		if(checkLongitude(newLongitude)){
 			longitude = newLongitude;
 			return true;
 		}
@@ -140,8 +131,7 @@ public class Local implements ICost, IName
 	 */
 	public boolean setLatitude(double newLatitude) {
 
-		if(checkLatitude(newLatitude))
-		{
+		if(checkLatitude(newLatitude)){
 			latitude = newLatitude;
 			return true;
 		}
@@ -166,8 +156,7 @@ public class Local implements ICost, IName
 	 * @return {@code false} if the {@code price} was not in the correct bounds
 	 */
 	public boolean setPrice(double newPrice) {
-		if(checkPrice(newPrice))
-		{
+		if(checkPrice(newPrice)){
 			this.cost = newPrice;
 			return true;
 		}
@@ -180,8 +169,7 @@ public class Local implements ICost, IName
 	 * @return {@code true} if it is inside the interval
 	 * @return {@code false} if it is not inside the interval
 	 */
-	private boolean checkLatitude(double latitude)
-	{
+	private boolean checkLatitude(double latitude){
 		return latitude >= -90 && latitude <= 90;
 	}
 	
@@ -191,8 +179,7 @@ public class Local implements ICost, IName
 	 * @return {@code true} if it is inside the interval
 	 * @return {@code false} if it is not inside the interval
 	 */
-	private boolean checkLongitude(double longitude)
-	{
+	private boolean checkLongitude(double longitude){
 		return longitude >= -180 && longitude <= 180;
 	}
 	
@@ -202,9 +189,23 @@ public class Local implements ICost, IName
 	 * @return {@code true} if it is non negative
 	 * @return {@code false} if it is negative
 	 */
-	private boolean checkPrice(double price)
-	{
+	private boolean checkPrice(double price){
 		return price >= 0;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(cost);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(latitude);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(longitude);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
 	}
 
 	/**
@@ -212,29 +213,48 @@ public class Local implements ICost, IName
 	 * consistent with the {@code compareTo()} method.
 	 */
 	@Override
-	public boolean equals(Object local)
-	{
-		if (this == local)
+	public boolean equals(Object local){
+		if (this == local){
 			return true;
+		}
 
-		if (local == null)
+		if (local == null){
 			return false;
+		}
 
-		if (getClass() != local.getClass())
+		if (getClass() != local.getClass()){
 			return false;
+		}
 		
-		if (longitude != ((Local)local).getLongitude())
+		return hasSameParameters((Local) local);
+	}
+	
+	/**
+	 * Verifies if the {@code Local} passed as parameter has the same properties as {@code this}.
+	 * @param worker
+	 * @return true if the {@code Local} passed as parameter has the same properties as {@code this}
+	 * @return false if the {@code Local} passed as parameter has not the same properties as 
+	 * {@code this}
+	 */
+	public boolean hasSameParameters(Local local){
+		if (longitude != local.getLongitude()){
 			return false;
+		}
 		
-		if (latitude != ((Local)local).getLatitude())
+		if (latitude != local.getLatitude()){
 			return false;
+		}
 		
-		if (cost != ((Local)local).getCost())
+		if (cost != local.getCost()){
 			return false;
+		}
 		
-		if (! name.equals(((Local)local).getName()))
+		if (! name.equals(local.getName())){
 			return false;
+		}
 		
 		return true;
 	}
+
+
 }

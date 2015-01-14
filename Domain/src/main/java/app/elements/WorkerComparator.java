@@ -16,8 +16,7 @@ import utils.AWorker;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class WorkerComparator implements Comparator<AWorker>
-{
+public class WorkerComparator implements Comparator<AWorker>{
 
 	/**
 	 * if null Workers are introduced, their {@code CID} is considered to be -1
@@ -30,28 +29,22 @@ public class WorkerComparator implements Comparator<AWorker>
 	 * @see Comparator#compare(Object, Object)
 	 */
 	@Override
-	public int compare(AWorker w1, AWorker w2)
-	{
+	public int compare(AWorker w1, AWorker w2){
 		long cid1;
 		long cid2;
 
-		try
-		{
+		try{
 			cid1 = w1.getCID();
-		} catch (NullPointerException e)
-		{
+		} catch (NullPointerException e){
 			cid1 = -1;
 		}
 
-		try
-		{
+		try{
 			cid2 = w2.getCID();
-		} catch (NullPointerException e)
-		{
+		} catch (NullPointerException e){
 			cid2 = -1;
 		}
 
 		return cid1 > cid2 ? 1 : (cid1 < cid2) ? -1 : 0;
 	}
-
 }

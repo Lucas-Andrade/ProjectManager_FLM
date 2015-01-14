@@ -8,8 +8,6 @@ import org.json.JSONObject;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface AppElement
-{
-	
+public interface AppElement{
 	public JSONObject getJson();
 }

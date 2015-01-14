@@ -9,8 +9,7 @@ import org.json.JSONObject;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class User implements UserInterface, AppElement
-{
+public class User implements UserInterface, AppElement{
 
 	private final String username;
 	private String password;
@@ -30,19 +29,17 @@ public class User implements UserInterface, AppElement
 	 * @param fullname
 	 *            The User's Full Name.
 	 */
-	public User(String username, String password, String email, String fullname)
-	{
-		if (password.length() < minCharInPass)
+	public User(String username, String password, String email, String fullname){
+		if (password.length() < minCharInPass){
 			throw new IllegalArgumentException();
-		
+	}
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.fullname = fullname;
 	}
 	
-	public User(String username, String password, String email)
-	{
+	public User(String username, String password, String email){
 		this(username, password, email, "No full name has been introduced.");
 	}
 
@@ -52,8 +49,7 @@ public class User implements UserInterface, AppElement
 	 * @return The Username.
 	 */
 	@Override
-	public String getLoginName()
-	{
+	public String getLoginName(){
 		return username;
 	}
 
@@ -63,8 +59,7 @@ public class User implements UserInterface, AppElement
 	 * @return The Password.
 	 */
 	@Override
-	public String getLoginPassword()
-	{
+	public String getLoginPassword(){
 		return password;
 	}
 
@@ -74,8 +69,7 @@ public class User implements UserInterface, AppElement
 	 * @return The Email.
 	 */
 	@Override
-	public String getEmail()
-	{
+	public String getEmail(){
 		return email;
 	}
 
@@ -85,8 +79,7 @@ public class User implements UserInterface, AppElement
 	 * @return The Full Name.
 	 */
 	@Override
-	public String getFullName()
-	{
+	public String getFullName(){
 		return fullname;
 	}
 
@@ -94,8 +87,7 @@ public class User implements UserInterface, AppElement
 	 * @see Object#toString()
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString(){
 		StringBuilder builder = new StringBuilder();
 		builder.append("Name: ").append(fullname).append(", Email: ")
 				.append(email).append(", Username: ").append(username);
@@ -104,46 +96,71 @@ public class User implements UserInterface, AppElement
 	}
 	
 	@Override
-	public JSONObject getJson() 
-	{
+	public JSONObject getJson() {
 		JSONObject json = new JSONObject();
 		json.put("Username", username.replaceAll("%20", " "));
 		json.put("Email", email);
 		json.put("Full name", fullname.replaceAll("%20", " "));
 		return json;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result
+				+ ((fullname == null) ? 0 : fullname.hashCode());
+		result = prime * result
+				+ ((password == null) ? 0 : password.hashCode());
+		result = prime * result
+				+ ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
 	/**
 	 * @see Object#equals(Object)
 	 */
 	@Override
-	public boolean equals(UserInterface user)
-	{
-		if (this == user)
+	public boolean equals(Object user){
+		if (this == user){
 			return true;
-		
-		if (user == null)
+		}
+		if (user == null){
 			return false;
+		}
+		if (getClass() != user.getClass()){
+			return false;
+		}
 
+		return hasSameParameters((User) user);
+	}
+	
+	/**
+	 * Verifies if the {@code User} passed as parameter has the same properties as {@code this}.
+	 * @param worker
+	 * @return true if the {@code User} passed as parameter has the same properties as {@code this}
+	 * @return false if the {@code User} passed as parameter has not the same properties as 
+	 * {@code this}
+	 */
+	public boolean hasSameParameters(User user){
 		if (fullname.equals(user.getFullName())
 				&& email.equals(user.getEmail())
 				&& username.equals(user.getLoginName())
-				&& password.equals(user.getLoginPassword()))
+				&& password.equals(user.getLoginPassword())){
 			return true;
-		else
-			return false;
+		}
+		return false;
 	}
 
 	@Override
 	public boolean setNewPassword(String newPassword) {
 		
-		if (newPassword.length() < minCharInPass)
+		if (newPassword.length() < minCharInPass){
 			return false;
-		else
+		}else{
 			password = newPassword;
-		return true;
+			return true;
+		}
 	}
-
-
-
 }

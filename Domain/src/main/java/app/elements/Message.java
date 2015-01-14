@@ -14,7 +14,7 @@ import org.json.JSONObject;
  */
 public class Message implements AppElement{
 
-	private String message;
+	private String messageContent;
 	private String title;
 	
 	/**
@@ -22,10 +22,9 @@ public class Message implements AppElement{
 	 * content. The title of the message is set to {@code "Message"}
 	 * @param message
 	 */
-	public Message(String message)
-	{
+	public Message(String message){
 		this.title = "Message";
-		this.message = message;
+		this.messageContent = message;
 	}
 	
 	/**
@@ -34,24 +33,22 @@ public class Message implements AppElement{
 	 * @param title
 	 * @param message
 	 */
-	public Message(String title, String message)
-	{
+	public Message(String title, String message){
 		this.title = title;
-		this.message = message;
+		this.messageContent = message;
 	}
 	
 	/**
 	 * @return a {@code String} with the content of the message only (no title).
 	 */
-	public String read()
-	{
-		return message;
+	public String read(){
+		return messageContent;
 	}
 	
 	@Override
 	public JSONObject getJson() {
 		JSONObject json = new JSONObject();
-		json.put(title, message);
+		json.put(title, messageContent);
 		return json;
 	}
 

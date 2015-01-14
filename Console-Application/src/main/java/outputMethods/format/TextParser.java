@@ -10,8 +10,7 @@ import org.json.JSONObject;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 28/12/2014
  */
-public interface TextParser
-{
+public interface TextParser{
 
 	/**
 	 * Parses the <@code JSONObject> to a string in the desired format. All the
@@ -43,12 +42,12 @@ public interface TextParser
 	 * @return an {@code Iterable<String>} with all the keys of the
 	 *         {@code JSONObject}
 	 */
-	static Iterable<String> getOrderedKeySet(JSONObject jsonObject)
-	{
+	static Iterable<String> getOrderedKeySet(JSONObject jsonObject){
 		Iterator<String> iterator = jsonObject.keys();
 		TreeSet<String> keySet = new TreeSet<String>();
-		while (iterator.hasNext())
+		while (iterator.hasNext()){
 			keySet.add(iterator.next());
+		}
 		return keySet;
 	}
 
@@ -70,16 +69,15 @@ public interface TextParser
 	 *         format
 	 */
 	static String parseArray(JSONObject[] toWrite, String separator,
-			TextParser parser)
-	{
-		if (toWrite.length == 1)
+			TextParser parser){
+		if (toWrite.length == 1){
 			return parser.parse(toWrite[0]);
-		else
-		{
+		} else {
 			StringBuilder builder = new StringBuilder();
-			for (JSONObject json : toWrite)
+			for (JSONObject json : toWrite){
 				builder.append(parser.parse(json)).append(separator)
 						.append("\n");
+			}
 			return builder.toString();
 		}
 	}

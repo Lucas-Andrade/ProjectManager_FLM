@@ -16,8 +16,7 @@ import app.elements.ProjectInterface;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class Project extends UtilsElement implements ProjectInterface
-{
+public class Project extends UtilsElement implements ProjectInterface{
 
 	private final String name;
 	private Leader manager;
@@ -46,11 +45,10 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * @param pid
 	 *            - the project's identification (PID).
 	 */
-	public Project(String name, Local local, Leader manager, Team team, long pid)
-	{
-		if (name == null || local == null || team == null)
+	public Project(String name, Local local, Leader manager, Team team, long pid){
+		if (name == null || local == null || team == null){
 			throw new IllegalArgumentException();
-
+		}
 		this.name = name;
 		this.local = local;
 		this.team = team;
@@ -72,8 +70,7 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * @param pid
 	 *            - the project's identification (PID).
 	 */
-	public Project(Local local, long pid)
-	{
+	public Project(Local local, long pid){
 		this(String.valueOf(pid), local, null, new Team(), pid);
 	}
 
@@ -90,14 +87,13 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * 
 	 * @return true if the worker is successfully added and false otherwise.
 	 */
-	public boolean addWorker(AWorker worker)
-	{
-		if (worker == null)
+	public boolean addWorker(AWorker worker){
+		if (worker == null){
 			throw new IllegalArgumentException();
-
-		if (manager != null && worker.getName().equals(manager.getName()))
+		}
+		if (manager != null && worker.getName().equals(manager.getName())){
 			return false;
-
+		}
 		return team.addElement(worker);
 	}
 
@@ -117,13 +113,13 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * 
 	 * @return true if the subproject is successfully added and false otherwise.
 	 */
-	public boolean addProject(Project project)
-	{
-		if (project == null)
+	public boolean addProject(Project project){
+		if (project == null){
 			throw new IllegalArgumentException();
-
-		if (NameTester.addName(project.getName()))
+		}
+		if (NameTester.addName(project.getName())){
 			return projectsContainer.addElement(project);
+		}
 		return false;
 	}
 
@@ -143,12 +139,11 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * 
 	 * @return true if the worker is successfully removed and false otherwise.
 	 */
-	public boolean removeAWorker(String name)
-	{
+	public boolean removeAWorker(String name){
 
-		if (name == null)
+		if (name == null){
 			throw new IllegalArgumentException();
-
+		}
 		return team.remove(getWorkerByName(name));
 	}
 
@@ -173,8 +168,7 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * @return true if the subproject is successfully removed and false
 	 *         otherwise.
 	 */
-	public boolean removeProject(String name)
-	{
+	public boolean removeProject(String name){
 		return removeProject(getSubProjectByName(name));
 	}
 	
@@ -198,19 +192,17 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * @return true if the subproject is successfully removed and false
 	 *         otherwise.
 	 */
-	public boolean removeProject(Project project)
-	{
-		if (name == null)
+	public boolean removeProject(Project project){
+		if (name == null){
 			throw new IllegalArgumentException();
-
-		if (projectsContainer.remove(project))
+		}
+		if (projectsContainer.remove(project)){
 			return NameTester.removeName(name);
-
+		}
 		return false;
 	}
 	
-	public void removeAllSubprojects()
-	{
+	public void removeAllSubprojects(){
 		NameTester.removeAll();
 		projectsContainer.removeAll();
 	}
@@ -232,12 +224,11 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * @return returns the worker with corresponding name or null if no worker
 	 *         in the {@code team} verifies this condition.
 	 */
-	public AWorker getWorkerByName(String name)
-	{
+	public AWorker getWorkerByName(String name){
 
-		if (name == null)
+		if (name == null){
 			throw new IllegalArgumentException();
-
+		}
 		return (AWorker) team.getElementByName(name);
 	}
 
@@ -259,23 +250,20 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * @return returns the project with corresponding name or null if no project
 	 *         with the given name exists.
 	 */
-	public Project getSubProjectByName(String name)
-	{
+	public Project getSubProjectByName(String name){
 
-		if (name == null)
+		if (name == null){
 			throw new IllegalArgumentException();
-
-		return (this.getName().equals(name) ? this
-				: (Project) projectsContainer.getElementByName(name));
+		}
+		return this.getName().equals(name) ? this
+				: (Project) projectsContainer.getElementByName(name);
 	}
 
 	/**
 	 * @return returns and unmodifiable view of {@code team} provided by the
 	 *         method {@code getElementsList()}.
 	 */
-	public Collection<AWorker> getTeam()
-	{
-
+	public Collection<AWorker> getTeam(){
 		return this.team.getElementsList();
 	}
 
@@ -284,17 +272,14 @@ public class Project extends UtilsElement implements ProjectInterface
 	 *         the method {@code getElementsList()}.
 	 */
 	@Override
-	public Collection<Project> getContainerProject()
-	{
+	public Collection<Project> getContainerProject(){
 		return this.projectsContainer.getElementsList();
 	}
 
 	/**
 	 * @return {@link Local} of the {@code Project}.
 	 */
-	public Local getLocal()
-	{
-
+	public Local getLocal(){
 		return local;
 	}
 
@@ -303,9 +288,7 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * Interface.
 	 */
 	@Override
-	public String getName()
-	{
-
+	public String getName(){
 		return name;
 	}
 
@@ -313,9 +296,7 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * Override of the method {@code toString()} from {@code Object}.
 	 */
 	@Override
-	public String toString()
-	{
-
+	public String toString(){
 		return toString(0);
 	}
 
@@ -327,11 +308,12 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * @param space
 	 * @return information about the project
 	 */
-	protected String toString(int nr)
-	{
+	protected String toString(int nr){
+		
 		StringBuilder spaceBuilder = new StringBuilder();
-		for (int i = 0; i < nr * 5; i++)
+		for (int i = 0; i < nr * 5; i++){
 			spaceBuilder.append(" ");
+		}
 		String space = spaceBuilder.toString();
 
 		StringBuilder builder = new StringBuilder();
@@ -339,28 +321,27 @@ public class Project extends UtilsElement implements ProjectInterface
 		builder.append(space).append("Project ID: ").append(pid).append("\n")
 				.append(space).append("Cost: ").append(df.format(getCost())).append(" Euros").append("\n")
 				.append(space).append("Local: ").append(local.toString()).append("\n");
-		if(manager != null)
+		if(manager != null){
 			builder.append(space).append("Manager: ").append(manager.toString()).append("\n");
-		
-		
+		}
 		builder.append(space).append("Team: ").append("\n")
 				.append(space).append(team.toString(5))//.append("\n")
 				.append(space).append("Subprojects: ")
-				.append(projectsContainer.size() == 0 ? "None." : "\n"
+				.append(projectsContainer.isEmpty() ? "None." : "\n"
 						+ projectsContainer.toString(nr + 1)).append("\n");
 
 		return builder.toString();
 	}
 	
 	@Override
-	public JSONObject getJson()
-	{
+	public JSONObject getJson(){
 		DecimalFormat df = new DecimalFormat("#.##");
 		JSONObject json = new JSONObject();
-		json.put("Subprojects", projectsContainer.size() == 0 ? "None." : projectsContainer.getJson());
+		json.put("Subprojects", projectsContainer.isEmpty() ? "None." : projectsContainer.getJson());
 		json.put("Project team", team.getJson());
-		if(manager != null)
+		if(manager != null){
 			json.put("Manager", manager.getJson());
+		}
 		json.put("Local", local.getJson());
 		json.put("Cost (Euros)", df.format(getCost()).replaceAll(",", "."));
 		json.put("Project ID", pid);
@@ -372,15 +353,12 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * Interface.
 	 */
 	@Override
-	public double getCost()
-	{
+	public double getCost(){
 
 		double managerCost;
-		try
-		{
+		try{
 			managerCost = manager.getCost();
-		} catch (NullPointerException e)
-		{
+		} catch (NullPointerException e){
 			managerCost = 0;
 		}
 
@@ -400,31 +378,26 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * {@code equals} from {@code Object}.
 	 */
 	@Override
-	public int compareTo(UtilsElement element)
-	{
+	public int compareTo(UtilsElement element){
 
-		if (element == null)
+		if (element == null){
 			throw new IllegalArgumentException();
-
-		if (!(element instanceof Project))
+		}
+		if (!(element instanceof Project)){
 			throw new ClassCastException();
-
-		if (this.getName().toLowerCase()
-				.equals(element.getName().toLowerCase()))
+		}
+		if (this.getName().equalsIgnoreCase(element.getName())){
 			return this.getName().compareTo(element.getName());
-
+		}
 		return this.getName().toLowerCase()
 				.compareTo(element.getName().toLowerCase());
-
 	}
 
 	/**
 	 * Override of the method {@code hashCode()} from {@code Object}.
 	 */
 	@Override
-	public int hashCode()
-	{
-
+	public int hashCode(){
 		final int prime = 31;
 		int result = 1;
 
@@ -439,56 +412,104 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * consistent with the {@code compareTo()} method.
 	 */
 	@Override
-	public boolean equals(Object project)
-	{
-		if (this == project)
+	public boolean equals(Object project){
+		if (this == project){
 			return true;
+		}
+		if (project == null){
+			return false;
+		}
+		if (getClass() != project.getClass()){
+			return false;
+		}
+		if (((Project) project).compareTo(this) != 0){
+			return false;
+		}
+		return hasSameProperties((Project)project);
+	}
+	
+	/**
+	 * Verifies if the {@code Project} passed as parameter has the same properties as {@code this}.
+	 * @param worker
+	 * @return true if the {@code Project} passed as parameter has the same properties as {@code this}
+	 * @return false if the {@code Project} passed as parameter has not the same properties as 
+	 * {@code this}
+	 */
+	public boolean hasSameProperties(Project project){
+		if( pid != project.getPID()){
+			return false;
+		}
+		if( ! local.equals(project.getLocal())){
+			return false;
+		}
+		if(!hasSameManager(project)){
+			return false;
+		}
+		if(!hasSameTeam(project)){
+			return false;
+		}
+		if(!hasSameSubprojects(project)){
+			return false;
+		}
+		return true;
+	}
 
-		if (project == null)
-			return false;
-
-		if (getClass() != project.getClass())
-			return false;
-
-		if (((Project) project).compareTo(this) != 0)
-			return false;
+	public boolean hasSameManager(Project project){
 		
-		if( pid != ((Project)project).getPID())
+		if( manager == null && project.getManager() != null){
 			return false;
-		
-		if( ! local.equals(((Project)project).getLocal()))
+		}
+		if( manager != null && ! manager.equals(project.getManager())){
 			return false;
-		
-		if( manager == null && ((Project)project).getManager() != null)
+		}
+		return true;
+	}
+	
+	/**
+	 * Verifies if the {@code Project} passed as parameter has the same team as {@code this}.
+	 * @param worker
+	 * @return true if the {@code Project} passed as parameter has the same team as {@code this}
+	 * @return false if the {@code Project} passed as parameter has not the same team as 
+	 * {@code this}
+	 */
+	public boolean hasSameTeam(Project project){
+		if( getTeam().size() != project.getTeam().size()){
 			return false;
+		}
 		
-		if( manager != null && ! manager.equals(((Project)project).getManager()))
-			return false;
-		
-		if( getTeam().size() != ((Project)project).getTeam().size())
-			return false;
-		
-		Iterator<AWorker> team = ((Project)project).getTeam().iterator();
-		for(AWorker worker : getTeam())
-			if (! worker.equals(team.next()))
+		Iterator<AWorker> otherTeam = project.getTeam().iterator();
+		for(AWorker worker : getTeam()){
+			if (! worker.equals(otherTeam.next())){
 				return false;
-		
-		if( getContainerProject().size() != ((Project)project).getContainerProject().size())
+			}
+		}
+		return true;
+	}
+	
+	/**
+	 * Verifies if the {@code Project} passed as parameter has the same subprojects as {@code this}.
+	 * @param worker
+	 * @return true if the {@code Project} passed as parameter has the same subprojects as {@code this}
+	 * @return false if the {@code Project} passed as parameter has not the same subprojects as 
+	 * {@code this}
+	 */
+	public boolean hasSameSubprojects(Project project){
+		if( getContainerProject().size() != project.getContainerProject().size()){
 			return false;
-		
-		Iterator<Project> subprojects = ((Project)project).getContainerProject().iterator();
-		for(Project proj : getContainerProject())
-			if (! proj.equals(subprojects.next()))
+		}
+		Iterator<Project> subprojects = project.getContainerProject().iterator();
+		for(Project proj : getContainerProject()){
+			if (! proj.equals(subprojects.next())){
 				return false;
-
+			}
+		}
 		return true;
 	}
 
 	/**
 	 * @return The Manager of the {@code Project}.
 	 */
-	public Leader getManager()
-	{
+	public Leader getManager(){
 		return manager;
 	}
 
@@ -496,8 +517,7 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * @param manager
 	 *            The manager to set in the {@code Project}.
 	 */
-	public void setManager(Leader manager)
-	{
+	public void setManager(Leader manager){
 		this.manager = manager;
 	}
 
@@ -505,8 +525,7 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * @return The Project Identification (PID).
 	 */
 	@Override
-	public long getPID()
-	{
+	public long getPID(){
 		return pid;
 	}
 
@@ -515,8 +534,7 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * {@code ProjectInterface}
 	 */
 	@Override
-	public boolean updateLongitude(double newLongitude)
-	{
+	public boolean updateLongitude(double newLongitude){
 		return local.setLongitude(newLongitude);
 	}
 
@@ -525,8 +543,7 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * {@code ProjectInterface}
 	 */
 	@Override
-	public boolean updateLatitude(double newLatitude)
-	{
+	public boolean updateLatitude(double newLatitude){
 		return local.setLatitude(newLatitude);
 	}
 
@@ -535,8 +552,7 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * {@code ProjectInterface}
 	 */
 	@Override
-	public void updateLocalName(String newName)
-	{
+	public void updateLocalName(String newName){
 		local.setName(newName);
 	}
 
@@ -545,8 +561,7 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * {@code ProjectInterface}
 	 */
 	@Override
-	public boolean updateLocalPrice(double newPrice)
-	{
+	public boolean updateLocalPrice(double newPrice){
 		return local.setPrice(newPrice);
 	}
 
@@ -554,8 +569,7 @@ public class Project extends UtilsElement implements ProjectInterface
 	 * Returns how many subprojects {@code this} project has
 	 * @return the number of subprojects
 	 */
-	public int getSubprojectsNumber()
-	{
+	public int getSubprojectsNumber(){
 		return projectsContainer.size();
 	}
 }

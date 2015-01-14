@@ -11,8 +11,7 @@ import outputMethods.Result;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 28/12/2014
  */
-public abstract class BaseCommandResultsOutputMethod extends BaseCommand
-{
+public abstract class BaseCommandResultsOutputMethod extends BaseCommand{
 
 	/**
 	 * {@code String} with the results output format argument's name. This
@@ -33,8 +32,7 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 	 * @param parameters
 	 *            The Command arguments.
 	 */
-	public BaseCommandResultsOutputMethod(Map<String, String> parameters)
-	{
+	public BaseCommandResultsOutputMethod(Map<String, String> parameters){
 		super(parameters);
 	}
 
@@ -45,8 +43,7 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 	 * execution).
 	 */
 	@Override
-	public Result call() throws Exception
-	{
+	public Result call() throws Exception{
 		validateDemandingParameters(getMandatoryParameters());
 		return new Result(internalCall(), getResultsOutputDestination(),
 				getResultsOutputFormat());
@@ -57,8 +54,7 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 	 * 
 	 * @return The format for the results.
 	 */
-	private String getResultsOutputFormat()
-	{
+	private String getResultsOutputFormat(){
 		return getParameterAsString(ACCEPT);
 	}
 
@@ -67,8 +63,7 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand
 	 * 
 	 * @return The destination for the results.
 	 */
-	protected String getResultsOutputDestination()
-	{
+	protected String getResultsOutputDestination(){
 		return getParameterAsString(OUTPUT);
 	}
 

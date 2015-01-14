@@ -18,8 +18,7 @@ import app.repository.WorkerRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 17/12/2014
  */
-public class PatchConsultant extends BaseCommandUserAuthentication
-{
+public class PatchConsultant extends BaseCommandUserAuthentication {
 
 	/**
 	 * The {@link WorkerRepository} with the {@code AWorker}s. The modified
@@ -55,8 +54,7 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 	 * Class that implements the {@link PatchConsultant} factory, according to
 	 * the {@link CommandFactory}.
 	 */
-	public static class Factory implements CommandFactory
-	{
+	public static class Factory implements CommandFactory{
 
 		/**
 		 * The {@link WorkerRepository} with the {@code AWorker}s. The modified
@@ -77,8 +75,7 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 		 * @param wRepository
 		 *            The {@code WorkerRepository} with the {@code AWorker}s.
 		 */
-		public Factory(UserRepository uRepository, WorkerRepository wRepository)
-		{
+		public Factory(UserRepository uRepository, WorkerRepository wRepository){
 			this.wRepository = wRepository;
 			this.uRepository = uRepository;
 		}
@@ -87,8 +84,7 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)
-		{
+		public Callable<Result> newInstance(Map<String, String> parameters){
 			return new PatchConsultant(uRepository, wRepository, parameters);
 		}
 	}
@@ -104,8 +100,7 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 	 *            The {@code Command} arguments.
 	 */
 	public PatchConsultant(UserRepository uRepository,
-			WorkerRepository repository, Map<String, String> parameters)
-	{
+			WorkerRepository repository, Map<String, String> parameters){
 		super(uRepository, parameters);
 		this.repository = repository;
 	}
@@ -118,19 +113,21 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 	 *         modified {@code AWorker}.
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception
-	{
+	protected AppElement[] internalCall() throws Exception{
 		AWorker worker = repository
 				.getAWorkerByID(this.getParameterAsLong(CID));
-		if (worker == null)
+		if (worker == null){
 			return new AppElement[] { new Message("Worker with CID: "
 					+ getParameterAsLong(CID) + "was not found!") };
-		if (parameters.containsKey(NAME))
+		}
+		if (parameters.containsKey(NAME)){
 			worker.setName(parameters.get(NAME));
-		if (parameters.containsKey(PRICE_HOUR))
-			if (!worker.setCostPerHour(this.getParameterAsDouble(PRICE_HOUR)))
-				return new AppElement[] { new Message(
+		}
+		if (parameters.containsKey(PRICE_HOUR) &&
+					!worker.setCostPerHour(this.getParameterAsDouble(PRICE_HOUR))){
+			return new AppElement[] { new Message(
 						"Worker's cost per hour cannot be negative.") };
+		}
 		
 		return new AppElement[] { new Message("The Consultant parameters were successfully changed!")};
 	}
@@ -139,8 +136,7 @@ public class PatchConsultant extends BaseCommandUserAuthentication
 	 * @see app.commands.BaseCommand#getMandatoryParameters()
 	 */
 	@Override
-	protected String[] getMandatoryParameters()
-	{
+	protected String[] getMandatoryParameters(){
 		return DEMANDING_PARAMETERS;
 	}
 

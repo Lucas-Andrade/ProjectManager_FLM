@@ -15,8 +15,7 @@ import app.repository.UserRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public abstract class BaseCommandUserAuthentication extends BaseCommand
-{
+public abstract class BaseCommandUserAuthentication extends BaseCommand{
 
 	/**
 	 * {@code String} with the Login Name argument's name. This argument is used
@@ -50,8 +49,7 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	 * @param parameters   The {@code Command} arguments.
 	 */
 	public BaseCommandUserAuthentication(UserRepository userRepository,
-			Map<String, String> parameters)
-	{
+			Map<String, String> parameters){
 		super(parameters);
 		repository = userRepository;
 	}
@@ -64,15 +62,16 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	 * {@link InvalidUserException}, if correct proceeds with the execution.
 	 */
 	@Override
-	public Result call() throws Exception
-	{
+	public Result call() throws Exception{
 		validateDemandingParameters(getMandatoryParameters());
 		String username = parameters.get(LOGINNAME);
 		String password = parameters.get(LOGINPASSWORD);
-		if (authenticateUser(username, password))
+		if (authenticateUser(username, password)){
 			return new Result(internalCall(), null, null);
-		else
+		}
+		else{
 			throw new InvalidUserException(username);
+		}
 	}
 
 	/**
@@ -84,8 +83,7 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	 * @param loginPassword   The Login Password.
 	 * @return {@code True} if authentication success, {@code False} otherwise.
 	 */
-	protected boolean authenticateUser(String loginName, String loginPassword)
-	{
+	protected boolean authenticateUser(String loginName, String loginPassword){
 		return repository.isPasswordCorrectForUser(loginName, loginPassword);
 	}
 
@@ -95,5 +93,4 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand
 	 * @throws Exception
 	 */
 	abstract protected AppElement[] internalCall() throws Exception;
-
 }

@@ -7,9 +7,7 @@ package app.elements;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface WorkerInterface extends AppElement
-{
-
+public interface WorkerInterface extends AppElement{
 	/**
 	 * @return the worker identification number
 	 */
@@ -19,5 +17,4 @@ public interface WorkerInterface extends AppElement
 	 * @see Object#toString()
 	 */
 	public String toString();
-
 }

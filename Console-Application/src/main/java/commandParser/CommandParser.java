@@ -13,8 +13,7 @@ import commands.CommandFactory;
  * Class whose instances are responsible for translating Command Strings into
  * their {@link App.commands.Command} instance counterparts.
  */
-public class CommandParser
-{
+public class CommandParser{
 
 	/**
 	 * The registry root
@@ -24,31 +23,30 @@ public class CommandParser
 	/**
 	 * Class whose instances represent the parser tree nodes
 	 */
-	private static class Node
-	{
+	private static class Node{
 
 		/**
 		 * If {@code Node.content} starts with "{" and ends with "}", then this
 		 * {@code Node} is a placeholder. Also {@see Node.isPlaceHolderNode}.
 		 */
-		public final String content;
+		protected final String content;
 
 		/**
 		 * {@code Map} with the Node childs (that are not PlaceHolders) of
 		 * {@code this.Node}.
 		 */
-		public final Map<String, Node> fixedChilds;
+		protected final Map<String, Node> fixedChilds;
 
 		/**
 		 * Node child of {@code this.Node} that is a Placeholder.
 		 */
-		public Node placeholderChild;
+		protected Node placeholderChild;
 
 		/**
 		 * Factory of the Command that should be instantiated when this Node is
 		 * the last Node called in a Command String.
 		 */
-		public CommandFactory factory;
+		protected CommandFactory factory;
 
 		/**
 		 * Constructor for {@code Node}.
@@ -56,8 +54,7 @@ public class CommandParser
 		 * @param content
 		 *            The Name of the Node.
 		 */
-		public Node(String content)
-		{
+		public Node(String content){
 			this.content = content;
 			this.fixedChilds = new HashMap<String, Node>();
 		}
@@ -69,8 +66,7 @@ public class CommandParser
 		 *            The Name of the current Node.
 		 * @return
 		 */
-		public boolean hasPlaceholderChild(String currentContent)
-		{
+		public boolean hasPlaceholderChild(String currentContent){
 			return placeholderChild != null
 					&& !placeholderChild.content.equals(currentContent);
 		}
@@ -82,10 +78,9 @@ public class CommandParser
 		 *            The Name of the current Node.
 		 * @return The fixed child Node.
 		 */
-		public Node addFixedChild(String currentContent)
-		{
-			Node n;
-			fixedChilds.put(currentContent, n = new Node(currentContent));
+		public Node addFixedChild(String currentContent){
+			Node n = new Node(currentContent);
+			fixedChilds.put(currentContent, n);
 			return n;
 		}
 
@@ -97,11 +92,11 @@ public class CommandParser
 		 *            The name of the child fixed Node.
 		 * @return The child fixed Node.
 		 */
-		public Node getAndCreateIfDoesNotExitFixedNode(String currentContent)
-		{
+		public Node getAndCreateIfDoesNotExitFixedNode(String currentContent){
 			Node node = fixedChilds.get(currentContent);
-			if (node == null)
+			if (node == null){
 				node = addFixedChild(currentContent);
+			}
 			return node;
 		}
 
@@ -114,10 +109,8 @@ public class CommandParser
 		 * @return The child placeholder Node.
 		 */
 		public Node getAndCreateIfDoesNotExitPlacehoderNode(
-				String currentContent)
-		{
-			if (placeholderChild == null)
-			{
+				String currentContent){
+			if (placeholderChild == null){
 				placeholderChild = new Node(currentContent);
 			}
 			return placeholderChild;
@@ -133,11 +126,9 @@ public class CommandParser
 		 *            the current content to find
 		 * @return the node
 		 */
-		public Node getChildForValue(String content)
-		{
+		public Node getChildForValue(String content){
 			Node n = fixedChilds.get(content);
-			if (n == null)
-			{
+			if (n == null){
 				n = placeholderChild;
 			}
 			return n;
@@ -152,8 +143,7 @@ public class CommandParser
 	 * @return <code>true</code> if it is a placeholder node content,
 	 *         <code>false</code> otherwise
 	 */
-	private boolean isPlaceHolderNode(String currentContent)
-	{
+	private boolean isPlaceHolderNode(String currentContent){
 		return currentContent.startsWith("{") && currentContent.endsWith("}");
 	}
 
@@ -170,8 +160,7 @@ public class CommandParser
 	 * @throws InvalidRegisterException
 	 */
 	public void registerCommand(String method, String path,
-			CommandFactory cmdFactory) throws InvalidRegisterException
-	{
+			CommandFactory cmdFactory) throws InvalidRegisterException{
 		path = method.trim() + path;
 
 		String[] treePathElementsArray = path.split("/");
@@ -199,11 +188,9 @@ public class CommandParser
 	 */
 	private void updateSubtree(Node rootNode, String[] pathElements,
 			int pathStartIndex, CommandFactory cmdFactory)
-			throws InvalidRegisterException
-	{
+			throws InvalidRegisterException{
 
-		if (pathStartIndex == pathElements.length)
-		{
+		if (pathStartIndex == pathElements.length){
 			rootNode.factory = cmdFactory;
 			return;
 		}
@@ -211,18 +198,13 @@ public class CommandParser
 		String currentContent = pathElements[pathStartIndex];
 		Node node;
 
-		if (!isPlaceHolderNode(currentContent))
-		{
+		if (!isPlaceHolderNode(currentContent)){
 			node = rootNode.getAndCreateIfDoesNotExitFixedNode(currentContent);
-		} else
-		{
-			if (rootNode.hasPlaceholderChild(currentContent))
-			{
+		} else{
+			if (rootNode.hasPlaceholderChild(currentContent)){
 				throw new InvalidRegisterException(
-						MessageFormat
-								.format("Command registred with a placeholder with name '{0}', at node with an already existant placeholder child with name '{1}'",
-										currentContent,
-										rootNode.placeholderChild.content));
+					MessageFormat.format("Command registred with a placeholder with name '{0}', at node with an already existant placeholder child with name '{1}'",
+							currentContent, rootNode.placeholderChild.content));
 			}
 			node = rootNode
 					.getAndCreateIfDoesNotExitPlacehoderNode(currentContent);
@@ -242,10 +224,8 @@ public class CommandParser
 	 * @return The associated command instance
 	 * @throws CommandParserException
 	 */
-	public Callable<Result> getCommand(String... args) throws CommandParserException
-	{
-		if (args.length < 2 || args.length > 3)
-		{
+	public Callable<Result> getCommand(String... args) throws CommandParserException{
+		if (args.length < 2 || args.length > 3){
 			throw new UnknownCommandException("args must have 2 or 3 elements");
 		}
 
@@ -271,21 +251,19 @@ public class CommandParser
 	 */
 	private Map<String, String> getParameters(String parameters)
 			throws InvalidCommandArgumentsException,
-			DuplicateArgumentsException
-	{
+			DuplicateArgumentsException{
 		Map<String, String> parametersMap = new HashMap<>();
 
-		if (parameters != null)
-		{
+		if (parameters != null){
 			String[] parametersElements = parameters.split("&");
-			for (String parameterElement : parametersElements)
-			{
+			for (String parameterElement : parametersElements){
 				String[] keyAndValues = parameterElement.split("=");
-				if (keyAndValues.length != 2)
+				if (keyAndValues.length != 2){
 					throw new InvalidCommandArgumentsException("InvalidCommandArgumentsException");
-
-				if (parametersMap.containsKey(keyAndValues[0]))
+				}
+				if (parametersMap.containsKey(keyAndValues[0])){
 					throw new DuplicateArgumentsException("DuplicateArgumentsException");
+				}
 				parametersMap.put(keyAndValues[0], keyAndValues[1]);
 			}
 		}
@@ -311,27 +289,25 @@ public class CommandParser
 	 */
 	private Callable<Result> getCommandInternal(Node rootNode, String[] pathElements,
 			int pathStartIndex, Map<String, String> parameters)
-			throws UnknownCommandException
-	{
-		if (pathStartIndex == pathElements.length)
-		{
-			if (rootNode.factory == null)
+			throws UnknownCommandException{
+		if (pathStartIndex == pathElements.length){
+			if (rootNode.factory == null){
 				throw new UnknownCommandException(
 						"Current node has no command factory!");
-
+			}
 			return rootNode.factory.newInstance(parameters);
 		}
 
 		String currentContent = pathElements[pathStartIndex];
 		Node child = rootNode.getChildForValue(currentContent);
-		if (child == null)
+		if (child == null){
 			throw new UnknownCommandException("Command path not found!");
-
-		if (isPlaceHolderNode(child.content))
+		}
+		if (isPlaceHolderNode(child.content)){
 			parameters.put(
 					child.content.substring(1, child.content.length() - 1),
 					currentContent);
-
+		}
 		return getCommandInternal(child, pathElements, pathStartIndex + 1,
 				parameters);
 	}

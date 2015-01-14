@@ -12,18 +12,14 @@ import java.text.MessageFormat;
  * @since 22/12/2014
  */
 @SuppressWarnings("serial")
-public class InvalidUserException extends CommandException
-{
+public class InvalidUserException extends CommandException{
 
-	public InvalidUserException(String username)
-	{
+	public InvalidUserException(String username){
 		super(MessageFormat.format(
 				"Inserted username {0} and/or password are invalid.", username));
 	}
 
-	public InvalidUserException(String message, Throwable cause)
-	{
+	public InvalidUserException(String message, Throwable cause){
 		super(message, cause);
 	}
-
 }

@@ -8,8 +8,7 @@ import java.io.IOException;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 28/12/2014
  */
-public interface Writable
-{
+public interface Writable{
 
 	/**
 	 * Writes the results in the desired output.
@@ -19,5 +18,4 @@ public interface Writable
 	 * @throws IOException
 	 */
 	public void write(String info) throws IOException;
-
 }

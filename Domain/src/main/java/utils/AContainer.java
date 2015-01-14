@@ -16,8 +16,7 @@ import org.json.JSONObject;
  * @param <elements>
  *            - any instances of a type compatible with {@code Element}.
  */
-public abstract class AContainer<elements extends UtilsElement> implements ICost, Iterable<elements>
-{
+public abstract class AContainer<elements extends UtilsElement> implements ICost, Iterable<elements>{
 
 	private final Collection<elements> elementsList;
 
@@ -30,8 +29,7 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	 * {@code compareTo()} from the {@link Comparable} Interface implemented by
 	 * {@code Element}.
 	 */
-	public AContainer()
-	{
+	public AContainer(){
 		this.elementsList = new TreeSet<elements>();
 	}
 
@@ -78,11 +76,12 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	 * @return true if the {@code Element} is successfully added and false
 	 *         Otherwise.
 	 */
-	public boolean addElement(elements element)
-	{
-		for (elements currentElement : elementsList)
-			if (currentElement.getName().equals(element.getName()))
+	public boolean addElement(elements element){
+		for (elements currentElement : elementsList){
+			if (currentElement.getName().equals(element.getName())){
 				return false;
+			}
+		}
 
 		return elementsList.add(element);
 	}
@@ -100,19 +99,14 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	 * @return true if the {@code Element} is successfully added and false
 	 *         Otherwise.
 	 */
-	public boolean remove(UtilsElement element)
-	{
-		// Não remove subprojectos dos subprojectos dum projecto.
-		// No caso das equipas não há stresses.
-		// @see Project#removeProject(String)
+	public boolean remove(UtilsElement element){
 		return this.elementsList.remove(element);
 	}
 
 	/**
 	 * @return and unmodifiable view of {@code elementsList}.
 	 */
-	public Collection<elements> getElementsList()
-	{
+	public Collection<elements> getElementsList(){
 		return Collections.unmodifiableCollection(elementsList);
 	}
 
@@ -121,14 +115,13 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	 * Interface.
 	 */
 	@Override
-	public double getCost()
-	{
+	public double getCost(){
 
 		double cost = 0;
 
-		for (elements element : elementsList)
+		for (elements element : elementsList){
 			cost += element.getCost();
-
+		}
 		return cost;
 	}
 
@@ -136,74 +129,100 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	 * Override of the method {@code toString()} from {@code Object}.
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString(){
 		return toString(0);	
 	}
 	
-	public String toString(int i) 
-	{
+	public String toString(int i) {
 		String spaces = "";
-		for(int n = 0; n < i; n++)
+		for(int n = 0; n < i; n++){
 			spaces += " ";
-		
+		}
 		StringBuilder builder = new StringBuilder();
 
-		for (elements element : elementsList)
+		for (elements element : elementsList){
 			builder.append(spaces).append(element.toString()).append("\n");
+		}
 
 		return builder.toString();
 	}
 	
-	public JSONObject[] getJson() 
-	{
-		Collection<elements> elementsList = getElementsList();
-		JSONObject[] jsonArray = new JSONObject[elementsList.size()];
+	public JSONObject[] getJson() {
+		Collection<elements> elementsCol = getElementsList();
+		JSONObject[] jsonArray = new JSONObject[elementsCol.size()];
 		int index = 0;
 		
-		for (elements element : elementsList)
+		for (elements element : elementsCol){
 			jsonArray[index++] = element.getJson();
+		}
 		return jsonArray;
 	}
 	
 	/**
 	 * @return the number of elements the container contains
 	 */
-	public int size()
-	{
+	public int size(){
 		return elementsList.size();
 	}
 	
-	public void removeAll()
-	{
+	public void removeAll(){
 		elementsList.clear();
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((elementsList == null) ? 0 : elementsList.hashCode());
+		return result;
+	}
+
 	/**
 	 * Override of the method {@code equals()} from {@code Object} to be
 	 * consistent with the {@code compareTo()} method.
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean equals(Object container)
-	{
-		if (this == container)
+	public boolean equals(Object container){
+		if (this == container){
 			return true;
-
-		if (container == null)
+		}
+		if (container == null){
 			return false;
-
-		if (getClass() != container.getClass())
+		}
+		if (getClass() != container.getClass()){
 			return false;
+		}
+		return hasSameElements((AContainer<UtilsElement>)container);
+	}
+	
+	/**
+	 * Verifies if the {@code AContainer} passed as parameter has the same elements as {@code this}.
+	 * @param worker
+	 * @return true if the {@code AContainer} passed as parameter has the same elements as {@code this}
+	 * @return false if the {@code AContainer} passed as parameter has not the same elements as 
+	 * {@code this}
+	 */
+	public boolean hasSameElements(AContainer<UtilsElement> container){
+		if(size() != container.size()){
+			return false;
+		}
 		
-		if(size() != ((AContainer<UtilsElement>)container).size())
-			return false;
-		
-		Iterator<UtilsElement> iterator = ((AContainer<UtilsElement>)container).getElementsList().iterator();
-		for (UtilsElement element : elementsList)
-			if (! element.equals(iterator.next())) //TreeSet is ordered, so we can compare elements in pairs
+		Iterator<UtilsElement> iterator = container.getElementsList().iterator();
+		for (UtilsElement element : elementsList){
+			if (! element.equals(iterator.next())){ //TreeSet is ordered, so we can compare elements in pairs
 				return false;
-		
+			}
+		}
 		return true;
 	}
+	
+	/**
+	 * @return true if the {@code AContainer} is empty
+	 */
+	public boolean isEmpty() {
+		return elementsList.isEmpty();
+	}
+
 }

@@ -20,8 +20,7 @@ import outputMethods.format.ToTextPlain;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 28/12/2014
  */
-public class Result
-{
+public class Result{
 
 	/**
 	 * The results from a Command execution.
@@ -60,21 +59,19 @@ public class Result
 	 */
 	public Result(AppElement[] results, String destination, String format)
 			throws ClassNotFoundException, InstantiationException,
-			IllegalAccessException, FileNotFoundException
-	{
-		if (format == null || format == "")
-		{
+			IllegalAccessException, FileNotFoundException{
+		if (format == null || format == ""){
 			format = ToTextPlain.class.getName();
 			format = format.substring(format.lastIndexOf('.') + 3);
-		}
-		else
-		{
+		}else{
 			String[] formats = format.split("/");
-			for (int i=0; i<formats.length; i++)
+			for (int i=0; i<formats.length; i++){
 				formats[i]=formats[i].substring(0, 1).toUpperCase()+formats[i].substring(1);
+			}
 			format="";
-			for (String fmt:formats)
+			for (String fmt:formats){
 				format+=fmt;
+			}
 		}
 
 		String formatClassCompleteName = TextParser.class.getPackage()
@@ -94,8 +91,7 @@ public class Result
 	/**
 	 * @return the results of the {@code internalCall}
 	 */
-	public AppElement[] getResults()
-	{
+	public AppElement[] getResults(){
 		return results;
 	}
 
@@ -105,13 +101,12 @@ public class Result
 	 * 
 	 * @throws IOException
 	 */
-	public void showResults() throws IOException
-	{
+	public void showResults() throws IOException{
 		JSONObject[] toWrite = new JSONObject[results.length];
 		int i = 0;
-		for (AppElement result : results)
+		for (AppElement result : results){
 			toWrite[i++] = result.getJson();
+		}
 		destination.write(format.parse(toWrite));
 	}
-
 }

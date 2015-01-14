@@ -18,8 +18,7 @@ import app.elements.AppElement;
  *            this#call()}).
  * @since 08/12/2014
  */
-public abstract class BaseCommand implements Callable<Result>
-{
+public abstract class BaseCommand implements Callable<Result>{
 
 	/**
 	 * The {@code Command} arguments. These are required by some {@code Command}
@@ -38,8 +37,7 @@ public abstract class BaseCommand implements Callable<Result>
 	 * @param parameters
 	 *            The {@code Command} arguments.
 	 */
-	public BaseCommand(Map<String, String> parameters)
-	{
+	public BaseCommand(Map<String, String> parameters){
 		super();
 		this.parameters = parameters;
 	}
@@ -50,8 +48,7 @@ public abstract class BaseCommand implements Callable<Result>
 	 * parameters (if not stops the execution).
 	 */
 	@Override
-	public Result call() throws Exception
-	{
+	public Result call() throws Exception{
 		validateDemandingParameters(getMandatoryParameters());
 		return new Result(internalCall(), null, null);
 	}
@@ -75,12 +72,9 @@ public abstract class BaseCommand implements Callable<Result>
 	 *             present in the {@link BaseCommand#parameters}.
 	 */
 	protected void validateDemandingParameters(String... parameterNames)
-			throws MandatoryParameterNotPresentException
-	{
-		for (String name : parameterNames)
-		{
-			if (!parameters.containsKey(name))
-			{
+			throws MandatoryParameterNotPresentException{
+		for (String name : parameterNames){
+			if (!parameters.containsKey(name)){
 				throw new MandatoryParameterNotPresentException(name);
 			}
 		}
@@ -98,8 +92,7 @@ public abstract class BaseCommand implements Callable<Result>
 	 * @param name   The name of the argument to be returned.
 	 * @return The command argument.
 	 */
-	protected double getParameterAsDouble(String name)
-	{
+	protected double getParameterAsDouble(String name){
 		return Double.parseDouble(parameters.get(name));
 	}
 
@@ -109,8 +102,7 @@ public abstract class BaseCommand implements Callable<Result>
 	 * @param name   The name of the argument to be returned.
 	 * @return The command argument.
 	 */
-	protected String getParameterAsString(String name)
-	{
+	protected String getParameterAsString(String name){
 		return parameters.get(name);
 	}
 
@@ -120,8 +112,7 @@ public abstract class BaseCommand implements Callable<Result>
 	 * @param name    The name of the argument to be returned.
 	 * @return The command argument.
 	 */
-	protected int getParameterAsInt(String name)
-	{
+	protected int getParameterAsInt(String name){
 		return Integer.parseInt(parameters.get(name));
 	}
 
@@ -131,9 +122,7 @@ public abstract class BaseCommand implements Callable<Result>
 	 * @param name    The name of the argument to be returned.
 	 * @return The command argument.
 	 */
-	protected long getParameterAsLong(String name)
-	{
+	protected long getParameterAsLong(String name){
 		return Long.parseLong(parameters.get(name));
 	}
-
 }
