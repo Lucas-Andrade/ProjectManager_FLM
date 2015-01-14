@@ -41,6 +41,12 @@ public class Authentication implements IAuthentication {
 	}
 
 	public class authenticationDialog extends JDialog{
+
+		private static final long serialVersionUID = 9190969392304934338L;
+		
+		public authenticationDialog() {
+			
+		}
 		
 	}
 }
