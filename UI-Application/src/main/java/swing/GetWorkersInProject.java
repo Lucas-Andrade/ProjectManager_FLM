@@ -1,8 +1,11 @@
 package swing;
 
 import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 
 public class GetWorkersInProject extends JInternalFrame {
 
@@ -28,6 +31,20 @@ public class GetWorkersInProject extends JInternalFrame {
 	public GetWorkersInProject() {
 		setBounds(100, 100, 450, 300);
 
+		
+		{
+			//Inserir imagem : user -> Path e localização no Painel
+			
+			JLabel consultantLabel = new JLabel("");
+			consultantLabel.setIcon(GetWorkersInProject.class.getClassLoader("resources/images/user.jpg"));
+			GridBagConstraints gbc_lblConsultant = new GridBagConstraints();
+			gbc_lblConsultant.gridheight = 2;
+			gbc_lblConsultant.insets = new Insets(0, 0, 5, 5);
+			gbc_lblConsultant.anchor = GridBagConstraints.SOUTHEAST;
+			gbc_lblConsultant.gridx = 1;
+			gbc_lblConsultant.gridy = 5;
+			patchConsultantPanel.add(consultantLabel, gbc_lblConsultant);
+		}
 	}
 
 }

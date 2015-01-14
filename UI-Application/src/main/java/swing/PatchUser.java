@@ -2,6 +2,7 @@ package swing;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -70,8 +71,7 @@ public class PatchUser extends JDialog {
 		     //Inserir imagem : user -> Path e localização no Painel
 		{ 
 			JLabel userLabel = new JLabel("");
-			
-			Image user = new ImageIcon(this.getClass().getResource("/user.jpg")).getImage();
+			userLabel.setIcon(GetUserPanel.class.getClassLoader("resources/images/user.jpg"));
 			userLabel.setIcon(new ImageIcon(user));
 			GridBagConstraints gbc_lblUser = new GridBagConstraints();
 			gbc_lblUser.gridheight = 2;
@@ -102,15 +102,15 @@ public class PatchUser extends JDialog {
 			patchUserPanel.add(lblRegistryuser, gbc_lblRegistryuser);
 		}
 		
-		// Título do Comando : Post User
+		// Título do Comando : Patch User
 		{
-//			JLabel lblPostUser = DefaultComponentFactory.getInstance().createTitle("Post User");
-//			lblPostUser.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
-			GridBagConstraints gbc_lblPostUser = new GridBagConstraints();
-			gbc_lblPostUser.insets = new Insets(0, 0, 5, 5);
-			gbc_lblPostUser.gridx = 3;
-			gbc_lblPostUser.gridy = 0;
-//			postUserPanel.add(lblPostUser, gbc_lblPostUser);
+			JLabel lblPatchUser = new JLabel("Patch User");
+			lblPatchUser.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
+			GridBagConstraints gbc_lblPatchUser = new GridBagConstraints();
+			gbc_lblPatchUser.insets = new Insets(0, 0, 5, 5);
+			gbc_lblPatchUser.gridx = 3;
+			gbc_lblPatchUser.gridy = 0;
+			postUserPanel.add(lblPatchUser, gbc_lblPatchUser);
 		}
 		
 		    // Labels e campos a ser preenchidos

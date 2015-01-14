@@ -63,39 +63,33 @@ public class PostWorker extends JDialog {
 			
 			
 			
-		     //Inserir imagem : user -> Path e localização no Painel
+		     //Inserir imagem : Consultant -> Path e localização no Painel
 			//alterar imagem
 		{ 
-			BufferedImage myPicture;
-			try {
-				myPicture = ImageIO.read(new File("src\\main\\java\\swing\\imagens\\Project.jpg"));
-				{
-					JLabel label = new JLabel("Post Worker In Project");
-					label.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
-					GridBagConstraints gbc_label = new GridBagConstraints();
-					gbc_label.gridwidth = 7;
-					gbc_label.insets = new Insets(0, 0, 5, 5);
-					gbc_label.gridx = 1;
-					gbc_label.gridy = 0;
-					PostWorkerPanel.add(label, gbc_label);
-				}
-				
-				JLabel userLabel = new JLabel(new ImageIcon(myPicture));
-				GridBagConstraints gbc_lblUser = new GridBagConstraints();
-				gbc_lblUser.gridheight = 3;
-				gbc_lblUser.insets = new Insets(0, 0, 5, 5);
-				gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
-				gbc_lblUser.gridx = 1;
-				gbc_lblUser.gridy = 3;
-				PostWorkerPanel.add(userLabel, gbc_lblUser);
-			
-			} catch (IOException e) 
-			{
-				e.printStackTrace();
-			}
-
+			JLabel workerLabel = new JLabel("");
+			workerLabel.setIcon(PostWorker.class.getClassLoader("resources/images/add-user.png"));
+			GridBagConstraints gbc_lblUser = new GridBagConstraints();
+			gbc_lblUser.gridheight = 3;
+			gbc_lblUser.insets = new Insets(0, 0, 5, 5);
+			gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
+			gbc_lblUser.gridx = 1;
+			gbc_lblUser.gridy = 3;
+			PostWorkerPanel.add(userLabel, gbc_lblUser);
 		}
-			
+		
+		// Título do Comando : Post Worker In Project
+		{
+			JLabel label = new JLabel("Post Worker In Project");
+			label.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
+			GridBagConstraints gbc_label = new GridBagConstraints();
+			gbc_label.gridwidth = 7;
+			gbc_label.insets = new Insets(0, 0, 5, 5);
+			gbc_label.gridx = 1;
+			gbc_label.gridy = 0;
+			PostWorkerPanel.add(label, gbc_label);
+		}
+		
+		
 			// Informação sobre o user que está a usar o programa
 			{
 				JLabel lblWellcome = new JLabel("Bem-vindo");

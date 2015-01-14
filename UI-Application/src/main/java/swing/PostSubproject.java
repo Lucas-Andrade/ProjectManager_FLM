@@ -62,38 +62,28 @@ public class PostSubproject extends JDialog {
 			postSubprojectPanel.setLayout(gbl_postProjectPanel);
 			
 			
-			     //Inserir imagem : user -> Path e localização no Painel
-				//alterar imagem
-			{ 
-				BufferedImage myPicture;
-				try {
-					myPicture = ImageIO.read(new File("src\\main\\java\\swing\\imagens\\Project.jpg"));
-					
-					// Título do Comando : Post User
-					{
-						JLabel lblPostSubproject = new JLabel("Post Subroject");
-						lblPostSubproject.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
-						GridBagConstraints gbc_lblPostSubproject = new GridBagConstraints();
-						gbc_lblPostSubproject.gridwidth = 10;
-						gbc_lblPostSubproject.insets = new Insets(0, 0, 5, 0);
-						gbc_lblPostSubproject.gridx = 0;
-						gbc_lblPostSubproject.gridy = 0;
-						postSubprojectPanel.add(lblPostSubproject, gbc_lblPostSubproject);
-					}
-					JLabel userLabel = new JLabel(new ImageIcon(myPicture));
-					GridBagConstraints gbc_lblUser = new GridBagConstraints();
-					gbc_lblUser.gridheight = 3;
-					gbc_lblUser.insets = new Insets(0, 0, 5, 5);
-					gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
-					gbc_lblUser.gridx = 1;
-					gbc_lblUser.gridy = 3;
-					postSubprojectPanel.add(userLabel, gbc_lblUser);	
-				
-				} catch (IOException e) 
-				{
-					e.printStackTrace();
-				}
-
+			{	// Título do Comando : Post Subproject
+				JLabel lblPostSubproject = new JLabel("Post Subroject");
+				lblPostSubproject.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
+				GridBagConstraints gbc_lblPostSubproject = new GridBagConstraints();
+				gbc_lblPostSubproject.gridwidth = 10;
+				gbc_lblPostSubproject.insets = new Insets(0, 0, 5, 0);
+				gbc_lblPostSubproject.gridx = 0;
+				gbc_lblPostSubproject.gridy = 0;
+				postSubprojectPanel.add(lblPostSubproject, gbc_lblPostSubproject);
+			}
+			     
+			{ //Inserir imagem : subproject -> Path e localização no Painel
+									
+				JLabel subprojectLabel = new JLabel("");
+				subprojectLabel.setIcon(PostSubproject.class.getClassLoader("resources/images/subproject.jpg"));
+				GridBagConstraints gbc_lblUser = new GridBagConstraints();
+				gbc_lblUser.gridheight = 3;
+				gbc_lblUser.insets = new Insets(0, 0, 5, 5);
+				gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
+				gbc_lblUser.gridx = 1;
+				gbc_lblUser.gridy = 3;
+				postSubprojectPanel.add(userLabel, gbc_lblUser);	
 			}
 			
 			// Informação sobre o user que está a usar o programa

@@ -67,51 +67,43 @@ public class PostConsultant extends JDialog {
 		gbl_postConsultantPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		postConsultantPanel.setLayout(gbl_postConsultantPanel);
 		
-		
-		     //Inserir imagem : user -> Path e localização no Painel
-		{ 
-			BufferedImage myPicture;
-			try {
-				myPicture = ImageIO.read(new File("src\\main\\java\\swing\\imagens\\user.jpg"));
-				
-				// Informação sobre o user que está a usar o programa
-				{
-					JLabel lblWellcome = new JLabel("Bem-vindo");
-					GridBagConstraints gbc_lblWellcome = new GridBagConstraints();
-					gbc_lblWellcome.fill = GridBagConstraints.HORIZONTAL;
-					gbc_lblWellcome.anchor = GridBagConstraints.BELOW_BASELINE;
-					gbc_lblWellcome.insets = new Insets(0, 0, 5, 5);
-					gbc_lblWellcome.gridx = 7;
-					gbc_lblWellcome.gridy = 1;
-					postConsultantPanel.add(lblWellcome, gbc_lblWellcome);
-				}
-				{
-					JLabel lblRegistryuser = new JLabel("RegistryUser");
-					GridBagConstraints gbc_lblRegistryuser = new GridBagConstraints();
-					gbc_lblRegistryuser.insets = new Insets(0, 0, 5, 0);
-					gbc_lblRegistryuser.gridx = 8;
-					gbc_lblRegistryuser.gridy = 1;
-					postConsultantPanel.add(lblRegistryuser, gbc_lblRegistryuser);
-				}
-				
-				
-				JLabel userLabel = new JLabel(new ImageIcon(myPicture));
-				GridBagConstraints gbc_lblUser = new GridBagConstraints();
-				gbc_lblUser.gridheight = 2;
-				gbc_lblUser.insets = new Insets(0, 0, 5, 5);
-				gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
-				gbc_lblUser.gridx = 1;
-				gbc_lblUser.gridy = 3;
-				postConsultantPanel.add(userLabel, gbc_lblUser);
+	    //Inserir imagem : consultant -> Path e localização no Painel
+		{ 	
+			JLabel consultantLabel = new JLabel("");
+			consultantLabel.setIcon(GetUserPanel.class.getClassLoader("resources/images/user.jpg"));
+			GridBagConstraints gbc_lblConsultant = new GridBagConstraints();
+			gbc_lblConsultant.gridheight = 2;
+			gbc_lblConsultant.insets = new Insets(0, 0, 5, 5);
+			gbc_lblConsultant.anchor = GridBagConstraints.SOUTHEAST;
+			gbc_lblConsultant.gridx = 1;
+			gbc_lblConsultant.gridy = 3;
+			postConsultantPanel.add(consultantLabel, gbc_lblConsultant);
+	
+		} 
 			
-			} catch (IOException e) 
-			{
-				e.printStackTrace();
-			}
-
+		// Informação sobre o user que está a usar o programa
+		{
+			JLabel lblWellcome = new JLabel("Bem-vindo");
+			GridBagConstraints gbc_lblWellcome = new GridBagConstraints();
+			gbc_lblWellcome.fill = GridBagConstraints.HORIZONTAL;
+			gbc_lblWellcome.anchor = GridBagConstraints.BELOW_BASELINE;
+			gbc_lblWellcome.insets = new Insets(0, 0, 5, 5);
+			gbc_lblWellcome.gridx = 7;
+			gbc_lblWellcome.gridy = 1;
+			postConsultantPanel.add(lblWellcome, gbc_lblWellcome);
 		}
 		
-		// Título do Comando : Post User
+		{
+			JLabel lblRegistryuser = new JLabel("RegistryUser");
+			GridBagConstraints gbc_lblRegistryuser = new GridBagConstraints();
+			gbc_lblRegistryuser.insets = new Insets(0, 0, 5, 0);
+			gbc_lblRegistryuser.gridx = 8;
+			gbc_lblRegistryuser.gridy = 1;
+			postConsultantPanel.add(lblRegistryuser, gbc_lblRegistryuser);
+		}
+			
+		
+		// Título do Comando : Post Consultant
 		{
 			JLabel lblPostConsultant = new JLabel("Post Consultant");
 			lblPostConsultant.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));

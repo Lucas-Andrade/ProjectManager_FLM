@@ -69,28 +69,29 @@ public class GetUserPanel extends JDialog {
 		gbl_getUsersPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		getUsersPanel.setLayout(gbl_getUsersPanel);
 		
+		// Título do Comando : Get User
+		{
+			JLabel lblGetUser = new JLabel("Get Users");
+			lblGetUser .setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
+			GridBagConstraints gbc_lblGetUser  = new GridBagConstraints();
+			gbc_lblGetUser .gridwidth = 5;
+			gbc_lblGetUser .insets = new Insets(0, 0, 5, 5);
+			gbc_lblGetUser .gridx = 2;
+			gbc_lblGetUser .gridy = 0;
+			patchProjectPanel.add(lblGetUser , gbc_lblGetUser );
+		}
 		
 		 //Inserir imagem : user -> Path e localização no Painel
 		{ 
-			BufferedImage myPicture;
-			try 
-			{
-				myPicture = ImageIO.read(new File("src\\main\\java\\swing\\imagens\\user.jpg"));
-				
-				JLabel userLabel = new JLabel(new ImageIcon(myPicture));
-				GridBagConstraints gbc_lblUser = new GridBagConstraints();
-				gbc_lblUser.gridheight = 2;
-				gbc_lblUser.insets = new Insets(0, 0, 5, 5);
-				gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
-				gbc_lblUser.gridx = 1;
-				gbc_lblUser.gridy = 2;
-				getUsersPanel.add(userLabel, gbc_lblUser);
-			
-			} catch (IOException e) 
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
+			JLabel userLabel = new JLabel("");
+			userLabel.setIcon(GetUserPanel.class.getClassLoader("resources/images/user.jpg"));
+			GridBagConstraints gbc_lblUser = new GridBagConstraints();
+			gbc_lblUser.gridheight = 2;
+			gbc_lblUser.insets = new Insets(0, 0, 5, 5);
+			gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
+			gbc_lblUser.gridx = 1;
+			gbc_lblUser.gridy = 2;
+			getUsersPanel.add(userLabel, gbc_lblUser);	
 		}
 		
 		
@@ -124,16 +125,7 @@ public class GetUserPanel extends JDialog {
 			getUsersPanel.add(userID, gbc_userID);
 			userID.setColumns(10);
 		}
-		{
-			JSeparator separator = new JSeparator();
-			separator.setForeground(Color.GREEN);
-			GridBagConstraints gbc_separator = new GridBagConstraints();
-			gbc_separator.gridwidth = 5;
-			gbc_separator.insets = new Insets(0, 0, 5, 5);
-			gbc_separator.gridx = 2;
-			gbc_separator.gridy = 4;
-			getUsersPanel.add(separator, gbc_separator);
-		}
+		
 		{
 			textField = new JTextField();
 			GridBagConstraints gbc_textField = new GridBagConstraints();
