@@ -64,40 +64,31 @@ public class PatchProject extends JDialog {
 		gbl_patchProjectPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_patchProjectPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		patchProjectPanel.setLayout(gbl_patchProjectPanel);
-		
-		
-		     //Inserir imagem : user -> Path e localização no Painel
-		{ 
-			BufferedImage myPicture;
-			try {
-				myPicture = ImageIO.read(new File("src\\main\\java\\swing\\imagens\\Project.jpg"));
-					
-				// Título do Comando : Post User
-				{
-					JLabel lblPatchProject = new JLabel("Patch Project");
-					lblPatchProject.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
-					GridBagConstraints gbc_lblPatchProject = new GridBagConstraints();
-					gbc_lblPatchProject.gridwidth = 5;
-					gbc_lblPatchProject.insets = new Insets(0, 0, 5, 5);
-					gbc_lblPatchProject.gridx = 2;
-					gbc_lblPatchProject.gridy = 0;
-					patchProjectPanel.add(lblPatchProject, gbc_lblPatchProject);
-				}
-				
-				JLabel userLabel = new JLabel(new ImageIcon(myPicture));
-				GridBagConstraints gbc_lblUser = new GridBagConstraints();
-				gbc_lblUser.gridheight = 3;
-				gbc_lblUser.insets = new Insets(0, 0, 5, 5);
-				gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
-				gbc_lblUser.gridx = 1;
-				gbc_lblUser.gridy = 4;
-				patchProjectPanel.add(userLabel, gbc_lblUser);
-			
-			} catch (IOException e) 
-			{
-				e.printStackTrace();
-			}
 
+			
+		// Título do Comando : Patch Project
+		{
+			JLabel lblPatchProject = new JLabel("Patch Project");
+			lblPatchProject.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
+			GridBagConstraints gbc_lblPatchProject = new GridBagConstraints();
+			gbc_lblPatchProject.gridwidth = 5;
+			gbc_lblPatchProject.insets = new Insets(0, 0, 5, 5);
+			gbc_lblPatchProject.gridx = 2;
+			gbc_lblPatchProject.gridy = 0;
+			patchProjectPanel.add(lblPatchProject, gbc_lblPatchProject);
+		}
+		
+	    //Inserir imagem : user -> Path e localização no Painel
+		{ 
+			JLabel projectLabel = new JLabel("");
+			projectLabel.setIcon(PatchProject.class.getClassLoader("resources/images/project.png"));
+			GridBagConstraints gbc_lblUser = new GridBagConstraints();
+			gbc_lblUser.gridheight = 3;
+			gbc_lblUser.insets = new Insets(0, 0, 5, 5);
+			gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
+			gbc_lblUser.gridx = 1;
+			gbc_lblUser.gridy = 4;
+			patchProjectPanel.add(userLabel, gbc_lblUser);
 		}
 		
 		// Informação sobre o user que está a usar o programa

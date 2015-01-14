@@ -71,25 +71,15 @@ public class PostUserPanel extends JDialog {
 		
 		     //Inserir imagem : user -> Path e localização no Painel
 		{ 
-			BufferedImage myPicture;
-			try {
-				myPicture = ImageIO.read(new File("src\\main\\java\\swing\\imagens\\user.jpg"));
-				
-				//		myPicture.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-				JLabel userLabel = new JLabel(new ImageIcon(myPicture));
-				GridBagConstraints gbc_lblUser = new GridBagConstraints();
-				gbc_lblUser.gridheight = 2;
-				gbc_lblUser.insets = new Insets(0, 0, 5, 5);
-				gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
-				gbc_lblUser.gridx = 1;
-				gbc_lblUser.gridy = 3;
-				postUserPanel.add(userLabel, gbc_lblUser);
-			
-			} catch (IOException e) 
-			{
-				e.printStackTrace();
-			}
-
+			JLabel userLabel = new JLabel("");
+			userLabel.setIcon(PostUserPanel.class.getClassLoader("resources/images/user.jpg"));
+			GridBagConstraints gbc_lblUser = new GridBagConstraints();
+			gbc_lblUser.gridheight = 2;
+			gbc_lblUser.insets = new Insets(0, 0, 5, 5);
+			gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
+			gbc_lblUser.gridx = 1;
+			gbc_lblUser.gridy = 3;
+			postUserPanel.add(userLabel, gbc_lblUser);	
 		}
 		
 		// Informação sobre o user que está a usar o programa
@@ -113,13 +103,13 @@ public class PostUserPanel extends JDialog {
 		
 		// Título do Comando : Post User
 		{
-//			JLabel lblPostUser = DefaultComponentFactory.getInstance().createTitle("Post User");
-//			lblPostUser.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
+ 			JLabel lblPostUser = new JLabel("Post Subroject");
+			lblPostUser.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
 			GridBagConstraints gbc_lblPostUser = new GridBagConstraints();
 			gbc_lblPostUser.insets = new Insets(0, 0, 5, 5);
 			gbc_lblPostUser.gridx = 3;
 			gbc_lblPostUser.gridy = 0;
-//			postUserPanel.add(lblPostUser, gbc_lblPostUser);
+			postUserPanel.add(lblPostUser, gbc_lblPostUser);
 		}
 		
 		    // Labels e campos a ser preenchidos

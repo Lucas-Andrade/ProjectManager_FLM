@@ -68,68 +68,59 @@ public class PatchConsultant extends JDialog {
 		patchConsultantPanel.setLayout(gbl_patchConsultantPanel);
 		
 		
-		     //Inserir imagem : user -> Path e localização no Painel
-		{ 
-			BufferedImage myPicture;
-			try {
-				myPicture = ImageIO.read(new File("src\\main\\java\\swing\\imagens\\user.jpg"));
-				JLabel userLabel = new JLabel(new ImageIcon(myPicture));
-				GridBagConstraints gbc_lblUser = new GridBagConstraints();
-				gbc_lblUser.gridheight = 2;
-				gbc_lblUser.insets = new Insets(0, 0, 5, 5);
-				gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
-				gbc_lblUser.gridx = 1;
-				gbc_lblUser.gridy = 5;
-				patchConsultantPanel.add(userLabel, gbc_lblUser);
-				
-				
-				// Informação sobre o user que está a usar o programa
-				{
-					JLabel lblWellcome = new JLabel("Bem-vindo");
-					GridBagConstraints gbc_lblWellcome = new GridBagConstraints();
-					gbc_lblWellcome.fill = GridBagConstraints.HORIZONTAL;
-					gbc_lblWellcome.anchor = GridBagConstraints.BELOW_BASELINE;
-					gbc_lblWellcome.insets = new Insets(0, 0, 5, 5);
-					gbc_lblWellcome.gridx = 7;
-					gbc_lblWellcome.gridy = 1;
-					patchConsultantPanel.add(lblWellcome, gbc_lblWellcome);
-				}
-				{
-					JLabel lblRegistryuser = new JLabel("RegistryUser");
-					GridBagConstraints gbc_lblRegistryuser = new GridBagConstraints();
-					gbc_lblRegistryuser.insets = new Insets(0, 0, 5, 0);
-					gbc_lblRegistryuser.gridx = 8;
-					gbc_lblRegistryuser.gridy = 1;
-					patchConsultantPanel.add(lblRegistryuser, gbc_lblRegistryuser);
-				}
-				{
-					JLabel lblConsultantId = new JLabel("Consultant ID:");
-					GridBagConstraints gbc_lblConsultantId = new GridBagConstraints();
-					gbc_lblConsultantId.anchor = GridBagConstraints.EAST;
-					gbc_lblConsultantId.insets = new Insets(0, 0, 5, 5);
-					gbc_lblConsultantId.gridx = 2;
-					gbc_lblConsultantId.gridy = 3;
-					patchConsultantPanel.add(lblConsultantId, gbc_lblConsultantId);
-				}
-				{
-					JComboBox consultantcomboBox = new JComboBox();
-					GridBagConstraints gbc_consultantcomboBox = new GridBagConstraints();
-					gbc_consultantcomboBox.insets = new Insets(0, 0, 5, 5);
-					gbc_consultantcomboBox.fill = GridBagConstraints.HORIZONTAL;
-					gbc_consultantcomboBox.gridx = 3;
-					gbc_consultantcomboBox.gridy = 3;
-					patchConsultantPanel.add(consultantcomboBox, gbc_consultantcomboBox);
-				}
-				
-			
-			} catch (IOException e) 
-			{
-				e.printStackTrace();
-			}
-
+     //Inserir imagem : consultant -> Path e localização no Painel
+		{
+			JLabel consultantLabel = new JLabel("");
+			consultantLabel.setIcon(PatchConsultant.class.getClassLoader("resources/images/user.jpg"));
+			GridBagConstraints gbc_lblConsultant = new GridBagConstraints();
+			gbc_lblConsultant.gridheight = 2;
+			gbc_lblConsultant.insets = new Insets(0, 0, 5, 5);
+			gbc_lblConsultant.anchor = GridBagConstraints.SOUTHEAST;
+			gbc_lblConsultant.gridx = 1;
+			gbc_lblConsultant.gridy = 5;
+			patchConsultantPanel.add(consultantLabel, gbc_lblConsultant);
 		}
 		
-		// Título do Comando : Post User
+		// Informação sobre o user que está a usar o programa
+		{
+			JLabel lblWellcome = new JLabel("Bem-vindo");
+			GridBagConstraints gbc_lblWellcome = new GridBagConstraints();
+			gbc_lblWellcome.fill = GridBagConstraints.HORIZONTAL;
+			gbc_lblWellcome.anchor = GridBagConstraints.BELOW_BASELINE;
+			gbc_lblWellcome.insets = new Insets(0, 0, 5, 5);
+			gbc_lblWellcome.gridx = 7;
+			gbc_lblWellcome.gridy = 1;
+			patchConsultantPanel.add(lblWellcome, gbc_lblWellcome);
+		}
+		{
+			JLabel lblRegistryuser = new JLabel("RegistryUser");
+			GridBagConstraints gbc_lblRegistryuser = new GridBagConstraints();
+			gbc_lblRegistryuser.insets = new Insets(0, 0, 5, 0);
+			gbc_lblRegistryuser.gridx = 8;
+			gbc_lblRegistryuser.gridy = 1;
+			patchConsultantPanel.add(lblRegistryuser, gbc_lblRegistryuser);
+		}
+		{
+			JLabel lblConsultantId = new JLabel("Consultant ID:");
+			GridBagConstraints gbc_lblConsultantId = new GridBagConstraints();
+			gbc_lblConsultantId.anchor = GridBagConstraints.EAST;
+			gbc_lblConsultantId.insets = new Insets(0, 0, 5, 5);
+			gbc_lblConsultantId.gridx = 2;
+			gbc_lblConsultantId.gridy = 3;
+			patchConsultantPanel.add(lblConsultantId, gbc_lblConsultantId);
+		}
+		{
+			JComboBox consultantcomboBox = new JComboBox();
+			GridBagConstraints gbc_consultantcomboBox = new GridBagConstraints();
+			gbc_consultantcomboBox.insets = new Insets(0, 0, 5, 5);
+			gbc_consultantcomboBox.fill = GridBagConstraints.HORIZONTAL;
+			gbc_consultantcomboBox.gridx = 3;
+			gbc_consultantcomboBox.gridy = 3;
+			patchConsultantPanel.add(consultantcomboBox, gbc_consultantcomboBox);
+		}
+
+		
+		// Título do Comando : Path Consultant
 		{
 			JLabel lblPostConsultant = new JLabel("Patch Consultant");
 			lblPostConsultant.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));

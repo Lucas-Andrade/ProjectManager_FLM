@@ -64,49 +64,40 @@ public class PostProject extends JDialog {
 		gbl_postProjectPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		postProjectPanel.setLayout(gbl_postProjectPanel);
 		
-		
-		     //Inserir imagem : user -> Path e localização no Painel
-		{ 
-			BufferedImage myPicture;
-			try {
-				myPicture = ImageIO.read(new File("src\\main\\java\\swing\\imagens\\Project.jpg"));
-					
-					// Título do Comando : Post User
-					{
-						JLabel lblPostConsultant = new JLabel("Post Project");
-						lblPostConsultant.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
-						GridBagConstraints gbc_lblPostConsultant = new GridBagConstraints();
-						gbc_lblPostConsultant.gridwidth = 5;
-						gbc_lblPostConsultant.insets = new Insets(0, 0, 5, 5);
-						gbc_lblPostConsultant.gridx = 2;
-						gbc_lblPostConsultant.gridy = 0;
-						postProjectPanel.add(lblPostConsultant, gbc_lblPostConsultant);
-					}
-				
-					{
-						JLabel lblLocation = new JLabel("Location:");
-						GridBagConstraints gbc_lblLocation = new GridBagConstraints();
-						gbc_lblLocation.insets = new Insets(0, 0, 5, 5);
-						gbc_lblLocation.gridx = 2;
-						gbc_lblLocation.gridy = 3;
-						postProjectPanel.add(lblLocation, gbc_lblLocation);
-					}
-				
-				JLabel userLabel = new JLabel(new ImageIcon(myPicture));
-				GridBagConstraints gbc_lblUser = new GridBagConstraints();
-				gbc_lblUser.gridheight = 3;
-				gbc_lblUser.insets = new Insets(0, 0, 5, 5);
-				gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
-				gbc_lblUser.gridx = 1;
-				gbc_lblUser.gridy = 4;
-				postProjectPanel.add(userLabel, gbc_lblUser);
-			
-			} catch (IOException e) 
-			{
-				e.printStackTrace();
-			}
-
+								
+		// Título do Comando : Post Project
+		{
+			JLabel lblPostConsultant = new JLabel("Post Project");
+			lblPostConsultant.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 14));
+			GridBagConstraints gbc_lblPostConsultant = new GridBagConstraints();
+			gbc_lblPostConsultant.gridwidth = 5;
+			gbc_lblPostConsultant.insets = new Insets(0, 0, 5, 5);
+			gbc_lblPostConsultant.gridx = 2;
+			gbc_lblPostConsultant.gridy = 0;
+			postProjectPanel.add(lblPostConsultant, gbc_lblPostConsultant);
 		}
+	
+		{	//Inserir imagem : Project -> Path e localização no Painel
+			JLabel projectLabel = new JLabel("");
+			projectLabel.setIcon(PatchProject.class.getClassLoader("resources/images/project.png"));
+			GridBagConstraints gbc_lblUser = new GridBagConstraints();
+			gbc_lblUser.gridheight = 3;
+			gbc_lblUser.insets = new Insets(0, 0, 5, 5);
+			gbc_lblUser.anchor = GridBagConstraints.SOUTHEAST;
+			gbc_lblUser.gridx = 1;
+			gbc_lblUser.gridy = 4;
+			postProjectPanel.add(userLabel, gbc_lblUser);
+		}
+		
+		{
+			JLabel lblLocation = new JLabel("Location:");
+			GridBagConstraints gbc_lblLocation = new GridBagConstraints();
+			gbc_lblLocation.insets = new Insets(0, 0, 5, 5);
+			gbc_lblLocation.gridx = 2;
+			gbc_lblLocation.gridy = 3;
+			postProjectPanel.add(lblLocation, gbc_lblLocation);
+		}
+				
 		
 		// Informação sobre o user que está a usar o programa
 		{
