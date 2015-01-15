@@ -50,6 +50,11 @@ public class PatchUserFrame extends MainDialogFrame {
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 200, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		
+		this.setTitle("Edit User");
+		this.setImage("images/Edit_user.jpg");
+		this.setTitleLabel("Edit User");
+		this.setHelpTip("Updates the password of the user identified by the specify username.");
+		
 		JLabel lblName = new JLabel("Username:");
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
 		gbc_lblName.anchor = GridBagConstraints.SOUTHEAST;

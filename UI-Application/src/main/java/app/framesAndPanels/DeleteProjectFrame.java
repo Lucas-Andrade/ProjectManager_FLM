@@ -13,30 +13,24 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-<<<<<<< HEAD:UI-Application/src/main/java/swing/DeleteProject.java
-public class DeleteProject extends MainDialogFrame {
-=======
-public class DeleteProjectFrame extends JDialog {
->>>>>>> 36468fd7df7c31c1333fec16c867e1277b7cf1a7:UI-Application/src/main/java/app/framesAndPanels/DeleteProjectFrame.java
+
+public class DeleteProjectFrame extends MainDialogFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final JPanel deleteProjectPanel = new JPanel();
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-<<<<<<< HEAD:UI-Application/src/main/java/swing/DeleteProject.java
-			DeleteProject dialog = new DeleteProject();
+
+
+			DeleteProjectFrame dialog = new DeleteProjectFrame();
 			dialog.setImage("images/project-delete.png");
 			dialog.setTitle("teste");
-=======
-			DeleteProjectFrame dialog = new DeleteProjectFrame();
->>>>>>> 36468fd7df7c31c1333fec16c867e1277b7cf1a7:UI-Application/src/main/java/app/framesAndPanels/DeleteProjectFrame.java
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -47,8 +41,8 @@ public class DeleteProjectFrame extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-<<<<<<< HEAD:UI-Application/src/main/java/swing/DeleteProject.java
-	public DeleteProject() {
+
+	public DeleteProjectFrame() {
 		super();
 //		setBounds(100, 100, 450, 300);
 //		getContentPane().setLayout(new BorderLayout());
@@ -87,46 +81,6 @@ public class DeleteProjectFrame extends JDialog {
 //				buttonPane.add(cancelButton);
 //			}
 //		}
-=======
-	public DeleteProjectFrame() {
-		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new BorderLayout());
-		deleteProjectPanel.setLayout(new FlowLayout());
-		deleteProjectPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(deleteProjectPanel, BorderLayout.CENTER);
-		
-		
-	    //Inserir imagem : project -> Path e localização no Painel
-		{ 
-			JLabel delProjectLabel = new JLabel("");
-			delProjectLabel.setIcon(new ImageIcon(DeleteProjectFrame.class.getClassLoader().getResource("images/project-delete.png")));;
-			GridBagConstraints gbc_lblDelProject = new GridBagConstraints();
-			gbc_lblDelProject.gridheight = 2;
-			gbc_lblDelProject.insets = new Insets(0, 0, 5, 5);
-			gbc_lblDelProject.anchor = GridBagConstraints.SOUTHEAST;
-			gbc_lblDelProject.gridx = 1;
-			gbc_lblDelProject.gridy = 3;
-			deleteProjectPanel.add(delProjectLabel, gbc_lblDelProject);
-
-		}
-		
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
-		}
->>>>>>> 36468fd7df7c31c1333fec16c867e1277b7cf1a7:UI-Application/src/main/java/app/framesAndPanels/DeleteProjectFrame.java
 	}
 
 }
