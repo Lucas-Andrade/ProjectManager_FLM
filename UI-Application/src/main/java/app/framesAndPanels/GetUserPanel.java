@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -24,7 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 
-public class GetUserPanel extends JDialog {
+public class GetUserPanel extends MainDialogFrame {
 
 
 	/**
@@ -57,6 +58,12 @@ public class GetUserPanel extends JDialog {
 	 */
 	public GetUserPanel() 
 	{
+		super();
+		
+		this.setTitle("Get Users");    //definimos o título da janela
+		this.setImage("images/user2-icon.png");
+		this.setTitleLabel("Get Users");
+		this.setHelpTip("Updates the information of the consultant with the specify Id.");
 		
 		setBounds(100, 100, 626, 387);
 		getContentPane().setLayout(new BorderLayout());

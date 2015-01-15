@@ -20,14 +20,17 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JPasswordField;
+
 
 public class AuthenticationDialog extends JDialog{
 
 	private static final long serialVersionUID = 9190969392304934338L;
 	private final JPanel authenticationPanel = new JPanel();
 	private JTextField nameField;
-	private JTextField passwordField;
 	private JLabel mainImageLabel;
+	private JButton button;
+	private JPasswordField passwordField;
 	
 	/**
 	 * Launch the application.
@@ -53,7 +56,7 @@ public class AuthenticationDialog extends JDialog{
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
 		gbl_contentPanel.columnWidths = new int[]{75, 0, 0, 100, 0};
 		gbl_contentPanel.rowHeights = new int[]{0, 0, 34};
-		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0};
 		authenticationPanel.setLayout(gbl_contentPanel);
 		
@@ -97,18 +100,16 @@ public class AuthenticationDialog extends JDialog{
 		gbc_lblPassword.gridy = 1;
 		authenticationPanel.add(lblPassword, gbc_lblPassword);
 		lblPassword.setToolTipText("Minimum 4 character.");
-	
-	
-		passwordField = new JTextField();
+		
+		passwordField = new JPasswordField();
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
-		gbc_passwordField.insets = new Insets(0, 0, 5, 0);
-		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_passwordField.gridwidth = 2;
+		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_passwordField.gridx = 2;
 		gbc_passwordField.gridy = 1;
 		authenticationPanel.add(passwordField, gbc_passwordField);
-		passwordField.setColumns(10);
-		passwordField.setToolTipText("Minimum 4 character.");
+		
 		
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.setBackground(new Color(0, 206, 209));
