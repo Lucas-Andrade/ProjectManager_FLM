@@ -12,12 +12,12 @@ import javax.swing.JSplitPane;
 import utils.Local;
 import utils.Project;
 import app.AppElement;
-import app.actionListeners.AppSwingWorker;
 import app.authentication.Authentication;
 import app.elements.Message;
 import app.framesAndPanels.DeleteProjectFrame;
 import app.framesAndPanels.PostProjectFrame;
 import app.repositoryHolders.RepositoryHolder;
+import app.result.AppSwingWorker;
 
 public class DeleteProject extends BaseCommand{
 	

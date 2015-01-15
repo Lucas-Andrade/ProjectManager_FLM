@@ -2,11 +2,14 @@ package app.framesAndPanels;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import app.result.CommandResult;
 
 public abstract class MainDialogFrame extends JDialog {  
 
@@ -18,10 +21,10 @@ public abstract class MainDialogFrame extends JDialog {
 	private static final int X_BOUND =100;
 	private static final int WIDTH_BOUND =636;
 	private static final int HEIGHT_BOUND =387;
+	private CommandResult result;
+	private JButton okButton;
 	private final MainPanel mainDialogPanel;
 	
-	
-
 	/**
 	 * Method that allows the user to insert different images in each child class
 	 * @param imagePath
@@ -38,11 +41,15 @@ public abstract class MainDialogFrame extends JDialog {
 		mainDialogPanel.setHelpTip(help);
 	}
 	
+	protected void setOkButtonActionListener(ActionListener ac) {
+		okButton.addActionListener(ac);
+	}
+	
 	/**
 	 * Create the dialog.
 	 * @param image,  
 	 */
-	public MainDialogFrame() {
+	public MainDialogFrame(CommandResult result) {
 		
 		mainDialogPanel = new MainPanel();
 				
@@ -55,7 +62,7 @@ public abstract class MainDialogFrame extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				okButton = new JButton("OK");
 				okButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/Ok.png")));
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
@@ -66,6 +73,7 @@ public abstract class MainDialogFrame extends JDialog {
 				cancelButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/cancel.png")));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
+				cancelButton.addActionListener(new cancelActionListener());
 			}
 		}
 	}
@@ -75,6 +83,30 @@ public abstract class MainDialogFrame extends JDialog {
 	 */
 	public JPanel getMainDialogPanel() {
 		return mainDialogPanel;
+	}
+	
+	private class cancelActionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			dispose();
+		}
+		
+	}
+	
+	protected class okActionListener implements ActionListener{
+		
+		JTextField[] textFields;
+		
+		public okActionListener(JTextField[] textFields) {
+			this.textFields = textFields;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			result.executeResult(textFields);
+			dispose();
+		}
 	}
 }
 
