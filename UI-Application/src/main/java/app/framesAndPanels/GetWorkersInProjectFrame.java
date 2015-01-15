@@ -17,7 +17,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 
-public class GetWorkersInProjectFrame extends MainDialogFrame {
+public class GetWorkersInProjectFrame extends MainGetFrame {
 
 	/**
 	 * 
@@ -45,6 +45,8 @@ public class GetWorkersInProjectFrame extends MainDialogFrame {
 	 * Create the frame.
 	 */
 	public GetWorkersInProjectFrame() {
+		super();
+		
 		setBounds(100, 100, 626, 387);
 		getContentPane().setLayout(new BorderLayout());
 		getWorkerPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
