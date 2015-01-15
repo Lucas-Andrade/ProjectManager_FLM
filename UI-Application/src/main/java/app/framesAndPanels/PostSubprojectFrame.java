@@ -2,7 +2,6 @@ package app.framesAndPanels;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -23,10 +22,10 @@ public class PostSubprojectFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostSubprojectFrame dialog = new PostSubprojectFrame(null);
-			dialog.setTitle("Post Subproject");
+			PostSubprojectFrame dialog = new PostSubprojectFrame();
+			dialog.setTitle("Add Subproject");
 			dialog.setImage("images/subproject.jpg");
-			dialog.setTitleLabel("Post Subproject");
+			dialog.setTitleLabel("Add Subproject");
 			dialog.setHelpTip("Add a subproject to a projects/subprojects.");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -38,9 +37,9 @@ public class PostSubprojectFrame extends MainDialogFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public PostSubprojectFrame(ActionListener okActionListener) 
+	public PostSubprojectFrame() 
 	{
-		super(okActionListener);
+		super();
 
 		this.setTitle("Add Subproject");
 		this.setImage("images/subproject.jpg");

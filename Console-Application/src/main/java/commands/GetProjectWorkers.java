@@ -10,7 +10,7 @@ import utils.Consultant;
 import utils.Leader;
 import utils.Project;
 import utils.Team;
-import app.elements.AppElement;
+import app.AppElement;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 

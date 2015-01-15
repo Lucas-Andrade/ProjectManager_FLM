@@ -20,6 +20,7 @@ import javax.swing.JSplitPane;
 import app.AppUI;
 import app.commands.Authentication;
 import app.commands.PostProject;
+import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
 
 public class MainFrame extends JFrame{
@@ -30,8 +31,13 @@ public class MainFrame extends JFrame{
 	private static final long serialVersionUID = 1406565561867998589L;
 	public static final int PANEL_DIVIDER_LOCATION = 120;
 	
-	public MainFrame(JSplitPane splitPane, RepositoryHolder repositories, Authentication authentication)
-	{
+	public static void main(String[] args){
+		RepositoryHolder repositories = new InMemoryRepositoryHolder();
+		new MainFrame(new JSplitPane(), repositories, new Authentication(repositories)).setVisible(true);
+	}
+	
+	public MainFrame(JSplitPane splitPane, RepositoryHolder repositories, Authentication authentication){
+		
 		this.setTitle("Project Manager");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(640, 420);
@@ -108,14 +114,38 @@ public class MainFrame extends JFrame{
 		projectsMenu.add(newProjectItem);
 		newProjectItem.addActionListener(new PostProject(splitPane, repositories, authentication));
 		
-		JMenuItem getProjectItem = new JMenuItem("Get project");
-		projectsMenu.add(getProjectItem);
-		
 		JMenuItem editProjectItem = new JMenuItem("Edit project");
 		projectsMenu.add(editProjectItem);
 		
 		JMenuItem mntmDeleteProject = new JMenuItem("Delete project");
 		projectsMenu.add(mntmDeleteProject);
+		
+		JMenu mnGet = new JMenu("Get");
+		projectsMenu.add(mnGet);
+		
+		JMenuItem mntmGetProject = new JMenuItem("Get Project");
+		mnGet.add(mntmGetProject);
+		
+		JMenuItem mntmGetSubprojects = new JMenuItem("Get subprojects");
+		mnGet.add(mntmGetSubprojects);
+		
+		JMenuItem mntmGetTeam = new JMenuItem("Get Team");
+		mnGet.add(mntmGetTeam);
+		
+		JMenuItem mntmGetManager = new JMenuItem("Get Manager");
+		mnGet.add(mntmGetManager);
+		
+		JMenu mnAddToProject = new JMenu("Add to Project");
+		projectsMenu.add(mnAddToProject);
+		
+		JMenuItem mntmAddConsultant = new JMenuItem("Add Consultant");
+		mnAddToProject.add(mntmAddConsultant);
+		
+		JMenuItem mntmAddManager = new JMenuItem("Add Manager");
+		mnAddToProject.add(mntmAddManager);
+		
+		JMenuItem mntmAddSubproject = new JMenuItem("Add Subproject");
+		mnAddToProject.add(mntmAddSubproject);
 		
 		JMenu consultantsMenu = new JMenu("Consultants");
 		vert.add(consultantsMenu);
@@ -123,14 +153,35 @@ public class MainFrame extends JFrame{
 		JMenuItem newConsultantItem = new JMenuItem("New consultant");
 		consultantsMenu.add(newConsultantItem);
 		
+		JMenuItem mntmDeleteConsultant = new JMenuItem("Delete consultant");
+		consultantsMenu.add(mntmDeleteConsultant);
+		
+		JMenuItem mntmGetConsultant = new JMenuItem("Get consultant");
+		consultantsMenu.add(mntmGetConsultant);
+		
 		JMenu usersMenu = new JMenu("Users");
 		vert.add(usersMenu);
 		
 		JMenuItem mntmNewUser = new JMenuItem("New user");
 		usersMenu.add(mntmNewUser);
 		
+		JMenuItem mntmGetUser = new JMenuItem("Get user");
+		usersMenu.add(mntmGetUser);
+		
+		JMenuItem mntmEditUser = new JMenuItem("Edit user");
+		usersMenu.add(mntmEditUser);
+		
 		JMenu searchMenu = new JMenu("Search");
 		vert.add(searchMenu);
+		
+		JMenuItem mntmProjects = new JMenuItem("Projects");
+		searchMenu.add(mntmProjects);
+		
+		JMenuItem mntmConsultants = new JMenuItem("Consultants");
+		searchMenu.add(mntmConsultants);
+		
+		JMenuItem mntmUsers = new JMenuItem("Users");
+		searchMenu.add(mntmUsers);
 			
 		JLabel randstadGirlImageLabel = new JLabel("");
 		randstadGirlImageLabel.setIcon(new ImageIcon(main));

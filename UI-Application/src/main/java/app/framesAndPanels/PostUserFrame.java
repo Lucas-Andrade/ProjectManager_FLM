@@ -2,7 +2,6 @@ package app.framesAndPanels;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JDialog;
@@ -26,7 +25,7 @@ public class PostUserFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostUserFrame dialog = new PostUserFrame(null);
+			PostUserFrame dialog = new PostUserFrame();
 			//definimos o título da janel
 			dialog.setTitle("New User");
 			dialog.setImage("images/add_user.jpg");
@@ -43,9 +42,9 @@ public class PostUserFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 * @throws IOException 
 	 */
-	public PostUserFrame(ActionListener okActionListener) 
+	public PostUserFrame() 
 	{
-		super(okActionListener);
+		super();
 		
 		this.setTitle("New User");
 		this.setImage("images/add_user.jpg");

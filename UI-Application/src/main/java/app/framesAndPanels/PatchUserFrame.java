@@ -3,7 +3,6 @@ package app.framesAndPanels;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JDialog;
@@ -27,7 +26,7 @@ public class PatchUserFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PatchUserFrame dialog = new PatchUserFrame(null);
+			PatchUserFrame dialog = new PatchUserFrame();
 			//definimos o título da janel
 			dialog.setTitle("Patch User");
 			dialog.setImage("images/Edit_user.jpg");
@@ -44,9 +43,9 @@ public class PatchUserFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 * @throws IOException 
 	 */
-	public PatchUserFrame(ActionListener okActionListener) 
+	public PatchUserFrame() 
 	{
-		super(okActionListener);
+		super();
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 200, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};

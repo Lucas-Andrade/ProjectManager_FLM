@@ -7,11 +7,11 @@ import java.util.Set;
 
 import org.json.JSONObject;
 
+import app.AppElement;
 import app.elements.Admin;
-import app.elements.AppElement;
 import app.elements.ImmutableAdmin;
 import app.elements.User;
-import app.elements.UserInterface;
+import app.elements.IUser;
 
 /**
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
@@ -25,7 +25,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * {@code Key} stores the Username and the {@code Value} stores the
 	 * correspondig {@code User}.
 	 */
-	Map<String, UserInterface> users = new HashMap<String, UserInterface>();
+	Map<String, IUser> users = new HashMap<String, IUser>();
 
 	/**
 	 * Contructor for {@code InMemoryUserRepo}. Also adds an {@link ImmutableAdmin}
@@ -39,24 +39,24 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * @see UserRepository#getUserByUsername(String)
 	 */
 	@Override
-	public UserInterface getUserByUsername(String loginName){
+	public IUser getUserByUsername(String loginName){
 		return users.get(loginName);
 	}
 
 	/**
 	 * @see Repository#getAll()
 	 * 
-	 * @return An array of {@link UserInterface} with all the Users in the
+	 * @return An array of {@link IUser} with all the Users in the
 	 *         repository.
 	 */
 	@Override
 	public AppElement[] getAll(){
-		UserInterface[] userArray = new UserInterface[users.size()];
+		IUser[] userArray = new IUser[users.size()];
 
-		Set<Entry<String, UserInterface>> usersSet = users.entrySet();
+		Set<Entry<String, IUser>> usersSet = users.entrySet();
 		int index = 0;
 
-		for (Entry<String, UserInterface> user : usersSet){
+		for (Entry<String, IUser> user : usersSet){
 			userArray[index] = user.getValue();
 			index++;
 		}
@@ -82,7 +82,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 */
 	@Override
 	public boolean isPasswordCorrectForUser(String username, String userPassword){
-		UserInterface user = users.get(username);
+		IUser user = users.get(username);
 
 		if (user == null){
 			return false;

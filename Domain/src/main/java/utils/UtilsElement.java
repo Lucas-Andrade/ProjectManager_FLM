@@ -2,8 +2,7 @@ package utils;
 
 import org.json.JSONObject;
 
-import app.elements.AppElement;
-
+import app.AppElement;
 
 /**
  * Abstract class Element that will serve as an abstraction layer representing
@@ -11,8 +10,7 @@ import app.elements.AppElement;
  * 
  * Implements the Interfaces {@link ICost}, {@link IName}, {@link Comparable}.
  */
-public abstract class UtilsElement implements ICost, IName, Comparable<UtilsElement>, AppElement {	
+public interface UtilsElement extends ICost, IName, Comparable<UtilsElement>, AppElement {	
 	public abstract String toString();
 	public abstract JSONObject getJson();
-	
 }

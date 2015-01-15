@@ -2,7 +2,6 @@ package app.framesAndPanels;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -24,7 +23,7 @@ public class PostWorkerFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostWorkerFrame dialog = new PostWorkerFrame(null);
+			PostWorkerFrame dialog = new PostWorkerFrame();
 			dialog.setTitle("Add Worker In Project");
 			dialog.setImage("images/Add.jpg");
 			dialog.setTitleLabel("Add Worker In Project");
@@ -39,9 +38,9 @@ public class PostWorkerFrame extends MainDialogFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public PostWorkerFrame(ActionListener okActionListener) 
+	public PostWorkerFrame() 
 	{
-		super(okActionListener);
+		super();
 		
 		this.setTitle("Add Worker In Project");
 		this.setImage("images/Add.jpg");

@@ -1,7 +1,7 @@
 package app.repository;
 
 import utils.Project;
-import app.elements.AppElement;
+import app.AppElement;
 
 /**
  * The interface to be implemented by all {@link Project}s {@link Repository}.

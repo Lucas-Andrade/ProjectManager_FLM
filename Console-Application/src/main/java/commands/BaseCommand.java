@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 
 import outputMethods.Result;
 import commands.exceptions.MandatoryParameterNotPresentException;
-import app.elements.AppElement;
+import app.AppElement;
 
 /**
  * Abstract Command to be supported by all Commands. Establishes the model to be

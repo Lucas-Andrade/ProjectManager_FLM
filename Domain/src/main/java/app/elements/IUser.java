@@ -1,5 +1,7 @@
 package app.elements;
 
+import app.AppElement;
+
 /**
  * Class that defines the contract for the Users of use the App. A
  * {@code UserInterface} is defined by a Username, a Password, Email and Full
@@ -8,7 +10,7 @@ package app.elements;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface UserInterface extends AppElement{
+public interface IUser extends AppElement{
 
 	/**
 	 * Method for getting the User's Username.

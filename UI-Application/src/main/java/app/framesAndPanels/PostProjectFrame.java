@@ -3,7 +3,6 @@ package app.framesAndPanels;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -25,7 +24,7 @@ public class PostProjectFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostProjectFrame dialog = new PostProjectFrame(null);
+			PostProjectFrame dialog = new PostProjectFrame();
 			//definimos o título da janel
 			dialog.setTitle("Post Project");
 			dialog.setImage("images/project.png");
@@ -41,9 +40,8 @@ public class PostProjectFrame extends MainDialogFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public PostProjectFrame(ActionListener okActionListener) {
-	//public PostProject(ActionListener okActionListener) {
-		super(okActionListener);
+	public PostProjectFrame() {
+		super();
 		
 		this.setTitle("New Project");
 		this.setImage("images/project.png");

@@ -1,8 +1,8 @@
 package app.repository;
 
-import app.elements.AppElement;
+import app.AppElement;
 import app.elements.User;
-import app.elements.UserInterface;
+import app.elements.IUser;
 
 /**
  * The interface to be implemented by all {@link User}s {@link Repository}.
@@ -18,7 +18,7 @@ public interface UserRepository extends Repository<AppElement>{
 	 *            the user identifier
 	 * @return the instance with the given identifier
 	 */
-	public UserInterface getUserByUsername(String loginName);
+	public IUser getUserByUsername(String loginName);
 
 	/**
 	 * Method that adds a User {@code User} to the repository.

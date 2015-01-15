@@ -1,6 +1,6 @@
 package app.repository;
 
-import app.elements.AppElement;
+import app.AppElement;
 
 /**
  * The interface to be implemented by all Repositories.

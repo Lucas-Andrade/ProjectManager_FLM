@@ -1,7 +1,5 @@
 package app.framesAndPanels;
 
-import java.awt.event.ActionListener;
-
 import javax.swing.JDialog;
 
 
@@ -19,7 +17,7 @@ public class DeleteProjectFrame extends MainDialogFrame {
 		try {
 
 
-			DeleteProjectFrame dialog = new DeleteProjectFrame(null);
+			DeleteProjectFrame dialog = new DeleteProjectFrame();
 			dialog.setImage("images/project-delete.png");
 			dialog.setTitle("Delete Project");
 			dialog.setTitleLabel("Delete Project");
@@ -35,9 +33,9 @@ public class DeleteProjectFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 */
 
-	public DeleteProjectFrame(ActionListener okActionListener) {
+	public DeleteProjectFrame() {
 		
-		super(okActionListener);
+		super();
 		
 		this.setImage("images/project-delete.png");
 		this.setTitle("Delete Project");

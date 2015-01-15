@@ -1,8 +1,6 @@
-package app.elements;
+package utils;
 
-import utils.AWorker;
-import utils.Leader;
-import utils.Project;
+import app.AppElement;
 
 /**
  * Class that defines the contract for the {@link Project}s. Extends
@@ -11,7 +9,7 @@ import utils.Project;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface ProjectInterface extends AppElement{
+public interface IProject extends UtilsElement{
 
 	/**
 	 * Gives the Container with all subprojects of the project.

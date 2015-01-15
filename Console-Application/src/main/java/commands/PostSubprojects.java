@@ -7,7 +7,7 @@ import java.util.concurrent.Callable;
 import outputMethods.Result;
 import commands.exceptions.CommandException;
 import utils.Project;
-import app.elements.AppElement;
+import app.AppElement;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;

@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import utils.Consultant;
 import utils.Leader;
+import app.AppElement;
 import app.RepositoryConstructor;
-import app.elements.AppElement;
 import app.repository.InMemoryWorkerRepo;
 
 /**

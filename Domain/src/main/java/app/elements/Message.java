@@ -2,6 +2,8 @@ package app.elements;
 
 import org.json.JSONObject;
 
+import app.AppElement;
+
 /**
  * Allows the commands to return a message.
  * Instances of this class are used to contain a {@code String}, that can be returned by

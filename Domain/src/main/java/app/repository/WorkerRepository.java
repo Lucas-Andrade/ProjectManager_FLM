@@ -3,7 +3,7 @@ package app.repository;
 import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
-import app.elements.AppElement;
+import app.AppElement;
 
 /**
  * The interface to be implemented by all {@link AWorker}s {@link Repository}.

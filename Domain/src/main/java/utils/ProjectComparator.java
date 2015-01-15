@@ -1,8 +1,6 @@
-package app.elements;
+package utils;
 
 import java.util.Comparator;
-
-import utils.Project;
 
 /**
  * Produces a comparator that allows to compare {@code Project} objects using
