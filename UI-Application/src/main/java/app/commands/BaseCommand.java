@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JSplitPane;
 
+import app.authentication.Authentication;
+import app.framesAndPanels.AuthenticationDialog;
 import app.repositoryHolders.RepositoryHolder;
 
 public abstract class BaseCommand implements Command{
@@ -23,7 +25,7 @@ public abstract class BaseCommand implements Command{
 		if(authentication.isAuthenticated()){
 			this.execute();
 		} else {
-			authentication.authenticate();
+			new AuthenticationDialog(authentication, repositories).setVisible(true);
 		}
 	}
 }

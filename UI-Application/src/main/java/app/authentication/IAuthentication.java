@@ -1,4 +1,4 @@
-package app.commands;
+package app.authentication;
 
 public interface IAuthentication {
 	

@@ -1,40 +1,40 @@
 package app.framesAndPanels;
 
-import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import app.commands.Authentication;
+import app.actionListeners.AuthenticationActionListener;
+import app.authentication.Authentication;
+import app.repositoryHolders.InMemoryRepositoryHolder;
+import app.repositoryHolders.RepositoryHolder;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AuthenticationDialog extends JDialog{
 
 	private static final long serialVersionUID = 9190969392304934338L;
 	private final JPanel authenticationPanel = new JPanel();
-	private JTextField textField;
 	private JTextField nameField;
 	private JTextField passwordField;
 	private JLabel mainImageLabel;
-	private JButton button;
 	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			AuthenticationDialog dialog = new AuthenticationDialog();
+			AuthenticationDialog dialog = new AuthenticationDialog(new Authentication(), new InMemoryRepositoryHolder());
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -42,8 +42,7 @@ public class AuthenticationDialog extends JDialog{
 		}
 	}
 	
-	public AuthenticationDialog() {
-		
+	public AuthenticationDialog(Authentication authentication, RepositoryHolder repoHolder) {
 
 		this.setTitle("Login");
 		
@@ -122,7 +121,16 @@ public class AuthenticationDialog extends JDialog{
 		gbc_btnNewButton.gridy = 2;
 		authenticationPanel.add(btnNewButton, gbc_btnNewButton);
 
-		ActionListener coisa = new Authentication.AuthenticateActionListener("tjzgf", "fykhj");
+		JTextField[] textField = new JTextField[2];
+		textField[0] = nameField;
+		textField[1] = passwordField;
+		btnNewButton.addActionListener(new AuthenticationActionListener(authentication, textField, repoHolder));
+		btnNewButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 	}
 
 }

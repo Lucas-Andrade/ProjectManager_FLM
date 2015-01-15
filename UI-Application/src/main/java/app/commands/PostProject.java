@@ -7,6 +7,8 @@ import javax.swing.JSplitPane;
 
 import utils.Local;
 import utils.Project;
+import app.actionListeners.AppSwingWorker;
+import app.authentication.Authentication;
 import app.framesAndPanels.PostProjectFrame;
 import app.repositoryHolders.RepositoryHolder;
 

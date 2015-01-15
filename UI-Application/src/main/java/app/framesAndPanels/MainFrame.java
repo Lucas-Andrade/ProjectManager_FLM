@@ -17,8 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JSplitPane;
 
-import app.AppUI;
-import app.commands.Authentication;
+import app.authentication.Authentication;
 import app.commands.PostProject;
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
@@ -32,8 +31,7 @@ public class MainFrame extends JFrame{
 	public static final int PANEL_DIVIDER_LOCATION = 120;
 	
 	public static void main(String[] args){
-		RepositoryHolder repositories = new InMemoryRepositoryHolder();
-		new MainFrame(new JSplitPane(), repositories, new Authentication(repositories)).setVisible(true);
+		new MainFrame(new JSplitPane(), new InMemoryRepositoryHolder(), new Authentication()).setVisible(true);
 	}
 	
 	public MainFrame(JSplitPane splitPane, RepositoryHolder repositories, Authentication authentication){
@@ -91,10 +89,8 @@ public class MainFrame extends JFrame{
 		
 		
 		//load the image
-		ClassLoader cl = AppUI.class.getClassLoader();
+		ClassLoader cl = getClass().getClassLoader();
 		Image main = new ImageIcon(cl.getResource("images/Main.png")).getImage();
-		
-
 		
 		JMenuBar vert = new VerticalMenuBar();
 		
