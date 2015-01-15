@@ -1,14 +1,14 @@
 package app.commands;
 
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.SwingWorker;
 
-public abstract class AppSwingWorker extends SwingWorker<String, String>{
+public abstract class AppSwingWorker extends SwingWorker<JPanel, String>{
 	private JSplitPane pane;
 	
 	public AppSwingWorker(JSplitPane pane){
@@ -24,8 +24,14 @@ public abstract class AppSwingWorker extends SwingWorker<String, String>{
 	
 	@Override
 	public void done(){
-		JPanel panel = new JPanel();
-		panel.add(new JLabel("Here is your result."));
-		pane.setRightComponent(panel);
+		try
+		{
+			pane.setRightComponent(get());
+		} catch (InterruptedException | ExecutionException e)
+		{
+			JPanel panel = new JPanel();
+			panel.add(new JLabel("ERROR: " + e.getMessage()));
+			pane.setRightComponent(panel);
+		}
 	}
 }
