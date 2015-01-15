@@ -17,7 +17,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 
-public class GetWorkersInProjectFrame extends JInternalFrame {
+public class GetWorkersInProjectFrame extends MainDialogFrame {
 
 	/**
 	 * 

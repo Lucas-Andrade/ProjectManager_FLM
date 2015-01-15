@@ -45,6 +45,11 @@ public class PatchConsultantFrame extends MainDialogFrame {
 	{
 		super();
 		
+		this.setTitle("Edit Consultant");    //definimos o título da janela
+		this.setImage("images/edit.jpg");
+		this.setTitleLabel("Edit Consultant");
+		this.setHelpTip("Updates the information of the consultant with the specify Id.");
+		
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.columnWidths = new int[]{64, 0, 0, 0, 0, 0, 0, 0, 0};
 

@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class GetSubprojectsFrame extends JInternalFrame {
+public class GetSubprojectsFrame extends MainDialogFrame {
 
 	/**
 	 * Launch the application.

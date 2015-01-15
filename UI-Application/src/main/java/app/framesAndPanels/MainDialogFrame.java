@@ -24,7 +24,7 @@ public abstract class MainDialogFrame extends JDialog {
 	private static final int X_BOUND =100;
 	private static final int WIDTH_BOUND =636;
 	private static final int HEIGHT_BOUND =387;
-	private final JPanel mainDialogPanel = new JPanel();
+	private final JPanel mainGetPanel = new JPanel();
 	private JLabel mainImageLabel;
 	private JLabel titleLabel;
 	private JLabel helpLabel;
@@ -112,32 +112,25 @@ public abstract class MainDialogFrame extends JDialog {
 		gbc_lblRegistryuser.gridy = 1;
 		getMainDialogPanel().add(lblRegistryuser, gbc_lblRegistryuser);
 				
-		
+
+		JPanel buttonPane = new JPanel();
+		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		getContentPane().add(buttonPane, BorderLayout.SOUTH);
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("OK");
-				okButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/Ok.png")));
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/cancel.png")));
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
+			JButton okButton = new JButton("GET");
+			okButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/Ok.png")));
+			okButton.setActionCommand("GET");
+			buttonPane.add(okButton);
+			getRootPane().setDefaultButton(okButton);
 		}
+			
 	}
 
 	/**
 	 * @return the mainDialogPanel
 	 */
 	public JPanel getMainDialogPanel() {
-		return mainDialogPanel;
+		return mainGetPanel;
 	}
 }
 
