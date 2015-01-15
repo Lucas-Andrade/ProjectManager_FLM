@@ -6,7 +6,13 @@ import java.awt.Insets;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+
+import app.repositoryHolders.InMemoryRepositoryHolder;
+import app.repositoryHolders.RepositoryHolder;
+import app.result.CommandResult;
+import app.result.PostProjectResult;
 
 public class PostSubprojectFrame extends MainDialogFrame {
 
@@ -22,7 +28,7 @@ public class PostSubprojectFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostSubprojectFrame dialog = new PostSubprojectFrame();
+			PostSubprojectFrame dialog = new PostSubprojectFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
 			dialog.setTitle("Add Subproject");
 			dialog.setImage("images/subproject.jpg");
 			dialog.setTitleLabel("Add Subproject");
@@ -37,9 +43,8 @@ public class PostSubprojectFrame extends MainDialogFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public PostSubprojectFrame() 
-	{
-		super();
+	public PostSubprojectFrame(CommandResult result) {
+		super(result);
 
 		this.setTitle("Add Subproject");
 		this.setImage("images/subproject.jpg");

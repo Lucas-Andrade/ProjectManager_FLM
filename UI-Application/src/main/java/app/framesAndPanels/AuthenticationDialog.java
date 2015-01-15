@@ -29,7 +29,6 @@ public class AuthenticationDialog extends JDialog{
 	private final JPanel authenticationPanel = new JPanel();
 	private JTextField nameField;
 	private JLabel mainImageLabel;
-	private JButton button;
 	private JPasswordField passwordField;
 	
 	/**

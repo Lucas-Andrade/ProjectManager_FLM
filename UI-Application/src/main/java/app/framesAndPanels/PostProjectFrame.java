@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
+import app.result.CommandResult;
+import app.result.PostProjectResult;
 
 public class PostProjectFrame extends MainDialogFrame {
 
@@ -28,7 +30,7 @@ public class PostProjectFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostProjectFrame dialog = new PostProjectFrame(new JSplitPane(), new InMemoryRepositoryHolder());
+			PostProjectFrame dialog = new PostProjectFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
 			//definimos o título da janel
 			dialog.setTitle("Post Project");
 			dialog.setImage("images/project.png");
@@ -44,7 +46,8 @@ public class PostProjectFrame extends MainDialogFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public PostProjectFrame(JSplitPane splitPane, RepositoryHolder repoHolder) {
+	public PostProjectFrame(CommandResult result) {
+		super(result);
 		
 		this.setTitle("New Project");
 		this.setImage("images/project.png");
@@ -141,5 +144,8 @@ public class PostProjectFrame extends MainDialogFrame {
 		gbc_longitudeField.gridy = 8;
 		getMainDialogPanel().add(longitudeField, gbc_longitudeField);
 		longitudeField.setColumns(10);
+		
+		JTextField[] textFields = new JTextField[3];
+		this.setOkButtonActionListener(new okActionListener(textFields));
 	}
 }

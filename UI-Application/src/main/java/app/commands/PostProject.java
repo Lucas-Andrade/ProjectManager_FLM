@@ -1,9 +1,11 @@
 package app.commands;
 
 import javax.swing.JSplitPane;
+
 import app.authentication.Authentication;
 import app.framesAndPanels.PostProjectFrame;
 import app.repositoryHolders.RepositoryHolder;
+import app.result.PostProjectResult;
 
 public class PostProject extends BaseCommand{
 	
@@ -13,7 +15,7 @@ public class PostProject extends BaseCommand{
 	
 	@Override
 	public void execute() {
-		new PostProjectFrame(pane, repositories).setVisible(true);
+		new PostProjectFrame(new PostProjectResult(pane, repositories)).setVisible(true);
 	}
 }
 

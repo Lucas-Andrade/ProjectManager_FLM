@@ -8,7 +8,7 @@ public class Authentication implements IAuthentication {
 	private static boolean isAuthenticated;
 	
 	public Authentication(){
-		isAuthenticated = true;
+		isAuthenticated = false;
 	}
 	
 	@Override

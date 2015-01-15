@@ -19,8 +19,8 @@ import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
 import app.commands.PostProject;
-import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
+
 
 public class MainFrame extends JFrame{
 	
@@ -31,7 +31,7 @@ public class MainFrame extends JFrame{
 	public static final int PANEL_DIVIDER_LOCATION = 120;
 	
 	public static void main(String[] args){
-		new MainFrame(new JSplitPane(), new InMemoryRepositoryHolder(), new Authentication()).setVisible(true);
+	//	new MainFrame(new JSplitPane(), new InMemoryRepositoryHolder(), new Authentication()).setVisible(true);
 	}
 	
 	public MainFrame(JSplitPane splitPane, RepositoryHolder repositories, Authentication authentication){

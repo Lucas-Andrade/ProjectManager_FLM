@@ -7,7 +7,13 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+
+import app.repositoryHolders.InMemoryRepositoryHolder;
+import app.repositoryHolders.RepositoryHolder;
+import app.result.CommandResult;
+import app.result.PostProjectResult;
 
 public class PostWorkerFrame extends MainDialogFrame {
 
@@ -23,7 +29,7 @@ public class PostWorkerFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostWorkerFrame dialog = new PostWorkerFrame();
+			PostWorkerFrame dialog = new PostWorkerFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
 			dialog.setTitle("Add Worker In Project");
 			dialog.setImage("images/Add.jpg");
 			dialog.setTitleLabel("Add Worker In Project");
@@ -38,9 +44,8 @@ public class PostWorkerFrame extends MainDialogFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public PostWorkerFrame() 
-	{
-		super();
+	public PostWorkerFrame(CommandResult result) {
+		super(result);
 		
 		this.setTitle("Add Worker In Project");
 		this.setImage("images/Add.jpg");

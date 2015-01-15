@@ -14,7 +14,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import app.result.CommandResult;
 
 public abstract class MainDialogFrame extends JDialog {  
 
@@ -30,8 +33,9 @@ public abstract class MainDialogFrame extends JDialog {
 	private JLabel mainImageLabel;
 	private JLabel titleLabel;
 	private JLabel helpLabel;
+	private CommandResult result;
+	private JButton okButton;
 	
-
 	/**
 	 * Method that allows the user to insert different images in each child class
 	 * @param imagePath
@@ -48,11 +52,15 @@ public abstract class MainDialogFrame extends JDialog {
 		helpLabel.setToolTipText(help);
 	}
 	
+	protected void setOkButtonActionListener(ActionListener ac) {
+		okButton.addActionListener(ac);
+	}
+	
 	/**
 	 * Create the dialog.
 	 * @param image,  
 	 */
-	public MainDialogFrame() {
+	public MainDialogFrame(CommandResult result) {
 				
 		setBounds(X_BOUND,Y_BOUND,WIDTH_BOUND, HEIGHT_BOUND);   //Definição da Caixa de Diálogo
 		getContentPane().setLayout(new BorderLayout());
@@ -120,7 +128,7 @@ public abstract class MainDialogFrame extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				okButton = new JButton("OK");
 				okButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/Ok.png")));
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
@@ -131,6 +139,7 @@ public abstract class MainDialogFrame extends JDialog {
 				cancelButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/cancel.png")));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
+				cancelButton.addActionListener(new cancelActionListener());
 			}
 		}
 	}
@@ -149,6 +158,21 @@ public abstract class MainDialogFrame extends JDialog {
 			dispose();
 		}
 		
+	}
+	
+	protected class okActionListener implements ActionListener{
+		
+		JTextField[] textFields;
+		
+		public okActionListener(JTextField[] textFields) {
+			this.textFields = textFields;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			result.executeResult(textFields);
+			dispose();
+		}
 	}
 }
 
