@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
+import commands.BaseCommandUserAuthentication;
+
 import utils.Local;
 import utils.Project;
 import app.actionListeners.AppSwingWorker;
@@ -44,6 +46,13 @@ public class PostProject extends BaseCommand{
 		}
 
 		/**
+		 * Creates a new {@code Local} and a new {@code Project} with the created
+		 * {@code Local}. Get's the new {@code Project}'s PID from the
+		 * {@code ProjectRepository} and adds it to the {@code ProjectRepository}.
+		 * Outputs the new {@code Project}'s PID.
+		 * 
+		 * @return A JPanle with the results of the operation.
+		 * 
 		 * @wbp.parser.entryPoint
 		 */
 		@Override
@@ -54,15 +63,9 @@ public class PostProject extends BaseCommand{
 			try {
 				local = new Local(localLatitude, localLongitude, localName, localPrice);
 			} catch (IllegalArgumentException illegalArgument) {
-				publish("Price, latitude or longitude out of bounds.");
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					JPanel panel = new JPanel();
-					panel.add(new JLabel("ERROR: " + e.getMessage()));
-					return panel;
-				}
-				return new JPanel();
+				JPanel panel = new JPanel();
+				panel.add(new JLabel("Price, latitude or longitude out of bounds."));
+				return panel;
 			}
 			
 			publish("Status: Generating the new Project...");
