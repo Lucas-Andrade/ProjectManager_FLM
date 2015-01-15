@@ -47,7 +47,7 @@ public class DeleteProject extends BaseCommand{
 		 * Deletes a {@code Project} and all it's Subprojects, and their own
 		 * Subprojects and so on.
 		 * 
-		 * @return A JPanle with the results of the operation.
+		 * @return A JPanel with the results of the operation.
 		 * 
 		 * @wbp.parser.entryPoint
 		 */
