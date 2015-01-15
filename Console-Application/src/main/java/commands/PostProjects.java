@@ -8,7 +8,7 @@ import outputMethods.Result;
 import commands.exceptions.CommandException;
 import utils.Local;
 import utils.Project;
-import app.elements.AppElement;
+import app.AppElement;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;

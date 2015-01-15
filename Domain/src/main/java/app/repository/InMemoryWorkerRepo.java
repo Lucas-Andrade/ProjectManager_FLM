@@ -2,8 +2,10 @@ package app.repository;
 
 import java.util.Collection;
 import java.util.TreeSet;
+
 import org.json.JSONObject;
-import app.elements.AppElement;
+
+import app.AppElement;
 import app.elements.WorkerComparator;
 import utils.AWorker;
 import utils.Consultant;

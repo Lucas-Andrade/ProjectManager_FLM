@@ -1,6 +1,6 @@
 package app.repository;
 
-import app.elements.AppElement;
+import app.AppElement;
 import app.elements.User;
 import app.elements.IUser;
 

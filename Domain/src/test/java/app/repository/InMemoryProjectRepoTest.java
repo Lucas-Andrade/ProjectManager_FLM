@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import utils.Project;
+import app.AppElement;
 import app.RepositoryConstructor;
-import app.elements.AppElement;
 import app.repository.InMemoryProjectRepo;
 /**
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.

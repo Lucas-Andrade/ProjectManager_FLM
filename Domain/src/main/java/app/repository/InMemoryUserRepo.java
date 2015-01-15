@@ -7,8 +7,8 @@ import java.util.Set;
 
 import org.json.JSONObject;
 
+import app.AppElement;
 import app.elements.Admin;
-import app.elements.AppElement;
 import app.elements.ImmutableAdmin;
 import app.elements.User;
 import app.elements.IUser;

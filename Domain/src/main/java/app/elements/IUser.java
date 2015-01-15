@@ -1,5 +1,7 @@
 package app.elements;
 
+import app.AppElement;
+
 /**
  * Class that defines the contract for the Users of use the App. A
  * {@code UserInterface} is defined by a Username, a Password, Email and Full

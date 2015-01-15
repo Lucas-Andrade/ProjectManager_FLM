@@ -1,6 +1,6 @@
 package utils;
 
-import app.elements.AppElement;
+import app.AppElement;
 
 /**
  * Class that defines the contract for the {@link AWorker}s.

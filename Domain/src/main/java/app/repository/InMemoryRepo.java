@@ -2,7 +2,7 @@ package app.repository;
 
 import org.json.JSONObject;
 
-import app.elements.AppElement;
+import app.AppElement;
 
 /**
  * Abstract class whose purpose will be to store all {link DatabaseElements} in

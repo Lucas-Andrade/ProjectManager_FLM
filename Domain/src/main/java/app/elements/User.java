@@ -2,6 +2,8 @@ package app.elements;
 
 import org.json.JSONObject;
 
+import app.AppElement;
+
 /**
  * Class whose instances represent Users that use the App. A {@code User} is
  * defined by a Username, a Password, Email and Full Name.

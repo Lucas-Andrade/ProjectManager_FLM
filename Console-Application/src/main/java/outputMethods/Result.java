@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import org.json.JSONObject;
 
-import app.elements.AppElement;
+import app.AppElement;
 import outputMethods.destination.ToConsole;
 import outputMethods.destination.ToFile;
 import outputMethods.destination.Writable;

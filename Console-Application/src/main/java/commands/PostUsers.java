@@ -6,7 +6,7 @@ import java.util.concurrent.Callable;
 
 import outputMethods.Result;
 import commands.exceptions.CommandException;
-import app.elements.AppElement;
+import app.AppElement;
 import app.elements.Message;
 import app.elements.User;
 import app.elements.IUser;

@@ -5,9 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import app.AppElement;
 import app.RepositoryConstructor;
 import app.elements.Admin;
-import app.elements.AppElement;
 import app.elements.IUser;
 import app.repository.InMemoryUserRepo;
 /**

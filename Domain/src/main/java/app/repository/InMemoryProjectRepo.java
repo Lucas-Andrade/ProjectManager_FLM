@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 import utils.Project;
 import utils.ProjectComparator;
-import app.elements.AppElement;
+import app.AppElement;
 
 /**
  * Abstract class whose purpose will be to store all projects in the memory and

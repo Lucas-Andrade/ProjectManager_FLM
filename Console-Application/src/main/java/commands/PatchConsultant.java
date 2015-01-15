@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 
 import outputMethods.Result;
 import utils.AWorker;
-import app.elements.AppElement;
+import app.AppElement;
 import app.elements.Message;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;

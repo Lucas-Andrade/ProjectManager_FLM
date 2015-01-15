@@ -2,8 +2,7 @@ package utils;
 
 import org.json.JSONObject;
 
-import app.elements.AppElement;
-
+import app.AppElement;
 
 /**
  * Abstract class Element that will serve as an abstraction layer representing
