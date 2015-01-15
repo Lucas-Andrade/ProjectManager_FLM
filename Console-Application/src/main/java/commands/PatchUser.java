@@ -7,7 +7,7 @@ import outputMethods.Result;
 import app.elements.AppElement;
 import app.elements.Message;
 import app.elements.User;
-import app.elements.UserInterface;
+import app.elements.IUser;
 import app.repository.UserRepository;
 
 /**
@@ -124,7 +124,7 @@ public class PatchUser extends BaseCommandUserAuthentication{
 					"Old password is not correct for user: " + username) };
 		}
 
-		UserInterface user = repository.getUserByUsername(username);
+		IUser user = repository.getUserByUsername(username);
 		AppElement[] messageAux = new AppElement[1];
 
 		if (user == null){

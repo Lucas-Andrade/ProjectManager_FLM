@@ -1,4 +1,6 @@
-package app.elements;
+package utils;
+
+import app.elements.AppElement;
 
 /**
  * Class that defines the contract for the {@link AWorker}s.
@@ -7,7 +9,7 @@ package app.elements;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface WorkerInterface extends AppElement{
+public interface IWorker extends UtilsElement{
 	/**
 	 * @return the worker identification number
 	 */

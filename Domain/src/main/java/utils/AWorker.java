@@ -4,8 +4,6 @@ import java.text.DecimalFormat;
 
 import org.json.JSONObject;
 
-import app.elements.WorkerInterface;
-
 /**
  * Abstract class {@code AWorker} that will define the general fields shared by
  * all types of workers.
@@ -15,7 +13,7 @@ import app.elements.WorkerInterface;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public abstract class AWorker extends UtilsElement implements WorkerInterface {
+public abstract class AWorker implements IWorker {
 
 	/**
 	 * @field name - String with the name of the worker.

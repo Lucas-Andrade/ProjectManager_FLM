@@ -11,8 +11,7 @@ import app.elements.AppElement;
  * 
  * Implements the Interfaces {@link ICost}, {@link IName}, {@link Comparable}.
  */
-public abstract class UtilsElement implements ICost, IName, Comparable<UtilsElement>, AppElement {	
+public interface UtilsElement extends ICost, IName, Comparable<UtilsElement>, AppElement {	
 	public abstract String toString();
 	public abstract JSONObject getJson();
-	
 }

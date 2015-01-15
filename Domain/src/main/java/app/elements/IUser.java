@@ -8,7 +8,7 @@ package app.elements;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface UserInterface extends AppElement{
+public interface IUser extends AppElement{
 
 	/**
 	 * Method for getting the User's Username.

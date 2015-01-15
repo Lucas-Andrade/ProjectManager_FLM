@@ -9,7 +9,7 @@ import commands.exceptions.CommandException;
 import app.elements.AppElement;
 import app.elements.Message;
 import app.elements.User;
-import app.elements.UserInterface;
+import app.elements.IUser;
 import app.repository.UserRepository;
 
 /**
@@ -155,9 +155,9 @@ public class PostUsers extends BaseCommandUserAuthentication{
 		
 		this.email = parameters.get(EMAIL);
 		this.fullname = parameters.get(FULLNAME);
-		UserInterface[] existingUsers = (UserInterface[]) repository.getAll();
+		IUser[] existingUsers = (IUser[]) repository.getAll();
 		
-		for (UserInterface existingUser : existingUsers){
+		for (IUser existingUser : existingUsers){
 			if (existingUser.getLoginName().equals(this.username)){
 				message = new Message("The Specified Username already exists in repository.");
 				messageAux[0] = message;

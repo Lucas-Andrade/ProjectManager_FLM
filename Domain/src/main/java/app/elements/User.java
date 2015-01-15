@@ -9,7 +9,7 @@ import org.json.JSONObject;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class User implements UserInterface, AppElement{
+public class User implements IUser, AppElement{
 
 	private final String username;
 	private String password;

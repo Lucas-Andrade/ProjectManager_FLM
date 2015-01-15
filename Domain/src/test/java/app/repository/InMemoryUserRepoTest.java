@@ -8,7 +8,7 @@ import org.junit.Test;
 import app.RepositoryConstructor;
 import app.elements.Admin;
 import app.elements.AppElement;
-import app.elements.UserInterface;
+import app.elements.IUser;
 import app.repository.InMemoryUserRepo;
 /**
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
@@ -26,11 +26,11 @@ public class InMemoryUserRepoTest {
 	
 	@Test
 	public void shouldGetTheCorrectUser(){
-		UserInterface user1 = repo.getUserByUsername("user1");
-		UserInterface user2 = repo.getUserByUsername("user2");
+		IUser user1 = repo.getUserByUsername("user1");
+		IUser user2 = repo.getUserByUsername("user2");
 		
-		UserInterface user1_ = RepositoryConstructor.constructUser(1);
-		UserInterface user2_ = RepositoryConstructor.constructUser(2);
+		IUser user1_ = RepositoryConstructor.constructUser(1);
+		IUser user2_ = RepositoryConstructor.constructUser(2);
 		
 		assertTrue(user1_.equals(user1));
 		assertTrue(user2_.equals(user2));

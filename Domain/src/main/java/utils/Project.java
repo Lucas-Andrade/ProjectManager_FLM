@@ -6,8 +6,6 @@ import java.util.Iterator;
 
 import org.json.JSONObject;
 
-import app.elements.ProjectInterface;
-
 /**
  * Class {@code Project} whose instances will represent a project.
  * 
@@ -16,7 +14,7 @@ import app.elements.ProjectInterface;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class Project extends UtilsElement implements ProjectInterface{
+public class Project implements IProject{
 
 	private final String name;
 	private Leader manager;
