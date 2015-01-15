@@ -2,7 +2,6 @@ package app.framesAndPanels;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JDialog;
@@ -27,7 +26,7 @@ public class PostConsultantFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostConsultantFrame dialog = new PostConsultantFrame(null);
+			PostConsultantFrame dialog = new PostConsultantFrame();
 			//definimos o título da janela
 			dialog.setTitle("Post Consultant");
 			dialog.setImage("images/newConsultant.png");
@@ -44,9 +43,9 @@ public class PostConsultantFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 * @throws IOException 
 	 */
-	public PostConsultantFrame(ActionListener okActionListener) 
+	public PostConsultantFrame() 
 	{
-		super(okActionListener);		    // Labels e campos a ser preenchidos
+		super();		    // Labels e campos a ser preenchidos
 		
 		this.setTitle("New Consultant");
 		this.setImage("images/newConsultant.png");
