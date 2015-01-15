@@ -1,4 +1,4 @@
-package swing;
+package app.framesAndPanels;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class GetSubprojects extends JInternalFrame {
+public class GetSubprojectsFrame extends JInternalFrame {
 
 	/**
 	 * Launch the application.
@@ -37,7 +37,7 @@ public class GetSubprojects extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GetSubprojects() {
+	public GetSubprojectsFrame() {
 		setBounds(100, 100, 626, 387);
 		getContentPane().setLayout(new BorderLayout());
 		getSubprojectPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -52,7 +52,7 @@ public class GetSubprojects extends JInternalFrame {
 		{ //Inserir imagem : subproject -> Path e localização no Painel
 			
 			JLabel subprojectLabel = new JLabel("");
-			subprojectLabel.setIcon(new ImageIcon(PostSubproject.class.getClassLoader().getResource("images/subproject.jpg")));
+			subprojectLabel.setIcon(new ImageIcon(PostSubprojectFrame.class.getClassLoader().getResource("images/subproject.jpg")));
 			GridBagConstraints gbc_lblSubproject = new GridBagConstraints();
 			gbc_lblSubproject.gridheight = 3;
 			gbc_lblSubproject.insets = new Insets(0, 0, 5, 5);

@@ -1,4 +1,4 @@
-package app.errorDialogs;
+package app.framesAndPanels;
 
 import javax.swing.JDialog;
 

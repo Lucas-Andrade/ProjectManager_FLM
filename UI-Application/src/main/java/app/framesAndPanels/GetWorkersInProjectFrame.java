@@ -1,4 +1,4 @@
-package swing;
+package app.framesAndPanels;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -17,7 +17,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 
-public class GetWorkersInProject extends JInternalFrame {
+public class GetWorkersInProjectFrame extends JInternalFrame {
 
 	/**
 	 * 
@@ -44,7 +44,7 @@ public class GetWorkersInProject extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GetWorkersInProject() {
+	public GetWorkersInProjectFrame() {
 		setBounds(100, 100, 626, 387);
 		getContentPane().setLayout(new BorderLayout());
 		getWorkerPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -61,7 +61,7 @@ public class GetWorkersInProject extends JInternalFrame {
 			//Inserir imagem : consultant -> Path e localização no Painel
 			
 			JLabel consultantLabel = new JLabel("");
-			consultantLabel.setIcon(new ImageIcon(GetWorkersInProject.class.getClassLoader().getResource("images/user.jpg")));
+			consultantLabel.setIcon(new ImageIcon(GetWorkersInProjectFrame.class.getClassLoader().getResource("images/user.jpg")));
 			GridBagConstraints gbc_lblConsultant = new GridBagConstraints();
 			gbc_lblConsultant.insets = new Insets(0, 0, 5, 5);
 			gbc_lblConsultant.anchor = GridBagConstraints.SOUTHEAST;

@@ -1,4 +1,4 @@
-package swing;
+package app.framesAndPanels;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;

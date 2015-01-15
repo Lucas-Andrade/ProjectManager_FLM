@@ -1,4 +1,4 @@
-package swing;
+package app.framesAndPanels;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -9,7 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+<<<<<<< HEAD:UI-Application/src/main/java/swing/PostConsultant.java
 public class PostConsultant extends MainDialogFrame {
+=======
+public class PostConsultantFrame extends JDialog {
+>>>>>>> 36468fd7df7c31c1333fec16c867e1277b7cf1a7:UI-Application/src/main/java/app/framesAndPanels/PostConsultantFrame.java
 
 	/**
 	 * 
@@ -25,7 +29,7 @@ public class PostConsultant extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostConsultant dialog = new PostConsultant();
+			PostConsultantFrame dialog = new PostConsultantFrame();
 			//definimos o título da janela
 			dialog.setTitle("Post Consultant");
 			dialog.setImage("images/newConsultant.png");
@@ -42,7 +46,7 @@ public class PostConsultant extends MainDialogFrame {
 	 * Create the dialog.
 	 * @throws IOException 
 	 */
-	public PostConsultant() 
+	public PostConsultantFrame() 
 	{
 		super();		    // Labels e campos a ser preenchidos
 		

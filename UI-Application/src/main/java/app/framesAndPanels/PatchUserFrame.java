@@ -1,4 +1,4 @@
-package swing;
+package app.framesAndPanels;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -20,7 +20,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+<<<<<<< HEAD:UI-Application/src/main/java/swing/PatchUser.java
 public class PatchUser extends MainDialogFrame {
+=======
+public class PatchUserFrame extends JDialog {
+>>>>>>> 36468fd7df7c31c1333fec16c867e1277b7cf1a7:UI-Application/src/main/java/app/framesAndPanels/PatchUserFrame.java
 
 	/**
 	 * 
@@ -37,7 +41,7 @@ public class PatchUser extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PatchUser dialog = new PatchUser();
+			PatchUserFrame dialog = new PatchUserFrame();
 			//definimos o título da janel
 			dialog.setTitle("Patch User");
 			dialog.setImage("images/Edit_user.jpg");
@@ -54,7 +58,7 @@ public class PatchUser extends MainDialogFrame {
 	 * Create the dialog.
 	 * @throws IOException 
 	 */
-	public PatchUser() 
+	public PatchUserFrame() 
 	{
 		super();
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
