@@ -2,7 +2,6 @@ package app.framesAndPanels;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -26,7 +25,7 @@ public class PatchProjectFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PatchProjectFrame dialog = new PatchProjectFrame(null);
+			PatchProjectFrame dialog = new PatchProjectFrame();
 			//definimos o título da janel
 			dialog.setTitle("Patch Project");
 			dialog.setImage("images/editProject.png");
@@ -43,8 +42,8 @@ public class PatchProjectFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 */
 
-	public PatchProjectFrame(ActionListener okActionListener) {
-		super(okActionListener);
+	public PatchProjectFrame() {
+		super();
 
 		this.setTitle("Edit Project");
 		this.setImage("images/editProject.png");
