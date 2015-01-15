@@ -33,11 +33,11 @@ public class DeleteProject extends BaseCommand{
 		frame.setVisible(true);
 	}
 	
-	public class NewDeleteWorker extends AppSwingWorker {
+	public class DeleteProjectWorker extends AppSwingWorker {
 
 		long pid;
 		
-		public NewDeleteWorker(JSplitPane pane, long pid)
+		public DeleteProjectWorker(JSplitPane pane, long pid)
 		{
 			super(pane);
 			this.pid=pid;
@@ -105,7 +105,7 @@ public class DeleteProject extends BaseCommand{
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {	
-			new NewDeleteWorker(pane, pid).execute();
+			new DeleteProjectWorker(pane, pid).execute();
 			frame.dispose();
 		}
 	}
