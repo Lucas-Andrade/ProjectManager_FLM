@@ -37,7 +37,7 @@ public class ErrorDialog extends JDialog {
 	private JLabel errorMessage;
 	
 	public ErrorDialog(String message){
-		this.setTitle("Error");
+		this.setTitle("Something went wrong");
 		
 		setBounds(100, 100, 303, 225);
 		GridBagLayout gridBagLayout = new GridBagLayout();
