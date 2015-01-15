@@ -54,9 +54,9 @@ public class AuthenticationDialog extends JDialog{
 		authenticationPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(authenticationPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
-		gbl_contentPanel.columnWidths = new int[]{75, 0, 0, 100, 0};
+		gbl_contentPanel.columnWidths = new int[]{75, 0, 0, 0};
 		gbl_contentPanel.rowHeights = new int[]{0, 0, 34};
-		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0};
 		authenticationPanel.setLayout(gbl_contentPanel);
 		
@@ -82,7 +82,6 @@ public class AuthenticationDialog extends JDialog{
 		nameField = new JTextField();
 		GridBagConstraints gbc_nameField = new GridBagConstraints();
 		gbc_nameField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_nameField.gridwidth = 2;
 		gbc_nameField.insets = new Insets(0, 0, 5, 0);
 		gbc_nameField.anchor = GridBagConstraints.SOUTH;
 		gbc_nameField.gridx = 2;
@@ -103,8 +102,7 @@ public class AuthenticationDialog extends JDialog{
 		
 		passwordField = new JPasswordField();
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
-		gbc_passwordField.gridwidth = 2;
-		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordField.insets = new Insets(0, 0, 5, 0);
 		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_passwordField.gridx = 2;
 		gbc_passwordField.gridy = 1;
@@ -117,7 +115,7 @@ public class AuthenticationDialog extends JDialog{
 		gbc_btnNewButton.anchor = GridBagConstraints.SOUTH;
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNewButton.gridwidth = 3;
+		gbc_btnNewButton.gridwidth = 2;
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 2;
 		authenticationPanel.add(btnNewButton, gbc_btnNewButton);
