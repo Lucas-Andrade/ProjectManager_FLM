@@ -3,7 +3,6 @@ package app;
 import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
-import app.framesAndPanels.ErrorDialog;
 import app.framesAndPanels.MainFrame;
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
@@ -16,6 +15,5 @@ public class AppUI {
 	
 	public static void main(String[] args) {
 		new MainFrame(splitPane, repositories, authentication).setVisible(true);
-		new ErrorDialog("coisa");
 	}
 }

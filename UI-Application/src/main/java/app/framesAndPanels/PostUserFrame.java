@@ -6,7 +6,13 @@ import java.io.IOException;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+
+import app.repositoryHolders.InMemoryRepositoryHolder;
+import app.repositoryHolders.RepositoryHolder;
+import app.result.CommandResult;
+import app.result.PostProjectResult;
 
 
 public class PostUserFrame extends MainDialogFrame {
@@ -25,7 +31,7 @@ public class PostUserFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostUserFrame dialog = new PostUserFrame();
+			PostUserFrame dialog = new PostUserFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
 			//definimos o título da janel
 			dialog.setTitle("New User");
 			dialog.setImage("images/add_user.jpg");
@@ -42,9 +48,8 @@ public class PostUserFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 * @throws IOException 
 	 */
-	public PostUserFrame() 
-	{
-		super();
+	public PostUserFrame(CommandResult result) {
+		super(result);
 		
 		this.setTitle("New User");
 		this.setImage("images/add_user.jpg");

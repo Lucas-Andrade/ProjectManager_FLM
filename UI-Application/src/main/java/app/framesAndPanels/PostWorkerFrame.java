@@ -7,7 +7,13 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+
+import app.repositoryHolders.InMemoryRepositoryHolder;
+import app.repositoryHolders.RepositoryHolder;
+import app.result.CommandResult;
+import app.result.PostProjectResult;
 
 public class PostWorkerFrame extends MainDialogFrame {
 
@@ -16,6 +22,7 @@ public class PostWorkerFrame extends MainDialogFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField previewField;
+	ProjectID projectId;
 	
 
 	/**
@@ -23,7 +30,7 @@ public class PostWorkerFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostWorkerFrame dialog = new PostWorkerFrame();
+			PostWorkerFrame dialog = new PostWorkerFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
 			dialog.setTitle("Add Worker In Project");
 			dialog.setImage("images/Add.jpg");
 			dialog.setTitleLabel("Add Worker In Project");
@@ -38,39 +45,27 @@ public class PostWorkerFrame extends MainDialogFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public PostWorkerFrame() 
-	{
-		super();
+	public PostWorkerFrame(CommandResult result) {
+		super(result);
 		
 		this.setTitle("Add Worker In Project");
 		this.setImage("images/Add.jpg");
 		this.setTitleLabel("Add Worker In Project");
 		this.setHelpTip("Add a Consultant or Manager to a project/subproject.");
 
-		JLabel lblProjectID = new JLabel("Project ID:");
+		
+		projectId = new ProjectID();
+//		JLabel lblProjectID = new JLabel("Project ID:");
 		GridBagConstraints gbc_lblProjectID = new GridBagConstraints();
-		gbc_lblProjectID.anchor = GridBagConstraints.SOUTHEAST;
+		gbc_lblProjectID.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblProjectID.gridwidth = 3;
+		gbc_lblProjectID.anchor = GridBagConstraints.SOUTH;
 		gbc_lblProjectID.insets = new Insets(0, 0, 5, 5);
 		gbc_lblProjectID.gridx = 2;
 		gbc_lblProjectID.gridy = 3;
-		getMainDialogPanel().add(lblProjectID, gbc_lblProjectID);
+		getMainDialogPanel().add(getProjectIdFrame(), gbc_lblProjectID);
 	
 
-		
-	//terá a lista dos projectos no repositório 
-		//elementos da lista -> alterar
-		String[] projects = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
-		
-		JComboBox projectComboBox = new JComboBox(projects);
-		GridBagConstraints gbc_projectComboBox = new GridBagConstraints();
-		gbc_projectComboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_projectComboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_projectComboBox.gridx = 3;
-		gbc_projectComboBox.gridy = 3;
-		getMainDialogPanel().add(projectComboBox, gbc_projectComboBox);
-		projectComboBox.setEditable(true);
-		//projectComboBox.addActionListener(this);
-	
 		
 		JLabel lblAddWorker = new JLabel("Add Workers:");
 		GridBagConstraints gbc_lblAddWorker = new GridBagConstraints();
@@ -136,4 +131,9 @@ public class PostWorkerFrame extends MainDialogFrame {
 		getMainDialogPanel().add(previewField, gbc_previewField);
 		previewField.setColumns(10);
 		}
+	
+	public ProjectID getProjectIdFrame(){
+		return projectId;
 	}
+	
+}

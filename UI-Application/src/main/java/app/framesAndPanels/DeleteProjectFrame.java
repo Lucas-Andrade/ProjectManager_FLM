@@ -1,6 +1,11 @@
 package app.framesAndPanels;
 
 import javax.swing.JDialog;
+import javax.swing.JSplitPane;
+
+import app.repositoryHolders.InMemoryRepositoryHolder;
+import app.result.CommandResult;
+import app.result.PostProjectResult;
 
 
 public class DeleteProjectFrame extends MainDialogFrame {
@@ -17,7 +22,7 @@ public class DeleteProjectFrame extends MainDialogFrame {
 		try {
 
 
-			DeleteProjectFrame dialog = new DeleteProjectFrame();
+			DeleteProjectFrame dialog = new DeleteProjectFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
 			dialog.setImage("images/project-delete.png");
 			dialog.setTitle("Delete Project");
 			dialog.setTitleLabel("Delete Project");
@@ -33,9 +38,8 @@ public class DeleteProjectFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 */
 
-	public DeleteProjectFrame() {
-		
-		super();
+	public DeleteProjectFrame(CommandResult result) {
+		super(result);
 		
 		this.setImage("images/project-delete.png");
 		this.setTitle("Delete Project");

@@ -33,6 +33,7 @@ public class AuthenticationActionListener implements ActionListener{
 		new SwingWorker<IUser, Object>(){
 			@Override
 			protected IUser doInBackground() throws Exception {
+				
 				String loginName = fieldsToRetrieve[0].getText();
 				char[] loginPasswordChars = ((JPasswordField)fieldsToRetrieve[1]).getPassword();
 				StringBuilder builder = new StringBuilder();

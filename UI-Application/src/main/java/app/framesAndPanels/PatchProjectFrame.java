@@ -6,7 +6,13 @@ import java.awt.Insets;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+
+import app.repositoryHolders.InMemoryRepositoryHolder;
+import app.repositoryHolders.RepositoryHolder;
+import app.result.CommandResult;
+import app.result.PostProjectResult;
 
 
 public class PatchProjectFrame extends MainDialogFrame {
@@ -25,7 +31,7 @@ public class PatchProjectFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PatchProjectFrame dialog = new PatchProjectFrame();
+			PatchProjectFrame dialog = new PatchProjectFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
 			//definimos o título da janel
 			dialog.setTitle("Patch Project");
 			dialog.setImage("images/editProject.png");
@@ -42,8 +48,8 @@ public class PatchProjectFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 */
 
-	public PatchProjectFrame() {
-		super();
+	public PatchProjectFrame(CommandResult result) {
+		super(result);
 
 		this.setTitle("Edit Project");
 		this.setImage("images/editProject.png");
