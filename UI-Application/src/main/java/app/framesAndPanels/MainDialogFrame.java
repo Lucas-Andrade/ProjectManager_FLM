@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -50,7 +51,7 @@ public abstract class MainDialogFrame extends JDialog {
 	 * Create the dialog.
 	 * @param image,  
 	 */
-	public MainDialogFrame() {
+	public MainDialogFrame(ActionListener okActionListener) {
 				
 		setBounds(X_BOUND,Y_BOUND,WIDTH_BOUND, HEIGHT_BOUND);   //Definição da Caixa de Diálogo
 		getContentPane().setLayout(new BorderLayout());

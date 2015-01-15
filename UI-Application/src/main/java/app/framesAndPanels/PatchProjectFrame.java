@@ -2,6 +2,7 @@ package app.framesAndPanels;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -25,7 +26,7 @@ public class PatchProjectFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PatchProjectFrame dialog = new PatchProjectFrame();
+			PatchProjectFrame dialog = new PatchProjectFrame(null);
 			//definimos o título da janel
 			dialog.setTitle("Patch Project");
 			dialog.setImage("images/editProject.png");
@@ -42,9 +43,14 @@ public class PatchProjectFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 */
 
-	public PatchProjectFrame() {
-		super();
+	public PatchProjectFrame(ActionListener okActionListener) {
+		super(okActionListener);
 
+		this.setTitle("Edit Project");
+		this.setImage("images/editProject.png");
+		this.setTitleLabel("Edit Project");
+		this.setHelpTip("Update the information of the project identified by the specify Id");
+		
 		JLabel lblProjectID = new JLabel("Project ID:");  // Labels e campos a ser preenchidos
 		GridBagConstraints gbc_lblProjectID = new GridBagConstraints();
 		gbc_lblProjectID.anchor = GridBagConstraints.SOUTHEAST;

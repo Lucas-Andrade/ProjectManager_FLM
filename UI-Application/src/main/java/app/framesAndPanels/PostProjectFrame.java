@@ -43,7 +43,13 @@ public class PostProjectFrame extends MainDialogFrame {
 	 */
 	public PostProjectFrame(ActionListener okActionListener) {
 	//public PostProject(ActionListener okActionListener) {
-		super();
+		super(okActionListener);
+		
+		this.setTitle("New Project");
+		this.setImage("images/project.png");
+		this.setTitleLabel("New Project");
+		this.setHelpTip("Add a Project to the Project repository.");
+		
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 50, 20, 15, 20, 15, 0, 0};

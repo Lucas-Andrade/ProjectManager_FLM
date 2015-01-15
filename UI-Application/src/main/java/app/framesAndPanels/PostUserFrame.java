@@ -2,13 +2,13 @@ package app.framesAndPanels;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-//import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 public class PostUserFrame extends MainDialogFrame {
 
@@ -26,11 +26,11 @@ public class PostUserFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostUserFrame dialog = new PostUserFrame();
+			PostUserFrame dialog = new PostUserFrame(null);
 			//definimos o título da janel
-			dialog.setTitle("Post User");
+			dialog.setTitle("New User");
 			dialog.setImage("images/add_user.jpg");
-			dialog.setTitleLabel("Post User");
+			dialog.setTitleLabel("New User");
 			dialog.setHelpTip("Add a user to the User Repository");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -43,9 +43,14 @@ public class PostUserFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 * @throws IOException 
 	 */
-	public PostUserFrame() 
+	public PostUserFrame(ActionListener okActionListener) 
 	{
-		super();
+		super(okActionListener);
+		
+		this.setTitle("New User");
+		this.setImage("images/add_user.jpg");
+		this.setTitleLabel("New User");
+		this.setHelpTip("Add a user to the User Repository");
 		
 		JLabel lblName = new JLabel("Username:");
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
@@ -131,11 +136,11 @@ public class PostUserFrame extends MainDialogFrame {
 		fullNameField.setColumns(10);
 		
 		
-				JLabel lblOptionalLabel = new JLabel("(Opcional)");
-				GridBagConstraints gbc_lblOptionalLabel = new GridBagConstraints();
-				gbc_lblOptionalLabel.insets = new Insets(0, 0, 5, 5);
-				gbc_lblOptionalLabel.gridx = 6;
-				gbc_lblOptionalLabel.gridy = 6;
-				getMainDialogPanel().add(lblOptionalLabel, gbc_lblOptionalLabel);
+		JLabel lblOptionalLabel = new JLabel("(Opcional)");
+		GridBagConstraints gbc_lblOptionalLabel = new GridBagConstraints();
+		gbc_lblOptionalLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblOptionalLabel.gridx = 6;
+		gbc_lblOptionalLabel.gridy = 6;
+		getMainDialogPanel().add(lblOptionalLabel, gbc_lblOptionalLabel);
 	}
 }

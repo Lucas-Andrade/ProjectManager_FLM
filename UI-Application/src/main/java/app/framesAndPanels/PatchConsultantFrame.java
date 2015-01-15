@@ -3,6 +3,7 @@ package app.framesAndPanels;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JComboBox;
@@ -25,11 +26,11 @@ public class PatchConsultantFrame extends MainDialogFrame {
 	public static void main(String[] args) {
 		try {
 
-			PatchConsultantFrame dialog = new PatchConsultantFrame();
+			PatchConsultantFrame dialog = new PatchConsultantFrame(null);
 			
-			dialog.setTitle("Patch Consultant");    //definimos o título da janela
+			dialog.setTitle("Edit Consultant");    //definimos o título da janela
 			dialog.setImage("images/edit.jpg");
-			dialog.setTitleLabel("Patch Consultant");
+			dialog.setTitleLabel("Edit Consultant");
 			dialog.setHelpTip("Updates the information of the consultant with the specify Id.");
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -41,10 +42,10 @@ public class PatchConsultantFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 * @throws IOException 
 	 */
-	public PatchConsultantFrame() 
+	public PatchConsultantFrame(ActionListener okActionListener) 
 	{
-
-		super();
+		super(okActionListener);
+		
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.columnWidths = new int[]{64, 0, 0, 0, 0, 0, 0, 0, 0};
 

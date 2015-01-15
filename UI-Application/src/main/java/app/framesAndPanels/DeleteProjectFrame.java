@@ -1,17 +1,8 @@
 package app.framesAndPanels;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Image;
-import java.awt.Insets;
+import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 
 public class DeleteProjectFrame extends MainDialogFrame {
@@ -28,9 +19,11 @@ public class DeleteProjectFrame extends MainDialogFrame {
 		try {
 
 
-			DeleteProjectFrame dialog = new DeleteProjectFrame();
+			DeleteProjectFrame dialog = new DeleteProjectFrame(null);
 			dialog.setImage("images/project-delete.png");
-			dialog.setTitle("teste");
+			dialog.setTitle("Delete Project");
+			dialog.setTitleLabel("Delete Project");
+			dialog.setHelpTip("Deletes the project with the specify Id and all its subprojects");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -42,45 +35,15 @@ public class DeleteProjectFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 */
 
-	public DeleteProjectFrame() {
-		super();
-//		setBounds(100, 100, 450, 300);
-//		getContentPane().setLayout(new BorderLayout());
-//		deleteProjectPanel.setLayout(new FlowLayout());
-//		deleteProjectPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-//		getContentPane().add(deleteProjectPanel, BorderLayout.CENTER);
-//		
-//		
-//	    //Inserir imagem : project -> Path e localização no Painel
-////		{ 
-//			JLabel delProjectLabel = new JLabel("");
-//			delProjectLabel.setIcon(new ImageIcon(DeleteProject.class.getClassLoader().getResource("images/project-delete.png")));;
-//			GridBagConstraints gbc_lblDelProject = new GridBagConstraints();
-//			gbc_lblDelProject.gridheight = 2;
-//			gbc_lblDelProject.insets = new Insets(0, 0, 5, 5);
-//			gbc_lblDelProject.anchor = GridBagConstraints.SOUTHEAST;
-//			gbc_lblDelProject.gridx = 1;
-//			gbc_lblDelProject.gridy = 3;
-//			deleteProjectPanel.add(delProjectLabel, gbc_lblDelProject);
-//
-//		}
+	public DeleteProjectFrame(ActionListener okActionListener) {
 		
-//		{
-//			JPanel buttonPane = new JPanel();
-//			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-//			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-//			{
-//				JButton okButton = new JButton("OK");
-//				okButton.setActionCommand("OK");
-//				buttonPane.add(okButton);
-//				getRootPane().setDefaultButton(okButton);
-//			}
-//			{
-//				JButton cancelButton = new JButton("Cancel");
-//				cancelButton.setActionCommand("Cancel");
-//				buttonPane.add(cancelButton);
-//			}
-//		}
+		super(okActionListener);
+		
+		this.setImage("images/project-delete.png");
+		this.setTitle("Delete Project");
+		this.setTitleLabel("Delete Project");
+		this.setHelpTip("Deletes the project with the specify Id and all its subprojects");
+	
 	}
 
 }

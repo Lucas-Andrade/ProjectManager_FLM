@@ -2,6 +2,7 @@ package app.framesAndPanels;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -23,10 +24,10 @@ public class PostWorkerFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostWorkerFrame dialog = new PostWorkerFrame();
-			dialog.setTitle("Post Worker In Project");
+			PostWorkerFrame dialog = new PostWorkerFrame(null);
+			dialog.setTitle("Add Worker In Project");
 			dialog.setImage("images/Add.jpg");
-			dialog.setTitleLabel("Post Worker In Project");
+			dialog.setTitleLabel("Add Worker In Project");
 			dialog.setHelpTip("Add a Consultant or Manager to a project/subproject.");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -38,10 +39,14 @@ public class PostWorkerFrame extends MainDialogFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public PostWorkerFrame() 
+	public PostWorkerFrame(ActionListener okActionListener) 
 	{
-		super();
-			
+		super(okActionListener);
+		
+		this.setTitle("Add Worker In Project");
+		this.setImage("images/Add.jpg");
+		this.setTitleLabel("Add Worker In Project");
+		this.setHelpTip("Add a Consultant or Manager to a project/subproject.");
 
 		JLabel lblProjectID = new JLabel("Project ID:");
 		GridBagConstraints gbc_lblProjectID = new GridBagConstraints();
