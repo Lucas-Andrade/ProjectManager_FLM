@@ -1,36 +1,21 @@
 package app.framesAndPanels;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 
-<<<<<<< HEAD:UI-Application/src/main/java/swing/PatchUser.java
-public class PatchUser extends MainDialogFrame {
-=======
-public class PatchUserFrame extends JDialog {
->>>>>>> 36468fd7df7c31c1333fec16c867e1277b7cf1a7:UI-Application/src/main/java/app/framesAndPanels/PatchUserFrame.java
+
+public class PatchUserFrame extends MainDialogFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final JPanel patchUserPanel = new JPanel();
 	private JTextField nameField;
 	private JTextField passwordField;
 	private JTextField newPasswordField;

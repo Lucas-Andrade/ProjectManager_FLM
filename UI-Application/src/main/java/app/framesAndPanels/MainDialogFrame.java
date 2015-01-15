@@ -1,4 +1,4 @@
-package swing;
+package app.framesAndPanels;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public abstract class MainDialogFrame extends JDialog {  // colocar abstract
+public abstract class MainDialogFrame extends JDialog {  
 
 	/**
 	 * 

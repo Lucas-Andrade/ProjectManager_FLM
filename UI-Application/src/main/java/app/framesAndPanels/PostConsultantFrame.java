@@ -9,11 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-<<<<<<< HEAD:UI-Application/src/main/java/swing/PostConsultant.java
-public class PostConsultant extends MainDialogFrame {
-=======
-public class PostConsultantFrame extends JDialog {
->>>>>>> 36468fd7df7c31c1333fec16c867e1277b7cf1a7:UI-Application/src/main/java/app/framesAndPanels/PostConsultantFrame.java
+
+public class PostConsultantFrame extends MainDialogFrame {
 
 	/**
 	 * 

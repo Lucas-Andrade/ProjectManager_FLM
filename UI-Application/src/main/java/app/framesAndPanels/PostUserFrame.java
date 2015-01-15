@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 //import com.jgoodies.forms.factories.DefaultComponentFactory;
 
-public class PostUserPanel extends MainDialogFrame {
+public class PostUserFrame extends MainDialogFrame {
 
 	/**
 	 * 
@@ -26,7 +26,7 @@ public class PostUserPanel extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostUserPanel dialog = new PostUserPanel();
+			PostUserFrame dialog = new PostUserFrame();
 			//definimos o título da janel
 			dialog.setTitle("Post User");
 			dialog.setImage("images/add_user.jpg");
@@ -43,7 +43,7 @@ public class PostUserPanel extends MainDialogFrame {
 	 * Create the dialog.
 	 * @throws IOException 
 	 */
-	public PostUserPanel() 
+	public PostUserFrame() 
 	{
 		super();
 		

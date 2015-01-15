@@ -9,13 +9,8 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-<<<<<<< HEAD:UI-Application/src/main/java/swing/PostWorker.java
-public class PostWorker extends MainDialogFrame {
-=======
-public class PostWorkerFrame extends JDialog {
->>>>>>> 36468fd7df7c31c1333fec16c867e1277b7cf1a7:UI-Application/src/main/java/app/framesAndPanels/PostWorkerFrame.java
+public class PostWorkerFrame extends MainDialogFrame {
 
-	
 	/**
 	 * 
 	 */
@@ -47,7 +42,7 @@ public class PostWorkerFrame extends JDialog {
 	{
 		super();
 			
-<<<<<<< HEAD:UI-Application/src/main/java/swing/PostWorker.java
+
 		JLabel lblProjectID = new JLabel("Project ID:");
 		GridBagConstraints gbc_lblProjectID = new GridBagConstraints();
 		gbc_lblProjectID.anchor = GridBagConstraints.SOUTHEAST;
@@ -56,21 +51,7 @@ public class PostWorkerFrame extends JDialog {
 		gbc_lblProjectID.gridy = 3;
 		getMainDialogPanel().add(lblProjectID, gbc_lblProjectID);
 	
-=======
-		     //Inserir imagem : Consultant -> Path e localização no Painel
-			//alterar imagem
-		{ 
-			JLabel workerLabel = new JLabel("");
-			workerLabel.setIcon(new ImageIcon(PostWorkerFrame.class.getClassLoader().getResource("images/add-user.png")));
-			GridBagConstraints gbc_lblWorker = new GridBagConstraints();
-			gbc_lblWorker.gridheight = 3;
-			gbc_lblWorker.insets = new Insets(0, 0, 5, 5);
-			gbc_lblWorker.anchor = GridBagConstraints.SOUTHEAST;
-			gbc_lblWorker.gridx = 1;
-			gbc_lblWorker.gridy = 3;
-			PostWorkerPanel.add(workerLabel, gbc_lblWorker);
-		}
->>>>>>> 36468fd7df7c31c1333fec16c867e1277b7cf1a7:UI-Application/src/main/java/app/framesAndPanels/PostWorkerFrame.java
+
 		
 	//terá a lista dos projectos no repositório 
 		//elementos da lista -> alterar
