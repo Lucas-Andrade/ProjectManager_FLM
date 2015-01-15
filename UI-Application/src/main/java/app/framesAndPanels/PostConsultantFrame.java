@@ -118,7 +118,7 @@ public class PostConsultantFrame extends MainDialogFrame {
 		getMainDialogPanel().add(rdbtnManager, gbc_rdbtnManager);
 	
 		
-		JLabel lblBonus = new JLabel("Bónus:");
+		JLabel lblBonus = new JLabel("Bonus:");
 		GridBagConstraints gbc_lblBonus = new GridBagConstraints();
 		gbc_lblBonus.anchor = GridBagConstraints.EAST;
 		gbc_lblBonus.insets = new Insets(0, 0, 5, 5);
