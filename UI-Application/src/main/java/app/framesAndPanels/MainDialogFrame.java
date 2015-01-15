@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -123,7 +125,6 @@ public abstract class MainDialogFrame extends JDialog {
 			buttonPane.add(okButton);
 			getRootPane().setDefaultButton(okButton);
 		}
-			
 	}
 
 	/**
@@ -131,6 +132,15 @@ public abstract class MainDialogFrame extends JDialog {
 	 */
 	public JPanel getMainDialogPanel() {
 		return mainGetPanel;
+	}
+	
+	private class cancelActionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			dispose();
+		}
+		
 	}
 }
 

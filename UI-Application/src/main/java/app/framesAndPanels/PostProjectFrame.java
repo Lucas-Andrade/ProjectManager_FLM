@@ -6,7 +6,11 @@ import java.awt.Insets;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+
+import app.repositoryHolders.InMemoryRepositoryHolder;
+import app.repositoryHolders.RepositoryHolder;
 
 public class PostProjectFrame extends MainDialogFrame {
 
@@ -24,7 +28,7 @@ public class PostProjectFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostProjectFrame dialog = new PostProjectFrame();
+			PostProjectFrame dialog = new PostProjectFrame(new JSplitPane(), new InMemoryRepositoryHolder());
 			//definimos o título da janel
 			dialog.setTitle("Post Project");
 			dialog.setImage("images/project.png");
@@ -40,13 +44,13 @@ public class PostProjectFrame extends MainDialogFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public PostProjectFrame() {
-		super();
+	public PostProjectFrame(JSplitPane splitPane, RepositoryHolder repoHolder) {
 		
 		this.setTitle("New Project");
 		this.setImage("images/project.png");
 		this.setTitleLabel("New Project");
 		this.setHelpTip("Add a Project to the Project repository.");
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
