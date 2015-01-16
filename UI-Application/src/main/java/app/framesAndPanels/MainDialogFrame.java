@@ -4,11 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import app.result.CommandResult;
 
 public abstract class MainDialogFrame extends JDialog {  
@@ -50,9 +52,17 @@ public abstract class MainDialogFrame extends JDialog {
 	 * @param image,  
 	 */
 	public MainDialogFrame(CommandResult result) {
+		try {
+			this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			this.setVisible(true);
 		
+			}catch (Exception e) {
+			e.printStackTrace();
+		}
 		mainDialogPanel = new MainPanel();
-				
+		
+		this.setLocationRelativeTo(null);
+		
 		setBounds(X_BOUND,Y_BOUND,WIDTH_BOUND, HEIGHT_BOUND);   //Definição da Caixa de Diálogo
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(getMainDialogPanel(), BorderLayout.CENTER);
@@ -76,6 +86,7 @@ public abstract class MainDialogFrame extends JDialog {
 				cancelButton.addActionListener(new cancelActionListener());
 			}
 		}
+		  
 	}
 
 	/**

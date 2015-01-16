@@ -6,6 +6,7 @@ import app.authentication.Authentication;
 import app.framesAndPanels.MainFrame;
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
+import javax.swing.JInternalFrame;
 
 public class AppUI {
 

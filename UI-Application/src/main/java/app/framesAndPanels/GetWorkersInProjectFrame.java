@@ -1,21 +1,19 @@
 package app.framesAndPanels;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JRadioButton;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
 
-import java.awt.GridBagLayout;
-
-import javax.swing.JPanel;
+import app.repositoryHolders.InMemoryRepositoryHolder;
+import app.result.CommandResult;
+import app.result.GetSubprojectsResult;
+import app.result.GetWorkersInProjectResult;
 
 public class GetWorkersInProjectFrame extends MainGetFrame {
 
@@ -23,15 +21,17 @@ public class GetWorkersInProjectFrame extends MainGetFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final JPanel getWorkerPanel = new JPanel();
+	private ProjectID projectId;
+	private JRadioButton manager;
+	private JRadioButton consultantId;
+	private JLabel label;
+	private JTable table;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			GetUserPanel dialog = new GetUserPanel();
-			//definimos o título da janela
-			dialog.setTitle("Get Workers In Project");
+			GetWorkersInProjectFrame dialog = new GetWorkersInProjectFrame(new GetWorkersInProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -44,33 +44,67 @@ public class GetWorkersInProjectFrame extends MainGetFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GetWorkersInProjectFrame() {
+	public GetWorkersInProjectFrame(CommandResult result) {
 		super();
 		
 		setBounds(100, 100, 626, 387);
-		getContentPane().setLayout(new BorderLayout());
-		getWorkerPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(getWorkerPanel, BorderLayout.CENTER);
-		GridBagLayout gbl_getWorkerPanel = new GridBagLayout();
-		gbl_getWorkerPanel.columnWidths = new int[]{0, 100, 100, 100, 0, 0, 48, 0, 0};
-		gbl_getWorkerPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 100};
-		gbl_getWorkerPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_getWorkerPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-		getWorkerPanel.setLayout(gbl_getWorkerPanel);
+		GridBagLayout gridBagLayout = (GridBagLayout) getMainGetPanel().getLayout();
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0};
+		gridBagLayout.columnWidths = new int[]{0, 100, 0, 0};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 42, 0, 0, 0, 0, 0};
+		
+		this.setTitle("Get Workers in Project");
+		this.setImage("images/getUser.jpg");
+		this.setTitleLabel("Get Workers In Project");
+		this.setHelpTip("Return the information of all subprojects of a project with the specify Id.");
 
 		
-		{
-			//Inserir imagem : consultant -> Path e localização no Painel
-			
-			JLabel consultantLabel = new JLabel("");
-			consultantLabel.setIcon(new ImageIcon(GetWorkersInProjectFrame.class.getClassLoader().getResource("images/user.jpg")));
-			GridBagConstraints gbc_lblConsultant = new GridBagConstraints();
-			gbc_lblConsultant.insets = new Insets(0, 0, 5, 5);
-			gbc_lblConsultant.anchor = GridBagConstraints.SOUTHEAST;
-			gbc_lblConsultant.gridx = 1;
-			gbc_lblConsultant.gridy = 2;
-			getWorkerPanel.add(consultantLabel, gbc_lblConsultant);
-		}
+		projectId = new ProjectID();
+		GridBagConstraints gbc_lblProjectID = new GridBagConstraints();
+		gbc_lblProjectID.gridwidth = 3;
+		gbc_lblProjectID.anchor = GridBagConstraints.SOUTHWEST;
+		gbc_lblProjectID.insets = new Insets(0, 0, 5, 5);
+		gbc_lblProjectID.gridx = 2;
+		gbc_lblProjectID.gridy = 2;
+		getMainGetPanel().add(projectId, gbc_lblProjectID);
+		
+		label = new JLabel("Add Workers:");
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.insets = new Insets(0, 0, 5, 5);
+		gbc_label.gridx = 2;
+		gbc_label.gridy = 3;
+		getMainGetPanel().add(label, gbc_label);
+		
+		
+		//Opções de seleção
+		manager = new JRadioButton("Manager");
+		GridBagConstraints gbc_manager = new GridBagConstraints();
+		gbc_manager.anchor = GridBagConstraints.NORTHWEST;
+		gbc_manager.insets = new Insets(0, 0, 5, 5);
+		gbc_manager.gridx = 3;
+		gbc_manager.gridy = 4;
+		getMainGetPanel().add(manager, gbc_manager);
+		
+		
+		consultantId = new JRadioButton("Consultants");
+		GridBagConstraints gbc_consultantId = new GridBagConstraints();
+		gbc_consultantId.anchor = GridBagConstraints.NORTHWEST;
+		gbc_consultantId.insets = new Insets(0, 0, 5, 5);
+		gbc_consultantId.gridx = 3;
+		gbc_consultantId.gridy = 5;
+		getMainGetPanel().add(consultantId, gbc_consultantId);
+		
+		table = new JTable();
+		GridBagConstraints gbc_table = new GridBagConstraints();
+		gbc_table.gridheight = 2;
+		gbc_table.gridwidth = 6;
+		gbc_table.insets = new Insets(0, 0, 5, 5);
+		gbc_table.fill = GridBagConstraints.BOTH;
+		gbc_table.gridx = 2;
+		gbc_table.gridy = 6;
+		getMainGetPanel().add(table, gbc_table);
+		
 	}
 
 }

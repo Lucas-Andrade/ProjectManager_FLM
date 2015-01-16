@@ -23,6 +23,7 @@ public class PatchConsultantFrame extends MainDialogFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField nameField;
 	private JTextField priceHour;
+	private ConsultantID consultantID;
 
 
 	/**
@@ -57,23 +58,15 @@ public class PatchConsultantFrame extends MainDialogFrame {
 		
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.columnWidths = new int[]{64, 0, 0, 0, 0, 0, 0, 0, 0};
-
-		JLabel lblConsultantId = new JLabel("Consultant ID:");
+		
+		consultantID = new ConsultantID();
 		GridBagConstraints gbc_lblConsultantId = new GridBagConstraints();
+		gbc_lblConsultantId.gridwidth = 2;
 		gbc_lblConsultantId.anchor = GridBagConstraints.EAST;
 		gbc_lblConsultantId.insets = new Insets(0, 0, 5, 5);
 		gbc_lblConsultantId.gridx = 2;
-		gbc_lblConsultantId.gridy = 3;
-		getMainDialogPanel().add(lblConsultantId, gbc_lblConsultantId);
-	
-		
-		JComboBox consultantcomboBox = new JComboBox();
-		GridBagConstraints gbc_consultantcomboBox = new GridBagConstraints();
-		gbc_consultantcomboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_consultantcomboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_consultantcomboBox.gridx = 3;
-		gbc_consultantcomboBox.gridy = 3;
-		getMainDialogPanel().add(consultantcomboBox, gbc_consultantcomboBox);
+		gbc_lblConsultantId.gridy = 2;
+		getMainDialogPanel().add(consultantID, gbc_lblConsultantId);
 
 		
 		JLabel lblName = new JLabel("Name:");
@@ -87,7 +80,7 @@ public class PatchConsultantFrame extends MainDialogFrame {
 		
 		nameField = new JTextField();
 		GridBagConstraints gbc_nameField = new GridBagConstraints();
-		gbc_nameField.gridwidth = 3;
+		gbc_nameField.gridwidth = 4;
 		gbc_nameField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_nameField.insets = new Insets(0, 0, 5, 5);
 		gbc_nameField.anchor = GridBagConstraints.SOUTH;
