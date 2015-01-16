@@ -122,10 +122,10 @@ public class AuthenticationDialog extends JDialog{
 		JTextField[] textField = new JTextField[2];
 		textField[0] = nameField;
 		textField[1] = passwordField;
-		btnNewButton.addActionListener(new AuthenticationActionListener(authentication, textField, repoHolder));
 		btnNewButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Authentication.authenticate(textField, authentication, repoHolder);
 				dispose();
 			}
 		});

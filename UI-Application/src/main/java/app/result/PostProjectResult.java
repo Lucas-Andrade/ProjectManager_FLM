@@ -23,7 +23,7 @@ public class PostProjectResult implements CommandResult
 	@Override
 	public void executeResult(JTextField[] textFields)
 	{
-		new NewProjectWorker(splitPane).execute();
+		new NewProjectWorker(splitPane, textFields).execute();
 	}
 
 	public class NewProjectWorker extends AppSwingWorker
@@ -33,10 +33,12 @@ public class PostProjectResult implements CommandResult
 		double localLongitude;
 		String localName;
 		double localPrice;
+		JTextField[] textFields;
 
-		public NewProjectWorker(JSplitPane pane)
+		public NewProjectWorker(JSplitPane pane, JTextField[] textFields)
 		{
 			super(pane);
+			this.textFields = textFields;
 		}
 
 		/**
@@ -52,7 +54,11 @@ public class PostProjectResult implements CommandResult
 		@Override
 		protected JPanel doInBackground()
 		{
-
+			localName = textFields[0].getText();// getting the text out of the fields of the array. 
+			localPrice = Double.parseDouble(textFields[1].getText());//The order in which they were placed in the array matters
+			localLongitude = Double.parseDouble(textFields[2].getText());
+			localLatitude =  Double.parseDouble(textFields[3].getText());
+			
 			publish("Status: Generating Local for the new Project...");
 			Local local;
 			try
