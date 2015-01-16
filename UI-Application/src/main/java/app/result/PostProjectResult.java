@@ -1,6 +1,5 @@
 package app.result;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
@@ -53,9 +52,7 @@ public class PostProjectResult implements CommandResult{
 			try {
 				local = new Local(localLatitude, localLongitude, localName, localPrice);
 			} catch (IllegalArgumentException illegalArgument) {
-				JPanel panel = new JPanel();
-				panel.add(new JLabel("Price, latitude or longitude out of bounds."));
-				return panel;
+				return new ErrorPanel("Price, latitude or longitude out of bounds.");
 			}
 			
 			publish("Status: Generating the new Project...");
@@ -65,9 +62,7 @@ public class PostProjectResult implements CommandResult{
 			publish("Status: Adding the new Project to the repository...");
 			repositories.getProjectsRepo().addProject(project);
 			
-			JPanel panel = new JPanel();
-			panel.add(new JLabel("Project with the PID " + pid + " was successfully created."));
-			return panel;
+			return new ResultPanel("Project with the PID " + pid + " was successfully created.");
 		}
 	}
 }
