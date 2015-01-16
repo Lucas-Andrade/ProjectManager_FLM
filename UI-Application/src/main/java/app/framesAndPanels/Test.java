@@ -33,18 +33,19 @@ public class Test extends JFrame {
 	 */
 	public Test() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 650, 373);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 424, 0};
 		gbl_contentPane.rowHeights = new int[]{0, 0, 10, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		GetWorkersInProjectFrame internalFrame = new GetWorkersInProjectFrame();
+		GetUserPanel internalFrame = new GetUserPanel();
+		internalFrame.setResizable(true);
 		GridBagConstraints gbc_internalFrame = new GridBagConstraints();
 		gbc_internalFrame.gridwidth = 2;
 		gbc_internalFrame.gridheight = 4;

@@ -28,5 +28,4 @@ public abstract class BaseCommand implements Command{
 			new AuthenticationDialog(authentication, repositories).setVisible(true);
 		}
 	}
-	
 }

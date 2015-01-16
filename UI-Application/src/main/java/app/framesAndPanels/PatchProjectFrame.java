@@ -13,6 +13,7 @@ import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
 import app.result.CommandResult;
 import app.result.PostProjectResult;
+import java.awt.GridBagLayout;
 
 
 public class PatchProjectFrame extends MainDialogFrame {
@@ -25,6 +26,7 @@ public class PatchProjectFrame extends MainDialogFrame {
 	private JTextField longitudeField;
 	private JTextField nameField;
 	private JTextField priceField;
+	private ProjectID projectId;
 
 	/**
 	 * Launch the application.
@@ -50,31 +52,22 @@ public class PatchProjectFrame extends MainDialogFrame {
 
 	public PatchProjectFrame(CommandResult result) {
 		super(result);
+		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 25, 0, 0, 0};
 
 		this.setTitle("Edit Project");
 		this.setImage("images/editProject.png");
 		this.setTitleLabel("Edit Project");
 		this.setHelpTip("Update the information of the project identified by the specify Id");
 		
-		JLabel lblProjectID = new JLabel("Project ID:");  // Labels e campos a ser preenchidos
+		projectId = new ProjectID();
 		GridBagConstraints gbc_lblProjectID = new GridBagConstraints();
-		gbc_lblProjectID.anchor = GridBagConstraints.SOUTHEAST;
+		gbc_lblProjectID.gridwidth = 2;
+		gbc_lblProjectID.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblProjectID.insets = new Insets(0, 0, 5, 5);
 		gbc_lblProjectID.gridx = 2;
 		gbc_lblProjectID.gridy = 3;
-		getMainDialogPanel().add(lblProjectID, gbc_lblProjectID);
-	
-
-		String[] petStrings = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };  //terá a lista dos projectos no repositório 
-		JComboBox projectComboBox = new JComboBox(petStrings);
-		GridBagConstraints gbc_projectComboBox = new GridBagConstraints();
-		gbc_projectComboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_projectComboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_projectComboBox.gridx = 3;
-		gbc_projectComboBox.gridy = 3;
-		getMainDialogPanel().add(projectComboBox, gbc_projectComboBox);
-		projectComboBox.setEditable(true);
-		//projectComboBox.addActionListener(this);
+		getMainDialogPanel().add(projectId, gbc_lblProjectID);
 	
 
 		JLabel lblLocation = new JLabel("Location:");
@@ -109,29 +102,29 @@ public class PatchProjectFrame extends MainDialogFrame {
 		GridBagConstraints gbc_lblPrice = new GridBagConstraints();
 		gbc_lblPrice.anchor = GridBagConstraints.EAST;
 		gbc_lblPrice.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPrice.gridx = 5;
+		gbc_lblPrice.gridx = 6;
 		gbc_lblPrice.gridy = 6;
 		getMainDialogPanel().add(lblPrice, gbc_lblPrice);
 		lblPrice.setToolTipText("Euros");
-
-
-		priceField = new JTextField();
-		priceField.setColumns(10);
-		GridBagConstraints gbc_priceField = new GridBagConstraints();
-		gbc_priceField.insets = new Insets(0, 0, 5, 5);
-		gbc_priceField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_priceField.gridx = 6;
-		gbc_priceField.gridy = 6;
-		getMainDialogPanel().add(priceField, gbc_priceField);
-	
+			
+			
+					priceField = new JTextField();
+					priceField.setColumns(10);
+					GridBagConstraints gbc_priceField = new GridBagConstraints();
+					gbc_priceField.insets = new Insets(0, 0, 5, 5);
+					gbc_priceField.fill = GridBagConstraints.HORIZONTAL;
+					gbc_priceField.gridx = 7;
+					gbc_priceField.gridy = 6;
+					getMainDialogPanel().add(priceField, gbc_priceField);
 		
-		JLabel label = new JLabel("Euros");
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.anchor = GridBagConstraints.WEST;
-		gbc_label.insets = new Insets(0, 0, 5, 0);
-		gbc_label.gridx = 7;
-		gbc_label.gridy = 6;
-		getMainDialogPanel().add(label, gbc_label);
+			
+			JLabel label = new JLabel("Euros");
+			GridBagConstraints gbc_label = new GridBagConstraints();
+			gbc_label.anchor = GridBagConstraints.WEST;
+			gbc_label.insets = new Insets(0, 0, 5, 0);
+			gbc_label.gridx = 8;
+			gbc_label.gridy = 6;
+			getMainDialogPanel().add(label, gbc_label);
 	
 		
 		JLabel lblLatitude = new JLabel("Latitude:");
@@ -156,7 +149,7 @@ public class PatchProjectFrame extends MainDialogFrame {
 		JLabel lblLongitude = new JLabel("Longitude:");
 		GridBagConstraints gbc_lblLongitude = new GridBagConstraints();
 		gbc_lblLongitude.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lblLongitude.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLongitude.insets = new Insets(0, 0, 0, 5);
 		gbc_lblLongitude.gridx = 2;
 		gbc_lblLongitude.gridy = 8;
 		getMainDialogPanel().add(lblLongitude, gbc_lblLongitude);
@@ -166,7 +159,7 @@ public class PatchProjectFrame extends MainDialogFrame {
 		GridBagConstraints gbc_longitudeField = new GridBagConstraints();
 		gbc_longitudeField.anchor = GridBagConstraints.NORTH;
 		gbc_longitudeField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_longitudeField.insets = new Insets(0, 0, 5, 5);
+		gbc_longitudeField.insets = new Insets(0, 0, 0, 5);
 		gbc_longitudeField.gridx = 3;
 		gbc_longitudeField.gridy = 8;
 		getMainDialogPanel().add(longitudeField, gbc_longitudeField);

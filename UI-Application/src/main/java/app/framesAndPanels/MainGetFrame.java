@@ -6,10 +6,12 @@ import java.awt.FlowLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 
-public class MainGetFrame extends JInternalFrame {
+public class MainGetFrame extends JFrame {
 
 	/**
 	 * 
@@ -69,13 +71,22 @@ public class MainGetFrame extends JInternalFrame {
 	 */
 	public MainGetFrame() {
 		
+		try {
+			this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			this.setVisible(true);
+		
+			}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		mainGetPanel = new MainPanel();
 		
 		setBounds(X_BOUND,Y_BOUND,WIDTH_BOUND, HEIGHT_BOUND);   //Definição da Caixa de Diálogo
 		getContentPane().setLayout(new BorderLayout());
-		getContentPane().add(getMainGetPanel(), BorderLayout.CENTER);
+		getContentPane().add(mainGetPanel, BorderLayout.CENTER);
 		
-
+		this.setLocationRelativeTo(null);
+		
 		JPanel buttonPane = new JPanel();
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		getContentPane().add(buttonPane, BorderLayout.SOUTH);
@@ -91,7 +102,8 @@ public class MainGetFrame extends JInternalFrame {
 			cancelButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/cancel.png")));
 			cancelButton.setActionCommand("Cancel");
 			buttonPane.add(cancelButton);
-		}	
+		}
+		  
 	}
 
 	/**

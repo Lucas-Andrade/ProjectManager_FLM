@@ -6,41 +6,32 @@ import javax.swing.JTextField;
 
 import utils.Local;
 import utils.Project;
+import app.repository.ProjectsRepository;
 import app.repositoryHolders.RepositoryHolder;
 
-public class PostProjectResult implements CommandResult
-{
+public class PostProjectResult implements CommandResult{
 
 	JSplitPane splitPane;
 	RepositoryHolder repositories;
 
-	public PostProjectResult(JSplitPane splitPane, RepositoryHolder repoHolder)
-	{
+	public PostProjectResult(JSplitPane splitPane, RepositoryHolder repoHolder){
 		this.splitPane = splitPane;
 		this.repositories = repoHolder;
 	}
 
 	@Override
-	public void executeResult(JTextField[] textFields)
-	{
-		new NewProjectWorker(splitPane, localLatitude, localLongitude, localName, localPrice).execute();
+	public void executeResult(JTextField[] textFields){
+		new NewProjectWorker(splitPane, textFields).execute();
 	}
 
-	public class NewProjectWorker extends AppSwingWorker
-	{
+	public class NewProjectWorker extends AppSwingWorker{
+		JTextField[] textFields;
+		ProjectsRepository pRepo;
 
-		double localLatitude;
-		double localLongitude;
-		String localName;
-		double localPrice;
-
-		public NewProjectWorker(JSplitPane pane, double localLatitude, double localLongitude, String localName, double localPrice)
-		{
+		public NewProjectWorker(JSplitPane pane, JTextField[] textFields){
 			super(pane);
-			this.localLatitude=localLatitude;
-			this.localLongitude=localLongitude;
-			this.localName=localName;
-			this.localPrice=localPrice;
+			this.textFields = textFields;
+			pRepo = repositories.getProjectsRepo();
 		}
 
 		/**
@@ -54,27 +45,28 @@ public class PostProjectResult implements CommandResult
 		 * @wbp.parser.entryPoint
 		 */
 		@Override
-		protected JPanel doInBackground()
-		{
-
+		protected JPanel doInBackground(){
+			String localName = textFields[0].getText();//Getting the text out of the fields of the array. 
+			double localPrice = Double.parseDouble(textFields[1].getText());//The order in which they were placed 
+			double localLongitude = Double.parseDouble(textFields[2].getText());//in the array matters
+			double localLatitude =  Double.parseDouble(textFields[3].getText());
+			
 			publish("Status: Generating Local for the new Project...");
 			Local local;
-			try
-			{
+			try{
 				local = new Local(localLatitude, localLongitude, localName,
 						localPrice);
-			} catch (IllegalArgumentException illegalArgument)
-			{
+			} catch (IllegalArgumentException illegalArgument){
 				return new WarningMessagePanel(
 						"Invalid Argument. Price, latitude or longitude out of bounds.");
 			}
 
 			publish("Status: Generating the new Project...");
-			long pid = repositories.getProjectsRepo().getNextPID();
+			long pid = pRepo.getNextPID();
 			Project project = new Project(local, pid);
 
 			publish("Status: Adding the new Project to the repository...");
-			repositories.getProjectsRepo().addProject(project);
+			pRepo.addProject(project);
 
 			return new ResultPanel("Project with the PID " + pid
 					+ " was successfully created.");

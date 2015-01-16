@@ -10,7 +10,6 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
 import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.repositoryHolders.RepositoryHolder;
 import app.result.CommandResult;
 import app.result.PostProjectResult;
 
@@ -145,7 +144,11 @@ public class PostProjectFrame extends MainDialogFrame {
 		getMainDialogPanel().add(longitudeField, gbc_longitudeField);
 		longitudeField.setColumns(10);
 		
-		JTextField[] textFields = new JTextField[3];
+		JTextField[] textFields = new JTextField[4];
+		textFields[0] = nameField; //assign each field to a position in the array
+		textFields[1] = priceField;
+		textFields[2] = longitudeField;
+		textFields[3] = latitudeField;
 		this.setOkButtonActionListener(new okActionListener(textFields));
 	}
 }
