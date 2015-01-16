@@ -3,7 +3,6 @@ package app.result;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.SwingWorker;
@@ -17,9 +16,7 @@ public abstract class AppSwingWorker extends SwingWorker<JPanel, String>{
 	
 	@Override
     protected void process(List<String> chunks){
-		JPanel panel = new JPanel();
- 		panel.add(new JLabel(chunks.get(0)));
- 		pane.setRightComponent(panel);
+		pane.setRightComponent(new ResultPanel(chunks.get(0)));
      }
 	
 	@Override
@@ -29,9 +26,7 @@ public abstract class AppSwingWorker extends SwingWorker<JPanel, String>{
 			pane.setRightComponent(get());
 		} catch (InterruptedException | ExecutionException e)
 		{
-			JPanel panel = new JPanel();
-			panel.add(new JLabel("ERROR: " + e.getMessage()));
-			pane.setRightComponent(panel);
+			pane.setRightComponent(new WarningMessagePanel("ERROR: " + e.getMessage()));
 		}
 	}
 }

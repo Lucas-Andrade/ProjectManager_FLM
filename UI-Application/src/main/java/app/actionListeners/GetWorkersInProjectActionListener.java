@@ -8,13 +8,13 @@ import javax.swing.JTextField;
 
 import app.repositoryHolders.RepositoryHolder;
 
-public class PostProjectActionListener implements ActionListener{
+public class GetWorkersInProjectActionListener implements ActionListener{
 	
 	JSplitPane splitPane;
 	RepositoryHolder repositories;
 	JTextField[] textFields;
 	
-	public PostProjectActionListener(JTextField[] textFields, JSplitPane splitPane, RepositoryHolder repoHolder){
+	public GetWorkersInProjectActionListener(JTextField[] textFields, JSplitPane splitPane, RepositoryHolder repoHolder){
 		this.splitPane = splitPane;
 		this.repositories = repoHolder;
 		this.textFields = textFields;
@@ -22,7 +22,7 @@ public class PostProjectActionListener implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {	
-		
+
 	}
-	
+
 }
