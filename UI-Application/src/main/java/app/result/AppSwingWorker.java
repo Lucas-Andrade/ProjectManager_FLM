@@ -26,7 +26,7 @@ public abstract class AppSwingWorker extends SwingWorker<JPanel, String>{
 			pane.setRightComponent(get());
 		} catch (InterruptedException | ExecutionException e)
 		{
-			pane.setRightComponent(new ErrorPanel("ERROR: " + e.getMessage()));
+			pane.setRightComponent(new WarningMessagePanel("ERROR: " + e.getMessage()));
 		}
 	}
 }

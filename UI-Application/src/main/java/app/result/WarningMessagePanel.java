@@ -18,7 +18,7 @@ import app.framesAndPanels.MainDialogFrame;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 16/01/2014
  */
-public class ErrorPanel extends JPanel
+public class WarningMessagePanel extends JPanel
 {
 
 	/**
@@ -32,7 +32,7 @@ public class ErrorPanel extends JPanel
 	 * @param results
 	 *            The results for showing in the JPanel.
 	 */
-	public ErrorPanel(String message)
+	public WarningMessagePanel(String message)
 	{
 
 		JPanel panel = new JPanel();
@@ -54,7 +54,7 @@ public class ErrorPanel extends JPanel
 		gbc_mainImageLabel.gridy = 0;
 		panel.add(mainImageLabel, gbc_mainImageLabel);
 
-		JLabel titleLabel = new JLabel("Error Message");
+		JLabel titleLabel = new JLabel("Warning");
 		titleLabel.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC,
 				12));
 		GridBagConstraints gbc_titleLabel = new GridBagConstraints();
