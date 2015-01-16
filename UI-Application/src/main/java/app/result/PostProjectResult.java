@@ -23,7 +23,7 @@ public class PostProjectResult implements CommandResult
 	@Override
 	public void executeResult(JTextField[] textFields)
 	{
-		new NewProjectWorker(splitPane).execute();
+		new NewProjectWorker(splitPane, localLatitude, localLongitude, localName, localPrice).execute();
 	}
 
 	public class NewProjectWorker extends AppSwingWorker
@@ -34,9 +34,13 @@ public class PostProjectResult implements CommandResult
 		String localName;
 		double localPrice;
 
-		public NewProjectWorker(JSplitPane pane)
+		public NewProjectWorker(JSplitPane pane, double localLatitude, double localLongitude, String localName, double localPrice)
 		{
 			super(pane);
+			this.localLatitude=localLatitude;
+			this.localLongitude=localLongitude;
+			this.localName=localName;
+			this.localPrice=localPrice;
 		}
 
 		/**
