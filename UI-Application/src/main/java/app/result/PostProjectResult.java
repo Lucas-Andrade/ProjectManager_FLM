@@ -70,6 +70,7 @@ public class PostProjectResult implements CommandResult{
 
 			return new ResultPanel("Project with the PID " + pid
 					+ " was successfully created.");
+
 		}
 
 	}

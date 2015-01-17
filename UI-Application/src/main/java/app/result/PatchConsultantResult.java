@@ -46,15 +46,12 @@ public class PatchConsultantResult implements CommandResult{
 		{
 			super(pane);
 			this.cid = cid;
-			if (name == null)
-				this.name = null;
-			if (priceHour == null)
-				this.priceHour = null;
+			this.name = name;
+			this.priceHour = priceHour;
 		}
 
 		/**
-		 * Modifies an {@code AWorker}. Get's the {@code AWorker}'s from the
-		 * {@code WorkerRepository} and modifies it.
+		 * Modifies an {@code AWorker} with the supplied information by the User
 		 * 
 		 * @return A JPanel with the results of the operation.
 		 * 
@@ -71,6 +68,7 @@ public class PatchConsultantResult implements CommandResult{
 				return new WarningMessagePanel("Worker with CID " + cid
 						+ " does not exist in the repository.");
 			}
+
 			publish("Status: Making modifications in Worker...");
 			if (name != null)
 			{
