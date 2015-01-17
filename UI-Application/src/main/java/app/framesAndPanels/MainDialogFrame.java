@@ -109,15 +109,15 @@ public abstract class MainDialogFrame extends JDialog {
 	
 	protected class okActionListener implements ActionListener{
 		
-		JTextField[] textFields;
+		String[] info;
 		
-		public okActionListener(JTextField[] textFields) {
-			this.textFields = textFields;
+		public okActionListener(String[] info) {
+			this.info = info;
 		}
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			result.executeResult(textFields);
+			result.executeResult(info);
 			dispose();
 		}
 	}

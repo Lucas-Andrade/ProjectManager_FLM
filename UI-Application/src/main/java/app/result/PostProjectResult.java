@@ -2,7 +2,6 @@ package app.result;
 
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.JTextField;
 
 import utils.Local;
 import utils.Project;
@@ -20,17 +19,17 @@ public class PostProjectResult implements CommandResult{
 	}
 
 	@Override
-	public void executeResult(JTextField[] textFields){
-		new NewProjectWorker(splitPane, textFields).execute();
+	public void executeResult(String[] infoArray){
+		new NewProjectWorker(splitPane, infoArray).execute();
 	}
 
 	public class NewProjectWorker extends AppSwingWorker{
-		JTextField[] textFields;
+		String[] infoArray;
 		ProjectsRepository pRepo;
 
-		public NewProjectWorker(JSplitPane pane, JTextField[] textFields){
+		public NewProjectWorker(JSplitPane pane, String[] infoArray){
 			super(pane);
-			this.textFields = textFields;
+			this.infoArray = infoArray;
 			pRepo = repositories.getProjectsRepo();
 		}
 
@@ -46,16 +45,36 @@ public class PostProjectResult implements CommandResult{
 		 */
 		@Override
 		protected JPanel doInBackground(){
-			String localName = textFields[0].getText();//Getting the text out of the fields of the array. 
-			double localPrice = Double.parseDouble(textFields[1].getText());//The order in which they were placed 
-			double localLongitude = Double.parseDouble(textFields[2].getText());//in the array matters
-			double localLatitude =  Double.parseDouble(textFields[3].getText());
+			publish("Status: Parsing values...");
+			//Getting the text out of the fields of the array. 
+			//The order in which they were placed in the array matters
+			String localName = infoArray[0];
+			String localPriceString = infoArray[1];
+			String localLongitudeString = infoArray[2];
+			String localLatitudeString = infoArray[3];
+			
+			if(localName.length() == 0 || localPriceString.length() == 0 || 
+					localLongitudeString.length() == 0 || localLatitudeString.length() == 0)
+				return new WarningMessagePanel("At least a field was left blank.");
+			
+			double localPrice;
+			double localLongitude;
+			double localLatitude;
+			
+			//Trying to parse the strings into doubles. If the user didn't introduce numbers 
+			//in those fields a NumberFormatException will be thrown.
+			try{
+				localPrice = Double.parseDouble(localPriceString);
+				localLongitude = Double.parseDouble(localLongitudeString);
+				localLatitude =  Double.parseDouble(localLatitudeString);
+			} catch (NumberFormatException e) {
+				return new WarningMessagePanel("Numbers were not introduced in one of the following fields:\nPrice, Longitude of Latitude.");
+			}
 			
 			publish("Status: Generating Local for the new Project...");
 			Local local;
 			try{
-				local = new Local(localLatitude, localLongitude, localName,
-						localPrice);
+				local = new Local(localLatitude, localLongitude, localName, localPrice);
 			} catch (IllegalArgumentException illegalArgument){
 				return new WarningMessagePanel(
 						"Invalid Argument. Price, latitude or longitude out of bounds.");
@@ -70,9 +89,6 @@ public class PostProjectResult implements CommandResult{
 
 			return new ResultPanel("Project with the PID " + pid
 					+ " was successfully created.");
-
 		}
-
 	}
-
 }

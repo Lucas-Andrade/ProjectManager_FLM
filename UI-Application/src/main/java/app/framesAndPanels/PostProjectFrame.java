@@ -144,11 +144,11 @@ public class PostProjectFrame extends MainDialogFrame {
 		getMainDialogPanel().add(longitudeField, gbc_longitudeField);
 		longitudeField.setColumns(10);
 		
-		JTextField[] textFields = new JTextField[4];
-		textFields[0] = nameField; //assign each field to a position in the array
-		textFields[1] = priceField;
-		textFields[2] = longitudeField;
-		textFields[3] = latitudeField;
-		this.setOkButtonActionListener(new okActionListener(textFields));
+		String[] infoArray = new String[4];
+		infoArray[0] = nameField.getText(); //assign each field to a position in the array
+		infoArray[1] = priceField.getText();
+		infoArray[2] = longitudeField.getText();
+		infoArray[3] = latitudeField.getText();
+		this.setOkButtonActionListener(new okActionListener(infoArray));
 	}
 }

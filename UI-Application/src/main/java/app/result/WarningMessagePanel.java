@@ -1,14 +1,18 @@
 package app.result;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
 import app.framesAndPanels.MainDialogFrame;
 
 /**
@@ -18,9 +22,12 @@ import app.framesAndPanels.MainDialogFrame;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 16/01/2014
  */
-public class WarningMessagePanel extends JPanel
-{
-
+public class WarningMessagePanel extends JPanel{
+	public static void main(String[] args){
+		JFrame frame = new JFrame();
+		frame.add(new WarningMessagePanel("coisas"), BorderLayout.CENTER);
+		frame.setVisible(true);
+	}
 	/**
 	 * 
 	 */
@@ -32,17 +39,14 @@ public class WarningMessagePanel extends JPanel
 	 * @param results
 	 *            The results for showing in the JPanel.
 	 */
-	public WarningMessagePanel(String message)
-	{
-
-		JPanel panel = new JPanel();
-
+	public WarningMessagePanel(String message){
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.rowHeights = new int[] { 25, 100 };
 		gridBagLayout.columnWidths = new int[] { 50, 200 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0 };
 		gridBagLayout.rowWeights = new double[] { 0.0, 1.0 };
-		panel.setLayout(gridBagLayout);
+		this.setLayout(gridBagLayout);
 
 		JLabel mainImageLabel = new JLabel("");
 		mainImageLabel.setIcon(new ImageIcon(MainDialogFrame.class
@@ -52,7 +56,7 @@ public class WarningMessagePanel extends JPanel
 		gbc_mainImageLabel.insets = new Insets(0, 0, 0, 5);
 		gbc_mainImageLabel.gridx = 0;
 		gbc_mainImageLabel.gridy = 0;
-		panel.add(mainImageLabel, gbc_mainImageLabel);
+		this.add(mainImageLabel, gbc_mainImageLabel);
 
 		JLabel titleLabel = new JLabel("Warning");
 		titleLabel.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC,
@@ -61,7 +65,7 @@ public class WarningMessagePanel extends JPanel
 		gbc_titleLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_titleLabel.gridx = 1;
 		gbc_titleLabel.gridy = 0;
-		panel.add(titleLabel, gbc_titleLabel);
+		this.add(titleLabel, gbc_titleLabel);
 
 		JLabel errorMessage = new JLabel(message);
 		errorMessage.setHorizontalAlignment(SwingConstants.CENTER);
@@ -70,8 +74,6 @@ public class WarningMessagePanel extends JPanel
 		gbc_ErrorMessage.fill = GridBagConstraints.BOTH;
 		gbc_ErrorMessage.gridx = 1;
 		gbc_ErrorMessage.gridy = 1;
-		panel.add(errorMessage, gbc_ErrorMessage);
-
+		this.add(errorMessage, gbc_ErrorMessage);
 	}
-
 }

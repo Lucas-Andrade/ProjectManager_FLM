@@ -8,12 +8,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
-
 import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.repositoryHolders.RepositoryHolder;
 import app.result.CommandResult;
 import app.result.PostProjectResult;
-
 
 public class PostUserFrame extends MainDialogFrame {
 
@@ -55,6 +52,7 @@ public class PostUserFrame extends MainDialogFrame {
 		this.setImage("images/add_user.jpg");
 		this.setTitleLabel("New User");
 		this.setHelpTip("Add a user to the User Repository");
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
 		JLabel lblName = new JLabel("Username:");
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
@@ -139,12 +137,18 @@ public class PostUserFrame extends MainDialogFrame {
 		getMainDialogPanel().add(fullNameField, gbc_fullNameField);
 		fullNameField.setColumns(10);
 		
-		
 		JLabel lblOptionalLabel = new JLabel("(Opcional)");
 		GridBagConstraints gbc_lblOptionalLabel = new GridBagConstraints();
 		gbc_lblOptionalLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblOptionalLabel.gridx = 6;
 		gbc_lblOptionalLabel.gridy = 6;
 		getMainDialogPanel().add(lblOptionalLabel, gbc_lblOptionalLabel);
+		
+		String[] infoArray = new String[4];
+		infoArray[0] = nameField.getText(); //assign each field to a position in the array
+		infoArray[1] = fullNameField.getText();
+		infoArray[2] = emailField.getText();
+		infoArray[3] = passwordField.getText();
+		this.setOkButtonActionListener(new okActionListener(infoArray));
 	}
 }
