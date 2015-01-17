@@ -2,6 +2,8 @@ package app.framesAndPanels;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -10,7 +12,6 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
 import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.repositoryHolders.RepositoryHolder;
 import app.result.CommandResult;
 import app.result.PostProjectResult;
 
@@ -20,7 +21,6 @@ public class PostSubprojectFrame extends MainDialogFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
 	private JTextField subprojects;
 
 	/**
@@ -60,19 +60,19 @@ public class PostSubprojectFrame extends MainDialogFrame {
 		getMainDialogPanel().add(lblProjectID, gbc_lblProjectID);
 	
 		
-		//elementos da lista de repositórios
-		String[] petStrings = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
+//		//elementos da lista de repositórios
+//		String[] petStrings = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
 		
 		//Create the combo box, select item at index 4.
 		//Indices start at 0, so 4 specifies the pig.
-		JComboBox projectComboBox = new JComboBox(petStrings);
+		JTextField projectField = new JTextField();
 		GridBagConstraints gbc_projectComboBox = new GridBagConstraints();
 		gbc_projectComboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_projectComboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_projectComboBox.gridx = 3;
 		gbc_projectComboBox.gridy = 3;
-		getMainDialogPanel().add(projectComboBox, gbc_projectComboBox);
-		projectComboBox.setEditable(true);
+		getMainDialogPanel().add(projectField, gbc_projectComboBox);
+		projectField.setEditable(true);
 		//projectComboBox.addActionListener(this);
 
 
@@ -85,18 +85,18 @@ public class PostSubprojectFrame extends MainDialogFrame {
 		getMainDialogPanel().add(lblSubprojects, gbc_lblSubprojects);
 	
 	
-		JComboBox subprojectComboBox = new JComboBox(petStrings);
+		JTextField subprojectField = new JTextField();
 		GridBagConstraints gbc_projectComboBox1 = new GridBagConstraints();
 		gbc_projectComboBox1.insets = new Insets(0, 0, 5, 5);
 		gbc_projectComboBox1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_projectComboBox1.gridx = 3;
 		gbc_projectComboBox1.gridy = 5;
-		getMainDialogPanel().add(subprojectComboBox, gbc_projectComboBox1);
-		subprojectComboBox.setEditable(true);
+		getMainDialogPanel().add(subprojectField, gbc_projectComboBox1);
+		subprojectField.setEditable(true);
 		//projectComboBox.addActionListener(this);
 	
 	
-	//caixa de texto onde será inserida a informação do Get Subproject
+		//caixa de texto onde será inserida a informação do Get Subproject
 	
 		subprojects = new JTextField();
 		GridBagConstraints gbc_subprojects = new GridBagConstraints();
@@ -107,5 +107,11 @@ public class PostSubprojectFrame extends MainDialogFrame {
 		gbc_subprojects.gridy = 8;
 		getMainDialogPanel().add(subprojects, gbc_subprojects);
 		subprojects.setColumns(10);
+		
+		
+		JTextField[] textFields = new JTextField[2];
+		textFields[0] = projectField; //assign each field to a position in the array
+		textFields[1] = subprojectField;
+		this.setOkButtonActionListener(new okActionListener(textFields));
 		}
 	}

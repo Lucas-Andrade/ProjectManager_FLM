@@ -4,9 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
-import utils.Local;
 import utils.Project;
-import app.elements.Message;
+import app.repository.ProjectsRepository;
 import app.repositoryHolders.RepositoryHolder;
 
 public class PostSubprojectResult implements CommandResult
@@ -25,20 +24,19 @@ public class PostSubprojectResult implements CommandResult
 	@Override
 	public void executeResult(JTextField[] textFields)
 	{
-		new PostSubprojectWorker(splitPane, pid, subPid).execute();
+		new PostSubprojectWorker(splitPane, textFields).execute();
 	}
 
 	public class PostSubprojectWorker extends AppSwingWorker
 	{
+		JTextField[] textFields;
+		ProjectsRepository pRepo;
 
-		long pid;
-		long subPid;
-
-		public PostSubprojectWorker(JSplitPane pane, long pid, long subPid)
+		public PostSubprojectWorker(JSplitPane pane, JTextField[] textFields)
 		{
 			super(pane);
-			this.pid = pid;
-			this.subPid = subPid;
+			pRepo = repositories.getProjectsRepo();
+			this.textFields = textFields;
 		}
 
 		/**
@@ -53,36 +51,45 @@ public class PostSubprojectResult implements CommandResult
 		 * @wbp.parser.entryPoint
 		 */
 		@Override
-		protected JPanel doInBackground()
-		{
-
+		protected JPanel doInBackground(){
+			
+			String pidString = textFields[0].getText();
+			String subPidString = textFields[1].getText();
+			
+			//TODO verificar se os campos nao estavam vazios
+			
+			long pid;
+			long subPid;
+			try{
+				pid = Long.parseLong(pidString);
+				subPid = Long.parseLong(subPidString);
+			} catch (NumberFormatException e) {
+				return new WarningMessagePanel("Numbers were not introduced in one of the following fields: Project ID, or Subproject ID.");
+			}
+			
 			publish("Status: Analyzing information...");
-			if (pid == subPid)
-			{
+			if (pid == subPid){
 				return new WarningMessagePanel(
 						"Specified projects identifications are equal!");
 			}
-			Project project = repositories.getProjectsRepo().getProjectById(pid);
-			if (project == null)
-			{
+			
+			Project project = pRepo.getProjectById(pid);
+			if (project == null){
 				return new WarningMessagePanel(
 						"Specified project does not exist.");
 			}
-			Project subProject = repositories.getProjectsRepo().getProjectById(subPid);
-			if (subProject == null)
-			{
+			Project subProject = pRepo.getProjectById(subPid);
+			if (subProject == null){
 				return new WarningMessagePanel(
 						"Specified subproject does not exist.");
 			}
 
 			publish("Status: Adding Subproject to Project...");
-			if (project.addProject(subProject))
-			{
+			if (project.addProject(subProject)){
 				return new ResultPanel("Added Subproject to Project.");
 			}
 			return new ResultPanel(
 					"Could not add subproject to project, because subproject already is a subproject (of this or another project).");
-
 		}
 
 	}

@@ -19,6 +19,7 @@ import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
 import app.commands.PostProject;
+import app.commands.PostSubproject;
 import app.repositoryHolders.RepositoryHolder;
 
 
@@ -142,6 +143,7 @@ public class MainFrame extends JFrame{
 		
 		JMenuItem mntmAddSubproject = new JMenuItem("Add Subproject");
 		mnAddToProject.add(mntmAddSubproject);
+		mntmAddSubproject.addActionListener(new PostSubproject(splitPane, repositories, authentication));
 		
 		JMenu consultantsMenu = new JMenu("Consultants");
 		vert.add(consultantsMenu);

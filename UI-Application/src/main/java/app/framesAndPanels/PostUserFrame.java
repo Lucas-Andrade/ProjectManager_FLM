@@ -144,11 +144,11 @@ public class PostUserFrame extends MainDialogFrame {
 		gbc_lblOptionalLabel.gridy = 6;
 		getMainDialogPanel().add(lblOptionalLabel, gbc_lblOptionalLabel);
 		
-		String[] infoArray = new String[4];
-		infoArray[0] = nameField.getText(); //assign each field to a position in the array
-		infoArray[1] = fullNameField.getText();
-		infoArray[2] = emailField.getText();
-		infoArray[3] = passwordField.getText();
+		JTextField[] infoArray = new JTextField[4];
+		infoArray[0] = nameField; //assign each field to a position in the array
+		infoArray[1] = fullNameField;
+		infoArray[2] = emailField;
+		infoArray[3] = passwordField;
 		this.setOkButtonActionListener(new okActionListener(infoArray));
 	}
 }

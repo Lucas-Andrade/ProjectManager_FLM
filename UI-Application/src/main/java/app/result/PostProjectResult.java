@@ -2,6 +2,7 @@ package app.result;
 
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.JTextField;
 
 import utils.Local;
 import utils.Project;
@@ -19,17 +20,19 @@ public class PostProjectResult implements CommandResult{
 	}
 
 	@Override
-	public void executeResult(String[] infoArray){
-		new NewProjectWorker(splitPane, infoArray).execute();
+	public void executeResult(JTextField[] textFields){
+		new NewProjectWorker(splitPane, textFields).execute();
 	}
 
 	public class NewProjectWorker extends AppSwingWorker{
-		String[] infoArray;
+		
+		JTextField[] textFields;
 		ProjectsRepository pRepo;
-
-		public NewProjectWorker(JSplitPane pane, String[] infoArray){
+		
+		
+		public NewProjectWorker(JSplitPane pane, JTextField[] textFields) {
 			super(pane);
-			this.infoArray = infoArray;
+			this.textFields = textFields;
 			pRepo = repositories.getProjectsRepo();
 		}
 
@@ -48,10 +51,10 @@ public class PostProjectResult implements CommandResult{
 			publish("Status: Parsing values...");
 			//Getting the text out of the fields of the array. 
 			//The order in which they were placed in the array matters
-			String localName = infoArray[0];
-			String localPriceString = infoArray[1];
-			String localLongitudeString = infoArray[2];
-			String localLatitudeString = infoArray[3];
+			String localName = textFields[0].getText();
+			String localPriceString = textFields[1].getText();
+			String localLongitudeString = textFields[2].getText();
+			String localLatitudeString = textFields[3].getText();
 			
 			if(localName.length() == 0 || localPriceString.length() == 0 || 
 					localLongitudeString.length() == 0 || localLatitudeString.length() == 0)
@@ -68,7 +71,7 @@ public class PostProjectResult implements CommandResult{
 				localLongitude = Double.parseDouble(localLongitudeString);
 				localLatitude =  Double.parseDouble(localLatitudeString);
 			} catch (NumberFormatException e) {
-				return new WarningMessagePanel("Numbers were not introduced in one of the following fields:\nPrice, Longitude of Latitude.");
+				return new WarningMessagePanel("Numbers were not introduced in one of the following fields: Price, Longitude of Latitude.");
 			}
 			
 			publish("Status: Generating Local for the new Project...");
