@@ -56,7 +56,8 @@ public class PostSubprojectResult implements CommandResult
 			String pidString = textFields[0].getText();
 			String subPidString = textFields[1].getText();
 			
-			//TODO verificar se os campos nao estavam vazios
+			if(pidString.length() == 0 || subPidString.length() == 0)
+				return new WarningMessagePanel("At least a field was left blank.");
 			
 			long pid;
 			long subPid;

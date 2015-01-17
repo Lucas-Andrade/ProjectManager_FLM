@@ -43,8 +43,8 @@ public abstract class MainDialogFrame extends JDialog {
 		mainDialogPanel.setHelpTip(help);
 	}
 	
-	protected void setOkButtonActionListener(ActionListener ac) {
-		okButton.addActionListener(ac);
+	protected void setOkButtonActionListener(JTextField[] textFields) {
+		okButton.addActionListener(new OkActionListener(textFields));
 	}
 	
 	/**
@@ -85,7 +85,7 @@ public abstract class MainDialogFrame extends JDialog {
 				cancelButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/cancel.png")));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
-				cancelButton.addActionListener(new cancelActionListener());
+				cancelButton.addActionListener(new CancelActionListener());
 			}
 		}
 		  
@@ -98,7 +98,7 @@ public abstract class MainDialogFrame extends JDialog {
 		return mainDialogPanel;
 	}
 	
-	private class cancelActionListener implements ActionListener{
+	private class CancelActionListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -107,11 +107,11 @@ public abstract class MainDialogFrame extends JDialog {
 		
 	}
 	
-	protected class okActionListener implements ActionListener{
+	protected class OkActionListener implements ActionListener{
 		
 		JTextField[] textFields;
 		
-		public okActionListener(JTextField[] textFields) {
+		public OkActionListener(JTextField[] textFields) {
 			this.textFields = textFields;
 		}
 		

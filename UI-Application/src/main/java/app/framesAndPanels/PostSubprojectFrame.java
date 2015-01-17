@@ -112,6 +112,6 @@ public class PostSubprojectFrame extends MainDialogFrame {
 		JTextField[] textFields = new JTextField[2];
 		textFields[0] = projectField; //assign each field to a position in the array
 		textFields[1] = subprojectField;
-		this.setOkButtonActionListener(new okActionListener(textFields));
+		this.setOkButtonActionListener(textFields);
 		}
 	}

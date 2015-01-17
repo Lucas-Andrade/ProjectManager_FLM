@@ -149,6 +149,6 @@ public class PostProjectFrame extends MainDialogFrame {
 		textFields[1] = priceField;
 		textFields[2] = longitudeField;
 		textFields[3] = latitudeField;
-		this.setOkButtonActionListener(new okActionListener(textFields));
+		this.setOkButtonActionListener(textFields);
 	}
 }

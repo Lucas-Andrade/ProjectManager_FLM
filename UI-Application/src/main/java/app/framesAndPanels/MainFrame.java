@@ -20,6 +20,7 @@ import javax.swing.JSplitPane;
 import app.authentication.Authentication;
 import app.commands.PostProject;
 import app.commands.PostSubproject;
+import app.commands.PostUser;
 import app.repositoryHolders.RepositoryHolder;
 
 
@@ -162,6 +163,7 @@ public class MainFrame extends JFrame{
 		
 		JMenuItem mntmNewUser = new JMenuItem("New user");
 		usersMenu.add(mntmNewUser);
+		mntmNewUser.addActionListener(new PostUser(splitPane, repositories, authentication));
 		
 		JMenuItem mntmGetUser = new JMenuItem("Get user");
 		usersMenu.add(mntmGetUser);

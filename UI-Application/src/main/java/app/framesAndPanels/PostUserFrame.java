@@ -146,9 +146,9 @@ public class PostUserFrame extends MainDialogFrame {
 		
 		JTextField[] infoArray = new JTextField[4];
 		infoArray[0] = nameField; //assign each field to a position in the array
-		infoArray[1] = fullNameField;
+		infoArray[1] = passwordField;
 		infoArray[2] = emailField;
-		infoArray[3] = passwordField;
-		this.setOkButtonActionListener(new okActionListener(infoArray));
+		infoArray[3] = fullNameField;
+		this.setOkButtonActionListener(infoArray);
 	}
 }
