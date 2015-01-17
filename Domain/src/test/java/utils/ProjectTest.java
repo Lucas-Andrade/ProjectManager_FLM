@@ -41,7 +41,7 @@ public class ProjectTest
 
 		proj1.removeAllSubprojects();
 //		System.out.println(proj1.toString());
-		System.out.println(proj1.toString());
+//		System.out.println(proj1.toString());
 	}
 
 }

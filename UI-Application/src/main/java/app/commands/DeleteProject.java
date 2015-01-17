@@ -17,8 +17,5 @@ public class DeleteProject extends BaseCommand{
 	public void execute() {
 		new DeleteProjectFrame(new DeleteProjectResult(pane, repositories)).setVisible(true);
 	}
-	
-
-	
 
 }

@@ -16,8 +16,7 @@ import utils.Project;
 import utils.Team;
 import app.repositoryHolders.RepositoryHolder;
 
-public class PatchConsultantResult implements CommandResult
-{
+public class PatchConsultantResult implements CommandResult{
 
 	JSplitPane splitPane;
 	RepositoryHolder repositories;

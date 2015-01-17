@@ -8,12 +8,12 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
+import app.repositoryHolders.RepositoryHolder;
 import utils.Local;
 import utils.Project;
-import app.repositoryHolders.RepositoryHolder;
 
-public class DeleteProjectResult implements CommandResult
-{
+
+public class DeleteProjectResult implements CommandResult{
 
 	JSplitPane splitPane;
 	RepositoryHolder repositories;

@@ -19,6 +19,12 @@ import app.repositoryHolders.RepositoryHolder;
 public class GetWorkersInProjectResult implements CommandResult
 {
 
+	@Override
+	public void executeResult(JTextField[] textFields) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	JSplitPane splitPane;
 	RepositoryHolder repositories;
 

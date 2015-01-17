@@ -12,8 +12,7 @@ import utils.Local;
 import utils.Project;
 import app.repositoryHolders.RepositoryHolder;
 
-public class GetSubprojectsResult implements CommandResult
-{
+public class GetSubprojectsResult implements CommandResult{
 
 	JSplitPane splitPane;
 	RepositoryHolder repositories;

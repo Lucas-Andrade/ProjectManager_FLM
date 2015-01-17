@@ -5,13 +5,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.io.IOException;
 
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
 import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.repositoryHolders.RepositoryHolder;
 import app.result.CommandResult;
 import app.result.PostProjectResult;
 

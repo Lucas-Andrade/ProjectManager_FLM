@@ -52,17 +52,17 @@ public class ToHtmlTest {
 		repo.addProject(proj3);
 		repo.addProject(proj4);
 		
-		System.out.println(new ToTextHtml().parse(proj1.getJson()));
-		System.out.println("\n\n");
-		System.out.println(new ToTextHtml().parse(new User("username", "password", "email", "fullname").getJson()));
-		System.out.println("\n\n");
-		System.out.println(new ToTextHtml().parse(worker1.getJson()));
-		System.out.println("\n\n");
-		System.out.println(new ToTextHtml().parse(repo.getJson()));
-		System.out.println("\n\n");
-		System.out.println(new ToTextHtml().parse(RepositoryConstructor.constructWorkerRepo().getJson()));
-		System.out.println("\n\n");
-		System.out.println(new ToTextHtml().parse(RepositoryConstructor.constructUserRepo().getJson()));
+//		System.out.println(new ToTextHtml().parse(proj1.getJson()));
+//		System.out.println("\n\n");
+//		System.out.println(new ToTextHtml().parse(new User("username", "password", "email", "fullname").getJson()));
+//		System.out.println("\n\n");
+//		System.out.println(new ToTextHtml().parse(worker1.getJson()));
+//		System.out.println("\n\n");
+//		System.out.println(new ToTextHtml().parse(repo.getJson()));
+//		System.out.println("\n\n");
+//		System.out.println(new ToTextHtml().parse(RepositoryConstructor.constructWorkerRepo().getJson()));
+//		System.out.println("\n\n");
+//		System.out.println(new ToTextHtml().parse(RepositoryConstructor.constructUserRepo().getJson()));
 	}
 
 }

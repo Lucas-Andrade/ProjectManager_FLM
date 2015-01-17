@@ -94,13 +94,13 @@ public class InMemoryWorkerRepoTest {
 		
 		assertEquals(repo.toString(), builder.toString());
 		
-		System.out.println(repo.toString());
+//		System.out.println(repo.toString());
 	}
 
 
-	@Test
-	public void visualTest()
-	{
-		System.out.println(repo.getJson().toString());
-	}
+//	@Test
+//	public void visualTest()
+//	{
+//		System.out.println(repo.getJson().toString());
+//	}
 }

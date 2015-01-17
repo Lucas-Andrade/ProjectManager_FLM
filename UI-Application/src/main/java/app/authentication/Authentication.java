@@ -17,7 +17,7 @@ public class Authentication implements IAuthentication {
 	private static boolean isAuthenticated;
 	
 	public Authentication(){
-		isAuthenticated = true; //TODO trocar para false
+		isAuthenticated = false; //TODO trocar para false
 	}
 	
 	@Override
@@ -40,8 +40,7 @@ public class Authentication implements IAuthentication {
 	}
 	
 	public static void authenticate(JTextField[] fieldsToRetrieve, Authentication authentication, RepositoryHolder repoHolder){
-		
-		System.out.println("a seguir é o swing worker");
+
 		new SwingWorker<IUser, Object>(){
 			
 			UserRepository uRepo = repoHolder.getUsersRepo();
@@ -59,9 +58,6 @@ public class Authentication implements IAuthentication {
 					
 				String loginPassword = builder.toString();
 				IUser user = uRepo.getUserByUsername(loginName);
-				System.out.println("loginName: " + loginName);
-				System.out.println("password: " +loginPassword);
-				System.out.println("o swing worker acabou");
 				return (user != null) && user.getLoginPassword().equals(loginPassword) ? user : null;
 			}
 			
@@ -71,20 +67,20 @@ public class Authentication implements IAuthentication {
 				
 				try {
 					user = get();
-					System.out.println("user: " + user.toString());
 				} catch (InterruptedException e) {
 					new ErrorDialog("Was interrupted before reaching database.").setVisible(true);
+					return;
 				} catch (ExecutionException e) {
 					new ErrorDialog("Could not verify if the login name and password were correct.").setVisible(true);
+					return;
 				}
 				
 				if(user != null){
-					new ErrorDialog("merdas.").setVisible(true);
 					authentication.setAuthenticatedUser(user);
-				} else {
-					new ErrorDialog("Login name or password do not match any known users.").setVisible(true);
+					return;
 				}
+				new ErrorDialog("Login name or password do not match any known users.").setVisible(true);
 			}
-		};
+		}.execute();
 	}
 }
