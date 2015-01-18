@@ -28,7 +28,7 @@ public class PostConsultantResult implements CommandResult
 	@Override
 	public void executeResult(JTextField[] textFields)
 	{
-		new NewConsultantWorker(splitPane, name, priceHour, bonus).execute();
+		new NewConsultantWorker(splitPane, textFields).execute();
 	}
 
 	public class NewConsultantWorker extends AppSwingWorker
@@ -38,11 +38,14 @@ public class PostConsultantResult implements CommandResult
 		Double priceHour;
 		Double bonus;
 
-		public NewConsultantWorker(JSplitPane pane, String name,
-				double priceHour, double bonus)
+		public NewConsultantWorker(JSplitPane pane, JTextField[] textFields)
 		{
 			super(pane);
-			this.name = name;
+			try{
+				this.name = textFields[0].getText();
+			}catch(NullPointerException e){
+				this.name=null;
+			}
 			this.priceHour = priceHour;
 			this.bonus = bonus;
 		}

@@ -17,6 +17,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import app.result.GetUserResult;
+
 
 public class GetUserPanel extends MainGetFrame {
 
@@ -46,9 +48,10 @@ public class GetUserPanel extends MainGetFrame {
 
 	/**
 	 * Create the dialog.
+	 * @param getUserResult 
 	 * @throws IOException 
 	 */
-	public GetUserPanel() 
+	public GetUserPanel(GetUserResult getUserResult) 
 	{
 		super();
 		

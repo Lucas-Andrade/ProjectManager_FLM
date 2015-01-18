@@ -16,7 +16,7 @@ public class PostUser extends BaseCommand{
 
 	@Override
 	public void execute() {
-		new PostUserFrame(new PostUserResult(pane, repositories));
+		new PostUserFrame(new PostUserResult(pane, repositories)).setVisible(true);
 	}
 
 }

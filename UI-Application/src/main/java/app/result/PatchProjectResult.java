@@ -1,18 +1,10 @@
 package app.result;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
-import utils.Local;
 import utils.Project;
-import app.AppElement;
-import app.elements.Message;
-import app.elements.User;
 import app.repositoryHolders.RepositoryHolder;
 
 public class PatchProjectResult implements CommandResult
@@ -30,7 +22,7 @@ public class PatchProjectResult implements CommandResult
 	@Override
 	public void executeResult(JTextField[] textFields)
 	{
-		new PatchProjectWorker(splitPane, pid, localLatitude, localLongitude, localName, localPrice).execute();
+		new PatchProjectWorker(splitPane, textFields).execute();
 	}
 
 	public class PatchProjectWorker extends AppSwingWorker
@@ -42,15 +34,14 @@ public class PatchProjectResult implements CommandResult
 		String localName;
 		Double localPrice;
 
-		public PatchProjectWorker(JSplitPane pane, long pid, double localLatitude,
-				double localLongitude, String localName, double localPrice)
+		public PatchProjectWorker(JSplitPane pane, JTextField[] textFields)
 		{
 			super(pane);
-			this.pid=pid;
-			this.localLatitude=localLatitude;
-			this.localLongitude=localLongitude;
-			this.localName=localName;
-			this.localPrice=localPrice;
+			this.pid=Long.parseLong(textFields[0].toString());
+			this.localLatitude=Double.parseDouble(textFields[1].toString());
+			this.localLongitude=Double.parseDouble(textFields[2].toString());
+			this.localName=textFields[3].toString();
+			this.localPrice=Double.parseDouble(textFields[4].toString());
 		}
 
 		/**

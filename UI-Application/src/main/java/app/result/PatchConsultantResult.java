@@ -1,19 +1,10 @@
 package app.result;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
 import utils.AWorker;
-import utils.Consultant;
-import utils.Leader;
-import utils.Local;
-import utils.Project;
-import utils.Team;
 import app.repositoryHolders.RepositoryHolder;
 
 public class PatchConsultantResult implements CommandResult{
@@ -31,7 +22,7 @@ public class PatchConsultantResult implements CommandResult{
 	@Override
 	public void executeResult(JTextField[] textFields)
 	{
-		new PatchConsultantWorker(splitPane, cid, name, priceHour).execute();
+		new PatchConsultantWorker(splitPane, textFields).execute();
 	}
 
 	public class PatchConsultantWorker extends AppSwingWorker
@@ -41,13 +32,12 @@ public class PatchConsultantResult implements CommandResult{
 		String name;
 		Double priceHour;
 
-		public PatchConsultantWorker(JSplitPane pane, long cid, String name,
-				Double priceHour)
+		public PatchConsultantWorker(JSplitPane pane, JTextField[] textFields)
 		{
 			super(pane);
-			this.cid = cid;
-			this.name = name;
-			this.priceHour = priceHour;
+			this.cid = Long.parseLong(textFields[0].toString());
+			this.name = textFields[1].toString();
+			this.priceHour = Double.parseDouble(textFields[2].toString());
 		}
 
 		/**

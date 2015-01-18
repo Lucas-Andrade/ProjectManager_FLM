@@ -4,15 +4,9 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
-import commands.PostWorkerInProject;
-import commands.ResultOutputMethodToStream;
 import utils.Consultant;
 import utils.Leader;
-import utils.Local;
 import utils.Project;
-import utils.Team;
-import app.AppElement;
-import app.elements.Message;
 import app.repositoryHolders.RepositoryHolder;
 
 public class PostWorkerResult implements CommandResult
@@ -31,7 +25,7 @@ public class PostWorkerResult implements CommandResult
 	@Override
 	public void executeResult(JTextField[] textFields)
 	{
-		new NewConsultantWorker(splitPane, name, priceHour, bonus).execute();
+		new NewConsultantWorker(splitPane, textFields).execute();
 	}
 
 	public class NewConsultantWorker extends AppSwingWorker
@@ -41,13 +35,12 @@ public class PostWorkerResult implements CommandResult
 		Long projectId;
 		Long workerId;
 
-		public NewConsultantWorker(JSplitPane pane, String name,
-				double priceHour, double bonus)
+		public NewConsultantWorker(JSplitPane pane, JTextField[] textFields)
 		{
 			super(pane);
-			this.name = name;
-			this.priceHour = priceHour;
-			this.bonus = bonus;
+			this.typeWorker = textFields[0].toString();
+			this.projectId = Long.parseLong(textFields[1].toString());
+			this.workerId = Long.parseLong(textFields[2].toString());
 		}
 
 		/**
