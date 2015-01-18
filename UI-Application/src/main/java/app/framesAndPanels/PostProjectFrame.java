@@ -30,11 +30,7 @@ public class PostProjectFrame extends MainDialogFrame {
 	public static void main(String[] args) {
 		try {
 			PostProjectFrame dialog = new PostProjectFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
-			//definimos o título da janel
-			dialog.setTitle("Post Project");
-			dialog.setImage("images/project.png");
-			dialog.setTitleLabel("Post Project");
-			dialog.setHelpTip("Add a Project to the Project repository.");
+
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -55,6 +51,8 @@ public class PostProjectFrame extends MainDialogFrame {
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0};
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 100, 10, 20, 0, 0, 0};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 50, 20, 15, 20, 15, 0, 0};
 	
@@ -105,6 +103,15 @@ public class PostProjectFrame extends MainDialogFrame {
 		gbc_priceField.gridx = 6;
 		gbc_priceField.gridy = 5;
 		getMainDialogPanel().add(priceField, gbc_priceField);
+		
+		JLabel label = new JLabel("€");
+		label.setToolTipText("Euros");
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.anchor = GridBagConstraints.WEST;
+		gbc_label.insets = new Insets(0, 0, 5, 5);
+		gbc_label.gridx = 7;
+		gbc_label.gridy = 5;
+		getMainDialogPanel().add(label, gbc_label);
 
 		JLabel lblLatitude = new JLabel("Latitude:");
 		GridBagConstraints gbc_lblLatitude = new GridBagConstraints();
@@ -128,7 +135,7 @@ public class PostProjectFrame extends MainDialogFrame {
 		JLabel lblLongitude = new JLabel("Longitude:");
 		GridBagConstraints gbc_lblLongitude = new GridBagConstraints();
 		gbc_lblLongitude.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lblLongitude.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLongitude.insets = new Insets(0, 0, 0, 5);
 		gbc_lblLongitude.gridx = 2;
 		gbc_lblLongitude.gridy = 8;
 		getMainDialogPanel().add(lblLongitude, gbc_lblLongitude);
@@ -138,7 +145,7 @@ public class PostProjectFrame extends MainDialogFrame {
 		GridBagConstraints gbc_longitudeField = new GridBagConstraints();
 		gbc_longitudeField.anchor = GridBagConstraints.NORTH;
 		gbc_longitudeField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_longitudeField.insets = new Insets(0, 0, 5, 5);
+		gbc_longitudeField.insets = new Insets(0, 0, 0, 5);
 		gbc_longitudeField.gridx = 3;
 		gbc_longitudeField.gridy = 8;
 		getMainDialogPanel().add(longitudeField, gbc_longitudeField);
@@ -150,5 +157,7 @@ public class PostProjectFrame extends MainDialogFrame {
 		textFields[2] = longitudeField;
 		textFields[3] = latitudeField;
 		this.setOkButtonActionListener(textFields);
+		
+		this.setVisible(true);
 	}
 }

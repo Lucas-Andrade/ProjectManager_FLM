@@ -44,10 +44,11 @@ public class AuthenticationDialog extends JDialog{
 	}
 	
 	public AuthenticationDialog(Authentication authentication, RepositoryHolder repoHolder) {
+		setResizable(false);
 
 		this.setTitle("Login");
 		
-		setBounds(100, 100, 280, 184);
+		setBounds(100, 100, 300, 194);
 		getContentPane().setLayout(new BorderLayout());
 		authenticationPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(authenticationPanel, BorderLayout.CENTER);
@@ -99,28 +100,29 @@ public class AuthenticationDialog extends JDialog{
 		lblPassword.setToolTipText("Minimum 4 character.");
 		
 		passwordField = new JPasswordField();
+		passwordField.setEchoChar('*');
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.insets = new Insets(0, 0, 5, 0);
 		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_passwordField.gridx = 2;
 		gbc_passwordField.gridy = 1;
 		authenticationPanel.add(passwordField, gbc_passwordField);
+
+		JTextField[] textField = new JTextField[2];
+		textField[0] = nameField;
+		textField[1] = passwordField;
 		
 		
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.setBackground(new Color(0, 206, 209));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.anchor = GridBagConstraints.SOUTH;
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton.anchor = GridBagConstraints.SOUTH;
 		gbc_btnNewButton.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNewButton.gridwidth = 2;
+		gbc_btnNewButton.gridwidth = 4;
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 2;
 		authenticationPanel.add(btnNewButton, gbc_btnNewButton);
-
-		JTextField[] textField = new JTextField[2];
-		textField[0] = nameField;
-		textField[1] = passwordField;
 		btnNewButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {

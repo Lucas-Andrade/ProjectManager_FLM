@@ -4,6 +4,8 @@ import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
 import app.framesAndPanels.PostProjectFrame;
+import app.repository.ProjectsRepository;
+import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
 import app.result.PostProjectResult;
 

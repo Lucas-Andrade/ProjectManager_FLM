@@ -47,7 +47,7 @@ public class GetWorkersInProjectFrame extends MainGetFrame {
 	public GetWorkersInProjectFrame(CommandResult result) {
 		super();
 		
-		setBounds(100, 100, 626, 387);
+		setBounds(100, 100, 676, 387);
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainGetPanel().getLayout();
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0};
 		gridBagLayout.columnWidths = new int[]{0, 100, 0, 0};

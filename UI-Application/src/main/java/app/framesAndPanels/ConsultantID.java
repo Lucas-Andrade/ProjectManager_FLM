@@ -29,7 +29,7 @@ public class ConsultantID extends JPanel {
 	
 	
 	//elementos da lista -> alterar
-		String[] consultants = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
+		String[] consultants = { "", "Bird", "Cat", "Dog", "Rabbit", "Pig" };
 		
 		JCheckBox chckbxConsultants = new JCheckBox("Consultants");
 		GridBagConstraints gbc_chckbxConsultants = new GridBagConstraints();
@@ -38,6 +38,7 @@ public class ConsultantID extends JPanel {
 		gbc_chckbxConsultants.gridx = 0;
 		gbc_chckbxConsultants.gridy = 0;
 		add(chckbxConsultants, gbc_chckbxConsultants);
+		
 		JComboBox consultantsComboBox = new JComboBox(consultants);
 		consultantsComboBox.setEditable(true);
 		GridBagConstraints gbc_consultantsComboBox = new GridBagConstraints();

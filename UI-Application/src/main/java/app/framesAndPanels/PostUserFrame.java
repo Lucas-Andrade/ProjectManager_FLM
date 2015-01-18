@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.result.CommandResult;
 import app.result.PostProjectResult;
+import java.awt.GridBagLayout;
 
 public class PostUserFrame extends MainDialogFrame {
 
@@ -47,6 +48,9 @@ public class PostUserFrame extends MainDialogFrame {
 	 */
 	public PostUserFrame(CommandResult result) {
 		super(result);
+		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0, 60, 100, 100, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0};
 		
 		this.setTitle("New User");
 		this.setImage("images/add_user.jpg");

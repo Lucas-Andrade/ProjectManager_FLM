@@ -55,11 +55,12 @@ public class PatchConsultantFrame extends MainDialogFrame {
 		this.setHelpTip("Updates the information of the consultant with the specify Id.");
 		
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
-		gridBagLayout.columnWidths = new int[]{64, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+		gridBagLayout.columnWidths = new int[]{64, 0, 70, 100, 0, 0, 0, 0, 0};
 		
 		consultantID = new ConsultantID();
 		GridBagConstraints gbc_lblConsultantId = new GridBagConstraints();
-		gbc_lblConsultantId.gridwidth = 2;
+		gbc_lblConsultantId.gridwidth = 4;
 		gbc_lblConsultantId.anchor = GridBagConstraints.EAST;
 		gbc_lblConsultantId.insets = new Insets(0, 0, 5, 5);
 		gbc_lblConsultantId.gridx = 2;

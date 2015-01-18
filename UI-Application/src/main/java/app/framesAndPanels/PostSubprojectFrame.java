@@ -100,7 +100,7 @@ public class PostSubprojectFrame extends MainDialogFrame {
 	
 		subprojects = new JTextField();
 		GridBagConstraints gbc_subprojects = new GridBagConstraints();
-		gbc_subprojects.gridwidth = 7;
+		gbc_subprojects.gridwidth = 8;
 		gbc_subprojects.insets = new Insets(0, 0, 0, 5);
 		gbc_subprojects.fill = GridBagConstraints.BOTH;
 		gbc_subprojects.gridx = 1;

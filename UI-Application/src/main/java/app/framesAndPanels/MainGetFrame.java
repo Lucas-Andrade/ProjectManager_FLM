@@ -56,7 +56,6 @@ public class MainGetFrame extends JFrame {
 				try {
 					MainGetFrame frame = new MainGetFrame();
 					//definimos o título da janela
-					frame.setTitle("Get Users");
 					frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -70,14 +69,9 @@ public class MainGetFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public MainGetFrame() {
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		this.setVisible(true);
 		
-		try {
-			this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			this.setVisible(true);
-		
-			}catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 		mainGetPanel = new MainPanel();
 		

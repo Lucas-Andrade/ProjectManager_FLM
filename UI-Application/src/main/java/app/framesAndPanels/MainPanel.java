@@ -43,9 +43,9 @@ public class MainPanel extends JPanel {
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 				
 		GridBagLayout gbl_patchConsultantPanel = new GridBagLayout();  // Definição do Painel interno
-		gbl_patchConsultantPanel.columnWidths = new int[]{20, 50, 60, 100, 0, 0, 50, 0, 50, 0};
+		gbl_patchConsultantPanel.columnWidths = new int[]{5, 100, 60, 100, 0, 0, 50, 0, 75, 0};
 		gbl_patchConsultantPanel.rowHeights = new int[]{0, 0, 50, 0, 0, 0, 0, 0, 0, 0};
-		gbl_patchConsultantPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_patchConsultantPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_patchConsultantPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		this.setLayout(gbl_patchConsultantPanel);
 							
@@ -81,8 +81,7 @@ public class MainPanel extends JPanel {
 	
 		JLabel lblWellcome = new JLabel("Bem-vindo"); 
 		GridBagConstraints gbc_lblWellcome = new GridBagConstraints();
-		gbc_lblWellcome.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblWellcome.anchor = GridBagConstraints.BELOW_BASELINE;
+		gbc_lblWellcome.anchor = GridBagConstraints.BELOW_BASELINE_TRAILING;
 		gbc_lblWellcome.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWellcome.gridx = 7;
 		gbc_lblWellcome.gridy = 1;

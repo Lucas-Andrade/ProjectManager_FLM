@@ -39,7 +39,7 @@ public class ProjectID extends JPanel {
 		
 		//terá a lista dos projectos no repositório 
 				//elementos da lista -> alterar
-		String[] projects = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
+		String[] projects = { "", "Bird", "Cat", "Dog", "Rabbit", "Pig" };
 		projectCBox = new JComboBox(projects);
 		GridBagConstraints gbc_projectCBox = new GridBagConstraints();
 		gbc_projectCBox.fill = GridBagConstraints.HORIZONTAL;
@@ -56,7 +56,11 @@ public class ProjectID extends JPanel {
 			}
 		});
 		
-		
+	}
+	
+	public String getSelectedItem()
+	{
+		return projectCBox.getSelectedItem().toString();
 	}
 
 }

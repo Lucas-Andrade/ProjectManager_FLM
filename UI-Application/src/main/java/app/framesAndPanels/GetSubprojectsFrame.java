@@ -47,9 +47,10 @@ public class GetSubprojectsFrame extends MainGetFrame {
 		
 		super(); 
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainGetPanel().getLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 100, 50, 50, 0, 100, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 30, 20, 0, 20, 0, 0, 0};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0};
 		
 		this.setTitle("Get Subprojects");    //definimos o título da janela
 		this.setImage("images/subproject.jpg");
@@ -70,13 +71,12 @@ public class GetSubprojectsFrame extends MainGetFrame {
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.gridheight = 5;
 		gbc_panel.gridwidth = 7;
-		gbc_panel.insets = new Insets(0, 0, 5, 5);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 2;
 		gbc_panel.gridy = 3;
 		getMainGetPanel().add(panel, gbc_panel);
 		
-		
+		this.setVisible(true);
 	}
 
 }

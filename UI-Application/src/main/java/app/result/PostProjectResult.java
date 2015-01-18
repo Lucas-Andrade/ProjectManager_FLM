@@ -23,6 +23,11 @@ public class PostProjectResult implements CommandResult{
 	public void executeResult(JTextField[] textFields){
 		new NewProjectWorker(splitPane, textFields).execute();
 	}
+	
+	public ProjectsRepository getRepo()
+	{
+		return repositories.getProjectsRepo();
+	}
 
 	public class NewProjectWorker extends AppSwingWorker{
 		
@@ -94,4 +99,5 @@ public class PostProjectResult implements CommandResult{
 					+ " was successfully created.");
 		}
 	}
+	
 }

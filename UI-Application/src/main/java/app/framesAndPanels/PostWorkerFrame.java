@@ -29,17 +29,13 @@ public class PostWorkerFrame extends MainDialogFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		try {
+	//	try {
 			PostWorkerFrame dialog = new PostWorkerFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
-//			dialog.setTitle("Add Worker In Project");
-//			dialog.setImage("images/Add.jpg");
-//			dialog.setTitleLabel("Add Worker In Project");
-//			dialog.setHelpTip("Add a Consultant or Manager to a project/subproject.");
-//			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		//	dialog.setVisible(true);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	/**
@@ -49,7 +45,7 @@ public class PostWorkerFrame extends MainDialogFrame {
 		super(result);
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0};
-		gridBagLayout.columnWidths = new int[]{85, 100, 0, 0};
+		gridBagLayout.columnWidths = new int[]{5, 100, 0, 100};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 10, 0, 0, 0, 0, 0};
 		
@@ -61,7 +57,7 @@ public class PostWorkerFrame extends MainDialogFrame {
 		
 		projectId = new ProjectID();
 		GridBagConstraints gbc_lblProjectID = new GridBagConstraints();
-		gbc_lblProjectID.gridwidth = 2;
+		gbc_lblProjectID.gridwidth = 3;
 		gbc_lblProjectID.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblProjectID.insets = new Insets(0, 0, 5, 5);
 		gbc_lblProjectID.gridx = 2;
@@ -80,6 +76,7 @@ public class PostWorkerFrame extends MainDialogFrame {
 		
 		manager = new ManagerID();
 		GridBagConstraints gbc_Manager = new GridBagConstraints();
+		gbc_Manager.gridwidth = 3;
 		gbc_Manager.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Manager.insets = new Insets(0, 0, 5, 5);
 		gbc_Manager.gridx = 3;
@@ -89,6 +86,7 @@ public class PostWorkerFrame extends MainDialogFrame {
 	
 		consultantID = new ConsultantID();
 		GridBagConstraints gbc_consultantID = new GridBagConstraints();
+		gbc_consultantID.gridwidth = 3;
 		gbc_consultantID.fill = GridBagConstraints.HORIZONTAL;
 		gbc_consultantID.insets = new Insets(0, 0, 5, 5);
 		gbc_consultantID.gridx = 3;
@@ -98,11 +96,14 @@ public class PostWorkerFrame extends MainDialogFrame {
 
 		previewField = new JTextField();
 		GridBagConstraints gbc_previewField = new GridBagConstraints();
-		gbc_previewField.gridwidth = 7;
+		gbc_previewField.insets = new Insets(0, 0, 0, 5);
+		gbc_previewField.gridwidth = 6;
 		gbc_previewField.fill = GridBagConstraints.BOTH;
-		gbc_previewField.gridx = 1;
+		gbc_previewField.gridx = 2;
 		gbc_previewField.gridy = 7;
 		getMainDialogPanel().add(previewField, gbc_previewField);
 		previewField.setColumns(10);
+		
+		this.setVisible(true);
 	}
 }

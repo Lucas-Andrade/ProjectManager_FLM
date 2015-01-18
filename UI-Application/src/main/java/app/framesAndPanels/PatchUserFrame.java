@@ -34,10 +34,6 @@ public class PatchUserFrame extends MainDialogFrame {
 		try {
 			PatchUserFrame dialog = new PatchUserFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
 			//definimos o título da janel
-			dialog.setTitle("Patch User");
-			dialog.setImage("images/Edit_user.jpg");
-			dialog.setTitleLabel("Patch User");
-			dialog.setHelpTip("Updates the password of the user identified by the specify username.");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {

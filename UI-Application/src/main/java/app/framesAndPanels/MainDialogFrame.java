@@ -119,6 +119,7 @@ public abstract class MainDialogFrame extends JDialog {
 		public void actionPerformed(ActionEvent e) {
 			result.executeResult(textFields);
 			dispose();
+			
 		}
 	}
 }
