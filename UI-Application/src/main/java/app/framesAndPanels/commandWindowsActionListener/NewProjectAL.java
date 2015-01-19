@@ -13,17 +13,19 @@ import app.result.WarningMessagePanel;
 public class NewProjectAL implements ActionListener {
 
 	private JTextField[] textfields;
+	private String name;
 
 	public NewProjectAL(JTextField[] textFields2){
 		this.textfields = textFields2;
+		
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String[] parameters = new String[4];
 		try{
-			parameters[0] = textfields[0].getText();
-			parameters[1] = textfields[1].getText();
+			name = textfields[0].getText();
+			price = textfields[1].getText();
 			parameters[2] = textfields[2].getText();
 			parameters[3] = textfields[3].getText();
 		}catch (NullPointerException a){
@@ -31,7 +33,7 @@ public class NewProjectAL implements ActionListener {
 		}
 		
 		try{
-			new SwingWorkerCommand(new NewProject, parameters);
+			new SwingWorkerCommand(new AddProjectToRepo(), parameters);
 		}catch(NumberFormatException nfe){
 			new ErrorDialog("Numbers were not introduced in one of the following fields: Price, Longitude of Latitude.").setVisible(true);
 		}

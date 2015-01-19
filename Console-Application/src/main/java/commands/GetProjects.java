@@ -6,10 +6,10 @@ import java.util.concurrent.Callable;
 import outputMethods.Result;
 import utils.Project;
 import app.AppElement;
-import app.commands.GetProjectFromRepo;
-import app.commands.exceptions.NoSuchProjectException;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
+
+import commandParser.CommandParser;
 
 /**
  * Class whose instances are commands that return the {@link Project} with specified {@code PID}

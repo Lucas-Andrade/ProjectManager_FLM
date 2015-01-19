@@ -79,7 +79,7 @@ public class MainPanel extends JPanel {
 		this.add(helpLabel, gbc_helpLabel);
 			
 	
-		JLabel lblWellcome = new JLabel("Bem-vindo"); 
+		JLabel lblWellcome = new JLabel("Wellcome"); 
 		GridBagConstraints gbc_lblWellcome = new GridBagConstraints();
 		gbc_lblWellcome.anchor = GridBagConstraints.BELOW_BASELINE_TRAILING;
 		gbc_lblWellcome.insets = new Insets(0, 0, 5, 5);
@@ -88,7 +88,7 @@ public class MainPanel extends JPanel {
 		this.add(lblWellcome, gbc_lblWellcome);
 	
 		
-		JLabel lblRegistryuser = new JLabel("RegistryUser"); // Informação sobre o user que está a usar o programa
+		JLabel lblRegistryuser = new JLabel(""); // Informação sobre o user que está a usar o programa
 		GridBagConstraints gbc_lblRegistryuser = new GridBagConstraints();
 		gbc_lblRegistryuser.insets = new Insets(0, 0, 5, 0);
 		gbc_lblRegistryuser.gridx = 8;
