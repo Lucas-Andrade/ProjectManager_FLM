@@ -102,10 +102,10 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	 * @see Repository#getAll()
 	 */
 	@Override
-	public AppElement[] getAll() {
-		AppElement[] all = new AppElement[this.size()];
+	public Project[] getAll() {
+		Project[] all = new Project[this.size()];
 		int i = 0;
-		for (AppElement ele : projects){
+		for (Project ele : projects){
 			all[i++] = ele;
 		}
 		return all;

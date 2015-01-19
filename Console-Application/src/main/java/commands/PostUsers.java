@@ -7,9 +7,12 @@ import java.util.concurrent.Callable;
 import outputMethods.Result;
 import commands.exceptions.CommandException;
 import app.AppElement;
+import app.commands.AddUserToRepo;
+import app.commands.exceptions.IllegalEmailException;
+import app.commands.exceptions.PasswordLengthOutOfBoundsException;
+import app.commands.exceptions.RepeatedUsernameException;
 import app.elements.Message;
 import app.elements.User;
-import app.elements.IUser;
 import app.repository.UserRepository;
 
 /**
@@ -140,59 +143,23 @@ public class PostUsers extends BaseCommandUserAuthentication{
 	@Override
 	protected AppElement[] internalCall()
 			throws CommandException, IOException{
-		AppElement[] messageAux = new AppElement[1];
-		Message message;
 		
-		this.username = parameters.get(USERNAME);
-		this.password = parameters.get(PASSWORD);
+		this.username = getParameterAsString(USERNAME);
+		this.password = getParameterAsString(PASSWORD);
+		this.email = getParameterAsString(EMAIL);
+		this.fullname = getParameterAsString(FULLNAME);
 		
-		if(password.length() < User.minCharInPass){
-			message = new Message("User's password must have at least 4 characters.");
-			messageAux[0] = message;
-			
-			return messageAux;
+		try{
+			new AddUserToRepo(repository, username, password, email, fullname).call();
+		} catch(PasswordLengthOutOfBoundsException e) {
+			return new AppElement[]{new Message("User's password must have at least 4 characters.")};
+		} catch(IllegalEmailException e) {
+			return new AppElement[]{new Message("The Email is not valid.")};
+		} catch(RepeatedUsernameException e) {
+			return new AppElement[]{new Message("The Specified Username is already being used.")};
 		}
 		
-		this.email = parameters.get(EMAIL);
-		this.fullname = parameters.get(FULLNAME);
-		IUser[] existingUsers = (IUser[]) repository.getAll();
-		
-		for (IUser existingUser : existingUsers){
-			if (existingUser.getLoginName().equals(this.username)){
-				message = new Message("The Specified Username already exists in repository.");
-				messageAux[0] = message;
-				
-				return messageAux;
-			}
-		}
-		if (this.validEmail()){
-			repository.addUser(new User(this.username, this.password,
-					this.email, this.fullname));
-			
-			message = new Message("Success.");
-			messageAux[0] = message;
-		} else {
-			message = new Message("The Email is not valid.");
-			messageAux[0] = message;
-		}
-		return messageAux;
+		return new AppElement[]{new Message("Success.")};
 	}
 
-	/**
-	 * Validates the Email.
-	 * 
-	 * @return Returns True if valid, False if not.
-	 */
-	private boolean validEmail(){
-		if (!(email.contains("@"))){
-			return false;
-		}
-		if (email.substring(email.indexOf("@") + 1, email.length()).contains("@")){
-			return false;
-		}
-		if (email.lastIndexOf(".") < email.lastIndexOf("@")){
-			return false;
-		}
-		return true;
-	}
 }

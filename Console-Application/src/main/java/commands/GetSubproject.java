@@ -7,7 +7,7 @@ import outputMethods.Result;
 import utils.Project;
 import app.AppElement;
 import app.commands.GetSubprojectsFromRepo;
-import app.commands.exceptions.NoSubprojectsFoundException;
+import app.commands.exceptions.NoSuchSubprojectsException;
 import app.commands.exceptions.NoSuchProjectException;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
@@ -111,7 +111,7 @@ public class GetSubproject extends BaseCommandResultsOutputMethod{
 		} catch(NoSuchProjectException e) {
 			return new AppElement[]{new Message("Project with ID: " + pid
 					+ " was not found!")};
-		} catch(NoSubprojectsFoundException e) {
+		} catch(NoSuchSubprojectsException e) {
 			return new AppElement[]{new Message("Project with ID: " + pid
 					+ " has no subprojects.")};
 		}

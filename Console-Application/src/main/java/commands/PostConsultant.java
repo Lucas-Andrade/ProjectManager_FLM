@@ -8,7 +8,7 @@ import outputMethods.Result;
 import commands.exceptions.CommandException;
 import utils.AWorker;
 import app.AppElement;
-import app.commands.NewConsultantToRepo;
+import app.commands.AddConsultantToRepo;
 import app.commands.exceptions.CostOutOfBoundsException;
 import app.elements.Message;
 import app.repository.UserRepository;
@@ -130,7 +130,7 @@ public class PostConsultant extends BaseCommandUserAuthentication{
 		
 		AWorker worker = null;
 		try{
-			AppElement[] elements = new NewConsultantToRepo(repository, name, priceHour, bonus).call();
+			AppElement[] elements = new AddConsultantToRepo(repository, name, priceHour, bonus).call();
 			worker = (AWorker)elements[0];
 		} catch(CostOutOfBoundsException e) {
 			return new AppElement[]{new Message("Specified price per hour of the worker is less than zero.")};

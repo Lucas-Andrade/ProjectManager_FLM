@@ -8,6 +8,10 @@ import outputMethods.Result;
 import commands.exceptions.CommandException;
 import utils.Project;
 import app.AppElement;
+import app.commands.AddSubprojectToRepo;
+import app.commands.exceptions.AddedExistingSubproject;
+import app.commands.exceptions.NoSuchProjectException;
+import app.commands.exceptions.ProjectAddedToItselfException;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
@@ -126,35 +130,20 @@ public class PostSubprojects extends BaseCommandUserAuthentication {
 	@Override
 	protected AppElement[] internalCall()
 			throws CommandException, IOException {
-		long pid = getParameterAsLong(PID);
-		long subPid = getParameterAsLong(SUBPID);
-		AppElement[] messageAux = new AppElement[1];
-
-		if (pid == subPid){
-			Message message = new Message("Specified project identifications are equal!");
-			messageAux[0] = message;
-			return messageAux;
+		String pid = getParameterAsString(PID);
+		String subPid = getParameterAsString(SUBPID);
+		
+		try{
+			new AddSubprojectToRepo(repository, pid, subPid).call();
+		} catch(ProjectAddedToItselfException e) {
+			return new AppElement[]{ new Message("Specified project identifications are equal!")};
+		} catch(AddedExistingSubproject e) {
+			return new AppElement[]{ new Message("Could not add subproject to project, because "
+					+ "subproject already is a subproject (of this or another project).")};
+		} catch(NoSuchProjectException e) {
+			return new AppElement[]{ new Message("At least one of the specified projects to not exist.")};
 		}
-		Project project = repository.getProjectById(pid);
-		if (project == null){
-			Message message = new Message("Specified project does not exist.");
-			messageAux[0] = message;
-			return messageAux;
-		}
-		Project subProject = repository.getProjectById(subPid);
-		if (subProject == null){
-			Message message = new Message("Specified subproject does not exist.");
-			messageAux[0] = message;
-			return messageAux;
-		}
-		if (project.addProject(subProject)){ 
-			Message message = new Message("Success.");
-			messageAux[0] = message;
-		}
-		else{
-			Message message = new Message("Could not add subproject to project, because subproject already is a subproject (of this or another project).");
-			messageAux[0] = message;
-		}
-		return messageAux;
+		
+		return new AppElement[]{ new Message("Success.")};
 	}
 }
