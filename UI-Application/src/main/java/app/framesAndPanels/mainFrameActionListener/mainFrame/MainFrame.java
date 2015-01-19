@@ -18,18 +18,25 @@ import javax.swing.JScrollBar;
 import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
-import app.commands.PostProject;
-import app.commands.PostSubproject;
-import app.commands.PostUser;
 import app.elements.IUser;
-import app.repository.ProjectsRepository;
-import app.repository.UserRepository;
-import app.repository.WorkerRepository;
+import app.framesAndPanels.mainFrameActionListener.DeleteProjectAL;
+import app.framesAndPanels.mainFrameActionListener.GetSubprojectsAL;
+import app.framesAndPanels.mainFrameActionListener.GetUserAL;
+import app.framesAndPanels.mainFrameActionListener.GetWorkersInProjectAL;
+import app.framesAndPanels.mainFrameActionListener.PatchConsultantAL;
+import app.framesAndPanels.mainFrameActionListener.PatchProjectAL;
+import app.framesAndPanels.mainFrameActionListener.PatchUserAL;
+import app.framesAndPanels.mainFrameActionListener.PostConsultantAL;
+import app.framesAndPanels.mainFrameActionListener.PostProjectAL;
+import app.framesAndPanels.mainFrameActionListener.PostSubprojectAL;
+import app.framesAndPanels.mainFrameActionListener.PostUserAL;
+import app.framesAndPanels.mainFrameActionListener.PostWorkerAL;
+import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
 
+public class MainFrame extends JFrame
+{
 
-public class MainFrame extends JFrame{
-	
 	/**
 	 * 
 	 */
@@ -38,170 +45,201 @@ public class MainFrame extends JFrame{
 	public static RepositoryHolder repositories;
 	public static Authentication authentication;
 	public static IUser user;
-	
-	
-	public static void main(String[] args){
-	//	new MainFrame(new JSplitPane(), new InMemoryRepositoryHolder(), new Authentication()).setVisible(true);
+
+	public static void main(String[] args)
+	{
+		new MainFrame(new JSplitPane(), new InMemoryRepositoryHolder(), new
+		Authentication()).setVisible(true);
 	}
 
+	public MainFrame(JSplitPane splitPane, RepositoryHolder repositories,
+			Authentication authentication)
+	{
 
-
-
-	
-	public MainFrame(JSplitPane splitPane, RepositoryHolder repositories, Authentication authentication){
-		
-		this.repositories = repositories;	
-		this.authentication = authentication;
+		MainFrame.repositories = repositories;
+		MainFrame.authentication = authentication;
 		user = authentication.getAuthenticatedUser();
-		
+
 		this.setTitle("Project Manager");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(640, 420);
 		splitPane.setContinuousLayout(true);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		this.setJMenuBar(menuBar);
-		
+
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
-		
+
 		JMenuItem mntmExit = new JMenuItem("Exit");
 		mnFile.add(mntmExit);
-		
+
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
-		
+
 		JMenuItem mntmHelpMe = new JMenuItem("Help me!");
 		mnHelp.add(mntmHelpMe);
-		
+
 		JMenuItem mntmAbout = new JMenuItem("About");
 		mnHelp.add(mntmAbout);
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
-		
+
 		this.getContentPane().add(splitPane, BorderLayout.CENTER);
-		
+
 		JPanel rightPanel = new JPanel();
 		splitPane.setRightComponent(rightPanel);
 		rightPanel.setLayout(new BorderLayout(0, 0));
-		
+
 		JLabel lblWelcomeToProject = new JLabel("  Welcome to Project Manager");
 		lblWelcomeToProject.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		rightPanel.add(lblWelcomeToProject, BorderLayout.NORTH);
-		
+
 		JScrollBar scrollBar = new JScrollBar();
 		rightPanel.add(scrollBar, BorderLayout.EAST);
-		
+
 		JLabel lblStatus = new JLabel("Status: Ready");
 		rightPanel.add(lblStatus, BorderLayout.SOUTH);
-		
-		
+
 		JPanel leftPanel = new JPanel();
 		splitPane.setLeftComponent(leftPanel);
 		GridBagLayout gbl_leftPanel = new GridBagLayout();
-		gbl_leftPanel.columnWidths = new int[]{119, 0};
-		gbl_leftPanel.rowHeights = new int[]{284, 179, 0};
-		gbl_leftPanel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gbl_leftPanel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_leftPanel.columnWidths = new int[] { 119, 0 };
+		gbl_leftPanel.rowHeights = new int[] { 284, 179, 0 };
+		gbl_leftPanel.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
+		gbl_leftPanel.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 		leftPanel.setLayout(gbl_leftPanel);
-		
-		
-		
-		//load the image
+
+		// load the image
 		ClassLoader cl = getClass().getClassLoader();
-		Image main = new ImageIcon(cl.getResource("images/Main.png")).getImage();
-		
+		Image main = new ImageIcon(cl.getResource("images/Main.png"))
+				.getImage();
+
 		JMenuBar vert = new VerticalMenuBar();
-		
-	//	leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.X_AXIS));
+
+		// leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.X_AXIS));
 		GridBagConstraints gbc_vert = new GridBagConstraints();
 		gbc_vert.fill = GridBagConstraints.BOTH;
 		gbc_vert.insets = new Insets(0, 0, 5, 0);
 		gbc_vert.gridx = 0;
 		gbc_vert.gridy = 0;
 		leftPanel.add(vert, gbc_vert);
-		
-		
+
 		JMenu projectsMenu = new JMenu("Projects");
 		vert.add(projectsMenu);
-		
+
 		JMenuItem newProjectItem = new JMenuItem("New project");
 		projectsMenu.add(newProjectItem);
-		newProjectItem.addActionListener(new PostProject(splitPane, repositories, authentication));
-		
+		newProjectItem.addActionListener(new PostProjectAL(repositories,
+				authentication));
+
 		JMenuItem editProjectItem = new JMenuItem("Edit project");
 		projectsMenu.add(editProjectItem);
-		
+		newProjectItem.addActionListener(new PatchProjectAL(repositories,
+				authentication));
+
 		JMenuItem mntmDeleteProject = new JMenuItem("Delete project");
 		projectsMenu.add(mntmDeleteProject);
-		
+		newProjectItem.addActionListener(new DeleteProjectAL(repositories,
+				authentication));
+
 		JMenu mnGet = new JMenu("Get");
 		projectsMenu.add(mnGet);
-		
-		JMenuItem mntmGetProject = new JMenuItem("Get Project");
-		mnGet.add(mntmGetProject);
-		
+
 		JMenuItem mntmGetSubprojects = new JMenuItem("Get subprojects");
 		mnGet.add(mntmGetSubprojects);
-		
+		newProjectItem.addActionListener(new GetSubprojectsAL(repositories,
+				authentication));
+
 		JMenuItem mntmGetTeam = new JMenuItem("Get Team");
 		mnGet.add(mntmGetTeam);
-		
+		newProjectItem.addActionListener(new GetWorkersInProjectAL(
+				repositories, authentication));
+
 		JMenuItem mntmGetManager = new JMenuItem("Get Manager");
 		mnGet.add(mntmGetManager);
-		
+		newProjectItem.addActionListener(new GetWorkersInProjectAL(
+				repositories, authentication));
+
 		JMenu mnAddToProject = new JMenu("Add to Project");
 		projectsMenu.add(mnAddToProject);
-		
+
 		JMenuItem mntmAddConsultant = new JMenuItem("Add Consultant");
 		mnAddToProject.add(mntmAddConsultant);
-		
+		newProjectItem.addActionListener(new PostWorkerAL(repositories,
+				authentication));
+
 		JMenuItem mntmAddManager = new JMenuItem("Add Manager");
 		mnAddToProject.add(mntmAddManager);
-		
+		newProjectItem.addActionListener(new PostWorkerAL(repositories,
+				authentication));
+
 		JMenuItem mntmAddSubproject = new JMenuItem("Add Subproject");
 		mnAddToProject.add(mntmAddSubproject);
-		mntmAddSubproject.addActionListener(new PostSubproject(splitPane, repositories, authentication));
-		
+		newProjectItem.addActionListener(new PostSubprojectAL(repositories,
+				authentication));
+
 		JMenu consultantsMenu = new JMenu("Consultants");
 		vert.add(consultantsMenu);
-		
-		JMenuItem newConsultantItem = new JMenuItem("New consultant");
+
+		JMenuItem newConsultantItem = new JMenuItem("New consultant/Manager");
 		consultantsMenu.add(newConsultantItem);
-		
-		JMenuItem mntmDeleteConsultant = new JMenuItem("Delete consultant");
-		consultantsMenu.add(mntmDeleteConsultant);
-		
-		JMenuItem mntmGetConsultant = new JMenuItem("Get consultant");
+		newProjectItem.addActionListener(new PostConsultantAL(repositories,
+				authentication));
+
+		JMenuItem mntmEditWorker = new JMenuItem("Edit worker");
+		mnAddToProject.add(mntmEditWorker);
+		newProjectItem.addActionListener(new PatchConsultantAL(repositories,
+				authentication));
+
+		JMenuItem mntmAddWorker = new JMenuItem("Add worker to project");
+		consultantsMenu.add(mntmAddWorker);
+		newProjectItem.addActionListener(new PostWorkerAL(repositories,
+				authentication));
+
+		JMenuItem mntmGetConsultant = new JMenuItem("Get worker(s) in project");
 		consultantsMenu.add(mntmGetConsultant);
-		
+		newProjectItem.addActionListener(new GetWorkersInProjectAL(
+				repositories, authentication));
+
 		JMenu usersMenu = new JMenu("Users");
 		vert.add(usersMenu);
-		
+
 		JMenuItem mntmNewUser = new JMenuItem("New user");
 		usersMenu.add(mntmNewUser);
-		mntmNewUser.addActionListener(new PostUser(splitPane, repositories, authentication));
-		
+		newProjectItem.addActionListener(new PostUserAL(repositories,
+				authentication));
+
 		JMenuItem mntmGetUser = new JMenuItem("Get user");
 		usersMenu.add(mntmGetUser);
-		
+		newProjectItem.addActionListener(new GetUserAL(repositories,
+				authentication));
+
 		JMenuItem mntmEditUser = new JMenuItem("Edit user");
 		usersMenu.add(mntmEditUser);
-		
+		newProjectItem.addActionListener(new PatchUserAL(repositories,
+				authentication));
+
 		JMenu searchMenu = new JMenu("Search");
 		vert.add(searchMenu);
-		
-		JMenuItem mntmProjects = new JMenuItem("Projects");
+
+		JMenuItem mntmProjects = new JMenuItem("Subprojects in project");
 		searchMenu.add(mntmProjects);
-		
-		JMenuItem mntmConsultants = new JMenuItem("Consultants");
+		newProjectItem.addActionListener(new GetSubprojectsAL(repositories,
+				authentication));
+
+		JMenuItem mntmConsultants = new JMenuItem("Consultants/Manager in project");
 		searchMenu.add(mntmConsultants);
-		
-		JMenuItem mntmUsers = new JMenuItem("Users");
+		newProjectItem.addActionListener(new GetWorkersInProjectAL(repositories,
+				authentication));
+
+		JMenuItem mntmUsers = new JMenuItem("User");
 		searchMenu.add(mntmUsers);
-			
+		newProjectItem.addActionListener(new GetUserAL(repositories,
+				authentication));
+
 		JLabel randstadGirlImageLabel = new JLabel("");
 		randstadGirlImageLabel.setIcon(new ImageIcon(main));
-		//leftPanel.add(randstadGirlImageLabel);
+		// leftPanel.add(randstadGirlImageLabel);
 		GridBagConstraints gbc_randstadGirlImageLabel = new GridBagConstraints();
 		gbc_randstadGirlImageLabel.anchor = GridBagConstraints.NORTH;
 		gbc_randstadGirlImageLabel.fill = GridBagConstraints.HORIZONTAL;

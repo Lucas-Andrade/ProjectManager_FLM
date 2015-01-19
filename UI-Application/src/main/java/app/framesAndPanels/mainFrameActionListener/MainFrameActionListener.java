@@ -7,6 +7,13 @@ import app.authentication.Authentication;
 import app.framesAndPanels.commandWindowsActionListener.commandWindows.AuthenticationDialog;
 import app.repositoryHolders.RepositoryHolder;
 
+/**
+ * Class responsible for implementing the {@link ActionListener}s
+ * for the {@link MainFrame}.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ */
 public abstract class MainFrameActionListener implements ActionListener
 {
 
