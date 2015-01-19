@@ -2,7 +2,6 @@ package app.framesAndPanels.commandWindowsActionListener.commandWindows;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,9 +9,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import app.result.CommandResult;
 
 public abstract class MainDialogFrame extends JDialog {  
 
@@ -24,7 +20,6 @@ public abstract class MainDialogFrame extends JDialog {
 	private static final int X_BOUND =100;
 	private static final int WIDTH_BOUND =636;
 	private static final int HEIGHT_BOUND =387;
-	private CommandResult result;
 	private JButton saveButton;
 	private final MainPanel mainDialogPanel;
 	
@@ -53,8 +48,7 @@ public abstract class MainDialogFrame extends JDialog {
 	 * Create the dialog.
 	 * @param image,  
 	 */
-	public MainDialogFrame(CommandResult result) {
-		this.result = result;
+	public MainDialogFrame() {
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 		mainDialogPanel = new MainPanel();
