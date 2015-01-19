@@ -1,4 +1,4 @@
-package app.framesAndPanels;
+package app.framesAndPanels.commandWindowsActionListener.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -10,6 +10,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 
+import app.framesAndPanels.mainFrameActionListener.mainFrame.ProjectID;
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.result.CommandResult;
 import app.result.GetSubprojectsResult;

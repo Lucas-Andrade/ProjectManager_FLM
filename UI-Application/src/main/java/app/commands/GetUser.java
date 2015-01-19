@@ -3,7 +3,7 @@ package app.commands;
 import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
-import app.framesAndPanels.GetUserPanel;
+import app.framesAndPanels.commandWindowsActionListener.commandWindows.GetUserPanel;
 import app.repositoryHolders.RepositoryHolder;
 import app.result.GetUserResult;
 

@@ -1,4 +1,4 @@
-package app.framesAndPanels;
+package app.framesAndPanels.commandWindowsActionListener.commandWindows;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

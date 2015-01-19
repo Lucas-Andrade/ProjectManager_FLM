@@ -1,4 +1,4 @@
-package app.framesAndPanels;
+package app.framesAndPanels.mainFrameActionListener.mainFrame;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

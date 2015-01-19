@@ -1,4 +1,4 @@
-package app.framesAndPanels;
+package app.framesAndPanels.commandWindowsActionListener.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -7,6 +7,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 
+import app.framesAndPanels.mainFrameActionListener.mainFrame.ProjectID;
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.result.CommandResult;
 import app.result.PostProjectResult;

@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
-import app.framesAndPanels.AuthenticationDialog;
+import app.framesAndPanels.commandWindowsActionListener.commandWindows.AuthenticationDialog;
 import app.repositoryHolders.RepositoryHolder;
 
 public abstract class BaseCommand implements Command{

@@ -1,4 +1,4 @@
-package app.framesAndPanels;
+package app.framesAndPanels.commandWindowsActionListener.commandWindows;
 
 import java.awt.Font;
 import java.awt.GridBagConstraints;
