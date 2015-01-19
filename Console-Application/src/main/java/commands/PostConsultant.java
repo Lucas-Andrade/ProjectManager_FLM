@@ -7,9 +7,9 @@ import java.util.concurrent.Callable;
 import outputMethods.Result;
 import commands.exceptions.CommandException;
 import utils.AWorker;
-import utils.Consultant;
-import utils.Leader;
 import app.AppElement;
+import app.commands.NewConsultantToRepo;
+import app.commands.exceptions.CostOutOfBoundsException;
 import app.elements.Message;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
@@ -125,34 +125,21 @@ public class PostConsultant extends BaseCommandUserAuthentication{
 	@Override
 	protected AppElement[] internalCall()	throws CommandException, IOException{
 		String name = getParameterAsString(NAME);
-		double priceHour = getParameterAsDouble(PRICE_HOUR);
-		AppElement[] messageAux = new AppElement[1];
+		String priceHour = getParameterAsString(PRICE_HOUR);
+		String bonus = getParameterAsString(BONUS);
 		
-		if (priceHour < 0){
-			Message message = new Message("Specified price per hour of the worker is less than zero.");
-			messageAux[0] = message;
-			return messageAux;
-		}
-
-		long cid = repository.nextCID();
-
+		AWorker worker = null;
 		try{
-			double bonus = getParameterAsDouble(BONUS);
-
-			Leader manager = new Leader(name, priceHour, 0, bonus, cid);
-			repository.addManager(manager);
-			
-		} catch (NullPointerException e){
-			Consultant consultant = new Consultant(name, priceHour, 0, cid);
-			repository.addConsultant(consultant);
-		} catch (IllegalArgumentException e){
-			Message message1 = new Message("Cannot post a manager with negative bonus.");
-			messageAux[0] = message1;
-			return messageAux;
+			AppElement[] elements = new NewConsultantToRepo(repository, name, priceHour, bonus).call();
+			worker = (AWorker)elements[0];
+		} catch(CostOutOfBoundsException e) {
+			return new AppElement[]{new Message("Specified price per hour of the worker is less than zero.")};
+		} catch(IllegalArgumentException e) {
+			return new AppElement[]{new Message("Cannot post a manager with negative bonus.")};
+		} catch(ClassCastException e) {
+			return new AppElement[]{new Message("Unexpected result.")}; //just in case
 		}
-
-		Message message1 = new Message("Worker's identification (CID): " + cid);
-		messageAux[0] = message1;
-		return messageAux;
+		
+		return new AppElement[]{new Message("Worker's identification (CID): " + worker.getCID())};
 	}
 }

@@ -5,9 +5,12 @@ import java.util.concurrent.Callable;
 
 import outputMethods.Result;
 import app.AppElement;
+import app.commands.SetUserPropertiesFromRepo;
+import app.commands.exceptions.IncorrectPasswordException;
+import app.commands.exceptions.NoSuchUsernameException;
+import app.commands.exceptions.PasswordLengthOutOfBoundsException;
 import app.elements.Message;
 import app.elements.User;
-import app.elements.IUser;
 import app.repository.UserRepository;
 
 /**
@@ -118,29 +121,19 @@ public class PatchUser extends BaseCommandUserAuthentication{
 		this.newPassword = getParameterAsString(NEWPASSWORD);
 		String oldPassword = parameters.get(OLDPASSWORD);
 		this.username = getParameterAsString(USERNAME);
-
-		if (!super.authenticateUser(this.username, oldPassword)){
+		
+		try{
+			new SetUserPropertiesFromRepo(repository, username, oldPassword, newPassword).call();
+		} catch(IncorrectPasswordException e) {
 			return new AppElement[] { new Message(
 					"Old password is not correct for user: " + username) };
+		} catch(NoSuchUsernameException e) {
+			return new AppElement[] { new Message("User not found!") };
+		} catch(PasswordLengthOutOfBoundsException e) {
+			return new AppElement[] { new Message("New password must at least have 4 characters.") };
 		}
-
-		IUser user = repository.getUserByUsername(username);
-		AppElement[] messageAux = new AppElement[1];
-
-		if (user == null){
-			Message message = new Message("User not found!");
-			messageAux[0] = message;
-			return messageAux;
-		}
-		if (user.setNewPassword(newPassword)){
-			Message message = new Message("Password successfully changed");
-			messageAux[0] = message;
-		} else {
-			Message message = new Message(
-					"New password must at least have 4 characters.");
-			messageAux[0] = message;
-		}
-		return messageAux;
+		
+		return new AppElement[] { new Message("Password successfully changed.") };
 	}
 
 	/**
