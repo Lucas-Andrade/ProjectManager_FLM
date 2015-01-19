@@ -7,13 +7,13 @@ import app.authentication.Authentication;
 import app.framesAndPanels.commandWindowsActionListener.commandWindows.AuthenticationDialog;
 import app.repositoryHolders.RepositoryHolder;
 
-public abstract class MainFrameActionListner implements ActionListener
+public abstract class MainFrameActionListener implements ActionListener
 {
 
 	protected RepositoryHolder repositories;
 	protected Authentication authentication;
 
-	public MainFrameActionListner(RepositoryHolder repositories, Authentication authentication)
+	public MainFrameActionListener(RepositoryHolder repositories, Authentication authentication)
 	{
 		this.repositories = repositories;
 		this.authentication = authentication;

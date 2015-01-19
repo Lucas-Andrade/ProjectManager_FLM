@@ -7,14 +7,14 @@ import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
 import app.framesAndPanels.commandWindowsActionListener.commandWindows.AuthenticationDialog;
-import app.framesAndPanels.commandWindowsActionListener.commandWindows.PatchProjectFrame;
+import app.framesAndPanels.commandWindowsActionListener.commandWindows.GetWorkersInProjectFrame;
 import app.framesAndPanels.commandWindowsActionListener.commandWindows.PostProjectFrame;
 import app.repositoryHolders.RepositoryHolder;
 
-public class PatchProjectAL extends MainFrameActionListener
+public class GetWorkersInProjectAL extends MainFrameActionListener
 {
 
-	public PatchProjectAL(RepositoryHolder repositories,
+	public GetWorkersInProjectAL(RepositoryHolder repositories,
 			Authentication authentication)
 	{
 		super(repositories, authentication);
@@ -23,7 +23,7 @@ public class PatchProjectAL extends MainFrameActionListener
 	@Override
 	void action()
 	{
-		new PatchProjectFrame().setVisible(true);
+		new GetWorkersInProjectFrame().setVisible(true);
 	}
 
 }
