@@ -1,4 +1,4 @@
-package app.framesAndPanels;
+package app.framesAndPanels.commandWindowsActionListener.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
+import app.framesAndPanels.mainFrameActionListener.mainFrame.ConsultantID;
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.result.CommandResult;
 import app.result.PostProjectResult;
