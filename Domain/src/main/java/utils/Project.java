@@ -45,7 +45,7 @@ public class Project implements IProject{
 	 */
 	public Project(String name, Local local, Leader manager, Team team, long pid){
 		if (name == null || local == null || team == null){
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Name, Local and Team can't be null.");
 		}
 		this.name = name;
 		this.local = local;
