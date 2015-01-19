@@ -1,4 +1,4 @@
-package app.framesAndPanels;
+package app.framesAndPanels.commandWindowsActionListener.commandWindows;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -21,6 +21,7 @@ import java.awt.Color;
 import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
 
+import app.framesAndPanels.mainFrameActionListener.mainFrame.ProjectID;
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.result.CommandResult;
 import app.result.GetSubprojectsResult;

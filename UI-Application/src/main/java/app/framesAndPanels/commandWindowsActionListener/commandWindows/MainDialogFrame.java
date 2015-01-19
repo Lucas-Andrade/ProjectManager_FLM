@@ -1,7 +1,8 @@
-package app.framesAndPanels;
+package app.framesAndPanels.commandWindowsActionListener.commandWindows;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,7 +25,7 @@ public abstract class MainDialogFrame extends JDialog {
 	private static final int WIDTH_BOUND =636;
 	private static final int HEIGHT_BOUND =387;
 	private CommandResult result;
-	private JButton okButton;
+	private JButton saveButton;
 	private final MainPanel mainDialogPanel;
 	
 	/**
@@ -43,9 +44,10 @@ public abstract class MainDialogFrame extends JDialog {
 		mainDialogPanel.setHelpTip(help);
 	}
 	
-	protected void setOkButtonActionListener(JTextField[] textFields) {
-		okButton.addActionListener(new OkActionListener(textFields));
+	public JButton getSaveButton(){
+		return saveButton;
 	}
+
 	
 	/**
 	 * Create the dialog.
@@ -53,14 +55,8 @@ public abstract class MainDialogFrame extends JDialog {
 	 */
 	public MainDialogFrame(CommandResult result) {
 		this.result = result;
-		
-		try {
-			this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			this.setVisible(true);
-		
-			}catch (Exception e) {
-			e.printStackTrace();
-		}
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		this.setVisible(true);
 		mainDialogPanel = new MainPanel();
 		
 		this.setLocationRelativeTo(null);
@@ -74,11 +70,11 @@ public abstract class MainDialogFrame extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				okButton = new JButton("OK");
-				okButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/Ok.png")));
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				saveButton = new JButton("Save");
+				saveButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/Ok.png")));
+				saveButton.setActionCommand("Save");
+				buttonPane.add(saveButton);
+				getRootPane().setDefaultButton(saveButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
@@ -107,20 +103,20 @@ public abstract class MainDialogFrame extends JDialog {
 		
 	}
 	
-	protected class OkActionListener implements ActionListener{
-		
-		JTextField[] textFields;
-		
-		public OkActionListener(JTextField[] textFields) {
-			this.textFields = textFields;
-		}
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			result.executeResult(textFields);
-			dispose();
-			
-		}
-	}
+//	protected class SaveActionListener implements ActionListener{
+//		
+//		JTextField[] textFields;
+//		
+//		public SaveActionListener(JTextField[] textFields) {
+//			this.textFields = textFields;
+//		}
+//		
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+//			
+//			dispose();
+//			
+//		}
+//	}
 }
 

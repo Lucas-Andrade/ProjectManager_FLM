@@ -1,4 +1,4 @@
-package app.framesAndPanels;
+package app.framesAndPanels.commandWindowsActionListener.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -8,9 +8,11 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.result.CommandResult;
 import app.result.PostProjectResult;
+
 import java.awt.GridBagLayout;
 
 public class PostUserFrame extends MainDialogFrame {

@@ -7,7 +7,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
 import app.elements.IUser;
-import app.framesAndPanels.ErrorDialog;
+import app.framesAndPanels.mainFrameActionListener.mainFrame.ErrorDialog;
 import app.repository.UserRepository;
 import app.repositoryHolders.RepositoryHolder;
 

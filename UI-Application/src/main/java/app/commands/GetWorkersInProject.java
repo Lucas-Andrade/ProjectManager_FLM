@@ -3,7 +3,7 @@ package app.commands;
 import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
-import app.framesAndPanels.GetWorkersInProjectFrame;
+import app.framesAndPanels.commandWindowsActionListener.commandWindows.GetWorkersInProjectFrame;
 import app.repositoryHolders.RepositoryHolder;
 import app.result.GetWorkersInProjectResult;
 

@@ -3,7 +3,7 @@ package app.commands;
 import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
-import app.framesAndPanels.DeleteProjectFrame;
+import app.framesAndPanels.commandWindowsActionListener.commandWindows.DeleteProjectFrame;
 import app.repositoryHolders.RepositoryHolder;
 import app.result.DeleteProjectResult;
 

@@ -37,9 +37,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="app.framesAndPanels.PostProjectFrame" project="UI-Application-pom" 
-    file="/UI-Application-pom/src/main/java/app/framesAndPanels/PostProjectFrame.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="app.framesAndPanels.commandWindowsActionListener.commandWindows.PostProjectFrame" 
+    project="UI-Application-pom" 
+    file="/UI-Application-pom/src/main/java/app/framesAndPanels/commandWindowsActionListener/commandWindows/PostProjectFrame.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="958" y="111"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -47,8 +48,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="app.framesAndPanels.MainFrame" project="UI-Application-pom" 
-    file="/UI-Application-pom/src/main/java/app/framesAndPanels/MainFrame.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="app.framesAndPanels.mainFrameActionListener.mainFrame.MainFrame" 
+    project="UI-Application-pom" 
+    file="/UI-Application-pom/src/main/java/app/framesAndPanels/mainFrameActionListener/mainFrame/MainFrame.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="135" width="292" x="60" y="170"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -56,19 +59,10 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="app.framesAndPanels.MainDialogFrame.okActionListener" project="UI-Application-pom" 
-    file="/UI-Application-pom/src/main/java/app/framesAndPanels/MainDialogFrame.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="591" y="358"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="8" language="java" name="app.framesAndPanels.MainDialogFrame" project="UI-Application-pom" 
-    file="/UI-Application-pom/src/main/java/app/framesAndPanels/MainDialogFrame.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="app.framesAndPanels.commandWindowsActionListener.commandWindows.MainDialogFrame" 
+    project="UI-Application-pom" 
+    file="/UI-Application-pom/src/main/java/app/framesAndPanels/commandWindowsActionListener/commandWindows/MainDialogFrame.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="665" y="101"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -76,32 +70,14 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="app.framesAndPanels.MainDialogFrame.cancelActionListener" 
-    project="UI-Application-pom" file="/UI-Application-pom/src/main/java/app/framesAndPanels/MainDialogFrame.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="834" y="352"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <nesting id="10">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="7"/>  
-  </nesting>  
-  <generalization id="11">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <nesting id="12">    
+  <nesting id="8">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="2"/>  
   </nesting>  
-  <nesting id="13">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="9"/>  
-  </nesting>  
+  <generalization id="9">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

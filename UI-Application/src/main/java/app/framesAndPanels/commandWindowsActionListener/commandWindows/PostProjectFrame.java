@@ -1,4 +1,4 @@
-package app.framesAndPanels;
+package app.framesAndPanels.commandWindowsActionListener.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
+import app.framesAndPanels.commandWindowsActionListener.NewProjectAL;
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.result.CommandResult;
 import app.result.PostProjectResult;
@@ -156,7 +157,9 @@ public class PostProjectFrame extends MainDialogFrame {
 		textFields[1] = priceField;
 		textFields[2] = longitudeField;
 		textFields[3] = latitudeField;
-		this.setOkButtonActionListener(textFields);
+		
+		this.getSaveButton().addActionListener(new NewProjectAL(textFields));
+		
 		
 		this.setVisible(true);
 	}

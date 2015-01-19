@@ -1,4 +1,4 @@
-package app.framesAndPanels;
+package app.framesAndPanels.mainFrameActionListener.mainFrame;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
+
+import app.framesAndPanels.commandWindowsActionListener.commandWindows.MainDialogFrame;
 
 public class ErrorDialog extends JDialog {
 	
