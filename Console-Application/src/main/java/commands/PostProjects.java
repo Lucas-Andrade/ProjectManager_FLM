@@ -9,6 +9,7 @@ import commands.exceptions.CommandException;
 import utils.Local;
 import utils.Project;
 import app.AppElement;
+import app.commands.AddProjectToRepo;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
@@ -130,26 +131,23 @@ public class PostProjects extends BaseCommandUserAuthentication{
 	@Override
 	protected AppElement[] internalCall()
 			throws CommandException, IOException{
-		double latitude = getParameterAsDouble(LATITUDE);
-		double longitude = getParameterAsDouble(LONGITUDE);
+		String latitude = getParameterAsString(LATITUDE);
+		String longitude = getParameterAsString(LONGITUDE);
 		String name = getParameterAsString(NAME);
-		double price = getParameterAsDouble(PRICE);
-		Local local;
+		String price = getParameterAsString(PRICE);
+		Project project;
 		
 		try{ 
-			local = new Local(latitude, longitude, name, price);
-		}
-		catch(IllegalArgumentException e){
+			AppElement[] element = new AddProjectToRepo(repository, latitude, longitude, name, price).call();
+			project = (Project)element[0];
+		} catch(IllegalArgumentException e){ //this also covers NumberFormatException
 			return new AppElement[]{
 					new Message("Price, latitude or longitude out of bounds.")};
+		} catch(ClassCastException e){ //just in case
+			return new AppElement[]{new Message("Unexpected result.")};
 		}
 		
-		long pid = repository.getNextPID();
-		Project project = new Project(local, pid);
-
-		repository.addProject(project);
-		
-		Message message = new Message("Product identification (PID): " + pid);
+		Message message = new Message("Product identification (PID): " + project.getPID());
 		AppElement[] messageAux = {message};
 		return messageAux;
 	}

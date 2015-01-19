@@ -6,6 +6,9 @@ import java.util.concurrent.Callable;
 import outputMethods.Result;
 import utils.AWorker;
 import app.AppElement;
+import app.commands.SetConsultantPropertiesFromRepo;
+import app.commands.exceptions.CostOutOfBoundsException;
+import app.commands.exceptions.NoSuchWorkerException;
 import app.elements.Message;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
@@ -114,19 +117,16 @@ public class PatchConsultant extends BaseCommandUserAuthentication {
 	 */
 	@Override
 	protected AppElement[] internalCall() throws Exception{
-		AWorker worker = repository
-				.getAWorkerByID(this.getParameterAsLong(CID));
-		if (worker == null){
+		
+		try{
+			new SetConsultantPropertiesFromRepo(repository, getParameterAsString(CID), 
+					getParameterAsString(NAME), getParameterAsString(PRICE_HOUR)).call();
+		} catch(NoSuchWorkerException e) {
 			return new AppElement[] { new Message("Worker with CID: "
 					+ getParameterAsLong(CID) + "was not found!") };
-		}
-		if (parameters.containsKey(NAME)){
-			worker.setName(parameters.get(NAME));
-		}
-		if (parameters.containsKey(PRICE_HOUR) &&
-					!worker.setCostPerHour(this.getParameterAsDouble(PRICE_HOUR))){
+		} catch(CostOutOfBoundsException e) {
 			return new AppElement[] { new Message(
-						"Worker's cost per hour cannot be negative.") };
+					"Worker's cost per hour cannot be negative.") };
 		}
 		
 		return new AppElement[] { new Message("The Consultant parameters were successfully changed!")};

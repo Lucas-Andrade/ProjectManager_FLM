@@ -1,12 +1,14 @@
 package commands;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
 import outputMethods.Result;
 import utils.Project;
 import app.AppElement;
+import app.commands.GetSubprojectsFromRepo;
+import app.commands.exceptions.NoSubprojectsFoundException;
+import app.commands.exceptions.NoSuchProjectException;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 
@@ -101,23 +103,19 @@ public class GetSubproject extends BaseCommandResultsOutputMethod{
 	 */
 	@Override
 	protected AppElement[] internalCall() throws Exception{
-		Project project = repository.getProjectById(getParameterAsLong(PID));
-		if(project == null){
-			return new AppElement[]{new Message("Project with ID: " + getParameterAsLong(PID) 
+		
+		AppElement[] subprojectAux = null;
+		String pid = getParameterAsString(PID);
+		try{
+			subprojectAux = new GetSubprojectsFromRepo(repository, pid).call();
+		} catch(NoSuchProjectException e) {
+			return new AppElement[]{new Message("Project with ID: " + pid
 					+ " was not found!")};
-		}
-		int subprojectsNumber = project.getSubprojectsNumber();
-		if(subprojectsNumber == 0){
-			return new AppElement[]{new Message("Project with ID: " + getParameterAsLong(PID) 
+		} catch(NoSubprojectsFoundException e) {
+			return new AppElement[]{new Message("Project with ID: " + pid
 					+ " has no subprojects.")};
 		}
-		Collection<Project> subprojects = project.getContainerProject();
-		AppElement[] subprojectAux = new AppElement[subprojectsNumber];
-		int i = 0;
-		
-		for (Project subproject : subprojects){
-			subprojectAux[i++] = subproject;
-		}
+	
 		return subprojectAux;
 	}
 }

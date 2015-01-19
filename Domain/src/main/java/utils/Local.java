@@ -175,7 +175,7 @@ public class Local implements ICost, IName {
 	
 	/**
 	 * verifies if the value of the {@code longitude} is between the correct interval
-	 * @param latitude - value of the {@code longitude} to be verified
+	 * @param latitudeString - value of the {@code longitude} to be verified
 	 * @return {@code true} if it is inside the interval
 	 * @return {@code false} if it is not inside the interval
 	 */
@@ -185,7 +185,7 @@ public class Local implements ICost, IName {
 	
 	/**
 	 * verifies if the value of the {@code price} non negative
-	 * @param latitude - value of the {@code price} to be verified
+	 * @param latitudeString - value of the {@code price} to be verified
 	 * @return {@code true} if it is non negative
 	 * @return {@code false} if it is negative
 	 */

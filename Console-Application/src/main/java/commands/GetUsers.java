@@ -5,6 +5,7 @@ import java.util.concurrent.Callable;
 
 import outputMethods.Result;
 import app.AppElement;
+import app.commands.GetAllUsersFromRepo;
 import app.elements.User;
 import app.repository.UserRepository;
 
@@ -74,8 +75,8 @@ public class GetUsers extends BaseCommandResultsOutputMethod{
 	 * {@code UserRepository}.
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception	{
-		return repository.getAll();
+	protected AppElement[] internalCall() throws Exception{
+		return new GetAllUsersFromRepo(repository).call();
 	}
 
 	/**

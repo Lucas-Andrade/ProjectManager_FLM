@@ -1,6 +1,5 @@
 package commands;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
@@ -11,6 +10,11 @@ import utils.Leader;
 import utils.Project;
 import utils.Team;
 import app.AppElement;
+import app.commands.GetProjectWorkersFromRepo;
+import app.commands.exceptions.NoManagerFoundException;
+import app.commands.exceptions.NoWorkersFoundException;
+import app.commands.exceptions.NoSuchProjectException;
+import app.commands.exceptions.UnrecognisedWorkerTypeException;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 
@@ -42,7 +46,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod {
 	 * {@code long} with the argument PID. This argument is used for getting the
 	 * {@code Project} from the {@code ProjectRepository}.
 	 */
-	private long projectId;
+	private String projectId;
 
 	/**
 	 * {@code String} with the {@code Project}ID argument's name. The
@@ -133,56 +137,26 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod {
 	 */
 	@Override
 	protected AppElement[] internalCall() throws Exception{
-		projectId = getParameterAsLong(PID);
-		this.typeWorker = getParameterAsString(WTYPE);
-		Project project = projectRepository.getProjectById(projectId);
-		if (project == null){
+		
+		projectId = getParameterAsString(PID);
+		typeWorker = getParameterAsString(WTYPE);
+		AppElement[] toReturn = null;
+		
+		try{
+			toReturn = new GetProjectWorkersFromRepo(projectRepository, projectId, typeWorker).call();
+		} catch(NoSuchProjectException e) {
 			return new AppElement[]{new Message("Project with ID: " + projectId 
 					+ " was not found!")};
-		}
-		
-		if (typeWorker.equalsIgnoreCase("Manager")){
-			return getManager(project);
-		} else if (typeWorker.equalsIgnoreCase("Consultant")){
-			return getWorkers(project);
-		} else
-			return new AppElement[]{new Message("Unrecognised type of worker.")};
-	}
-
-	/**
-	 * Returns the {@code Manager} of the {@code Project}, if one has been assigned.
-	 * @param project
-	 * @return An array of {@code DatabaseElement} with one element carrying 
-	 * the {@code Manager} of the {@code Project}
-	 */
-	private AppElement[] getWorkers(Project project) {
-		Collection<AWorker> workers = project.getTeam();
-		if (workers.isEmpty()){
+		} catch(UnrecognisedWorkerTypeException e) {
+			new Message("Unrecognised type of worker.");
+		} catch(NoManagerFoundException e) {
+			return new AppElement[]{new Message("Project with ID: " + projectId 
+					+ " has no manager.")};
+		} catch(NoWorkersFoundException e) {
 			return new AppElement[]{new Message("Project with ID: " + projectId 
 					+ " has no assigned workers.")};
 		}
-		  
-		AppElement[] workersArray = new AppElement[workers.size()];
-		int i = 0;
-		for (AWorker worker : workers){
-			workersArray[i++] = worker;
-		}
-		return workersArray;
-	}
-
-	/**
-	 * Returns and array with the {@code Consultant}s working on the {@code Project}, 
-	 * if any have been assigned.
-	 * @param project
-	 * @return An array of {@code DatabaseElement} with the workers of the {@code Project}
-	 */
-	private AppElement[] getManager(Project project) {
-		Leader manager = project.getManager();
-		if(manager == null){
-			return new AppElement[]{new Message("Project with ID: " + projectId 
-					+ " has no manager.")};
-		}
-		AppElement[] managerAux = {manager};
-		return managerAux;
+		
+		return toReturn;
 	}
 }

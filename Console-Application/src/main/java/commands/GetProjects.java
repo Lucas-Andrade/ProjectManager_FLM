@@ -6,6 +6,8 @@ import java.util.concurrent.Callable;
 import outputMethods.Result;
 import utils.Project;
 import app.AppElement;
+import app.commands.GetProjectFromRepo;
+import app.commands.exceptions.NoSuchProjectException;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 
@@ -95,12 +97,15 @@ public class GetProjects extends BaseCommandResultsOutputMethod{
 	 */
 	@Override
 	protected AppElement[] internalCall() throws Exception{
-		Project project = repository.getProjectById(getParameterAsLong(PID));
 		
-		if(project == null){
+		AppElement[] project;
+		
+		try{
+			project = new GetProjectFromRepo(repository, getParameterAsString(PID)).call();
+		} catch(NoSuchProjectException e ) {
 			return new AppElement[]{new Message("Project not found!")};
 		}
-		AppElement[] projectAux = {project};
-		return projectAux;
+
+		return project;
 	}
 }

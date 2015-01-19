@@ -5,6 +5,8 @@ import java.util.concurrent.Callable;
 
 import outputMethods.Result;
 import app.AppElement;
+import app.commands.GetUserFromRepo;
+import app.commands.exceptions.NoSuchUsernameException;
 import app.elements.Message;
 import app.elements.User;
 import app.repository.UserRepository;
@@ -99,10 +101,15 @@ public class GetUser extends BaseCommandResultsOutputMethod{
 	 */
 	@Override
 	protected AppElement[] internalCall() throws Exception{
-		AppElement[] user = new AppElement[]{repository.getUserByUsername(username)};
-		if(user[0] == null){
+		username = getParameterAsString(USERNAME);
+		
+		AppElement[] user = null;
+		try{
+			user = new GetUserFromRepo(repository, username).call();
+		} catch(NoSuchUsernameException e) {
 			return new AppElement[]{new Message("User " + username + " not found!")};
 		}
+
 		return user;
 	}
 }

@@ -6,6 +6,10 @@ import java.util.concurrent.Callable;
 import outputMethods.Result;
 import utils.Project;
 import app.AppElement;
+import app.commands.SetProjectPropertiesFromRepo;
+import app.commands.exceptions.CostOutOfBoundsException;
+import app.commands.exceptions.GeographicCoordinatesOutOfBoundsException;
+import app.commands.exceptions.NoSuchProjectException;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
@@ -114,65 +118,20 @@ public class PatchProject extends BaseCommandUserAuthentication {
 	 */
 	@Override
 	protected AppElement[] internalCall() throws Exception{
-
-		Project project = pRepository.getProjectById(getParameterAsLong(PID));
-		AppElement[] messageAux = new AppElement[1];
-
-		if (project == null){
-			messageAux[0] = new Message("Project not found!");
-			return messageAux;
+		
+		try{
+			new SetProjectPropertiesFromRepo(pRepository, getParameterAsString(PID),
+				getParameterAsString(LONGITUDE), getParameterAsString(LATITUDE), getParameterAsString(PRICE), 
+				getParameterAsString(NAME)).call();
+		} catch(NoSuchProjectException e) {
+			return new AppElement[]{new Message("Project not found!")};
+		} catch(GeographicCoordinatesOutOfBoundsException e) {
+			return new AppElement[]{new Message("Longitude and/or latitude out of bounds.")};
+		} catch(CostOutOfBoundsException e) {
+			return new AppElement[]{new Message("A negative price is not allowed.")};
 		}
 		
-		AppElement patch = patchParameters(project);
-		if(patch != null){
-			messageAux[0] = patch;
-			return messageAux;
-		}
-		
-		messageAux[0] = new Message("The Project parameters were successfully changed!");
-		return messageAux;
-	}
-	
-	/**
-	 * Verifies which parameters of the {@code Project} were parsed into the parameter's {@code Map},
-	 * and updates the {@code Project} accordingly. If any parameter is out of bounds a {@code Message}
-	 * will be returned.
-	 * @param project
-	 * @return A {@code Message} if a parameter is out of bounds
-	 * @return {@code null} if no {@code Message} was needed 
-	 */
-	private AppElement patchParameters(Project project){
-		if (parameters.containsKey(NAME)){
-			project.updateLocalName(getParameterAsString(NAME));
-		}
-		return checkParametersToPatch(project);
-	}
-	
-	/**
-	 * Verifies any parameter of the {@code Project} that could be out of bounds was parsed 
-	 * to the parameters {@code Map}. If any parameter is out of bounds a {@code Message}
-	 * will be returned.
-	 * @param project
-	 * @return A {@code Message} if a parameter is out of bounds
-	 * @return {@code null} if no {@code Message} was needed 
-	 */
-	private AppElement checkParametersToPatch(Project project){
-		if (parameters.containsKey(LONGITUDE) && 
-				!project.updateLongitude(getParameterAsDouble(LONGITUDE))){
-			return new Message("Longitude out of bounds.");
-		}
-	
-		if (parameters.containsKey(LATITUDE) && 
-					!project.updateLatitude(getParameterAsDouble(LATITUDE))){
-			return new Message("Latitude out of bounds.");
-		}
-	
-		if (parameters.containsKey(PRICE) &&
-					!project.updateLocalPrice(getParameterAsDouble(PRICE))){
-			return new Message("A negative price is not allowed.");
-		}
-		
-		return null;
+		return new AppElement[]{new Message("The Project parameters were successfully changed!")};
 	}
 
 	/**

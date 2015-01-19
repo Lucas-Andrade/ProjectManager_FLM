@@ -1,13 +1,13 @@
 package commands;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
 import outputMethods.Result;
 import utils.Project;
 import app.AppElement;
+import app.commands.RemoveProjectToRepo;
+import app.commands.exceptions.NoSuchProjectException;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
@@ -119,37 +119,14 @@ public class DeleteProjects extends BaseCommandUserAuthentication{
 	 */
 	@Override
 	protected AppElement[] internalCall() throws Exception{
-		long pid = this.getParameterAsLong(PID);
-		Project parent = repository.getProjectById(pid);
-		if (parent == null){
-			return new AppElement[] { new Message("Project not found!") };
-		}
-		Collection<Project> projectsToRemove = getAllProjectsToRemove(parent);
+		String pid = this.getParameterAsString(PID);
 
-		for (Project project : projectsToRemove){
-			repository.removeProject(project);
+		try{
+			new RemoveProjectToRepo(repository, pid).call();
+		} catch( NoSuchProjectException e) {
+			return new AppElement[]{new Message("Project does not exist.")};
 		}
 		return new AppElement[]{new Message("Project successfully deleted.")};
 	}
 
-	/**
-	 * Constructs a {@code Collection<Project>} with all the subprojects of the
-	 * parent {@code Project}, including all the subprojects of the subprojects
-	 * and so on. The parent itself will be included in the {@code Collection}.
-	 * 
-	 * @param parent
-	 * @return A {@code Collection} with all the subprojects of a parent
-	 *         {@code Project}, and all of their subprojects and so on.
-	 */
-	private Collection<Project> getAllProjectsToRemove(Project parent){
-		Collection<Project> toRemove = new ArrayList<Project>();
-		toRemove.add(parent);
-
-		Collection<Project> subprojects = parent.getContainerProject();
-		for (Project project : subprojects){
-			toRemove.addAll(getAllProjectsToRemove(project));
-		}
-		parent.removeAllSubprojects();
-		return toRemove;
-	}
 }
