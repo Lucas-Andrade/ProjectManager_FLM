@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
+import app.framesAndPanels.commandWindowsActionListener.NewUserAL;
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.result.CommandResult;
 import app.result.PostProjectResult;
@@ -31,7 +32,7 @@ public class PostUserFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostUserFrame dialog = new PostUserFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
+			PostUserFrame dialog = new PostUserFrame();
 			//definimos o título da janel
 			dialog.setTitle("New User");
 			dialog.setImage("images/add_user.jpg");
@@ -48,8 +49,8 @@ public class PostUserFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 * @throws IOException 
 	 */
-	public PostUserFrame(CommandResult result) {
-		super(result);
+	public PostUserFrame() {
+		super();
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 60, 100, 100, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0};
@@ -155,6 +156,6 @@ public class PostUserFrame extends MainDialogFrame {
 		infoArray[1] = passwordField;
 		infoArray[2] = emailField;
 		infoArray[3] = fullNameField;
-		this.setOkButtonActionListener(infoArray);
+		this.getSaveButton().addActionListener(new NewUserAL(infoArray));
 	}
 }

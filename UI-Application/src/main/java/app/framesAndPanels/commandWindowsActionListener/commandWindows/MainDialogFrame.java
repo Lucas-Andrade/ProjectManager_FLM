@@ -53,7 +53,7 @@ public abstract class MainDialogFrame extends JDialog {
 	 * Create the dialog.
 	 * @param image,  
 	 */
-	public MainDialogFrame(CommandResult result) {
+	public MainDialogFrame() {
 		this.result = result;
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.setVisible(true);

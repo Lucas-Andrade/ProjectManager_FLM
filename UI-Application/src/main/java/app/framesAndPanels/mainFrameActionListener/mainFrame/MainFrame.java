@@ -21,6 +21,10 @@ import app.authentication.Authentication;
 import app.commands.PostProject;
 import app.commands.PostSubproject;
 import app.commands.PostUser;
+import app.elements.IUser;
+import app.repository.ProjectsRepository;
+import app.repository.UserRepository;
+import app.repository.WorkerRepository;
 import app.repositoryHolders.RepositoryHolder;
 
 
@@ -31,12 +35,24 @@ public class MainFrame extends JFrame{
 	 */
 	private static final long serialVersionUID = 1406565561867998589L;
 	public static final int PANEL_DIVIDER_LOCATION = 120;
+	public static RepositoryHolder repositories;
+	public static Authentication authentication;
+	public static IUser user;
+	
 	
 	public static void main(String[] args){
 	//	new MainFrame(new JSplitPane(), new InMemoryRepositoryHolder(), new Authentication()).setVisible(true);
 	}
+
+
+
+
 	
 	public MainFrame(JSplitPane splitPane, RepositoryHolder repositories, Authentication authentication){
+		
+		this.repositories = repositories;	
+		this.authentication = authentication;
+		user = authentication.getAuthenticatedUser();
 		
 		this.setTitle("Project Manager");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
