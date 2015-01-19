@@ -27,7 +27,7 @@ public interface UserRepository extends Repository<AppElement>{
 	 *            The User to add.
 	 * @return True if successful, False if not.
 	 */
-	public boolean addUser(User user);
+	public boolean addUser(IUser user);
 
 	/**
 	 * Checks if the password corresponds to the User with the username.

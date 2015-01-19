@@ -11,10 +11,10 @@ import utils.Project;
 import utils.Team;
 import app.AppElement;
 import app.commands.GetProjectWorkersFromRepo;
-import app.commands.exceptions.NoManagerFoundException;
+import app.commands.exceptions.NoManagerInProjectException;
 import app.commands.exceptions.NoWorkersFoundException;
 import app.commands.exceptions.NoSuchProjectException;
-import app.commands.exceptions.UnrecognisedWorkerTypeException;
+import app.commands.exceptions.IllegalWorkerTypeException;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 
@@ -147,9 +147,9 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod {
 		} catch(NoSuchProjectException e) {
 			return new AppElement[]{new Message("Project with ID: " + projectId 
 					+ " was not found!")};
-		} catch(UnrecognisedWorkerTypeException e) {
+		} catch(IllegalWorkerTypeException e) {
 			new Message("Unrecognised type of worker.");
-		} catch(NoManagerFoundException e) {
+		} catch(NoManagerInProjectException e) {
 			return new AppElement[]{new Message("Project with ID: " + projectId 
 					+ " has no manager.")};
 		} catch(NoWorkersFoundException e) {

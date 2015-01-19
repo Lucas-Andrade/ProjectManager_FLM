@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import utils.Project;
 import app.AppElement;
-import app.commands.exceptions.NoSubprojectsFoundException;
+import app.commands.exceptions.NoSuchSubprojectsException;
 import app.commands.exceptions.NoSuchProjectException;
 import app.repository.ProjectsRepository;
 
@@ -22,7 +22,7 @@ public class GetSubprojectsFromRepo implements Command{
 	}
 	
 	@Override
-	public AppElement[] call() throws NoSuchProjectException, NoSubprojectsFoundException {
+	public AppElement[] call() throws NoSuchProjectException, NoSuchSubprojectsException {
 		
 		long pid = Long.parseLong(pidString);
 		Project project = pRepo.getProjectById(pid);
@@ -32,7 +32,7 @@ public class GetSubprojectsFromRepo implements Command{
 		
 		int subprojectsNumber = project.getSubprojectsNumber();
 		if(subprojectsNumber == 0){
-			throw new NoSubprojectsFoundException();
+			throw new NoSuchSubprojectsException();
 		}
 		Collection<Project> subprojects = project.getContainerProject();
 		AppElement[] subprojectAux = new AppElement[subprojectsNumber];

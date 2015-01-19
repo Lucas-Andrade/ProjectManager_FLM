@@ -50,7 +50,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 *         repository.
 	 */
 	@Override
-	public AppElement[] getAll(){
+	public IUser[] getAll(){
 		IUser[] userArray = new IUser[users.size()];
 
 		Set<Entry<String, IUser>> usersSet = users.entrySet();
@@ -109,7 +109,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * @see UserRepository#addUser(User)
 	 */
 	@Override
-	public boolean addUser(User user){
+	public boolean addUser(IUser user){
 
 		String username = user.getLoginName();
 

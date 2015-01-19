@@ -10,6 +10,11 @@ import utils.Leader;
 import utils.Project;
 import utils.Team;
 import app.AppElement;
+import app.commands.AddWorkerToProjectInRepo;
+import app.commands.exceptions.IllegalWorkerTypeException;
+import app.commands.exceptions.NoSuchManagerException;
+import app.commands.exceptions.NoSuchProjectException;
+import app.commands.exceptions.NoSuchWorkerException;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
@@ -71,7 +76,7 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication{
 	 * {@code long} with the argument PID. This argument is used for getting the
 	 * {@code Project} from the {@code ProjectRepository}.
 	 */
-	private long projectId;
+	private String projectId;
 
 	/**
 	 * {@code String} with the {@code AWorker}'s Type argument. This argument is
@@ -83,7 +88,7 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication{
 	 * {@code long} with the argument {@code AWorker}ID. This argument is used
 	 * for getting the {@code AWorker} from the {@code WorkerRepository}.
 	 */
-	private long workerId;
+	private String workerId;
 
 	/**
 	 * Class that implements the {@link PostWorkerInProject} factory, according to
@@ -175,81 +180,23 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication{
 	 */
 	@Override
 	protected AppElement[] internalCall(){
-		this.projectId = getParameterAsLong(PID);
+		this.projectId = getParameterAsString(PID);
 		this.typeWorker = getParameterAsString(WTYPE);
-		this.workerId = getParameterAsLong(CID);
-		AppElement[] messageAux = new AppElement[1];
-		Message message;
+		this.workerId = getParameterAsString(CID);
 
-		Project project = projectRepository.getProjectById(projectId);
-		if (project == null){
-			message = new Message("The Specified Project does not exists in repository.");
-			messageAux[0] = message;
-			
-			return messageAux;
+		try{
+			new AddWorkerToProjectInRepo(projectRepository, workerRepository, 
+					projectId, workerId, typeWorker).call();
+		} catch(NoSuchProjectException e) {
+			return new AppElement[]{new Message("The Specified Project does not exists in repository.")};
+		} catch(IllegalWorkerTypeException e) {
+			return new AppElement[]{new Message("Unrecognised type of worker.")};
+		} catch(NoSuchManagerException e) {
+			return new AppElement[]{new Message("The Specified Manager does not exist.")};
+		} catch(NoSuchWorkerException e) {
+			return new AppElement[]{new Message("The Specified Consultant does not exist.")};
 		}
 
-		if (typeWorker.equalsIgnoreCase("manager")){
-			message = new Message(addManager(projectId, workerId) ? "Success." : 
-				"Not successfull. Manager may already be in the project.");
-			messageAux[0] = message;
-				
-		} else if (typeWorker.equalsIgnoreCase("consultant")) {
-			message = new Message(addConsultant(projectId, workerId) ? "Success." : 
-				"Not successfull. Consultant may already be in the project.");
-				messageAux[0] = message;
-		} else{
-			message = new Message("Unrecognised type of worker.");
-			messageAux[0] = message;
-		}		
-			return messageAux;
-	}
-
-	/**
-	 * @see PostWorkerInProject#internalCall()
-	 * 
-	 * @param out
-	 *            The {@link ResultOutputMethodToStream} that receives the
-	 *            Results, treats them and gives them to a Stream.
-	 *            
-	 * @param projectId  {@code long} with the argument PID.
-	 * @param workerId   {@code long} with the argument {@code AWorker}ID.
-	 * @return True if successful, False if not.
-	 */
-	private Boolean addConsultant( long projectId,long workerId){
-		AppElement[] messageAux = new AppElement[1];
-		Consultant consultant = workerRepository.getConsultantByID(workerId);
-
-		if (consultant != null){
-			projectRepository.getProjectById(projectId).addWorker(consultant);
-			return true;
-		}
-		
-		Message message = new Message("The Specified Consultant does not exists in repository.");
-		messageAux[0] = message;
-		return false;
-	}
-
-	/**
-	 * @see PostWorkerInProject#internalCall()
-	 * 
-	 * @param out
-	 *            The {@link ResultOutputMethodToStream} that receives the
-	 *            Results, treats them and gives them to a Stream.
-	 *            
-	 * @param projectId  {@code long} with the argument PID.
-	 * @param workerId   {@code long} with the argument {@code AWorker}ID.
-	 * @return True if successful, False if not.
-	 */
-	private Boolean addManager(long projectId, long workerId){
-		AppElement[] messageAux = new AppElement[1];
-		Leader manager = workerRepository.getManagerByID(workerId);
-		if (manager != null){
-			projectRepository.getProjectById(projectId).setManager(manager);
-			return true;
-		}
-		Message message = new Message("The Specified Manager does not exists in repository.");
-		messageAux[0] = message;
-		return false;
+		return new AppElement[]{new Message("Success.")};
 	}
 }

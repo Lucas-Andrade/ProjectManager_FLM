@@ -6,14 +6,14 @@ import app.AppElement;
 import app.commands.exceptions.CostOutOfBoundsException;
 import app.repository.WorkerRepository;
 
-public class NewConsultantToRepo implements Command{
+public class AddConsultantToRepo implements Command{
 	
 	WorkerRepository wRepo;
 	String name;
 	String priceHourString;
 	String bonusString;
 	
-	public NewConsultantToRepo(WorkerRepository wRepo, String name, String priceHourString,
+	public AddConsultantToRepo(WorkerRepository wRepo, String name, String priceHourString,
 			String bonusString) {
 		
 		if (wRepo == null || name == null || priceHourString == null){

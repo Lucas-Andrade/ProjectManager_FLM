@@ -138,10 +138,10 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 * @see Repository#getAll()
 	 */
 	@Override
-	public AppElement[] getAll(){
-		AppElement[] all = new AppElement[this.size()];
+	public AWorker[] getAll(){
+		AWorker[] all = new AWorker[this.size()];
 		int i = -1;
-		for (AppElement ele : workers){
+		for (AWorker ele : workers){
 			all[++i] = ele;
 		}
 		return all;

@@ -6,10 +6,10 @@ import utils.AWorker;
 import utils.Leader;
 import utils.Project;
 import app.AppElement;
-import app.commands.exceptions.NoManagerFoundException;
+import app.commands.exceptions.NoManagerInProjectException;
 import app.commands.exceptions.NoWorkersFoundException;
 import app.commands.exceptions.NoSuchProjectException;
-import app.commands.exceptions.UnrecognisedWorkerTypeException;
+import app.commands.exceptions.IllegalWorkerTypeException;
 import app.repository.ProjectsRepository;
 
 public class GetProjectWorkersFromRepo implements Command{
@@ -29,8 +29,8 @@ public class GetProjectWorkersFromRepo implements Command{
 	}
 	
 	@Override
-	public AppElement[] call() throws NoSuchProjectException, UnrecognisedWorkerTypeException, 
-			NoManagerFoundException, NoWorkersFoundException {
+	public AppElement[] call() throws NoSuchProjectException, IllegalWorkerTypeException, 
+			NoManagerInProjectException, NoWorkersFoundException {
 		
 		long projectId = Long.parseLong(pidString);
 		Project project = pRepo.getProjectById(projectId);
@@ -44,7 +44,7 @@ public class GetProjectWorkersFromRepo implements Command{
 		} else if (typeWorker.equalsIgnoreCase("Consultant")){
 			return getWorkers(project);
 		} else {
-			throw new UnrecognisedWorkerTypeException();
+			throw new IllegalWorkerTypeException();
 		}
 	}
 
@@ -75,12 +75,12 @@ public class GetProjectWorkersFromRepo implements Command{
 	 * if any have been assigned.
 	 * @param project
 	 * @return An array of {@code DatabaseElement} with the workers of the {@code Project}
-	 * @throws NoManagerFoundException 
+	 * @throws NoManagerInProjectException 
 	 */
-	private AppElement[] getManager(Project project) throws NoManagerFoundException {
+	private AppElement[] getManager(Project project) throws NoManagerInProjectException {
 		Leader manager = project.getManager();
 		if(manager == null){
-			throw new NoManagerFoundException();
+			throw new NoManagerInProjectException();
 		}
 		AppElement[] managerAux = {manager};
 		return managerAux;
