@@ -10,8 +10,7 @@ import app.windows.commandWindowsAL.commandWindows.PostProjectFrame;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015
  */
-public class PostProjectAL extends MainFrameActionListener
-{
+public class PostProjectAL extends MainFrameActionListener{
 
 	/**
 	 * Call to the constructor of the {@code super} class.
@@ -22,8 +21,7 @@ public class PostProjectAL extends MainFrameActionListener
 	 *            The {@code Authentication} to check if any {@code User} is
 	 *            authenticated.
 	 */
-	public PostProjectAL(RepositoryHolder repositories)
-	{
+	public PostProjectAL(RepositoryHolder repositories){
 		super(repositories);
 	}
 
@@ -31,8 +29,7 @@ public class PostProjectAL extends MainFrameActionListener
 	 * @see super{@link #action()}
 	 */
 	@Override
-	void action()
-	{
+	void action(){
 		new PostProjectFrame().setVisible(true);
 	}
 

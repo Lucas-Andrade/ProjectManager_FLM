@@ -129,27 +129,27 @@ public class MainFrame extends JFrame
 
 		JMenuItem editProjectItem = new JMenuItem("Edit project");
 		projectsMenu.add(editProjectItem);
-		newProjectItem.addActionListener(new PatchProjectAL(repositories));
+		editProjectItem.addActionListener(new PatchProjectAL(repositories));
 
 		JMenuItem mntmDeleteProject = new JMenuItem("Delete project");
 		projectsMenu.add(mntmDeleteProject);
-		newProjectItem.addActionListener(new DeleteProjectAL(repositories));
+		mntmDeleteProject.addActionListener(new DeleteProjectAL(repositories));
 
 		JMenu mnGet = new JMenu("Get");
 		projectsMenu.add(mnGet);
 
 		JMenuItem mntmGetSubprojects = new JMenuItem("Get subprojects");
 		mnGet.add(mntmGetSubprojects);
-		newProjectItem.addActionListener(new GetSubprojectsAL(repositories));
+		mntmGetSubprojects.addActionListener(new GetSubprojectsAL(repositories));
 
 		JMenuItem mntmGetTeam = new JMenuItem("Get Team");
 		mnGet.add(mntmGetTeam);
-		newProjectItem.addActionListener(new GetWorkersInProjectAL(
+		mntmGetTeam.addActionListener(new GetWorkersInProjectAL(
 				repositories));
 
 		JMenuItem mntmGetManager = new JMenuItem("Get Manager");
 		mnGet.add(mntmGetManager);
-		newProjectItem.addActionListener(new GetWorkersInProjectAL(
+		mntmGetManager.addActionListener(new GetWorkersInProjectAL(
 				repositories));
 
 		JMenu mnAddToProject = new JMenu("Add to Project");
@@ -157,34 +157,34 @@ public class MainFrame extends JFrame
 
 		JMenuItem mntmAddConsultant = new JMenuItem("Add Consultant");
 		mnAddToProject.add(mntmAddConsultant);
-		newProjectItem.addActionListener(new PostWorkerAL(repositories));
+		mntmAddConsultant.addActionListener(new PostWorkerAL(repositories));
 
 		JMenuItem mntmAddManager = new JMenuItem("Add Manager");
 		mnAddToProject.add(mntmAddManager);
-		newProjectItem.addActionListener(new PostWorkerAL(repositories));
+		mntmAddManager.addActionListener(new PostWorkerAL(repositories));
 
 		JMenuItem mntmAddSubproject = new JMenuItem("Add Subproject");
 		mnAddToProject.add(mntmAddSubproject);
-		newProjectItem.addActionListener(new PostSubprojectAL(repositories));
+		mntmAddSubproject.addActionListener(new PostSubprojectAL(repositories));
 
 		JMenu consultantsMenu = new JMenu("Consultants");
 		vert.add(consultantsMenu);
 
 		JMenuItem newConsultantItem = new JMenuItem("New consultant/Manager");
 		consultantsMenu.add(newConsultantItem);
-		newProjectItem.addActionListener(new PostConsultantAL(repositories));
+		newConsultantItem.addActionListener(new PostConsultantAL(repositories));
 
 		JMenuItem mntmEditWorker = new JMenuItem("Edit worker");
 		mnAddToProject.add(mntmEditWorker);
-		newProjectItem.addActionListener(new PatchConsultantAL(repositories));
+		mntmEditWorker.addActionListener(new PatchConsultantAL(repositories));
 
 		JMenuItem mntmAddWorker = new JMenuItem("Add worker to project");
 		consultantsMenu.add(mntmAddWorker);
-		newProjectItem.addActionListener(new PostWorkerAL(repositories));
+		mntmAddWorker.addActionListener(new PostWorkerAL(repositories));
 
 		JMenuItem mntmGetConsultant = new JMenuItem("Get worker(s) in project");
 		consultantsMenu.add(mntmGetConsultant);
-		newProjectItem.addActionListener(new GetWorkersInProjectAL(
+		mntmGetConsultant.addActionListener(new GetWorkersInProjectAL(
 				repositories));
 
 		JMenu usersMenu = new JMenu("Users");
@@ -192,30 +192,30 @@ public class MainFrame extends JFrame
 
 		JMenuItem mntmNewUser = new JMenuItem("New user");
 		usersMenu.add(mntmNewUser);
-		newProjectItem.addActionListener(new PostUserAL(repositories));
+		mntmNewUser.addActionListener(new PostUserAL(repositories));
 
 		JMenuItem mntmGetUser = new JMenuItem("Get user");
 		usersMenu.add(mntmGetUser);
-		newProjectItem.addActionListener(new GetUserAL(repositories));
+		mntmGetUser.addActionListener(new GetUserAL(repositories));
 
 		JMenuItem mntmEditUser = new JMenuItem("Edit user");
 		usersMenu.add(mntmEditUser);
-		newProjectItem.addActionListener(new PatchUserAL(repositories));
+		mntmEditUser.addActionListener(new PatchUserAL(repositories));
 
 		JMenu searchMenu = new JMenu("Search");
 		vert.add(searchMenu);
 
 		JMenuItem mntmProjects = new JMenuItem("Subprojects in project");
 		searchMenu.add(mntmProjects);
-		newProjectItem.addActionListener(new GetSubprojectsAL(repositories));
+		mntmProjects.addActionListener(new GetSubprojectsAL(repositories));
 
 		JMenuItem mntmConsultants = new JMenuItem("Consultants/Manager in project");
 		searchMenu.add(mntmConsultants);
-		newProjectItem.addActionListener(new GetWorkersInProjectAL(repositories));
+		mntmConsultants.addActionListener(new GetWorkersInProjectAL(repositories));
 
 		JMenuItem mntmUsers = new JMenuItem("User");
 		searchMenu.add(mntmUsers);
-		newProjectItem.addActionListener(new GetUserAL(repositories));
+		mntmUsers.addActionListener(new GetUserAL(repositories));
 
 		JLabel randstadGirlImageLabel = new JLabel("");
 		randstadGirlImageLabel.setIcon(new ImageIcon(main));
