@@ -27,8 +27,7 @@ public class SetConsultantPropertiesFromRepo implements Command{
 	@Override
 	public AppElement[] call() throws NoSuchWorkerException, CostOutOfBoundsException {
 		
-		long cid = Long.parseLong(cidString);
-		double priceHour = Double.parseDouble(priceHourString);
+		long cid = Long.parseLong(cidString);	
 		AWorker worker = wRepo.getAWorkerByID(cid);
 		
 		if (worker == null){
@@ -39,8 +38,11 @@ public class SetConsultantPropertiesFromRepo implements Command{
 			worker.setName(name);
 		}
 		
-		if (priceHourString != null && !worker.setCostPerHour(priceHour)){
-			throw new CostOutOfBoundsException();
+		if (priceHourString != null){
+			double priceHour = Double.parseDouble(priceHourString);
+			if(!worker.setCostPerHour(priceHour)){
+				throw new CostOutOfBoundsException();
+			}
 		}
 		
 		return new AppElement[]{worker};
