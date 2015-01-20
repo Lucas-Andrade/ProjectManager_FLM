@@ -6,6 +6,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -17,8 +19,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JSplitPane;
 
+import app.authentication.Authentication;
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
+import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
 import app.windows.mainFrameAL.DeleteProjectAL;
 import app.windows.mainFrameAL.GetSubprojectsAL;
 import app.windows.mainFrameAL.GetUserAL;
@@ -57,7 +61,7 @@ public class MainFrame extends JFrame
 	}
 
 	public MainFrame(RepositoryHolder repositories){
-		
+
 		MainFrame.splitPane = new JSplitPane();
 		MainFrame.repositories = repositories;
 		
@@ -72,17 +76,54 @@ public class MainFrame extends JFrame
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 
+		JMenuItem mntmLogin = new JMenuItem("Login");
+		mnFile.add(mntmLogin);
+		mntmLogin.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AuthenticationDialog(repositories).setVisible(true);
+			}
+		});
+
+		JMenuItem mntmLogout = new JMenuItem("Logout");
+		mnFile.add(mntmLogout);
+		mntmLogout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Authentication.unauthenticate();;
+			}
+		});
+
 		JMenuItem mntmExit = new JMenuItem("Exit");
 		mnFile.add(mntmExit);
+		mntmExit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
 
 		JMenuItem mntmHelpMe = new JMenuItem("Help me!");
 		mnHelp.add(mntmHelpMe);
+		mntmHelpMe.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new HelpDialog().setVisible(true);
+			}
+		});
 
 		JMenuItem mntmAbout = new JMenuItem("About");
 		mnHelp.add(mntmAbout);
+		mntmAbout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AboutDialog().setVisible(true);
+			}
+		});
+
 		this.getContentPane().setLayout(new BorderLayout(0, 0));
 
 		this.getContentPane().add(splitPane, BorderLayout.CENTER);
