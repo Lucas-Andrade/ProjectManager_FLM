@@ -19,49 +19,59 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JPasswordField;
 
-
-public class AuthenticationDialog extends JDialog{
+public class AuthenticationDialog extends JDialog
+{
 
 	private static final long serialVersionUID = 9190969392304934338L;
 	private final JPanel authenticationPanel = new JPanel();
 	private JTextField nameField;
 	private JLabel mainImageLabel;
 	private JPasswordField passwordField;
-	
+
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			AuthenticationDialog dialog = new AuthenticationDialog(new InMemoryRepositoryHolder());
+	public static void main(String[] args)
+	{
+		try
+		{
+			AuthenticationDialog dialog = new AuthenticationDialog(
+					new InMemoryRepositoryHolder());
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 	}
-	
-	public AuthenticationDialog(RepositoryHolder repoHolder) {
+
+	public AuthenticationDialog(RepositoryHolder repoHolder)
+	{
+
 		setResizable(false);
 
 		this.setTitle("Login");
-		
+
 		setBounds(100, 100, 300, 194);
 		getContentPane().setLayout(new BorderLayout());
 		authenticationPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(authenticationPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
-		gbl_contentPanel.columnWidths = new int[]{75, 0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 34};
-		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0};
+		gbl_contentPanel.columnWidths = new int[] { 75, 0, 0, 0 };
+		gbl_contentPanel.rowHeights = new int[] { 0, 0, 34 };
+		gbl_contentPanel.columnWeights = new double[] { 0.0, 0.0, 1.0,
+				Double.MIN_VALUE };
+		gbl_contentPanel.rowWeights = new double[] { 0.0, 0.0, 0.0 };
 		authenticationPanel.setLayout(gbl_contentPanel);
-		
+
 		mainImageLabel = new JLabel("");
-		mainImageLabel.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/user.jpg")));
+		mainImageLabel.setIcon(new ImageIcon(MainDialogFrame.class
+				.getClassLoader().getResource("images/user.jpg")));
 		GridBagConstraints gbc_mainImageLabel = new GridBagConstraints();
 		gbc_mainImageLabel.anchor = GridBagConstraints.NORTH;
 		gbc_mainImageLabel.gridheight = 4;
@@ -69,7 +79,7 @@ public class AuthenticationDialog extends JDialog{
 		gbc_mainImageLabel.gridx = 0;
 		gbc_mainImageLabel.gridy = 0;
 		authenticationPanel.add(mainImageLabel, gbc_mainImageLabel);
-						
+
 		JLabel lblName = new JLabel("Username:");
 		GridBagConstraints gbc_lblName = new GridBagConstraints();
 		gbc_lblName.anchor = GridBagConstraints.SOUTHEAST;
@@ -77,8 +87,7 @@ public class AuthenticationDialog extends JDialog{
 		gbc_lblName.gridx = 1;
 		gbc_lblName.gridy = 0;
 		authenticationPanel.add(lblName, gbc_lblName);
-				
-				
+
 		nameField = new JTextField();
 		GridBagConstraints gbc_nameField = new GridBagConstraints();
 		gbc_nameField.fill = GridBagConstraints.HORIZONTAL;
@@ -88,8 +97,7 @@ public class AuthenticationDialog extends JDialog{
 		gbc_nameField.gridy = 0;
 		authenticationPanel.add(nameField, gbc_nameField);
 		nameField.setColumns(10);
-		
-		
+
 		JLabel lblPassword = new JLabel("Password:");
 		lblPassword.setToolTipText("Minimum 4 characters");
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
@@ -99,7 +107,7 @@ public class AuthenticationDialog extends JDialog{
 		gbc_lblPassword.gridy = 1;
 		authenticationPanel.add(lblPassword, gbc_lblPassword);
 		lblPassword.setToolTipText("Minimum 4 character.");
-		
+
 		passwordField = new JPasswordField();
 		passwordField.setEchoChar('*');
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
@@ -112,8 +120,7 @@ public class AuthenticationDialog extends JDialog{
 		JTextField[] textField = new JTextField[2];
 		textField[0] = nameField;
 		textField[1] = passwordField;
-		
-		
+
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.setBackground(new Color(0, 206, 209));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
@@ -124,13 +131,36 @@ public class AuthenticationDialog extends JDialog{
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 2;
 		authenticationPanel.add(btnNewButton, gbc_btnNewButton);
-		btnNewButton.addActionListener(new ActionListener(){
+
+		ActionListener login = new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				Authentication.authenticate(textField, repoHolder);
 				dispose();
 			}
-		});
+		};
+		btnNewButton.addActionListener(login);
+		KeyListener loginEnterKey = new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e)
+			{
+			}
+			@Override
+			public void keyPressed(KeyEvent e)
+			{
+				if (e.getKeyCode() == KeyEvent.VK_ENTER)
+				{
+					login.actionPerformed(null);
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent e)
+			{
+			}
+		};
+		btnNewButton.addKeyListener(loginEnterKey);
+
 	}
 
 }
