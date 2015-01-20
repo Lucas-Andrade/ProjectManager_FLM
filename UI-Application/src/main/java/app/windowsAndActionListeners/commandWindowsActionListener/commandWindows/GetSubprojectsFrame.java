@@ -9,7 +9,7 @@ import java.awt.Color;
 
 import app.windowsAndActionListeners.mainFrameActionListener.mainFrame.ProjectID;
 
-public class GetSubprojectsFrame extends MainGetFrame {
+public class GetSubprojectsFrame extends MainGetPanel {
 
 	/**
 	 * 

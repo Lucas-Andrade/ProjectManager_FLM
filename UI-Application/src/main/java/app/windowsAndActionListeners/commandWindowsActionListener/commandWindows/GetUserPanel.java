@@ -7,18 +7,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-<<<<<<< HEAD
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-=======
->>>>>>> ba63e9b21122b47bd2978735669b80aa24e70f8e
 import javax.swing.JDialog;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import app.windows.commandWindowsAL.commandWindows.MainGetPanel;
 
-public class GetUserPanel extends MainGetFrame {
+
+public class GetUserPanel extends MainGetPanel {
 
 
 	/**
@@ -74,8 +71,7 @@ public class GetUserPanel extends MainGetFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+								
 			}
 		});
 		
@@ -86,7 +82,13 @@ public class GetUserPanel extends MainGetFrame {
 		gbc_UserId.gridx = 2;
 		gbc_UserId.gridy = 5;
 		getMainGetPanel().add(userId, gbc_UserId);
-		
+		userId.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+								
+			}
+		});
 		
 		userID = new JTextField();
 		GridBagConstraints gbc_userID = new GridBagConstraints();

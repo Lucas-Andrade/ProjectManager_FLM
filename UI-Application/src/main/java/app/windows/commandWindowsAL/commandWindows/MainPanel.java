@@ -10,8 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import app.windowsAndActionListeners.mainFrameActionListener.mainFrame.MainFrame;
-
 public class MainPanel extends JPanel {
 
 	/**

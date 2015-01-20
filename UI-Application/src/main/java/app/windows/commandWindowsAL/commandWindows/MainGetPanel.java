@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 
-public class MainGetFrame extends JFrame {
+public class MainGetPanel extends JPanel {
 
 	/**
 	 * 
@@ -54,9 +54,8 @@ public class MainGetFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainGetFrame frame = new MainGetFrame();
+					MainGetPanel frame = new MainGetPanel();
 					//definimos o título da janela
-					frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -68,22 +67,22 @@ public class MainGetFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainGetFrame() {
-		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+	public MainGetPanel() {
+	//	this.setDefaultCloseOperation(JPanel.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 		
 		
 		mainGetPanel = new MainPanel();
 		
 		setBounds(X_BOUND,Y_BOUND,WIDTH_BOUND, HEIGHT_BOUND);   //Definição da Caixa de Diálogo
-		getContentPane().setLayout(new BorderLayout());
-		getContentPane().add(mainGetPanel, BorderLayout.CENTER);
+		getRootPane().setLayout(new BorderLayout());
+		getRootPane().add(mainGetPanel, BorderLayout.CENTER);
 		
-		this.setLocationRelativeTo(null);
+		this.setLocation(null);
 		
 		JPanel buttonPane = new JPanel();
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		getContentPane().add(buttonPane, BorderLayout.SOUTH);
+		getRootPane().add(buttonPane, BorderLayout.SOUTH);
 		{
 			JButton okButton = new JButton("GET");
 			okButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/Ok.png")));

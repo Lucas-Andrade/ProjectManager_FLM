@@ -16,7 +16,7 @@ import app.result.GetSubprojectsResult;
 import app.result.GetWorkersInProjectResult;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
-public class GetWorkersInProjectFrame extends MainGetFrame {
+public class GetWorkersInProjectFrame extends MainGetPanel {
 
 	/**
 	 * 

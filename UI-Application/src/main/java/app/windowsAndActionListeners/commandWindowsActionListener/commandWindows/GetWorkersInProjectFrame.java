@@ -11,7 +11,7 @@ import javax.swing.JTable;
 
 import app.windowsAndActionListeners.mainFrameActionListener.mainFrame.ProjectID;
 
-public class GetWorkersInProjectFrame extends MainGetFrame {
+public class GetWorkersInProjectFrame extends MainGetPanel {
 
 	/**
 	 * 

@@ -27,7 +27,7 @@ import app.result.GetSubprojectsResult;
 import app.result.PostProjectResult;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
-public class GetSubprojectsFrame extends MainGetFrame {
+public class GetSubprojectsFrame extends MainGetPanel {
 
 	/**
 	 * Launch the application.
