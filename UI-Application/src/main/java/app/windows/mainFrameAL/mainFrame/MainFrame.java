@@ -98,7 +98,7 @@ public class MainFrame extends JFrame
 		mntmExit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				dispose();
 			}
 		});
 
@@ -246,8 +246,8 @@ public class MainFrame extends JFrame
 
 		JMenu searchMenu = new JMenu("Search");
 		vert.add(searchMenu);
-
 		JMenuItem mntmProjects = new JMenuItem("Subprojects in project");
+		
 		searchMenu.add(mntmProjects);
 		mntmProjects.addActionListener(new GetSubprojectsAL(repositories));
 

@@ -17,6 +17,11 @@
 	    <url>https://github.com/Lucas-Andrade/ProjectManager_FLM.git</url>
   	</scm>
 
+    <properties>
+        <sonar.exclusions>src/main/java/app/windows/mainFrameAL/mainFrame/*</sonar.exclusions>
+        <sonar.exclusions>src/main/java/app/windows/commandWindowsAL/commandWindows/*</sonar.exclusions>
+    </properties>
+    
 	<name>UI-Application</name>
 	<url>http://maven.apache.org</url>
 
