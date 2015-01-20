@@ -4,19 +4,9 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
-import javax.swing.JSplitPane;
-
-import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.result.CommandResult;
-import app.result.PostProjectResult;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
-import javax.swing.JLabel;
-
 import java.awt.GridBagLayout;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
 
 
 public class DeleteProjectFrame extends MainDialogFrame {
@@ -33,7 +23,7 @@ public class DeleteProjectFrame extends MainDialogFrame {
 		try {
 
 
-			DeleteProjectFrame dialog = new DeleteProjectFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
+			DeleteProjectFrame dialog = new DeleteProjectFrame();
 			dialog.setImage("images/project-delete.png");
 			dialog.setTitle("Delete Project");
 			dialog.setTitleLabel("Delete Project");
@@ -51,8 +41,7 @@ public class DeleteProjectFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 */
 
-	public DeleteProjectFrame(CommandResult result) {
-		super(result);
+	public DeleteProjectFrame() {
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0};
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 100, 0};

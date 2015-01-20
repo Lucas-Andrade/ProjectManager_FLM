@@ -2,25 +2,18 @@ package app.windows.commandWindowsAL.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
-import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.result.CommandResult;
-import app.result.PostProjectResult;
+import app.windows.commandWindowsAL.NewProjectAL;
 
 public class PostSubprojectFrame extends MainDialogFrame {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -8218293500239308528L;
 	private JTextField subprojects;
 
 	/**
@@ -28,7 +21,7 @@ public class PostSubprojectFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostSubprojectFrame dialog = new PostSubprojectFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
+			PostSubprojectFrame dialog = new PostSubprojectFrame();
 			dialog.setTitle("Add Subproject");
 			dialog.setImage("images/subproject.jpg");
 			dialog.setTitleLabel("Add Subproject");
@@ -43,9 +36,7 @@ public class PostSubprojectFrame extends MainDialogFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public PostSubprojectFrame(CommandResult result) {
-		super(result);
-
+	public PostSubprojectFrame() {
 		this.setTitle("Add Subproject");
 		this.setImage("images/subproject.jpg");
 		this.setTitleLabel("Add Subproject");
@@ -112,6 +103,9 @@ public class PostSubprojectFrame extends MainDialogFrame {
 		JTextField[] textFields = new JTextField[2];
 		textFields[0] = projectField; //assign each field to a position in the array
 		textFields[1] = subprojectField;
-		this.setOkButtonActionListener(textFields);
+
+		this.getSaveButton().addActionListener(new NewProjectAL(textFields));
+		
+		this.setVisible(true);
 		}
 	}

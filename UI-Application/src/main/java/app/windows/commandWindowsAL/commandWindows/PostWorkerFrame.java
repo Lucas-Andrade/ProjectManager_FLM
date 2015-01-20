@@ -6,12 +6,8 @@ import java.awt.Insets;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
-import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.result.CommandResult;
-import app.result.PostProjectResult;
 import app.windows.mainFrameAL.mainFrame.ConsultantID;
 import app.windows.mainFrameAL.mainFrame.ManagerID;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
@@ -21,7 +17,7 @@ public class PostWorkerFrame extends MainDialogFrame {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -2466258711524395300L;
 	private JTextField previewField;
 	ProjectID projectId;
 	private ManagerID manager;
@@ -33,7 +29,7 @@ public class PostWorkerFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 	//	try {
-			PostWorkerFrame dialog = new PostWorkerFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
+			PostWorkerFrame dialog = new PostWorkerFrame();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		//	dialog.setVisible(true);
 //		} catch (Exception e) {
@@ -44,8 +40,7 @@ public class PostWorkerFrame extends MainDialogFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public PostWorkerFrame(CommandResult result) {
-		super(result);
+	public PostWorkerFrame() {
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0};
 		gridBagLayout.columnWidths = new int[]{5, 100, 0, 100};

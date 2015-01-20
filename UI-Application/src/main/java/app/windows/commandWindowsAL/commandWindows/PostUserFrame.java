@@ -16,7 +16,7 @@ public class PostUserFrame extends MainDialogFrame {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -9059883587666020207L;
 	private JTextField nameField;
 	private JTextField passwordField;
 	private JTextField emailField;
@@ -45,7 +45,6 @@ public class PostUserFrame extends MainDialogFrame {
 	 * @throws IOException 
 	 */
 	public PostUserFrame() {
-		super();
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 60, 100, 100, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0};

@@ -30,10 +30,9 @@ public class DeleteProjectAL extends MainFrameActionListener
 	 *            The {@code Authentication} to check if any {@code User} is
 	 *            authenticated.
 	 */
-	public DeleteProjectAL(RepositoryHolder repositories,
-			Authentication authentication)
+	public DeleteProjectAL(RepositoryHolder repositories)
 	{
-		super(repositories, authentication);
+		super(repositories);
 	}
 
 	/**

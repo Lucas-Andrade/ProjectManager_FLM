@@ -1,52 +1,34 @@
 package app.windows.commandWindowsAL.commandWindows;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
 
-import javax.swing.ImageIcon;
-import javax.swing.JDialog;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-import javax.swing.border.EmptyBorder;
-
 import java.awt.Color;
 
-import javax.swing.JTextArea;
-import javax.swing.JScrollBar;
-
-import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.result.CommandResult;
-import app.result.GetSubprojectsResult;
-import app.result.PostProjectResult;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
 public class GetSubprojectsFrame extends MainGetFrame {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1075896035298801798L;
+
+	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
-			GetSubprojectsFrame dialog = new GetSubprojectsFrame(new GetSubprojectsResult(new JSplitPane(), new InMemoryRepositoryHolder()));
 
 	}
 
-	private final JPanel getSubprojectPanel = new JPanel();
 	private ProjectID projectId;
 
 	/**
 	 * Create the frame.
 	 */
-	public GetSubprojectsFrame(CommandResult result) {
-		
-		super(); 
+	public GetSubprojectsFrame() {
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainGetPanel().getLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 100, 50, 50, 0, 100, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 30, 20, 0, 20, 0, 0, 0};

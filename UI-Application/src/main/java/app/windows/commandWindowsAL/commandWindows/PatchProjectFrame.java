@@ -3,16 +3,10 @@ package app.windows.commandWindowsAL.commandWindows;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
-import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.repositoryHolders.RepositoryHolder;
-import app.result.CommandResult;
-import app.result.PostProjectResult;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
 import java.awt.GridBagLayout;
@@ -23,7 +17,7 @@ public class PatchProjectFrame extends MainDialogFrame {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -256281858791279368L;
 	private JTextField LatitudeField;
 	private JTextField longitudeField;
 	private JTextField nameField;
@@ -35,7 +29,7 @@ public class PatchProjectFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PatchProjectFrame dialog = new PatchProjectFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
+			PatchProjectFrame dialog = new PatchProjectFrame();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -47,8 +41,7 @@ public class PatchProjectFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 */
 
-	public PatchProjectFrame(CommandResult result) {
-		super(result);
+	public PatchProjectFrame() {
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 20, 0, 20};

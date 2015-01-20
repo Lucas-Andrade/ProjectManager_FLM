@@ -10,14 +10,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import app.windowsAndActionListeners.mainFrameActionListener.mainFrame.MainFrame;
-
 public class MainPanel extends JPanel {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -4646635210489120110L;
 	private JLabel mainImageLabel;
 	private JLabel titleLabel;
 	private JLabel helpLabel;
@@ -42,7 +40,6 @@ public class MainPanel extends JPanel {
 	 */
 	public MainPanel() {
 
-		
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 				
 		GridBagLayout gbl_patchConsultantPanel = new GridBagLayout();  // Definição do Painel interno
