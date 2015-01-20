@@ -5,7 +5,7 @@ import javax.swing.JSplitPane;
 import app.authentication.Authentication;
 import app.repositoryHolders.RepositoryHolder;
 import app.result.PostUserResult;
-import app.windowsAndActionListeners.commandWindowsActionListener.commandWindows.PostUserFrame;
+import app.windows.commandWindowsAL.commandWindows.PostUserFrame;
 
 public class PostUser extends BaseCommand{
 

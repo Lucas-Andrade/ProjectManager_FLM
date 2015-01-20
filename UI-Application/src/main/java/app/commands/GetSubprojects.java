@@ -5,7 +5,7 @@ import javax.swing.JSplitPane;
 import app.authentication.Authentication;
 import app.repositoryHolders.RepositoryHolder;
 import app.result.GetSubprojectsResult;
-import app.windowsAndActionListeners.commandWindowsActionListener.commandWindows.GetSubprojectsFrame;
+import app.windows.commandWindowsAL.commandWindows.GetSubprojectsFrame;
 
 public class GetSubprojects extends BaseCommand{
 

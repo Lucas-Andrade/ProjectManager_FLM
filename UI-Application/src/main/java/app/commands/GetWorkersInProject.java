@@ -5,7 +5,7 @@ import javax.swing.JSplitPane;
 import app.authentication.Authentication;
 import app.repositoryHolders.RepositoryHolder;
 import app.result.GetWorkersInProjectResult;
-import app.windowsAndActionListeners.commandWindowsActionListener.commandWindows.GetWorkersInProjectFrame;
+import app.windows.commandWindowsAL.commandWindows.GetWorkersInProjectFrame;
 
 public class GetWorkersInProject extends BaseCommand
 {

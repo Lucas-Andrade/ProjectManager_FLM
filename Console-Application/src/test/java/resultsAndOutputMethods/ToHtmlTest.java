@@ -2,14 +2,11 @@ package resultsAndOutputMethods;
 
 import org.junit.Test;
 
-import outputMethods.format.ToTextHtml;
 import utils.Consultant;
 import utils.Leader;
 import utils.Local;
 import utils.Project;
 import utils.Team;
-import app.RepositoryConstructor;
-import app.elements.User;
 import app.repository.InMemoryProjectRepo;
 
 public class ToHtmlTest {

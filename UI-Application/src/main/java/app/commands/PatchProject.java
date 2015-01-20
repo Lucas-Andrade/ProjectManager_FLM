@@ -5,7 +5,7 @@ import javax.swing.JSplitPane;
 import app.authentication.Authentication;
 import app.repositoryHolders.RepositoryHolder;
 import app.result.PatchProjectResult;
-import app.windowsAndActionListeners.commandWindowsActionListener.commandWindows.PatchProjectFrame;
+import app.windows.commandWindowsAL.commandWindows.PatchProjectFrame;
 
 public class PatchProject extends BaseCommand{
 
