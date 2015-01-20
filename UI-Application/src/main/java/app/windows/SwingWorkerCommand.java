@@ -21,7 +21,7 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 	@Override
 	protected AppElement[] doInBackground() throws Exception {
 		
-		publish("Applying changes to database.");
+		publish("Status: Applying changes to database.");
 		return command.call();
 	}
 	

@@ -16,7 +16,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
@@ -135,9 +134,6 @@ public class MainFrame extends JFrame
 		JLabel lblWelcomeToProject = new JLabel("  Welcome to Project Manager");
 		lblWelcomeToProject.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		rightPanel.add(lblWelcomeToProject, BorderLayout.NORTH);
-
-		JScrollBar scrollBar = new JScrollBar();
-		rightPanel.add(scrollBar, BorderLayout.EAST);
 
 		JLabel lblStatus = new JLabel("Status: Ready");
 		rightPanel.add(lblStatus, BorderLayout.SOUTH);
