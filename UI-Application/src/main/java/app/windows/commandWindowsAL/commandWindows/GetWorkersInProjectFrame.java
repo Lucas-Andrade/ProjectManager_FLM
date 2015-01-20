@@ -4,7 +4,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
@@ -28,7 +27,6 @@ public class GetWorkersInProjectFrame extends MainGetPanel {
 	public static void main(String[] args) {
 		try {
 			GetWorkersInProjectFrame dialog = new GetWorkersInProjectFrame();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -46,7 +44,6 @@ public class GetWorkersInProjectFrame extends MainGetPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 42, 0, 0, 0, 0, 0};
 		
-		this.setTitle("Get Workers in Project");
 		this.setImage("images/getUser.jpg");
 		this.setTitleLabel("Get Workers In Project");
 		this.setHelpTip("Return the information of all subprojects of a project with the specify Id.");

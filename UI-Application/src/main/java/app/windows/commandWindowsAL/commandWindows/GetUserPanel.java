@@ -5,7 +5,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.io.IOException;
 
-import javax.swing.JDialog;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -25,8 +24,6 @@ public class GetUserPanel extends MainGetPanel {
 	public static void main(String[] args) {
 		try {
 			GetUserPanel dialog = new GetUserPanel();
-			//definimos o título da janela
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -40,7 +37,6 @@ public class GetUserPanel extends MainGetPanel {
 	 */
 	public GetUserPanel() 
 	{
-		this.setTitle("Get Users");    //definimos o título da janela
 		this.setImage("images/user2-icon.png");
 		this.setTitleLabel("Get Users");
 		this.setHelpTip("Updates the information of the consultant with the specify Id.");
