@@ -39,7 +39,6 @@ public class NewUserAL implements ActionListener{
 		try{
 			new SwingWorkerCommand(new AddUserToRepo(MainFrame.repositories.getUsersRepo(), username, password, email, fullname));
 			
-			//TODO
 		}catch(PasswordLengthOutOfBoundsException nfe){
 			new ErrorDialog("User's password must have at least 4 characters.").setVisible(true);
 		

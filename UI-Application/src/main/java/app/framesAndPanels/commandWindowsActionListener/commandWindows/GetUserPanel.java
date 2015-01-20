@@ -51,7 +51,7 @@ public class GetUserPanel extends MainGetFrame {
 	 * @param getUserResult 
 	 * @throws IOException 
 	 */
-	public GetUserPanel(GetUserResult getUserResult) 
+	public GetUserPanel() 
 	{
 		super();
 		
