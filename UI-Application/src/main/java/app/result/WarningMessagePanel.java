@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import app.framesAndPanels.commandWindowsActionListener.commandWindows.MainDialogFrame;
+import app.windowsAndActionListeners.commandWindowsActionListener.commandWindows.MainDialogFrame;
 
 /**
  * Class responsible for showing the errors from the computation of the results

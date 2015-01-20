@@ -2,10 +2,11 @@ package app.commands.mainFrameActionListeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import app.authentication.Authentication;
 import app.commands.Command;
-import app.framesAndPanels.AuthenticationDialog;
 import app.repositoryHolders.RepositoryHolder;
+import app.windowsAndActionListeners.AuthenticationDialog;
 
 public abstract class AppActionListener implements ActionListener{
 	

@@ -3,9 +3,9 @@ package app.commands;
 import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
-import app.framesAndPanels.commandWindowsActionListener.commandWindows.GetUserPanel;
 import app.repositoryHolders.RepositoryHolder;
 import app.result.GetUserResult;
+import app.windowsAndActionListeners.commandWindowsActionListener.commandWindows.GetUserPanel;
 
 public class GetUser extends BaseCommand{
 

@@ -3,8 +3,8 @@ package app;
 import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
-import app.framesAndPanels.mainFrameActionListener.mainFrame.MainFrame;
 import app.repositoryHolders.InMemoryRepositoryHolder;
+import app.windowsAndActionListeners.mainFrameActionListener.mainFrame.MainFrame;
 
 public class AppUI {
 	
