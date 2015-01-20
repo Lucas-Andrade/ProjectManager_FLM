@@ -5,7 +5,7 @@ import javax.swing.JSplitPane;
 import app.authentication.Authentication;
 import app.repositoryHolders.RepositoryHolder;
 import app.result.PatchConsultantResult;
-import app.windowsAndActionListeners.commandWindowsActionListener.commandWindows.PatchConsultantFrame;
+import app.windows.commandWindowsAL.commandWindows.PatchConsultantFrame;
 
 public class PatchConsultant extends BaseCommand{
 

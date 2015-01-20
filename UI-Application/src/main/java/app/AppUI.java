@@ -4,7 +4,7 @@ import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
 import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.windowsAndActionListeners.mainFrameActionListener.mainFrame.MainFrame;
+import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 public class AppUI {
 	

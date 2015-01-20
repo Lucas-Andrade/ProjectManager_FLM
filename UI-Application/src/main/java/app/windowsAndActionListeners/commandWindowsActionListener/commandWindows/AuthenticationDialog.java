@@ -127,7 +127,7 @@ public class AuthenticationDialog extends JDialog{
 		btnNewButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Authentication.authenticate(textField, authentication, repoHolder);
+				new Authentication().authenticate(textField, authentication, repoHolder);
 				dispose();
 			}
 		});

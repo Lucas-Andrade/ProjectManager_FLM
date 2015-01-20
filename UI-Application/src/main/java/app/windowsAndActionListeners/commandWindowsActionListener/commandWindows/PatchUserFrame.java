@@ -7,13 +7,7 @@ import java.io.IOException;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JSplitPane;
 import javax.swing.JTextField;
-
-import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.repositoryHolders.RepositoryHolder;
-import app.result.CommandResult;
-import app.result.PostProjectResult;
 
 
 public class PatchUserFrame extends MainDialogFrame {
@@ -32,7 +26,7 @@ public class PatchUserFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PatchUserFrame dialog = new PatchUserFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
+			PatchUserFrame dialog = new PatchUserFrame();
 			//definimos o título da janel
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -45,9 +39,7 @@ public class PatchUserFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 * @throws IOException 
 	 */
-	public PatchUserFrame(CommandResult result) {
-		super(result);
-		
+	public PatchUserFrame() {
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 200, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};

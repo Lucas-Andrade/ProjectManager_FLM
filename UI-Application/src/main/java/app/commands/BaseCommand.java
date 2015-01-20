@@ -5,8 +5,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
+import app.domainCommands.Command;
 import app.repositoryHolders.RepositoryHolder;
-import app.windowsAndActionListeners.commandWindowsActionListener.commandWindows.AuthenticationDialog;
+import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
 
 public abstract class BaseCommand implements Command{
 	

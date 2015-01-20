@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import app.authentication.Authentication;
-import app.commands.Command;
+import app.domainCommands.Command;
 import app.repositoryHolders.RepositoryHolder;
 import app.windowsAndActionListeners.AuthenticationDialog;
 

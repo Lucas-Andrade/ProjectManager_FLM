@@ -5,8 +5,9 @@ import java.util.concurrent.Callable;
 
 import outputMethods.Result;
 import app.AppElement;
-import app.commands.GetUserFromRepo;
+import app.commands.Command;
 import app.commands.exceptions.NoSuchUsernameException;
+import app.domainCommands.GetUserFromRepo;
 import app.elements.Message;
 import app.elements.User;
 import app.repository.UserRepository;
