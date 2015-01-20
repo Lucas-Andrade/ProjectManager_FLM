@@ -9,7 +9,7 @@ import commands.exceptions.CommandException;
 import utils.Local;
 import utils.Project;
 import app.AppElement;
-import app.commands.AddProjectToRepo;
+import app.domainCommands.AddProjectToRepo;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;

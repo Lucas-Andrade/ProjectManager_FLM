@@ -1,6 +1,7 @@
-package app.commands;
+package app.domainCommands;
 
 import app.AppElement;
+import app.commands.Command;
 import app.commands.exceptions.NoSuchUsernameException;
 import app.repository.UserRepository;
 

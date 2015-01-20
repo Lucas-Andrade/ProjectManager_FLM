@@ -1,8 +1,9 @@
-package app.commands;
+package app.domainCommands;
 
 import utils.Local;
 import utils.Project;
 import app.AppElement;
+import app.commands.Command;
 import app.repository.ProjectsRepository;
 
 public class AddProjectToRepo implements Command{

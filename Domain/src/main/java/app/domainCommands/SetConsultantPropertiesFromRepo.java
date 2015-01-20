@@ -1,7 +1,8 @@
-package app.commands;
+package app.domainCommands;
 
 import utils.AWorker;
 import app.AppElement;
+import app.commands.Command;
 import app.commands.exceptions.CostOutOfBoundsException;
 import app.commands.exceptions.NoSuchWorkerException;
 import app.repository.WorkerRepository;

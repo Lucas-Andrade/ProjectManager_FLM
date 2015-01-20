@@ -1,7 +1,8 @@
-package app.commands;
+package app.domainCommands;
 
 import utils.Project;
 import app.AppElement;
+import app.commands.Command;
 import app.commands.exceptions.NoSuchProjectException;
 import app.repository.ProjectsRepository;
 

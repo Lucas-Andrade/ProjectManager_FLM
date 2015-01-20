@@ -1,4 +1,4 @@
-package app.commands;
+package app.domainCommands;
 
 import java.util.concurrent.Callable;
 

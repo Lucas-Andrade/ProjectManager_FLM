@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
-import app.commands.AddUserToRepo;
 import app.commands.exceptions.IllegalEmailException;
 import app.commands.exceptions.PasswordLengthOutOfBoundsException;
 import app.commands.exceptions.RepeatedUsernameException;
+import app.domainCommands.AddUserToRepo;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
 

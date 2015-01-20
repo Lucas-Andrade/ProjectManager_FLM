@@ -1,11 +1,19 @@
 package app.windows.commandWindowsAL;
 
-import app.commands.Command;
+import javax.swing.SwingWorker;
 
-public class SwingWorkerCommand {
+import app.domainCommands.Command;
+
+public class SwingWorkerCommand extends SwingWorker{
 
 	public SwingWorkerCommand(Command addUserToRepo) {
-		// TODO Auto-generated constructor stub
+		Command
+	}
+
+	@Override
+	protected Object doInBackground() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
