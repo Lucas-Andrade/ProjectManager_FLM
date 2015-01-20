@@ -2,7 +2,6 @@ package app.domainCommands;
 
 import utils.Project;
 import app.AppElement;
-import app.commands.Command;
 import app.commands.exceptions.CostOutOfBoundsException;
 import app.commands.exceptions.GeographicCoordinatesOutOfBoundsException;
 import app.commands.exceptions.NoSuchProjectException;

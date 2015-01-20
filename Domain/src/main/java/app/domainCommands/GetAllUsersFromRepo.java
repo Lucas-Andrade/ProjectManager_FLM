@@ -1,7 +1,6 @@
 package app.domainCommands;
 
 import app.AppElement;
-import app.commands.Command;
 import app.repository.UserRepository;
 
 public class GetAllUsersFromRepo implements Command{

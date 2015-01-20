@@ -6,7 +6,6 @@ import utils.AWorker;
 import utils.Leader;
 import utils.Project;
 import app.AppElement;
-import app.commands.Command;
 import app.commands.exceptions.NoManagerInProjectException;
 import app.commands.exceptions.NoWorkersFoundException;
 import app.commands.exceptions.NoSuchProjectException;

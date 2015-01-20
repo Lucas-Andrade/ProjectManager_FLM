@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import utils.Project;
 import app.AppElement;
-import app.commands.Command;
 import app.commands.exceptions.NoSuchSubprojectsException;
 import app.commands.exceptions.NoSuchProjectException;
 import app.repository.ProjectsRepository;

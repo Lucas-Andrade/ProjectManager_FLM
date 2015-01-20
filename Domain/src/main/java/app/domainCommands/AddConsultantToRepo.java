@@ -3,7 +3,6 @@ package app.domainCommands;
 import utils.Consultant;
 import utils.Leader;
 import app.AppElement;
-import app.commands.Command;
 import app.commands.exceptions.CostOutOfBoundsException;
 import app.repository.WorkerRepository;
 

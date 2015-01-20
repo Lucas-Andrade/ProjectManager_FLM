@@ -4,7 +4,6 @@ import utils.Consultant;
 import utils.Leader;
 import utils.Project;
 import app.AppElement;
-import app.commands.Command;
 import app.commands.exceptions.IllegalWorkerTypeException;
 import app.commands.exceptions.NoSuchManagerException;
 import app.commands.exceptions.NoSuchProjectException;

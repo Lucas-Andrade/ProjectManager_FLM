@@ -1,7 +1,6 @@
 package app.domainCommands;
 
 import app.AppElement;
-import app.commands.Command;
 import app.commands.exceptions.IllegalEmailException;
 import app.commands.exceptions.PasswordLengthOutOfBoundsException;
 import app.commands.exceptions.RepeatedUsernameException;

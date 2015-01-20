@@ -2,7 +2,6 @@ package app.domainCommands;
 
 import utils.Project;
 import app.AppElement;
-import app.commands.Command;
 import app.commands.exceptions.AddedExistingSubproject;
 import app.commands.exceptions.NoSuchProjectException;
 import app.commands.exceptions.ProjectAddedToItselfException;

@@ -1,7 +1,6 @@
 package app.domainCommands;
 
 import app.AppElement;
-import app.commands.Command;
 import app.commands.exceptions.IncorrectPasswordException;
 import app.commands.exceptions.NoSuchUsernameException;
 import app.commands.exceptions.PasswordLengthOutOfBoundsException;
