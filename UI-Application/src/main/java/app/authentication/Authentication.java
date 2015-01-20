@@ -7,9 +7,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
 import app.elements.IUser;
-import app.framesAndPanels.mainFrameActionListener.mainFrame.ErrorDialog;
 import app.repository.UserRepository;
 import app.repositoryHolders.RepositoryHolder;
+import app.windowsAndActionListeners.mainFrameActionListener.mainFrame.ErrorDialog;
 
 public class Authentication implements IAuthentication {
 	

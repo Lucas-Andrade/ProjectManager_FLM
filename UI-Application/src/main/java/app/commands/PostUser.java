@@ -3,9 +3,9 @@ package app.commands;
 import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
-import app.framesAndPanels.commandWindowsActionListener.commandWindows.PostUserFrame;
 import app.repositoryHolders.RepositoryHolder;
 import app.result.PostUserResult;
+import app.windowsAndActionListeners.commandWindowsActionListener.commandWindows.PostUserFrame;
 
 public class PostUser extends BaseCommand{
 

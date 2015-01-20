@@ -3,9 +3,9 @@ package app.commands;
 import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
-import app.framesAndPanels.commandWindowsActionListener.commandWindows.DeleteProjectFrame;
 import app.repositoryHolders.RepositoryHolder;
 import app.result.DeleteProjectResult;
+import app.windowsAndActionListeners.commandWindowsActionListener.commandWindows.DeleteProjectFrame;
 
 public class DeleteProject extends BaseCommand{
 
