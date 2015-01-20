@@ -2,11 +2,13 @@ package app.windows.commandWindowsAL.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import app.windows.commandWindowsAL.NewProjectAL;
+import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 public class PostSubprojectFrame extends MainDialogFrame {
 
@@ -52,7 +54,8 @@ public class PostSubprojectFrame extends MainDialogFrame {
 	
 		
 //		//elementos da lista de repositórios
-//		String[] petStrings = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
+		
+		//		String[] petStrings = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
 		
 		//Create the combo box, select item at index 4.
 		//Indices start at 0, so 4 specifies the pig.

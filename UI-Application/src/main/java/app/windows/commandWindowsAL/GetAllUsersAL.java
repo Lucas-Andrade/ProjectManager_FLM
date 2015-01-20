@@ -13,7 +13,7 @@ public class GetAllUsersAL implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		new SwingWorkerCommand(new GetAllUsersFromRepo(MainFrame.repositories.getUsersRepo()), new PublishToMainFrame());
+		new SwingWorkerCommand(new GetAllUsersFromRepo(MainFrame.getRepositories().getUsersRepo()), new PublishToMainFrame());
 
 	}
 

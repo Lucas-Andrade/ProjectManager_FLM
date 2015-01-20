@@ -9,5 +9,6 @@ import org.json.JSONObject;
  * @since 08/12/2014
  */
 public interface AppElement{
+	
 	public JSONObject getJson();
 }

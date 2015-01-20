@@ -21,7 +21,7 @@ public class GetUserAL {
 	public GetUserAL(UserRepository usersRepo, JTextField userID) {
 		try{
 			username = parameter.getText();
-			new SwingWorkerCommand(new GetUserFromRepo(MainFrame.repositories.getUsersRepo(), username), new PublishToMainFrame());
+			new SwingWorkerCommand(new GetUserFromRepo(MainFrame.getRepositories().getUsersRepo(), username), new PublishToMainFrame());
 		
 //		}catch(NoSuchUsernameException nsue){
 //			new ErrorDialog("User " + username + " not found!").setVisible(true);

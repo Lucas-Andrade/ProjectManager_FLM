@@ -7,6 +7,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import app.windows.commandWindowsAL.NewProjectAL;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
 import java.awt.GridBagLayout;
@@ -18,11 +19,11 @@ public class PatchProjectFrame extends MainDialogFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = -256281858791279368L;
-	private JTextField LatitudeField;
 	private JTextField longitudeField;
 	private JTextField nameField;
 	private JTextField priceField;
 	private ProjectID projectId;
+	private JTextField latitudeField;
 
 	/**
 	 * Launch the application.
@@ -129,16 +130,16 @@ public class PatchProjectFrame extends MainDialogFrame {
 			getMainDialogPanel().add(lblLatitude, gbc_lblLatitude);
 		
 			
-			LatitudeField = new JTextField();
+			latitudeField = new JTextField();
 			GridBagConstraints gbc_latitudeField = new GridBagConstraints();
 			gbc_latitudeField.anchor = GridBagConstraints.SOUTH;
 			gbc_latitudeField.fill = GridBagConstraints.HORIZONTAL;
 			gbc_latitudeField.insets = new Insets(0, 0, 5, 5);
 			gbc_latitudeField.gridx = 3;
 			gbc_latitudeField.gridy = 7;
-			getMainDialogPanel().add(LatitudeField, gbc_latitudeField);
-			LatitudeField.setColumns(10);
-			LatitudeField.updateUI();
+			getMainDialogPanel().add(latitudeField, gbc_latitudeField);
+			latitudeField.setColumns(10);
+			latitudeField.updateUI();
 		
 			
 			JLabel lblLongitude = new JLabel("Longitude:");
@@ -159,6 +160,14 @@ public class PatchProjectFrame extends MainDialogFrame {
 			gbc_longitudeField.gridy = 8;
 			getMainDialogPanel().add(longitudeField, gbc_longitudeField);
 			longitudeField.setColumns(10);
+			
+			JTextField[] textFields = new JTextField[4];
+			textFields[0] = nameField; //assign each field to a position in the array
+			textFields[1] = priceField;
+			textFields[2] = longitudeField;
+			textFields[3] = latitudeField;
+			
+			this.getSaveButton().addActionListener(new SetProjectAL(textFields));
 	}
 
 }
