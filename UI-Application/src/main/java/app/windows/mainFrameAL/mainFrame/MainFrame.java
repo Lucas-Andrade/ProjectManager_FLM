@@ -49,6 +49,10 @@ public class MainFrame extends JFrame
 	{
 		new MainFrame(new InMemoryRepositoryHolder()).setVisible(true);
 	}
+	
+	public static JSplitPane getSplitPane(){
+		return splitPane;
+	}
 
 	public MainFrame(RepositoryHolder repositories){
 		
