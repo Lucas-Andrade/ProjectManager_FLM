@@ -45,16 +45,17 @@ public class MainFrame extends JFrame
 	public static RepositoryHolder repositories;
 	public static Authentication authentication;
 	public static IUser user;
-
+	private static JSplitPane splitPane;
+	
 	public static void main(String[] args)
 	{
-		new MainFrame(new JSplitPane(), new InMemoryRepositoryHolder(), new
+		new MainFrame(new InMemoryRepositoryHolder(), new
 		Authentication()).setVisible(true);
 	}
 
-	public MainFrame(JSplitPane splitPane, RepositoryHolder repositories,
-			Authentication authentication)
-	{
+	public MainFrame(RepositoryHolder repositories, Authentication authentication){
+		
+		this.splitPane = new JSplitPane();
 
 		MainFrame.repositories = repositories;
 		MainFrame.authentication = authentication;

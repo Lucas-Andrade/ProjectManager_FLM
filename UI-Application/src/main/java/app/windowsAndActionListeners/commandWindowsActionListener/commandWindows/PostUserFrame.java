@@ -1,4 +1,4 @@
-package app.windows.commandWindowsAL.commandWindows;
+package app.windowsAndActionListeners.commandWindowsActionListener.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -7,7 +7,8 @@ import java.io.IOException;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import app.windows.commandWindowsAL.NewUserAL;
+
+import app.windowsAndActionListeners.commandWindowsActionListener.NewUserAL;
 
 import java.awt.GridBagLayout;
 
@@ -45,7 +46,6 @@ public class PostUserFrame extends MainDialogFrame {
 	 * @throws IOException 
 	 */
 	public PostUserFrame() {
-		super();
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 60, 100, 100, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0};

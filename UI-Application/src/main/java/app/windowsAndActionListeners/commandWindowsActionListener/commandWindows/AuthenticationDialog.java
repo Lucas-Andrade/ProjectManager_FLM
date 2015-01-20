@@ -1,4 +1,4 @@
-package app.windows.commandWindowsAL.commandWindows;
+package app.windowsAndActionListeners.commandWindowsActionListener.commandWindows;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -127,7 +127,7 @@ public class AuthenticationDialog extends JDialog{
 		btnNewButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				authentication.authenticate(textField, authentication, repoHolder);
+				new Authentication().authenticate(textField, authentication, repoHolder);
 				dispose();
 			}
 		});
