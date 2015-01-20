@@ -13,7 +13,6 @@ import org.json.JSONObject;
 
 import utils.Project;
 import app.AppElement;
-import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 public class PublishToMainFrame implements ResultsPublisher{
 

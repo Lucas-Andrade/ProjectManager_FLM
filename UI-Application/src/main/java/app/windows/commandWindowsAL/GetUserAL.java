@@ -6,6 +6,7 @@ import app.domainCommands.GetUserFromRepo;
 import app.repository.UserRepository;
 import app.windows.PublishToMainFrame;
 import app.windows.SwingWorkerCommand;
+import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 public class GetUserAL {
@@ -18,8 +19,16 @@ public class GetUserAL {
 	}
 
 	public GetUserAL(UserRepository usersRepo, JTextField userID) {
-		username = parameter.getText();
-		new SwingWorkerCommand(new GetUserFromRepo(MainFrame.repositories.getUsersRepo(), username), new PublishToMainFrame());
-	}
+		try{
+			username = parameter.getText();
+			new SwingWorkerCommand(new GetUserFromRepo(MainFrame.repositories.getUsersRepo(), username), new PublishToMainFrame());
+		
+//		}catch(NoSuchUsernameException nsue){
+//			new ErrorDialog("User " + username + " not found!").setVisible(true);
+		} catch (IllegalArgumentException iae){
+			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage()).setVisible(true);
+		}
+		
+		}
 
 }

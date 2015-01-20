@@ -1,7 +1,5 @@
 package app.windows;
 
-import java.util.concurrent.ExecutionException;
-
 import javax.swing.SwingWorker;
 
 import app.AppElement;
