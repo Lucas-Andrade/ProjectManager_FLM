@@ -14,22 +14,22 @@ import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 public abstract class Authentication {
 
 	private static IUser authenticatedUser;
-	private static boolean isAuthenticated=false;
+	private static boolean isAuthenticated = false;
 
-	public boolean isAuthenticated(){
+	public static boolean isAuthenticated(){
 		return isAuthenticated;
 	}
 
-	public IUser getAuthenticatedUser(){
+	public static IUser getAuthenticatedUser(){
 		return authenticatedUser;
 	}
 
-	private void setAuthenticatedUser(IUser user) {
+	private static void setAuthenticatedUser(IUser user) {
 		authenticatedUser = user;
 		isAuthenticated = true;
 	}
 
-	public static void authenticate(JTextField[] fieldsToRetrieve, Authentication authentication, RepositoryHolder repoHolder){
+	public static void authenticate(JTextField[] fieldsToRetrieve, RepositoryHolder repoHolder){
 		new SwingWorker<IUser, Object>(){
 			
 			UserRepository uRepo = repoHolder.getUsersRepo();
@@ -65,7 +65,7 @@ public abstract class Authentication {
 				}
 				
 				if(user != null){
-					authentication.setAuthenticatedUser(user);
+					setAuthenticatedUser(user);
 					return;
 				}
 				new ErrorDialog("Login name or password do not match any known users.").setVisible(true);

@@ -36,7 +36,7 @@ public class AuthenticationDialog extends JDialog{
 	 */
 	public static void main(String[] args) {
 		try {
-			AuthenticationDialog dialog = new AuthenticationDialog(new Authentication(), new InMemoryRepositoryHolder());
+			AuthenticationDialog dialog = new AuthenticationDialog(new InMemoryRepositoryHolder());
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -44,7 +44,7 @@ public class AuthenticationDialog extends JDialog{
 		}
 	}
 	
-	public AuthenticationDialog(Authentication authentication, RepositoryHolder repoHolder) {
+	public AuthenticationDialog(RepositoryHolder repoHolder) {
 		setResizable(false);
 
 		this.setTitle("Login");
@@ -127,7 +127,7 @@ public class AuthenticationDialog extends JDialog{
 		btnNewButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				authentication.authenticate(textField, authentication, repoHolder);
+				Authentication.authenticate(textField, repoHolder);
 				dispose();
 			}
 		});
