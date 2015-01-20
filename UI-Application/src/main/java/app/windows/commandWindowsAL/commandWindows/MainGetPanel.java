@@ -3,6 +3,8 @@ package app.windows.commandWindowsAL.commandWindows;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,6 +21,7 @@ public class MainGetPanel extends JPanel {
 	private static final int WIDTH_BOUND =636;
 	private static final int HEIGHT_BOUND =387;
 	private final MainPanel mainGetPanel;
+	private JButton getButton;
 
 	
 
@@ -38,6 +41,9 @@ public class MainGetPanel extends JPanel {
 		mainGetPanel.setHelpTip(help);
 	}
 
+	public JButton getGetButton(){
+		return getButton;
+	}
 	
 	/**
 	 * Create the dialog.
@@ -72,8 +78,8 @@ public class MainGetPanel extends JPanel {
 		mainGetPanel = new MainPanel();
 		
 		setBounds(X_BOUND,Y_BOUND,WIDTH_BOUND, HEIGHT_BOUND);   //Definição da Caixa de Diálogo
-		getRootPane().setLayout(new BorderLayout());
-		getRootPane().add(mainGetPanel, BorderLayout.CENTER);
+		this.setLayout(new BorderLayout());
+		this.add(mainGetPanel, BorderLayout.CENTER);
 		
 		this.setLocation(null);
 		
@@ -81,17 +87,18 @@ public class MainGetPanel extends JPanel {
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		getRootPane().add(buttonPane, BorderLayout.SOUTH);
 		{
-			JButton okButton = new JButton("GET");
-			okButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/Ok.png")));
-			okButton.setActionCommand("GET");
-			buttonPane.add(okButton);
-			getRootPane().setDefaultButton(okButton);
+			getButton = new JButton("GET");
+			getButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/Ok.png")));
+			getButton.setActionCommand("GET");
+			buttonPane.add(getButton);
+			getRootPane().setDefaultButton(getButton);
 		}
 		{
 			JButton cancelButton = new JButton("Cancel");
 			cancelButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/cancel.png")));
 			cancelButton.setActionCommand("Cancel");
 			buttonPane.add(cancelButton);
+			cancelButton.addActionListener(new CancelActionListener());
 		}
 		  
 	}
@@ -102,6 +109,16 @@ public class MainGetPanel extends JPanel {
 	public JPanel getMainGetPanel() {
 		return mainGetPanel;
 	}
+	
+	private class CancelActionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//TODO
+		}
+		
+	}
+	
 }
 
 	

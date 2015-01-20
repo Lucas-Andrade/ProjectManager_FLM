@@ -5,10 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
-import app.commands.exceptions.IllegalEmailException;
-import app.commands.exceptions.PasswordLengthOutOfBoundsException;
-import app.commands.exceptions.RepeatedUsernameException;
 import app.domainCommands.AddUserToRepo;
+import app.windows.PublishToMainFrame;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
@@ -38,23 +36,20 @@ public class NewUserAL implements ActionListener{
 		}
 		
 		try{
-			new SwingWorkerCommand(new AddUserToRepo(MainFrame.repositories.getUsersRepo(), username, password, email, fullname));
+			new SwingWorkerCommand(new AddUserToRepo(MainFrame.repositories.getUsersRepo(), username, password, email, fullname), new PublishToMainFrame());
 			
-			//TODO
-		}catch(PasswordLengthOutOfBoundsException nfe){
-			new ErrorDialog("User's password must have at least 4 characters.").setVisible(true);
-		
-		}catch(IllegalEmailException nfe){
-			new ErrorDialog("The Email is not valid.").setVisible(true);
-		 
-		}catch(RepeatedUsernameException nfe){
-			new ErrorDialog("The Specified Username is already being used.").setVisible(true);
+//			//TODO
+//		}catch(PasswordLengthOutOfBoundsException nfe){
+//			new ErrorDialog("User's password must have at least 4 characters.").setVisible(true);
+//		
+//		}catch(IllegalEmailException nfe){
+//			new ErrorDialog("The Email is not valid.").setVisible(true);
+//		 
+//		}catch(RepeatedUsernameException nfe){
+//			new ErrorDialog("The Specified Username is already being used.").setVisible(true);
 		}
 		catch(IllegalArgumentException iae){
 			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage());
 		}
-		
-	}
-	
-	
+	}		
 }
