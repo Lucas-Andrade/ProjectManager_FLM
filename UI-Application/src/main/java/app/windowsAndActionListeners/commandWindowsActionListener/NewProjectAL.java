@@ -3,6 +3,7 @@ package app.windowsAndActionListeners.commandWindowsActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import app.commands.AddProjectToRepo;
@@ -35,7 +36,8 @@ public class NewProjectAL implements ActionListener {
 		}
 		
 		try{
-			new SwingWorkerCommand(new AddProjectToRepo(MainFrame.repositories.getProjectsRepo(),name, price, latitude, longitude));
+			new SwingWorkerCommand(new AddProjectToRepo(MainFrame.repositories.getProjectsRepo(),name, price, latitude, longitude), new PublishToMainFrame()).execute();
+			JOptionPane.showInternalConfirmDialog(null, "Sucsses");
 		}catch(NumberFormatException nfe){
 			new ErrorDialog("Numbers were not introduced in one of the following fields: Price, Longitude of Latitude.").setVisible(true);
 		}
