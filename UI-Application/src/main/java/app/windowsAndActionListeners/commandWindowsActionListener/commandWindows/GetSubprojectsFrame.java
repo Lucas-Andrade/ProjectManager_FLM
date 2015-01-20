@@ -1,4 +1,4 @@
-package app.windows.commandWindowsAL.commandWindows;
+package app.windowsAndActionListeners.commandWindowsActionListener.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -7,19 +7,21 @@ import java.awt.Insets;
 import javax.swing.JPanel;
 import java.awt.Color;
 
-import app.windows.mainFrameAL.mainFrame.ProjectID;
+import app.windowsAndActionListeners.mainFrameActionListener.mainFrame.ProjectID;
 
 public class GetSubprojectsFrame extends MainGetPanel {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1075896035298801798L;
+	private static final long serialVersionUID = 6402767430117560903L;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+			new GetSubprojectsFrame();
 
 	}
 

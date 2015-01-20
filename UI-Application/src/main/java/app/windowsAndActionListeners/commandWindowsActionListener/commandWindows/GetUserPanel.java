@@ -1,21 +1,28 @@
-package app.windows.commandWindowsAL.commandWindows;
+package app.windowsAndActionListeners.commandWindowsActionListener.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JDialog;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import app.windows.commandWindowsAL.commandWindows.MainGetPanel;
+
 
 public class GetUserPanel extends MainGetPanel {
+
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -457464140944368035L;
+	private static final long serialVersionUID = 1L;
+
 	private JTextField userID;
 	private JTextField textField;
 
@@ -60,7 +67,13 @@ public class GetUserPanel extends MainGetPanel {
 		gbc_AllUsers.gridx = 2;
 		gbc_AllUsers.gridy = 3;
 		getMainGetPanel().add(allUsers, gbc_AllUsers);
-		
+		allUsers.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+								
+			}
+		});
 		
 		JRadioButton userId = new JRadioButton("User ID:");
 		GridBagConstraints gbc_UserId = new GridBagConstraints();
@@ -69,7 +82,13 @@ public class GetUserPanel extends MainGetPanel {
 		gbc_UserId.gridx = 2;
 		gbc_UserId.gridy = 5;
 		getMainGetPanel().add(userId, gbc_UserId);
-		
+		userId.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+								
+			}
+		});
 		
 		userID = new JTextField();
 		GridBagConstraints gbc_userID = new GridBagConstraints();
@@ -80,6 +99,12 @@ public class GetUserPanel extends MainGetPanel {
 		gbc_userID.gridy = 5;
 		getMainGetPanel().add(userID, gbc_userID);
 		userID.setColumns(10);
+		
+		
+		 //Group the radio buttons.
+	    ButtonGroup group = new ButtonGroup();
+	    group.add(allUsers);
+	    group.add(userId);
 		
 		
 		textField = new JTextField();

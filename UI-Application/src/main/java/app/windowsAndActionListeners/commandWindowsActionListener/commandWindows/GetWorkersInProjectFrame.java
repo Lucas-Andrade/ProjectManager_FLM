@@ -1,4 +1,4 @@
-package app.windows.commandWindowsAL.commandWindows;
+package app.windowsAndActionListeners.commandWindowsActionListener.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -9,14 +9,14 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 
-import app.windows.mainFrameAL.mainFrame.ProjectID;
+import app.windowsAndActionListeners.mainFrameActionListener.mainFrame.ProjectID;
 
 public class GetWorkersInProjectFrame extends MainGetPanel {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3937953220998193520L;
+	private static final long serialVersionUID = 1L;
 	private ProjectID projectId;
 	private JRadioButton manager;
 	private JRadioButton consultantId;
@@ -35,10 +35,13 @@ public class GetWorkersInProjectFrame extends MainGetPanel {
 		}
 	}
 
+	
+
 	/**
 	 * Create the frame.
 	 */
 	public GetWorkersInProjectFrame() {
+		
 		setBounds(100, 100, 676, 387);
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainGetPanel().getLayout();
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0};
