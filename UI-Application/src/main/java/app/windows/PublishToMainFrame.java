@@ -2,6 +2,7 @@ package app.windows;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.lang.reflect.Array;
 import java.nio.file.attribute.AclEntry.Builder;
 import java.util.Iterator;
 
@@ -19,7 +20,7 @@ import org.json.JSONObject;
 import app.AppElement;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
 
-public class PublishToMainFrame {//implements ResultsPublisher{
+public class PublishToMainFrame implements ResultsPublisher{
 
 	public static void main(String[] args){
 		JFrame frame = new JFrame();
@@ -35,45 +36,78 @@ public class PublishToMainFrame {//implements ResultsPublisher{
 //	@Override
 	public void publish(AppElement[] appElements, JSplitPane splitPane) {
 	//	JSplitPane splitPane = MainFrame.getSplitPane();
-	//	JPanel panel = new JPanel();
 		
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Root");
 		JTree tree = new JTree(root);
-		tree.setRootVisible(false);
-		tree.setShowsRootHandles(true);
-		tree.add(new JScrollPane(tree));
 		
 		for(AppElement element : appElements){
 			root.add(getBranch(element));
 		}
-		
-		root.add(new DefaultMutableTreeNode("coisa"));
-	//	panel.add(tree, BorderLayout.CENTER);
+				
+		tree.setShowsRootHandles(true);
+	//	tree.setRootVisible(false);
 		splitPane.setRightComponent(new JScrollPane(tree));
 		splitPane.setLeftComponent(new JPanel());
+		splitPane.updateUI();
 	}
 
-	private MutableTreeNode getBranch(AppElement element) {
-		MutableTreeNode toReturn = new DefaultMutableTreeNode(getBranchName(element));
-		return toReturn;
+	private DefaultMutableTreeNode getBranch(AppElement element) {
+		DefaultMutableTreeNode node = new DefaultMutableTreeNode(getBranchName(element));
+		
+		JSONObject json = element.getJson();
+		return constructBranch(node, json);
+	}
+
+	private DefaultMutableTreeNode constructBranch(DefaultMutableTreeNode node, JSONObject json) {
+		
+		Iterator<String> iterator = json.keys();
+		
+		while(iterator.hasNext()) {
+			String key = iterator.next();
+			Object object = json.get(key);
+			
+			if(object instanceof JSONObject){
+				node.add(constructBranch(new DefaultMutableTreeNode(key), (JSONObject)object));
+			} else if(object.getClass().isArray()) {
+				DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(key);
+				addArrayOfNodes(newNode, (Object[])object);
+			} else {
+				node.add(new DefaultMutableTreeNode(key + ": " + object.toString()));
+			}
+		}
+		return node;
+	}
+
+	private void addArrayOfNodes(DefaultMutableTreeNode node, Object[] arrayToAdd) {
+
+		for(Object obj : arrayToAdd){
+			if (obj instanceof JSONObject) {
+				constructBranch(node, (JSONObject)obj);
+			} else {
+				node.add(new DefaultMutableTreeNode(obj.toString()));
+			}
+		}
 	}
 
 	private String getBranchName(AppElement element) {
-		
+
 		String elementString = element.toString();
 		StringBuilder builder = new StringBuilder();
 		
-		for(int i = 1; i < elementString.length(); i++){
-			if(elementString.charAt(i-1) == '\\' &&
-					elementString.charAt(i) == 'n') {
+		for(int i = 0; i < elementString.length(); i++){
+			if( elementString.charAt(i) == '\n'){
 				return builder.toString();
 			} else {
-				builder.append(elementString.charAt(i-1));
+				builder.append(elementString.charAt(i));
 			}
 		}
-		return null;
+		return "";
 	}
 
-
+	@Override
+	public void publish(AppElement[] appElements) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
