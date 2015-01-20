@@ -1,23 +1,21 @@
-package app.windows.commandWindowsAL.commandWindows;
+package app.windowsAndActionListeners.commandWindowsActionListener.commandWindows;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
+<<<<<<< HEAD
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+=======
+>>>>>>> ba63e9b21122b47bd2978735669b80aa24e70f8e
 import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-
-import app.result.GetUserResult;
 
 
 public class GetUserPanel extends MainGetFrame {
@@ -28,7 +26,6 @@ public class GetUserPanel extends MainGetFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private final JPanel getUsersPanel = new JPanel();
 	private JTextField userID;
 	private JTextField textField;
 
@@ -37,7 +34,7 @@ public class GetUserPanel extends MainGetFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			GetUserPanel dialog = new GetUserPanel(null);
+			GetUserPanel dialog = new GetUserPanel();
 			//definimos o título da janela
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -51,10 +48,8 @@ public class GetUserPanel extends MainGetFrame {
 	 * @param getUserResult 
 	 * @throws IOException 
 	 */
-	public GetUserPanel(GetUserResult getUserResult) 
+	public GetUserPanel() 
 	{
-		super();
-		
 		this.setTitle("Get Users");    //definimos o título da janela
 		this.setImage("images/user2-icon.png");
 		this.setTitleLabel("Get Users");
@@ -75,7 +70,14 @@ public class GetUserPanel extends MainGetFrame {
 		gbc_AllUsers.gridx = 2;
 		gbc_AllUsers.gridy = 3;
 		getMainGetPanel().add(allUsers, gbc_AllUsers);
-		
+		allUsers.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		JRadioButton userId = new JRadioButton("User ID:");
 		GridBagConstraints gbc_UserId = new GridBagConstraints();
@@ -95,6 +97,12 @@ public class GetUserPanel extends MainGetFrame {
 		gbc_userID.gridy = 5;
 		getMainGetPanel().add(userID, gbc_userID);
 		userID.setColumns(10);
+		
+		
+		 //Group the radio buttons.
+	    ButtonGroup group = new ButtonGroup();
+	    group.add(allUsers);
+	    group.add(userId);
 		
 		
 		textField = new JTextField();

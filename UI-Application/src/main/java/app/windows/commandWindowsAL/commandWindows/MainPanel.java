@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import app.windowsAndActionListeners.mainFrameActionListener.mainFrame.MainFrame;
+
 public class MainPanel extends JPanel {
 
 	/**
@@ -32,6 +34,7 @@ public class MainPanel extends JPanel {
 	public void setHelpTip(String help){
 		helpLabel.setToolTipText(help);
 	}
+	
 	
 	
 	/**
@@ -79,7 +82,7 @@ public class MainPanel extends JPanel {
 		this.add(helpLabel, gbc_helpLabel);
 			
 	
-		JLabel lblWellcome = new JLabel("Wellcome"); 
+		JLabel lblWellcome = new JLabel("Welcome"); 
 		GridBagConstraints gbc_lblWellcome = new GridBagConstraints();
 		gbc_lblWellcome.anchor = GridBagConstraints.BELOW_BASELINE_TRAILING;
 		gbc_lblWellcome.insets = new Insets(0, 0, 5, 5);
@@ -88,11 +91,13 @@ public class MainPanel extends JPanel {
 		this.add(lblWellcome, gbc_lblWellcome);
 	
 		
-		JLabel lblRegistryuser = new JLabel(""); // Informação sobre o user que está a usar o programa
+		JLabel lblRegistryuser = new JLabel("User"); // Informação sobre o user que está a usar o programa
 		GridBagConstraints gbc_lblRegistryuser = new GridBagConstraints();
 		gbc_lblRegistryuser.insets = new Insets(0, 0, 5, 0);
 		gbc_lblRegistryuser.gridx = 8;
 		gbc_lblRegistryuser.gridy = 1;
 		this.add(lblRegistryuser, gbc_lblRegistryuser);
+		
+		//MainFrame.authentication.getAuthenticatedUser().getLoginName() -> para obter nome do User
 	}
 }

@@ -2,6 +2,7 @@ package app.windows;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.util.Iterator;
 
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -32,10 +33,16 @@ public class PublishToMainFrame implements ResultsPublisher{
 	private static JTree treeifyTheElement(AppElement element) {
 
 		JSONObject json = element.getJson();
+		Iterator<String> iterator = json.keys();
 		JTree tree = new JTree();
 		
-		json.get
-		
+		while(iterator.hasNext()){
+			String key = iterator.next();
+			Object object = json.get(key);
+				if(object instanceof JSONObject){
+					tree.add(key);
+				}
+		}
 		
 		return null;
 	}

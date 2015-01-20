@@ -11,32 +11,25 @@ import app.repository.UserRepository;
 import app.repositoryHolders.RepositoryHolder;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 
-public class Authentication implements IAuthentication {
-	
+public abstract class Authentication {
+
 	private static IUser authenticatedUser;
-	private static boolean isAuthenticated;
-	
-	public Authentication(){
-		isAuthenticated = false;
-	}
-	
-	@Override
+	private static boolean isAuthenticated=false;
+
 	public boolean isAuthenticated(){
 		return isAuthenticated;
 	}
 
-	@Override
 	public IUser getAuthenticatedUser(){
 		return authenticatedUser;
 	}
-	
+
 	private void setAuthenticatedUser(IUser user) {
 		authenticatedUser = user;
 		isAuthenticated = true;
 	}
 
-	@Override
-	public void authenticate(JTextField[] fieldsToRetrieve, Authentication authentication, RepositoryHolder repoHolder){
+	public static void authenticate(JTextField[] fieldsToRetrieve, Authentication authentication, RepositoryHolder repoHolder){
 		new SwingWorker<IUser, Object>(){
 			
 			UserRepository uRepo = repoHolder.getUsersRepo();
