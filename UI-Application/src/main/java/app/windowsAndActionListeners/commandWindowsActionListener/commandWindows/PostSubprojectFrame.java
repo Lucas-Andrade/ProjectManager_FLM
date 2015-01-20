@@ -28,7 +28,7 @@ public class PostSubprojectFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostSubprojectFrame dialog = new PostSubprojectFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
+			PostSubprojectFrame dialog = new PostSubprojectFrame();
 			dialog.setTitle("Add Subproject");
 			dialog.setImage("images/subproject.jpg");
 			dialog.setTitleLabel("Add Subproject");
@@ -43,9 +43,7 @@ public class PostSubprojectFrame extends MainDialogFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public PostSubprojectFrame(CommandResult result) {
-		super(result);
-
+	public PostSubprojectFrame() {
 		this.setTitle("Add Subproject");
 		this.setImage("images/subproject.jpg");
 		this.setTitleLabel("Add Subproject");

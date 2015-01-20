@@ -1,23 +1,13 @@
 package app.windowsAndActionListeners.commandWindowsActionListener.commandWindows;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-
-import app.result.GetUserResult;
 
 
 public class GetUserPanel extends MainGetFrame {
@@ -28,7 +18,6 @@ public class GetUserPanel extends MainGetFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private final JPanel getUsersPanel = new JPanel();
 	private JTextField userID;
 	private JTextField textField;
 
@@ -53,8 +42,6 @@ public class GetUserPanel extends MainGetFrame {
 	 */
 	public GetUserPanel() 
 	{
-		super();
-		
 		this.setTitle("Get Users");    //definimos o título da janela
 		this.setImage("images/user2-icon.png");
 		this.setTitleLabel("Get Users");

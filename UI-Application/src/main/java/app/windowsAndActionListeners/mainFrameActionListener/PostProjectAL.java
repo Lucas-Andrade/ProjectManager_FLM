@@ -1,13 +1,7 @@
 package app.windowsAndActionListeners.mainFrameActionListener;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JSplitPane;
-
 import app.authentication.Authentication;
 import app.repositoryHolders.RepositoryHolder;
-import app.windowsAndActionListeners.commandWindowsActionListener.commandWindows.AuthenticationDialog;
 import app.windowsAndActionListeners.commandWindowsActionListener.commandWindows.PostProjectFrame;
 
 /**

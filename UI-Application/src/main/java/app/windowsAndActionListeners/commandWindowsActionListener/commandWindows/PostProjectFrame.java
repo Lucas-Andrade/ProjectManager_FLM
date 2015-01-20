@@ -6,12 +6,8 @@ import java.awt.Insets;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
-import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.result.CommandResult;
-import app.result.PostProjectResult;
 import app.windowsAndActionListeners.commandWindowsActionListener.NewProjectAL;
 
 public class PostProjectFrame extends MainDialogFrame {
@@ -30,7 +26,7 @@ public class PostProjectFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostProjectFrame dialog = new PostProjectFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
+			PostProjectFrame dialog = new PostProjectFrame();
 
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -42,8 +38,7 @@ public class PostProjectFrame extends MainDialogFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public PostProjectFrame(CommandResult result) {
-		super(result);
+	public PostProjectFrame() {
 		
 		this.setTitle("New Project");
 		this.setImage("images/project.png");

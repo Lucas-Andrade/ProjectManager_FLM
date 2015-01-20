@@ -7,13 +7,7 @@ import java.io.IOException;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
-import javax.swing.JSplitPane;
 import javax.swing.JTextField;
-
-import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.repositoryHolders.RepositoryHolder;
-import app.result.CommandResult;
-import app.result.PostProjectResult;
 
 import java.awt.GridBagLayout;
 
@@ -34,7 +28,7 @@ public class PostConsultantFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			PostConsultantFrame dialog = new PostConsultantFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
+			PostConsultantFrame dialog = new PostConsultantFrame();
 			//definimos o título da janela
 			dialog.setTitle("Post Consultant");
 			dialog.setImage("images/newConsultant.png");
@@ -51,8 +45,7 @@ public class PostConsultantFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 * @throws IOException 
 	 */
-	public PostConsultantFrame(CommandResult result) {
-		super(result);		    // Labels e campos a ser preenchidos
+	public PostConsultantFrame() {
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 30, 0, 0, 30, 15, 15, 0};

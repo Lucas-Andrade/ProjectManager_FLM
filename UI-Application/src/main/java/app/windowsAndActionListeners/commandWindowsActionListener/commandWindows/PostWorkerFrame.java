@@ -6,12 +6,8 @@ import java.awt.Insets;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
-import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.result.CommandResult;
-import app.result.PostProjectResult;
 import app.windowsAndActionListeners.mainFrameActionListener.mainFrame.ConsultantID;
 import app.windowsAndActionListeners.mainFrameActionListener.mainFrame.ManagerID;
 import app.windowsAndActionListeners.mainFrameActionListener.mainFrame.ProjectID;
@@ -33,7 +29,7 @@ public class PostWorkerFrame extends MainDialogFrame {
 	 */
 	public static void main(String[] args) {
 	//	try {
-			PostWorkerFrame dialog = new PostWorkerFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
+			PostWorkerFrame dialog = new PostWorkerFrame();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		//	dialog.setVisible(true);
 //		} catch (Exception e) {
@@ -44,8 +40,7 @@ public class PostWorkerFrame extends MainDialogFrame {
 	/**
 	 * Create the dialog.
 	 */
-	public PostWorkerFrame(CommandResult result) {
-		super(result);
+	public PostWorkerFrame() {
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainDialogPanel().getLayout();
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0};
 		gridBagLayout.columnWidths = new int[]{5, 100, 0, 100};

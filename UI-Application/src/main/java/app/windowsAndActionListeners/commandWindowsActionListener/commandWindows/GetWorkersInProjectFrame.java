@@ -7,13 +7,8 @@ import java.awt.Insets;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
-import javax.swing.JSplitPane;
 import javax.swing.JTable;
 
-import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.result.CommandResult;
-import app.result.GetSubprojectsResult;
-import app.result.GetWorkersInProjectResult;
 import app.windowsAndActionListeners.mainFrameActionListener.mainFrame.ProjectID;
 
 public class GetWorkersInProjectFrame extends MainGetFrame {
@@ -32,7 +27,7 @@ public class GetWorkersInProjectFrame extends MainGetFrame {
 	 */
 	public static void main(String[] args) {
 		try {
-			GetWorkersInProjectFrame dialog = new GetWorkersInProjectFrame(new GetWorkersInProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
+			GetWorkersInProjectFrame dialog = new GetWorkersInProjectFrame();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -45,8 +40,7 @@ public class GetWorkersInProjectFrame extends MainGetFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GetWorkersInProjectFrame(CommandResult result) {
-		super();
+	public GetWorkersInProjectFrame() {
 		
 		setBounds(100, 100, 676, 387);
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainGetPanel().getLayout();

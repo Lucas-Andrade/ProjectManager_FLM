@@ -24,11 +24,7 @@ public class Authentication implements IAuthentication {
 	public boolean isAuthenticated(){
 		return isAuthenticated;
 	}
-	
-	private void authenticate(){
-		isAuthenticated = true;
-	}
-	
+
 	@Override
 	public IUser getAuthenticatedUser(){
 		return authenticatedUser;
@@ -36,12 +32,11 @@ public class Authentication implements IAuthentication {
 	
 	private void setAuthenticatedUser(IUser user) {
 		authenticatedUser = user;
-		authenticate();
+		isAuthenticated = true;
 	}
 
 	@Override
 	public void authenticate(JTextField[] fieldsToRetrieve, Authentication authentication, RepositoryHolder repoHolder){
-
 		new SwingWorker<IUser, Object>(){
 			
 			UserRepository uRepo = repoHolder.getUsersRepo();
@@ -84,4 +79,5 @@ public class Authentication implements IAuthentication {
 			}
 		}.execute();
 	}
+
 }

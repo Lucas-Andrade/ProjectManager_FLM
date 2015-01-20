@@ -6,12 +6,8 @@ import java.awt.Insets;
 import java.io.IOException;
 
 import javax.swing.JLabel;
-import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
-import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.result.CommandResult;
-import app.result.PostProjectResult;
 import app.windowsAndActionListeners.mainFrameActionListener.mainFrame.ConsultantID;
 
 
@@ -31,7 +27,7 @@ public class PatchConsultantFrame extends MainDialogFrame {
 	public static void main(String[] args) {
 		try {
 
-			PatchConsultantFrame dialog = new PatchConsultantFrame(new PostProjectResult(new JSplitPane(), new InMemoryRepositoryHolder()));
+			PatchConsultantFrame dialog = new PatchConsultantFrame();
 			
 			dialog.setTitle("Edit Consultant");    //definimos o título da janela
 			dialog.setImage("images/edit.jpg");
@@ -47,9 +43,7 @@ public class PatchConsultantFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 * @throws IOException 
 	 */
-	public PatchConsultantFrame(CommandResult result) {
-		super(result);
-		
+	public PatchConsultantFrame() {
 		this.setTitle("Edit Consultant");    //definimos o título da janela
 		this.setImage("images/edit.jpg");
 		this.setTitleLabel("Edit Consultant");
