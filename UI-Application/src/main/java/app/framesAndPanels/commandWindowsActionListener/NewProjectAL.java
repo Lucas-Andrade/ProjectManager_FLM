@@ -1,19 +1,21 @@
 package app.framesAndPanels.commandWindowsActionListener;
 
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import app.commands.AddProjectToRepo;
 import app.framesAndPanels.mainFrameActionListener.mainFrame.ErrorDialog;
-import app.result.WarningMessagePanel;
+import app.framesAndPanels.mainFrameActionListener.mainFrame.MainFrame;
 
 public class NewProjectAL implements ActionListener {
 
 	private JTextField[] textfields;
 	private String name;
+	private String price;
+	private String latitude;
+	private String longitude;
 
 	public NewProjectAL(JTextField[] textFields2){
 		this.textfields = textFields2;
@@ -22,18 +24,18 @@ public class NewProjectAL implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String[] parameters = new String[4];
+
 		try{
 			name = textfields[0].getText();
 			price = textfields[1].getText();
-			parameters[2] = textfields[2].getText();
-			parameters[3] = textfields[3].getText();
+			latitude = textfields[2].getText();
+			longitude = textfields[3].getText();
 		}catch (NullPointerException a){
 			new ErrorDialog("Error").setVisible(true);
 		}
 		
 		try{
-			new SwingWorkerCommand(new AddProjectToRepo(), parameters);
+			new SwingWorkerCommand(new AddProjectToRepo(MainFrame.repositories.getProjectsRepo(),name, price, latitude, longitude));
 		}catch(NumberFormatException nfe){
 			new ErrorDialog("Numbers were not introduced in one of the following fields: Price, Longitude of Latitude.").setVisible(true);
 		}
