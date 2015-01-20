@@ -15,7 +15,7 @@ public class SetConsultantPropertiesFromRepo implements Command{
 	
 	public SetConsultantPropertiesFromRepo(WorkerRepository wRepo, String cidString, 
 			String name, String priceHour){
-		if (wRepo == null || cidString == null || name == null || priceHour == null){
+		if (wRepo == null || cidString == null){
 			throw new IllegalArgumentException();
 		}
 		this.wRepo = wRepo;

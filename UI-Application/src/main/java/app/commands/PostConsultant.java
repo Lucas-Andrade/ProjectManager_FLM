@@ -5,7 +5,7 @@ import javax.swing.JSplitPane;
 import app.authentication.Authentication;
 import app.repositoryHolders.RepositoryHolder;
 import app.result.PostConsultantResult;
-import app.windowsAndActionListeners.commandWindowsActionListener.commandWindows.PostConsultantFrame;
+import app.windows.commandWindowsAL.commandWindows.PostConsultantFrame;
 
 public class PostConsultant extends BaseCommand{
 	

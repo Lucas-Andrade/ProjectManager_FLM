@@ -2,9 +2,6 @@ package resultsAndOutputMethods;
 
 import org.junit.Test;
 
-import outputMethods.format.ToTextPlain;
-import app.RepositoryConstructor;
-import app.elements.User;
 import app.repository.InMemoryProjectRepo;
 import utils.Consultant;
 import utils.Leader;

@@ -5,7 +5,7 @@ import javax.swing.JSplitPane;
 import app.authentication.Authentication;
 import app.repositoryHolders.RepositoryHolder;
 import app.result.PostWorkerResult;
-import app.windowsAndActionListeners.commandWindowsActionListener.commandWindows.PostWorkerFrame;
+import app.windows.commandWindowsAL.commandWindows.PostWorkerFrame;
 
 public class PostWorker extends BaseCommand{
 	
