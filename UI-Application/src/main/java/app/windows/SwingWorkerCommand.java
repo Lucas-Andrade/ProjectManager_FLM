@@ -1,7 +1,5 @@
 package app.windows;
 
-import java.util.concurrent.ExecutionException;
-
 import javax.swing.SwingWorker;
 
 import app.AppElement;
@@ -23,13 +21,13 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], AppElement[]>{
 		return command.call();
 	}
 	
-	@Override
-	protected void done(){
-		try {
-			publisher.publish(get());
-		} catch (InterruptedException | ExecutionException e) {
-			//TODO -> uma janela de erro com "Could not get the results." 
-		}
-	}
+//	@Override
+//	protected void done(){
+//		try {
+//			publisher.publish(get());
+//		} catch (InterruptedException | ExecutionException e) {
+//			//TODO -> uma janela de erro com "Could not get the results." 
+//		}
+//	}
 
 }
