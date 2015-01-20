@@ -1,4 +1,4 @@
-package commands.exceptions;
+package parserCommands.exceptions;
 
 import java.text.MessageFormat;
 

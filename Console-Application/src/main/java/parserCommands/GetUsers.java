@@ -1,11 +1,10 @@
-package commands;
+package parserCommands;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
 
 import outputMethods.Result;
 import app.AppElement;
-import app.commands.Command;
 import app.domainCommands.GetAllUsersFromRepo;
 import app.elements.User;
 import app.repository.UserRepository;

@@ -37,7 +37,7 @@ public class GetUserPanel extends MainGetPanel {
 	 */
 	public static void main(String[] args) {
 		try {
-			GetUserPanel dialog = new GetUserPanel();
+			GetUserPanel dialog = new GetUserPanel(null);
 			//definimos o título da janela
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);

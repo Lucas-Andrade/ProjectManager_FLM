@@ -1,4 +1,4 @@
-package commands;
+package parserCommands;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -6,24 +6,25 @@ import java.util.concurrent.Callable;
 import outputMethods.Result;
 import utils.Project;
 import app.AppElement;
+import app.commands.exceptions.NoSuchSubprojectsException;
 import app.commands.exceptions.NoSuchProjectException;
-import app.domainCommands.GetProjectFromRepo;
+import app.domainCommands.GetSubprojectsFromRepo;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
-import commandParser.CommandParser;
 
 /**
- * Class whose instances are commands that return the {@link Project} with specified {@code PID}
- * Caller {@code String}: GET /project/{pid}
+ * Class whose instances are {@link Command}s that return the Sub{@link Project}
+ * s in a {@link Project}.
+ * Caller {@code String}: GET /project/{pid}/subproject
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class GetProjects extends BaseCommandResultsOutputMethod{
-
+public class GetSubproject extends BaseCommandResultsOutputMethod{
 	/**
 	 * The {@link ProjectsRepository} with the {@code Project}s. This
-	 * {@code ProjectRepository} is accessed to get the {@code Project}.
+	 * {@code ProjectRepository} is accessed to get the {@code Project} with the
+	 * wanted Sub{@code Project}s.
 	 */
 	private final ProjectsRepository repository;
 
@@ -45,16 +46,19 @@ public class GetProjects extends BaseCommandResultsOutputMethod{
 	 * {@link CommandFactory}.
 	 */
 	public static class Factory implements CommandFactory{
+
 		/**
 		 * The {@link ProjectsRepository} with the {@code Project}s. This
-		 * {@code ProjectRepository} is accessed to get the {@code Project}
+		 * {@code ProjectRepository} is accessed to get the {@code Project} with
+		 * the wanted Sub{@code Project}s.
 		 */
 		private final ProjectsRepository repository;
 
 		/**
 		 * The constructor for {@code Factory}.
 		 * 
-		 * @param repository    The {@code ProjectRepository} with the {@code Project}.
+		 * @param repository
+		 *            The {@code ProjectRepository} with the {@code Project}.
 		 */
 		public Factory(ProjectsRepository repository){
 			this.repository = repository;
@@ -64,18 +68,18 @@ public class GetProjects extends BaseCommandResultsOutputMethod{
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)	{
-			return new GetProjects(repository, parameters);
+		public Callable<Result> newInstance(Map<String, String> parameters){
+			return new GetSubproject(repository, parameters);
 		}
 	}
 
 	/**
-	 * The constructor for {@code GetProject}.
+	 * The constructor for {@code GetSubproject}.
 	 * 
 	 * @param repository    The {@code ProjectRepository}.
-	 * @param parameters    The Command arguments.
+	 * @param parameters    The {@code Command} arguments.
 	 */
-	public GetProjects(ProjectsRepository repository,
+	public GetSubproject(ProjectsRepository repository,
 			Map<String, String> parameters){
 		super(parameters);
 		this.repository = repository;
@@ -90,23 +94,28 @@ public class GetProjects extends BaseCommandResultsOutputMethod{
 	}
 
 	/**
-	 * Gets the {@code Project} with the argument
-	 * PID stored in {@link GetProjects#parameters} 
+	 * Get's the Sub{@code Project}s from the {@code Project} with the argument
+	 * PID stored in {@link GetSubproject#parameters} (argument's name is
+	 * {@link GetSubproject#PID}), if the {@code Project} exists and has at
+	 * least one Sub{@code Project}).
 	 * 
-	 * @return An array of {@code DatabaseElement} with one element carrying the 
-	 * {@code Project}
+	 * @return An array of {@code DatabaseElement} with all the sub{@code Project}s
 	 */
 	@Override
 	protected AppElement[] internalCall() throws Exception{
 		
-		AppElement[] project;
-		
+		AppElement[] subprojectAux = null;
+		String pid = getParameterAsString(PID);
 		try{
-			project = new GetProjectFromRepo(repository, getParameterAsString(PID)).call();
-		} catch(NoSuchProjectException e ) {
-			return new AppElement[]{new Message("Project not found!")};
+			subprojectAux = new GetSubprojectsFromRepo(repository, pid).call();
+		} catch(NoSuchProjectException e) {
+			return new AppElement[]{new Message("Project with ID: " + pid
+					+ " was not found!")};
+		} catch(NoSuchSubprojectsException e) {
+			return new AppElement[]{new Message("Project with ID: " + pid
+					+ " has no subprojects.")};
 		}
-
-		return project;
+	
+		return subprojectAux;
 	}
 }

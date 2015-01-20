@@ -1,9 +1,9 @@
-package commands;
+package parserCommands;
 
 import java.util.Map;
 
 import outputMethods.Result;
-import commands.exceptions.InvalidUserException;
+import parserCommands.exceptions.InvalidUserException;
 import app.AppElement;
 import app.elements.User;
 import app.repository.UserRepository;

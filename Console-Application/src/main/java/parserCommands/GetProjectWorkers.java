@@ -1,4 +1,4 @@
-package commands;
+package parserCommands;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -10,7 +10,6 @@ import utils.Leader;
 import utils.Project;
 import utils.Team;
 import app.AppElement;
-import app.commands.Command;
 import app.commands.exceptions.NoManagerInProjectException;
 import app.commands.exceptions.NoWorkersFoundException;
 import app.commands.exceptions.NoSuchProjectException;

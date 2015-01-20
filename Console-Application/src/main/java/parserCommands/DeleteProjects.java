@@ -1,4 +1,4 @@
-package commands;
+package parserCommands;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -6,7 +6,6 @@ import java.util.concurrent.Callable;
 import outputMethods.Result;
 import utils.Project;
 import app.AppElement;
-import app.commands.Command;
 import app.commands.exceptions.NoSuchProjectException;
 import app.domainCommands.RemoveProjectToRepo;
 import app.elements.Message;

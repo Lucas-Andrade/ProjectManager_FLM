@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 import outputMethods.Result;
-import commands.CommandFactory;
+import parserCommands.CommandFactory;
 
 
 /**

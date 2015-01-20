@@ -1,4 +1,4 @@
-package commands;
+package parserCommands;
 
 import java.util.Map;
 

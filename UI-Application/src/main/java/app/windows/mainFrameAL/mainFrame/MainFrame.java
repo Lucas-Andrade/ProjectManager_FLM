@@ -43,23 +43,20 @@ public class MainFrame extends JFrame
 	private static final long serialVersionUID = 1406565561867998589L;
 	public static final int PANEL_DIVIDER_LOCATION = 120;
 	public static RepositoryHolder repositories;
-	public static Authentication authentication;
-	public static IUser user;
 	private static JSplitPane splitPane;
 	
 	public static void main(String[] args)
 	{
-		new MainFrame(new InMemoryRepositoryHolder(), new
-		Authentication()).setVisible(true);
+		new MainFrame(new InMemoryRepositoryHolder()).setVisible(true);
+	}
+	
+	public static JSplitPane getSplitPane(){
+		return splitPane;
 	}
 
-	public MainFrame(RepositoryHolder repositories, Authentication authentication){
+	public MainFrame(RepositoryHolder repositories){
 		
-		this.splitPane = new JSplitPane();
-
-		MainFrame.repositories = repositories;
-		MainFrame.authentication = authentication;
-		user = authentication.getAuthenticatedUser();
+		MainFrame.splitPane = new JSplitPane();
 
 		this.setTitle("Project Manager");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -130,113 +127,97 @@ public class MainFrame extends JFrame
 
 		JMenuItem newProjectItem = new JMenuItem("New project");
 		projectsMenu.add(newProjectItem);
-		newProjectItem.addActionListener(new PostProjectAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new PostProjectAL(repositories));
 
 		JMenuItem editProjectItem = new JMenuItem("Edit project");
 		projectsMenu.add(editProjectItem);
-		newProjectItem.addActionListener(new PatchProjectAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new PatchProjectAL(repositories));
 
 		JMenuItem mntmDeleteProject = new JMenuItem("Delete project");
 		projectsMenu.add(mntmDeleteProject);
-		newProjectItem.addActionListener(new DeleteProjectAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new DeleteProjectAL(repositories));
 
 		JMenu mnGet = new JMenu("Get");
 		projectsMenu.add(mnGet);
 
 		JMenuItem mntmGetSubprojects = new JMenuItem("Get subprojects");
 		mnGet.add(mntmGetSubprojects);
-		newProjectItem.addActionListener(new GetSubprojectsAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new GetSubprojectsAL(repositories));
 
 		JMenuItem mntmGetTeam = new JMenuItem("Get Team");
 		mnGet.add(mntmGetTeam);
 		newProjectItem.addActionListener(new GetWorkersInProjectAL(
-				repositories, authentication));
+				repositories));
 
 		JMenuItem mntmGetManager = new JMenuItem("Get Manager");
 		mnGet.add(mntmGetManager);
 		newProjectItem.addActionListener(new GetWorkersInProjectAL(
-				repositories, authentication));
+				repositories));
 
 		JMenu mnAddToProject = new JMenu("Add to Project");
 		projectsMenu.add(mnAddToProject);
 
 		JMenuItem mntmAddConsultant = new JMenuItem("Add Consultant");
 		mnAddToProject.add(mntmAddConsultant);
-		newProjectItem.addActionListener(new PostWorkerAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new PostWorkerAL(repositories));
 
 		JMenuItem mntmAddManager = new JMenuItem("Add Manager");
 		mnAddToProject.add(mntmAddManager);
-		newProjectItem.addActionListener(new PostWorkerAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new PostWorkerAL(repositories));
 
 		JMenuItem mntmAddSubproject = new JMenuItem("Add Subproject");
 		mnAddToProject.add(mntmAddSubproject);
-		newProjectItem.addActionListener(new PostSubprojectAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new PostSubprojectAL(repositories));
 
 		JMenu consultantsMenu = new JMenu("Consultants");
 		vert.add(consultantsMenu);
 
 		JMenuItem newConsultantItem = new JMenuItem("New consultant/Manager");
 		consultantsMenu.add(newConsultantItem);
-		newProjectItem.addActionListener(new PostConsultantAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new PostConsultantAL(repositories));
 
 		JMenuItem mntmEditWorker = new JMenuItem("Edit worker");
 		mnAddToProject.add(mntmEditWorker);
-		newProjectItem.addActionListener(new PatchConsultantAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new PatchConsultantAL(repositories));
 
 		JMenuItem mntmAddWorker = new JMenuItem("Add worker to project");
 		consultantsMenu.add(mntmAddWorker);
-		newProjectItem.addActionListener(new PostWorkerAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new PostWorkerAL(repositories));
 
 		JMenuItem mntmGetConsultant = new JMenuItem("Get worker(s) in project");
 		consultantsMenu.add(mntmGetConsultant);
 		newProjectItem.addActionListener(new GetWorkersInProjectAL(
-				repositories, authentication));
+				repositories));
 
 		JMenu usersMenu = new JMenu("Users");
 		vert.add(usersMenu);
 
 		JMenuItem mntmNewUser = new JMenuItem("New user");
 		usersMenu.add(mntmNewUser);
-		newProjectItem.addActionListener(new PostUserAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new PostUserAL(repositories));
 
 		JMenuItem mntmGetUser = new JMenuItem("Get user");
 		usersMenu.add(mntmGetUser);
-		newProjectItem.addActionListener(new GetUserAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new GetUserAL(repositories));
 
 		JMenuItem mntmEditUser = new JMenuItem("Edit user");
 		usersMenu.add(mntmEditUser);
-		newProjectItem.addActionListener(new PatchUserAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new PatchUserAL(repositories));
 
 		JMenu searchMenu = new JMenu("Search");
 		vert.add(searchMenu);
 
 		JMenuItem mntmProjects = new JMenuItem("Subprojects in project");
 		searchMenu.add(mntmProjects);
-		newProjectItem.addActionListener(new GetSubprojectsAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new GetSubprojectsAL(repositories));
 
 		JMenuItem mntmConsultants = new JMenuItem("Consultants/Manager in project");
 		searchMenu.add(mntmConsultants);
-		newProjectItem.addActionListener(new GetWorkersInProjectAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new GetWorkersInProjectAL(repositories));
 
 		JMenuItem mntmUsers = new JMenuItem("User");
 		searchMenu.add(mntmUsers);
-		newProjectItem.addActionListener(new GetUserAL(repositories,
-				authentication));
+		newProjectItem.addActionListener(new GetUserAL(repositories));
 
 		JLabel randstadGirlImageLabel = new JLabel("");
 		randstadGirlImageLabel.setIcon(new ImageIcon(main));

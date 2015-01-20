@@ -1,11 +1,11 @@
-package commands;
+package parserCommands;
 
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
 import outputMethods.Result;
-import commands.exceptions.CommandException;
+import parserCommands.exceptions.CommandException;
 import app.AppElement;
 import app.commands.exceptions.IllegalEmailException;
 import app.commands.exceptions.PasswordLengthOutOfBoundsException;

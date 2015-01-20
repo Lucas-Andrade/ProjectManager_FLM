@@ -1,10 +1,10 @@
-package commands;
+package parserCommands;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
 
 import outputMethods.Result;
-import commands.exceptions.MandatoryParameterNotPresentException;
+import parserCommands.exceptions.MandatoryParameterNotPresentException;
 import app.AppElement;
 
 /**
