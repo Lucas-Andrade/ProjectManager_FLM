@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import app.domainCommands.AddProjectToRepo;
+import app.domainCommands.Command;
 import app.windows.PublishToMainFrame;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
@@ -33,12 +34,17 @@ public class NewProjectAL implements ActionListener {
 			price = textfields[1].getText();
 			latitude = textfields[2].getText();
 			longitude = textfields[3].getText();
-		}catch (NullPointerException a){
+		}catch (NullPointerException | ArrayIndexOutOfBoundsException a){
 			new ErrorDialog("Error").setVisible(true);
 		}
 		
+		if(name.length() == 0 || price.length() == 0 || latitude.length() == 0 || longitude.length() == 0){
+			new ErrorDialog("At least one field was left blank.").setVisible(true);
+		}
+		
 		try{
-			new SwingWorkerCommand(new AddProjectToRepo(MainFrame.repositories.getProjectsRepo(),name, price, latitude, longitude), new PublishToMainFrame()).execute();
+			Command command = new AddProjectToRepo(MainFrame.getRepositories().getProjectsRepo(), latitude, longitude, name, price);
+			new SwingWorkerCommand(command, new PublishToMainFrame()).execute();
 			JOptionPane.showInternalConfirmDialog(null, "Sucsses");
 		}catch(NumberFormatException nfe){
 			new ErrorDialog("Numbers were not introduced in one of the following fields: Price, Longitude of Latitude.").setVisible(true);

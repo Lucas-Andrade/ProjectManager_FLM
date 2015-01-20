@@ -36,7 +36,7 @@ public class NewUserAL implements ActionListener{
 		}
 		
 		try{
-			new SwingWorkerCommand(new AddUserToRepo(MainFrame.repositories.getUsersRepo(), username, password, email, fullname), new PublishToMainFrame());
+			new SwingWorkerCommand(new AddUserToRepo(MainFrame.getRepositories().getUsersRepo(), username, password, email, fullname), new PublishToMainFrame());
 			
 //			//TODO
 //		}catch(PasswordLengthOutOfBoundsException nfe){

@@ -1,8 +1,11 @@
 package app.windows;
 
+import java.awt.BorderLayout;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -13,6 +16,7 @@ import org.json.JSONObject;
 
 import utils.Project;
 import app.AppElement;
+import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 public class PublishToMainFrame implements ResultsPublisher{
 
@@ -42,6 +46,24 @@ public class PublishToMainFrame implements ResultsPublisher{
 //		frame.setVisible(true);
 //	}
 	
+	
+	JSplitPane splitPane = MainFrame.getSplitPane();
+	JPanel mainPanel = new JPanel();
+	JPanel miniPanel = new JPanel();
+	
+	public PublishToMainFrame() {
+		mainPanel.add(miniPanel, BorderLayout.SOUTH);
+	}
+	
+	
+	@Override
+	public void publish(List<String> chunks) {
+		
+		miniPanel.add(new JLabel(chunks.get(0)));
+		splitPane.setRightComponent(mainPanel);
+		splitPane.updateUI();
+	}
+	
 	@Override
 	public void publish(AppElement[] appElements) {
 		JSplitPane splitPane = MainFrame.getSplitPane();
@@ -55,8 +77,10 @@ public class PublishToMainFrame implements ResultsPublisher{
 				
 		tree.setShowsRootHandles(true);
 	//	tree.setRootVisible(false);
-		splitPane.setRightComponent(new JScrollPane(tree));
-		splitPane.setLeftComponent(new JPanel());
+		
+		mainPanel.add(new JScrollPane(tree), BorderLayout.CENTER);
+		miniPanel.add(new JLabel("Status: Ready"));
+		splitPane.setRightComponent(mainPanel);
 		splitPane.updateUI();
 	}
 

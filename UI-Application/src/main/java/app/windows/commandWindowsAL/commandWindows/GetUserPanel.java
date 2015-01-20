@@ -119,7 +119,7 @@ public class GetUserPanel extends MainGetPanel {
 		}
 		else
 		{
-			this.getGetButton().addActionListener((ActionListener) new app.windows.commandWindowsAL.GetUserAL(MainFrame.repositories.getUsersRepo(), userID));
+			this.getGetButton().addActionListener((ActionListener) new app.windows.commandWindowsAL.GetUserAL(MainFrame.getRepositories().getUsersRepo(), userID));
 		}
 		this.setVisible(true);
 	}

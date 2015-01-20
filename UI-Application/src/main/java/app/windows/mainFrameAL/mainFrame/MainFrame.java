@@ -40,7 +40,7 @@ public class MainFrame extends JFrame
 	 */
 	private static final long serialVersionUID = 1406565561867998589L;
 	public static final int PANEL_DIVIDER_LOCATION = 120;
-	public static RepositoryHolder repositories;
+	private static RepositoryHolder repositories;
 	private static JSplitPane splitPane;
 	
 	public static void main(String[] args)
@@ -51,11 +51,16 @@ public class MainFrame extends JFrame
 	public static JSplitPane getSplitPane(){
 		return splitPane;
 	}
+	
+	public static RepositoryHolder getRepositories(){
+		return repositories;
+	}
 
 	public MainFrame(RepositoryHolder repositories){
 		
 		MainFrame.splitPane = new JSplitPane();
-
+		MainFrame.repositories = repositories;
+		
 		this.setTitle("Project Manager");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(640, 420);
