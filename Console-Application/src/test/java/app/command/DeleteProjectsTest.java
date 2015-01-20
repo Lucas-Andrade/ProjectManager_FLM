@@ -8,8 +8,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import commands.DeleteProjects;
-
+import parserCommands.DeleteProjects;
 import app.RepositoryConstructor;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;

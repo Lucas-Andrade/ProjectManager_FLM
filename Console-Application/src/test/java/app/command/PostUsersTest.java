@@ -8,8 +8,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import commands.PostUsers;
-
+import parserCommands.PostUsers;
 import app.RepositoryConstructor;
 import app.elements.User;
 import app.repository.InMemoryUserRepo;
