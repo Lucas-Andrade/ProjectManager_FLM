@@ -3,10 +3,17 @@ package app.windows.commandWindowsAL.commandWindows;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import app.windows.commandWindowsAL.NewProjectAL;
+import app.windows.mainFrameAL.GetUserAL;
+import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 
 public class GetUserPanel extends MainGetPanel {
@@ -56,6 +63,13 @@ public class GetUserPanel extends MainGetPanel {
 		gbc_AllUsers.gridx = 2;
 		gbc_AllUsers.gridy = 3;
 		getMainGetPanel().add(allUsers, gbc_AllUsers);
+		allUsers.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		
 		
 		JRadioButton userId = new JRadioButton("User ID:");
@@ -65,7 +79,13 @@ public class GetUserPanel extends MainGetPanel {
 		gbc_UserId.gridx = 2;
 		gbc_UserId.gridy = 5;
 		getMainGetPanel().add(userId, gbc_UserId);
-		
+		userId.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		
 		userID = new JTextField();
 		GridBagConstraints gbc_userID = new GridBagConstraints();
@@ -77,7 +97,12 @@ public class GetUserPanel extends MainGetPanel {
 		getMainGetPanel().add(userID, gbc_userID);
 		userID.setColumns(10);
 		
-		
+		 //Group the radio buttons.
+	    ButtonGroup group = new ButtonGroup();
+	    group.add(allUsers);
+	    group.add(userId);
+	    
+	    
 		textField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.gridheight = 2;
@@ -89,5 +114,15 @@ public class GetUserPanel extends MainGetPanel {
 		gbc_textField.gridy = 7;
 		getMainGetPanel().add(textField, gbc_textField);
 		textField.setColumns(10);
+	
+		if (allUsers.isSelected())
+		{
+			this.getGetButton().addActionListener(new app.windows.commandWindowsAL.GetAllUsersAL());
+		}
+		else
+		{
+			this.getGetButton().addActionListener((ActionListener) new app.windows.commandWindowsAL.GetUserAL(MainFrame.repositories.getUsersRepo(), userID));
+		}
+		this.setVisible(true);
 	}
 }
