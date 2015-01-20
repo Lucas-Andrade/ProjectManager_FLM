@@ -1,15 +1,7 @@
 package app.windows.mainFrameAL;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JSplitPane;
-
-import app.authentication.Authentication;
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
 import app.windows.commandWindowsAL.commandWindows.GetSubprojectsFrame;
-import app.windows.commandWindowsAL.commandWindows.PostProjectFrame;
 
 /**
  * Class responsible for calling the {@code GetSubprojectsFrame}. Extends
@@ -30,10 +22,9 @@ public class GetSubprojectsAL extends MainFrameActionListener
 	 *            The {@code Authentication} to check if any {@code User} is
 	 *            authenticated.
 	 */
-	public GetSubprojectsAL(RepositoryHolder repositories,
-			Authentication authentication)
+	public GetSubprojectsAL(RepositoryHolder repositories)
 	{
-		super(repositories, authentication);
+		super(repositories);
 	}
 
 	/**

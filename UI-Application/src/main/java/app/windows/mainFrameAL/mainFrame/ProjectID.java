@@ -15,8 +15,8 @@ public class ProjectID extends JPanel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private JComboBox projectCBox;
+	private static final long serialVersionUID = 830972996693805538L;
+	private JComboBox<Object> projectCBox;
 	/**
 	 * Create the panel.
 	 */
@@ -40,7 +40,7 @@ public class ProjectID extends JPanel {
 		//terá a lista dos projectos no repositório 
 				//elementos da lista -> alterar
 		String[] projects = { "", "Bird", "Cat", "Dog", "Rabbit", "Pig" };
-		projectCBox = new JComboBox(projects);
+		projectCBox = new JComboBox<Object>(projects);
 		GridBagConstraints gbc_projectCBox = new GridBagConstraints();
 		gbc_projectCBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_projectCBox.gridx = 1;

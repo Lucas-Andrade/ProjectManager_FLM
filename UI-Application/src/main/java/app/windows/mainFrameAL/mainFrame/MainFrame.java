@@ -17,8 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JSplitPane;
 
-import app.authentication.Authentication;
-import app.elements.IUser;
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
 import app.windows.mainFrameAL.DeleteProjectAL;

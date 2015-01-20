@@ -1,15 +1,7 @@
 package app.windows.mainFrameAL;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JSplitPane;
-
-import app.authentication.Authentication;
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
 import app.windows.commandWindowsAL.commandWindows.DeleteProjectFrame;
-import app.windows.commandWindowsAL.commandWindows.PostProjectFrame;
 
 /**
  * Class responsible for calling the {@code DeleteProjectFrame}. Extends

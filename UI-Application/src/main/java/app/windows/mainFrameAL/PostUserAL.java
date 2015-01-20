@@ -1,6 +1,5 @@
 package app.windows.mainFrameAL;
 
-import app.authentication.Authentication;
 import app.repositoryHolders.RepositoryHolder;
 import app.windows.commandWindowsAL.commandWindows.PostUserFrame;
 
@@ -23,10 +22,9 @@ public class PostUserAL extends MainFrameActionListener
 	 *            The {@code Authentication} to check if any {@code User} is
 	 *            authenticated.
 	 */
-	public PostUserAL(RepositoryHolder repositories,
-			Authentication authentication)
+	public PostUserAL(RepositoryHolder repositories)
 	{
-		super(repositories, authentication);
+		super(repositories);
 	}
 
 	/**

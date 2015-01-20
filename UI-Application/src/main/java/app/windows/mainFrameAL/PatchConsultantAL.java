@@ -1,15 +1,7 @@
 package app.windows.mainFrameAL;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JSplitPane;
-
-import app.authentication.Authentication;
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
 import app.windows.commandWindowsAL.commandWindows.PatchConsultantFrame;
-import app.windows.commandWindowsAL.commandWindows.PostProjectFrame;
 
 /**
  * Class responsible for calling the {@code PatchConsultantFrame}. Extends
@@ -30,10 +22,9 @@ public class PatchConsultantAL extends MainFrameActionListener
 	 *            The {@code Authentication} to check if any {@code User} is
 	 *            authenticated.
 	 */
-	public PatchConsultantAL(RepositoryHolder repositories,
-			Authentication authentication)
+	public PatchConsultantAL(RepositoryHolder repositories)
 	{
-		super(repositories, authentication);
+		super(repositories);
 	}
 
 	/**

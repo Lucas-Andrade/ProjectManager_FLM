@@ -13,7 +13,7 @@ public class ConsultantID extends JPanel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 7106518727634653163L;
 
 	/**
 	 * Create the panel.
@@ -39,7 +39,7 @@ public class ConsultantID extends JPanel {
 		gbc_chckbxConsultants.gridy = 0;
 		add(chckbxConsultants, gbc_chckbxConsultants);
 		
-		JComboBox consultantsComboBox = new JComboBox(consultants);
+		JComboBox<Object> consultantsComboBox = new JComboBox<Object>(consultants);
 		consultantsComboBox.setEditable(true);
 		GridBagConstraints gbc_consultantsComboBox = new GridBagConstraints();
 		gbc_consultantsComboBox.fill = GridBagConstraints.HORIZONTAL;
