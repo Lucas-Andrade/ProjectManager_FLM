@@ -1,24 +1,17 @@
 package app.windows;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.lang.reflect.Array;
-import java.nio.file.attribute.AclEntry.Builder;
 import java.util.Iterator;
 
 import javax.swing.JFrame;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.MutableTreeNode;
 
 import org.json.JSONObject;
 
 import app.AppElement;
-import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 public class PublishToMainFrame implements ResultsPublisher{
 
