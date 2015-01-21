@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 
 import app.domainCommands.Command;
 import app.domainCommands.SetUserPropertiesFromRepo;
+import app.windows.PublishToErrorDialog;
 import app.windows.PublishToMainFrame;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
