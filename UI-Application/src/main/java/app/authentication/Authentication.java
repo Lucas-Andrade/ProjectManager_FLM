@@ -114,8 +114,7 @@ public abstract class Authentication {
 			String loginPassword = builder.toString();
 			IUser user = uRepo.getUserByUsername(loginName);
 			return (user != null)
-					&& user.getLoginPassword().equals(loginPassword) ? user
-					: null;
+					&& user.getLoginPassword().equals(loginPassword) ? user	: null;
 		}
 
 		@Override
