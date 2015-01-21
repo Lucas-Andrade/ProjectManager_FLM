@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import app.windows.commandWindowsAL.GetSubprojectAL;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
-public class GetSubprojectsFrame extends MainGetPanel {
+public class GetSubprojectsPanel extends MainGetPanel {
 
 	/**
 	 * 
@@ -30,7 +30,7 @@ public class GetSubprojectsFrame extends MainGetPanel {
 	/**
 	 * Create the frame.
 	 */
-	public GetSubprojectsFrame() {
+	public GetSubprojectsPanel() {
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainGetPanel().getLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 100, 50, 50, 0, 100, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 30, 20, 0, 20, 0, 0, 0};

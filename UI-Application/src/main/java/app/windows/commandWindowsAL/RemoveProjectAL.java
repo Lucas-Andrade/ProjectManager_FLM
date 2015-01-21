@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import app.domainCommands.Command;
 import app.domainCommands.RemoveProjectToRepo;
+import app.windows.PublishToErrorDialog;
 import app.windows.PublishToMainFrame;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.MainFrame;

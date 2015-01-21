@@ -7,6 +7,12 @@ import javax.swing.JTextField;
 
 import app.domainCommands.Command;
 import app.domainCommands.GetUserFromRepo;
+<<<<<<< HEAD
+=======
+import app.domainCommands.exceptions.NoSuchUsernameException;
+import app.repository.UserRepository;
+import app.windows.PublishToErrorDialog;
+>>>>>>> 33cc6d9178546cfa45fe900f3441698714c5650b
 import app.windows.PublishToMainFrame;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
