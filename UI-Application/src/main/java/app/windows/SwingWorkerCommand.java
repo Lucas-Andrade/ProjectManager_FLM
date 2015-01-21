@@ -7,13 +7,15 @@ import javax.swing.SwingWorker;
 
 import app.AppElement;
 import app.domainCommands.Command;
+import app.domainCommands.exceptions.AddedExistingSubproject;
 
 public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 
 	Command command;
 	ResultsPublisher publisher;
+	ErrorPublisher errorPublisher;
 	
-	public SwingWorkerCommand(Command command, ResultsPublisher publisher) {
+	public SwingWorkerCommand(Command command, ResultsPublisher publisher, ErrorPublisher errorPublisher) {
 		this.command = command;
 		this.publisher = publisher;
 	}
@@ -22,7 +24,14 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 	protected AppElement[] doInBackground() throws Exception {
 		
 		publish("Status: Applying changes to database.");
-		return command.call();
+		AppElement[] toReturn = null;
+		try{
+			toReturn = command.call();
+		} catch(AddedExistingSubproject e) {
+			errorPublisher.publish("noob");
+		}
+		
+		return toReturn;
 	}
 	
 	@Override
