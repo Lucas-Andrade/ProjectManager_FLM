@@ -22,9 +22,7 @@ public class HelpDialog extends JDialog {
 			HelpDialog errorDialog = new HelpDialog();
 			errorDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			errorDialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		} catch (Exception e) {		}
 	}
 	private JLabel help;
 	

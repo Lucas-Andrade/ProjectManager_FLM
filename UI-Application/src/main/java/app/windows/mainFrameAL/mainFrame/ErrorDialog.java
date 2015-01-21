@@ -29,7 +29,6 @@ public class ErrorDialog extends JDialog {
 			errorDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			errorDialog.setVisible(true);
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 
