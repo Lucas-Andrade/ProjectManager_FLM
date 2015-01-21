@@ -3,6 +3,7 @@ package app.windows.commandWindowsAL;
 import javax.swing.JTextField;
 
 import app.domainCommands.GetUserFromRepo;
+import app.domainCommands.exceptions.NoSuchUsernameException;
 import app.repository.UserRepository;
 import app.windows.PublishToMainFrame;
 import app.windows.SwingWorkerCommand;

@@ -6,10 +6,10 @@ import utils.AWorker;
 import utils.Leader;
 import utils.Project;
 import app.AppElement;
-import app.commands.exceptions.NoManagerInProjectException;
-import app.commands.exceptions.NoWorkersFoundException;
-import app.commands.exceptions.NoSuchProjectException;
-import app.commands.exceptions.IllegalWorkerTypeException;
+import app.domainCommands.exceptions.IllegalWorkerTypeException;
+import app.domainCommands.exceptions.NoManagerInProjectException;
+import app.domainCommands.exceptions.NoSuchProjectException;
+import app.domainCommands.exceptions.NoWorkersFoundException;
 import app.repository.ProjectsRepository;
 
 public class GetProjectWorkersFromRepo implements Command{

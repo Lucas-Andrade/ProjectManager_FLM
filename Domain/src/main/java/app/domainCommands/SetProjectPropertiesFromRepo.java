@@ -2,9 +2,9 @@ package app.domainCommands;
 
 import utils.Project;
 import app.AppElement;
-import app.commands.exceptions.CostOutOfBoundsException;
-import app.commands.exceptions.GeographicCoordinatesOutOfBoundsException;
-import app.commands.exceptions.NoSuchProjectException;
+import app.domainCommands.exceptions.CostOutOfBoundsException;
+import app.domainCommands.exceptions.GeographicCoordinatesOutOfBoundsException;
+import app.domainCommands.exceptions.NoSuchProjectException;
 import app.repository.ProjectsRepository;
 
 public class SetProjectPropertiesFromRepo implements Command{

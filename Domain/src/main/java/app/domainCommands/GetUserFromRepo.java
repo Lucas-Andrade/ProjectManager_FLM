@@ -1,7 +1,7 @@
 package app.domainCommands;
 
 import app.AppElement;
-import app.commands.exceptions.NoSuchUsernameException;
+import app.domainCommands.exceptions.NoSuchUsernameException;
 import app.repository.UserRepository;
 
 public class GetUserFromRepo implements Command{

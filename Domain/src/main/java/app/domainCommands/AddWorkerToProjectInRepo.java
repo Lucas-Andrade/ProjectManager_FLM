@@ -4,10 +4,10 @@ import utils.Consultant;
 import utils.Leader;
 import utils.Project;
 import app.AppElement;
-import app.commands.exceptions.IllegalWorkerTypeException;
-import app.commands.exceptions.NoSuchManagerException;
-import app.commands.exceptions.NoSuchProjectException;
-import app.commands.exceptions.NoSuchWorkerException;
+import app.domainCommands.exceptions.IllegalWorkerTypeException;
+import app.domainCommands.exceptions.NoSuchManagerException;
+import app.domainCommands.exceptions.NoSuchProjectException;
+import app.domainCommands.exceptions.NoSuchWorkerException;
 import app.repository.ProjectsRepository;
 import app.repository.WorkerRepository;
 

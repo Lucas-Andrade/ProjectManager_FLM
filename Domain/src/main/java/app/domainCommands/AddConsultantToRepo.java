@@ -3,7 +3,7 @@ package app.domainCommands;
 import utils.Consultant;
 import utils.Leader;
 import app.AppElement;
-import app.commands.exceptions.CostOutOfBoundsException;
+import app.domainCommands.exceptions.CostOutOfBoundsException;
 import app.repository.WorkerRepository;
 
 public class AddConsultantToRepo implements Command{

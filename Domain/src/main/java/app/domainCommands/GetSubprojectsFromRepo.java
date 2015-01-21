@@ -4,8 +4,8 @@ import java.util.Collection;
 
 import utils.Project;
 import app.AppElement;
-import app.commands.exceptions.NoSuchSubprojectsException;
-import app.commands.exceptions.NoSuchProjectException;
+import app.domainCommands.exceptions.NoSuchProjectException;
+import app.domainCommands.exceptions.NoSuchSubprojectsException;
 import app.repository.ProjectsRepository;
 
 public class GetSubprojectsFromRepo implements Command{

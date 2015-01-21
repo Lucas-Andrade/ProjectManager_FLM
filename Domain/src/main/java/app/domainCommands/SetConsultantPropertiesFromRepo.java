@@ -2,8 +2,8 @@ package app.domainCommands;
 
 import utils.AWorker;
 import app.AppElement;
-import app.commands.exceptions.CostOutOfBoundsException;
-import app.commands.exceptions.NoSuchWorkerException;
+import app.domainCommands.exceptions.CostOutOfBoundsException;
+import app.domainCommands.exceptions.NoSuchWorkerException;
 import app.repository.WorkerRepository;
 
 public class SetConsultantPropertiesFromRepo implements Command{

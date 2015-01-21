@@ -2,9 +2,9 @@ package app.domainCommands;
 
 import utils.Project;
 import app.AppElement;
-import app.commands.exceptions.AddedExistingSubproject;
-import app.commands.exceptions.NoSuchProjectException;
-import app.commands.exceptions.ProjectAddedToItselfException;
+import app.domainCommands.exceptions.AddedExistingSubproject;
+import app.domainCommands.exceptions.NoSuchProjectException;
+import app.domainCommands.exceptions.ProjectAddedToItselfException;
 import app.repository.ProjectsRepository;
 
 public class AddSubprojectToRepo implements Command {

@@ -1,9 +1,9 @@
 package app.domainCommands;
 
 import app.AppElement;
-import app.commands.exceptions.IncorrectPasswordException;
-import app.commands.exceptions.NoSuchUsernameException;
-import app.commands.exceptions.PasswordLengthOutOfBoundsException;
+import app.domainCommands.exceptions.IncorrectPasswordException;
+import app.domainCommands.exceptions.NoSuchUsernameException;
+import app.domainCommands.exceptions.PasswordLengthOutOfBoundsException;
 import app.elements.IUser;
 import app.repository.UserRepository;
 
