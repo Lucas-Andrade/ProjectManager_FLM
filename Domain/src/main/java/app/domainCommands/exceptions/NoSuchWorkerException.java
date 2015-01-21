@@ -1,7 +1,7 @@
-package app.commands.exceptions;
+package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class NoSuchWorkerException extends Exception{
+public class NoSuchWorkerException extends CommandExecutionException{
 
 	public NoSuchWorkerException() {
 	}

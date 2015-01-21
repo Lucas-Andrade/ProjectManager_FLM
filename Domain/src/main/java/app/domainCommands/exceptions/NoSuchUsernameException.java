@@ -1,7 +1,7 @@
-package app.commands.exceptions;
+package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class NoSuchUsernameException extends Exception{
+public class NoSuchUsernameException extends CommandExecutionException{
 	
 	public NoSuchUsernameException() {
 	}

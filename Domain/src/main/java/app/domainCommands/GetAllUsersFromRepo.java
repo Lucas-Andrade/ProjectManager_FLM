@@ -15,7 +15,7 @@ public class GetAllUsersFromRepo implements Command{
 	}
 	
 	@Override
-	public AppElement[] call() throws Exception {
+	public AppElement[] call() {
 		return uRepo.getAll();
 	}
 

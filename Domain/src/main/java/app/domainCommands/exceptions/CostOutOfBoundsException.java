@@ -1,7 +1,7 @@
-package app.commands.exceptions;
+package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class CostOutOfBoundsException extends Exception{
+public class CostOutOfBoundsException extends CommandExecutionException{
 
 	public CostOutOfBoundsException() {
 	}

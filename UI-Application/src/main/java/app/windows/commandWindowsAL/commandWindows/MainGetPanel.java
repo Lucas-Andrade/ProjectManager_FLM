@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 public class MainGetPanel extends JPanel {
@@ -17,12 +18,18 @@ public class MainGetPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final int Y_BOUND = 100;
-	private static final int X_BOUND =100;
-	private static final int WIDTH_BOUND =636;
-	private static final int HEIGHT_BOUND =387;
+	private static final int X_BOUND = 100;
+	private static final int WIDTH_BOUND = 636;
+	private static final int HEIGHT_BOUND = 387;
 	private final MainPanel mainGetPanel;
 	private JButton getButton;
-
+	protected static JPanel panelThatGetsTheResults;
+	
+	public static void setResults(JComponent component) {
+		panelThatGetsTheResults.setLayout(new BorderLayout(0, 0));
+		panelThatGetsTheResults.add(component);
+		panelThatGetsTheResults.updateUI();
+	}
 	
 
 	/**
@@ -81,17 +88,17 @@ public class MainGetPanel extends JPanel {
 		this.setLayout(new BorderLayout());
 		this.add(mainGetPanel, BorderLayout.CENTER);
 		
-		this.setLocation(null);
+//		this.setLocation(null);
 		
 		JPanel buttonPane = new JPanel();
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		getRootPane().add(buttonPane, BorderLayout.SOUTH);
+		this.add(buttonPane, BorderLayout.SOUTH);
 		{
 			getButton = new JButton("GET");
 			getButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/Ok.png")));
 			getButton.setActionCommand("GET");
 			buttonPane.add(getButton);
-			getRootPane().setDefaultButton(getButton);
+//			getRootPane().setDefaultButton(getButton);
 		}
 		{
 			JButton cancelButton = new JButton("Cancel");

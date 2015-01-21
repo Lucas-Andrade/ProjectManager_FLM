@@ -1,7 +1,7 @@
-package app.commands.exceptions;
+package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class IncorrectPasswordException extends Exception {
+public class IncorrectPasswordException extends CommandExecutionException {
 
 	public IncorrectPasswordException() {
 	}

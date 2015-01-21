@@ -3,7 +3,7 @@ package app.domainCommands;
 import utils.Consultant;
 import utils.Leader;
 import app.AppElement;
-import app.commands.exceptions.CostOutOfBoundsException;
+import app.domainCommands.exceptions.CostOutOfBoundsException;
 import app.repository.WorkerRepository;
 
 public class AddConsultantToRepo implements Command{
@@ -31,7 +31,7 @@ public class AddConsultantToRepo implements Command{
 		double priceHour = Double.parseDouble(priceHourString);
 		
 		if (priceHour < 0){
-			throw new CostOutOfBoundsException();
+			throw new CostOutOfBoundsException("The cost cannot be negative.");
 		}
 
 		long cid = wRepo.nextCID();

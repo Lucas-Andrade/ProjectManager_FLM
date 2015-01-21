@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 
 import app.domainCommands.Command;
 import app.domainCommands.SetUserPropertiesFromRepo;
+import app.windows.PublishToErrorDialog;
 import app.windows.PublishToMainFrame;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
@@ -40,7 +41,7 @@ public class SetUserAL implements ActionListener {
 		
 		try{
 			Command command = new SetUserPropertiesFromRepo(MainFrame.getRepositories().getUsersRepo(), userName, oldPassword, newPassword);
-			new SwingWorkerCommand(command, new PublishToMainFrame()).execute();
+			new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog()).execute();
 		}
 		catch(IllegalArgumentException iae){
 			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage());

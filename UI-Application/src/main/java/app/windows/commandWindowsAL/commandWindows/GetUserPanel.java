@@ -11,8 +11,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import app.windows.mainFrameAL.mainFrame.MainFrame;
-
 
 public class GetUserPanel extends MainGetPanel {
 
@@ -119,7 +117,7 @@ public class GetUserPanel extends MainGetPanel {
 		}
 		else
 		{
-			this.getGetButton().addActionListener((ActionListener) new app.windows.commandWindowsAL.GetUserAL(MainFrame.getRepositories().getUsersRepo(), userID));
+			this.getGetButton().addActionListener((ActionListener) new app.windows.commandWindowsAL.GetUserAL(userID));
 		}
 		this.setVisible(true);
 	}

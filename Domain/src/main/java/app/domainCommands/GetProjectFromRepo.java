@@ -2,7 +2,7 @@ package app.domainCommands;
 
 import utils.Project;
 import app.AppElement;
-import app.commands.exceptions.NoSuchProjectException;
+import app.domainCommands.exceptions.NoSuchProjectException;
 import app.repository.ProjectsRepository;
 
 public class GetProjectFromRepo implements Command{
@@ -26,7 +26,7 @@ public class GetProjectFromRepo implements Command{
 		Project project = pRepo.getProjectById(pid);
 		
 		if(project == null){
-			throw new NoSuchProjectException();
+			throw new NoSuchProjectException("There is no project with that ID.");
 		}
 		AppElement[] projectAux = {project};
 		return projectAux;

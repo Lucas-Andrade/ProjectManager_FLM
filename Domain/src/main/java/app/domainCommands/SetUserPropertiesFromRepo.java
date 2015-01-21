@@ -1,9 +1,9 @@
 package app.domainCommands;
 
 import app.AppElement;
-import app.commands.exceptions.IncorrectPasswordException;
-import app.commands.exceptions.NoSuchUsernameException;
-import app.commands.exceptions.PasswordLengthOutOfBoundsException;
+import app.domainCommands.exceptions.IncorrectPasswordException;
+import app.domainCommands.exceptions.NoSuchUsernameException;
+import app.domainCommands.exceptions.PasswordLengthOutOfBoundsException;
 import app.elements.IUser;
 import app.repository.UserRepository;
 
@@ -31,15 +31,15 @@ public class SetUserPropertiesFromRepo implements Command{
 			PasswordLengthOutOfBoundsException {
 
 		if (! uRepo.isPasswordCorrectForUser(username, oldPassword)){
-			throw new IncorrectPasswordException();
+			throw new IncorrectPasswordException("That password is not correct.");
 		}
 
 		IUser user = uRepo.getUserByUsername(username);
 		if (user == null){
-			throw new NoSuchUsernameException();
+			throw new NoSuchUsernameException("That username does not exist.");
 		}
 		if (!user.setNewPassword(newPassword)){
-			throw new PasswordLengthOutOfBoundsException();
+			throw new PasswordLengthOutOfBoundsException("A password must have at least four characters.");
 		}
 		
 		return new AppElement[]{user};

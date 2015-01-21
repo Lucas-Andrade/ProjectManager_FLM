@@ -1,7 +1,7 @@
-package app.commands.exceptions;
+package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class IllegalWorkerTypeException extends Exception {
+public class IllegalWorkerTypeException extends CommandExecutionException {
 
 	public IllegalWorkerTypeException() {
 	}

@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import utils.Project;
 import app.AppElement;
-import app.commands.exceptions.NoSuchProjectException;
+import app.domainCommands.exceptions.NoSuchProjectException;
 import app.repository.ProjectsRepository;
 
 public class RemoveProjectToRepo implements Command{
@@ -29,7 +29,7 @@ public class RemoveProjectToRepo implements Command{
 		
 		Project parent = pRepo.getProjectById(pid);
 		if (parent == null){
-			throw new NoSuchProjectException();
+			throw new NoSuchProjectException("There is no project with that ID.");
 		}
 		Collection<Project> projectsToRemove = getAllProjectsToRemove(parent);
 

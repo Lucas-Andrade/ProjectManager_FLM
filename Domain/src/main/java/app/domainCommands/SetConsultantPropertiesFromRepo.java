@@ -2,8 +2,8 @@ package app.domainCommands;
 
 import utils.AWorker;
 import app.AppElement;
-import app.commands.exceptions.CostOutOfBoundsException;
-import app.commands.exceptions.NoSuchWorkerException;
+import app.domainCommands.exceptions.CostOutOfBoundsException;
+import app.domainCommands.exceptions.NoSuchWorkerException;
 import app.repository.WorkerRepository;
 
 public class SetConsultantPropertiesFromRepo implements Command{
@@ -31,7 +31,7 @@ public class SetConsultantPropertiesFromRepo implements Command{
 		AWorker worker = wRepo.getAWorkerByID(cid);
 		
 		if (worker == null){
-			throw new NoSuchWorkerException();
+			throw new NoSuchWorkerException("There is no worker with that ID.");
 		}
 		
 		if (name != null){
@@ -41,7 +41,7 @@ public class SetConsultantPropertiesFromRepo implements Command{
 		if (priceHourString != null){
 			double priceHour = Double.parseDouble(priceHourString);
 			if(!worker.setCostPerHour(priceHour)){
-				throw new CostOutOfBoundsException();
+				throw new CostOutOfBoundsException("The cost cannot be negative.");
 			}
 		}
 		

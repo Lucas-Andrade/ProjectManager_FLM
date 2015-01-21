@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 
 import app.domainCommands.AddUserToRepo;
+import app.domainCommands.Command;
+import app.windows.PublishToErrorDialog;
 import app.windows.PublishToMainFrame;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
@@ -36,7 +38,8 @@ public class NewUserAL implements ActionListener{
 		}
 		
 		try{
-			new SwingWorkerCommand(new AddUserToRepo(MainFrame.getRepositories().getUsersRepo(), username, password, email, fullname), new PublishToMainFrame());
+			Command command = new AddUserToRepo(MainFrame.getRepositories().getUsersRepo(), username, password, email, fullname);
+			new SwingWorkerCommand(command , new PublishToMainFrame(), new PublishToErrorDialog());
 			
 //			//TODO
 //		}catch(PasswordLengthOutOfBoundsException nfe){

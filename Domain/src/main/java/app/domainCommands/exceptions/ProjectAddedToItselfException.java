@@ -1,7 +1,7 @@
-package app.commands.exceptions;
+package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class ProjectAddedToItselfException extends Exception{
+public class ProjectAddedToItselfException extends CommandExecutionException{
 
 	public ProjectAddedToItselfException() {
 	}

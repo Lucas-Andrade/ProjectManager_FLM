@@ -1,9 +1,9 @@
 package app.domainCommands;
 
 import app.AppElement;
-import app.commands.exceptions.IllegalEmailException;
-import app.commands.exceptions.PasswordLengthOutOfBoundsException;
-import app.commands.exceptions.RepeatedUsernameException;
+import app.domainCommands.exceptions.IllegalEmailException;
+import app.domainCommands.exceptions.PasswordLengthOutOfBoundsException;
+import app.domainCommands.exceptions.RepeatedUsernameException;
 import app.elements.IUser;
 import app.elements.User;
 import app.repository.UserRepository;
@@ -33,7 +33,7 @@ public class AddUserToRepo implements Command{
 			IllegalEmailException, RepeatedUsernameException {
 		
 		if(password.length() < User.minCharInPass){
-			throw new PasswordLengthOutOfBoundsException();
+			throw new PasswordLengthOutOfBoundsException("A password must have at least four characters.");
 		}
 		validEmail();
 		
@@ -45,7 +45,7 @@ public class AddUserToRepo implements Command{
 		}
 		
 		if (! uRepo.addUser(user)){
-			throw new RepeatedUsernameException();
+			throw new RepeatedUsernameException("That username is already being used.");
 		}
 		
 		return new AppElement[]{user};
@@ -60,7 +60,7 @@ public class AddUserToRepo implements Command{
 	private void validEmail() throws IllegalEmailException{
 		if (!email.contains("@") || email.substring(email.indexOf("@") + 1, email.length()).contains("@")
 				|| email.lastIndexOf(".") < email.lastIndexOf("@")){
-			throw new IllegalEmailException();
+			throw new IllegalEmailException("That email is not valid.");
 		}
 	}
 

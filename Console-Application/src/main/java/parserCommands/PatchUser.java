@@ -5,10 +5,10 @@ import java.util.concurrent.Callable;
 
 import outputMethods.Result;
 import app.AppElement;
-import app.commands.exceptions.IncorrectPasswordException;
-import app.commands.exceptions.NoSuchUsernameException;
-import app.commands.exceptions.PasswordLengthOutOfBoundsException;
 import app.domainCommands.SetUserPropertiesFromRepo;
+import app.domainCommands.exceptions.IncorrectPasswordException;
+import app.domainCommands.exceptions.NoSuchUsernameException;
+import app.domainCommands.exceptions.PasswordLengthOutOfBoundsException;
 import app.elements.Message;
 import app.elements.User;
 import app.repository.UserRepository;

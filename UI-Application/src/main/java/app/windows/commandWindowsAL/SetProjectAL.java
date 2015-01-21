@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 
 import app.domainCommands.Command;
 import app.domainCommands.SetProjectPropertiesFromRepo;
+import app.windows.PublishToErrorDialog;
 import app.windows.PublishToMainFrame;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
@@ -46,7 +47,7 @@ public class SetProjectAL implements ActionListener {
 		
 		try{
 			Command command = new SetProjectPropertiesFromRepo(MainFrame.getRepositories().getProjectsRepo(), pidString, longitude, latitude, price, localName);
-			new SwingWorkerCommand(command, new PublishToMainFrame()).execute();
+			new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog()).execute();
 			JOptionPane.showInternalConfirmDialog(null, "Success");
 		}catch(NumberFormatException nfe){
 			new ErrorDialog("Numbers were not introduced in one of the following fields: Price, Longitude of Latitude.").setVisible(true);

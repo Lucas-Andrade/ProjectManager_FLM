@@ -1,7 +1,7 @@
-package app.commands.exceptions;
+package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class AddedExistingSubproject extends Exception{
+public class AddedExistingSubproject extends CommandExecutionException{
 
 	public AddedExistingSubproject() {
 	}

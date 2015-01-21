@@ -6,10 +6,10 @@ import utils.AWorker;
 import utils.Leader;
 import utils.Project;
 import app.AppElement;
-import app.commands.exceptions.NoManagerInProjectException;
-import app.commands.exceptions.NoWorkersFoundException;
-import app.commands.exceptions.NoSuchProjectException;
-import app.commands.exceptions.IllegalWorkerTypeException;
+import app.domainCommands.exceptions.IllegalWorkerTypeException;
+import app.domainCommands.exceptions.NoManagerInProjectException;
+import app.domainCommands.exceptions.NoSuchProjectException;
+import app.domainCommands.exceptions.NoWorkersFoundException;
 import app.repository.ProjectsRepository;
 
 public class GetProjectWorkersFromRepo implements Command{
@@ -36,7 +36,7 @@ public class GetProjectWorkersFromRepo implements Command{
 		Project project = pRepo.getProjectById(projectId);
 		
 		if (project == null){
-			throw new NoSuchProjectException();
+			throw new NoSuchProjectException("There is no project with that ID.");
 		}
 		
 		if (typeWorker.equalsIgnoreCase("Manager")){
@@ -44,7 +44,7 @@ public class GetProjectWorkersFromRepo implements Command{
 		} else if (typeWorker.equalsIgnoreCase("Consultant")){
 			return getWorkers(project);
 		} else {
-			throw new IllegalWorkerTypeException();
+			throw new IllegalWorkerTypeException("Unrecognised type of worker.");
 		}
 	}
 
@@ -59,7 +59,7 @@ public class GetProjectWorkersFromRepo implements Command{
 		Collection<AWorker> workers = project.getTeam();
 		
 		if (workers.isEmpty()){
-			throw new NoWorkersFoundException();
+			throw new NoWorkersFoundException("That project doesn't have any assigned workers.");
 		}
 		  
 		AppElement[] workersArray = new AppElement[workers.size()];
@@ -80,7 +80,7 @@ public class GetProjectWorkersFromRepo implements Command{
 	private AppElement[] getManager(Project project) throws NoManagerInProjectException {
 		Leader manager = project.getManager();
 		if(manager == null){
-			throw new NoManagerInProjectException();
+			throw new NoManagerInProjectException("That project has no assigned manager.");
 		}
 		AppElement[] managerAux = {manager};
 		return managerAux;

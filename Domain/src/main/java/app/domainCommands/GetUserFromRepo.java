@@ -1,7 +1,7 @@
 package app.domainCommands;
 
 import app.AppElement;
-import app.commands.exceptions.NoSuchUsernameException;
+import app.domainCommands.exceptions.NoSuchUsernameException;
 import app.repository.UserRepository;
 
 public class GetUserFromRepo implements Command{
@@ -22,7 +22,7 @@ public class GetUserFromRepo implements Command{
 		
 		AppElement[] user = new AppElement[]{uRepo.getUserByUsername(username)};
 		if(user[0] == null){
-			throw new NoSuchUsernameException();
+			throw new NoSuchUsernameException("That username does not exist.");
 		}
 		return user;
 	}

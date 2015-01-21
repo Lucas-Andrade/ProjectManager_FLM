@@ -1,7 +1,7 @@
-package app.commands.exceptions;
+package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class NoSuchManagerException extends Exception{
+public class NoSuchManagerException extends CommandExecutionException{
 
 	public NoSuchManagerException() {
 	}

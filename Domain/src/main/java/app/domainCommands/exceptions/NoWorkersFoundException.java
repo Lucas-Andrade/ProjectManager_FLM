@@ -1,7 +1,7 @@
-package app.commands.exceptions;
+package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class NoWorkersFoundException extends Exception{
+public class NoWorkersFoundException extends CommandExecutionException{
 
 	public NoWorkersFoundException() {
 	}

@@ -1,7 +1,7 @@
-package app.commands.exceptions;
+package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class GeographicCoordinatesOutOfBoundsException extends Exception{
+public class GeographicCoordinatesOutOfBoundsException extends CommandExecutionException{
 
 	public GeographicCoordinatesOutOfBoundsException() {
 	}

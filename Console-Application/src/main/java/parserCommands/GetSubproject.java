@@ -6,9 +6,9 @@ import java.util.concurrent.Callable;
 import outputMethods.Result;
 import utils.Project;
 import app.AppElement;
-import app.commands.exceptions.NoSuchSubprojectsException;
-import app.commands.exceptions.NoSuchProjectException;
 import app.domainCommands.GetSubprojectsFromRepo;
+import app.domainCommands.exceptions.NoSuchProjectException;
+import app.domainCommands.exceptions.NoSuchSubprojectsException;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 

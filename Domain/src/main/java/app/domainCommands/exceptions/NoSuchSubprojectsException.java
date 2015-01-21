@@ -1,7 +1,7 @@
-package app.commands.exceptions;
+package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class NoSuchSubprojectsException extends Exception{
+public class NoSuchSubprojectsException extends CommandExecutionException{
 	
 	public NoSuchSubprojectsException() {
 	}

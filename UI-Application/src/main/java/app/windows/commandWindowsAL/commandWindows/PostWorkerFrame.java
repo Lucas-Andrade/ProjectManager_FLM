@@ -8,6 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import app.windows.commandWindowsAL.NewProjectAL;
 import app.windows.mainFrameAL.mainFrame.ConsultantID;
 import app.windows.mainFrameAL.mainFrame.ManagerID;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
@@ -52,10 +53,11 @@ public class PostWorkerFrame extends MainDialogFrame {
 		this.setTitleLabel("Add Worker In Project");
 		this.setHelpTip("Add a Consultant or Manager to a project/subproject.");
 
+		this.setVisible(true);
 		
 		projectId = new ProjectID();
 		GridBagConstraints gbc_lblProjectID = new GridBagConstraints();
-		gbc_lblProjectID.gridwidth = 3;
+		gbc_lblProjectID.gridwidth = 4;
 		gbc_lblProjectID.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblProjectID.insets = new Insets(0, 0, 5, 5);
 		gbc_lblProjectID.gridx = 2;
@@ -102,6 +104,11 @@ public class PostWorkerFrame extends MainDialogFrame {
 		getMainDialogPanel().add(previewField, gbc_previewField);
 		previewField.setColumns(10);
 		
-		this.setVisible(true);
+		JTextField[] textFields = new JTextField[2];
+		textFields[0] = projectId.getProjectIDField();
+		//textFields[0] = subprojectId.getProjectIDField();
+		this.getSaveButton().addActionListener(new NewProjectAL(textFields));
+		
+		
 	}
 }

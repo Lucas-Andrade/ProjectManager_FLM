@@ -2,9 +2,9 @@ package app.domainCommands;
 
 import utils.Project;
 import app.AppElement;
-import app.commands.exceptions.AddedExistingSubproject;
-import app.commands.exceptions.NoSuchProjectException;
-import app.commands.exceptions.ProjectAddedToItselfException;
+import app.domainCommands.exceptions.AddedExistingSubproject;
+import app.domainCommands.exceptions.NoSuchProjectException;
+import app.domainCommands.exceptions.ProjectAddedToItselfException;
 import app.repository.ProjectsRepository;
 
 public class AddSubprojectToRepo implements Command {
@@ -30,16 +30,16 @@ public class AddSubprojectToRepo implements Command {
 		long subPid = Long.parseLong(subPidString);
 
 		if (pid == subPid){
-			throw new ProjectAddedToItselfException();
+			throw new ProjectAddedToItselfException("Project was added to itself.");
 		}
 		Project project = pRepo.getProjectById(pid);
 		Project subProject = pRepo.getProjectById(subPid);
 		
 		if (project == null || subProject == null){
-			throw new NoSuchProjectException();
+			throw new NoSuchProjectException("There is no project with that ID.");
 		}
 		if(!project.addProject(subProject)){
-			throw new AddedExistingSubproject();
+			throw new AddedExistingSubproject("The project that was added is already subproject of that project.");
 		}
 		
 		return new AppElement[]{project};
