@@ -38,6 +38,7 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 	public SwingWorkerCommand(Command command, ResultsPublisher publisher, ErrorPublisher errorPublisher) {
 		this.command = command;
 		this.publisher = publisher;
+		this.errorPublisher = errorPublisher;
 	}
 
 	/**
