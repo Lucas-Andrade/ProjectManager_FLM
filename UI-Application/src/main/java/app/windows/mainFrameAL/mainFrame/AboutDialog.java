@@ -22,9 +22,7 @@ public class AboutDialog extends JDialog {
 			AboutDialog errorDialog = new AboutDialog();
 			errorDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			errorDialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		} catch (Exception e) {	}
 	}
 	private JLabel help;
 	
