@@ -39,7 +39,7 @@ public class SetProjectPropertiesFromRepo implements Command{
 		Project project = pRepo.getProjectById(pid);
 
 		if (project == null){
-			throw new NoSuchProjectException();
+			throw new NoSuchProjectException("There is no project with that ID.");
 		}
 		
 		patchParameters(project);
@@ -77,21 +77,21 @@ public class SetProjectPropertiesFromRepo implements Command{
 	private void patchLongitude(Project project) throws GeographicCoordinatesOutOfBoundsException{
 		double longitude = Double.parseDouble(longitudeString);
 		if (!project.updateLongitude(longitude)){
-			throw new GeographicCoordinatesOutOfBoundsException();
+			throw new GeographicCoordinatesOutOfBoundsException("The longitude is out of bounds.");
 		}
 	}
 	
 	private void patchLatitude(Project project) throws GeographicCoordinatesOutOfBoundsException{
 		double latitude = Double.parseDouble(latitudeString);
 		if (!project.updateLatitude(latitude)){
-			throw new GeographicCoordinatesOutOfBoundsException();
+			throw new GeographicCoordinatesOutOfBoundsException("The latitude is out of bounds.");
 		}
 	}
 	
 	private void patchPrice(Project project) throws CostOutOfBoundsException{
 		double price = Double.parseDouble(priceString);
 		if(!project.updateLocalPrice(price)){
-			throw new CostOutOfBoundsException();
+			throw new CostOutOfBoundsException("The cost cannot be negative.");
 		}
 	}
 }

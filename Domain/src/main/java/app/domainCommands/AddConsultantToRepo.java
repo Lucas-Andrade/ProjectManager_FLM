@@ -31,7 +31,7 @@ public class AddConsultantToRepo implements Command{
 		double priceHour = Double.parseDouble(priceHourString);
 		
 		if (priceHour < 0){
-			throw new CostOutOfBoundsException();
+			throw new CostOutOfBoundsException("The cost cannot be negative.");
 		}
 
 		long cid = wRepo.nextCID();

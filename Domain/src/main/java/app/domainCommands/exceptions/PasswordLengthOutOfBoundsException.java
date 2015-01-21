@@ -1,7 +1,7 @@
 package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class PasswordLengthOutOfBoundsException extends Exception{
+public class PasswordLengthOutOfBoundsException extends CommandExecutionException{
 
 	public PasswordLengthOutOfBoundsException() {
 	}

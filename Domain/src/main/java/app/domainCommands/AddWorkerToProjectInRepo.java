@@ -42,7 +42,7 @@ public class AddWorkerToProjectInRepo implements Command{
 		
 		Project project = pRepo.getProjectById(pid);
 		if (project == null){
-			throw new NoSuchProjectException();
+			throw new NoSuchProjectException("There is no project with that ID.");
 		}
 
 		if (workerType.equalsIgnoreCase("manager")){
@@ -50,7 +50,7 @@ public class AddWorkerToProjectInRepo implements Command{
 		} else if (workerType.equalsIgnoreCase("consultant")) {
 			addConsultant();
 		} else{
-			throw new IllegalWorkerTypeException();
+			throw new IllegalWorkerTypeException("Unercognised worker type.");
 		}		
 		
 		return new AppElement[]{project};
@@ -72,7 +72,7 @@ public class AddWorkerToProjectInRepo implements Command{
 		Consultant consultant = wRepo.getConsultantByID(cid);
 
 		if (consultant == null){
-			throw new NoSuchWorkerException();
+			throw new NoSuchWorkerException("There is no worker with that ID.");
 		}
 		pRepo.getProjectById(pid).addWorker(consultant);
 	}
@@ -94,7 +94,7 @@ public class AddWorkerToProjectInRepo implements Command{
 		Leader manager = wRepo.getManagerByID(cid);
 		
 		if (manager == null){
-			throw new NoSuchManagerException();
+			throw new NoSuchManagerException("There is no manager with that ID.");
 		}
 		pRepo.getProjectById(pid).setManager(manager);
 	}

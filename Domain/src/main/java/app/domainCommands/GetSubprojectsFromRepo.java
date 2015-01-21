@@ -27,12 +27,12 @@ public class GetSubprojectsFromRepo implements Command{
 		long pid = Long.parseLong(pidString);
 		Project project = pRepo.getProjectById(pid);
 		if(project == null){
-			throw new NoSuchProjectException();
+			throw new NoSuchProjectException("There is no worker with that ID.");
 		}
 		
 		int subprojectsNumber = project.getSubprojectsNumber();
 		if(subprojectsNumber == 0){
-			throw new NoSuchSubprojectsException();
+			throw new NoSuchSubprojectsException("That project has no subprojects.");
 		}
 		Collection<Project> subprojects = project.getContainerProject();
 		AppElement[] subprojectAux = new AppElement[subprojectsNumber];

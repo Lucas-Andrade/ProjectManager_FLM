@@ -22,7 +22,7 @@ public class GetUserFromRepo implements Command{
 		
 		AppElement[] user = new AppElement[]{uRepo.getUserByUsername(username)};
 		if(user[0] == null){
-			throw new NoSuchUsernameException();
+			throw new NoSuchUsernameException("That username does not exist.");
 		}
 		return user;
 	}

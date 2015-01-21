@@ -1,7 +1,7 @@
 package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class IllegalEmailException extends Exception{
+public class IllegalEmailException extends CommandExecutionException{
 	
 	public IllegalEmailException() {
 	}

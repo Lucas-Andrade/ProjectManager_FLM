@@ -38,7 +38,7 @@ public class PublishToMainFrame implements ResultsPublisher{
 	//	tree.setRootVisible(false);
 		
 		mainPanel.add(new JScrollPane(tree), BorderLayout.CENTER);
-		statusLabel.setText("Status: Ready");;
+		statusLabel.setText("Status: Ready");
 		splitPane.setRightComponent(mainPanel);
 		splitPane.updateUI();
 	}

@@ -1,7 +1,7 @@
 package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class RepeatedUsernameException extends Exception {
+public class RepeatedUsernameException extends CommandExecutionException {
 
 	public RepeatedUsernameException() {
 	}

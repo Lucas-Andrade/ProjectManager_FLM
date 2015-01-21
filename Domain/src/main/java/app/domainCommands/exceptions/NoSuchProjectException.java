@@ -1,7 +1,7 @@
 package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class NoSuchProjectException extends Exception{
+public class NoSuchProjectException extends CommandExecutionException{
 	
 	public NoSuchProjectException() {
 	}

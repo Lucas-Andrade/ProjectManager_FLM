@@ -1,11 +1,12 @@
 package app.windows;
 
+import app.windows.mainFrameAL.mainFrame.ErrorDialog;
+
 public class PublishToErrorDialog implements ErrorPublisher{
 
 	@Override
 	public void publish(String message) {
-		// TODO Auto-generated method stub
-		
+		new ErrorDialog(message).setVisible(true);
 	}
 
 }

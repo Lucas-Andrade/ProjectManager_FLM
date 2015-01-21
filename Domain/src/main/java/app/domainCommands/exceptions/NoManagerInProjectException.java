@@ -1,7 +1,7 @@
 package app.domainCommands.exceptions;
 
 @SuppressWarnings("serial")
-public class NoManagerInProjectException extends Exception {
+public class NoManagerInProjectException extends CommandExecutionException {
 
 	public NoManagerInProjectException() {
 	}

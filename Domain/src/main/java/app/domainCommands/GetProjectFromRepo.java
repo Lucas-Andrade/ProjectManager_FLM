@@ -26,7 +26,7 @@ public class GetProjectFromRepo implements Command{
 		Project project = pRepo.getProjectById(pid);
 		
 		if(project == null){
-			throw new NoSuchProjectException();
+			throw new NoSuchProjectException("There is no project with that ID.");
 		}
 		AppElement[] projectAux = {project};
 		return projectAux;
