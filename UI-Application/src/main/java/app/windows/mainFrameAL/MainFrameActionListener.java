@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import app.authentication.Authentication;
+import app.commands.exceptions.IncorrectPasswordException;
+import app.commands.exceptions.NoSuchUsernameException;
 import app.repositoryHolders.RepositoryHolder;
 import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
 
@@ -48,7 +50,14 @@ public abstract class MainFrameActionListener implements ActionListener
 			this.action();
 		} else
 		{
-			new AuthenticationDialog(repositories).setVisible(true);
+			try {
+				new AuthenticationDialog(repositories).setVisible(true);
+			} catch (IncorrectPasswordException e1) {
+				
+			} catch (NoSuchUsernameException e2) {
+				
+			}
+			
 		}
 	}
 

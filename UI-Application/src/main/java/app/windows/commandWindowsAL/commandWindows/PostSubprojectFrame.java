@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import app.windows.commandWindowsAL.NewProjectAL;
-import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 public class PostSubprojectFrame extends MainDialogFrame {
 
