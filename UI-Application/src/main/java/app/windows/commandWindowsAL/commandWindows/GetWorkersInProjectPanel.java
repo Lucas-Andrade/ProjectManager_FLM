@@ -10,7 +10,7 @@ import javax.swing.JTable;
 
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
-public class GetWorkersInProjectFrame extends MainGetPanel {
+public class GetWorkersInProjectPanel extends MainGetPanel {
 
 	/**
 	 * 
@@ -26,7 +26,7 @@ public class GetWorkersInProjectFrame extends MainGetPanel {
 	 */
 	public static void main(String[] args) {
 		try {
-			GetWorkersInProjectFrame dialog = new GetWorkersInProjectFrame();
+			GetWorkersInProjectPanel dialog = new GetWorkersInProjectPanel();
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -36,7 +36,7 @@ public class GetWorkersInProjectFrame extends MainGetPanel {
 	/**
 	 * Create the frame.
 	 */
-	public GetWorkersInProjectFrame() {
+	public GetWorkersInProjectPanel() {
 		setBounds(100, 100, 676, 387);
 		GridBagLayout gridBagLayout = (GridBagLayout) getMainGetPanel().getLayout();
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0};

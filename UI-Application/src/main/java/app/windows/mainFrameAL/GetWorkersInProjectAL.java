@@ -1,7 +1,7 @@
 package app.windows.mainFrameAL;
 
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.GetWorkersInProjectFrame;
+import app.windows.commandWindowsAL.commandWindows.GetWorkersInProjectPanel;
 
 /**
  * Class responsible for calling the {@code GetWorkersInProjectFrame}. Extends
@@ -33,7 +33,7 @@ public class GetWorkersInProjectAL extends MainFrameActionListener
 	@Override
 	void action()
 	{
-		new GetWorkersInProjectFrame().setVisible(true);
+		new GetWorkersInProjectPanel().setVisible(true);
 	}
 
 }

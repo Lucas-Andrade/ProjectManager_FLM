@@ -1,7 +1,7 @@
 package app.windows.mainFrameAL;
 
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.GetSubprojectsFrame;
+import app.windows.commandWindowsAL.commandWindows.GetSubprojectsPanel;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 /**
@@ -34,7 +34,7 @@ public class GetSubprojectsAL extends MainFrameActionListener
 	@Override
 	void action()
 	{
-		MainFrame.getSplitPane().setRightComponent(new GetSubprojectsFrame());
+		MainFrame.getSplitPane().setRightComponent(new GetSubprojectsPanel());
 		//.setVisible(true);
 		
 	}
