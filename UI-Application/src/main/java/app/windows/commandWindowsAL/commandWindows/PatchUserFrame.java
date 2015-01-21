@@ -9,6 +9,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import app.windows.commandWindowsAL.SetUserAL;
+import app.windows.mainFrameAL.mainFrame.ErrorDialog;
+
 
 public class PatchUserFrame extends MainDialogFrame {
 
@@ -129,6 +132,24 @@ public class PatchUserFrame extends MainDialogFrame {
 		gbc_validateNewPassField.gridx = 4;
 		gbc_validateNewPassField.gridy = 6;
 		getMainDialogPanel().add(validateNewPassField, gbc_validateNewPassField);
+		
+		JTextField[] textFields = new JTextField[4];
+		textFields[0] = nameField; //assign each field to a position in the array
+		textFields[1] = passwordField;
+		textFields[2] = newPasswordField;
+		if (newPasswordField.getText()==validateNewPassField.getText())
+		{
+			this.getSaveButton().addActionListener(new SetUserAL(textFields));
+		}
+		else
+		{
+			new ErrorDialog("New Passord and confirmation Password do not match").setVisible(true);
+		}
+		
+		this.setVisible(true);
+		
+		
+		
 	}
 
 }

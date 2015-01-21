@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import app.windows.commandWindowsAL.NewProjectAL;
+import app.windows.commandWindowsAL.SetProjectAL;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
 import java.awt.GridBagLayout;
@@ -162,10 +163,11 @@ public class PatchProjectFrame extends MainDialogFrame {
 			longitudeField.setColumns(10);
 			
 			JTextField[] textFields = new JTextField[4];
-			textFields[0] = nameField; //assign each field to a position in the array
-			textFields[1] = priceField;
-			textFields[2] = longitudeField;
-			textFields[3] = latitudeField;
+			textFields[0] = projectId;
+			textFields[1] = nameField; //assign each field to a position in the array
+			textFields[2] = priceField;
+			textFields[3] = longitudeField;
+			textFields[4] = latitudeField;
 			
 			this.getSaveButton().addActionListener(new SetProjectAL(textFields));
 	}

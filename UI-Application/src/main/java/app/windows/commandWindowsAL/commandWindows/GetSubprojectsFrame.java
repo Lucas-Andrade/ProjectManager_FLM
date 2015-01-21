@@ -1,12 +1,14 @@
 package app.windows.commandWindowsAL.commandWindows;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
-import java.awt.Color;
 
+import app.windows.commandWindowsAL.GetSubprojectAL;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
 public class GetSubprojectsFrame extends MainGetPanel {
@@ -58,6 +60,7 @@ public class GetSubprojectsFrame extends MainGetPanel {
 		gbc_panel.gridy = 3;
 		getMainGetPanel().add(panel, gbc_panel);
 		
+		this.getGetButton().addActionListener((ActionListener) new GetSubprojectAL(projectId));
 		this.setVisible(true);
 	}
 
