@@ -15,13 +15,10 @@ public class GetAllUsersAL implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
+
 		Command command = new GetAllUsersFromRepo(MainFrame.getRepositories().getUsersRepo());
 		new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog());
-=======
-		new SwingWorkerCommand(new GetAllUsersFromRepo(MainFrame.getRepositories().getUsersRepo()), 
-				new PublishToMainFrame(), new PublishToErrorDialog());
->>>>>>> 33cc6d9178546cfa45fe900f3441698714c5650b
+
 
 	}
 

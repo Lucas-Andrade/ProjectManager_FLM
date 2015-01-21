@@ -60,7 +60,7 @@ public class GetSubprojectsPanel extends MainGetPanel {
 		gbc_panel.gridy = 3;
 		getMainGetPanel().add(panel, gbc_panel);
 		
-		this.getGetButton().addActionListener((ActionListener) new GetSubprojectAL(projectId));
+		this.getGetButton().addActionListener((ActionListener) new GetSubprojectAL(projectId.getProjectIDField()));
 		this.setVisible(true);
 	}
 
