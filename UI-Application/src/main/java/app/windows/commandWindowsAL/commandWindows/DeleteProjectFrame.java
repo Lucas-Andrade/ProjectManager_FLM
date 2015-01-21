@@ -1,12 +1,12 @@
 package app.windows.commandWindowsAL.commandWindows;
 
 import java.awt.GridBagConstraints;
-import java.awt.Insets;
-
-import javax.swing.JDialog;
-import app.windows.mainFrameAL.mainFrame.ProjectID;
-
 import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionListener;
+
+import app.windows.commandWindowsAL.RemoveProjectAL;
+import app.windows.mainFrameAL.mainFrame.ProjectID;
 
 
 public class DeleteProjectFrame extends MainDialogFrame {
@@ -24,11 +24,6 @@ public class DeleteProjectFrame extends MainDialogFrame {
 
 
 			DeleteProjectFrame dialog = new DeleteProjectFrame();
-			dialog.setImage("images/project-delete.png");
-			dialog.setTitle("Delete Project");
-			dialog.setTitleLabel("Delete Project");
-			dialog.setHelpTip("Deletes the project with the specify Id and all its subprojects");
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,21 +55,9 @@ public class DeleteProjectFrame extends MainDialogFrame {
 			gbc_lblProjectID.gridx = 2;
 			gbc_lblProjectID.gridy = 4;
 			getMainDialogPanel().add(projectId, gbc_lblProjectID);
+	
+			this.getSaveButton().addActionListener((ActionListener) new RemoveProjectAL(projectId));
 	}
 
-	
-	//Para n me esquecer...
-//	public void actionPerformed(ActionEvent e){
-//		if (e.getSource() == okButton){
-//		//se pressionado o botao1, pedimos confirmação do usuário
-//		int resposta = JOptionPane.showConfirmDialog(null, "Do you want to delete this project?",
-//		"Confirm", JOptionPane.OK_CANCEL_OPTION);
-//		//se a resposta for sim, encerra a aplicação
-//		if (resposta == JOptionPane.OK_OPTION){
-//		System.exit(0);
-//		}
-//	}	
-//		addItem(Object) Adiciona o objeto como um novo item
-//		getSelectedItem() Retorna o objeto que está selecionado	
-//	}
+
 }
