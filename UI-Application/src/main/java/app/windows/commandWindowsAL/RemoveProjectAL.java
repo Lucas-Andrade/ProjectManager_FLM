@@ -30,7 +30,7 @@ public class RemoveProjectAL {
 		//se a resposta for sim, encerra a aplicação
 		if (resposta == JOptionPane.OK_OPTION){
 			Command command = new RemoveProjectToRepo(MainFrame.getRepositories().getProjectsRepo(), pidString);
-			new SwingWorkerCommand(command, new PublishToMainFrame()).execute();
+			new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog()).execute();
 			System.exit(0);
 		}	
 	}	

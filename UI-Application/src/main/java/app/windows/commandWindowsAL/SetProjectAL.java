@@ -46,7 +46,7 @@ public class SetProjectAL implements ActionListener {
 		
 		try{
 			Command command = new SetProjectPropertiesFromRepo(MainFrame.getRepositories().getProjectsRepo(), pidString, longitude, latitude, price, localName);
-			new SwingWorkerCommand(command, new PublishToMainFrame()).execute();
+			new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog()).execute();
 			JOptionPane.showInternalConfirmDialog(null, "Success");
 		}catch(NumberFormatException nfe){
 			new ErrorDialog("Numbers were not introduced in one of the following fields: Price, Longitude of Latitude.").setVisible(true);

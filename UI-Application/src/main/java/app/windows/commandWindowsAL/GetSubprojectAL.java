@@ -34,7 +34,7 @@ public class GetSubprojectAL implements ActionListener {
 		
 		try{
 			Command command = new GetSubprojectsFromRepo(MainFrame.getRepositories().getProjectsRepo(), pidString);
-			new SwingWorkerCommand(command, new PublishToMainFrame()).execute();
+			new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog()).execute();
 			JOptionPane.showInternalConfirmDialog(null, "Success");
 		}catch(NumberFormatException nfe){
 			new ErrorDialog("Numbers were not introduced in one of the following fields: Price, Longitude of Latitude.").setVisible(true);

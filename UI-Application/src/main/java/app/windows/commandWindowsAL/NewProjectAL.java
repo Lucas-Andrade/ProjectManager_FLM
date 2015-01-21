@@ -43,7 +43,7 @@ public class NewProjectAL implements ActionListener {
 		
 		try{
 			Command command = new AddProjectToRepo(MainFrame.getRepositories().getProjectsRepo(), latitude, longitude, name, price);
-			new SwingWorkerCommand(command, new PublishToMainFrame()).execute();
+			new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog()).execute();
 		}catch(NumberFormatException nfe){
 			new ErrorDialog("Numbers were not introduced in one of the following fields: Price, Longitude of Latitude.").setVisible(true);
 		}

@@ -2,6 +2,7 @@ package app.windows.commandWindowsAL;
 
 import javax.swing.JTextField;
 
+import app.domainCommands.Command;
 import app.domainCommands.GetUserFromRepo;
 import app.repository.UserRepository;
 import app.windows.PublishToMainFrame;
@@ -21,14 +22,13 @@ public class GetUserAL {
 	public GetUserAL(UserRepository usersRepo, JTextField userID) {
 		try{
 			username = parameter.getText();
-			new SwingWorkerCommand(new GetUserFromRepo(MainFrame.getRepositories().getUsersRepo(), username), new PublishToMainFrame());
+			Command comand = new GetUserFromRepo(MainFrame.getRepositories().getUsersRepo(), username);
+			new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog());
 		
-//		}catch(NoSuchUsernameException nsue){
-//			new ErrorDialog("User " + username + " not found!").setVisible(true);
 		} catch (IllegalArgumentException iae){
 			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage()).setVisible(true);
 		}
 		
-		}
+	}
 
 }

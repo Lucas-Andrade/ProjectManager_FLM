@@ -40,7 +40,7 @@ public class SetUserAL implements ActionListener {
 		
 		try{
 			Command command = new SetUserPropertiesFromRepo(MainFrame.getRepositories().getUsersRepo(), userName, oldPassword, newPassword);
-			new SwingWorkerCommand(command, new PublishToMainFrame()).execute();
+			new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog()).execute();
 		}
 		catch(IllegalArgumentException iae){
 			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage());
