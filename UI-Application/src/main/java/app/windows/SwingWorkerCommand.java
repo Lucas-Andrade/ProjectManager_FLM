@@ -39,7 +39,7 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 		} catch(NumberFormatException e) {
 			errorPublisher.publish("Letters were introduced in a numbers only field.");
 		} catch(IllegalArgumentException e) {
-			errorPublisher.publish("Invalid parameters were entered");
+			errorPublisher.publish("Invalid parameters were entered.");
 		}
 		
 		return toReturn;
@@ -52,12 +52,19 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 	
 	@Override
 	protected void done(){
+		AppElement[] result = null;
 		try {
-			publisher.publish(get());
+			result = get();
 		} catch (InterruptedException e) {
 			errorPublisher.publish("Unexpected interruption.");
+			return;
 		} catch (ExecutionException e) {
 			errorPublisher.publish("Unexpected execution error.");
+			return;
+		}
+		
+		if (result != null){ //because get() will return a null result if doInBackgound caught an exception
+			publisher.publish(result);
 		}
 	}
 
