@@ -1,4 +1,4 @@
-package app.windows.commandWindowsAL.commandWindows;
+package app.windows.commandWindowsAL;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

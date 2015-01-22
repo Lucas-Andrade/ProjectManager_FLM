@@ -19,6 +19,7 @@ public class SetUserAL implements ActionListener {
 	private String userName;
 	private String oldPassword;
 	private String newPassword;
+	private String validateNewPass;
 
 	public SetUserAL(JTextField[] textFields) {
 		this.textFields = textFields;
@@ -30,13 +31,19 @@ public class SetUserAL implements ActionListener {
 			userName = textFields[0].getText();
 			oldPassword = textFields[1].getText();
 			newPassword = textFields[2].getText();
+			validateNewPass = textFields[3].getText();
 			
 		}catch (NullPointerException | ArrayIndexOutOfBoundsException a){
 			new ErrorDialog("Error").setVisible(true);
 		}
 		
-		if(userName.length() == 0 || oldPassword.length() == 0 || newPassword.length() == 0 ){
-			new ErrorDialog("At least one field was left blank.").setVisible(true);
+		if(userName.length() == 0 || oldPassword.length() == 0 || newPassword.length() == 0 || validateNewPass.length() == 0 ){
+			new ErrorDialog("At least one required field was left blank.").setVisible(true);
+		}
+		
+		if (!(newPassword==validateNewPass))
+		{
+			new ErrorDialog("New Passord and confirmation Password do not match").setVisible(true);
 		}
 		
 		try{
@@ -44,7 +51,7 @@ public class SetUserAL implements ActionListener {
 			new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog()).execute();
 		}
 		catch(IllegalArgumentException iae){
-			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage());
+			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage()).setVisible(true);
 		}
 	}
 }

@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import app.windows.commandWindowsAL.SetUserAL;
-import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 
 
 public class PatchUserFrame extends MainDialogFrame {
@@ -137,15 +136,10 @@ public class PatchUserFrame extends MainDialogFrame {
 		textFields[0] = nameField; //assign each field to a position in the array
 		textFields[1] = passwordField;
 		textFields[2] = newPasswordField;
-		if (newPasswordField.getText()==validateNewPassField.getText())
-		{
-			this.getSaveButton().addActionListener(new SetUserAL(textFields));
-		}
-		else
-		{
-			new ErrorDialog("New Passord and confirmation Password do not match").setVisible(true);
-		}
+		textFields[3] = validateNewPassField;
 		
+		this.getSaveButton().addActionListener(new SetUserAL(textFields));
+				
 		this.setVisible(true);
 		
 		
