@@ -8,9 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
-
 import app.AppElement;
-import app.windows.main_frame_al.main_frame.MainFrame;
+import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 public class PublishToMainFrame extends ResultsPublisher{
 	

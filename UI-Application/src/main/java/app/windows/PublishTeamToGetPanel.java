@@ -5,8 +5,8 @@ import javax.swing.JTable;
 
 import utils.AWorker;
 import app.AppElement;
-import app.windows.command_windows_al.command_windows.MainGetPanel;
-import app.windows.main_frame_al.main_frame.ErrorDialog;
+import app.windows.commandWindowsAL.commandWindows.MainGetPanel;
+import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 
 public class PublishTeamToGetPanel extends PublishToGetPanel{
 

@@ -1,6 +1,6 @@
 package app.windows;
 
-import app.windows.main_frame_al.main_frame.ErrorDialog;
+import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 
 public class PublishToErrorDialog implements ErrorPublisher{
 

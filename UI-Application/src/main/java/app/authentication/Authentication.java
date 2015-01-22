@@ -10,8 +10,8 @@ import javax.swing.SwingWorker;
 
 import app.elements.IUser;
 import app.repository.UserRepository;
-import app.repository_holders.RepositoryHolder;
-import app.windows.main_frame_al.main_frame.ErrorDialog;
+import app.repositoryHolders.RepositoryHolder;
+import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 
 /**
  * Class that logs in and logs out an {@code IUser}. It's able to tell if there

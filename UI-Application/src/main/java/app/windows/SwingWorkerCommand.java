@@ -6,8 +6,8 @@ import java.util.concurrent.ExecutionException;
 import javax.swing.SwingWorker;
 
 import app.AppElement;
-import app.domain_commands.Command;
-import app.domain_commands.exceptions.CommandExecutionException;
+import app.domainCommands.Command;
+import app.domainCommands.exceptions.CommandExecutionException;
 
 /**
  * Is a {@code SwingWorker<AppElement[], String>} that is used to apply changes to the database.
