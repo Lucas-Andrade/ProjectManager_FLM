@@ -21,7 +21,8 @@ import app.windows.mainFrameAL.mainFrame.ErrorDialog;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015
  */
-public abstract class Authentication {
+public abstract class Authentication
+{
 
 	/**
 	 * The authenticated {@code IUser}.
@@ -34,15 +35,18 @@ public abstract class Authentication {
 	 */
 	private static boolean isAuthenticated = false;
 
-	//TODO
+	/**
+	 * A {@code List} containing all the Observers of {@code this} object.
+	 */
 	private static final List<AuthenticationActionListener> actionListeners = new ArrayList<AuthenticationActionListener>();
-	
+
 	/**
 	 * Method that tells if there is an {@code IUser} logged in.
 	 * 
 	 * @return {@code this#isAuthenticated}
 	 */
-	public static boolean isAuthenticated(){
+	public static boolean isAuthenticated()
+	{
 		return isAuthenticated;
 	}
 
@@ -51,7 +55,8 @@ public abstract class Authentication {
 	 * 
 	 * @return {@code this#authenticatedUser}
 	 */
-	public static IUser getAuthenticatedUser(){
+	public static IUser getAuthenticatedUser()
+	{
 		return authenticatedUser;
 	}
 
@@ -62,7 +67,8 @@ public abstract class Authentication {
 	 * @param user
 	 *            The {@code IUser} to be logged in.
 	 */
-	private static void setAuthenticatedUser(IUser user){
+	private static void setAuthenticatedUser(IUser user)
+	{
 		authenticatedUser = user;
 		isAuthenticated = true;
 		fire(true, user);
@@ -79,7 +85,8 @@ public abstract class Authentication {
 	 *            The {@code UserRepository} with the {@code IUser}s.
 	 */
 	public static void authenticate(JTextField[] fieldsToRetrieve,
-			RepositoryHolder repoHolder){
+			RepositoryHolder repoHolder)
+	{
 		new AuthenticationSwingWorker(fieldsToRetrieve, repoHolder).execute();
 	}
 
@@ -87,60 +94,72 @@ public abstract class Authentication {
 	 * Logs out any logged in {@code IUser}: turns the flag to {@code false} and
 	 * any reference to an {@code IUser} becomes {@code null}.
 	 */
-	public static void unauthenticate(){
+	public static void unauthenticate()
+	{
 		authenticatedUser = null;
 		isAuthenticated = false;
 		fire(false, null);
 	}
-	
-	
-	private static class AuthenticationSwingWorker extends SwingWorker<IUser, Object> {
+
+	private static class AuthenticationSwingWorker extends
+			SwingWorker<IUser, Object>
+	{
 
 		UserRepository uRepo;
 		JTextField[] fieldsToRetrieve;
-		
-		public AuthenticationSwingWorker(JTextField[] fieldsToRetrieve,	RepositoryHolder repoHolder) {
-			
+
+		public AuthenticationSwingWorker(JTextField[] fieldsToRetrieve,
+				RepositoryHolder repoHolder)
+		{
+
 			this.uRepo = repoHolder.getUsersRepo();
 			this.fieldsToRetrieve = fieldsToRetrieve;
 		}
 
 		@Override
-		protected IUser doInBackground() throws Exception{
+		protected IUser doInBackground() throws Exception
+		{
 
 			String loginName = fieldsToRetrieve[0].getText();
 			char[] loginPasswordChars = ((JPasswordField) fieldsToRetrieve[1])
 					.getPassword();
 			StringBuilder builder = new StringBuilder();
 
-			for (char passChar : loginPasswordChars){
+			for (char passChar : loginPasswordChars)
+			{
 				builder.append(passChar);
 			}
 
 			String loginPassword = builder.toString();
 			IUser user = uRepo.getUserByUsername(loginName);
 			return (user != null)
-					&& user.getLoginPassword().equals(loginPassword) ? user	: null;
+					&& user.getLoginPassword().equals(loginPassword) ? user
+					: null;
 		}
 
 		@Override
-		protected void done(){
+		protected void done()
+		{
 			IUser user = null;
 
-			try{
+			try
+			{
 				user = get();
-			} catch (InterruptedException e){
+			} catch (InterruptedException e)
+			{
 				new ErrorDialog("Was interrupted before reaching database.")
 						.setVisible(true);
 				return;
-			} catch (ExecutionException e){
+			} catch (ExecutionException e)
+			{
 				new ErrorDialog(
 						"Could not verify if the login name and password were correct.")
 						.setVisible(true);
 				return;
 			}
 
-			if (user != null){
+			if (user != null)
+			{
 				setAuthenticatedUser(user);
 				return;
 			}
@@ -150,24 +169,64 @@ public abstract class Authentication {
 		}
 	}
 
-	//TODO
-	public static interface AuthenticationActionListener {
-		public void actionPerformed(boolean isAuthenticated, IUser authenticatedUser);
+	/**
+	 * The interface to be implemented by all the Observers of {@code this}
+	 * object.
+	 * 
+	 * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+	 * @since 22/01/2015
+	 */
+	public static interface AuthenticationActionListener
+	{
+		/**
+		 * The method containing the action to be performed when the Observer is
+		 * notified by the {@code Authentication}.
+		 * 
+		 * @param isAuthenticated
+		 *            {@code true} if there is an {@code IUser} authenticated,
+		 *            {@code false} if not.
+		 * @param authenticatedUser
+		 *            The authenticated {@code IUser}, or null if there isn't
+		 *            one.
+		 */
+		public void actionPerformed(boolean isAuthenticated,
+				IUser authenticatedUser);
 	}
 
-	//TODO
-	public static void addActionListener(AuthenticationActionListener actionListener)
+	/**
+	 * Method that adds an Observer to {@code this#actionListeners}.
+	 * 
+	 * @param actionListener
+	 *            The Observer to be added.
+	 */
+	public static void addActionListener(
+			AuthenticationActionListener actionListener)
 	{
 		actionListeners.add(actionListener);
 	}
 
-	//TODO
-	public static void removeActionListener(AuthenticationActionListener actionListener)
+	/**
+	 * Method that removes an Observer to {@code this#actionListeners}.
+	 * 
+	 * @param actionListener
+	 *            The Observer to be removed.
+	 */
+	public static void removeActionListener(
+			AuthenticationActionListener actionListener)
 	{
 		actionListeners.remove(actionListener);
 	}
 
-	//TODO
+	/**
+	 * Method that notifies all the Observers when changes are made in
+	 * {@code this} object.
+	 * 
+	 * @param isAuthenticated
+	 *            {@code true} if there is an {@code IUser} authenticated,
+	 *            {@code false} if not.
+	 * @param authenticatedUser
+	 *            The authenticated {@code IUser}, or null if there isn't one.
+	 */
 	public static void fire(boolean isAuthenticated, IUser authenticatedUser)
 	{
 		for (AuthenticationActionListener actionListener : actionListeners)
