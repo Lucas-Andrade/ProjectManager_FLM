@@ -47,7 +47,7 @@ public class GetWorkersAL implements ActionListener {
 	/**
 	 * The constructor for {@code GetWorkersAL}.
 	 * 
-	 * @param projectId
+	 * @param projectField
 	 *            A {@code JTextField} containing the {@code AWorker}'s type.
 	 * @param button
 	 *            The button which selection state will be used to determine

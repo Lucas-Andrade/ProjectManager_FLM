@@ -40,7 +40,7 @@ public class RemoveProjectAL implements ActionListener {
 	/**
 	 * The constructor for {@code RemoveProjectAL}.
 	 * 
-	 * @param projectId
+	 * @param textFields
 	 *            A {@code JTextField} containing the {@code Project}'s ID.
 	 */
 	public RemoveProjectAL(JTextField projectId) {

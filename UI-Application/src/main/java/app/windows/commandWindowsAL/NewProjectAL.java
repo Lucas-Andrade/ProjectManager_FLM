@@ -35,12 +35,12 @@ public class NewProjectAL implements ActionListener {
 	/**
 	 * The constructor for {@code NewProjectAL}.
 	 * 
-	 * @param projectId
+	 * @param textFields
 	 *            A {@code JTextField} containing the parameters for
 	 *            instantiating the {@code Command} {@link AddProjectToRepo}.
 	 */
-	public NewProjectAL(JTextField[] textFields2) {
-		this.textfields = textFields2;
+	public NewProjectAL(JTextField[] textFields) {
+		this.textfields = textFields;
 	}
 
 	/**

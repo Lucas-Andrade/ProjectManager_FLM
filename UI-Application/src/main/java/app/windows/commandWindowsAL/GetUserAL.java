@@ -39,7 +39,7 @@ public class GetUserAL implements ActionListener {
 	/**
 	 * The constructor for {@code GetUserAL}.
 	 * 
-	 * @param projectId
+	 * @param parameter
 	 *            A {@code JTextField} containing the {@code IUser}'s username.
 	 */
 	public GetUserAL(JTextField parameter) {

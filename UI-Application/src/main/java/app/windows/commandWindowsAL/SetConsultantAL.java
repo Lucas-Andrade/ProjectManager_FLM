@@ -35,7 +35,7 @@ public class SetConsultantAL implements ActionListener {
 	/**
 	 * The constructor for {@code SetConsultantAL}.
 	 * 
-	 * @param projectId
+	 * @param textFields
 	 *            A {@code JTextField} containing the parameters for
 	 *            instantiating the {@code Command}
 	 *            {@link SetConsultantPropertiesFromRepo}.

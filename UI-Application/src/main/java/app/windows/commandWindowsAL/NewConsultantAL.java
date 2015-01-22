@@ -35,7 +35,7 @@ public class NewConsultantAL implements ActionListener {
 	/**
 	 * The constructor for {@code NewConsultantAL}.
 	 * 
-	 * @param projectId
+	 * @param textFields
 	 *            A {@code JTextField} containing the parameters for
 	 *            instantiating the {@code Command} {@link AddConsultantToRepo}.
 	 */

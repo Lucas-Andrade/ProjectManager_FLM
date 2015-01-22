@@ -35,7 +35,7 @@ public class SetProjectAL implements ActionListener {
 	/**
 	 * The constructor for {@code SetProjectAL}.
 	 * 
-	 * @param projectId
+	 * @param textFields
 	 *            A {@code JTextField} containing the parameters for
 	 *            instantiating the {@code Command}
 	 *            {@link SetProjectPropertiesFromRepo}.

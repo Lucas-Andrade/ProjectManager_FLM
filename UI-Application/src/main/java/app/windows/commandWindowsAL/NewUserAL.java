@@ -35,7 +35,7 @@ public class NewUserAL implements ActionListener {
 	/**
 	 * The constructor for {@code NewUserAL}.
 	 * 
-	 * @param projectId
+	 * @param fields
 	 *            A {@code JTextField} containing the parameters for
 	 *            instantiating the {@code Command} {@link AddUserToRepo}.
 	 */

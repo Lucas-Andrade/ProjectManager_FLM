@@ -35,7 +35,7 @@ public class SetUserAL implements ActionListener {
 	/**
 	 * The constructor for {@code SetUserAL}.
 	 * 
-	 * @param projectId
+	 * @param textFields
 	 *            A {@code JTextField} containing the parameters for
 	 *            instantiating the {@code Command}
 	 *            {@link SetUserPropertiesFromRepo}.
