@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import app.windows.commandWindowsAL.NewProjectAL;
+import app.windows.commandWindowsAL.NewConsultantAL;
 
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -24,7 +24,7 @@ public class PostConsultantFrame extends MainDialogFrame {
 	private static final long serialVersionUID = 8060989086766838002L;
 	private JTextField nameField;
 	private JTextField priceHour;
-	private JTextField bonus = new JTextField();
+	private JTextField bonus;
 	private JRadioButton rdbtnManager;
 
 
@@ -113,7 +113,7 @@ public class PostConsultantFrame extends MainDialogFrame {
 		gbc_lblCoin.gridy = 4;
 		getMainDialogPanel().add(lblCoin, gbc_lblCoin);
 	
-		
+		bonus = new JTextField();
 		rdbtnManager = new JRadioButton("Manager");
 		GridBagConstraints gbc_rdbtnManager = new GridBagConstraints();
 		gbc_rdbtnManager.anchor = GridBagConstraints.WEST;
@@ -121,12 +121,18 @@ public class PostConsultantFrame extends MainDialogFrame {
 		gbc_rdbtnManager.gridx = 2;
 		gbc_rdbtnManager.gridy = 6;
 		getMainDialogPanel().add(rdbtnManager, gbc_rdbtnManager);
-		rdbtnManager.addActionListener(new ActionListener() {
-			
+		rdbtnManager.addActionListener(new ActionListener(){
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				bonus.setEnabled(true);
+				if(rdbtnManager.isSelected()){
+					bonus.setEnabled(true);
+				} else {
+					bonus.setText("");
+					bonus.setEnabled(false);
+				}
 			}
+			
 		});
 		
 		JLabel lblBonus = new JLabel("Bonus:");
@@ -138,8 +144,6 @@ public class PostConsultantFrame extends MainDialogFrame {
 		getMainDialogPanel().add(lblBonus, gbc_lblBonus);
 		bonus.setEnabled(false);
 		
-			
-		bonus = new JTextField();
 		GridBagConstraints gbc_bonusField = new GridBagConstraints();
 		gbc_bonusField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_bonusField.insets = new Insets(0, 0, 5, 5);
@@ -148,7 +152,6 @@ public class PostConsultantFrame extends MainDialogFrame {
 		getMainDialogPanel().add(bonus, gbc_bonusField);
 		bonus.setColumns(10);
 		
-		
 		JLabel label = new JLabel("Euros");
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.anchor = GridBagConstraints.WEST;
@@ -156,18 +159,13 @@ public class PostConsultantFrame extends MainDialogFrame {
 		gbc_label.gridx = 4;
 		gbc_label.gridy = 7;
 		getMainDialogPanel().add(label, gbc_label);
-	
-		
-		
-		
 		
 		JTextField[] textFields = new JTextField[4];
 		textFields[0] = nameField; //assign each field to a position in the array
 		textFields[1] = priceHour;
 		textFields[2] = bonus;
 		
-		this.getSaveButton().addActionListener(new NewProjectAL(textFields));
-		
+		this.getSaveButton().addActionListener(new NewConsultantAL(textFields));
 		this.setVisible(true);
 	}
 }

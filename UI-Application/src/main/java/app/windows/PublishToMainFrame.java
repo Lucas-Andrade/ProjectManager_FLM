@@ -11,7 +11,7 @@ import javax.swing.JTree;
 import app.AppElement;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
 
-public class PublishToMainFrame implements ResultsPublisher{
+public class PublishToMainFrame extends ResultsPublisher{
 	
 	JSplitPane splitPane = MainFrame.getSplitPane();
 	JPanel mainPanel = new JPanel();

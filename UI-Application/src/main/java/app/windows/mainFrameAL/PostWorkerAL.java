@@ -1,7 +1,7 @@
 package app.windows.mainFrameAL;
 
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.PostWorkerFrame;
+import app.windows.commandWindowsAL.commandWindows.PostWorkerInProjectFrame;
 
 /**
  * Class responsible for calling the {@code PostWorkerFrame}. Extends
@@ -33,7 +33,7 @@ public class PostWorkerAL extends MainFrameActionListener
 	@Override
 	void action()
 	{
-		new PostWorkerFrame().setVisible(true);
+		new PostWorkerInProjectFrame().setVisible(true);
 	}
 
 }

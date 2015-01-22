@@ -7,8 +7,8 @@ import javax.swing.JTextField;
 
 import app.domainCommands.Command;
 import app.domainCommands.SetConsultantPropertiesFromRepo;
+import app.windows.PublishTeamToMainFrame;
 import app.windows.PublishToErrorDialog;
-import app.windows.PublishToMainFrame;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
@@ -47,7 +47,7 @@ public class SetConsultantAL implements ActionListener {
 		
 		try{
 			Command command = new SetConsultantPropertiesFromRepo(MainFrame.getRepositories().getWorkersRepo(), consultantId, consultantName, priceHour);
-			new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog()).execute();
+			new SwingWorkerCommand(command, new PublishTeamToMainFrame(), new PublishToErrorDialog()).execute();
 		}catch(IllegalArgumentException iae){
 			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage());
 		}

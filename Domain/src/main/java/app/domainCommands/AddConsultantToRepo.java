@@ -51,7 +51,7 @@ public class AddConsultantToRepo implements Command{
 	}
 
 	private void setEmptyStringsToNull() {
-		if (bonusString.length() == 0) {
+		if (bonusString != null && bonusString.equals("")) {
 			bonusString = null;
 		}
 	}

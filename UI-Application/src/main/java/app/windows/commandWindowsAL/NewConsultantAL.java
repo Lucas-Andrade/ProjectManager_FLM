@@ -21,8 +21,7 @@ public class NewConsultantAL implements ActionListener{
 	private String bonus;
 
 	public NewConsultantAL (JTextField[] textFields){
-	this.textfields = textFields;
-	
+		this.textfields = textFields;
 	}
 	
 	public void actionPerformed(ActionEvent e) {

@@ -8,7 +8,7 @@ import javax.swing.JTree;
 import app.AppElement;
 import app.windows.commandWindowsAL.commandWindows.MainGetPanel;
 
-public class PublishToGetPanel implements ResultsPublisher{
+public class PublishToGetPanel extends ResultsPublisher{
 
 	@Override
 	public void publish(AppElement[] appElements) {

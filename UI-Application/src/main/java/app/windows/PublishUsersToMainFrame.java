@@ -7,7 +7,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 
 import app.AppElement;
-import app.elements.User;
+import app.elements.IUser;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
 
@@ -17,9 +17,9 @@ public class PublishUsersToMainFrame extends PublishToMainFrame{
 	public void publish(AppElement[] appElements) {
 		JSplitPane splitPane = MainFrame.getSplitPane();
 		
-		User[] users = null;
+		IUser[] users = null;
 		try{
-			users = (User[]) appElements;
+			users = castToIUser(appElements);
 		} catch(ClassCastException e) {
 			new ErrorDialog("Could not present the results.").setVisible(true);
 			return;

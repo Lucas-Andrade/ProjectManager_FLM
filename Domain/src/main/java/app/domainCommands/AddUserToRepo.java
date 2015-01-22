@@ -67,7 +67,7 @@ public class AddUserToRepo implements Command{
 	}
 
 	private void setEmptyStringsToNull() {
-		if (fullName.length() == 0) {
+		if (fullName != null && fullName.equals("")) {
 			fullName = null;
 		}
 	}

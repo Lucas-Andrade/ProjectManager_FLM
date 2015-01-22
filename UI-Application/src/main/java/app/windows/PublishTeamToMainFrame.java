@@ -19,7 +19,7 @@ public class PublishTeamToMainFrame extends PublishToMainFrame {
 		
 		AWorker[] workers = null;
 		try{
-			workers = (AWorker[]) appElements;
+			workers = castToAWorker(appElements);
 		} catch(ClassCastException e) {
 			new ErrorDialog("Could not present the results.").setVisible(true);
 			return;

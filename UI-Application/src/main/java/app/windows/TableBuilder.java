@@ -4,16 +4,16 @@ import javax.swing.JTable;
 
 import utils.AWorker;
 import utils.Leader;
-import app.elements.User;
+import app.elements.IUser;
 
 public class TableBuilder {
 	
-	public static JTable getTableOfUsers(User[] users) {
+	public static JTable getTableOfUsers(IUser[] users) {
 		
 		String[] columnNames = {"Username", "Email", "Full name"};
 		String[][] data = new String[users.length][3];
 		for(int i = 0; i < users.length; i++) {
-			User user = users[i];
+			IUser user = users[i];
 			data[i] = new String[]{user.getLoginName(), user.getEmail(), user.getFullName()};
 		}
 		

@@ -98,16 +98,16 @@ public class SetProjectPropertiesFromRepo implements Command{
 	}
 	
 	private void setEmptyStringsToNull() {
-		if (longitudeString.length() == 0) {
+		if (longitudeString != null && longitudeString.equals("")) {
 			longitudeString = null;
 		}
-		if (latitudeString.length() == 0) {
+		if (latitudeString != null && latitudeString.equals("")) {
 			latitudeString = null;
 		}
-		if (priceString.length() == 0) {
+		if (priceString != null && priceString.equals("")) {
 			priceString = null;
 		}
-		if (localName.length() == 0) {
+		if (localName != null && localName.equals("")) {
 			localName = null;
 		}
 	}
