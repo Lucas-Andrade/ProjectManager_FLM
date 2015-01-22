@@ -40,7 +40,7 @@ public class User implements IUser{
 	}
 	
 	public User(String username, String password, String email){
-		this(username, password, email, "No full name has been introduced.");
+		this(username, password, email, username);
 	}
 
 	/**

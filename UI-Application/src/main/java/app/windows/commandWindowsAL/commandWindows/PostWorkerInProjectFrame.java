@@ -6,7 +6,6 @@ import java.awt.Insets;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 import app.windows.commandWindowsAL.NewWorkerInProjectAL;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
@@ -81,11 +80,7 @@ public class PostWorkerInProjectFrame extends MainDialogFrame {
 	
 		this.setVisible(true);
 		
-		JTextField[] textFields = new JTextField[2];
-		textFields[0] = projectId.getProjectIDField();
-		textFields[1] = workerID.getIDField();
-		String worker = workerID.getSelected();
-		this.getSaveButton().addActionListener(new NewWorkerInProjectAL(textFields, worker));
+		this.getSaveButton().addActionListener(new NewWorkerInProjectAL(projectId.getProjectIDField(), workerID));
 		
 		
 	}

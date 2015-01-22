@@ -70,7 +70,7 @@ public class AddWorkerToProjectInRepo implements Command{
 	 */
 	private void addConsultant() throws NoSuchWorkerException{
 		Consultant consultant = wRepo.getConsultantByID(cid);
-
+		
 		if (consultant == null){
 			throw new NoSuchWorkerException("There is no worker with that ID.");
 		}

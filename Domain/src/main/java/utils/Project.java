@@ -89,7 +89,7 @@ public class Project implements IProject{
 		if (worker == null){
 			throw new IllegalArgumentException();
 		}
-		if (manager != null && worker.getName().equals(manager.getName())){
+		if (manager != null && worker.equals(manager)){
 			return false;
 		}
 		return team.addElement(worker);

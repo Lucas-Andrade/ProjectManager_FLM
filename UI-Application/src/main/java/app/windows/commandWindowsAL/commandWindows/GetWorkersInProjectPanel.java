@@ -76,7 +76,6 @@ public class GetWorkersInProjectPanel extends MainGetPanel {
 		gbc_manager.gridy = 4;
 		getMainGetPanel().add(manager, gbc_manager);
 		
-		
 		consultants = new JRadioButton("Consultants");
 		GridBagConstraints gbc_consultantId = new GridBagConstraints();
 		gbc_consultantId.anchor = GridBagConstraints.NORTHWEST;
@@ -100,8 +99,8 @@ public class GetWorkersInProjectPanel extends MainGetPanel {
 	    gbc_panel.gridy = 7;
 	    getMainGetPanel().add(results, gbc_panel);
 		
-		String worker = (consultants.isSelected()) ? "Consultant" : manager.getText();
-	    this.getGetButton().addActionListener(new GetWorkersAL(projectId.getProjectIDField(), worker));
+		//String worker = (consultants.isSelected()) ? "Consultant" : manager.getText();
+	    this.getGetButton().addActionListener(new GetWorkersAL(projectId.getProjectIDField(), consultants));
 	    
 		this.setVisible(true);
 	}

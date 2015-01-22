@@ -3,8 +3,6 @@ package app.windows.commandWindowsAL.commandWindows;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,6 +24,7 @@ public class MainGetPanel extends JPanel {
 	protected static JPanel results;
 	
 	public static void setResults(JComponent component) {
+		results.removeAll();
 		results.setLayout(new BorderLayout(0, 0));
 		results.add(component);
 		results.updateUI();
@@ -100,13 +99,6 @@ public class MainGetPanel extends JPanel {
 			buttonPane.add(getButton);
 //			getRootPane().setDefaultButton(getButton);
 		}
-		{
-			JButton cancelButton = new JButton("Cancel");
-			cancelButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/cancel.png")));
-			cancelButton.setActionCommand("Cancel");
-			buttonPane.add(cancelButton);
-			cancelButton.addActionListener(new CancelActionListener());
-		}
 		  
 	}
 
@@ -115,15 +107,6 @@ public class MainGetPanel extends JPanel {
 	 */
 	public JPanel getMainGetPanel() {
 		return mainGetPanel;
-	}
-	
-	private class CancelActionListener implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			//TODO
-		}
-		
 	}
 	
 }

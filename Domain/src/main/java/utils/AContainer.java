@@ -78,7 +78,7 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	 */
 	public boolean addElement(elements element){
 		for (elements currentElement : elementsList){
-			if (currentElement.getName().equals(element.getName())){
+			if (currentElement.equals(element)){
 				return false;
 			}
 		}

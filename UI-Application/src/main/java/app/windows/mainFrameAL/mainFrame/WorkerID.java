@@ -3,6 +3,8 @@ package app.windows.mainFrameAL.mainFrame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
@@ -48,7 +50,19 @@ public class WorkerID extends JPanel {
 		gbc_textField.gridx = 1;
 		gbc_textField.gridy = 0;
 		add(managerId, gbc_textField);
-	
+		managerId.setEnabled(false);
+		
+		radbtnManager.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				rdbtnConsultants.setSelected(false);
+				managerId.setEnabled(true);
+				consultants.setText("");
+				consultants.setEnabled(false);
+			}
+			
+		});
 		
 		rdbtnConsultants = new JRadioButton("Consultant");
 		GridBagConstraints gbc_rdbtnConsultants = new GridBagConstraints();
@@ -57,7 +71,6 @@ public class WorkerID extends JPanel {
 		gbc_rdbtnConsultants.gridy = 2;
 		add(rdbtnConsultants, gbc_rdbtnConsultants);
 		rdbtnConsultants.setSelected(true);
-		
 		
 		consultants = new JTextField();
 		consultants.setToolTipText("Worker ID");
@@ -68,6 +81,17 @@ public class WorkerID extends JPanel {
 		add(consultants, gbc_consultant);
 		consultants.setColumns(10);
 		
+		rdbtnConsultants.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				radbtnManager.setEnabled(false);
+				consultants.setEnabled(true);
+				managerId.setText("");
+				managerId.setEnabled(false);
+			}
+			
+		});
 		
 		 //Group the radio buttons.
 	    ButtonGroup group = new ButtonGroup();
@@ -76,14 +100,12 @@ public class WorkerID extends JPanel {
 	}
 	
 	
-	public String getSelected()
-	{
+	public String getSelected(){
 		return rdbtnConsultants.isSelected()? rdbtnConsultants.getText() : radbtnManager.getText();
 	}
 	
 	
-	public JTextField getIDField()
-	{
+	public JTextField getIDField(){
 		return rdbtnConsultants.isSelected()? consultants : managerId;
 	}
 	

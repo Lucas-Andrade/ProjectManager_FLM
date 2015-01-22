@@ -12,25 +12,27 @@ import app.windows.PublishToMainFrame;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
+import app.windows.mainFrameAL.mainFrame.WorkerID;
 
 public class NewWorkerInProjectAL implements ActionListener {
 
-	private JTextField[] textFields;
+	private JTextField textFields;
+	private WorkerID workerID;
 	private String worker;
 	private String pid;
 	private String cid;
 
-	public NewWorkerInProjectAL(JTextField[] textFields, String worker) {
+	public NewWorkerInProjectAL(JTextField textFields, WorkerID workerId) {
 		this.textFields = textFields;
-		this.worker = worker;
+		this.workerID = workerId;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try{
-			pid = textFields[0].getText();
-			cid = textFields[1].getText();
-			
+			pid = textFields.getText();
+			cid = workerID.getIDField().getText();
+			worker = workerID.getSelected();
 		}catch (NullPointerException | ArrayIndexOutOfBoundsException a){
 			new ErrorDialog("Error").setVisible(true);
 			return;
@@ -44,7 +46,7 @@ public class NewWorkerInProjectAL implements ActionListener {
 			Command command = new AddWorkerToProjectInRepo(MainFrame.getRepositories().getProjectsRepo(),MainFrame.getRepositories().getWorkersRepo(), pid, cid, worker);
 			new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog()).execute();
 		
-		}catch(IllegalArgumentException iae){
+		} catch(IllegalArgumentException iae){
 			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage());
 		}
 	}
