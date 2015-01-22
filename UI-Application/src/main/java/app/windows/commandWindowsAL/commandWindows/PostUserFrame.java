@@ -6,7 +6,9 @@ import java.io.IOException;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
 import app.windows.commandWindowsAL.NewUserAL;
 
 import java.awt.GridBagLayout;
@@ -18,7 +20,7 @@ public class PostUserFrame extends MainDialogFrame {
 	 */
 	private static final long serialVersionUID = -9059883587666020207L;
 	private JTextField nameField;
-	private JTextField passwordField;
+	private JPasswordField passwordField;
 	private JTextField emailField;
 	private JTextField fullNameField;
 
@@ -30,7 +32,7 @@ public class PostUserFrame extends MainDialogFrame {
 			PostUserFrame dialog = new PostUserFrame();
 			//definimos o título da janel
 			dialog.setTitle("New User");
-			dialog.setImage("images/add-user.png");
+			dialog.setImage("images/addUser.png");
 			dialog.setTitleLabel("New User");
 			dialog.setHelpTip("Add a user to the User Repository");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -50,7 +52,7 @@ public class PostUserFrame extends MainDialogFrame {
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0};
 		
 		this.setTitle("New User");
-		this.setImage("images/add-user.png");
+		this.setImage("images/addUser.png");
 		this.setTitleLabel("New User");
 		this.setHelpTip("Add a user to the User Repository");
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -87,7 +89,8 @@ public class PostUserFrame extends MainDialogFrame {
 		lblPassword.setToolTipText("Minimum 4 character.");
 
 
-		passwordField = new JTextField();
+		passwordField = new JPasswordField();
+		passwordField.setEchoChar('*');
 		GridBagConstraints gbc_passwordField = new GridBagConstraints();
 		gbc_passwordField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_passwordField.gridwidth = 2;
@@ -145,11 +148,10 @@ public class PostUserFrame extends MainDialogFrame {
 		gbc_lblOptionalLabel.gridy = 6;
 		getMainDialogPanel().add(lblOptionalLabel, gbc_lblOptionalLabel);
 		
-		JTextField[] infoArray = new JTextField[4];
+		JTextField[] infoArray = new JTextField[3];
 		infoArray[0] = nameField; //assign each field to a position in the array
-		infoArray[1] = passwordField;
-		infoArray[2] = emailField;
-		infoArray[3] = fullNameField;
-		this.getSaveButton().addActionListener(new NewUserAL(infoArray));
+		infoArray[1] = emailField;
+		infoArray[2] = fullNameField;
+		this.getSaveButton().addActionListener(new NewUserAL(infoArray, passwordField));
 	}
 }

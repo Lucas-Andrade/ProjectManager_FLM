@@ -40,7 +40,7 @@ public class PostSubprojectFrame extends MainDialogFrame {
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		
 		this.setTitle("Add Subproject");
-		this.setImage("images/subproject.jpg");
+		this.setImage("images/addsubproject.png");
 		this.setTitleLabel("Add Subproject");
 		this.setHelpTip("Add a subproject to a projects/subprojects.");
 			

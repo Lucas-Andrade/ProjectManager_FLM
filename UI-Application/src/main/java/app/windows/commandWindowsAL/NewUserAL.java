@@ -3,6 +3,7 @@ package app.windows.commandWindowsAL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import app.domainCommands.AddUserToRepo;
@@ -31,6 +32,7 @@ public class NewUserAL implements ActionListener {
 	 * instantiating the {@code Command} {@link AddUserToRepo}.
 	 */
 	private JTextField[] textfields;
+	private JPasswordField passwordField;
 
 	/**
 	 * The constructor for {@code NewUserAL}.
@@ -38,9 +40,11 @@ public class NewUserAL implements ActionListener {
 	 * @param fields
 	 *            A {@code JTextField} containing the parameters for
 	 *            instantiating the {@code Command} {@link AddUserToRepo}.
+	 * @param passwordField 
 	 */
-	public NewUserAL(JTextField[] fields) {
+	public NewUserAL(JTextField[] fields, JPasswordField passwordField) {
 		this.textfields = fields;
+		this.passwordField = passwordField;
 	}
 
 	/**
@@ -58,9 +62,9 @@ public class NewUserAL implements ActionListener {
 		String fullname;
 		try {
 			username = textfields[0].getText();
-			password = textfields[1].getText();
-			email = textfields[2].getText();
-			fullname = textfields[3].getText();
+			password = passwordField.getSelectedText();
+			email = textfields[1].getText();
+			fullname = textfields[2].getText();
 
 		} catch (NullPointerException npe) {
 			new ErrorDialog("Error").setVisible(true);

@@ -1,5 +1,6 @@
 package app.windows.commandWindowsAL.commandWindows;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -40,7 +41,7 @@ public class GetUserPanel extends MainGetPanel {
 	 */
 	public GetUserPanel() 
 	{
-		this.setImage("images/user2-icon.png");
+		this.setImage("images/getUser.png");
 		this.setTitleLabel("Get Users");
 		this.setHelpTip("Updates the information of the consultant with the specify Id.");
 		
@@ -53,6 +54,7 @@ public class GetUserPanel extends MainGetPanel {
 		
 		//Opções de seleção
 		JRadioButton allUsers = new JRadioButton("All User");
+		allUsers.setBackground(new Color(176, 196, 222));
 		GridBagConstraints gbc_AllUsers = new GridBagConstraints();
 		gbc_AllUsers.anchor = GridBagConstraints.NORTHWEST;
 		gbc_AllUsers.insets = new Insets(0, 0, 5, 5);
@@ -69,6 +71,7 @@ public class GetUserPanel extends MainGetPanel {
 		
 		
 		JRadioButton userId = new JRadioButton("User ID:");
+		userId.setBackground(new Color(176, 196, 222));
 		GridBagConstraints gbc_UserId = new GridBagConstraints();
 		gbc_UserId.anchor = GridBagConstraints.NORTHWEST;
 		gbc_UserId.insets = new Insets(0, 0, 5, 5);

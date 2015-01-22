@@ -39,6 +39,7 @@ public class PostProjectFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 */
 	public PostProjectFrame() {
+		super();
 		this.setTitle("New Project");
 		this.setImage("images/project.png");
 		this.setTitleLabel("New Project");
@@ -83,8 +84,8 @@ public class PostProjectFrame extends MainDialogFrame {
 		GridBagConstraints gbc_lblPrice = new GridBagConstraints();
 		gbc_lblPrice.anchor = GridBagConstraints.SOUTHEAST;
 		gbc_lblPrice.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPrice.gridx = 5;
-		gbc_lblPrice.gridy = 5;
+		gbc_lblPrice.gridx = 2;
+		gbc_lblPrice.gridy = 6;
 		getMainDialogPanel().add(lblPrice, gbc_lblPrice);
 		lblPrice.setToolTipText("Euros");
 
@@ -95,8 +96,8 @@ public class PostProjectFrame extends MainDialogFrame {
 		gbc_priceField.anchor = GridBagConstraints.SOUTH;
 		gbc_priceField.insets = new Insets(0, 0, 5, 5);
 		gbc_priceField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_priceField.gridx = 6;
-		gbc_priceField.gridy = 5;
+		gbc_priceField.gridx = 3;
+		gbc_priceField.gridy = 6;
 		getMainDialogPanel().add(priceField, gbc_priceField);
 		
 		JLabel label = new JLabel("€");
@@ -104,8 +105,8 @@ public class PostProjectFrame extends MainDialogFrame {
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.anchor = GridBagConstraints.WEST;
 		gbc_label.insets = new Insets(0, 0, 5, 5);
-		gbc_label.gridx = 7;
-		gbc_label.gridy = 5;
+		gbc_label.gridx = 4;
+		gbc_label.gridy = 6;
 		getMainDialogPanel().add(label, gbc_label);
 
 		JLabel lblLatitude = new JLabel("Latitude:");

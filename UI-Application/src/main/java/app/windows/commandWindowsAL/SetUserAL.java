@@ -3,6 +3,7 @@ package app.windows.commandWindowsAL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import app.domainCommands.Command;
@@ -30,18 +31,21 @@ public class SetUserAL implements ActionListener {
 	 * An array of {@code JTextField}s containing the parameters for
 	 * instantiating the {@code Command} {@link SetUserPropertiesFromRepo}.
 	 */
-	private JTextField[] textFields;
+	private JPasswordField[] textFields;
+	private JTextField usernameField;
 
 	/**
 	 * The constructor for {@code SetUserAL}.
+	 * @param nameField 
 	 * 
 	 * @param textFields
 	 *            A {@code JTextField} containing the parameters for
 	 *            instantiating the {@code Command}
 	 *            {@link SetUserPropertiesFromRepo}.
 	 */
-	public SetUserAL(JTextField[] textFields) {
+	public SetUserAL(JTextField nameField, JPasswordField[] textFields) {
 		this.textFields = textFields;
+		this.usernameField = nameField;
 	}
 
 	/**
@@ -58,10 +62,10 @@ public class SetUserAL implements ActionListener {
 		String newPassword;
 		String validateNewPass;
 		try {
-			userName = textFields[0].getText();
-			oldPassword = textFields[1].getText();
-			newPassword = textFields[2].getText();
-			validateNewPass = textFields[3].getText();
+			userName = usernameField.getText();
+			oldPassword = textFields[0].getSelectedText();
+			newPassword = textFields[1].getSelectedText();
+			validateNewPass = textFields[2].getSelectedText();
 
 		} catch (NullPointerException | ArrayIndexOutOfBoundsException a) {
 			new ErrorDialog("Error").setVisible(true);

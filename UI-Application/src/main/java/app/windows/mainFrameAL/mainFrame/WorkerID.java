@@ -1,5 +1,6 @@
 package app.windows.mainFrameAL.mainFrame;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -27,6 +28,7 @@ public class WorkerID extends JPanel {
 	 */
 	public WorkerID() {
 		
+		this.setBackground(new Color(176, 196, 222));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {75, 200, 5};
 		gridBagLayout.rowHeights = new int[] {0, 0, 0, 1};
@@ -35,6 +37,7 @@ public class WorkerID extends JPanel {
 		setLayout(gridBagLayout);
 		
 		radbtnManager = new JRadioButton("Manager");
+		radbtnManager.setBackground(new Color(176, 196, 222));
 		GridBagConstraints gbc_radbtnManager = new GridBagConstraints();
 		gbc_radbtnManager.insets = new Insets(0, 0, 5, 5);
 		gbc_radbtnManager.gridx = 0;
@@ -65,6 +68,7 @@ public class WorkerID extends JPanel {
 		});
 		
 		rdbtnConsultants = new JRadioButton("Consultant");
+		rdbtnConsultants.setBackground(new Color(176, 196, 222));
 		GridBagConstraints gbc_rdbtnConsultants = new GridBagConstraints();
 		gbc_rdbtnConsultants.insets = new Insets(0, 0, 0, 5);
 		gbc_rdbtnConsultants.gridx = 0;

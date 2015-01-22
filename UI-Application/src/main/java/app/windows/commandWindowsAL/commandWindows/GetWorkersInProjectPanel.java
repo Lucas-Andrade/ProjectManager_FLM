@@ -45,7 +45,7 @@ public class GetWorkersInProjectPanel extends MainGetPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 42, 0, 0, 0, 0, 0};
 		
-		this.setImage("images/getUser.jpg");
+		this.setImage("images/getWorkerProject.png");
 		this.setTitleLabel("Get Workers In Project");
 		this.setHelpTip("Return the information of all subprojects of a project with the specify Id.");
 

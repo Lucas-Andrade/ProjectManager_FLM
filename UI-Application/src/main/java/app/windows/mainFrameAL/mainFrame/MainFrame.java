@@ -1,6 +1,7 @@
 package app.windows.mainFrameAL.mainFrame;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -60,19 +61,22 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 
 	private JLabel logo;
 
-	@SuppressWarnings("deprecation")
+
 	public MainFrame(RepositoryHolder repositories){
 
 		MainFrame.splitPane = new JSplitPane();
 		MainFrame.repositories = repositories;
+		this.setBackground(new Color(176, 196, 222));
 		
 		this.setTitle("Project Manager");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(640, 420);
 		splitPane.setContinuousLayout(true);
+		splitPane.setBackground(new Color(176, 196, 222));
 
 		JMenuBar menuBar = new JMenuBar();
 		this.setJMenuBar(menuBar);
+		menuBar.setBackground(new Color(102, 153, 204));
 
 		mnFile = new JMenu("File");
 		menuBar.add(mnFile);
@@ -143,10 +147,11 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		
 		logo = new JLabel("");
 		logo.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader()
-				.getResource("images/ProjectLogo400.png")));
+				.getResource("images/logo400.png")));
 		logo.setOpaque(false);
 
 		rightPanel.add(logo, BorderLayout.CENTER);
+		rightPanel.setBackground(new Color(176, 196, 222));
 
 		JPanel leftPanel = new JPanel();
 		splitPane.setLeftComponent(leftPanel);
@@ -156,12 +161,14 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		gbl_leftPanel.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
 		gbl_leftPanel.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 		leftPanel.setLayout(gbl_leftPanel);
+		leftPanel.setBackground(new Color(176, 196, 222));
 
 		ClassLoader cl = getClass().getClassLoader();
 		Image main = new ImageIcon(cl.getResource("images/Main.png"))
 				.getImage();
 
 		JMenuBar vert = new VerticalMenuBar();
+		vert.setBackground(new Color(102, 153, 204));
 
 		GridBagConstraints gbc_vert = new GridBagConstraints();
 		gbc_vert.fill = GridBagConstraints.BOTH;

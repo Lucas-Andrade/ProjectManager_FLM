@@ -1,6 +1,7 @@
 package app.windows.commandWindowsAL.commandWindows;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 
@@ -82,14 +83,15 @@ public class MainGetPanel extends JPanel {
 		
 		
 		mainGetPanel = new MainPanel();
+		mainGetPanel.setBackground(new Color(176, 196, 222));
 		
 		setBounds(X_BOUND,Y_BOUND,WIDTH_BOUND, HEIGHT_BOUND);   //Definição da Caixa de Diálogo
 		this.setLayout(new BorderLayout());
 		this.add(mainGetPanel, BorderLayout.CENTER);
 		
-//		this.setLocation(null);
 		
 		JPanel buttonPane = new JPanel();
+		buttonPane.setBackground(new Color(102, 153, 204));
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		this.add(buttonPane, BorderLayout.SOUTH);
 		{

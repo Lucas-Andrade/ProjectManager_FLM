@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import app.windows.commandWindowsAL.SetUserAL;
@@ -19,9 +20,9 @@ public class PatchUserFrame extends MainDialogFrame {
 	 */
 	private static final long serialVersionUID = 5293797614254495165L;
 	private JTextField nameField;
-	private JTextField passwordField;
-	private JTextField newPasswordField;
-	private JTextField validateNewPassField;
+	private JPasswordField passwordField;
+	private JPasswordField newPasswordField;
+	private JPasswordField validateNewPassField;
 
 	/**
 	 * Launch the application.
@@ -48,7 +49,7 @@ public class PatchUserFrame extends MainDialogFrame {
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		
 		this.setTitle("Edit User");
-		this.setImage("images/Edit_user.jpg");
+		this.setImage("images/setUser1.png");
 		this.setTitleLabel("Edit User");
 		this.setHelpTip("Updates the password of the user identified by the specify username.");
 		
@@ -83,7 +84,8 @@ public class PatchUserFrame extends MainDialogFrame {
 		lblOldPassword.setToolTipText("Minimum 4 character.");
 
 	
-		passwordField = new JTextField();
+		passwordField = new JPasswordField();
+		passwordField.setEchoChar('*');
 		GridBagConstraints gbc_oldPasswordField = new GridBagConstraints();
 		gbc_oldPasswordField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_oldPasswordField.insets = new Insets(0, 0, 5, 5);
@@ -104,7 +106,8 @@ public class PatchUserFrame extends MainDialogFrame {
 		getMainDialogPanel().add(lblNewPassword, gbc_lblNewPassword);
 	
 		
-		newPasswordField = new JTextField();
+		newPasswordField = new JPasswordField();
+		newPasswordField.setEchoChar('*');
 		GridBagConstraints gbc_newPasswordField = new GridBagConstraints();
 		gbc_newPasswordField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_newPasswordField.insets = new Insets(0, 0, 5, 5);
@@ -124,7 +127,8 @@ public class PatchUserFrame extends MainDialogFrame {
 		getMainDialogPanel().add(lblValidateNewPass, gbc_lblValidateNewPass);
 
 
-		validateNewPassField = new JTextField();
+		validateNewPassField = new JPasswordField();
+		validateNewPassField.setEchoChar('*');
 		GridBagConstraints gbc_validateNewPassField = new GridBagConstraints();
 		gbc_validateNewPassField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_validateNewPassField.insets = new Insets(0, 0, 5, 5);
@@ -132,13 +136,12 @@ public class PatchUserFrame extends MainDialogFrame {
 		gbc_validateNewPassField.gridy = 6;
 		getMainDialogPanel().add(validateNewPassField, gbc_validateNewPassField);
 		
-		JTextField[] textFields = new JTextField[4];
-		textFields[0] = nameField; //assign each field to a position in the array
-		textFields[1] = passwordField;
-		textFields[2] = newPasswordField;
-		textFields[3] = validateNewPassField;
+		JPasswordField[] passFields = new JPasswordField[3];
+		passFields[0] = passwordField;
+		passFields[1] = newPasswordField;
+		passFields[2] = validateNewPassField;
 		
-		this.getSaveButton().addActionListener(new SetUserAL(textFields));
+		this.getSaveButton().addActionListener(new SetUserAL(nameField, passFields));
 				
 		this.setVisible(true);
 		

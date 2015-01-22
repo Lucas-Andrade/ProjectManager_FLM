@@ -1,5 +1,6 @@
 package app.windows.commandWindowsAL.commandWindows;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class PostConsultantFrame extends MainDialogFrame {
 			PostConsultantFrame dialog = new PostConsultantFrame();
 			//definimos o título da janela
 			dialog.setTitle("Post Consultant");
-			dialog.setImage("images/newConsultant.png");
+			dialog.setImage("images/addconsultant.png");
 			dialog.setTitleLabel("Post Consultant");
 			dialog.setHelpTip("Add a consultant to the Workers Repository");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -58,7 +59,7 @@ public class PostConsultantFrame extends MainDialogFrame {
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		
 		this.setTitle("New Consultant");
-		this.setImage("images/newConsultant.png");
+		this.setImage("images/addconsultant.png");
 		this.setTitleLabel("New Consultant");
 		this.setHelpTip("Add a new consultant to the Workers Repository");
 		
@@ -105,7 +106,7 @@ public class PostConsultantFrame extends MainDialogFrame {
 		priceHour.setToolTipText("Euros");
 	
 		
-		JLabel lblCoin = new JLabel("Euros");
+		JLabel lblCoin = new JLabel("€");
 		GridBagConstraints gbc_lblCoin = new GridBagConstraints();
 		gbc_lblCoin.anchor = GridBagConstraints.WEST;
 		gbc_lblCoin.insets = new Insets(0, 0, 5, 5);
@@ -115,6 +116,7 @@ public class PostConsultantFrame extends MainDialogFrame {
 	
 		bonus = new JTextField();
 		rdbtnManager = new JRadioButton("Manager");
+		rdbtnManager.setBackground(new Color(176, 196, 222));
 		GridBagConstraints gbc_rdbtnManager = new GridBagConstraints();
 		gbc_rdbtnManager.anchor = GridBagConstraints.WEST;
 		gbc_rdbtnManager.insets = new Insets(0, 0, 5, 5);

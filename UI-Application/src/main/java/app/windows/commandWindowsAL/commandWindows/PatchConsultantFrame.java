@@ -32,7 +32,7 @@ public class PatchConsultantFrame extends MainDialogFrame {
 			PatchConsultantFrame dialog = new PatchConsultantFrame();
 			
 			dialog.setTitle("Edit Consultant");    //definimos o título da janela
-			dialog.setImage("images/edit.jpg");
+			dialog.setImage("images/editConsultant.png");
 			dialog.setTitleLabel("Edit Consultant");
 			dialog.setHelpTip("Updates the information of the consultant with the specify Id.");
 			dialog.setVisible(true);
@@ -47,7 +47,7 @@ public class PatchConsultantFrame extends MainDialogFrame {
 	 */
 	public PatchConsultantFrame() {
 		this.setTitle("Edit Consultant");    //definimos o título da janela
-		this.setImage("images/edit.jpg");
+		this.setImage("images/editConsultant.png");
 		this.setTitleLabel("Edit Consultant");
 		this.setHelpTip("Updates the information of the consultant with the specify Id.");
 		
@@ -118,7 +118,7 @@ public class PatchConsultantFrame extends MainDialogFrame {
 		priceHour.setToolTipText("Euros");
 	
 		
-		JLabel lblCoin = new JLabel("Euros");
+		JLabel lblCoin = new JLabel("€");
 		GridBagConstraints gbc_lblCoin = new GridBagConstraints();
 		gbc_lblCoin.anchor = GridBagConstraints.WEST;
 		gbc_lblCoin.insets = new Insets(0, 0, 5, 5);

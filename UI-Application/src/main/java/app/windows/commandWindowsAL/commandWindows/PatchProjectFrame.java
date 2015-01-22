@@ -49,7 +49,7 @@ public class PatchProjectFrame extends MainDialogFrame {
 		gridBagLayout.columnWidths = new int[]{0, 100, 60, 100, 0, 25, 0, 0, 0};
 
 		this.setTitle("Edit Project");
-		this.setImage("images/editProject.png");
+		this.setImage("images/setProject.png");
 		this.setTitleLabel("Edit Project");
 		this.setHelpTip("Update the information of the project identified by the specify Id");
 		
@@ -111,7 +111,7 @@ public class PatchProjectFrame extends MainDialogFrame {
 		getMainDialogPanel().add(priceField, gbc_priceField);
 		
 			
-		JLabel label = new JLabel("Euros");
+		JLabel label = new JLabel("€");
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.anchor = GridBagConstraints.WEST;
 		gbc_label.insets = new Insets(0, 0, 5, 5);

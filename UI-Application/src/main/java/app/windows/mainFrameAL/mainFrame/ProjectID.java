@@ -1,5 +1,6 @@
 package app.windows.mainFrameAL.mainFrame;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -20,6 +21,7 @@ public class ProjectID extends JPanel {
 	 * Create the panel.
 	 */
 	public ProjectID() {
+		this.setBackground(new Color(176, 196, 222));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {100, 200, 5};
 		gridBagLayout.rowHeights = new int[] {10};

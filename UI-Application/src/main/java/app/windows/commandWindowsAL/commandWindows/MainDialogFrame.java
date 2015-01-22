@@ -53,7 +53,7 @@ public abstract class MainDialogFrame extends JDialog {
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 		mainDialogPanel = new MainPanel();
-		
+		mainDialogPanel.setBackground(new Color(176, 196, 222));
 		this.setLocationRelativeTo(null);
 		
 		setBounds(X_BOUND,Y_BOUND,WIDTH_BOUND, HEIGHT_BOUND);   //Definição da Caixa de Diálogo

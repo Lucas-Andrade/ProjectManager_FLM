@@ -45,7 +45,7 @@ public class PostWorkerInProjectFrame extends MainDialogFrame {
 		gridBagLayout.rowHeights = new int[]{0, 0, 10, 40, 0, 0, 0, 0};
 		
 		this.setTitle("Add Worker In Project");
-		this.setImage("images/Add.jpg");
+		this.setImage("images/addWorkerProject.png");
 		this.setTitleLabel("Add Worker In Project");
 		this.setHelpTip("Add a Consultant or Manager to a project/subproject.");
 

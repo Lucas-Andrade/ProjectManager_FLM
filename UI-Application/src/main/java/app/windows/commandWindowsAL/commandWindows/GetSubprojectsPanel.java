@@ -36,7 +36,7 @@ public class GetSubprojectsPanel extends MainGetPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0};
 		
-		this.setImage("images/subproject.jpg");
+		this.setImage("images/getSubprojects.png");
 		this.setTitleLabel("Get Subprojects");
 		this.setHelpTip("Return the information of all subprojects of a project with the specify Id.");
 		

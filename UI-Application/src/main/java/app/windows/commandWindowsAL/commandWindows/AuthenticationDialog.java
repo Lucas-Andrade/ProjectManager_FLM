@@ -71,7 +71,7 @@ public class AuthenticationDialog extends JDialog
 
 		mainImageLabel = new JLabel("");
 		mainImageLabel.setIcon(new ImageIcon(MainDialogFrame.class
-				.getClassLoader().getResource("images/user.jpg")));
+				.getClassLoader().getResource("images/Login.png")));
 		mainImageLabel.setOpaque(false);
 		GridBagConstraints gbc_mainImageLabel = new GridBagConstraints();
 		gbc_mainImageLabel.anchor = GridBagConstraints.NORTH;
