@@ -27,7 +27,7 @@ import app.windows.mainFrameAL.mainFrame.MainFrame;
 public class NewProjectAL implements ActionListener {
 
 	/**
-	 * An array of {@code JTextField}s containing the parameters required for
+	 * An array of {@code JTextField}s containing the parameters for
 	 * instantiating the {@code Command} {@link AddProjectToRepo}.
 	 */
 	private JTextField[] textfields;
@@ -36,7 +36,7 @@ public class NewProjectAL implements ActionListener {
 	 * The constructor for {@code NewProjectAL}.
 	 * 
 	 * @param projectId
-	 *            A {@code JTextField} containing the parameters required for
+	 *            A {@code JTextField} containing the parameters for
 	 *            instantiating the {@code Command} {@link AddProjectToRepo}.
 	 */
 	public NewProjectAL(JTextField[] textFields2) {
