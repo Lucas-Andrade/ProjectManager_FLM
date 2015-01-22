@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import app.authentication.Authentication;
+
 public class MainPanel extends JPanel {
 
 	/**
@@ -20,7 +22,6 @@ public class MainPanel extends JPanel {
 	private JLabel mainImageLabel;
 	private JLabel titleLabel;
 	private JLabel helpLabel;
-
 	
 	public void setImage(String imagePath){
 		mainImageLabel.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource(imagePath)));
@@ -44,12 +45,12 @@ public class MainPanel extends JPanel {
 
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 				
-		GridBagLayout gbl_patchConsultantPanel = new GridBagLayout();  // Definição do Painel interno
-		gbl_patchConsultantPanel.columnWidths = new int[]{5, 100, 60, 100, 0, 0, 50, 0, 75, 0};
-		gbl_patchConsultantPanel.rowHeights = new int[]{0, 0, 50, 0, 0, 0, 0, 0, 0, 0};
-		gbl_patchConsultantPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_patchConsultantPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		this.setLayout(gbl_patchConsultantPanel);
+		GridBagLayout gbl_mainPanel = new GridBagLayout();  // Definição do Painel interno
+		gbl_mainPanel.columnWidths = new int[]{5, 100, 60, 100, 0, 0, 50, 0, 75, 0};
+		gbl_mainPanel.rowHeights = new int[]{0, 0, 50, 0, 0, 0, 0, 0, 0, 0};
+		gbl_mainPanel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_mainPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		this.setLayout(gbl_mainPanel);
 							
 
 		mainImageLabel = new JLabel("");
@@ -88,15 +89,13 @@ public class MainPanel extends JPanel {
 		gbc_lblWellcome.gridx = 7;
 		gbc_lblWellcome.gridy = 1;
 		this.add(lblWellcome, gbc_lblWellcome);
-	
-		
-		JLabel lblRegistryuser = new JLabel("User"); // Informação sobre o user que está a usar o programa
-		GridBagConstraints gbc_lblRegistryuser = new GridBagConstraints();
-		gbc_lblRegistryuser.insets = new Insets(0, 0, 5, 0);
-		gbc_lblRegistryuser.gridx = 8;
-		gbc_lblRegistryuser.gridy = 1;
-		this.add(lblRegistryuser, gbc_lblRegistryuser);
-		
-		//MainFrame.authentication.getAuthenticatedUser().getLoginName() -> para obter nome do User
+
+		JLabel lblRegistryuser = new JLabel(Authentication.getAuthenticatedUser().getFullName());
+		GridBagConstraints gbcRegistryuser = new GridBagConstraints();
+		gbcRegistryuser.insets = new Insets(0, 0, 5, 0);
+		gbcRegistryuser.gridx = 8;
+		gbcRegistryuser.gridy = 1;
+		this.add(lblRegistryuser, gbcRegistryuser);
 	}
+
 }

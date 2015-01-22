@@ -24,7 +24,7 @@ public class PostConsultantFrame extends MainDialogFrame {
 	private static final long serialVersionUID = 8060989086766838002L;
 	private JTextField nameField;
 	private JTextField priceHour;
-	private JTextField bonus;
+	private JTextField bonus = new JTextField();
 	private JRadioButton rdbtnManager;
 
 
