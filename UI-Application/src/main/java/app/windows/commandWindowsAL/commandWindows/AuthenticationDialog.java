@@ -160,7 +160,6 @@ public class AuthenticationDialog extends JDialog
 			}
 		};
 		btnNewButton.addKeyListener(loginEnterKey);
-
 	}
 
 }

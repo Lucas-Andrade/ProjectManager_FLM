@@ -39,9 +39,6 @@ import app.windows.mainFrameAL.PostWorkerAL;
 public class MainFrame extends JFrame implements Authentication.AuthenticationActionListener
 {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1406565561867998589L;
 	public static final int PANEL_DIVIDER_LOCATION = 120;
 	private static RepositoryHolder repositories;
@@ -149,14 +146,12 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		gbl_leftPanel.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 		leftPanel.setLayout(gbl_leftPanel);
 
-		// load the image
 		ClassLoader cl = getClass().getClassLoader();
 		Image main = new ImageIcon(cl.getResource("images/Main.png"))
 				.getImage();
 
 		JMenuBar vert = new VerticalMenuBar();
 
-		// leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.X_AXIS));
 		GridBagConstraints gbc_vert = new GridBagConstraints();
 		gbc_vert.fill = GridBagConstraints.BOTH;
 		gbc_vert.insets = new Insets(0, 0, 5, 0);
@@ -263,7 +258,6 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 
 		JLabel randstadGirlImageLabel = new JLabel("");
 		randstadGirlImageLabel.setIcon(new ImageIcon(main));
-		// leftPanel.add(randstadGirlImageLabel);
 		GridBagConstraints gbc_randstadGirlImageLabel = new GridBagConstraints();
 		gbc_randstadGirlImageLabel.anchor = GridBagConstraints.NORTH;
 		gbc_randstadGirlImageLabel.fill = GridBagConstraints.HORIZONTAL;
