@@ -17,7 +17,7 @@ public class GetAllUsersAL implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		Command command = new GetAllUsersFromRepo(MainFrame.getRepositories().getUsersRepo());
-		new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog());
+		new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog()).execute();
 
 
 	}

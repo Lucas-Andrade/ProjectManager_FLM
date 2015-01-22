@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 import app.domainCommands.AddUserToRepo;
 import app.domainCommands.Command;
 import app.windows.PublishToErrorDialog;
-import app.windows.PublishToMainFrame;
+import app.windows.PublishUsersToMainFrame;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
@@ -46,7 +46,7 @@ public class NewUserAL implements ActionListener{
 		
 		try{
 			Command command = new AddUserToRepo(MainFrame.getRepositories().getUsersRepo(), username, password, email, fullname);
-			new SwingWorkerCommand(command , new PublishToMainFrame(), new PublishToErrorDialog());
+			new SwingWorkerCommand(command , new PublishUsersToMainFrame(), new PublishToErrorDialog()).execute();
 			
 		}
 		catch(IllegalArgumentException iae){

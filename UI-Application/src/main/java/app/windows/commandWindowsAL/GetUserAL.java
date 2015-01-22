@@ -31,7 +31,7 @@ public class GetUserAL implements ActionListener {
 				return;
 			}
 			Command command = new GetUserFromRepo(MainFrame.getRepositories().getUsersRepo(), username);
-			new SwingWorkerCommand(command, new PublishUsersToGetPanel(), new PublishToErrorDialog());
+			new SwingWorkerCommand(command, new PublishUsersToGetPanel(), new PublishToErrorDialog()).execute();
 		
 		} catch (IllegalArgumentException iae){
 			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage()).setVisible(true);

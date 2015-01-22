@@ -42,7 +42,7 @@ public class NewWorkerInProjectAL implements ActionListener {
 		}
 		try{
 			Command command = new AddWorkerToProjectInRepo(MainFrame.getRepositories().getProjectsRepo(),MainFrame.getRepositories().getWorkersRepo(), pid, cid, worker);
-			new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog());
+			new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog()).execute();
 		
 		}catch(IllegalArgumentException iae){
 			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage());

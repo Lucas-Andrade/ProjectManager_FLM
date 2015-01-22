@@ -1,17 +1,21 @@
 package app.windows;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTable;
 
 import utils.AWorker;
 import app.AppElement;
-import app.windows.commandWindowsAL.commandWindows.MainGetPanel;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
+import app.windows.mainFrameAL.mainFrame.MainFrame;
 
-public class PublishTeamToGetPanel extends PublishToGetPanel{
+public class PublishTeamToMainFrame extends PublishToMainFrame {
 
 	@Override
 	public void publish(AppElement[] appElements) {
+		JSplitPane splitPane = MainFrame.getSplitPane();
 		
 		AWorker[] workers = null;
 		try{
@@ -20,8 +24,11 @@ public class PublishTeamToGetPanel extends PublishToGetPanel{
 			new ErrorDialog("Could not present the results.").setVisible(true);
 			return;
 		}
-		
 		JTable table = TableBuilder.getTableOfWorkers(workers);
-		MainGetPanel.setResults(new JScrollPane(table));
+		
+		mainPanel.add(new JScrollPane(table), BorderLayout.CENTER);
+		statusLabel.setText("Status: Ready");
+		splitPane.setRightComponent(mainPanel);
+		splitPane.updateUI();
 	}
 }

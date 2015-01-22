@@ -25,7 +25,6 @@ public class PublishToMainFrame implements ResultsPublisher{
 	
 	@Override
 	public void publish(List<String> chunks) {
-		System.out.println(chunks.get(0));
 		statusLabel.setText(chunks.get(0));
 		splitPane.setRightComponent(mainPanel);
 		splitPane.updateUI();

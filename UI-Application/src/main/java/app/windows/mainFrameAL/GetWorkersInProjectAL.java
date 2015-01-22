@@ -2,6 +2,7 @@ package app.windows.mainFrameAL;
 
 import app.repositoryHolders.RepositoryHolder;
 import app.windows.commandWindowsAL.commandWindows.GetWorkersInProjectPanel;
+import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 /**
  * Class responsible for calling the {@code GetWorkersInProjectFrame}. Extends
@@ -22,8 +23,7 @@ public class GetWorkersInProjectAL extends MainFrameActionListener
 	 *            The {@code Authentication} to check if any {@code User} is
 	 *            authenticated.
 	 */
-	public GetWorkersInProjectAL(RepositoryHolder repositories)
-	{
+	public GetWorkersInProjectAL(RepositoryHolder repositories){
 		super(repositories);
 	}
 
@@ -31,9 +31,8 @@ public class GetWorkersInProjectAL extends MainFrameActionListener
 	 * @see super{@link #action()}
 	 */
 	@Override
-	void action()
-	{
-		new GetWorkersInProjectPanel().setVisible(true);
+	void action(){
+		MainFrame.getSplitPane().setRightComponent(new GetWorkersInProjectPanel());
 	}
 
 }

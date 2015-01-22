@@ -217,7 +217,7 @@ public class MainFrame extends JFrame
 		newConsultantItem.addActionListener(new PostConsultantAL(repositories));
 
 		JMenuItem mntmEditWorker = new JMenuItem("Edit worker");
-		mnAddToProject.add(mntmEditWorker);
+		consultantsMenu.add(mntmEditWorker);
 		mntmEditWorker.addActionListener(new PatchConsultantAL(repositories));
 
 		JMenuItem mntmAddWorker = new JMenuItem("Add worker to project");

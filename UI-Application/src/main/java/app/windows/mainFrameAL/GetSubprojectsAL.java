@@ -11,8 +11,7 @@ import app.windows.mainFrameAL.mainFrame.MainFrame;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015
  */
-public class GetSubprojectsAL extends MainFrameActionListener
-{
+public class GetSubprojectsAL extends MainFrameActionListener{
 
 	/**
 	 * Call to the constructor of the {@code super} class.
@@ -23,8 +22,7 @@ public class GetSubprojectsAL extends MainFrameActionListener
 	 *            The {@code Authentication} to check if any {@code User} is
 	 *            authenticated.
 	 */
-	public GetSubprojectsAL(RepositoryHolder repositories)
-	{
+	public GetSubprojectsAL(RepositoryHolder repositories){
 		super(repositories);
 	}
 
@@ -32,10 +30,8 @@ public class GetSubprojectsAL extends MainFrameActionListener
 	 * @see super{@link #action()}
 	 */
 	@Override
-	void action()
-	{
+	void action(){
 		MainFrame.getSplitPane().setRightComponent(new GetSubprojectsPanel());
-		//.setVisible(true);
 		
 	}
 
