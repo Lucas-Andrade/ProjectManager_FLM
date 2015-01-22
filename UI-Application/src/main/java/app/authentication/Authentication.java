@@ -1,6 +1,8 @@
 package app.authentication;
 
 import java.util.concurrent.ExecutionException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -32,6 +34,9 @@ public abstract class Authentication {
 	 */
 	private static boolean isAuthenticated = false;
 
+	//TODO
+	private static final List<AuthenticationActionListener> actionListeners = new ArrayList<AuthenticationActionListener>();
+	
 	/**
 	 * Method that tells if there is an {@code IUser} logged in.
 	 * 
@@ -60,6 +65,7 @@ public abstract class Authentication {
 	private static void setAuthenticatedUser(IUser user){
 		authenticatedUser = user;
 		isAuthenticated = true;
+		fire(true, user);
 	}
 
 	/**
@@ -74,7 +80,6 @@ public abstract class Authentication {
 	 */
 	public static void authenticate(JTextField[] fieldsToRetrieve,
 			RepositoryHolder repoHolder){
-		
 		new AuthenticationSwingWorker(fieldsToRetrieve, repoHolder).execute();
 	}
 
@@ -85,6 +90,7 @@ public abstract class Authentication {
 	public static void unauthenticate(){
 		authenticatedUser = null;
 		isAuthenticated = false;
+		fire(false, null);
 	}
 	
 	
@@ -142,6 +148,30 @@ public abstract class Authentication {
 					"Login name or password do not match any known users.")
 					.setVisible(true);
 		}
+	}
+
+	//TODO
+	public static interface AuthenticationActionListener {
+		public void actionPerformed(boolean isAuthenticated, IUser authenticatedUser);
+	}
+
+	//TODO
+	public static void addActionListener(AuthenticationActionListener actionListener)
+	{
+		actionListeners.add(actionListener);
+	}
+
+	//TODO
+	public static void removeActionListener(AuthenticationActionListener actionListener)
+	{
+		actionListeners.remove(actionListener);
+	}
+
+	//TODO
+	public static void fire(boolean isAuthenticated, IUser authenticatedUser)
+	{
+		for (AuthenticationActionListener actionListener : actionListeners)
+			actionListener.actionPerformed(isAuthenticated, authenticatedUser);
 	}
 
 }

@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
+import app.elements.IUser;
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
 import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
@@ -35,7 +36,7 @@ import app.windows.mainFrameAL.PostSubprojectAL;
 import app.windows.mainFrameAL.PostUserAL;
 import app.windows.mainFrameAL.PostWorkerAL;
 
-public class MainFrame extends JFrame
+public class MainFrame extends JFrame implements Authentication.AuthenticationActionListener
 {
 
 	/**
@@ -72,10 +73,10 @@ public class MainFrame extends JFrame
 		JMenuBar menuBar = new JMenuBar();
 		this.setJMenuBar(menuBar);
 
-		JMenu mnFile = new JMenu("File");
+		mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 
-		JMenuItem mntmLogin = new JMenuItem("Login");
+		mntmLogin = new JMenuItem("Login");
 		mnFile.add(mntmLogin);
 		mntmLogin.addActionListener(new ActionListener() {
 			@Override
@@ -84,12 +85,13 @@ public class MainFrame extends JFrame
 			}
 		});
 
-		JMenuItem mntmLogout = new JMenuItem("Logout");
+		mntmLogout = new JMenuItem("Logout");
 		mnFile.add(mntmLogout);
+		mntmLogout.setVisible(false);
 		mntmLogout.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Authentication.unauthenticate();;
+				Authentication.unauthenticate();
 			}
 		});
 
@@ -268,5 +270,29 @@ public class MainFrame extends JFrame
 		gbc_randstadGirlImageLabel.gridx = 0;
 		gbc_randstadGirlImageLabel.gridy = 1;
 		leftPanel.add(randstadGirlImageLabel, gbc_randstadGirlImageLabel);
+
+		Authentication.addActionListener(this);
 	}
+
+	JMenu mnFile;
+	JMenuItem mntmLogin;
+	JMenuItem mntmLogout;
+
+	@Override
+	public void actionPerformed(boolean isAuthenticated, IUser authenticatedUser)
+	{
+		if (isAuthenticated)
+		{
+			mntmLogin.setVisible(false);
+			mntmLogout.setText("Logout " + authenticatedUser.getLoginName());
+			mntmLogout.setVisible(true);
+		}
+		else
+		{
+			mntmLogin.setVisible(true);
+			mntmLogout.setVisible(false);
+			mntmLogout.setText("Logout");
+		}
+	}
+
 }
