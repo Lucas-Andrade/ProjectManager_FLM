@@ -23,6 +23,7 @@ import app.elements.IUser;
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
 import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
+import app.windows.commandWindowsAL.commandWindows.MainDialogFrame;
 import app.windows.mainFrameAL.DeleteProjectAL;
 import app.windows.mainFrameAL.GetSubprojectsAL;
 import app.windows.mainFrameAL.GetUserAL;
@@ -57,6 +58,9 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		return repositories;
 	}
 
+	private JLabel logo;
+
+	@SuppressWarnings("deprecation")
 	public MainFrame(RepositoryHolder repositories){
 
 		MainFrame.splitPane = new JSplitPane();
@@ -136,6 +140,13 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 
 		JLabel lblStatus = new JLabel("Status: Ready");
 		rightPanel.add(lblStatus, BorderLayout.SOUTH);
+		
+		logo = new JLabel("");
+		logo.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader()
+				.getResource("images/ProjectLogo400.png")));
+		logo.setOpaque(false);
+
+		rightPanel.add(logo, BorderLayout.CENTER);
 
 		JPanel leftPanel = new JPanel();
 		splitPane.setLeftComponent(leftPanel);

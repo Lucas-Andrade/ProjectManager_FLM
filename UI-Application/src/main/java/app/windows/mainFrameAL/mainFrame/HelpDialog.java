@@ -30,8 +30,8 @@ public class HelpDialog extends JDialog {
 		
 		this.setTitle("Help");
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		
 		this.setSize(500, 500);
+		setResizable(false);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.rowHeights = new int[]{0, 100, 30};
 		gridBagLayout.columnWidths = new int[]{0, 50, 200, 50};
@@ -44,8 +44,9 @@ public class HelpDialog extends JDialog {
 		JLabel titleLabel = new JLabel("Help");
 		titleLabel.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 12));
 		GridBagConstraints gbc_titleLabel = new GridBagConstraints();
+		gbc_titleLabel.gridwidth = 2;
 		gbc_titleLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_titleLabel.gridx = 2;
+		gbc_titleLabel.gridx = 1;
 		gbc_titleLabel.gridy = 0;
 		getContentPane().add(titleLabel, gbc_titleLabel);
 		
