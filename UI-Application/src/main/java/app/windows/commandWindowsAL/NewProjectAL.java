@@ -36,10 +36,12 @@ public class NewProjectAL implements ActionListener {
 			longitude = textfields[2].getText();
 		}catch (NullPointerException | ArrayIndexOutOfBoundsException a){
 			new ErrorDialog("Error").setVisible(true);
+			return;
 		}
 		
 		if(name.length() == 0 || price.length() == 0 || latitude.length() == 0 || longitude.length() == 0){
 			new ErrorDialog("At least one field was left blank.").setVisible(true);
+			return;
 		}
 		
 		try{

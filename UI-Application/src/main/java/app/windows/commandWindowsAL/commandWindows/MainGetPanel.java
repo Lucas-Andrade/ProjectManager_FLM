@@ -23,12 +23,12 @@ public class MainGetPanel extends JPanel {
 	private static final int HEIGHT_BOUND = 387;
 	private final MainPanel mainGetPanel;
 	private JButton getButton;
-	protected static JPanel panelThatGetsTheResults;
+	protected static JPanel results;
 	
 	public static void setResults(JComponent component) {
-		panelThatGetsTheResults.setLayout(new BorderLayout(0, 0));
-		panelThatGetsTheResults.add(component);
-		panelThatGetsTheResults.updateUI();
+		results.setLayout(new BorderLayout(0, 0));
+		results.add(component);
+		results.updateUI();
 	}
 	
 

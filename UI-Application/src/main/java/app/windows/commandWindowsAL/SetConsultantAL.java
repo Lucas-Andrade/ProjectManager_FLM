@@ -34,12 +34,15 @@ public class SetConsultantAL implements ActionListener {
 		
 		}catch (NullPointerException | ArrayIndexOutOfBoundsException a){
 			new ErrorDialog("Error").setVisible(true);
+			return;
 		}
 		
 		if(consultantId.length() == 0 ){
 			new ErrorDialog("The Consultant ID field was left blank.").setVisible(true);
+			return;
 		}else if(consultantName.length() == 0 && priceHour.length() == 0){
 			new ErrorDialog("The Consultant ID field was left blank.").setVisible(true);
+			return;
 		}
 		
 		try{

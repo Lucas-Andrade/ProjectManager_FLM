@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -19,7 +20,6 @@ public class GetUserPanel extends MainGetPanel {
 	 */
 	private static final long serialVersionUID = -457464140944368035L;
 	private JTextField userID;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -99,17 +99,16 @@ public class GetUserPanel extends MainGetPanel {
 	    group.add(userId);
 	    
 	    
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.gridheight = 2;
-		gbc_textField.gridwidth = 8;
-		gbc_textField.anchor = GridBagConstraints.WEST;
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.fill = GridBagConstraints.BOTH;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 7;
-		getMainGetPanel().add(textField, gbc_textField);
-		textField.setColumns(10);
+		results = new JPanel();
+		GridBagConstraints gbc_results = new GridBagConstraints();
+		gbc_results.gridheight = 2;
+		gbc_results.gridwidth = 8;
+		gbc_results.anchor = GridBagConstraints.WEST;
+		gbc_results.insets = new Insets(0, 0, 5, 5);
+		gbc_results.fill = GridBagConstraints.BOTH;
+		gbc_results.gridx = 1;
+		gbc_results.gridy = 7;
+		getMainGetPanel().add(results, gbc_results);
 	
 		if (allUsers.isSelected())
 		{

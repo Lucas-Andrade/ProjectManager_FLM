@@ -34,10 +34,12 @@ public class NewConsultantAL implements ActionListener{
 			
 		}catch (NullPointerException | ArrayIndexOutOfBoundsException a){
 			new ErrorDialog("Error").setVisible(true);
+			return;
 		}
 		
 		if(name.length() == 0 || priceHour.length() == 0){
 			new ErrorDialog("At least one required field was left blank.").setVisible(true);
+			return;
 		}
 		
 		try{

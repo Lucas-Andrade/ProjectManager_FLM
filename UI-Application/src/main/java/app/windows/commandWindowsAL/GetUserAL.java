@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 import app.domainCommands.Command;
 import app.domainCommands.GetUserFromRepo;
 import app.windows.PublishToErrorDialog;
-import app.windows.PublishToMainFrame;
+import app.windows.PublishUsersToGetPanel;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
@@ -26,8 +26,12 @@ public class GetUserAL implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		try{
 			username = parameter.getText();
+			if(username.length() == 0){
+				new ErrorDialog("The username field was left blank.").setVisible(true);
+				return;
+			}
 			Command command = new GetUserFromRepo(MainFrame.getRepositories().getUsersRepo(), username);
-			new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog());
+			new SwingWorkerCommand(command, new PublishUsersToGetPanel(), new PublishToErrorDialog());
 		
 		} catch (IllegalArgumentException iae){
 			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage()).setVisible(true);

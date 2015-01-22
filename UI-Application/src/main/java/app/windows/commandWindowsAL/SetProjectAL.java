@@ -38,10 +38,11 @@ public class SetProjectAL implements ActionListener {
 		
 		}catch (NullPointerException | ArrayIndexOutOfBoundsException a){
 			new ErrorDialog("Error").setVisible(true);
+			return;
 		}
 		
-		if(localName.length() == 0 || price.length() == 0 || latitude.length() == 0 || longitude.length() == 0){
-			new ErrorDialog("At least one field was left blank.").setVisible(true);
+		if(pidString.length() == 0){
+			new ErrorDialog("Project ID field was left blank.").setVisible(true);
 		}
 		
 		try{

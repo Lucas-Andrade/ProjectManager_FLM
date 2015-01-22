@@ -26,6 +26,8 @@ public class AddUserToRepo implements Command{
 		this.password = password;
 		this.email = email;
 		this.fullName = fullName;
+		
+		setEmptyStringsToNull();
 	}
 	
 	@Override
@@ -64,4 +66,9 @@ public class AddUserToRepo implements Command{
 		}
 	}
 
+	private void setEmptyStringsToNull() {
+		if (fullName.length() == 0) {
+			fullName = null;
+		}
+	}
 }

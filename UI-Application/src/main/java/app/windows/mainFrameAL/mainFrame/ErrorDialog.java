@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -93,8 +95,16 @@ public class ErrorDialog extends JDialog {
 		gbc_okButton.gridy = 2;
 		getContentPane().add(okButton, gbc_okButton);
 		okButton.setBackground(new Color(0, 206, 209));
-					
-						
+		okButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+			
+		});
+
+		pack();
 	}
 
 }

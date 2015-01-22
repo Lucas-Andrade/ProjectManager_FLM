@@ -33,10 +33,12 @@ public class NewWorkerInProjectAL implements ActionListener {
 			
 		}catch (NullPointerException | ArrayIndexOutOfBoundsException a){
 			new ErrorDialog("Error").setVisible(true);
+			return;
 		}
 		
 		if(pid.length() == 0 || cid.length() == 0 || worker.length() == 0 ){
 			new ErrorDialog("Required parameter not present.").setVisible(true);
+			return;
 		}
 		try{
 			Command command = new AddWorkerToProjectInRepo(MainFrame.getRepositories().getProjectsRepo(),MainFrame.getRepositories().getWorkersRepo(), pid, cid, worker);

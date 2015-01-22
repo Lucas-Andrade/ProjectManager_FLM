@@ -22,6 +22,8 @@ public class SetConsultantPropertiesFromRepo implements Command{
 		this.cidString = cidString;
 		this.name = name;
 		this.priceHourString = priceHour;
+		
+		setEmptyStringsToNull();
 	}
 	
 	@Override
@@ -48,4 +50,12 @@ public class SetConsultantPropertiesFromRepo implements Command{
 		return new AppElement[]{worker};
 	}
 
+	private void setEmptyStringsToNull() {
+		if (name.length() == 0) {
+			name = null;
+		}
+		if (priceHourString.length() == 0) {
+			priceHourString = null;
+		}
+	}
 }

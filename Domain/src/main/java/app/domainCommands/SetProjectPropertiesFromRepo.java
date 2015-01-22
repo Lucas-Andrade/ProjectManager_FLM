@@ -27,9 +27,11 @@ public class SetProjectPropertiesFromRepo implements Command{
 		this.longitudeString = longitudeString;
 		this.latitudeString = latitudeString;
 		this.priceString = priceString;
-		this.localName= localName;
+		this.localName = localName;
+		
+		setEmptyStringsToNull();
 	}
-	
+
 	@Override
 	public AppElement[] call() throws NoSuchProjectException, 
 			GeographicCoordinatesOutOfBoundsException, CostOutOfBoundsException {
@@ -92,6 +94,21 @@ public class SetProjectPropertiesFromRepo implements Command{
 		double price = Double.parseDouble(priceString);
 		if(!project.updateLocalPrice(price)){
 			throw new CostOutOfBoundsException("The cost cannot be negative.");
+		}
+	}
+	
+	private void setEmptyStringsToNull() {
+		if (longitudeString.length() == 0) {
+			longitudeString = null;
+		}
+		if (latitudeString.length() == 0) {
+			latitudeString = null;
+		}
+		if (priceString.length() == 0) {
+			priceString = null;
+		}
+		if (localName.length() == 0) {
+			localName = null;
 		}
 	}
 }

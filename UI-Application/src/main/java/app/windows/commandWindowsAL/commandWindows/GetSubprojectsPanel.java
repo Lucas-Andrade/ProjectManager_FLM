@@ -51,7 +51,7 @@ public class GetSubprojectsPanel extends MainGetPanel {
 		
 		this.getGetButton().addActionListener((ActionListener) new GetSubprojectAL(projectId.getProjectIDField()));
 		
-		JPanel results = new JPanel();
+		results = new JPanel();
 		GridBagConstraints gbc_results = new GridBagConstraints();
 		gbc_results.gridwidth = 8;
 		gbc_results.insets = new Insets(0, 0, 0, 5);

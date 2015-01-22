@@ -36,25 +36,18 @@ public class NewUserAL implements ActionListener{
 		
 		}catch (NullPointerException npe){
 			new ErrorDialog("Error").setVisible(true);
+			return;
 		}
 		
 		if(username.length() == 0 || password.length() == 0 || email.length() == 0){
 			new ErrorDialog("At least one required field was left blank.").setVisible(true);
+			return;
 		}
 		
 		try{
 			Command command = new AddUserToRepo(MainFrame.getRepositories().getUsersRepo(), username, password, email, fullname);
 			new SwingWorkerCommand(command , new PublishToMainFrame(), new PublishToErrorDialog());
 			
-//			//TODO
-//		}catch(PasswordLengthOutOfBoundsException nfe){
-//			new ErrorDialog("User's password must have at least 4 characters.").setVisible(true);
-//		
-//		}catch(IllegalEmailException nfe){
-//			new ErrorDialog("The Email is not valid.").setVisible(true);
-//		 
-//		}catch(RepeatedUsernameException nfe){
-//			new ErrorDialog("The Specified Username is already being used.").setVisible(true);
 		}
 		catch(IllegalArgumentException iae){
 			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage());

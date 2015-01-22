@@ -1,6 +1,7 @@
 package app.windows.commandWindowsAL;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -13,29 +14,28 @@ import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
 
-public class RemoveProjectAL {
+public class RemoveProjectAL implements ActionListener{
 
 	private String pidString;
 	private JTextField projectId;
 
-
-
 	public RemoveProjectAL(JTextField projectId) {
 		this.projectId = projectId;
 	}
-
 	
-	
+	@Override
 	public void actionPerformed(ActionEvent e){
 		try{
 			pidString = projectId.getText();
 		
 		}catch (NullPointerException | ArrayIndexOutOfBoundsException a){
 			new ErrorDialog("Error").setVisible(true);
+			return;
 		}
 		
 		if(pidString.length() == 0 ){
 			new ErrorDialog("Required parameter not present.").setVisible(true);
+			return;
 		}
 		
 		int resposta = JOptionPane.showConfirmDialog(null, "Do you want to delete this project?","Confirm", JOptionPane.OK_CANCEL_OPTION);

@@ -3,8 +3,6 @@ package app.windows.commandWindowsAL.commandWindows;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
-
 import app.windows.commandWindowsAL.RemoveProjectAL;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
@@ -56,7 +54,7 @@ public class DeleteProjectFrame extends MainDialogFrame {
 		gbc_lblProjectID.gridy = 4;
 		getMainDialogPanel().add(projectId, gbc_lblProjectID);
 
-		this.getSaveButton().addActionListener((ActionListener) new RemoveProjectAL(projectId.getProjectIDField()));
+		this.getSaveButton().addActionListener(new RemoveProjectAL(projectId.getProjectIDField()));
 	}
 
 

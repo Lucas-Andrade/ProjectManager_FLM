@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 import app.domainCommands.Command;
 import app.domainCommands.GetSubprojectsFromRepo;
 import app.windows.PublishToErrorDialog;
-import app.windows.PublishToMainFrame;
+import app.windows.PublishToGetPanel;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
@@ -33,15 +33,17 @@ public class GetSubprojectAL implements ActionListener {
 			pidString = projectId.getText();
 		}catch (NullPointerException | ArrayIndexOutOfBoundsException a){
 			new ErrorDialog("Error").setVisible(true);
+			return;
 		}
 		
 		if(pidString.length() == 0 ){
 			new ErrorDialog("At least one field was left blank.").setVisible(true);
+			return;
 		}
 		
 		try{
 			Command command = new GetSubprojectsFromRepo(MainFrame.getRepositories().getProjectsRepo(), pidString);
-			new SwingWorkerCommand(command, new PublishToMainFrame(), new PublishToErrorDialog()).execute();
+			new SwingWorkerCommand(command, new PublishToGetPanel(), new PublishToErrorDialog()).execute();
 		
 		}catch(IllegalArgumentException iae){
 			

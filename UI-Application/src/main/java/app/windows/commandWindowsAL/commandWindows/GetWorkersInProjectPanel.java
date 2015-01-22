@@ -21,7 +21,6 @@ public class GetWorkersInProjectPanel extends MainGetPanel {
 	private ProjectID projectId;
 	private JRadioButton manager;
 	private JLabel label;
-	private JPanel results;
 	private JRadioButton consultants;
 	/**
 	 * Launch the application.

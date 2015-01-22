@@ -35,15 +35,17 @@ public class SetUserAL implements ActionListener {
 			
 		}catch (NullPointerException | ArrayIndexOutOfBoundsException a){
 			new ErrorDialog("Error").setVisible(true);
+			return;
 		}
 		
 		if(userName.length() == 0 || oldPassword.length() == 0 || newPassword.length() == 0 || validateNewPass.length() == 0 ){
 			new ErrorDialog("At least one required field was left blank.").setVisible(true);
+			return;
 		}
 		
-		if (!(newPassword==validateNewPass))
-		{
+		if (!(newPassword==validateNewPass)){
 			new ErrorDialog("New Passord and confirmation Password do not match").setVisible(true);
+			return;
 		}
 		
 		try{

@@ -23,6 +23,8 @@ public class AddConsultantToRepo implements Command{
 		this.name = name;
 		this.priceHourString = priceHourString;
 		this.bonusString = bonusString;
+		
+		setEmptyStringsToNull();
 	}
 	
 	@Override
@@ -48,4 +50,9 @@ public class AddConsultantToRepo implements Command{
 		}
 	}
 
+	private void setEmptyStringsToNull() {
+		if (bonusString.length() == 0) {
+			bonusString = null;
+		}
+	}
 }

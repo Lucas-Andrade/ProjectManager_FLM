@@ -33,10 +33,12 @@ public class NewSubprojectAL implements ActionListener {
 				
 			}catch (NullPointerException | ArrayIndexOutOfBoundsException a){
 				new ErrorDialog("Error").setVisible(true);
+				return;
 			}
 			
 			if(pid.length() == 0 || subprojectId.length() == 0 ){
 				new ErrorDialog("At least one field was left blank.").setVisible(true);
+				return;
 			}
 			
 			try{
