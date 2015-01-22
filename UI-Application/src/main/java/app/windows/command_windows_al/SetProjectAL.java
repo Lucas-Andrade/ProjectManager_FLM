@@ -1,0 +1,93 @@
+package app.windows.command_windows_al;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JTextField;
+
+import app.domain_commands.Command;
+import app.domain_commands.SetProjectPropertiesFromRepo;
+import app.windows.PublishToErrorDialog;
+import app.windows.PublishToMainFrame;
+import app.windows.SwingWorkerCommand;
+import app.windows.main_frame_al.main_frame.ErrorDialog;
+import app.windows.main_frame_al.main_frame.MainFrame;
+
+/**
+ * Class responsible for instantiating the {@code Command}
+ * {@link SetProjectPropertiesFromRepo} and for executing it in a new
+ * {@link SwingWorkerCommand}, if not possible displays {@link ErrorDialog}s
+ * with exception messages. Implements {@code ActionListener}.
+ * 
+ * @see SetProjectPropertiesFromRepo
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ */
+public class SetProjectAL implements ActionListener {
+
+	/**
+	 * An array of {@code JTextField}s containing the parameters for
+	 * instantiating the {@code Command} {@link SetProjectPropertiesFromRepo}.
+	 */
+	private JTextField[] textFields;
+
+	/**
+	 * The constructor for {@code SetProjectAL}.
+	 * 
+	 * @param textFields
+	 *            A {@code JTextField} containing the parameters for
+	 *            instantiating the {@code Command}
+	 *            {@link SetProjectPropertiesFromRepo}.
+	 */
+	public SetProjectAL(JTextField[] textFields) {
+		this.textFields = textFields;
+	}
+
+	/**
+	 * Method responsible for instantiating the {@code Command}
+	 * {@link SetProjectPropertiesFromRepo} and for executing it in a new
+	 * {@link SwingWorkerCommand}, if not possible displays {@link ErrorDialog}s
+	 * with exception messages. {@see
+	 * ActionListener#actionPerformed(ActionEvent)}
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String price;
+		String latitude;
+		String longitude;
+		String localName;
+		String pidString;
+		try {
+			pidString = textFields[0].getText();
+			localName = textFields[1].getText();
+			price = textFields[2].getText();
+			latitude = textFields[4].getText();
+			longitude = textFields[3].getText();
+
+		} catch (NullPointerException | ArrayIndexOutOfBoundsException a) {
+			new ErrorDialog("Error").setVisible(true);
+			return;
+		}
+
+		if (pidString.length() == 0) {
+			new ErrorDialog("Project ID field was left blank.")
+					.setVisible(true);
+		}
+
+		try {
+			Command command = new SetProjectPropertiesFromRepo(MainFrame
+					.getRepositories().getProjectsRepo(), pidString, longitude,
+					latitude, price, localName);
+			new SwingWorkerCommand(command, new PublishToMainFrame(),
+					new PublishToErrorDialog()).execute();
+		} catch (NumberFormatException nfe) {
+			new ErrorDialog(
+					"Numbers were not introduced in one of the following fields: Price, Longitude of Latitude.")
+					.setVisible(true);
+		} catch (IllegalArgumentException iae) {
+			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage());
+		}
+	}
+
+}

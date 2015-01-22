@@ -8,8 +8,8 @@ import javax.swing.JTable;
 
 import utils.AWorker;
 import app.AppElement;
-import app.windows.mainFrameAL.mainFrame.ErrorDialog;
-import app.windows.mainFrameAL.mainFrame.MainFrame;
+import app.windows.main_frame_al.main_frame.ErrorDialog;
+import app.windows.main_frame_al.main_frame.MainFrame;
 
 public class PublishTeamToMainFrame extends PublishToMainFrame {
 

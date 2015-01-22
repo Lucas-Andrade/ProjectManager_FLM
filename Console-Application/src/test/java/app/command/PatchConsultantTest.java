@@ -8,7 +8,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import parserCommands.PatchConsultant;
+import parser_commands.PatchConsultant;
 import app.RepositoryConstructor;
 import app.repository.InMemoryUserRepo;
 import app.repository.InMemoryWorkerRepo;

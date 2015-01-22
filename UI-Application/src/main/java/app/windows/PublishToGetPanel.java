@@ -6,7 +6,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTree;
 
 import app.AppElement;
-import app.windows.commandWindowsAL.commandWindows.MainGetPanel;
+import app.windows.command_windows_al.command_windows.MainGetPanel;
 
 public class PublishToGetPanel extends ResultsPublisher{
 
