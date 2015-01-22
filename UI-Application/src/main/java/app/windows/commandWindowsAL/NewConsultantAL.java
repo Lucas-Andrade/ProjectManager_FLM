@@ -13,41 +13,72 @@ import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
 
-public class NewConsultantAL implements ActionListener{
-	
-	private JTextField[] textfields;
-	private String name;
-	private String priceHour;
-	private String bonus;
+/**
+ * Class responsible for instantiating the {@code Command}
+ * {@link AddConsultantToRepo} and for executing it in a new
+ * {@link SwingWorkerCommand}, if not possible displays {@link ErrorDialog}s
+ * with exception messages. Implements {@code ActionListener}.
+ * 
+ * @see AddConsultantToRepo
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ */
+public class NewConsultantAL implements ActionListener {
 
-	public NewConsultantAL (JTextField[] textFields){
+	/**
+	 * An array of {@code JTextField}s containing the parameters for
+	 * instantiating the {@code Command} {@link AddConsultantToRepo}.
+	 */
+	private JTextField[] textfields;
+
+	/**
+	 * The constructor for {@code NewConsultantAL}.
+	 * 
+	 * @param projectId
+	 *            A {@code JTextField} containing the parameters for
+	 *            instantiating the {@code Command} {@link AddConsultantToRepo}.
+	 */
+	public NewConsultantAL(JTextField[] textFields) {
 		this.textfields = textFields;
 	}
-	
-	public void actionPerformed(ActionEvent e) {
 
-		try{
+	/**
+	 * Method responsible for instantiating the {@code Command}
+	 * {@link AddConsultantToRepo} and for executing it in a new
+	 * {@link SwingWorkerCommand}, if not possible displays {@link ErrorDialog}s
+	 * with exception messages. {@see
+	 * ActionListener#actionPerformed(ActionEvent)}
+	 */
+	public void actionPerformed(ActionEvent e) {
+		String name;
+		String priceHour;
+		String bonus;
+		try {
 			name = textfields[0].getText();
 			priceHour = textfields[1].getText();
 			bonus = textfields[2].getText();
-			
-		}catch (NullPointerException | ArrayIndexOutOfBoundsException a){
+
+		} catch (NullPointerException | ArrayIndexOutOfBoundsException a) {
 			new ErrorDialog("Error").setVisible(true);
 			return;
 		}
-		
-		if(name.length() == 0 || priceHour.length() == 0){
-			new ErrorDialog("At least one required field was left blank.").setVisible(true);
+
+		if (name.length() == 0 || priceHour.length() == 0) {
+			new ErrorDialog("At least one required field was left blank.")
+					.setVisible(true);
 			return;
 		}
-		
-		try{
-			Command command = new AddConsultantToRepo(MainFrame.getRepositories().getWorkersRepo(), name, priceHour, bonus);
-			new SwingWorkerCommand(command, new PublishTeamToMainFrame(), new PublishToErrorDialog()).execute();
-		
-		}catch(IllegalArgumentException iae){
+
+		try {
+			Command command = new AddConsultantToRepo(MainFrame
+					.getRepositories().getWorkersRepo(), name, priceHour, bonus);
+			new SwingWorkerCommand(command, new PublishTeamToMainFrame(),
+					new PublishToErrorDialog()).execute();
+
+		} catch (IllegalArgumentException iae) {
 			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage());
 		}
 	}
-}
 
+}
