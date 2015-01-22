@@ -7,7 +7,6 @@ import java.awt.Insets;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
 
-import app.windows.commandWindowsAL.NewProjectAL;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
 public class PostSubprojectFrame extends MainDialogFrame {
@@ -46,7 +45,7 @@ public class PostSubprojectFrame extends MainDialogFrame {
 			
 		ProjectID projectId1 = new ProjectID();
 		GridBagConstraints gbc_ProjectID = new GridBagConstraints();
-		gbc_ProjectID.gridwidth = 4;
+		gbc_ProjectID.gridwidth = 5;
 		gbc_ProjectID.insets = new Insets(0, 0, 5, 5);
 		gbc_ProjectID.fill = GridBagConstraints.HORIZONTAL;
 		gbc_ProjectID.gridx = 2;
@@ -56,7 +55,7 @@ public class PostSubprojectFrame extends MainDialogFrame {
 		
 		ProjectID subprojectId = new ProjectID();
 		GridBagConstraints gbc_subprojectID = new GridBagConstraints();
-		gbc_subprojectID.gridwidth = 4;
+		gbc_subprojectID.gridwidth = 5;
 		gbc_subprojectID.anchor = GridBagConstraints.SOUTHEAST;
 		gbc_subprojectID.insets = new Insets(0, 0, 5, 5);
 		gbc_subprojectID.gridx = 2;
@@ -68,7 +67,7 @@ public class PostSubprojectFrame extends MainDialogFrame {
 		JTextField[] textFields = new JTextField[2];
 		textFields[0] = projectId1.getProjectIDField();
 		textFields[1] = subprojectId.getProjectIDField();
-		this.getSaveButton().addActionListener(new NewProjectAL(textFields));
+		this.getSaveButton().addActionListener(new NewSubprojectAL(textFields));
 		
 		this.setVisible(true);
 		}

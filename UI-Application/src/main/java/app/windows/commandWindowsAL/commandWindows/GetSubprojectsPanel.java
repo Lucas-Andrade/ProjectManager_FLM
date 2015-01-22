@@ -1,6 +1,5 @@
 package app.windows.commandWindowsAL.commandWindows;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -35,7 +34,7 @@ public class GetSubprojectsPanel extends MainGetPanel {
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 100, 50, 50, 0, 100, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 30, 20, 0, 20, 0, 0, 0};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0};
 		
 		this.setImage("images/subproject.jpg");
 		this.setTitleLabel("Get Subprojects");
@@ -43,24 +42,26 @@ public class GetSubprojectsPanel extends MainGetPanel {
 		
 		projectId = new ProjectID();
 		GridBagConstraints gbc_lblProjectID = new GridBagConstraints();
-		gbc_lblProjectID.gridwidth = 5;
+		gbc_lblProjectID.gridwidth = 4;
 		gbc_lblProjectID.anchor = GridBagConstraints.NORTHWEST;
 		gbc_lblProjectID.insets = new Insets(0, 0, 5, 5);
-		gbc_lblProjectID.gridx = 2;
-		gbc_lblProjectID.gridy = 2;
+		gbc_lblProjectID.gridx = 3;
+		gbc_lblProjectID.gridy = 3;
 		getMainGetPanel().add(projectId, gbc_lblProjectID);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.gridheight = 5;
-		gbc_panel.gridwidth = 7;
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 2;
-		gbc_panel.gridy = 3;
-		getMainGetPanel().add(panel, gbc_panel);
-		
 		this.getGetButton().addActionListener((ActionListener) new GetSubprojectAL(projectId.getProjectIDField()));
+		
+		JPanel results = new JPanel();
+		GridBagConstraints gbc_results = new GridBagConstraints();
+		gbc_results.gridwidth = 8;
+		gbc_results.insets = new Insets(0, 0, 0, 5);
+		gbc_results.fill = GridBagConstraints.BOTH;
+		gbc_results.gridx = 1;
+		gbc_results.gridy = 7;
+		getMainGetPanel().add(results, gbc_results);
+		
+		this.getGetButton().addActionListener(new GetSubprojectAL(projectId.getProjectIDField()));
+		
 		this.setVisible(true);
 	}
 

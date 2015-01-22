@@ -9,7 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import app.windows.commandWindowsAL.NewProjectAL;
+
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class PostConsultantFrame extends MainDialogFrame {
@@ -21,6 +25,7 @@ public class PostConsultantFrame extends MainDialogFrame {
 	private JTextField nameField;
 	private JTextField priceHour;
 	private JTextField bonus;
+	private JRadioButton rdbtnManager;
 
 
 	/**
@@ -78,71 +83,91 @@ public class PostConsultantFrame extends MainDialogFrame {
 		nameField.setColumns(10);
 					
 						
-						JLabel lblPriceHour = new JLabel("Price/Hour:");
-						lblPriceHour.setToolTipText("Euros");
-						GridBagConstraints gbc_lblPriceHour = new GridBagConstraints();
-						gbc_lblPriceHour.anchor = GridBagConstraints.EAST;
-						gbc_lblPriceHour.insets = new Insets(0, 0, 5, 5);
-						gbc_lblPriceHour.gridx = 2;
-						gbc_lblPriceHour.gridy = 4;
-						getMainDialogPanel().add(lblPriceHour, gbc_lblPriceHour);
-						lblPriceHour.setToolTipText("Euros");
-					
-						
-							priceHour = new JTextField();
-							GridBagConstraints gbc_priceHourField = new GridBagConstraints();
-							gbc_priceHourField.fill = GridBagConstraints.HORIZONTAL;
-							gbc_priceHourField.insets = new Insets(0, 0, 5, 5);
-							gbc_priceHourField.gridx = 3;
-							gbc_priceHourField.gridy = 4;
-							getMainDialogPanel().add(priceHour, gbc_priceHourField);
-							priceHour.setColumns(10);
-							priceHour.setToolTipText("Euros");
-					
-						
-						JLabel lblCoin = new JLabel("Euros");
-						GridBagConstraints gbc_lblCoin = new GridBagConstraints();
-						gbc_lblCoin.anchor = GridBagConstraints.WEST;
-						gbc_lblCoin.insets = new Insets(0, 0, 5, 5);
-						gbc_lblCoin.gridx = 4;
-						gbc_lblCoin.gridy = 4;
-						getMainDialogPanel().add(lblCoin, gbc_lblCoin);
+		JLabel lblPriceHour = new JLabel("Price/Hour:");
+		lblPriceHour.setToolTipText("Euros");
+		GridBagConstraints gbc_lblPriceHour = new GridBagConstraints();
+		gbc_lblPriceHour.anchor = GridBagConstraints.EAST;
+		gbc_lblPriceHour.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPriceHour.gridx = 2;
+		gbc_lblPriceHour.gridy = 4;
+		getMainDialogPanel().add(lblPriceHour, gbc_lblPriceHour);
+		lblPriceHour.setToolTipText("Euros");
+	
+		
+		priceHour = new JTextField();
+		GridBagConstraints gbc_priceHourField = new GridBagConstraints();
+		gbc_priceHourField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_priceHourField.insets = new Insets(0, 0, 5, 5);
+		gbc_priceHourField.gridx = 3;
+		gbc_priceHourField.gridy = 4;
+		getMainDialogPanel().add(priceHour, gbc_priceHourField);
+		priceHour.setColumns(10);
+		priceHour.setToolTipText("Euros");
+	
+		
+		JLabel lblCoin = new JLabel("Euros");
+		GridBagConstraints gbc_lblCoin = new GridBagConstraints();
+		gbc_lblCoin.anchor = GridBagConstraints.WEST;
+		gbc_lblCoin.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCoin.gridx = 4;
+		gbc_lblCoin.gridy = 4;
+		getMainDialogPanel().add(lblCoin, gbc_lblCoin);
+	
+		
+		rdbtnManager = new JRadioButton("Manager");
+		GridBagConstraints gbc_rdbtnManager = new GridBagConstraints();
+		gbc_rdbtnManager.anchor = GridBagConstraints.WEST;
+		gbc_rdbtnManager.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnManager.gridx = 2;
+		gbc_rdbtnManager.gridy = 6;
+		getMainDialogPanel().add(rdbtnManager, gbc_rdbtnManager);
+		rdbtnManager.addActionListener(new ActionListener() {
 			
-				
-					JRadioButton rdbtnManager = new JRadioButton("Manager");
-					GridBagConstraints gbc_rdbtnManager = new GridBagConstraints();
-					gbc_rdbtnManager.anchor = GridBagConstraints.WEST;
-					gbc_rdbtnManager.insets = new Insets(0, 0, 5, 5);
-					gbc_rdbtnManager.gridx = 2;
-					gbc_rdbtnManager.gridy = 6;
-					getMainDialogPanel().add(rdbtnManager, gbc_rdbtnManager);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				bonus.setEnabled(true);
+			}
+		});
+		
+		JLabel lblBonus = new JLabel("Bonus:");
+		GridBagConstraints gbc_lblBonus = new GridBagConstraints();
+		gbc_lblBonus.anchor = GridBagConstraints.EAST;
+		gbc_lblBonus.insets = new Insets(0, 0, 5, 5);
+		gbc_lblBonus.gridx = 2;
+		gbc_lblBonus.gridy = 7;
+		getMainDialogPanel().add(lblBonus, gbc_lblBonus);
+		bonus.setEnabled(false);
 		
 			
-			JLabel lblBonus = new JLabel("Bonus:");
-			GridBagConstraints gbc_lblBonus = new GridBagConstraints();
-			gbc_lblBonus.anchor = GridBagConstraints.EAST;
-			gbc_lblBonus.insets = new Insets(0, 0, 5, 5);
-			gbc_lblBonus.gridx = 2;
-			gbc_lblBonus.gridy = 7;
-			getMainDialogPanel().add(lblBonus, gbc_lblBonus);
-			
-				
-				bonus = new JTextField();
-				GridBagConstraints gbc_bonusField = new GridBagConstraints();
-				gbc_bonusField.fill = GridBagConstraints.HORIZONTAL;
-				gbc_bonusField.insets = new Insets(0, 0, 5, 5);
-				gbc_bonusField.gridx = 3;
-				gbc_bonusField.gridy = 7;
-				getMainDialogPanel().add(bonus, gbc_bonusField);
-				bonus.setColumns(10);
-				
-					
-					JLabel label = new JLabel("Euros");
-					GridBagConstraints gbc_label = new GridBagConstraints();
-					gbc_label.anchor = GridBagConstraints.WEST;
-					gbc_label.insets = new Insets(0, 0, 5, 5);
-					gbc_label.gridx = 4;
-					gbc_label.gridy = 7;
-					getMainDialogPanel().add(label, gbc_label);
+		bonus = new JTextField();
+		GridBagConstraints gbc_bonusField = new GridBagConstraints();
+		gbc_bonusField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_bonusField.insets = new Insets(0, 0, 5, 5);
+		gbc_bonusField.gridx = 3;
+		gbc_bonusField.gridy = 7;
+		getMainDialogPanel().add(bonus, gbc_bonusField);
+		bonus.setColumns(10);
+		
+		
+		JLabel label = new JLabel("Euros");
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.anchor = GridBagConstraints.WEST;
+		gbc_label.insets = new Insets(0, 0, 5, 5);
+		gbc_label.gridx = 4;
+		gbc_label.gridy = 7;
+		getMainDialogPanel().add(label, gbc_label);
+	
+		
+		
+		
+		
+		JTextField[] textFields = new JTextField[4];
+		textFields[0] = nameField; //assign each field to a position in the array
+		textFields[1] = priceHour;
+		textFields[2] = bonus;
+		
+		this.getSaveButton().addActionListener(new NewProjectAL(textFields));
+		
+		this.setVisible(true);
 	}
 }

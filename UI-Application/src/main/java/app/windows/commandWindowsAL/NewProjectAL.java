@@ -32,8 +32,8 @@ public class NewProjectAL implements ActionListener {
 		try{
 			name = textfields[0].getText();
 			price = textfields[1].getText();
-			latitude = textfields[2].getText();
-			longitude = textfields[3].getText();
+			latitude = textfields[3].getText();
+			longitude = textfields[2].getText();
 		}catch (NullPointerException | ArrayIndexOutOfBoundsException a){
 			new ErrorDialog("Error").setVisible(true);
 		}

@@ -8,10 +8,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import app.windows.commandWindowsAL.NewProjectAL;
-import app.windows.mainFrameAL.mainFrame.ConsultantID;
-import app.windows.mainFrameAL.mainFrame.ManagerID;
+import app.windows.commandWindowsAL.NewWorkerInProjectAL;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
+import app.windows.mainFrameAL.mainFrame.WorkerID;
 
 public class PostWorkerFrame extends MainDialogFrame {
 
@@ -19,10 +18,8 @@ public class PostWorkerFrame extends MainDialogFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = -2466258711524395300L;
-	private JTextField previewField;
-	ProjectID projectId;
-	private ManagerID manager;
-	private ConsultantID consultantID;
+	private ProjectID projectId;
+	private WorkerID workerID;
 	
 
 	/**
@@ -46,14 +43,13 @@ public class PostWorkerFrame extends MainDialogFrame {
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0};
 		gridBagLayout.columnWidths = new int[]{5, 100, 0, 100};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 10, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 10, 40, 0, 0, 0, 0};
 		
 		this.setTitle("Add Worker In Project");
 		this.setImage("images/Add.jpg");
 		this.setTitleLabel("Add Worker In Project");
 		this.setHelpTip("Add a Consultant or Manager to a project/subproject.");
 
-		this.setVisible(true);
 		
 		projectId = new ProjectID();
 		GridBagConstraints gbc_lblProjectID = new GridBagConstraints();
@@ -74,40 +70,22 @@ public class PostWorkerFrame extends MainDialogFrame {
 		getMainDialogPanel().add(lblAddWorker, gbc_lblAddWorker);
 	
 		
-		manager = new ManagerID();
+		workerID = new WorkerID();
 		GridBagConstraints gbc_Manager = new GridBagConstraints();
-		gbc_Manager.gridwidth = 3;
+		gbc_Manager.gridwidth = 4;
 		gbc_Manager.fill = GridBagConstraints.HORIZONTAL;
 		gbc_Manager.insets = new Insets(0, 0, 5, 5);
 		gbc_Manager.gridx = 3;
 		gbc_Manager.gridy = 5;
-		getMainDialogPanel().add(manager, gbc_Manager);
+		getMainDialogPanel().add(workerID, gbc_Manager);
 	
-	
-		consultantID = new ConsultantID();
-		GridBagConstraints gbc_consultantID = new GridBagConstraints();
-		gbc_consultantID.gridwidth = 3;
-		gbc_consultantID.fill = GridBagConstraints.HORIZONTAL;
-		gbc_consultantID.insets = new Insets(0, 0, 5, 5);
-		gbc_consultantID.gridx = 3;
-		gbc_consultantID.gridy = 6;
-		getMainDialogPanel().add(consultantID, gbc_consultantID);
-			
-
-		previewField = new JTextField();
-		GridBagConstraints gbc_previewField = new GridBagConstraints();
-		gbc_previewField.insets = new Insets(0, 0, 0, 5);
-		gbc_previewField.gridwidth = 6;
-		gbc_previewField.fill = GridBagConstraints.BOTH;
-		gbc_previewField.gridx = 2;
-		gbc_previewField.gridy = 7;
-		getMainDialogPanel().add(previewField, gbc_previewField);
-		previewField.setColumns(10);
+		this.setVisible(true);
 		
 		JTextField[] textFields = new JTextField[2];
 		textFields[0] = projectId.getProjectIDField();
-		//textFields[0] = subprojectId.getProjectIDField();
-		this.getSaveButton().addActionListener(new NewProjectAL(textFields));
+		textFields[1] = workerID.getIDField();
+		String worker = workerID.getSelected();
+		this.getSaveButton().addActionListener(new NewWorkerInProjectAL(textFields, worker));
 		
 		
 	}

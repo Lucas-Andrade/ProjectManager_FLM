@@ -47,16 +47,16 @@ public class DeleteProjectFrame extends MainDialogFrame {
 		this.setTitleLabel("Delete Project");
 		this.setHelpTip("Deletes the project with the specify Id and all its subprojects");
 		
-			projectId = new ProjectID();
-			GridBagConstraints gbc_lblProjectID = new GridBagConstraints();
-			gbc_lblProjectID.gridwidth = 4;
-			gbc_lblProjectID.anchor = GridBagConstraints.SOUTHWEST;
-			gbc_lblProjectID.insets = new Insets(0, 0, 5, 5);
-			gbc_lblProjectID.gridx = 2;
-			gbc_lblProjectID.gridy = 4;
-			getMainDialogPanel().add(projectId, gbc_lblProjectID);
-	
-			this.getSaveButton().addActionListener((ActionListener) new RemoveProjectAL(projectId.getProjectIDField()));
+		projectId = new ProjectID();
+		GridBagConstraints gbc_lblProjectID = new GridBagConstraints();
+		gbc_lblProjectID.gridwidth = 4;
+		gbc_lblProjectID.anchor = GridBagConstraints.SOUTHWEST;
+		gbc_lblProjectID.insets = new Insets(0, 0, 5, 5);
+		gbc_lblProjectID.gridx = 2;
+		gbc_lblProjectID.gridy = 4;
+		getMainDialogPanel().add(projectId, gbc_lblProjectID);
+
+		this.getSaveButton().addActionListener((ActionListener) new RemoveProjectAL(projectId.getProjectIDField()));
 	}
 
 

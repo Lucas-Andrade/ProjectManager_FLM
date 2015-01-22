@@ -55,7 +55,7 @@ public class PatchProjectFrame extends MainDialogFrame {
 		
 		projectId = new ProjectID();
 		GridBagConstraints gbc_lblProjectID = new GridBagConstraints();
-		gbc_lblProjectID.gridwidth = 3;
+		gbc_lblProjectID.gridwidth = 4;
 		gbc_lblProjectID.anchor = GridBagConstraints.SOUTHWEST;
 		gbc_lblProjectID.insets = new Insets(0, 0, 5, 5);
 		gbc_lblProjectID.gridx = 2;
@@ -160,7 +160,7 @@ public class PatchProjectFrame extends MainDialogFrame {
 		getMainDialogPanel().add(longitudeField, gbc_longitudeField);
 		longitudeField.setColumns(10);
 		
-		JTextField[] textFields = new JTextField[4];
+		JTextField[] textFields = new JTextField[5];
 		textFields[0] = projectId.getProjectIDField();
 		textFields[1] = nameField; //assign each field to a position in the array
 		textFields[2] = priceField;
@@ -168,6 +168,8 @@ public class PatchProjectFrame extends MainDialogFrame {
 		textFields[4] = latitudeField;
 		
 		this.getSaveButton().addActionListener(new SetProjectAL(textFields));
+		
+		this.setVisible(true);
 	}
 
 }

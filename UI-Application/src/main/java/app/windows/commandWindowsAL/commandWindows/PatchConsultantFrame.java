@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import app.windows.mainFrameAL.mainFrame.ConsultantID;
+import app.windows.mainFrameAL.mainFrame.WorkerID;
 
 
 public class PatchConsultantFrame extends MainDialogFrame {
@@ -19,7 +19,7 @@ public class PatchConsultantFrame extends MainDialogFrame {
 	private static final long serialVersionUID = -2220765203521766381L;
 	private JTextField nameField;
 	private JTextField priceHour;
-	private ConsultantID consultantID;
+	private WorkerID consultantID;
 
 
 	/**
@@ -54,7 +54,7 @@ public class PatchConsultantFrame extends MainDialogFrame {
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		gridBagLayout.columnWidths = new int[]{64, 0, 70, 100, 0, 0, 0, 0, 0};
 		
-		consultantID = new ConsultantID();
+		consultantID = new WorkerID();
 		GridBagConstraints gbc_lblConsultantId = new GridBagConstraints();
 		gbc_lblConsultantId.gridwidth = 4;
 		gbc_lblConsultantId.anchor = GridBagConstraints.EAST;
