@@ -37,6 +37,7 @@ public class ErrorDialog extends JDialog {
 	private JLabel errorMessage;
 	
 	public ErrorDialog(String message){
+				
 		this.setTitle("Something went wrong");
 		
 		setBounds(100, 100, 303, 225);
@@ -53,6 +54,7 @@ public class ErrorDialog extends JDialog {
 		gbc_errorPanel.gridx = 0;
 		gbc_errorPanel.gridy = 0;
 		getContentPane().add(errorPanel, gbc_errorPanel);
+		getContentPane().setBackground(new Color(176, 196, 222));
 		
 		mainImageLabel = new JLabel("");
 		mainImageLabel.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/error.png")));

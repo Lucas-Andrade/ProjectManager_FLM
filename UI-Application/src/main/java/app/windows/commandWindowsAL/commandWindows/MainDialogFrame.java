@@ -1,6 +1,7 @@
 package app.windows.commandWindowsAL.commandWindows;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,6 +62,7 @@ public abstract class MainDialogFrame extends JDialog {
 		
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(102, 153, 204));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
@@ -96,21 +98,5 @@ public abstract class MainDialogFrame extends JDialog {
 		}
 		
 	}
-	
-//	protected class SaveActionListener implements ActionListener{
-//		
-//		JTextField[] textFields;
-//		
-//		public SaveActionListener(JTextField[] textFields) {
-//			this.textFields = textFields;
-//		}
-//		
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-//			
-//			dispose();
-//			
-//		}
-//	}
 }
 

@@ -1,5 +1,6 @@
 package app.windows.commandWindowsAL.commandWindows;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -39,6 +40,7 @@ public class MainPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public MainPanel() {
+		setBackground(new Color(176, 196, 222));
 
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 				

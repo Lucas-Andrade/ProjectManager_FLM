@@ -52,7 +52,6 @@ public class AuthenticationDialog extends JDialog
 
 	public AuthenticationDialog(RepositoryHolder repoHolder)
 	{
-
 		setResizable(false);
 
 		this.setTitle("Login");
@@ -68,6 +67,7 @@ public class AuthenticationDialog extends JDialog
 				Double.MIN_VALUE };
 		gbl_contentPanel.rowWeights = new double[] { 0.0, 0.0, 0.0 };
 		authenticationPanel.setLayout(gbl_contentPanel);
+		authenticationPanel.setBackground(new Color(176, 196, 222));
 
 		mainImageLabel = new JLabel("");
 		mainImageLabel.setIcon(new ImageIcon(MainDialogFrame.class
@@ -122,7 +122,7 @@ public class AuthenticationDialog extends JDialog
 		textField[1] = passwordField;
 
 		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setBackground(new Color(0, 206, 209));
+		btnNewButton.setBackground(new Color(51, 204, 255));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton.anchor = GridBagConstraints.SOUTH;

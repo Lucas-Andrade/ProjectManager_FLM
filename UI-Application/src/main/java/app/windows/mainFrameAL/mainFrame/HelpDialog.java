@@ -27,6 +27,7 @@ public class HelpDialog extends JDialog {
 	private JLabel help;
 	
 	public HelpDialog(){
+		
 		this.setTitle("Help");
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		
@@ -37,6 +38,8 @@ public class HelpDialog extends JDialog {
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0};
 		getContentPane().setLayout(gridBagLayout);
+		getContentPane().setBackground(new Color(176, 196, 222));
+		
 		
 		JLabel titleLabel = new JLabel("Help");
 		titleLabel.setFont(new Font("OCR A Extended", Font.BOLD | Font.ITALIC, 12));
