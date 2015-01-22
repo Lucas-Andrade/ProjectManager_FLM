@@ -25,6 +25,8 @@ public class MainPanel extends JPanel
 	{
 		mainImageLabel.setIcon(new ImageIcon(MainDialogFrame.class
 				.getClassLoader().getResource(imagePath)));
+		mainImageLabel.setOpaque(false);
+		
 	}
 
 	public void setTitleLabel(String title)

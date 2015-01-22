@@ -30,7 +30,7 @@ public class PostUserFrame extends MainDialogFrame {
 			PostUserFrame dialog = new PostUserFrame();
 			//definimos o título da janel
 			dialog.setTitle("New User");
-			dialog.setImage("images/add_user.jpg");
+			dialog.setImage("images/add-user.png");
 			dialog.setTitleLabel("New User");
 			dialog.setHelpTip("Add a user to the User Repository");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -50,7 +50,7 @@ public class PostUserFrame extends MainDialogFrame {
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0};
 		
 		this.setTitle("New User");
-		this.setImage("images/add_user.jpg");
+		this.setImage("images/add-user.png");
 		this.setTitleLabel("New User");
 		this.setHelpTip("Add a user to the User Repository");
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
