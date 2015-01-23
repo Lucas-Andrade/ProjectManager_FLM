@@ -74,7 +74,8 @@ public class AboutDialog extends JDialog {
 		gbc_help.gridx = 2;
 		gbc_help.gridy = 1;
 		getContentPane().add(help, gbc_help);
-						
+		
+		pack();
 	}
 
 }

@@ -169,5 +169,6 @@ public class PostConsultantFrame extends MainDialogFrame {
 		
 		this.getSaveButton().addActionListener(new NewConsultantAL(textFields));
 		this.setVisible(true);
+		pack();
 	}
 }

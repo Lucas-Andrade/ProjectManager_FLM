@@ -55,6 +55,7 @@ public class DeleteProjectFrame extends MainDialogFrame {
 		getMainDialogPanel().add(projectId, gbc_lblProjectID);
 
 		this.getSaveButton().addActionListener(new RemoveProjectAL(projectId.getProjectIDField()));
+		pack();
 	}
 
 

@@ -157,7 +157,7 @@ public class PostProjectFrame extends MainDialogFrame {
 		
 		this.getSaveButton().addActionListener(new NewProjectAL(textFields));
 		
-		
+		pack();
 		this.setVisible(true);
 	}
 }

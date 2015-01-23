@@ -289,6 +289,7 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		leftPanel.add(randstadGirlImageLabel, gbc_randstadGirlImageLabel);
 
 		Authentication.addActionListener(this);
+		pack();
 	}
 
 	JMenu mnFile;

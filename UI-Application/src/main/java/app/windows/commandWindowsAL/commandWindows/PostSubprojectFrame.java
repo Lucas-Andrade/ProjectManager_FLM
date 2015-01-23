@@ -71,5 +71,6 @@ public class PostSubprojectFrame extends MainDialogFrame {
 		this.getSaveButton().addActionListener(new NewSubprojectAL(textFields));
 		
 		this.setVisible(true);
+		pack();
 		}
 	}
