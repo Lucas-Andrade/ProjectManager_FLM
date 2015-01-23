@@ -39,7 +39,7 @@ public class PostProjectFrame extends MainDialogFrame {
 	 * Create the dialog.
 	 */
 	public PostProjectFrame() {
-		super();
+		
 		this.setTitle("New Project");
 		this.setImage("images/project.png");
 		this.setTitleLabel("New Project");
@@ -119,6 +119,7 @@ public class PostProjectFrame extends MainDialogFrame {
 
 
 		latitudeField = new JTextField();
+		latitudeField.setToolTipText("The value must be between -90 and 90");
 		GridBagConstraints gbc_latitudeField = new GridBagConstraints();
 		gbc_latitudeField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_latitudeField.insets = new Insets(0, 0, 5, 5);
@@ -138,6 +139,7 @@ public class PostProjectFrame extends MainDialogFrame {
 
 
 		longitudeField = new JTextField();
+		longitudeField.setToolTipText("The value must be between -180 and 180");
 		GridBagConstraints gbc_longitudeField = new GridBagConstraints();
 		gbc_longitudeField.anchor = GridBagConstraints.NORTH;
 		gbc_longitudeField.fill = GridBagConstraints.HORIZONTAL;

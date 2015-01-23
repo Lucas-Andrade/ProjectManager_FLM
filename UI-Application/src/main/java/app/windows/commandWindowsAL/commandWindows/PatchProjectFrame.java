@@ -130,6 +130,7 @@ public class PatchProjectFrame extends MainDialogFrame {
 	
 		
 		latitudeField = new JTextField();
+		latitudeField.setToolTipText("The value must be between -90 and 90");
 		GridBagConstraints gbc_latitudeField = new GridBagConstraints();
 		gbc_latitudeField.anchor = GridBagConstraints.SOUTH;
 		gbc_latitudeField.fill = GridBagConstraints.HORIZONTAL;
@@ -151,6 +152,7 @@ public class PatchProjectFrame extends MainDialogFrame {
 	
 		
 		longitudeField = new JTextField();
+		longitudeField.setToolTipText("The value must be between -180 and 180");
 		GridBagConstraints gbc_longitudeField = new GridBagConstraints();
 		gbc_longitudeField.anchor = GridBagConstraints.NORTH;
 		gbc_longitudeField.fill = GridBagConstraints.HORIZONTAL;
