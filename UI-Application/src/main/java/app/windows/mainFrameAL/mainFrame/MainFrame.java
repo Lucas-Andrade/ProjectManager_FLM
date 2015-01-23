@@ -134,20 +134,36 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 
 		this.getContentPane().add(splitPane, BorderLayout.CENTER);
 
+
 		JPanel rightPanel = new JPanel();
 		splitPane.setRightComponent(rightPanel);
 		rightPanel.setLayout(new BorderLayout(0, 0));
 
-		JLabel lblWelcomeToProject = new JLabel("  Welcome to Project Manager");
-		lblWelcomeToProject.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		rightPanel.add(lblWelcomeToProject, BorderLayout.NORTH);
+		GridBagLayout gbl_rightPanel = new GridBagLayout();
+		gbl_rightPanel.columnWidths = new int[] { this.getWidth()-this.getWidth()/4 };
+		gbl_rightPanel.rowHeights = new int[] { this.getHeight()/3 , this.getHeight()/3 };
+		rightPanel.setLayout(gbl_rightPanel);
 		
+		JLabel lblWelcomeToProject = new JLabel("Welcome to Project Manager");
+		lblWelcomeToProject.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		GridBagConstraints gbc_WelcomeToProject = new GridBagConstraints();
+		gbc_WelcomeToProject.fill = GridBagConstraints.NONE;
+		gbc_WelcomeToProject.anchor = GridBagConstraints.NORTHEAST;
+		gbc_WelcomeToProject.gridx = 0;
+		gbc_WelcomeToProject.gridy = 0;
+		rightPanel.add(lblWelcomeToProject, gbc_WelcomeToProject);
+
 		logo = new JLabel("");
 		logo.setIcon(new ImageIcon(MainFrame.class.getClassLoader()
-				.getResource("images/logo400.png")));
+				.getResource("images/ProjectLogo400.png")));
 		logo.setOpaque(false);
+		GridBagConstraints gbc_logo = new GridBagConstraints();
+		gbc_logo.fill = GridBagConstraints.NONE;
+		gbc_WelcomeToProject.anchor = GridBagConstraints.EAST;
+		gbc_logo.gridx = 0;
+		gbc_logo.gridy = 1;
+		rightPanel.add(logo, gbc_logo);
 
-		rightPanel.add(logo, BorderLayout.CENTER);
 		rightPanel.setBackground(new Color(176, 196, 222));
 
 		JPanel leftPanel = new JPanel();
