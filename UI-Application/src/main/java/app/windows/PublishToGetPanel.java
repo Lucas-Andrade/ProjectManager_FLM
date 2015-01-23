@@ -1,7 +1,5 @@
 package app.windows;
 
-import java.util.List;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 
@@ -15,11 +13,6 @@ public class PublishToGetPanel extends ResultsPublisher{
 		
 		JTree tree = TreeBuilder.getTree(appElements);
 		MainGetPanel.setResults(new JScrollPane(tree));
+		disposeLoadingDialog();
 	}
-
-	@Override
-	public void publish(List<String> chunks) {
-		
-	}
-
 }

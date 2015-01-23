@@ -49,7 +49,17 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 	@Override
 	protected AppElement[] doInBackground() {
 		
-		publish("Status: Applying changes to database.");
+		publish("<html>Applying changes<br>to the database.<br></html>");
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		
 		AppElement[] toReturn = null;
 		
 		try{
@@ -62,13 +72,10 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 			} else {
 				errorPublisher.publish(message);
 			}
-			publish("Status: Ready.");
 		} catch(NumberFormatException e) {
 			errorPublisher.publish("Letters were introduced in a numbers only field.");
-			publish("Status: Ready.");
 		} catch(IllegalArgumentException e) {
 			errorPublisher.publish("Invalid parameters were entered.");
-			publish("Status: Ready.");
 		}
 		
 		return toReturn;

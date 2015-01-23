@@ -25,8 +25,7 @@ public abstract class RepositoryHolder {
 	 * @param pRepo - {@code ProjectsRepository}
 	 * @param wRepo - {@code WorkerRepository}
 	 */
-	public RepositoryHolder(UserRepository uRepo, ProjectsRepository pRepo, WorkerRepository wRepo)
-	{
+	public RepositoryHolder(UserRepository uRepo, ProjectsRepository pRepo, WorkerRepository wRepo){
 		this.uRepo = uRepo;
 		this.pRepo = pRepo;
 		this.wRepo = wRepo;
@@ -35,24 +34,21 @@ public abstract class RepositoryHolder {
 	/**
 	 * @return the {@code UserRepository} held in {@code this} {@code RepositoryHolder}
 	 */
-	public UserRepository getUsersRepo()
-	{
+	public UserRepository getUsersRepo(){
 		return uRepo;
 	}
 	
 	/**
 	 * @return the {@code ProjectsRepository} held in {@code this} {@code RepositoryHolder}
 	 */
-	public ProjectsRepository getProjectsRepo()
-	{
+	public ProjectsRepository getProjectsRepo(){
 		return pRepo;
 	}
 	
 	/**
 	 * @return the {@code WorkerRepository} held in {@code this} {@code RepositoryHolder}
 	 */
-	public WorkerRepository getWorkersRepo()
-	{
+	public WorkerRepository getWorkersRepo(){
 		return wRepo;
 	}
 }

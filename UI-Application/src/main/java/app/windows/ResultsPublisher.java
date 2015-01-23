@@ -1,7 +1,5 @@
 package app.windows;
 
-import java.util.List;
-
 import utils.AWorker;
 import app.AppElement;
 import app.elements.IUser;
@@ -11,11 +9,9 @@ import app.elements.IUser;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  *
  */
-public abstract class ResultsPublisher {
+public abstract class ResultsPublisher extends PublishWithLoadingDialog{
 	
 	public abstract void publish(AppElement[] appElements);
-
-	public abstract void publish(List<String> chunks);
 	
 	protected IUser[] castToIUser(AppElement[] elements){
 		IUser[] toReturn = new IUser[elements.length];

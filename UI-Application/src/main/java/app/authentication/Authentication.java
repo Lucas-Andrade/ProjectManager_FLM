@@ -4,6 +4,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JDialog;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
@@ -12,6 +13,7 @@ import app.elements.IUser;
 import app.repository.UserRepository;
 import app.repositoryHolders.RepositoryHolder;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
+import app.windows.mainFrameAL.mainFrame.LoadingDialog;
 
 /**
  * Class that logs in and logs out an {@code IUser}. It's able to tell if there
@@ -51,8 +53,7 @@ public abstract class Authentication {
 	 * 
 	 * @return {@code this#isAuthenticated}
 	 */
-	public static boolean isAuthenticated()
-	{
+	public static boolean isAuthenticated(){
 		return isAuthenticated;
 	}
 
@@ -61,8 +62,7 @@ public abstract class Authentication {
 	 * 
 	 * @return {@code this#authenticatedUser}
 	 */
-	public static IUser getAuthenticatedUser()
-	{
+	public static IUser getAuthenticatedUser(){
 		return authenticatedUser;
 	}
 
@@ -73,8 +73,7 @@ public abstract class Authentication {
 	 * @param user
 	 *            The {@code IUser} to be logged in.
 	 */
-	private static void setAuthenticatedUser(IUser user)
-	{
+	private static void setAuthenticatedUser(IUser user){
 		authenticatedUser = user;
 		isAuthenticated = true;
 		fire(true, user);
@@ -91,8 +90,7 @@ public abstract class Authentication {
 	 *            The {@code UserRepository} with the {@code IUser}s.
 	 */
 	public static void authenticate(JTextField[] fieldsToRetrieve,
-			RepositoryHolder repoHolder)
-	{
+			RepositoryHolder repoHolder){
 		new AuthenticationSwingWorker(fieldsToRetrieve, repoHolder).execute();
 	}
 
@@ -100,39 +98,41 @@ public abstract class Authentication {
 	 * Logs out any logged in {@code IUser}: turns the flag to {@code false} and
 	 * any reference to an {@code IUser} becomes {@code null}.
 	 */
-	public static void unauthenticate()
-	{
+	public static void unauthenticate(){
 		authenticatedUser = null;
 		isAuthenticated = false;
 		fire(false, null);
 	}
 
 	private static class AuthenticationSwingWorker extends
-			SwingWorker<IUser, Object>
-	{
+			SwingWorker<IUser, String>{
 
 		UserRepository uRepo;
 		JTextField[] fieldsToRetrieve;
+		JDialog loadingDialog;
 
 		public AuthenticationSwingWorker(JTextField[] fieldsToRetrieve,
-				RepositoryHolder repoHolder)
-		{
+				RepositoryHolder repoHolder){
 
 			this.uRepo = repoHolder.getUsersRepo();
 			this.fieldsToRetrieve = fieldsToRetrieve;
 		}
 
 		@Override
-		protected IUser doInBackground() throws Exception
-		{
-
+		protected IUser doInBackground() throws Exception{
+			
+			publish("Authenticating...");
+			
+			Thread.sleep(5000);
+			
+			
+			
 			String loginName = fieldsToRetrieve[0].getText();
 			char[] loginPasswordChars = ((JPasswordField) fieldsToRetrieve[1])
 					.getPassword();
 			StringBuilder builder = new StringBuilder();
 
-			for (char passChar : loginPasswordChars)
-			{
+			for (char passChar : loginPasswordChars){
 				builder.append(passChar);
 			}
 
@@ -144,34 +144,44 @@ public abstract class Authentication {
 		}
 
 		@Override
-		protected void done()
-		{
+		protected void done(){
+			
+			if(loadingDialog != null) {
+				loadingDialog.dispose();
+			}
+			
 			IUser user = null;
 
-			try
-			{
+			try{
 				user = get();
-			} catch (InterruptedException e)
-			{
+			} catch (InterruptedException e){
 				new ErrorDialog("Was interrupted before reaching database.")
 						.setVisible(true);
 				return;
-			} catch (ExecutionException e)
-			{
+			} catch (ExecutionException e){
 				new ErrorDialog(
 						"Could not verify if the login name and password were correct.")
 						.setVisible(true);
 				return;
 			}
 
-			if (user != null)
-			{
+			if (user != null){
 				setAuthenticatedUser(user);
 				return;
 			}
 			new ErrorDialog(
 					"Login name or password do not match any known users.")
 					.setVisible(true);
+		}
+		
+		/**
+		 * Publishes into the {@code ResultsPublisher} object.
+		 * @param chunks
+		 */
+		@Override
+		protected void process(List<String> chunks) {
+			loadingDialog = new LoadingDialog(chunks.get(0));
+			loadingDialog.setVisible(true);
 		}
 	}
 

@@ -1,7 +1,9 @@
 package outputMethods.format;
 
 import java.util.Iterator;
+import java.util.SortedSet;
 import java.util.TreeSet;
+
 import org.json.JSONObject;
 
 /**
@@ -44,7 +46,7 @@ public interface TextParser{
 	 */
 	static Iterable<String> getOrderedKeySet(JSONObject jsonObject){
 		Iterator<String> iterator = jsonObject.keys();
-		TreeSet<String> keySet = new TreeSet<String>();
+		SortedSet<String> keySet = new TreeSet<String>();
 		while (iterator.hasNext()){
 			keySet.add(iterator.next());
 		}

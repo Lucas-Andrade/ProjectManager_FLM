@@ -1,6 +1,6 @@
 package app.windows;
 
-public interface ErrorPublisher {
+public abstract class ErrorPublisher extends PublishWithLoadingDialog{
 	
-	public void publish(String message);
+	public abstract void publish(String message);
 }

@@ -23,5 +23,6 @@ public class PublishTeamToGetPanel extends PublishToGetPanel{
 		
 		JTable table = TableBuilder.getTableOfWorkers(workers);
 		MainGetPanel.setResults(new JScrollPane(table));
+		disposeLoadingDialog();
 	}
 }

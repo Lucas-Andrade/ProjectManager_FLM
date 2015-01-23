@@ -23,5 +23,6 @@ public class PublishUsersToGetPanel extends PublishToGetPanel{
 		
 		JTable table = TableBuilder.getTableOfUsers(users);
 		MainGetPanel.setResults(new JScrollPane(table));
+		disposeLoadingDialog();
 	}
 }

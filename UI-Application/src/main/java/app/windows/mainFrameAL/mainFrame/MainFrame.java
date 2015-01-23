@@ -24,7 +24,6 @@ import app.elements.IUser;
 import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
 import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
-import app.windows.commandWindowsAL.commandWindows.MainDialogFrame;
 import app.windows.mainFrameAL.DeleteProjectAL;
 import app.windows.mainFrameAL.GetProjectsAL;
 import app.windows.mainFrameAL.GetSubprojectsAL;
@@ -142,12 +141,9 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		JLabel lblWelcomeToProject = new JLabel("  Welcome to Project Manager");
 		lblWelcomeToProject.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		rightPanel.add(lblWelcomeToProject, BorderLayout.NORTH);
-
-		JLabel lblStatus = new JLabel("Status: Ready");
-		rightPanel.add(lblStatus, BorderLayout.SOUTH);
 		
 		logo = new JLabel("");
-		logo.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader()
+		logo.setIcon(new ImageIcon(MainFrame.class.getClassLoader()
 				.getResource("images/logo400.png")));
 		logo.setOpaque(false);
 

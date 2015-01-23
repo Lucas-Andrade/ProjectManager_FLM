@@ -27,8 +27,8 @@ public class PublishTeamToMainFrame extends PublishToMainFrame {
 		JTable table = TableBuilder.getTableOfWorkers(workers);
 		
 		mainPanel.add(new JScrollPane(table), BorderLayout.CENTER);
-		statusLabel.setText("Status: Ready");
 		splitPane.setRightComponent(mainPanel);
 		splitPane.updateUI();
+		disposeLoadingDialog();
 	}
 }
