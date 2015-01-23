@@ -143,10 +143,8 @@ public class PatchUserFrame extends MainDialogFrame {
 		
 		this.getSaveButton().addActionListener(new SetUserAL(nameField, passFields));
 				
-		this.setVisible(true);
-		
-		
-		
+		pack();
+		this.setVisible(true);		
 	}
 
 }

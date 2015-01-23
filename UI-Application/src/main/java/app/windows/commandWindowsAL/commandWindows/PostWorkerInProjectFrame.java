@@ -81,7 +81,7 @@ public class PostWorkerInProjectFrame extends MainDialogFrame {
 		this.setVisible(true);
 		
 		this.getSaveButton().addActionListener(new NewWorkerInProjectAL(projectId.getProjectIDField(), workerID));
-		
+		pack();
 		
 	}
 }

@@ -133,6 +133,7 @@ public class PatchConsultantFrame extends MainDialogFrame {
 		
 		this.getSaveButton().addActionListener(new SetConsultantAL(textFields));
 		
+		pack();
 		this.setVisible(true);
 	}
 }

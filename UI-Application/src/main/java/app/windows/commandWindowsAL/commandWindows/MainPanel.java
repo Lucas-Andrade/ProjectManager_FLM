@@ -101,6 +101,8 @@ public class MainPanel extends JPanel
 		gbcRegistryuser.gridx = 8;
 		gbcRegistryuser.gridy = 1;
 		this.add(lblRegistryuser, gbcRegistryuser);
+		
+		
 	}
 
 }

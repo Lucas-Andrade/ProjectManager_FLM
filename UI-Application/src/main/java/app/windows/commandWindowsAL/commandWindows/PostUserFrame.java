@@ -153,5 +153,7 @@ public class PostUserFrame extends MainDialogFrame {
 		infoArray[1] = emailField;
 		infoArray[2] = fullNameField;
 		this.getSaveButton().addActionListener(new NewUserAL(infoArray, passwordField));
+		
+		pack();
 	}
 }
