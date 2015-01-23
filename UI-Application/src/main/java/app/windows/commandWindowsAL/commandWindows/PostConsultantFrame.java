@@ -2,50 +2,27 @@ package app.windows.commandWindowsAL.commandWindows;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import app.windows.commandWindowsAL.NewConsultantAL;
 
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 
 public class PostConsultantFrame extends MainDialogFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8060989086766838002L;
 	private JTextField nameField;
 	private JTextField priceHour;
 	private JTextField bonus;
 	private JRadioButton rdbtnManager;
 
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			PostConsultantFrame dialog = new PostConsultantFrame();
-			//definimos o título da janela
-			dialog.setTitle("Post Consultant");
-			dialog.setImage("images/addconsultant.png");
-			dialog.setTitleLabel("Post Consultant");
-			dialog.setHelpTip("Add a consultant to the Workers Repository");
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.

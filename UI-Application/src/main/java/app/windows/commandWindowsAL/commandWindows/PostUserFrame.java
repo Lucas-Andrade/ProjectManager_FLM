@@ -15,32 +15,12 @@ import java.awt.GridBagLayout;
 
 public class PostUserFrame extends MainDialogFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -9059883587666020207L;
 	private JTextField nameField;
 	private JPasswordField passwordField;
 	private JTextField emailField;
 	private JTextField fullNameField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			PostUserFrame dialog = new PostUserFrame();
-			//definimos o título da janel
-			dialog.setTitle("New User");
-			dialog.setImage("images/addUser.png");
-			dialog.setTitleLabel("New User");
-			dialog.setHelpTip("Add a user to the User Repository");
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.

@@ -14,25 +14,12 @@ import app.windows.mainFrameAL.mainFrame.ProjectID;
 
 public class GetWorkersInProjectPanel extends MainGetPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 3937953220998193520L;
 	private ProjectID projectId;
 	private JRadioButton manager;
 	private JLabel label;
 	private JRadioButton consultants;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			GetWorkersInProjectPanel dialog = new GetWorkersInProjectPanel();
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	/**
 	 * Create the frame.

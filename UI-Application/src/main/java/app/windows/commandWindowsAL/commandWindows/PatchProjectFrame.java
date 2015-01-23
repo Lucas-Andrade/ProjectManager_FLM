@@ -4,7 +4,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -14,9 +13,6 @@ import app.windows.mainFrameAL.mainFrame.ProjectID;
 
 public class PatchProjectFrame extends MainDialogFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -256281858791279368L;
 	private JTextField longitudeField;
 	private JTextField nameField;
@@ -24,18 +20,6 @@ public class PatchProjectFrame extends MainDialogFrame {
 	private ProjectID projectId;
 	private JTextField latitudeField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			PatchProjectFrame dialog = new PatchProjectFrame();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.

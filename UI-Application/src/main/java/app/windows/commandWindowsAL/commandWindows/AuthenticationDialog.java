@@ -1,17 +1,5 @@
 package app.windows.commandWindowsAL.commandWindows;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-
-import app.authentication.Authentication;
-import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.repositoryHolders.RepositoryHolder;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -22,7 +10,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import app.authentication.Authentication;
+import app.repositoryHolders.RepositoryHolder;
 
 public class AuthenticationDialog extends JDialog
 {
@@ -33,22 +31,6 @@ public class AuthenticationDialog extends JDialog
 	private JLabel mainImageLabel;
 	private JPasswordField passwordField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args)
-	{
-		try
-		{
-			AuthenticationDialog dialog = new AuthenticationDialog(
-					new InMemoryRepositoryHolder());
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
 
 	public AuthenticationDialog(RepositoryHolder repoHolder)
 	{

@@ -16,17 +16,6 @@ import app.windows.commandWindowsAL.commandWindows.MainDialogFrame;
 public class AboutDialog extends JDialog {
 	
 	private static final long serialVersionUID = -8117122702441573121L;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			AboutDialog errorDialog = new AboutDialog();
-			errorDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			errorDialog.setVisible(true);
-		} catch (Exception e) {	}
-	}
 	private JLabel help;
 	private JLabel logo;
 	

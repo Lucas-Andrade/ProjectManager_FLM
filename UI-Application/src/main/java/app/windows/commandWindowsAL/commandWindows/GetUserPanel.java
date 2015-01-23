@@ -16,23 +16,9 @@ import javax.swing.JTextField;
 
 public class GetUserPanel extends MainGetPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -457464140944368035L;
 	private JTextField userID;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			GetUserPanel dialog = new GetUserPanel();
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.

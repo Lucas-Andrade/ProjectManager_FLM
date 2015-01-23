@@ -9,25 +9,7 @@ import app.windows.mainFrameAL.mainFrame.ProjectID;
 
 public class DeleteProjectFrame extends MainDialogFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-
-
-			DeleteProjectFrame dialog = new DeleteProjectFrame();
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	private ProjectID projectId;
 
 	/**
