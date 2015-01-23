@@ -33,6 +33,10 @@ public class SetUserAL implements ActionListener {
 	 */
 	private JPasswordField[] textFields;
 	private JTextField usernameField;
+	String userName;
+	String oldPassword;
+	String newPassword;
+	String validateNewPass;
 
 	/**
 	 * The constructor for {@code SetUserAL}.
@@ -57,10 +61,7 @@ public class SetUserAL implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String userName;
-		String oldPassword;
-		String newPassword;
-		String validateNewPass;
+		
 		try {
 			userName = usernameField.getText();
 			oldPassword = textFields[0].getSelectedText();
@@ -72,17 +73,7 @@ public class SetUserAL implements ActionListener {
 			return;
 		}
 
-		if (userName.length() == 0 || oldPassword.length() == 0
-				|| newPassword.length() == 0 || validateNewPass.length() == 0) {
-			new ErrorDialog("At least one required field was left blank.")
-					.setVisible(true);
-			return;
-		}
-
-		if (!(newPassword == validateNewPass)) {
-			new ErrorDialog(
-					"New Passord and confirmation Password do not match")
-					.setVisible(true);
+		if(!testParameter()) {
 			return;
 		}
 
@@ -96,6 +87,31 @@ public class SetUserAL implements ActionListener {
 			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage())
 					.setVisible(true);
 		}
+	}
+
+	/**
+	 * Tests the parameters got from the {@code JTextField}. If they are not deemed 
+	 * acceptable the method returns false.
+	 * @return false if an error was encountered
+	 * @return true if everything is in order
+	 */
+	private boolean testParameter() {
+		
+		if (userName.length() == 0 || oldPassword.length() == 0
+				|| newPassword.length() == 0 || validateNewPass.length() == 0) {
+			new ErrorDialog("At least one required field was left blank.")
+					.setVisible(true);
+			return false;
+		}
+
+		if (!(newPassword == validateNewPass)) {
+			new ErrorDialog(
+					"New Passord and confirmation Password do not match")
+					.setVisible(true);
+			return false;
+		}
+		
+		return true;
 	}
 
 }

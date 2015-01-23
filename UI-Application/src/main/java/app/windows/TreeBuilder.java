@@ -174,19 +174,19 @@ public class TreeBuilder {
 		while(iterator.hasNext()) {
 			String key = iterator.next();
 			
-			if(key.equals("Project ID")){
+			if("Project ID".equals(key)){
 				return getTheProperty(json, key);
 			} 
 
-			if(key.equals("Username")){
+			if("Username".equals(key)){
 				return getTheProperty(json, key);
 			} 
 
-			if(key.equals("Consultant ID")){
+			if("Consultant ID".equals(key)){
 				return getTheProperty(json, key);
 			} 
 
-			if(key.equals("Name")){
+			if("Name".equals(key)){
 				return getTheProperty(json, key);
 			}
 		}

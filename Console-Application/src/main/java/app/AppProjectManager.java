@@ -92,13 +92,13 @@ import commandParser.InvalidRegisterException;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class appProjectManager{
+public class AppProjectManager{
 
 	/**
 	 * As this is an utility class, a private constructor was implemented in order to hide the
 	 * implicit public one.
 	 */
-	private appProjectManager() {
+	private AppProjectManager() {
 	}
 	
 	/**

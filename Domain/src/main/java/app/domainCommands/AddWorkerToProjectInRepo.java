@@ -45,9 +45,9 @@ public class AddWorkerToProjectInRepo implements Command{
 			throw new NoSuchProjectException("There is no project with that ID.");
 		}
 
-		if (workerType.equalsIgnoreCase("manager")){
+		if ("manager".equalsIgnoreCase(workerType)){
 			addManager();
-		} else if (workerType.equalsIgnoreCase("consultant")) {
+		} else if ("consultant".equalsIgnoreCase(workerType)) {
 			addConsultant();
 		} else{
 			throw new IllegalWorkerTypeException("Unercognised worker type.");

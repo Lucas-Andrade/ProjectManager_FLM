@@ -50,16 +50,6 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 	protected AppElement[] doInBackground() {
 		
 		publish("<html>Applying changes<br>to the database.<br></html>");
-		
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		
-		
 		AppElement[] toReturn = null;
 		
 		try{

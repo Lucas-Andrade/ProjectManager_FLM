@@ -34,7 +34,7 @@ public class AddUserToRepo implements Command{
 	public AppElement[] call() throws PasswordLengthOutOfBoundsException, 
 			IllegalEmailException, RepeatedUsernameException {
 		
-		if(password.length() < User.minCharInPass){
+		if(password.length() < User.MIN_CHAR_IN_PASS){
 			throw new PasswordLengthOutOfBoundsException("A password must have at least four characters.");
 		}
 		validEmail();
@@ -67,7 +67,7 @@ public class AddUserToRepo implements Command{
 	}
 
 	private void setEmptyStringsToNull() {
-		if (fullName != null && fullName.equals("")) {
+		if (fullName != null && "".equals(fullName)) {
 			fullName = null;
 		}
 	}

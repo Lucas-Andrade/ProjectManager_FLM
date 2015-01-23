@@ -9,22 +9,22 @@ import java.util.TreeSet;
  * given name already exists as a Sub{@code Project} of another {@code Project}.
  */
 public abstract class NameTester{
-	private static final Collection<String> usedNames = new TreeSet<>();
+	private static final Collection<String> USED_NAMES = new TreeSet<>();
 
 	public static boolean addName(String name){
-		return usedNames.add(name);
+		return USED_NAMES.add(name);
 	}
 
 	public static boolean removeName(String name){
-		return usedNames.remove(name);
+		return USED_NAMES.remove(name);
 	}
 
 	public static void removeAll(){
-		usedNames.clear();
+		USED_NAMES.clear();
 	}
 
 	public static Collection<String> getUsedNames(){
-		return Collections.unmodifiableCollection(usedNames);
+		return Collections.unmodifiableCollection(USED_NAMES);
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public abstract class NameTester{
 
 		String names = "";
 
-		for (String name : usedNames){
+		for (String name : USED_NAMES){
 			names += name.toString();
 		}
 		return names;

@@ -13,12 +13,12 @@ import org.json.JSONObject;
  *
  * Implements the Interface {@link ICost}.
  *
- * @param <elements>
+ * @param <Elements>
  *            - any instances of a type compatible with {@code Element}.
  */
-public abstract class AContainer<elements extends UtilsElement> implements ICost, Iterable<elements>{
+public abstract class AContainer<Elements extends UtilsElement> implements ICost, Iterable<Elements>{
 
-	private final Collection<elements> elementsList;
+	private final Collection<Elements> elementsList;
 
 	/**
 	 * ACointaner constructor the will instantiate {@code elementsList} as a
@@ -30,7 +30,7 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	 * {@code Element}.
 	 */
 	public AContainer(){
-		this.elementsList = new TreeSet<elements>();
+		this.elementsList = new TreeSet<Elements>();
 	}
 
 	/**
@@ -39,7 +39,7 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	 * 
 	 * @see java.util.Iterator
 	 */
-	public Iterator<elements> iterator() {
+	public Iterator<Elements> iterator() {
 		return elementsList.iterator();
 	}
 	
@@ -76,8 +76,8 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	 * @return true if the {@code Element} is successfully added and false
 	 *         Otherwise.
 	 */
-	public boolean addElement(elements element){
-		for (elements currentElement : elementsList){
+	public boolean addElement(Elements element){
+		for (Elements currentElement : elementsList){
 			if (currentElement.equals(element)){
 				return false;
 			}
@@ -106,7 +106,7 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	/**
 	 * @return and unmodifiable view of {@code elementsList}.
 	 */
-	public Collection<elements> getElementsList(){
+	public Collection<Elements> getElementsList(){
 		return Collections.unmodifiableCollection(elementsList);
 	}
 
@@ -119,7 +119,7 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 
 		double cost = 0;
 
-		for (elements element : elementsList){
+		for (Elements element : elementsList){
 			cost += element.getCost();
 		}
 		return cost;
@@ -140,7 +140,7 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 		}
 		StringBuilder builder = new StringBuilder();
 
-		for (elements element : elementsList){
+		for (Elements element : elementsList){
 			builder.append(spaces).append(element.toString()).append("\n");
 		}
 
@@ -148,11 +148,11 @@ public abstract class AContainer<elements extends UtilsElement> implements ICost
 	}
 	
 	public JSONObject[] getJson() {
-		Collection<elements> elementsCol = getElementsList();
+		Collection<Elements> elementsCol = getElementsList();
 		JSONObject[] jsonArray = new JSONObject[elementsCol.size()];
 		int index = 0;
 		
-		for (elements element : elementsCol){
+		for (Elements element : elementsCol){
 			jsonArray[index++] = element.getJson();
 		}
 		return jsonArray;

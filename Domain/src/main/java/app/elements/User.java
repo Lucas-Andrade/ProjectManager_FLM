@@ -15,7 +15,7 @@ public class User implements IUser{
 	private String password;
 	private String email;
 	private final String fullname;
-	public final static int minCharInPass = 4;
+	public final static int MIN_CHAR_IN_PASS = 4;
 
 	/**
 	 * The constructor of {@code User}.
@@ -30,7 +30,7 @@ public class User implements IUser{
 	 *            The User's Full Name.
 	 */
 	public User(String username, String password, String email, String fullname){
-		if (password.length() < minCharInPass){
+		if (password.length() < MIN_CHAR_IN_PASS){
 			throw new IllegalArgumentException();
 	}
 		this.username = username;
@@ -156,7 +156,7 @@ public class User implements IUser{
 	@Override
 	public boolean setNewPassword(String newPassword) {
 		
-		if (newPassword.length() < minCharInPass){
+		if (newPassword.length() < MIN_CHAR_IN_PASS){
 			return false;
 		}else{
 			password = newPassword;

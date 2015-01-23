@@ -22,7 +22,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	/**
 	 * {@code Collection} that stores the {@code Project}s of this repository.
 	 */
-	private static final Collection<Project> projects = new TreeSet<>(
+	private static Collection<Project> projects = new TreeSet<>(
 			new ProjectComparator());
 
 	/**

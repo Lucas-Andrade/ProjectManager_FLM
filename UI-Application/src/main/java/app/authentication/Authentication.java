@@ -46,7 +46,7 @@ public abstract class Authentication {
 	/**
 	 * A {@code List} containing all the Observers of {@code this} object.
 	 */
-	private static final List<AuthenticationActionListener> actionListeners = new ArrayList<AuthenticationActionListener>();
+	private static final List<AuthenticationActionListener> ACTION_LISTENERS = new ArrayList<AuthenticationActionListener>();
 
 	/**
 	 * Method that tells if there is an {@code IUser} logged in.
@@ -122,11 +122,6 @@ public abstract class Authentication {
 		protected IUser doInBackground() throws Exception{
 			
 			publish("Authenticating...");
-			
-			Thread.sleep(5000);
-			
-			
-			
 			String loginName = fieldsToRetrieve[0].getText();
 			char[] loginPasswordChars = ((JPasswordField) fieldsToRetrieve[1])
 					.getPassword();
@@ -192,8 +187,7 @@ public abstract class Authentication {
 	 * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
 	 * @since 22/01/2015
 	 */
-	public static interface AuthenticationActionListener
-	{
+	public static interface AuthenticationActionListener{
 		/**
 		 * The method containing the action to be performed when the Observer is
 		 * notified by the {@code Authentication}.
@@ -216,9 +210,8 @@ public abstract class Authentication {
 	 *            The Observer to be added.
 	 */
 	public static void addActionListener(
-			AuthenticationActionListener actionListener)
-	{
-		actionListeners.add(actionListener);
+			AuthenticationActionListener actionListener){
+		ACTION_LISTENERS.add(actionListener);
 	}
 
 	/**
@@ -228,9 +221,8 @@ public abstract class Authentication {
 	 *            The Observer to be removed.
 	 */
 	public static void removeActionListener(
-			AuthenticationActionListener actionListener)
-	{
-		actionListeners.remove(actionListener);
+			AuthenticationActionListener actionListener){
+		ACTION_LISTENERS.remove(actionListener);
 	}
 
 	/**
@@ -243,10 +235,10 @@ public abstract class Authentication {
 	 * @param authenticatedUser
 	 *            The authenticated {@code IUser}, or null if there isn't one.
 	 */
-	public static void fire(boolean isAuthenticated, IUser authenticatedUser)
-	{
-		for (AuthenticationActionListener actionListener : actionListeners)
+	public static void fire(boolean isAuthenticated, IUser authenticatedUser){
+		for (AuthenticationActionListener actionListener : ACTION_LISTENERS){
 			actionListener.actionPerformed(isAuthenticated, authenticatedUser);
+		}
 	}
 
 }

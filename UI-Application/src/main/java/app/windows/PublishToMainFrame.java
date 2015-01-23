@@ -21,8 +21,7 @@ public class PublishToMainFrame extends ResultsPublisher{
 	
 	@Override
 	public void publish(AppElement[] appElements) {
-		JSplitPane splitPane = MainFrame.getSplitPane();
-		JTree tree = TreeBuilder.getTree(appElements);//	tree.setRootVisible(false);
+		JTree tree = TreeBuilder.getTree(appElements);
 		
 		mainPanel.add(new JScrollPane(tree), BorderLayout.CENTER);
 		splitPane.setRightComponent(mainPanel);

@@ -51,10 +51,10 @@ public class SetConsultantPropertiesFromRepo implements Command{
 	}
 
 	private void setEmptyStringsToNull() {
-		if (name != null && name.equals("")) {
+		if (name != null && "".equals(name)) {
 			name = null;
 		}
-		if (priceHourString != null && priceHourString.equals("")) {
+		if (priceHourString != null && "".equals(priceHourString)) {
 			priceHourString = null;
 		}
 	}

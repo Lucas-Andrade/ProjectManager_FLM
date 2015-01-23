@@ -23,7 +23,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	/**
 	 * {@code Collection} that stores the {@code AWorker}s of this repository.
 	 */
-	private static final Collection<AWorker> workers = new TreeSet<>(
+	private static final Collection<AWorker> WORKERS = new TreeSet<>(
 			new WorkerComparator());
 
 	/**
@@ -73,7 +73,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 * @return True if successful, False if not.
 	 */
 	private boolean addToRepo(AWorker worker){
-		if (workers.add(worker)){
+		if (WORKERS.add(worker)){
 			NEXT_CID_TO_BE_USED++;
 			return true;
 		}
@@ -85,7 +85,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 */
 	@Override
 	public Consultant getConsultantByID(long cid){
-		for (AWorker worker : workers){
+		for (AWorker worker : WORKERS){
 			if (worker.getCID() == cid){
 				if (!(worker instanceof Leader) && worker instanceof Consultant){
 					return (Consultant) worker;
@@ -102,7 +102,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 */
 	@Override
 	public Leader getManagerByID(long cid){
-		for (AWorker worker : workers){
+		for (AWorker worker : WORKERS){
 			if (worker.getCID() == cid){
 				if (worker instanceof Leader){
 					return (Leader) worker;
@@ -120,7 +120,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	@Override
 	public String toString(){
 		StringBuilder builder = new StringBuilder();
-		for (AWorker worker : workers){
+		for (AWorker worker : WORKERS){
 			builder.append(worker.toString()).append("\n");
 		}
 		return builder.toString();
@@ -131,7 +131,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 */
 	@Override
 	public void removeAll(){
-		workers.clear();
+		WORKERS.clear();
 	}
 
 	/**
@@ -141,7 +141,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	public AWorker[] getAll(){
 		AWorker[] all = new AWorker[this.size()];
 		int i = -1;
-		for (AWorker ele : workers){
+		for (AWorker ele : WORKERS){
 			all[++i] = ele;
 		}
 		return all;
@@ -152,7 +152,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 */
 	@Override
 	public int size(){
-		return workers.size();
+		return WORKERS.size();
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	@Override
 	public AWorker getAWorkerByID(long cid){
 		AWorker aWorker = null;
-		for (AWorker worker : workers){
+		for (AWorker worker : WORKERS){
 			if (worker.getCID() == cid){
 				aWorker = worker;
 			}
@@ -172,7 +172,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	@Override
 	public JSONObject getJson() {
 		JSONObject json = new JSONObject();
-		for (AppElement ele : workers){
+		for (AppElement ele : WORKERS){
 			json.accumulate("All workers", ele.getJson());
 		}
 		return json;

@@ -58,13 +58,11 @@ public class ToTextHtml implements TextParser{
 				builder.append(
 						parse((JSONObject) jsonObject.get(key), ", ", -1))
 						.append(lineSeparator);
-			}
-			else if (jsonObject.get(key) instanceof JSONObject[]){
+			}else if (jsonObject.get(key) instanceof JSONObject[]){
 				builder.append(lineSeparator).append(
 						parseArray((JSONObject[]) jsonObject.get(key),
 								lineSeparator, indentation + 5));
-			}
-			else if (jsonObject.get(key) instanceof JSONArray){
+			}else if (jsonObject.get(key) instanceof JSONArray){
 				builder.append(parseJSONArray((JSONArray) jsonObject.get(key),
 						lineSeparator, indentation));
 			}else {

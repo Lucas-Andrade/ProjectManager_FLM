@@ -80,7 +80,7 @@ public class Result{
 				.newInstance();
 
 		this.destination = (destination == null
-				|| destination.equalsIgnoreCase("console") || destination.equalsIgnoreCase(""))
+				|| "console".equalsIgnoreCase(destination) || "".equalsIgnoreCase(destination))
 				? new ToConsole()
 
 				: new ToFile(destination);

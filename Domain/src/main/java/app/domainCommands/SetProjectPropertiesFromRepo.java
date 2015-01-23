@@ -61,7 +61,6 @@ public class SetProjectPropertiesFromRepo implements Command{
 	 */
 	private void patchParameters(Project project) throws GeographicCoordinatesOutOfBoundsException, 
 			CostOutOfBoundsException{
-		//TODO actualizar documentacao
 		if (localName != null){
 			project.updateLocalName(localName);
 		}
@@ -98,16 +97,16 @@ public class SetProjectPropertiesFromRepo implements Command{
 	}
 	
 	private void setEmptyStringsToNull() {
-		if (longitudeString != null && longitudeString.equals("")) {
+		if (longitudeString != null && "".equals(longitudeString)) {
 			longitudeString = null;
 		}
-		if (latitudeString != null && latitudeString.equals("")) {
+		if (latitudeString != null && "".equals(latitudeString)) {
 			latitudeString = null;
 		}
-		if (priceString != null && priceString.equals("")) {
+		if (priceString != null && "".equals(priceString)) {
 			priceString = null;
 		}
-		if (localName != null && localName.equals("")) {
+		if (localName != null && "".equals(localName)) {
 			localName = null;
 		}
 	}

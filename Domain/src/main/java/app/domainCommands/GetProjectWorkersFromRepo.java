@@ -39,9 +39,9 @@ public class GetProjectWorkersFromRepo implements Command{
 			throw new NoSuchProjectException("There is no project with that ID.");
 		}
 		
-		if (typeWorker.equalsIgnoreCase("Manager")){
+		if ("Manager".equalsIgnoreCase(typeWorker)){
 			return getManager(project);
-		} else if (typeWorker.equalsIgnoreCase("Consultant")){
+		} else if ("Consultant".equalsIgnoreCase(typeWorker)){
 			return getWorkers(project);
 		} else {
 			throw new IllegalWorkerTypeException("Unrecognised type of worker.");

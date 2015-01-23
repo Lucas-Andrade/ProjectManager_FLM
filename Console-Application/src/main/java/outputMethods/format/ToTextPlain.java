@@ -48,17 +48,14 @@ public class ToTextPlain implements TextParser {
 			if ((jsonObject.get(key).getClass()).equals(new JSONObject().getClass())) {
 				builder.append(parse((JSONObject) jsonObject.get(key), ", ", 0))
 						.append(lineSeparator);
-			}
-			else if (jsonObject.get(key) instanceof JSONObject[]){
+			}else if (jsonObject.get(key) instanceof JSONObject[]){
 				builder.append(lineSeparator).append(
 						parseArray((JSONObject[]) jsonObject.get(key), indentation + 5));
-			}
-			else if (jsonObject.get(key) instanceof JSONArray){
+			}else if (jsonObject.get(key) instanceof JSONArray){
 				builder.append(lineSeparator).append(
 						parseJSONArray((JSONArray) jsonObject.get(key),
 								lineSeparator, indentation));
-			}
-			else{
+			}else{
 				builder.append(jsonObject.get(key)).append(lineSeparator);
 			}
 		}

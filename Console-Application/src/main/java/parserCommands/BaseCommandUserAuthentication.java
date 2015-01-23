@@ -79,8 +79,7 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand{
 		String password = parameters.get(LOGINPASSWORD);
 		if (authenticateUser(username, password)){
 			return new Result(internalCall(), null, null);
-		}
-		else{
+		}else{
 			throw new InvalidUserException(username);
 		}
 	}
