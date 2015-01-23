@@ -5,11 +5,33 @@ import app.AppElement;
 import app.domainCommands.exceptions.NoSuchProjectException;
 import app.repository.ProjectsRepository;
 
+/**
+ * This {@code Command} allows to get a {@code Project} from the repository.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ *
+ */
 public class GetProjectFromRepo implements Command{
 	
+	/**
+	 * The {@code ProjectsRepository} where the project is stored.
+	 */
 	ProjectsRepository pRepo;
+	
+	/**
+	 * The {@code PID} of the {@code Project} to be got.
+	 */
 	String pidString;
 	
+	/**
+	 * Constructor of this {@code Command}.
+	 * 
+	 * @param pRepo
+	 * The {@code ProjectsRepository} where the project is stored.
+	 * @param pidString
+	 * The {@code PID} of the {@code Project} to be got.
+	 */
 	public GetProjectFromRepo(ProjectsRepository pRepo, String pidString){
 		if (pRepo == null || pidString == null){
 			throw new IllegalArgumentException();
@@ -18,6 +40,10 @@ public class GetProjectFromRepo implements Command{
 		this.pidString = pidString;
 	}
 	
+	/**
+	 * @return an array of {@code AppElement}s containing the {@code Project}.
+	 * @see Command#call()
+	 */
 	@Override
 	public AppElement[] call() throws NoSuchProjectException {
 		
