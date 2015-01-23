@@ -1,11 +1,9 @@
 package parserCommands;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
 import outputMethods.Result;
-import parserCommands.exceptions.CommandException;
 import utils.AWorker;
 import app.AppElement;
 import app.domainCommands.AddConsultantToRepo;
@@ -123,7 +121,7 @@ public class PostConsultant extends BaseCommandUserAuthentication{
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall()	throws CommandException, IOException{
+	protected AppElement[] internalCall(){
 		String name = getParameterAsString(NAME);
 		String priceHour = getParameterAsString(PRICE_HOUR);
 		String bonus = getParameterAsString(BONUS);

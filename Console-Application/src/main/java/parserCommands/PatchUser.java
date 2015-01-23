@@ -116,7 +116,7 @@ public class PatchUser extends BaseCommandUserAuthentication{
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception{
+	protected AppElement[] internalCall() {
 
 		this.newPassword = getParameterAsString(NEWPASSWORD);
 		String oldPassword = parameters.get(OLDPASSWORD);

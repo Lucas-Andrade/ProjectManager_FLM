@@ -1,9 +1,11 @@
 package parserCommands;
 
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 import outputMethods.Result;
 import parserCommands.exceptions.InvalidUserException;
+import parserCommands.exceptions.MandatoryParameterNotPresentException;
 import app.AppElement;
 import app.elements.User;
 import app.repository.UserRepository;
@@ -60,9 +62,18 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand{
 	 * parameters (if not stops the execution) and after authenticates the
 	 * {@code User}. If authentication is incorrect throws
 	 * {@link InvalidUserException}, if correct proceeds with the execution.
+	 * @throws MandatoryParameterNotPresentException 
+	 * @throws FileNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws ClassNotFoundException 
+	 * @throws InvalidUserException 
+	 * @throws Exception 
+	 * @throws FileNotFoundException 
 	 */
 	@Override
-	public Result call() throws Exception{
+	public Result call() throws MandatoryParameterNotPresentException, ClassNotFoundException, 
+			InstantiationException, IllegalAccessException, FileNotFoundException, InvalidUserException {
 		validateDemandingParameters(getMandatoryParameters());
 		String username = parameters.get(LOGINNAME);
 		String password = parameters.get(LOGINPASSWORD);
@@ -92,5 +103,5 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand{
 	 * 
 	 * @throws Exception
 	 */
-	abstract protected AppElement[] internalCall() throws Exception;
+	abstract protected AppElement[] internalCall();
 }

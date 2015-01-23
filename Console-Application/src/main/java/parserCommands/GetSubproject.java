@@ -102,7 +102,7 @@ public class GetSubproject extends BaseCommandResultsOutputMethod{
 	 * @return An array of {@code DatabaseElement} with all the sub{@code Project}s
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception{
+	protected AppElement[] internalCall() {
 		
 		AppElement[] subprojectAux = null;
 		String pid = getParameterAsString(PID);

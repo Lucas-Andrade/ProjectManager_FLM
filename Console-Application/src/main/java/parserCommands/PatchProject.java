@@ -117,7 +117,7 @@ public class PatchProject extends BaseCommandUserAuthentication {
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception{
+	protected AppElement[] internalCall() {
 		
 		try{
 			new SetProjectPropertiesFromRepo(pRepository, getParameterAsString(PID),

@@ -21,9 +21,15 @@ import app.windows.mainFrameAL.mainFrame.ErrorDialog;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015
  */
-public abstract class Authentication
-{
+public abstract class Authentication {
 
+	/**
+	 * As this is an utility class, a private constructor was implemented in order to hide the
+	 * implicit public one.
+	 */
+	private Authentication() {
+	}
+	
 	/**
 	 * The authenticated {@code IUser}.
 	 */

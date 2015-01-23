@@ -118,7 +118,7 @@ public class DeleteProjects extends BaseCommandUserAuthentication{
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception{
+	protected AppElement[] internalCall(){
 		String pid = this.getParameterAsString(PID);
 
 		try{

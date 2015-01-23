@@ -26,6 +26,13 @@ import app.AppElement;
 public class TreeBuilder {
 	
 	/**
+	 * As this is an utility class, a private constructor was implemented in order to hide the
+	 * implicit public one.
+	 */
+	private TreeBuilder() {
+	}
+	
+	/**
 	 * Parses an array of {@code AppElement} into a {@code JTree} format, where all properties
 	 * of the {@code AppElement} are stored as nodes.
 	 * @param appElements

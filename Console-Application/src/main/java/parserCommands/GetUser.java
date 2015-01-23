@@ -100,7 +100,7 @@ public class GetUser extends BaseCommandResultsOutputMethod{
 	 * @see BaseCommandResultsOutputMethod#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception{
+	protected AppElement[] internalCall() {
 		username = getParameterAsString(USERNAME);
 		
 		AppElement[] user = null;

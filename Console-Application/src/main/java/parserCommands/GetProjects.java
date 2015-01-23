@@ -97,7 +97,7 @@ public class GetProjects extends BaseCommandResultsOutputMethod{
 	 * {@code Project}
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception{
+	protected AppElement[] internalCall() {
 		
 		AppElement[] project;
 		

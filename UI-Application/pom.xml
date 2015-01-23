@@ -18,8 +18,8 @@
   	</scm>
 
     <properties>
-        <sonar.exclusions>src/main/java/app/windows/mainFrameAL/mainFrame/*</sonar.exclusions>
-        <sonar.exclusions>src/main/java/app/windows/commandWindowsAL/commandWindows/*</sonar.exclusions>
+        <sonar.exclusions>src/main/java/app/windows/mainFrameAL/mainFrame/*,
+        	src/main/java/app/windows/commandWindowsAL/commandWindows/*</sonar.exclusions>
     </properties>
     
 	<name>UI-Application</name>

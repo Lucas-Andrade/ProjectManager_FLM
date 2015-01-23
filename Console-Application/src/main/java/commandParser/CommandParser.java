@@ -161,9 +161,9 @@ public class CommandParser{
 	 */
 	public void registerCommand(String method, String path,
 			CommandFactory cmdFactory) throws InvalidRegisterException{
-		path = method.trim() + path;
+		String path2 = method.trim() + path;
 
-		String[] treePathElementsArray = path.split("/");
+		String[] treePathElementsArray = path2.split("/");
 
 		updateSubtree(root, treePathElementsArray, 0, cmdFactory);
 	}

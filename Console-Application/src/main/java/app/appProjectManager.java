@@ -95,6 +95,13 @@ import commandParser.InvalidRegisterException;
 public class appProjectManager{
 
 	/**
+	 * As this is an utility class, a private constructor was implemented in order to hide the
+	 * implicit public one.
+	 */
+	private appProjectManager() {
+	}
+	
+	/**
 	 * The variable that defines the default Output used in this application.
 	 */
 	private static PrintStream DEFAULT_SYSTEM_OUT = System.out;
@@ -186,8 +193,7 @@ public class appProjectManager{
 	 * 
 	 * @throws Exception
 	 */
-	public static void execute(CommandParser parser, UserRepository userRepo)
-			throws Exception{
+	public static void execute(CommandParser parser, UserRepository userRepo){
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 
@@ -239,8 +245,7 @@ public class appProjectManager{
 	 *            A {@code String} of the {@code Command} to execute.
 	 * @throws Exception
 	 */
-	private static void commandPrompt(CommandParser parser, String cmd)
-			throws Exception{
+	private static void commandPrompt(CommandParser parser, String cmd){
 		try{
 			Result results = parser.getCommand(cmd.split(" ")).call();
 			results.showResults();

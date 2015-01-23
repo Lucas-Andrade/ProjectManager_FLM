@@ -1,11 +1,9 @@
 package parserCommands;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
 import outputMethods.Result;
-import parserCommands.exceptions.CommandException;
 import app.AppElement;
 import app.domainCommands.AddUserToRepo;
 import app.domainCommands.exceptions.IllegalEmailException;
@@ -141,8 +139,7 @@ public class PostUsers extends BaseCommandUserAuthentication{
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall()
-			throws CommandException, IOException{
+	protected AppElement[] internalCall(){
 		
 		this.username = getParameterAsString(USERNAME);
 		this.password = getParameterAsString(PASSWORD);

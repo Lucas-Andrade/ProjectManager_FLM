@@ -1,9 +1,11 @@
 package parserCommands;
 
+import java.io.FileNotFoundException;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
 import outputMethods.Result;
+import parserCommands.exceptions.InvalidUserException;
 import parserCommands.exceptions.MandatoryParameterNotPresentException;
 import app.AppElement;
 
@@ -46,9 +48,16 @@ public abstract class BaseCommand implements Callable<Result>{
 	 * This method creates an object Result with the {@code DatabaseElement}s
 	 * returned by {@code this#internalCall()}, after validating the mandatory
 	 * parameters (if not stops the execution).
+	 * @throws MandatoryParameterNotPresentException 
+	 * @throws FileNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws ClassNotFoundException 
+	 * @throws InvalidUserException 
 	 */
 	@Override
-	public Result call() throws Exception{
+	public Result call() throws MandatoryParameterNotPresentException, ClassNotFoundException, 
+			InstantiationException, IllegalAccessException, FileNotFoundException, InvalidUserException {
 		validateDemandingParameters(getMandatoryParameters());
 		return new Result(internalCall(), null, null);
 	}
@@ -59,7 +68,7 @@ public abstract class BaseCommand implements Callable<Result>{
 	 * 
 	 * @return An array of {@code DatabaseElement} 
 	 */
-	abstract protected AppElement[] internalCall() throws Exception;
+	abstract protected AppElement[] internalCall();
 
 	/**
 	 * Checks if all mandatory arguments are in the

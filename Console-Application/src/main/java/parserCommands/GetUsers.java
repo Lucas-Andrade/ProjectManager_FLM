@@ -75,7 +75,7 @@ public class GetUsers extends BaseCommandResultsOutputMethod{
 	 * {@code UserRepository}.
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception{
+	protected AppElement[] internalCall() {
 		return new GetAllUsersFromRepo(repository).call();
 	}
 

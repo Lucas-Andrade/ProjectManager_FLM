@@ -1,11 +1,9 @@
 package parserCommands;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
 import outputMethods.Result;
-import parserCommands.exceptions.CommandException;
 import utils.Local;
 import utils.Project;
 import app.AppElement;
@@ -129,8 +127,7 @@ public class PostProjects extends BaseCommandUserAuthentication{
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall()
-			throws CommandException, IOException{
+	protected AppElement[] internalCall(){
 		String latitude = getParameterAsString(LATITUDE);
 		String longitude = getParameterAsString(LONGITUDE);
 		String name = getParameterAsString(NAME);

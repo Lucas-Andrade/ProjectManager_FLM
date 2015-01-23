@@ -116,7 +116,7 @@ public class PatchConsultant extends BaseCommandUserAuthentication {
 	 *         modified {@code AWorker}.
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception{
+	protected AppElement[] internalCall() {
 		
 		try{
 			new SetConsultantPropertiesFromRepo(repository, getParameterAsString(CID), 

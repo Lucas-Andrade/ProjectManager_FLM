@@ -1,8 +1,10 @@
 package parserCommands;
 
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 import outputMethods.Result;
+import parserCommands.exceptions.MandatoryParameterNotPresentException;
 
 /**
  * Abstract Command to be supported by all Commands that support different
@@ -41,9 +43,15 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand{
 	 * returned by {@code this#internalCall()} and the output format and
 	 * destination, after validating the mandatory parameters (if not stops the
 	 * execution).
+	 * @throws MandatoryParameterNotPresentException 
+	 * @throws FileNotFoundException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws ClassNotFoundException 
 	 */
 	@Override
-	public Result call() throws Exception{
+	public Result call() throws MandatoryParameterNotPresentException, ClassNotFoundException, 
+			InstantiationException, IllegalAccessException, FileNotFoundException {
 		validateDemandingParameters(getMandatoryParameters());
 		return new Result(internalCall(), getResultsOutputDestination(),
 				getResultsOutputFormat());

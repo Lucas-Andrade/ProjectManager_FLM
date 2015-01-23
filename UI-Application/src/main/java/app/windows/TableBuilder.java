@@ -8,6 +8,13 @@ import app.elements.IUser;
 
 public class TableBuilder {
 	
+	/**
+	 * As this is an utility class, a private constructor was implemented in order to hide the
+	 * implicit public one.
+	 */
+	private TableBuilder() {
+	}
+	
 	public static JTable getTableOfUsers(IUser[] users) {
 		
 		String[] columnNames = {"Username", "Email", "Full name"};

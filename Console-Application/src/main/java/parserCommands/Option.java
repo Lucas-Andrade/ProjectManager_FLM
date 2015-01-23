@@ -48,7 +48,7 @@ public class Option extends BaseCommandResultsOutputMethod{
 	 * {@code Project}
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception {
+	protected AppElement[] internalCall() {
 		Message[] options = availableCommands(); 		
 		return options;
 	}

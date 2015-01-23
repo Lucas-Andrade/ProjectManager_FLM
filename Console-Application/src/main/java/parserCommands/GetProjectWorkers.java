@@ -136,7 +136,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod {
 	 * @see BaseCommandResultsOutputMethod#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall() throws Exception{
+	protected AppElement[] internalCall() {
 		
 		projectId = getParameterAsString(PID);
 		typeWorker = getParameterAsString(WTYPE);
