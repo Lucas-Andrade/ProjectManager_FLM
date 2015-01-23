@@ -26,6 +26,7 @@ import app.repositoryHolders.RepositoryHolder;
 import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
 import app.windows.commandWindowsAL.commandWindows.MainDialogFrame;
 import app.windows.mainFrameAL.DeleteProjectAL;
+import app.windows.mainFrameAL.GetProjectsAL;
 import app.windows.mainFrameAL.GetSubprojectsAL;
 import app.windows.mainFrameAL.GetUserAL;
 import app.windows.mainFrameAL.GetWorkersInProjectAL;
@@ -70,7 +71,7 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		
 		this.setTitle("Project Manager");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(640, 420);
+		this.setSize(800, 500);
 		splitPane.setContinuousLayout(true);
 		splitPane.setBackground(new Color(176, 196, 222));
 
@@ -195,6 +196,10 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		JMenu mnGet = new JMenu("Get");
 		projectsMenu.add(mnGet);
 
+		JMenuItem mntmGetProjects = new JMenuItem("Get project");
+		mnGet.add(mntmGetProjects);
+		mntmGetProjects.addActionListener(new GetProjectsAL(repositories));
+		
 		JMenuItem mntmGetSubprojects = new JMenuItem("Get subprojects");
 		mnGet.add(mntmGetSubprojects);
 		mntmGetSubprojects.addActionListener(new GetSubprojectsAL(repositories));

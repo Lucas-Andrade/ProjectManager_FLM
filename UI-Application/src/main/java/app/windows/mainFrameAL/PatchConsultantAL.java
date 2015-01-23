@@ -22,8 +22,7 @@ public class PatchConsultantAL extends MainFrameActionListener
 	 *            The {@code Authentication} to check if any {@code User} is
 	 *            authenticated.
 	 */
-	public PatchConsultantAL(RepositoryHolder repositories)
-	{
+	public PatchConsultantAL(RepositoryHolder repositories){
 		super(repositories);
 	}
 
@@ -31,8 +30,7 @@ public class PatchConsultantAL extends MainFrameActionListener
 	 * @see super{@link #action()}
 	 */
 	@Override
-	void action()
-	{
+	void action(){
 		new PatchConsultantFrame().setVisible(true);
 	}
 
