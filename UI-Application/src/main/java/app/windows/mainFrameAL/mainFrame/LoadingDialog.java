@@ -5,6 +5,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -13,19 +14,18 @@ import java.awt.Insets;
 @SuppressWarnings("serial")
 public class LoadingDialog extends JDialog{
 	
-	public static void main(String[] args){
-		new LoadingDialog("coisas").setVisible(true);
-	}
 	
 	public LoadingDialog(String message){
 		this.setTitle("Loading...");
 		this.setSize(220, 170);
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{24, 10, 156, 0};
 		gridBagLayout.rowHeights = new int[]{132, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
+		getContentPane().setBackground(new Color(176, 196, 222));
 		
 		JLabel logo = new JLabel();
 		GridBagConstraints gbc_logo = new GridBagConstraints();

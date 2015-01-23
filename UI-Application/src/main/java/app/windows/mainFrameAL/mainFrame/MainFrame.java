@@ -79,9 +79,11 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		menuBar.setBackground(new Color(102, 153, 204));
 
 		mnFile = new JMenu("File");
+		mnFile.setBackground(new Color(176, 196, 222));
 		menuBar.add(mnFile);
 
 		mntmLogin = new JMenuItem("Login");
+		mntmLogin.setBackground(new Color(176, 196, 222));
 		mnFile.add(mntmLogin);
 		mntmLogin.addActionListener(new ActionListener() {
 			@Override
@@ -91,6 +93,7 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		});
 
 		mntmLogout = new JMenuItem("Logout");
+		mntmLogout.setBackground(new Color(176, 196, 222));
 		mnFile.add(mntmLogout);
 		mntmLogout.setVisible(false);
 		mntmLogout.addActionListener(new ActionListener() {
@@ -101,6 +104,7 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		});
 
 		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.setBackground(new Color(176, 196, 222));
 		mnFile.add(mntmExit);
 		mntmExit.addActionListener(new ActionListener() {
 			@Override
@@ -110,9 +114,11 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		});
 
 		JMenu mnHelp = new JMenu("Help");
+		mnHelp.setBackground(new Color(176, 196, 222));
 		menuBar.add(mnHelp);
 
 		JMenuItem mntmHelpMe = new JMenuItem("Help me!");
+		mntmHelpMe.setBackground(new Color(176, 196, 222));
 		mnHelp.add(mntmHelpMe);
 		mntmHelpMe.addActionListener(new ActionListener() {
 			@Override
@@ -122,6 +128,7 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		});
 
 		JMenuItem mntmAbout = new JMenuItem("About");
+		mntmAbout.setBackground(new Color(176, 196, 222));
 		mnHelp.add(mntmAbout);
 		mntmAbout.addActionListener(new ActionListener() {
 			@Override
@@ -194,100 +201,127 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		vert.add(projectsMenu);
 
 		JMenuItem newProjectItem = new JMenuItem("New project");
+		newProjectItem.setBackground(new Color(176, 196, 222));
 		projectsMenu.add(newProjectItem);
 		newProjectItem.addActionListener(new PostProjectAL(repositories));
 
 		JMenuItem editProjectItem = new JMenuItem("Edit project");
+		editProjectItem.setBackground(new Color(176, 196, 222));
 		projectsMenu.add(editProjectItem);
 		editProjectItem.addActionListener(new PatchProjectAL(repositories));
 
 		JMenuItem mntmDeleteProject = new JMenuItem("Delete project");
+		mntmDeleteProject.setBackground(new Color(176, 196, 222));
 		projectsMenu.add(mntmDeleteProject);
 		mntmDeleteProject.addActionListener(new DeleteProjectAL(repositories));
 
 		JMenu mnGet = new JMenu("Get");
+		mnGet.setOpaque(true);
+		mnGet.setBackground(new Color(176, 196, 222));
 		projectsMenu.add(mnGet);
 
 		JMenuItem mntmGetProjects = new JMenuItem("Get project");
+		mntmGetProjects.setBackground(new Color(176, 196, 222));
 		mnGet.add(mntmGetProjects);
 		mntmGetProjects.addActionListener(new GetProjectsAL(repositories));
 		
 		JMenuItem mntmGetSubprojects = new JMenuItem("Get subprojects");
+		mntmGetSubprojects.setBackground(new Color(176, 196, 222));
 		mnGet.add(mntmGetSubprojects);
 		mntmGetSubprojects.addActionListener(new GetSubprojectsAL(repositories));
 
 		JMenuItem mntmGetTeam = new JMenuItem("Get Team");
+		mntmGetTeam.setBackground(new Color(176, 196, 222));
 		mnGet.add(mntmGetTeam);
 		mntmGetTeam.addActionListener(new GetWorkersInProjectAL(
 				repositories));
 
 		JMenuItem mntmGetManager = new JMenuItem("Get Manager");
+		mntmGetManager.setBackground(new Color(176, 196, 222));
 		mnGet.add(mntmGetManager);
 		mntmGetManager.addActionListener(new GetWorkersInProjectAL(
 				repositories));
 
 		JMenu mnAddToProject = new JMenu("Add to Project");
+		mnAddToProject.setOpaque(true);
+		mnAddToProject.setBackground(new Color(176, 196, 222));
 		projectsMenu.add(mnAddToProject);
 
 		JMenuItem mntmAddConsultant = new JMenuItem("Add Consultant");
+		mntmAddConsultant.setBackground(new Color(176, 196, 222));
 		mnAddToProject.add(mntmAddConsultant);
 		mntmAddConsultant.addActionListener(new PostWorkerAL(repositories));
 
 		JMenuItem mntmAddManager = new JMenuItem("Add Manager");
+		mntmAddManager.setBackground(new Color(176, 196, 222));
 		mnAddToProject.add(mntmAddManager);
 		mntmAddManager.addActionListener(new PostWorkerAL(repositories));
 
 		JMenuItem mntmAddSubproject = new JMenuItem("Add Subproject");
+		mntmAddSubproject.setBackground(new Color(176, 196, 222));
 		mnAddToProject.add(mntmAddSubproject);
 		mntmAddSubproject.addActionListener(new PostSubprojectAL(repositories));
 
 		JMenu consultantsMenu = new JMenu("Consultants");
+		consultantsMenu.setBackground(new Color(176, 196, 222));
 		vert.add(consultantsMenu);
 
 		JMenuItem newConsultantItem = new JMenuItem("New consultant/Manager");
+		newConsultantItem.setBackground(new Color(176, 196, 222));
 		consultantsMenu.add(newConsultantItem);
 		newConsultantItem.addActionListener(new PostConsultantAL(repositories));
 
 		JMenuItem mntmEditWorker = new JMenuItem("Edit worker");
+		mntmEditWorker.setBackground(new Color(176, 196, 222));
 		consultantsMenu.add(mntmEditWorker);
 		mntmEditWorker.addActionListener(new PatchConsultantAL(repositories));
 
 		JMenuItem mntmAddWorker = new JMenuItem("Add worker to project");
+		mntmAddWorker.setBackground(new Color(176, 196, 222));
 		consultantsMenu.add(mntmAddWorker);
 		mntmAddWorker.addActionListener(new PostWorkerAL(repositories));
 
 		JMenuItem mntmGetConsultant = new JMenuItem("Get worker(s) in project");
+		mntmGetConsultant.setBackground(new Color(176, 196, 222));
 		consultantsMenu.add(mntmGetConsultant);
 		mntmGetConsultant.addActionListener(new GetWorkersInProjectAL(
 				repositories));
 
 		JMenu usersMenu = new JMenu("Users");
+		usersMenu.setBackground(new Color(176, 196, 222));
 		vert.add(usersMenu);
 
 		JMenuItem mntmNewUser = new JMenuItem("New user");
+		mntmNewUser.setBackground(new Color(176, 196, 222));
 		usersMenu.add(mntmNewUser);
 		mntmNewUser.addActionListener(new PostUserAL(repositories));
 
 		JMenuItem mntmGetUser = new JMenuItem("Get user");
+		mntmGetUser.setBackground(new Color(176, 196, 222));
 		usersMenu.add(mntmGetUser);
 		mntmGetUser.addActionListener(new GetUserAL(repositories));
 
 		JMenuItem mntmEditUser = new JMenuItem("Edit user");
+		mntmEditUser.setBackground(new Color(176, 196, 222));
 		usersMenu.add(mntmEditUser);
 		mntmEditUser.addActionListener(new PatchUserAL(repositories));
 
 		JMenu searchMenu = new JMenu("Search");
+		searchMenu.setBackground(new Color(176, 196, 222));
 		vert.add(searchMenu);
-		JMenuItem mntmProjects = new JMenuItem("Subprojects in project");
 		
+		JMenuItem mntmProjects = new JMenuItem("Subprojects in project");
+		mntmProjects.setBackground(new Color(176, 196, 222));
 		searchMenu.add(mntmProjects);
 		mntmProjects.addActionListener(new GetSubprojectsAL(repositories));
 
 		JMenuItem mntmConsultants = new JMenuItem("Consultants/Manager in project");
+		mntmConsultants.setBackground(new Color(176, 196, 222));
 		searchMenu.add(mntmConsultants);
 		mntmConsultants.addActionListener(new GetWorkersInProjectAL(repositories));
 
 		JMenuItem mntmUsers = new JMenuItem("User");
+		mntmUsers.setBackground(new Color(176, 196, 222));
 		searchMenu.add(mntmUsers);
 		mntmUsers.addActionListener(new GetUserAL(repositories));
 
