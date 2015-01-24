@@ -12,18 +12,7 @@ import app.windows.mainFrameAL.mainFrame.ProjectID;
 
 public class GetSubprojectsPanel extends MainGetPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1075896035298801798L;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-
-	}
-
 	private ProjectID projectId;
 
 	/**

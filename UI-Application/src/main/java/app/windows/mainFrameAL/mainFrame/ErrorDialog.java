@@ -21,19 +21,6 @@ import app.windows.commandWindowsAL.commandWindows.MainDialogFrame;
 public class ErrorDialog extends JDialog {
 	
 	private static final long serialVersionUID = -8117762702441573121L;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			ErrorDialog errorDialog = new ErrorDialog("Error!!!");
-			errorDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			errorDialog.setVisible(true);
-		} catch (Exception e) {
-		}
-	}
-
 	private JPanel errorPanel = new JPanel();
 	private JLabel mainImageLabel;
 	private JLabel errorMessage;

@@ -12,12 +12,10 @@ import javax.swing.JPanel;
 
 public class ManagerID extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JCheckBox boxManager;
 	private JComboBox<?> managerCBox;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -31,7 +29,7 @@ public class ManagerID extends JPanel {
 		setLayout(gridBagLayout);
 			
 			
-			//elementos da lista -> alterar
+		//elementos da lista -> alterar
 			
 		String[] managers = { "", "Bird", "Cat", "Dog", "Rabbit", "Pig" };
 		

@@ -14,9 +14,6 @@ import javax.swing.JTextField;
 
 public class WorkerID extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7106518727634653163L;
 	private JTextField consultants;
 	private JRadioButton rdbtnConsultants;

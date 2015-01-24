@@ -4,7 +4,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 
 import app.windows.commandWindowsAL.NewWorkerInProjectAL;
@@ -13,26 +12,11 @@ import app.windows.mainFrameAL.mainFrame.WorkerID;
 
 public class PostWorkerInProjectFrame extends MainDialogFrame {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -2466258711524395300L;
 	private ProjectID projectId;
 	private WorkerID workerID;
 	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-	//	try {
-			PostWorkerInProjectFrame dialog = new PostWorkerInProjectFrame();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		//	dialog.setVisible(true);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-	}
 
 	/**
 	 * Create the dialog.

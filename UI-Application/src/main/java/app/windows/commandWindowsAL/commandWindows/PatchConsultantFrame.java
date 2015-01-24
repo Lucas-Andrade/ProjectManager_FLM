@@ -13,33 +13,12 @@ import app.windows.commandWindowsAL.SetConsultantAL;
 
 public class PatchConsultantFrame extends MainDialogFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2220765203521766381L;
 	private JTextField nameField;
 	private JTextField priceHour;
 	private JLabel lblConsultant;
 	private JTextField consultantId;
 
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-
-			PatchConsultantFrame dialog = new PatchConsultantFrame();
-			
-			dialog.setTitle("Edit Consultant");    //definimos o título da janela
-			dialog.setImage("images/editConsultant.png");
-			dialog.setTitleLabel("Edit Consultant");
-			dialog.setHelpTip("Updates the information of the consultant with the specify Id.");
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.

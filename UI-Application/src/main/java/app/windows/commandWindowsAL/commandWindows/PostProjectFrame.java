@@ -12,28 +12,12 @@ import app.windows.commandWindowsAL.NewProjectAL;
 
 public class PostProjectFrame extends MainDialogFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7362745925938477748L;
 	private JTextField longitudeField;
 	private JTextField nameField;
 	private JTextField priceField;
 	private JTextField latitudeField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			PostProjectFrame dialog = new PostProjectFrame();
-
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.

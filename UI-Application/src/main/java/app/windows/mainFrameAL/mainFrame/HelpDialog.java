@@ -13,17 +13,6 @@ import javax.swing.SwingConstants;
 public class HelpDialog extends JDialog {
 	
 	private static final long serialVersionUID = -8117622702441573121L;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			HelpDialog errorDialog = new HelpDialog();
-			errorDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			errorDialog.setVisible(true);
-		} catch (Exception e) {		}
-	}
 	private JLabel help;
 	
 	public HelpDialog(){

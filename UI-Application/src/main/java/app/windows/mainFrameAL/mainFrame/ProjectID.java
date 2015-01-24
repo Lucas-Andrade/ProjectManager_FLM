@@ -11,12 +11,10 @@ import javax.swing.JTextField;
 
 public class ProjectID extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 830972996693805538L;
 	private JTextField projectID;
 	private JLabel lblProjectID;
+	
 	/**
 	 * Create the panel.
 	 */

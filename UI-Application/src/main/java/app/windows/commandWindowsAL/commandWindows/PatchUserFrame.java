@@ -5,7 +5,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.io.IOException;
 
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -15,28 +14,12 @@ import app.windows.commandWindowsAL.SetUserAL;
 
 public class PatchUserFrame extends MainDialogFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 5293797614254495165L;
 	private JTextField nameField;
 	private JPasswordField passwordField;
 	private JPasswordField newPasswordField;
 	private JPasswordField validateNewPassField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			PatchUserFrame dialog = new PatchUserFrame();
-			//definimos o título da janel
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.
