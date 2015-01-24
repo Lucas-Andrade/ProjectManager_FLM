@@ -14,7 +14,7 @@ import app.windows.mainFrameAL.mainFrame.LoadingDialog;
  * @since 19/01/2015
  *
  */
-public abstract class PublishWithLoadingDialog implements Publisher {
+public abstract class PublishWithLoadingDialog {
 
 	/**
 	 * Flag that indicates whether a {@code LoadingDialog} has been created or not.

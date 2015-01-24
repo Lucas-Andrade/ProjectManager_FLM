@@ -18,7 +18,7 @@ import app.windows.commandWindowsAL.commandWindows.MainGetPanel;
  * @since 19/01/2015
  *
  */
-public class PublishToGetPanel extends ResultsPublisher{
+public class PublishToGetPanel extends ResultsPublisherWithLoadingDialog{
 
 	/**
 	 * Constructs a {@code JTree} using the method {@code TreeBuilder#getTree}. This
@@ -26,7 +26,7 @@ public class PublishToGetPanel extends ResultsPublisher{
 	 * component. Then, the {@code mainPanel} is added to the {@code MainFrame}, and
 	 * the {@code LoadingDialog} is disposed of, if any was set visible.
 	 * 
-	 * @see ResultsPublisher#publish(AppElement[])
+	 * @see ResultsPublisherWithLoadingDialog#publish(AppElement[])
 	 */
 	@Override
 	public void publish(AppElement[] appElements) {

@@ -10,7 +10,7 @@ import app.windows.mainFrameAL.mainFrame.ErrorDialog;
  * @since 19/01/2015
  *
  */
-public class PublishToErrorDialog extends ErrorPublisher{
+public class PublishToErrorDialog extends ErrorPublisherWithLoadingDialog{
 
 	/**
 	 * Will set visible a new instance of {@code ErrorDialog} with the

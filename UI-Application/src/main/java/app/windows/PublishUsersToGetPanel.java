@@ -34,7 +34,7 @@ public class PublishUsersToGetPanel extends PublishToGetPanel{
 	 * {@code mainPanel} is added to the {@code MainFrame}, and the
 	 * {@code LoadingDialog} is disposed of, if any was set visible.
 	 * 
-	 * @see ResultsPublisher#publish(AppElement[])
+	 * @see ResultsPublisherWithLoadingDialog#publish(AppElement[])
 	 */
 	@Override
 	public void publish(AppElement[] appElements) {

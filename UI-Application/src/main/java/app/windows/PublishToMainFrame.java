@@ -21,7 +21,7 @@ import app.windows.mainFrameAL.mainFrame.MainFrame;
  * @since 19/01/2015
  *
  */
-public class PublishToMainFrame extends ResultsPublisher{
+public class PublishToMainFrame extends ResultsPublisherWithLoadingDialog{
 	
 	protected JSplitPane splitPane = MainFrame.getSplitPane();
 	protected JPanel mainPanel = new JPanel();
@@ -41,7 +41,7 @@ public class PublishToMainFrame extends ResultsPublisher{
 	 * component. Then, the {@code mainPanel} is added to the {@code MainFrame}, and
 	 * the {@code LoadingDialog} is disposed of, if any was set visible.
 	 * 
-	 * @see ResultsPublisher#publish(AppElement[])
+	 * @see ResultsPublisherWithLoadingDialog#publish(AppElement[])
 	 */
 	@Override
 	public void publish(AppElement[] appElements) {
