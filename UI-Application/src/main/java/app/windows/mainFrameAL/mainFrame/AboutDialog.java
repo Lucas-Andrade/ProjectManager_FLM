@@ -45,7 +45,7 @@ public class AboutDialog extends JDialog {
 		
 		logo = new JLabel("");
 		logo.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader()
-				.getResource("images/ProjectLogo128.png")));
+				.getResource("images/Logo128_.png")));
 		logo.setOpaque(false);
 		GridBagConstraints gbc_logo = new GridBagConstraints();
 		gbc_logo.fill = GridBagConstraints.BOTH;

@@ -162,7 +162,7 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 
 		logo = new JLabel("");
 		logo.setIcon(new ImageIcon(MainFrame.class.getClassLoader()
-				.getResource("images/ProjectLogo400.png")));
+				.getResource("images/Logo400_.png")));
 		logo.setOpaque(false);
 		GridBagConstraints gbc_logo = new GridBagConstraints();
 		gbc_logo.fill = GridBagConstraints.NONE;

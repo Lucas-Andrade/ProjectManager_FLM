@@ -2,7 +2,6 @@ package app.windows.commandWindowsAL.commandWindows;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 
 import javax.swing.ImageIcon;
@@ -10,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-public class MainGetPanel extends JPanel {
+public abstract class MainGetPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private static final int Y_BOUND = 100;
@@ -49,27 +48,7 @@ public class MainGetPanel extends JPanel {
 		return getButton;
 	}
 	
-	/**
-	 * Create the dialog.
-	 * @param image,  
-	 */
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainGetPanel frame = new MainGetPanel();
-					//definimos o título da janela
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.

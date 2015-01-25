@@ -16,8 +16,6 @@ public abstract class MainDialogFrame extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private static final int Y_BOUND = 100;
 	private static final int X_BOUND =100;
-	private static final int WIDTH_BOUND =636;
-	private static final int HEIGHT_BOUND =387;
 	private JButton saveButton;
 	private final MainPanel mainDialogPanel;
 	
@@ -53,7 +51,7 @@ public abstract class MainDialogFrame extends JDialog {
 		mainDialogPanel.setBackground(new Color(176, 196, 222));
 		this.setLocationRelativeTo(null);
 		
-		setBounds(X_BOUND,Y_BOUND,WIDTH_BOUND, HEIGHT_BOUND);   //Definição da Caixa de Diálogo
+		setBounds(X_BOUND,Y_BOUND,544, 371);   //Definição da Caixa de Diálogo
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(getMainDialogPanel(), BorderLayout.CENTER);
 		
