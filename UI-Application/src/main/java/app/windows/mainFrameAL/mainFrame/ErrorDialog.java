@@ -71,17 +71,19 @@ public class ErrorDialog extends JDialog {
 		gbc_ErrorMessage.gridx = 2;
 		gbc_ErrorMessage.gridy = 1;
 		getContentPane().add(errorMessage, gbc_ErrorMessage);
-												
-													
+		
+			
 		JButton okButton = new JButton("OK");
 		GridBagConstraints gbc_okButton = new GridBagConstraints();
-		gbc_okButton.insets = new Insets(0, 0, 0, 5);
 		gbc_okButton.anchor = GridBagConstraints.SOUTHEAST;
 		gbc_okButton.gridwidth = 1;
-		gbc_okButton.gridx = 2;
+		gbc_okButton.gridx = 3;
 		gbc_okButton.gridy = 2;
+		okButton.setActionCommand("OK");
 		getContentPane().add(okButton, gbc_okButton);
 		okButton.setBackground(new Color(0, 206, 209));
+		
+		getRootPane().setDefaultButton(okButton);
 		okButton.addActionListener(new ActionListener() {
 
 			@Override

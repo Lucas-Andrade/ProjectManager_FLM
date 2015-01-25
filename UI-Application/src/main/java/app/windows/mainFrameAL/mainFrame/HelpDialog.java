@@ -40,7 +40,19 @@ public class HelpDialog extends JDialog {
 		getContentPane().add(titleLabel, gbc_titleLabel);
 		
 		help = new JLabel(
-				"<html>AJUDA<br><br>Este programa serve para organizares os teus projectozinhos.<br>Podes colocar trabalhadores, subprojectos e mais cenas fixes.<br>Também podes criar vários utilizadores para utilizarem esta bomba de programa.<br><br>Botões OK -> Pressiona aqui para dares o teu OK.<br>Botões Cancel -> Se não gostas, carrega aqui.<br>Botões Save -> É para guardares as tuas cenas pah.<br>Login -> Não te esqueças de fazer o login com a tua username e password.<br>Logout -> Carrega para fazeres logout.<br>Exit -> NÃO CARREGUES AQUI. O programa vai embora.<br>Help -> É esta coisa que tás a ler.<br>About -> Sobre este programa e os seus fantásticos criadores.<br><br>HELP<br><br>This app let's you do things. For more help place the Portuguese Help in Google Translater.</html>");
+				"<html> HELP <br> This program allows you to organize your little projects. "
+				+ "<br> You can add employees, sub-projects and many cool things."
+				+ "<br> You can also create multiple users use this program pump. "
+				+ "<br><br> OK Buttons -> Press here for you to give your OK. "
+				+ "<br> Cancel Buttons -.> If you do not like, loaded here. "
+				+ "<br> Save buttons -> is to put your favorite stuff! "
+				+ "<br> Login -> Do not forget to login with your username and password. "
+				+ "<br> Logout -> Load to log out. "
+				+ "<br> Exit -> Do not upload HERE. The program goes away. "
+				+ "<br> Help -.> É isso que você está lendo. "
+				+ "<br> About -..> Contains the information on this program and its fantastic creators."
+				+ "<br> HELP <br> This App allows you to do much.. "
+				+ "For more help place the Portuguese Help in Google Translater </ html>. ");
 		help.setHorizontalAlignment(SwingConstants.CENTER);
 		help.setBackground(new Color(255, 255, 255));
 		GridBagConstraints gbc_help = new GridBagConstraints();

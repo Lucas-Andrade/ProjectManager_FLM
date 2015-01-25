@@ -51,7 +51,7 @@ public abstract class MainDialogFrame extends JDialog {
 		mainDialogPanel.setBackground(new Color(176, 196, 222));
 		this.setLocationRelativeTo(null);
 		
-		setBounds(X_BOUND,Y_BOUND,544, 371);   //Definição da Caixa de Diálogo
+		setBounds(X_BOUND,Y_BOUND,661, 341);   //Definição da Caixa de Diálogo
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(getMainDialogPanel(), BorderLayout.CENTER);
 		
