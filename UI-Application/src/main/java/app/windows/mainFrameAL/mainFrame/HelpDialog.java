@@ -40,19 +40,14 @@ public class HelpDialog extends JDialog {
 		getContentPane().add(titleLabel, gbc_titleLabel);
 		
 		help = new JLabel(
-				"<html> HELP <br> This program allows you to organize your little projects. "
-				+ "<br> You can add employees, sub-projects and many cool things."
-				+ "<br> You can also create multiple users use this program pump. "
-				+ "<br><br> OK Buttons -> Press here for you to give your OK. "
-				+ "<br> Cancel Buttons -.> If you do not like, loaded here. "
-				+ "<br> Save buttons -> is to put your favorite stuff! "
-				+ "<br> Login -> Do not forget to login with your username and password. "
-				+ "<br> Logout -> Load to log out. "
-				+ "<br> Exit -> Do not upload HERE. The program goes away. "
-				+ "<br> Help -.> É isso que você está lendo. "
-				+ "<br> About -..> Contains the information on this program and its fantastic creators."
-				+ "<br> HELP <br> This App allows you to do much.. "
-				+ "For more help place the Portuguese Help in Google Translater </ html>. ");
+				"<html> HELP <br> This program is meant for organization and management of projects. "
+				+ "<br> Each project has workers, sub-projects and one local."
+				+ "<br> Login -> To use this program, User's must login. "
+				+ "<br> Logout -> Logs out the currenctly logged in User. "
+				+ "<br> Exit -> Closes the program. "
+				+ "<br> Help -.> Opens this help window. "
+				+ "<br> About -..> Information about this program and it's fantastic creators."
+				+ "<br> For mor help, place the mouse pointer above the question mark logo (when available).</html>. ");
 		help.setHorizontalAlignment(SwingConstants.CENTER);
 		help.setBackground(new Color(255, 255, 255));
 		GridBagConstraints gbc_help = new GridBagConstraints();
