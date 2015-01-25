@@ -15,6 +15,7 @@ import app.domainCommands.exceptions.IllegalWorkerTypeException;
 import app.domainCommands.exceptions.NoSuchManagerException;
 import app.domainCommands.exceptions.NoSuchProjectException;
 import app.domainCommands.exceptions.NoSuchWorkerException;
+import app.domainCommands.exceptions.WorkerNotAddedException;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
@@ -186,7 +187,9 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication{
 
 		try{
 			new AddWorkerToProjectInRepo(projectRepository, workerRepository, 
-					projectId, workerId, typeWorker).call();
+						projectId, workerId, typeWorker).call();
+		} catch (WorkerNotAddedException e) {
+			return new AppElement[]{new Message("Could not add the worker to the project. That worker may already be assigned to the project.")};
 		} catch(NoSuchProjectException e) {
 			return new AppElement[]{new Message("The Specified Project does not exists in repository.")};
 		} catch(IllegalWorkerTypeException e) {
