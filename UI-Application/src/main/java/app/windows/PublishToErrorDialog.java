@@ -21,7 +21,9 @@ public class PublishToErrorDialog extends ErrorPublisherWithLoadingDialog{
 	 */
 	@Override
 	public void publish(String message) {
-		new ErrorDialog(message).setVisible(true);
+		ErrorDialog dialog = new ErrorDialog(message);
+		dialog.setAlwaysOnTop(true);
+		dialog.setVisible(true);
 		disposeLoadingDialog();
 	}
 

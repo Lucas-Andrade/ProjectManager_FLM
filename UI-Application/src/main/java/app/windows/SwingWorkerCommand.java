@@ -45,30 +45,13 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 	 * Calls the {@code Command} and returns its result. Any exception this action may throw is 
 	 * caught here and a message is published to the {@code ErrorPublisher}.
 	 * @return The array of {@code AppElement} returned by the {@code call()} of the {@code Command}.
+	 * @throws CommandExecutionException 
 	 */
 	@Override
-	protected AppElement[] doInBackground() {
+	protected AppElement[] doInBackground() throws CommandExecutionException {
 		
 		publish("<html>Applying changes<br>to the database.<br></html>");
-		AppElement[] toReturn = null;
-		
-		try{
-			toReturn = command.call();
-		} catch(CommandExecutionException e){
-			String message = e.getMessage();
-			
-			if (message == null){
-				errorPublisher.publish("An error was encountered while applying the changes to the database.");
-			} else {
-				errorPublisher.publish(message);
-			}
-		} catch(NumberFormatException e) {
-			errorPublisher.publish("Letters were introduced in a numbers only field.");
-		} catch(IllegalArgumentException e) {
-			errorPublisher.publish("Invalid parameters were entered.");
-		}
-		
-		return toReturn;
+		return command.call();
 	}
 	
 	/**
@@ -93,12 +76,30 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 			errorPublisher.publish("Unexpected interruption.");
 			return;
 		} catch (ExecutionException e) {
-			errorPublisher.publish("Unexpected execution error.");
-			return;
+			
+			Throwable caughtException = e.getCause();
+			if (caughtException instanceof CommandExecutionException) {
+				analyseMessage(e.getMessage());
+				return;
+			} else if(caughtException instanceof NumberFormatException) {
+				errorPublisher.publish("Letters were introduced in a numbers only field.");
+				return;
+			}
 		}
 		
-		if (result != null){ //because get() will return a null result if doInBackgound caught an exception
-			publisher.publish(result);
+		publisher.publish(result);
+	}
+
+	private void analyseMessage(String message) {
+		if (message == null){
+			errorPublisher.publish("An error was encountered while applying the changes to the database.");
+		} else {
+			String[] splitMessage = message.split(":");
+			StringBuilder builder = new StringBuilder();
+			for(int i = 1; i < splitMessage.length; i++) {
+				builder.append(splitMessage[i]);
+			}
+			errorPublisher.publish(builder.toString());
 		}
 	}
 

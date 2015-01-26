@@ -16,19 +16,19 @@ import app.windows.mainFrameAL.mainFrame.LoadingDialog;
  */
 public abstract class PublishWithLoadingDialog {
 
-//	/**
-//	 * Flag that indicates whether a {@code LoadingDialog} has been created or not.
-//	 */
-//	private boolean loadingPublishedFlag;
+	/**
+	 * Flag that indicates whether a {@code LoadingDialog} can be created or not.
+	 */
+	private static boolean shouldCreateWindow;
 
-	private LoadingDialog loadingDialog;
+	private static LoadingDialog loadingDialog;
 
 	/**
 	 * Constructs the publisher, and sets the {@code loadingPublishedFlag} to
 	 * false.
 	 */
 	public PublishWithLoadingDialog() {
-		//loadingPublishedFlag = false;
+		shouldCreateWindow = true;
 		loadingDialog = new LoadingDialog();
 	}
 
@@ -41,11 +41,14 @@ public abstract class PublishWithLoadingDialog {
 	 *            {@code LoadingDialog}
 	 */
 	public void publish(List<String> chunks) {
-		loadingDialog.setMessage(chunks.get(0));
-		loadingDialog.setVisible(true);
+		if (shouldCreateWindow){
+			loadingDialog.setMessage(chunks.get(0));
+			loadingDialog.setVisible(true);
+		}
 	}
 
 	protected void disposeLoadingDialog() {
+		shouldCreateWindow = false;
 		loadingDialog.dispose();
 	}
 }

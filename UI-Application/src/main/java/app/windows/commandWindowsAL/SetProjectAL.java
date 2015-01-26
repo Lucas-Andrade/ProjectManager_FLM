@@ -73,6 +73,7 @@ public class SetProjectAL implements ActionListener {
 		if (pidString.length() == 0) {
 			new ErrorDialog("Project ID field was left blank.")
 					.setVisible(true);
+			return;
 		}
 
 		try {
