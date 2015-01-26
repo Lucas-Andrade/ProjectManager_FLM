@@ -121,7 +121,7 @@ public class PostUserFrame extends MainDialogFrame {
 		getMainDialogPanel().add(fullNameField, gbc_fullNameField);
 		fullNameField.setColumns(10);
 		
-		JLabel lblOptionalLabel = new JLabel("(Opcional)");
+		JLabel lblOptionalLabel = new JLabel("(Optional)");
 		GridBagConstraints gbc_lblOptionalLabel = new GridBagConstraints();
 		gbc_lblOptionalLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblOptionalLabel.gridx = 6;
