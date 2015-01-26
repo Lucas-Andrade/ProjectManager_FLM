@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import parserCommands.PatchConsultant;
-import app.RepositoryConstructor;
+import app.RepositoryBuilder;
 import app.repository.InMemoryUserRepo;
 import app.repository.InMemoryWorkerRepo;
 
@@ -17,13 +17,13 @@ public class PatchConsultantTest {
 
 	
 	private Map<String, String> parameters;
-	private InMemoryUserRepo uRepo = RepositoryConstructor.constructUserRepo();
+	private InMemoryUserRepo uRepo = RepositoryBuilder.constructUserRepo();
 	private InMemoryWorkerRepo wRepo;
 	
 	@Before
 	public void constructNewProjectRepo()
 	{
-		wRepo = RepositoryConstructor.constructWorkerRepo();
+		wRepo = RepositoryBuilder.constructWorkerRepo();
 		parameters = new HashMap<String, String>();
 		parameters.put("loginName", "admin");
 		parameters.put("loginPassword", "admin");

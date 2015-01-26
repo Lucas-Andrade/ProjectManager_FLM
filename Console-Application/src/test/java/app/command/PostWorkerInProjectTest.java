@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import parserCommands.PostWorkerInProject;
-import app.RepositoryConstructor;
+import app.RepositoryBuilder;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
 import app.repository.InMemoryWorkerRepo;
@@ -17,15 +17,15 @@ import app.repository.InMemoryWorkerRepo;
 public class PostWorkerInProjectTest {
 
 	private Map<String, String> parameters;
-	private InMemoryUserRepo uRepo = RepositoryConstructor.constructUserRepo();
+	private InMemoryUserRepo uRepo = RepositoryBuilder.constructUserRepo();
 	private InMemoryProjectRepo pRepo;
 	private InMemoryWorkerRepo wRepo;
 
 	@Before
 	public void constructNewProjectRepo()
 	{
-		pRepo = RepositoryConstructor.constructProjectRepo();
-		wRepo = RepositoryConstructor.constructWorkerRepo();
+		pRepo = RepositoryBuilder.constructProjectRepo();
+		wRepo = RepositoryBuilder.constructWorkerRepo();
 		parameters = new HashMap<String, String>();
 		parameters.put("loginName", "admin");
 		parameters.put("loginPassword", "admin");
@@ -40,7 +40,7 @@ public class PostWorkerInProjectTest {
 		new PostWorkerInProject(uRepo, pRepo, wRepo, parameters).call();
 		
 		assertTrue(pRepo.getProjectById(3).getTeam().iterator().next()
-				.equals(RepositoryConstructor.constructConsultant(1)));
+				.equals(RepositoryBuilder.constructConsultant(1)));
 	}
 	
 	@Test
@@ -52,7 +52,7 @@ public class PostWorkerInProjectTest {
 		new PostWorkerInProject(uRepo, pRepo, wRepo, parameters).call();
 		
 		assertTrue(pRepo.getProjectById(4).getManager()
-				.equals(RepositoryConstructor.constructLeader(5)));
+				.equals(RepositoryBuilder.constructLeader(5)));
 	}
 	
 	@Test
@@ -65,7 +65,7 @@ public class PostWorkerInProjectTest {
 		new PostWorkerInProject(uRepo, pRepo, wRepo, parameters).call();
 		
 		assertTrue(pRepo.getProjectById(1).getManager()
-				.equals(RepositoryConstructor.constructLeader(5)));
+				.equals(RepositoryBuilder.constructLeader(5)));
 	}
 	
 	@Test 

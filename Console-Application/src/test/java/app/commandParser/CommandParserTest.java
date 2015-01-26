@@ -24,7 +24,7 @@ import commandParser.CommandParser;
 import commandParser.CommandParserException;
 import commandParser.InvalidRegisterException;
 import utils.Leader;
-import app.RepositoryConstructor;
+import app.RepositoryBuilder;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
@@ -36,9 +36,9 @@ import app.repository.WorkerRepository;
 public class CommandParserTest {
 
 	CommandParser parser = new CommandParser();
-	WorkerRepository wRepo = RepositoryConstructor.constructWorkerRepo();
-	UserRepository uRepo = RepositoryConstructor.constructUserRepo();
-	ProjectsRepository pRepo = RepositoryConstructor.constructProjectRepo();
+	WorkerRepository wRepo = RepositoryBuilder.constructWorkerRepo();
+	UserRepository uRepo = RepositoryBuilder.constructUserRepo();
+	ProjectsRepository pRepo = RepositoryBuilder.constructProjectRepo();
 
 	
 	@Before

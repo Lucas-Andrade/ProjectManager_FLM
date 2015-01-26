@@ -11,20 +11,20 @@ import org.junit.Test;
 
 import parserCommands.PostSubprojects;
 import utils.Project;
-import app.RepositoryConstructor;
+import app.RepositoryBuilder;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
 
 public class PostSubprojectsTest {
 
 	private Map<String, String> parameters;
-	private InMemoryUserRepo uRepo = RepositoryConstructor.constructUserRepo();
+	private InMemoryUserRepo uRepo = RepositoryBuilder.constructUserRepo();
 	private InMemoryProjectRepo pRepo;
 	
 	@Before
 	public void constructNewProjectRepo()
 	{
-		pRepo = RepositoryConstructor.constructProjectRepo();
+		pRepo = RepositoryBuilder.constructProjectRepo();
 		parameters = new HashMap<String, String>();
 		parameters.put("loginName", "admin");
 		parameters.put("loginPassword", "admin");
@@ -39,7 +39,7 @@ public class PostSubprojectsTest {
 		
 		Collection<Project> subprojects = pRepo.getProjectById(1).getContainerProject();
 		assertEquals(subprojects.size(), 1);
-		assertEquals(subprojects.iterator().next(), RepositoryConstructor.constructProject(2));
+		assertEquals(subprojects.iterator().next(), RepositoryBuilder.constructProject(2));
 	}
 	
 	@Test

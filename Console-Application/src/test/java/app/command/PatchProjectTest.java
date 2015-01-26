@@ -9,20 +9,20 @@ import org.junit.Before;
 import org.junit.Test;
 
 import parserCommands.PatchProject;
-import app.RepositoryConstructor;
+import app.RepositoryBuilder;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
 
 public class PatchProjectTest {
 
 	private Map<String, String> parameters;
-	private InMemoryUserRepo uRepo = RepositoryConstructor.constructUserRepo();
+	private InMemoryUserRepo uRepo = RepositoryBuilder.constructUserRepo();
 	private InMemoryProjectRepo pRepo;
 	
 	@Before
 	public void constructNewProjectRepo()
 	{
-		pRepo = RepositoryConstructor.constructProjectRepo();
+		pRepo = RepositoryBuilder.constructProjectRepo();
 		parameters = new HashMap<String, String>();
 		parameters.put("loginName", "admin");
 		parameters.put("loginPassword", "admin");

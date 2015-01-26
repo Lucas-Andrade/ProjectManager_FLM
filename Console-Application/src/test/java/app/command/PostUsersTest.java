@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import parserCommands.PostUsers;
-import app.RepositoryConstructor;
+import app.RepositoryBuilder;
 import app.elements.User;
 import app.repository.InMemoryUserRepo;
 
@@ -21,7 +21,7 @@ public class PostUsersTest {
 	@Before
 	public void constructNewProjectRepo()
 	{
-		uRepo = RepositoryConstructor.constructUserRepo();
+		uRepo = RepositoryBuilder.constructUserRepo();
 		parameters = new HashMap<String, String>();
 		parameters.put("loginName", "admin");
 		parameters.put("loginPassword", "admin");
@@ -49,7 +49,7 @@ public class PostUsersTest {
 		parameters.put("fullname", "Filipe%20Maia");
 		new PostUsers(uRepo, parameters).call();
 		
-		assertTrue(uRepo.getUserByUsername("user1").equals(RepositoryConstructor.constructUser(1)));
+		assertTrue(uRepo.getUserByUsername("user1").equals(RepositoryBuilder.constructUser(1)));
 	}
 	
 	@Test

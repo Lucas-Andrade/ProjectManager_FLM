@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import parserCommands.PatchUser;
-import app.RepositoryConstructor;
+import app.RepositoryBuilder;
 import app.repository.InMemoryUserRepo;
 
 public class PatchUserTest {
@@ -20,7 +20,7 @@ public class PatchUserTest {
 	@Before
 	public void constructNewProjectRepo()
 	{
-		uRepo = RepositoryConstructor.constructUserRepo();
+		uRepo = RepositoryBuilder.constructUserRepo();
 		parameters = new HashMap<String, String>();
 		parameters.put("loginName", "admin");
 		parameters.put("loginPassword", "admin");
