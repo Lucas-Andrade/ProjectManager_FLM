@@ -3,9 +3,11 @@ package app.windows.commandWindowsAL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import app.domainCommands.Command;
+import app.domainCommands.GetAllUsersFromRepo;
 import app.domainCommands.GetUserFromRepo;
 import app.windows.PublishToErrorDialog;
 import app.windows.PublishUsersToGetPanel;
@@ -35,6 +37,8 @@ public class GetUserAL implements ActionListener {
 	 * A {@code String} containing the {@code IUser}'s username.
 	 */
 	private String username;
+	
+	private JRadioButton allUsers;
 
 	/**
 	 * The constructor for {@code GetUserAL}.
@@ -42,8 +46,9 @@ public class GetUserAL implements ActionListener {
 	 * @param parameter
 	 *            A {@code JTextField} containing the {@code IUser}'s username.
 	 */
-	public GetUserAL(JTextField parameter) {
+	public GetUserAL(JTextField parameter, JRadioButton allUsers) {
 		this.parameter = parameter;
+		this.allUsers = allUsers;
 	}
 
 	/**
@@ -57,21 +62,37 @@ public class GetUserAL implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		try {
 			username = parameter.getText();
-			if (username.length() == 0) {
-				new ErrorDialog("The username field was left blank.")
-						.setVisible(true);
-				return;
+			Command command;
+			
+			if(allUsers.isSelected()){
+				command = getAllUsers();
+			} else {
+				command = getOneUser();
 			}
-			Command command = new GetUserFromRepo(MainFrame.getRepositories()
-					.getUsersRepo(), username);
+
 			new SwingWorkerCommand(command, new PublishUsersToGetPanel(),
 					new PublishToErrorDialog()).execute();
-
+			
 		} catch (IllegalArgumentException iae) {
 			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage())
 					.setVisible(true);
 		}
 
+	}
+
+	private Command getAllUsers() {
+		return new GetAllUsersFromRepo(MainFrame.getRepositories()
+				.getUsersRepo());
+	}
+
+	private Command getOneUser() {
+//		if (username.length() == 0) {
+//			new ErrorDialog("The username field was left blank.")
+//					.setVisible(true);
+//			return;
+//		}
+		return new GetUserFromRepo(MainFrame.getRepositories()
+				.getUsersRepo(), username);
 	}
 
 }
