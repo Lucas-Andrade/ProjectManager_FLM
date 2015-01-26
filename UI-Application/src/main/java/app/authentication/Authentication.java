@@ -4,7 +4,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JDialog;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
@@ -109,13 +108,14 @@ public abstract class Authentication {
 
 		UserRepository uRepo;
 		JTextField[] fieldsToRetrieve;
-		JDialog loadingDialog;
+		LoadingDialog loadingDialog;
 
 		public AuthenticationSwingWorker(JTextField[] fieldsToRetrieve,
 				RepositoryHolder repoHolder){
 
 			this.uRepo = repoHolder.getUsersRepo();
 			this.fieldsToRetrieve = fieldsToRetrieve;
+			this.loadingDialog = new LoadingDialog();
 		}
 
 		@Override
@@ -140,11 +140,7 @@ public abstract class Authentication {
 
 		@Override
 		protected void done(){
-			
-			if(loadingDialog != null) {
-				loadingDialog.dispose();
-			}
-			
+			loadingDialog.dispose();
 			IUser user = null;
 
 			try{
@@ -175,7 +171,7 @@ public abstract class Authentication {
 		 */
 		@Override
 		protected void process(List<String> chunks) {
-			loadingDialog = new LoadingDialog(chunks.get(0));
+			loadingDialog.setMessage(chunks.get(0));
 			loadingDialog.setVisible(true);
 		}
 	}

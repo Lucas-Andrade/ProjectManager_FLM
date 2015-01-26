@@ -14,8 +14,14 @@ import java.awt.Insets;
 @SuppressWarnings("serial")
 public class LoadingDialog extends JDialog{
 	
+	JLabel label;
 	
-	public LoadingDialog(String message){
+	public void setMessage(String message){
+		label.setText(message);
+		label.updateUI();
+	}
+	
+	public LoadingDialog(){
 		this.setTitle("Loading...");
 		this.setSize(220, 170);
 		
@@ -41,7 +47,7 @@ public class LoadingDialog extends JDialog{
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridx = 2;
 		gbc.gridy = 0;
-		JLabel label = new JLabel(message);
+		label = new JLabel();
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(label, gbc);
 	}

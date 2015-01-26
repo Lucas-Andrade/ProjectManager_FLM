@@ -57,12 +57,12 @@ public class NewUserAL implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String username;
-		String password;
+		char[] passwordChars;
 		String email;
 		String fullname;
 		try {
 			username = textfields[0].getText();
-			password = passwordField.getSelectedText();
+			passwordChars = passwordField.getPassword();
 			email = textfields[1].getText();
 			fullname = textfields[2].getText();
 
@@ -71,6 +71,7 @@ public class NewUserAL implements ActionListener {
 			return;
 		}
 
+		String password = constructPassword(passwordChars);
 		if (username.length() == 0 || password.length() == 0
 				|| email.length() == 0) {
 			new ErrorDialog("At least one required field was left blank.")
@@ -89,4 +90,11 @@ public class NewUserAL implements ActionListener {
 		}
 	}
 
+	public static String constructPassword(char[] charPass) {
+		StringBuilder builder = new StringBuilder();
+		for(char chars : charPass) {
+			builder.append(chars);
+		}
+		return builder.toString();
+	}
 }

@@ -31,7 +31,7 @@ public class SetUserAL implements ActionListener {
 	 * An array of {@code JTextField}s containing the parameters for
 	 * instantiating the {@code Command} {@link SetUserPropertiesFromRepo}.
 	 */
-	private JPasswordField[] textFields;
+	private JPasswordField[] passwordFields;
 	private JTextField usernameField;
 	String userName;
 	String oldPassword;
@@ -48,7 +48,7 @@ public class SetUserAL implements ActionListener {
 	 *            {@link SetUserPropertiesFromRepo}.
 	 */
 	public SetUserAL(JTextField nameField, JPasswordField[] textFields) {
-		this.textFields = textFields;
+		this.passwordFields = textFields;
 		this.usernameField = nameField;
 	}
 
@@ -61,18 +61,24 @@ public class SetUserAL implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		char[] oldPasswordChars;
+		char[] newPasswordChars;
+		char[] validateNewPassChars;
 		
 		try {
 			userName = usernameField.getText();
-			oldPassword = textFields[0].getSelectedText();
-			newPassword = textFields[1].getSelectedText();
-			validateNewPass = textFields[2].getSelectedText();
-
+			oldPasswordChars = passwordFields[0].getPassword();
+			newPasswordChars = passwordFields[1].getPassword();
+			validateNewPassChars = passwordFields[2].getPassword();
 		} catch (NullPointerException | ArrayIndexOutOfBoundsException a) {
 			new ErrorDialog("Error").setVisible(true);
 			return;
 		}
-
+		
+		oldPassword = NewUserAL.constructPassword(oldPasswordChars);
+		newPassword = NewUserAL.constructPassword(newPasswordChars);
+		validateNewPass = NewUserAL.constructPassword(validateNewPassChars);
+		
 		if(!testParameter()) {
 			return;
 		}

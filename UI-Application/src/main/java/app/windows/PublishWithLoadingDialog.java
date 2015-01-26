@@ -16,10 +16,10 @@ import app.windows.mainFrameAL.mainFrame.LoadingDialog;
  */
 public abstract class PublishWithLoadingDialog {
 
-	/**
-	 * Flag that indicates whether a {@code LoadingDialog} has been created or not.
-	 */
-	private boolean loadingPublishedFlag;
+//	/**
+//	 * Flag that indicates whether a {@code LoadingDialog} has been created or not.
+//	 */
+//	private boolean loadingPublishedFlag;
 
 	private LoadingDialog loadingDialog;
 
@@ -28,7 +28,8 @@ public abstract class PublishWithLoadingDialog {
 	 * false.
 	 */
 	public PublishWithLoadingDialog() {
-		loadingPublishedFlag = false;
+		//loadingPublishedFlag = false;
+		loadingDialog = new LoadingDialog();
 	}
 
 	/**
@@ -40,14 +41,11 @@ public abstract class PublishWithLoadingDialog {
 	 *            {@code LoadingDialog}
 	 */
 	public void publish(List<String> chunks) {
-		loadingPublishedFlag = true;
-		loadingDialog = new LoadingDialog(chunks.get(0));
+		loadingDialog.setMessage(chunks.get(0));
 		loadingDialog.setVisible(true);
 	}
 
 	protected void disposeLoadingDialog() {
-		if (loadingPublishedFlag) {
-			loadingDialog.dispose();
-		}
+		loadingDialog.dispose();
 	}
 }
