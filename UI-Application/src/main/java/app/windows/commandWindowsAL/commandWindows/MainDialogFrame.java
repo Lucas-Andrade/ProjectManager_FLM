@@ -75,6 +75,7 @@ public abstract class MainDialogFrame extends JDialog {
 				cancelButton.addActionListener(new CancelActionListener());
 			}
 		}
+		this.getRootPane().setDefaultButton( saveButton );
 		pack();  
 	}
 

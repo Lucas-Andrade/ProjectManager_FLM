@@ -84,6 +84,11 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 			} else if(caughtException instanceof NumberFormatException) {
 				errorPublisher.publish("Letters were introduced in a numbers only field.");
 				return;
+			} else if(caughtException instanceof IllegalArgumentException) {
+				errorPublisher.publish("Illegal arguments were entered.");
+				return;
+			}else{
+				errorPublisher.publish("An error occurred.");
 			}
 		}
 		

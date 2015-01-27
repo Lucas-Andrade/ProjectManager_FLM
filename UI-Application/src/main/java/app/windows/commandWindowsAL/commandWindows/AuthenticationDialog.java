@@ -104,16 +104,16 @@ public class AuthenticationDialog extends JDialog
 		textField[0] = nameField;
 		textField[1] = passwordField;
 
-		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setBackground(new Color(51, 204, 255));
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.anchor = GridBagConstraints.SOUTH;
-		gbc_btnNewButton.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnNewButton.gridwidth = 4;
-		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 2;
-		authenticationPanel.add(btnNewButton, gbc_btnNewButton);
+		JButton loginButton = new JButton("Login");
+		loginButton.setBackground(new Color(51, 204, 255));
+		GridBagConstraints gbc_LoginButton = new GridBagConstraints();
+		gbc_LoginButton.insets = new Insets(0, 0, 5, 0);
+		gbc_LoginButton.anchor = GridBagConstraints.SOUTH;
+		gbc_LoginButton.fill = GridBagConstraints.HORIZONTAL;
+		gbc_LoginButton.gridwidth = 4;
+		gbc_LoginButton.gridx = 1;
+		gbc_LoginButton.gridy = 2;
+		authenticationPanel.add(loginButton, gbc_LoginButton);
 
 		ActionListener login = new ActionListener() {
 			@Override
@@ -123,7 +123,7 @@ public class AuthenticationDialog extends JDialog
 				dispose();
 			}
 		};
-		btnNewButton.addActionListener(login);
+		loginButton.addActionListener(login);
 		KeyListener loginEnterKey = new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e)
@@ -142,7 +142,8 @@ public class AuthenticationDialog extends JDialog
 			{
 			}
 		};
-		btnNewButton.addKeyListener(loginEnterKey);
+		this.getRootPane().setDefaultButton( loginButton );
+		loginButton.addKeyListener(loginEnterKey);
 		pack();
 	}
 	
