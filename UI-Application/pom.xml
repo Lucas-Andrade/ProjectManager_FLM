@@ -36,7 +36,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>app.AppMainFrame</mainClass>
+							<mainClass>app.AppUI</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -60,6 +60,19 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.18</version>
 			</plugin>
+			<plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-shade-plugin</artifactId>
+            	<version>2.2</version>
+            	<executions>
+                	<execution>
+                   		<phase>package</phase>
+                    	<goals>
+                        	<goal>shade</goal>
+                    	</goals>
+                	</execution>
+            	</executions>
+       		</plugin>
 		</plugins>
 	</build>
 	
