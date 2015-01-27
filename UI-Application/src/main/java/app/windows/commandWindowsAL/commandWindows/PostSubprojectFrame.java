@@ -9,6 +9,14 @@ import javax.swing.JTextField;
 import app.windows.commandWindowsAL.NewSubprojectAL;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
+/**
+ * This {@code Frame} allows to insert the mandatory parameters to add a
+ * subproject to a {@code Project}.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ *
+ */
 public class PostSubprojectFrame extends MainDialogFrame {
 
 	private ProjectID projectId1;

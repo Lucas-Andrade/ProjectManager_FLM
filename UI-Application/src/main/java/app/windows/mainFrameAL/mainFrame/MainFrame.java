@@ -39,6 +39,14 @@ import app.windows.mainFrameAL.PostSubprojectAL;
 import app.windows.mainFrameAL.PostUserAL;
 import app.windows.mainFrameAL.PostWorkerAL;
 
+/**
+ * This class defines the main frame of the main application.
+ * Here are define all the main application components
+ * This is the place where the repositories are storage.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ */
 public class MainFrame extends JFrame implements Authentication.AuthenticationActionListener{
 
 	private static final long serialVersionUID = 1406565561867998589L;
@@ -47,18 +55,30 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 	private static JSplitPane splitPane;
 	public static final FrameAndPanelHolder FRAMES = new FrameAndPanelHolder();
 	
+	/**
+	 * @return splitPane  so we can format it later
+	 */
 	public static JSplitPane getSplitPane(){
 		return splitPane;
 	}
 	
+	/**
+	 * @return the repositoryholder that contains all the needed repositories
+	 */
 	public static RepositoryHolder getRepositories(){
 		return repositories;
 	}
 
+	/**
+	 * Set cursor to wait mode
+	 */
 	public static void setWaitCursor() {
 		splitPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 	}
 	
+	/**
+	 * Set cursor to wait mode
+	 */
 	public static void setNormalCursor() {
 		splitPane.setCursor(Cursor.getDefaultCursor());
 	}
@@ -77,6 +97,7 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		splitPane.setContinuousLayout(true);
 		splitPane.setBackground(new Color(176, 196, 222));
 
+		//horizontal menu bar
 		JMenuBar menuBar = new JMenuBar();
 		this.setJMenuBar(menuBar);
 		menuBar.setBackground(new Color(102, 153, 204));
@@ -144,7 +165,8 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 
 		this.getContentPane().add(splitPane, BorderLayout.CENTER);
 
-
+		
+		// result panel
 		JPanel rightPanel = new JPanel();
 		splitPane.setRightComponent(rightPanel);
 		rightPanel.setLayout(new BorderLayout(0, 0));
@@ -190,6 +212,8 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		Image main = new ImageIcon(cl.getResource("images/Main.png"))
 				.getImage();
 
+		
+		// vertical menu bar
 		JMenuBar vert = new VerticalMenuBar();
 		vert.setBackground(new Color(102, 153, 204));
 

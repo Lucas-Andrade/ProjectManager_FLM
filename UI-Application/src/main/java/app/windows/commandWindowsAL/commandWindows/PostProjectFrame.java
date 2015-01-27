@@ -10,6 +10,14 @@ import javax.swing.JTextField;
 
 import app.windows.commandWindowsAL.NewProjectAL;
 
+/**
+ * This {@code Frame} allows to insert the mandatory parameters to construct a
+ * new {@code Project} and add it to the repository.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ *
+ */
 public class PostProjectFrame extends MainDialogFrame {
 
 	private static final long serialVersionUID = 7362745925938477748L;

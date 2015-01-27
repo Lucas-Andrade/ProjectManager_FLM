@@ -77,7 +77,7 @@ public abstract class MainGetPanel extends JPanel {
 			buttonPane.add(getButton);
 //			getRootPane().setDefaultButton(getButton);
 		}
-		  
+			  
 	}
 
 	/**
