@@ -108,6 +108,10 @@ public class FrameAndPanelHolder {
 		lastPanel = panel;
 		return panel;
 	}
+	
+	public static MainGetPanel getLastPanel() {
+		return lastPanel;
+	}
 
 	/**
 	 * Sets the last used {@code MainDialogFrame} and {@code MainGetPanel}, to
@@ -118,4 +122,6 @@ public class FrameAndPanelHolder {
 		lastDialog.resetAllFields();
 		lastPanel.resetAllFields();
 	}
+	
+	
 }

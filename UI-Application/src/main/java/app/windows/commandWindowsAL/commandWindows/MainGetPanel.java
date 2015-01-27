@@ -18,9 +18,9 @@ public abstract class MainGetPanel extends JPanel {
 	private static final int HEIGHT_BOUND = 387;
 	private final MainPanel mainGetPanel;
 	private JButton getButton;
-	protected static JPanel results;
+	protected JPanel results;
 	
-	public static void setResults(JComponent component) {
+	public void setResults(JComponent component) {
 		results.removeAll();
 		results.setLayout(new BorderLayout(0, 0));
 		results.add(component);

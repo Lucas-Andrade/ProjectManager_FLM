@@ -5,7 +5,7 @@ import javax.swing.JTable;
 
 import app.AppElement;
 import app.elements.IUser;
-import app.windows.commandWindowsAL.commandWindows.MainGetPanel;
+import app.windows.mainFrameAL.FrameAndPanelHolder;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 
 /**
@@ -48,7 +48,7 @@ public class PublishUsersToGetPanel extends PublishToGetPanel{
 		}
 		
 		JTable table = TableBuilder.getTableOfUsers(users);
-		MainGetPanel.setResults(new JScrollPane(table));
+		FrameAndPanelHolder.getLastPanel().setResults(new JScrollPane(table));
 		disposeLoadingDialog();
 	}
 }

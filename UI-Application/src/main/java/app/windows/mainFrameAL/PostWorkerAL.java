@@ -29,7 +29,7 @@ public class PostWorkerAL extends MainFrameActionListener{
 	 */
 	@Override
 	void action(){
-		FrameAndPanelHolder.setDialogVisible("PostConsultant");
+		FrameAndPanelHolder.setDialogVisible("PostWorkerInProject");
 	}
 
 }

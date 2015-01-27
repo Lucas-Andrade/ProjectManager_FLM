@@ -4,7 +4,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTree;
 
 import app.AppElement;
-import app.windows.commandWindowsAL.commandWindows.MainGetPanel;
+import app.windows.mainFrameAL.FrameAndPanelHolder;
 
 /**
  * Allows to publish information about {@code AppElement}s indirectly to the
@@ -32,7 +32,7 @@ public class PublishToGetPanel extends ResultsPublisherWithLoadingDialog{
 	public void publish(AppElement[] appElements) {
 		
 		JTree tree = TreeBuilder.getTree(appElements);
-		MainGetPanel.setResults(new JScrollPane(tree));
+		FrameAndPanelHolder.getLastPanel().setResults(new JScrollPane(tree));
 		disposeLoadingDialog();
 	}
 }
