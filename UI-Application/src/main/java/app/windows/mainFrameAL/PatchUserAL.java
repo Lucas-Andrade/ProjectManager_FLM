@@ -1,7 +1,6 @@
 package app.windows.mainFrameAL;
 
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.PatchUserFrame;
 
 /**
  * Class responsible for calling the {@code PatchUserFrame}. Extends
@@ -33,7 +32,7 @@ public class PatchUserAL extends MainFrameActionListener
 	@Override
 	void action()
 	{
-		new PatchUserFrame().setVisible(true);
+		FrameAndPanelHolder.setDialogVisible("PatchUser");
 	}
 
 }

@@ -142,6 +142,14 @@ public class PostProjectFrame extends MainDialogFrame {
 		this.getSaveButton().addActionListener(new NewProjectAL(textFields));
 		
 		pack();
-		this.setVisible(true);
+	}
+
+
+	@Override
+	public void resetAllFields() {
+		longitudeField.setText("");
+		nameField.setText("");
+		priceField.setText("");
+		latitudeField.setText("");
 	}
 }

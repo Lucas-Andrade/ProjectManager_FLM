@@ -145,7 +145,15 @@ public class PostConsultantFrame extends MainDialogFrame {
 		textFields[2] = bonus;
 		
 		this.getSaveButton().addActionListener(new NewConsultantAL(textFields));
-		this.setVisible(true);
 		pack();
+	}
+
+
+	@Override
+	public void resetAllFields() {
+		nameField.setText("");
+		priceHour.setText("");
+		bonus.setText("");
+		rdbtnManager.setText("");
 	}
 }

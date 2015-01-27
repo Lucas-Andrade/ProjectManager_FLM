@@ -1,7 +1,6 @@
 package app.windows.mainFrameAL;
 
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.PatchConsultantFrame;
 
 /**
  * Class responsible for calling the {@code PatchConsultantFrame}. Extends
@@ -31,7 +30,7 @@ public class PatchConsultantAL extends MainFrameActionListener
 	 */
 	@Override
 	void action(){
-		new PatchConsultantFrame().setVisible(true);
+		FrameAndPanelHolder.setDialogVisible("PatchConsultant");
 	}
 
 }

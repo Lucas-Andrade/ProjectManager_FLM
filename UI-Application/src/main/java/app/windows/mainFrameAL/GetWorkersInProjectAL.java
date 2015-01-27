@@ -1,7 +1,6 @@
 package app.windows.mainFrameAL;
 
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.GetWorkersInProjectPanel;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 /**
@@ -32,7 +31,7 @@ public class GetWorkersInProjectAL extends MainFrameActionListener
 	 */
 	@Override
 	void action(){
-		MainFrame.getSplitPane().setRightComponent(new GetWorkersInProjectPanel());
+		MainFrame.getSplitPane().setRightComponent(FrameAndPanelHolder.getPanel("GetWorkersInProject"));
 	}
 
 }

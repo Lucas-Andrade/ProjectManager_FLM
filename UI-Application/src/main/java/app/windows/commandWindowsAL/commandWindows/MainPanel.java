@@ -20,6 +20,7 @@ public class MainPanel extends JPanel
 	private JLabel mainImageLabel;
 	private JLabel titleLabel;
 	private JLabel helpLabel;
+	private JLabel lblRegistryuser;
 
 	public void setImage(String imagePath)
 	{
@@ -94,15 +95,18 @@ public class MainPanel extends JPanel
 		gbc_lblWellcome.gridy = 1;
 		this.add(lblWellcome, gbc_lblWellcome);
 
-		JLabel lblRegistryuser = new JLabel(Authentication
-				.getAuthenticatedUser().getFullName());
+		lblRegistryuser = new JLabel();
 		GridBagConstraints gbcRegistryuser = new GridBagConstraints();
 		gbcRegistryuser.insets = new Insets(0, 0, 5, 0);
 		gbcRegistryuser.gridx = 8;
 		gbcRegistryuser.gridy = 1;
 		this.add(lblRegistryuser, gbcRegistryuser);
-		
-		
+	}
+	
+	public void setFrameUser() {
+		String nameOfUser = Authentication.getAuthenticatedUser().getFullName();
+		lblRegistryuser.setText(nameOfUser);
+		lblRegistryuser.updateUI();
 	}
 
 }

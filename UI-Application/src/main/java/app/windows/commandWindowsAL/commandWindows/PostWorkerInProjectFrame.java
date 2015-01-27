@@ -61,11 +61,16 @@ public class PostWorkerInProjectFrame extends MainDialogFrame {
 		gbc_Manager.gridx = 3;
 		gbc_Manager.gridy = 5;
 		getMainDialogPanel().add(workerID, gbc_Manager);
-	
-		this.setVisible(true);
 		
 		this.getSaveButton().addActionListener(new NewWorkerInProjectAL(projectId.getProjectIDField(), workerID));
 		pack();
 		
+	}
+
+
+	@Override
+	public void resetAllFields() {
+		projectId.resetAllFields();
+		workerID.resetAllFields();	
 	}
 }

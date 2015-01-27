@@ -55,5 +55,8 @@ public class ProjectID extends JPanel {
 	{
 		return projectID;
 	}
+	public void resetAllFields() {
+		projectID.setText("");
+	}
 
 }

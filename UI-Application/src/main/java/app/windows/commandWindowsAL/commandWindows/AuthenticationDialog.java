@@ -22,8 +22,7 @@ import javax.swing.border.EmptyBorder;
 import app.authentication.Authentication;
 import app.repositoryHolders.RepositoryHolder;
 
-public class AuthenticationDialog extends JDialog
-{
+public class AuthenticationDialog extends JDialog{
 
 	private static final long serialVersionUID = 9190969392304934338L;
 	private final JPanel authenticationPanel = new JPanel();
@@ -32,8 +31,7 @@ public class AuthenticationDialog extends JDialog
 	private JPasswordField passwordField;
 
 
-	public AuthenticationDialog(RepositoryHolder repoHolder)
-	{
+	public AuthenticationDialog(RepositoryHolder repoHolder){
 		setResizable(false);
 
 		this.setTitle("Login");

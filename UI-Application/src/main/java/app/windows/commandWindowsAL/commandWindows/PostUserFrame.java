@@ -136,4 +136,13 @@ public class PostUserFrame extends MainDialogFrame {
 		
 		pack();
 	}
+
+
+	@Override
+	public void resetAllFields() {
+		nameField.setText("");
+		passwordField.setText("");
+		emailField.setText("");
+		fullNameField.setText("");
+	}
 }

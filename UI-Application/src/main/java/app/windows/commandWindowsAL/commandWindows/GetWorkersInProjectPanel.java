@@ -92,4 +92,13 @@ public class GetWorkersInProjectPanel extends MainGetPanel {
 		this.setVisible(true);
 	}
 
+
+	@Override
+	public void resetAllFields() {
+		projectId.resetAllFields();
+		manager.setText("");
+		label.setText("");
+		consultants.setText("");
+	}
+
 }

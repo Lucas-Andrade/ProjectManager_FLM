@@ -1,7 +1,6 @@
 package app.windows.mainFrameAL;
 
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.PostWorkerInProjectFrame;
 
 /**
  * Class responsible for calling the {@code PostWorkerFrame}. Extends
@@ -10,8 +9,7 @@ import app.windows.commandWindowsAL.commandWindows.PostWorkerInProjectFrame;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015
  */
-public class PostWorkerAL extends MainFrameActionListener
-{
+public class PostWorkerAL extends MainFrameActionListener{
 
 	/**
 	 * Call to the constructor of the {@code super} class.
@@ -22,8 +20,7 @@ public class PostWorkerAL extends MainFrameActionListener
 	 *            The {@code Authentication} to check if any {@code User} is
 	 *            authenticated.
 	 */
-	public PostWorkerAL(RepositoryHolder repositories)
-	{
+	public PostWorkerAL(RepositoryHolder repositories){
 		super(repositories);
 	}
 
@@ -31,9 +28,8 @@ public class PostWorkerAL extends MainFrameActionListener
 	 * @see super{@link #action()}
 	 */
 	@Override
-	void action()
-	{
-		new PostWorkerInProjectFrame().setVisible(true);
+	void action(){
+		FrameAndPanelHolder.setDialogVisible("PostConsultant");
 	}
 
 }

@@ -25,6 +25,7 @@ import app.elements.IUser;
 import app.repositoryHolders.RepositoryHolder;
 import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
 import app.windows.mainFrameAL.DeleteProjectAL;
+import app.windows.mainFrameAL.FrameAndPanelHolder;
 import app.windows.mainFrameAL.GetProjectsAL;
 import app.windows.mainFrameAL.GetSubprojectsAL;
 import app.windows.mainFrameAL.GetUserAL;
@@ -44,6 +45,7 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 	public static final int PANEL_DIVIDER_LOCATION = 120;
 	private static RepositoryHolder repositories;
 	private static JSplitPane splitPane;
+	public static final FrameAndPanelHolder FRAMES = new FrameAndPanelHolder();
 	
 	public static JSplitPane getSplitPane(){
 		return splitPane;
@@ -71,7 +73,7 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		
 		this.setTitle("Project Manager");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(800, 500);
+		this.setSize(850, 500);
 		splitPane.setContinuousLayout(true);
 		splitPane.setBackground(new Color(176, 196, 222));
 
