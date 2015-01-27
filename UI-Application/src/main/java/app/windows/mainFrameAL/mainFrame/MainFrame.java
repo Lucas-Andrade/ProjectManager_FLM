@@ -2,6 +2,7 @@ package app.windows.mainFrameAL.mainFrame;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -21,7 +22,6 @@ import javax.swing.JSplitPane;
 
 import app.authentication.Authentication;
 import app.elements.IUser;
-import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
 import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
 import app.windows.mainFrameAL.DeleteProjectAL;
@@ -38,18 +38,12 @@ import app.windows.mainFrameAL.PostSubprojectAL;
 import app.windows.mainFrameAL.PostUserAL;
 import app.windows.mainFrameAL.PostWorkerAL;
 
-public class MainFrame extends JFrame implements Authentication.AuthenticationActionListener
-{
+public class MainFrame extends JFrame implements Authentication.AuthenticationActionListener{
 
 	private static final long serialVersionUID = 1406565561867998589L;
 	public static final int PANEL_DIVIDER_LOCATION = 120;
 	private static RepositoryHolder repositories;
 	private static JSplitPane splitPane;
-	
-	public static void main(String[] args)
-	{
-		new MainFrame(new InMemoryRepositoryHolder()).setVisible(true);
-	}
 	
 	public static JSplitPane getSplitPane(){
 		return splitPane;
@@ -59,11 +53,18 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		return repositories;
 	}
 
+	public static void setWaitCursor() {
+		splitPane.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+	}
+	
+	public static void setNormalCursor() {
+		splitPane.setCursor(Cursor.getDefaultCursor());
+	}
+	
 	private JLabel logo;
 
-
 	public MainFrame(RepositoryHolder repositories){
-
+		
 		MainFrame.splitPane = new JSplitPane();
 		MainFrame.repositories = repositories;
 		this.setBackground(new Color(176, 196, 222));

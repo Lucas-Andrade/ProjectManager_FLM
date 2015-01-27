@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -50,5 +51,6 @@ public class LoadingDialog extends JDialog{
 		label = new JLabel();
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(label, gbc);
+		setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 	}
 }

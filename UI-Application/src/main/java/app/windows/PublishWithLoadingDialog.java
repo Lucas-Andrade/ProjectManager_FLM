@@ -3,6 +3,7 @@ package app.windows;
 import java.util.List;
 
 import app.windows.mainFrameAL.mainFrame.LoadingDialog;
+import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 /**
  * Super class of all {@code Publishers} that use a {@code LoadingDialog}, while
@@ -44,11 +45,13 @@ public abstract class PublishWithLoadingDialog {
 		if (shouldCreateWindow){
 			loadingDialog.setMessage(chunks.get(0));
 			loadingDialog.setVisible(true);
+			MainFrame.setWaitCursor();
 		}
 	}
 
 	protected void disposeLoadingDialog() {
 		shouldCreateWindow = false;
 		loadingDialog.dispose();
+		MainFrame.setNormalCursor();
 	}
 }
