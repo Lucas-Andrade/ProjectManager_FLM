@@ -3,12 +3,18 @@ package app.windows.commandWindowsAL.commandWindows;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+/**
+ * Instances of this abstract class define the main Panel of all the GET
+ * {@code command} windows
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ */
 public abstract class MainGetPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -36,14 +42,25 @@ public abstract class MainGetPanel extends JPanel {
 		mainGetPanel.setImage(imagePath);
 	}
 	
+	/**
+	 * Method that allows the user to insert different Titles in each child class
+	 * @param title
+	 */
 	public void setTitleLabel(String title){
 		mainGetPanel.setTitleLabel(title);
 	}
 	
+	/**
+	 * Method that allows the user to insert different help tip in each child class
+	 * @param help
+	 */
 	public void setHelpTip(String help){
 		mainGetPanel.setHelpTip(help);
 	}
 
+	/**
+	 * @return getButton
+	 */
 	public JButton getGetButton(){
 		return getButton;
 	}
@@ -54,9 +71,7 @@ public abstract class MainGetPanel extends JPanel {
 	 * Create the frame.
 	 */
 	public MainGetPanel() {
-	//	this.setDefaultCloseOperation(JPanel.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
-		
 		
 		mainGetPanel = new MainPanel();
 		mainGetPanel.setBackground(new Color(176, 196, 222));
@@ -75,9 +90,7 @@ public abstract class MainGetPanel extends JPanel {
 			getButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/Ok.png")));
 			getButton.setActionCommand("GET");
 			buttonPane.add(getButton);
-//			getRootPane().setDefaultButton(getButton);
-		}
-			  
+		}	  
 	}
 
 	/**
@@ -87,10 +100,14 @@ public abstract class MainGetPanel extends JPanel {
 		return mainGetPanel;
 	}
 	
+	
 	public void setFrameUser() {
 		mainGetPanel.setFrameUser();
 	}
 	
+	/**
+	 * This method when called, reset all text fields
+	 */
 	public abstract void resetAllFields();
 	
 }

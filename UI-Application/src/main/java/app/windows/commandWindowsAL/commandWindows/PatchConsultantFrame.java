@@ -4,13 +4,17 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.io.IOException;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
 import app.windows.commandWindowsAL.SetConsultantAL;
 
-
+/**
+ * This {@code Frame} allows to insert the mandatory parameters to modify a
+ * {@code Consultant}'s properties.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ */
 public class PatchConsultantFrame extends MainDialogFrame {
 
 	private static final long serialVersionUID = -2220765203521766381L;

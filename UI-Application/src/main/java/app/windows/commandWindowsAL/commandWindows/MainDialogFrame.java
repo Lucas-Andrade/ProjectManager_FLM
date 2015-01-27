@@ -5,11 +5,18 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+
+/**
+ * Instances of this abstract class define the main Dialog frames of all the non GET
+ * {@code command} windows
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ */
 
 public abstract class MainDialogFrame extends JDialog {  
 
@@ -27,14 +34,25 @@ public abstract class MainDialogFrame extends JDialog {
 		mainDialogPanel.setImage(imagePath);
 	}
 	
+	/**
+	 * Method that allows the user to insert different Titles in each child class
+	 * @param title
+	 */
 	public void setTitleLabel(String title){
 		mainDialogPanel.setTitleLabel(title);
 	}
 	
+	/**
+	 * Method that allows the user to insert different help tip in each child class
+	 * @param help
+	 */
 	public void setHelpTip(String help){
 		mainDialogPanel.setHelpTip(help);
 	}
 	
+	/**
+	 * @return saveButton
+	 */
 	public JButton getSaveButton(){
 		return saveButton;
 	}
@@ -97,6 +115,9 @@ public abstract class MainDialogFrame extends JDialog {
 		mainDialogPanel.setFrameUser();
 	}
 
+	/**
+	 * This method when called, reset all text fields
+	 */
 	public abstract void resetAllFields();
 }
 

@@ -5,16 +5,19 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import app.authentication.Authentication;
 
-public class MainPanel extends JPanel
-{
+/**
+ * This class instances define the main Panel of all {@code Command} Frames
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ */
+public class MainPanel extends JPanel {
 
 	private static final long serialVersionUID = -4646635210489120110L;
 	private JLabel mainImageLabel;
@@ -22,21 +25,29 @@ public class MainPanel extends JPanel
 	private JLabel helpLabel;
 	private JLabel lblRegistryuser;
 
-	public void setImage(String imagePath)
-	{
+	/**
+	 * This method allows set the image of all classes that instantiate a MainPanel
+	 * @param imagePath
+	 */
+	public void setImage(String imagePath){
 		mainImageLabel.setIcon(new ImageIcon(MainDialogFrame.class
 				.getClassLoader().getResource(imagePath)));
-		mainImageLabel.setOpaque(false);
-		
+		mainImageLabel.setOpaque(false);	
 	}
 
-	public void setTitleLabel(String title)
-	{
+	/**
+	 * This method allows set the title of the panel of all classes that instantiate a MainPanel
+	 * @param title
+	 */
+	public void setTitleLabel(String title){
 		titleLabel.setText(title);
 	}
 
-	public void setHelpTip(String help)
-	{
+	/**
+	 * This method allows set the Help Tip of all classes that instantiate a MainPanel
+	 * @param help
+	 */
+	public void setHelpTip(String help){
 		helpLabel.setToolTipText(help);
 	}
 
@@ -103,6 +114,9 @@ public class MainPanel extends JPanel
 		this.add(lblRegistryuser, gbcRegistryuser);
 	}
 	
+	/**
+	 * This method allows to set the name of the authenticated user at the panel.
+	 */
 	public void setFrameUser() {
 		String nameOfUser = Authentication.getAuthenticatedUser().getFullName();
 		lblRegistryuser.setText(nameOfUser);
