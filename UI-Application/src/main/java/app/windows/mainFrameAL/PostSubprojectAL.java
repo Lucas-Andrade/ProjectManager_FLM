@@ -1,7 +1,6 @@
 package app.windows.mainFrameAL;
 
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.PostSubprojectFrame;
 
 /**
  * Class responsible for calling the {@code PostSubprojectFrame}. Extends
@@ -33,7 +32,7 @@ public class PostSubprojectAL extends MainFrameActionListener
 	@Override
 	void action()
 	{
-		new PostSubprojectFrame().setVisible(true);
+		FrameAndPanelHolder.setDialogVisible("PostSubproject");
 	}
 
 }

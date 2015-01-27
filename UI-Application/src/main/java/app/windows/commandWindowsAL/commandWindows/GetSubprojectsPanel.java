@@ -3,7 +3,6 @@ package app.windows.commandWindowsAL.commandWindows;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
@@ -38,8 +37,6 @@ public class GetSubprojectsPanel extends MainGetPanel {
 		gbc_lblProjectID.gridy = 3;
 		getMainGetPanel().add(projectId, gbc_lblProjectID);
 		
-		this.getGetButton().addActionListener((ActionListener) new GetSubprojectAL(projectId.getProjectIDField()));
-		
 		results = new JPanel();
 		GridBagConstraints gbc_results = new GridBagConstraints();
 		gbc_results.gridwidth = 8;
@@ -50,8 +47,12 @@ public class GetSubprojectsPanel extends MainGetPanel {
 		getMainGetPanel().add(results, gbc_results);
 		
 		this.getGetButton().addActionListener(new GetSubprojectAL(projectId.getProjectIDField()));
+	}
+
+	@Override
+	public void resetAllFields() {
+		projectId.resetAllFields();
 		
-		this.setVisible(true);
 	}
 
 }

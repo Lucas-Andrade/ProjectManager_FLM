@@ -11,7 +11,6 @@ import javax.swing.JTextField;
 
 import app.windows.commandWindowsAL.SetUserAL;
 
-
 public class PatchUserFrame extends MainDialogFrame {
 
 	private static final long serialVersionUID = 5293797614254495165L;
@@ -127,7 +126,15 @@ public class PatchUserFrame extends MainDialogFrame {
 		this.getSaveButton().addActionListener(new SetUserAL(nameField, passFields));
 				
 		pack();
-		this.setVisible(true);		
+	}
+
+
+	@Override
+	public void resetAllFields() {
+		nameField.setText("");
+		passwordField.setText("");
+		newPasswordField.setText("");
+		validateNewPassField.setText("");
 	}
 
 }

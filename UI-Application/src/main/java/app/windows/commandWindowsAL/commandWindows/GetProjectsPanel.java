@@ -52,4 +52,9 @@ public class GetProjectsPanel extends MainGetPanel {
 		
 		this.setVisible(true);
 	}
+
+	@Override
+	public void resetAllFields() {
+		projectId.resetAllFields();
+	}
 }

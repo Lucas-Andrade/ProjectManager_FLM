@@ -46,7 +46,6 @@ public abstract class MainDialogFrame extends JDialog {
 	 */
 	public MainDialogFrame() {
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		this.setVisible(true);
 		mainDialogPanel = new MainPanel();
 		mainDialogPanel.setBackground(new Color(176, 196, 222));
 		this.setLocationRelativeTo(null);
@@ -87,12 +86,17 @@ public abstract class MainDialogFrame extends JDialog {
 	}
 	
 	private class CancelActionListener implements ActionListener{
-
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			dispose();
 		}
-		
 	}
+	
+	public void setFrameUser() {
+		mainDialogPanel.setFrameUser();
+	}
+
+	public abstract void resetAllFields();
 }
 

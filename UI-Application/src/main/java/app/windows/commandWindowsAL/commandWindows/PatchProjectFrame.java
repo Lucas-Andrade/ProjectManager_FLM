@@ -156,7 +156,16 @@ public class PatchProjectFrame extends MainDialogFrame {
 		this.getSaveButton().addActionListener(new SetProjectAL(textFields));
 		
 		pack();
-		this.setVisible(true);
+	}
+
+
+	@Override
+	public void resetAllFields() {
+		longitudeField.setText("");
+		nameField.setText("");
+		priceField.setText("");
+		projectId.resetAllFields();
+		latitudeField.setText("");
 	}
 
 }

@@ -87,6 +87,12 @@ public abstract class MainGetPanel extends JPanel {
 		return mainGetPanel;
 	}
 	
+	public void setFrameUser() {
+		mainGetPanel.setFrameUser();
+	}
+	
+	public abstract void resetAllFields();
+	
 }
 
 	

@@ -104,6 +104,10 @@ public class GetUserPanel extends MainGetPanel {
 		getMainGetPanel().add(results, gbc_results);
 
 		this.getGetButton().addActionListener(new app.windows.commandWindowsAL.GetUserAL(userID, allUsers));
-		this.setVisible(true);
+	}
+
+	@Override
+	public void resetAllFields() {
+		userID.setText("");
 	}
 }

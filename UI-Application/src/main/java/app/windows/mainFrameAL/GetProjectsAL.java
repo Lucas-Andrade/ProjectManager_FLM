@@ -1,7 +1,6 @@
 package app.windows.mainFrameAL;
 
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.GetProjectsPanel;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 public class GetProjectsAL extends MainFrameActionListener {
@@ -12,7 +11,7 @@ public class GetProjectsAL extends MainFrameActionListener {
 
 	@Override
 	void action() {
-		MainFrame.getSplitPane().setRightComponent(new GetProjectsPanel());
+		MainFrame.getSplitPane().setRightComponent(FrameAndPanelHolder.getPanel("GetProjects"));
 	}
 
 

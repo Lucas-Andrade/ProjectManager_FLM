@@ -1,7 +1,6 @@
 package app.windows.mainFrameAL;
 
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.PostProjectFrame;
 
 /**
  * Class responsible for calling the {@code PostProjectFrame}. Extends
@@ -30,7 +29,7 @@ public class PostProjectAL extends MainFrameActionListener{
 	 */
 	@Override
 	void action(){
-		new PostProjectFrame().setVisible(true);
+		FrameAndPanelHolder.setDialogVisible("PostProject");
 	}
 
 }

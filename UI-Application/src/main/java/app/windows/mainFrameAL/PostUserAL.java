@@ -1,7 +1,6 @@
 package app.windows.mainFrameAL;
 
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.PostUserFrame;
 
 /**
  * Class responsible for calling the {@code PostUserFrame}. Extends
@@ -10,8 +9,7 @@ import app.windows.commandWindowsAL.commandWindows.PostUserFrame;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015
  */
-public class PostUserAL extends MainFrameActionListener
-{
+public class PostUserAL extends MainFrameActionListener{
 
 	/**
 	 * Call to the constructor of the {@code super} class.
@@ -22,8 +20,7 @@ public class PostUserAL extends MainFrameActionListener
 	 *            The {@code Authentication} to check if any {@code User} is
 	 *            authenticated.
 	 */
-	public PostUserAL(RepositoryHolder repositories)
-	{
+	public PostUserAL(RepositoryHolder repositories){
 		super(repositories);
 	}
 
@@ -31,9 +28,8 @@ public class PostUserAL extends MainFrameActionListener
 	 * @see super{@link #action()}
 	 */
 	@Override
-	void action()
-	{
-		new PostUserFrame().setVisible(true);
+	void action(){
+		FrameAndPanelHolder.setDialogVisible("PostUser");
 	}
 
 }

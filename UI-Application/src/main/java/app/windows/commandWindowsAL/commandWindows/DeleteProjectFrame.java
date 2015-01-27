@@ -40,5 +40,10 @@ public class DeleteProjectFrame extends MainDialogFrame {
 		pack();
 	}
 
+	@Override
+	public void resetAllFields() {
+		projectId.resetAllFields();
+	}
+
 
 }

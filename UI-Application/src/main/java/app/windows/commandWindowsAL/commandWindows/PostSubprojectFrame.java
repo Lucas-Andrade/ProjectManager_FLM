@@ -19,6 +19,9 @@ import app.windows.mainFrameAL.mainFrame.ProjectID;
  */
 public class PostSubprojectFrame extends MainDialogFrame {
 
+	private ProjectID projectId1;
+	private ProjectID subprojectId;
+	
 	private static final long serialVersionUID = -8218293500239308528L;
 
 
@@ -36,7 +39,7 @@ public class PostSubprojectFrame extends MainDialogFrame {
 		this.setTitleLabel("Add Subproject");
 		this.setHelpTip("Add a subproject to a projects/subprojects.");
 			
-		ProjectID projectId1 = new ProjectID();
+		projectId1 = new ProjectID();
 		GridBagConstraints gbc_ProjectID = new GridBagConstraints();
 		gbc_ProjectID.gridwidth = 5;
 		gbc_ProjectID.insets = new Insets(0, 0, 5, 5);
@@ -46,7 +49,7 @@ public class PostSubprojectFrame extends MainDialogFrame {
 		getMainDialogPanel().add(projectId1, gbc_ProjectID);
 		
 		
-		ProjectID subprojectId = new ProjectID();
+		subprojectId = new ProjectID();
 		GridBagConstraints gbc_subprojectID = new GridBagConstraints();
 		gbc_subprojectID.gridwidth = 5;
 		gbc_subprojectID.anchor = GridBagConstraints.SOUTHEAST;
@@ -62,7 +65,13 @@ public class PostSubprojectFrame extends MainDialogFrame {
 		textFields[1] = subprojectId.getProjectIDField();
 		this.getSaveButton().addActionListener(new NewSubprojectAL(textFields));
 		
-		this.setVisible(true);
 		pack();
 		}
+
+
+	@Override
+	public void resetAllFields() {
+		projectId1.resetAllFields();
+		subprojectId.resetAllFields();
 	}
+}

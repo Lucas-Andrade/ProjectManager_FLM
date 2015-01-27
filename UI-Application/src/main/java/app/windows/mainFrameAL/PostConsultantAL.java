@@ -1,7 +1,6 @@
 package app.windows.mainFrameAL;
 
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.PostConsultantFrame;
 
 /**
  * Class responsible for calling the {@code PostConsultantFrame}. Extends
@@ -33,7 +32,7 @@ public class PostConsultantAL extends MainFrameActionListener
 	@Override
 	void action()
 	{
-		new PostConsultantFrame().setVisible(true);
+		FrameAndPanelHolder.setDialogVisible("PostConsultant");
 	}
 
 }

@@ -114,4 +114,11 @@ public class WorkerID extends JPanel {
 	public void setName(String text){
 		rdbtnConsultants.setText(text);
 	}
+
+
+	public void resetAllFields() {
+		consultants.setText("");
+		managerId.setText("");
+		rdbtnConsultants.setSelected(true);
+	}
 }

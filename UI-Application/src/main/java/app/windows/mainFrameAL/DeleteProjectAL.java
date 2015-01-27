@@ -1,7 +1,6 @@
 package app.windows.mainFrameAL;
 
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.DeleteProjectFrame;
 
 /**
  * Class responsible for calling the {@code DeleteProjectFrame}. Extends
@@ -33,7 +32,7 @@ public class DeleteProjectAL extends MainFrameActionListener
 	@Override
 	void action()
 	{
-		new DeleteProjectFrame().setVisible(true);
+		FrameAndPanelHolder.setDialogVisible("DeleteProject");
 	}
 
 }

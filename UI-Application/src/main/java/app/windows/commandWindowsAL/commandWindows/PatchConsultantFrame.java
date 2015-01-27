@@ -113,6 +113,14 @@ public class PatchConsultantFrame extends MainDialogFrame {
 		this.getSaveButton().addActionListener(new SetConsultantAL(textFields));
 		
 		pack();
-		this.setVisible(true);
+	}
+
+
+	@Override
+	public void resetAllFields() {
+		nameField.setText("");
+		priceHour.setText("");;
+		lblConsultant.setText("");;
+		consultantId.setText("");;
 	}
 }
