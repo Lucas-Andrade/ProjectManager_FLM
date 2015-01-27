@@ -10,6 +10,16 @@ import app.windows.commandWindowsAL.NewWorkerInProjectAL;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 import app.windows.mainFrameAL.mainFrame.WorkerID;
 
+/**
+ * This {@code Frame} allows to insert the mandatory parameters to add
+ * {@code AWorker}s to a {@code Project}. It allows both to add {@code AWorker}s
+ * to the {@code Team}, and to set a new {@code Leader} as the {@code Project}'s
+ * {@code Leader}.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ *
+ */
 public class PostWorkerInProjectFrame extends MainDialogFrame {
 
 	

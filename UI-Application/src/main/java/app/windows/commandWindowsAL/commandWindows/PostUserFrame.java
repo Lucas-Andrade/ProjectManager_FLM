@@ -13,6 +13,14 @@ import app.windows.commandWindowsAL.NewUserAL;
 
 import java.awt.GridBagLayout;
 
+/**
+ * This {@code Frame} allows to insert the mandatory parameters to construct a
+ * new {@code User} and add it to the repository.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ *
+ */
 public class PostUserFrame extends MainDialogFrame {
 
 	private static final long serialVersionUID = -9059883587666020207L;
