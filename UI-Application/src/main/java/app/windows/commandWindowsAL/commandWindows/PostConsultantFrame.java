@@ -14,7 +14,14 @@ import javax.swing.JTextField;
 
 import app.windows.commandWindowsAL.NewConsultantAL;
 
-
+/**
+ * This {@code Frame} allows to insert the mandatory parameters to construct a
+ * new {@code AWorker} and add it to the repository.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ *
+ */
 public class PostConsultantFrame extends MainDialogFrame {
 
 	private static final long serialVersionUID = 8060989086766838002L;
