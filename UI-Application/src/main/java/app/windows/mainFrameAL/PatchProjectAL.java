@@ -9,8 +9,7 @@ import app.repositoryHolders.RepositoryHolder;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015
  */
-public class PatchProjectAL extends MainFrameActionListener
-{
+public class PatchProjectAL extends MainFrameActionListener {
 
 	/**
 	 * Call to the constructor of the {@code super} class.
@@ -21,8 +20,7 @@ public class PatchProjectAL extends MainFrameActionListener
 	 *            The {@code Authentication} to check if any {@code User} is
 	 *            authenticated.
 	 */
-	public PatchProjectAL(RepositoryHolder repositories)
-	{
+	public PatchProjectAL(RepositoryHolder repositories) {
 		super(repositories);
 	}
 
@@ -30,8 +28,7 @@ public class PatchProjectAL extends MainFrameActionListener
 	 * @see super{@link #action()}
 	 */
 	@Override
-	void action()
-	{
+	void action() {
 		FrameAndPanelHolder.setDialogVisible("PatchProject");
 	}
 

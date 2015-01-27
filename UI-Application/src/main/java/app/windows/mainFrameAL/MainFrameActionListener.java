@@ -16,8 +16,7 @@ import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015
  */
-public abstract class MainFrameActionListener implements ActionListener
-{
+public abstract class MainFrameActionListener implements ActionListener {
 
 	/**
 	 * The {@code RepositoryHolder} with the {@code UserRepository}.
@@ -30,8 +29,7 @@ public abstract class MainFrameActionListener implements ActionListener
 	 * @param repositories
 	 *            The {@code RepositoryHolder} with the {@code UserRepository}.
 	 */
-	public MainFrameActionListener(RepositoryHolder repositories)
-	{
+	public MainFrameActionListener(RepositoryHolder repositories) {
 		this.repositories = repositories;
 	}
 
@@ -41,13 +39,10 @@ public abstract class MainFrameActionListener implements ActionListener
 	 * not calls the {@code AuthenticationDialog}.
 	 */
 	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		if (Authentication.isAuthenticated())
-		{
+	public void actionPerformed(ActionEvent e){
+		if (Authentication.isAuthenticated()){
 			this.action();
-		} else
-		{
+		} else {
 			new AuthenticationDialog(repositories).setVisible(true);
 		}
 	}

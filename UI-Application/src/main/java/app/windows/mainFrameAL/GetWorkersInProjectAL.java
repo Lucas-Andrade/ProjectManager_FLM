@@ -10,8 +10,7 @@ import app.windows.mainFrameAL.mainFrame.MainFrame;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015
  */
-public class GetWorkersInProjectAL extends MainFrameActionListener
-{
+public class GetWorkersInProjectAL extends MainFrameActionListener {
 
 	/**
 	 * Call to the constructor of the {@code super} class.

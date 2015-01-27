@@ -42,11 +42,9 @@ public class ProjectID extends JPanel {
 		gbc_projectID.gridx = 1;
 		gbc_projectID.gridy = 0;
 		add(projectID, gbc_projectID);
-		projectID.setColumns(10);
-		
-		
-		
+		projectID.setColumns(10);	
 	}
+	
 	public void setName(String text){
 		lblProjectID.setText(text);
 	}

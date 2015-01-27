@@ -9,8 +9,7 @@ import app.repositoryHolders.RepositoryHolder;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015
  */
-public class PatchConsultantAL extends MainFrameActionListener
-{
+public class PatchConsultantAL extends MainFrameActionListener {
 
 	/**
 	 * Call to the constructor of the {@code super} class.
