@@ -3,14 +3,19 @@ package app.windows.commandWindowsAL.commandWindows;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
 import app.windows.commandWindowsAL.SetProjectAL;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
-
+/**
+ * This {@code Frame} allows to insert the mandatory parameters to perform
+ * alterations to a project's properties.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ *
+ */
 public class PatchProjectFrame extends MainDialogFrame {
 
 	private static final long serialVersionUID = -256281858791279368L;

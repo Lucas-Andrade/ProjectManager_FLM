@@ -7,13 +7,18 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-
+/**
+ * This {@code MainGetPanel} allows to insert the mandatory parameters to allows
+ * to get all {@code User}'s or a specified {@code User} from the repository.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ */
 public class GetUserPanel extends MainGetPanel {
 	
 	private static final long serialVersionUID = -457464140944368035L;

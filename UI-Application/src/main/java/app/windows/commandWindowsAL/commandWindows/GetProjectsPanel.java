@@ -3,13 +3,18 @@ package app.windows.commandWindowsAL.commandWindows;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-
 import javax.swing.JPanel;
-
 import app.windows.commandWindowsAL.GetProjectAL;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
-
+/**
+ * This {@code MainGetPanel} allows to insert the mandatory parameters to get a
+ * {@code Project} from the repository.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ *
+ */
 public class GetProjectsPanel extends MainGetPanel {
 
 	private static final long serialVersionUID = -1075896035298801798L;

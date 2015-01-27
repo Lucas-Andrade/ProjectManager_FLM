@@ -6,7 +6,13 @@ import java.awt.Insets;
 import app.windows.commandWindowsAL.RemoveProjectAL;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
-
+/**
+ * This {@code MainDialogFrame} allows to insert the mandatory parameters to
+ * remove a {@code Project} and it's subprojects from the repository. 
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015 *
+ */
 public class DeleteProjectFrame extends MainDialogFrame {
 
 	private static final long serialVersionUID = 1L;

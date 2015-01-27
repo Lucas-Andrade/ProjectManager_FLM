@@ -3,15 +3,21 @@ package app.windows.commandWindowsAL.commandWindows;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-
 import app.windows.commandWindowsAL.GetWorkersAL;
 import app.windows.mainFrameAL.mainFrame.ProjectID;
 
+/**
+ * This {@code MainGetPanel} allows to insert the mandatory parameters to get the
+ * {@code Team} or the {@code Manager} of a particular {@code Project}.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 19/01/2015
+ *
+ */
 public class GetWorkersInProjectPanel extends MainGetPanel {
 
 	private static final long serialVersionUID = 3937953220998193520L;
