@@ -12,8 +12,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
 
 import app.windows.commandWindowsAL.commandWindows.MainDialogFrame;
@@ -21,7 +19,6 @@ import app.windows.commandWindowsAL.commandWindows.MainDialogFrame;
 public class ErrorDialog extends JDialog {
 	
 	private static final long serialVersionUID = -8117762702441573121L;
-	private JPanel errorPanel = new JPanel();
 	private JLabel mainImageLabel;
 	private JLabel errorMessage;
 	
@@ -36,13 +33,6 @@ public class ErrorDialog extends JDialog {
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0};
 		getContentPane().setLayout(gridBagLayout);
-		errorPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		GridBagConstraints gbc_errorPanel = new GridBagConstraints();
-		gbc_errorPanel.insets = new Insets(0, 0, 5, 5);
-		gbc_errorPanel.fill = GridBagConstraints.BOTH;
-		gbc_errorPanel.gridx = 0;
-		gbc_errorPanel.gridy = 0;
-		getContentPane().add(errorPanel, gbc_errorPanel);
 		getContentPane().setBackground(new Color(176, 196, 222));
 		
 		mainImageLabel = new JLabel("");

@@ -110,9 +110,9 @@ public class SetUserAL implements ActionListener {
 			return false;
 		}
 
-		if (!(newPassword == validateNewPass)) {
+		if (!(newPassword.equals(validateNewPass))) {
 			new ErrorDialog(
-					"New Passord and confirmation Password do not match")
+					"New Password and confirmation Password do not match")
 					.setVisible(true);
 			return false;
 		}
