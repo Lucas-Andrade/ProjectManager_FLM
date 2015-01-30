@@ -2,20 +2,18 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>ProjectManager-Applications</artifactId>
+	<artifactId>ProjectManager-Applications-DistributedApplication</artifactId>
 	<packaging>pom</packaging>
 
 	<parent>
 		<groupId>flm.manager.project</groupId>
-		<artifactId>ProjectManager</artifactId>
+		<artifactId>ProjectManager-Applications</artifactId>
 		<version>0.3.2-SNAPSHOT</version>
 	</parent>
 
 	<modules>
-		<module>ConsoleApplication</module>
-		<module>DistributedApplication</module>
-		<module>GUI</module>
-		<module>UIApplication</module>
+		<module>Client</module>
+		<module>Server</module>
 	</modules>
 
 </project>

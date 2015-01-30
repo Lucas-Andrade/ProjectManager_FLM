@@ -2,16 +2,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-        <groupId>project.backend</groupId>
-		<artifactId>backend</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-    </parent>
-    
-    
-	<groupId>project.backend.domain</groupId>
-	<artifactId>backend-domain-pom</artifactId>
-	<version>1.0.0.0-SNAPSHOT</version>
+	<artifactId>ProjectManager-Backend-Domain</artifactId>
 	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>flm.manager.project</groupId>
+		<artifactId>ProjectManager-Backend</artifactId>
+		<version>0.3.2-SNAPSHOT</version>
+	</parent>
 
 </project>
