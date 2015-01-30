@@ -9,9 +9,16 @@
     </parent>
     
     
-	<groupId>project.backend.domain</groupId>
-	<artifactId>backend-domain-pom</artifactId>
+	<groupId>project.backend.parser</groupId>
+	<artifactId>backend-parser-pom</artifactId>
 	<version>1.0.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
+	<dependencies>
+		<dependency>
+			<groupId>project.backend.domain</groupId>
+			<artifactId>backend-domain</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
 </project>
