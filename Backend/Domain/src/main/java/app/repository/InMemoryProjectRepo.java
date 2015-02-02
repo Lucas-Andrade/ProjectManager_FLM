@@ -1,12 +1,10 @@
 package app.repository;
 
-import java.util.Collection;
-import java.util.TreeSet;
-
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import org.json.JSONObject;
-
 import utils.Project;
-import utils.ProjectComparator;
 import app.AppElement;
 
 /**
@@ -22,8 +20,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	/**
 	 * {@code Collection} that stores the {@code Project}s of this repository.
 	 */
-	private static Collection<Project> projects = new TreeSet<>(
-			new ProjectComparator());
+	private static Map<Long, Project> projects = Collections.synchronizedMap(new HashMap<>());
 
 	/**
 	 * The last PID attributed to a {@link Project} plus one.
@@ -41,8 +38,9 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	/**
 	 * @see ProjectsRepository#addProject(Project)
 	 */
-	public boolean addProject(Project project) {
-		if (projects.add(project)) {
+	public boolean addProject(ProjectCreationDescriptor<?> creationDescriptor) {
+	
+		if (projects.put(NEXT_PID_TO_BE_USED, creationDescriptor.build(NEXT_PID_TO_BE_USED)) != null) {
 			NEXT_PID_TO_BE_USED++;
 			return true;
 		}
@@ -54,7 +52,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	 */
 	@Override
 	public boolean removeProject(Project project) {
-		return projects.remove(project);
+		return projects.remove(project.getPID(), project);
 	}
 
 	/**
@@ -71,7 +69,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		for (Project project : projects){
+		for (Project project : projects.values()){
 			builder.append(project.toString()).append("\n");
 		}
 		return builder.toString();
@@ -82,12 +80,8 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	 */
 	@Override
 	public Project getProjectById(long projectId) {
-		for (Project project : projects){
-			if (project.getPID() == projectId){
-				return project;
-			}
-		}
-		return null;
+		Project project = projects.get(projectId);
+      	return project;
 	}
 
 	/**
@@ -105,7 +99,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	public Project[] getAll() {
 		Project[] all = new Project[this.size()];
 		int i = 0;
-		for (Project ele : projects){
+		for (Project ele : projects.values()){
 			all[i++] = ele;
 		}
 		return all;
@@ -122,9 +116,15 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	@Override
 	public JSONObject getJson() {
 		JSONObject json = new JSONObject();
-		for (AppElement ele : projects){
+		for (AppElement ele : projects.values()){
 			json.accumulate("All projects", ele.getJson());
 		}
 		return json;
+	}
+
+	@Override
+	public boolean addProject(Project project) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

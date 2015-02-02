@@ -43,7 +43,7 @@ public class Project implements IProject{
 	 * @param pid
 	 *            - the project's identification (PID).
 	 */
-	public Project(String name, Local local, Leader manager, Team team, long pid){
+	private Project(String name, Local local, Leader manager, Team team, long pid){
 		if (name == null || local == null || team == null){
 			throw new IllegalArgumentException("Name, Local and Team can't be null.");
 		}
