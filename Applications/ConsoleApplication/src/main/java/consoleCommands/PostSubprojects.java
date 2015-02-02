@@ -1,9 +1,10 @@
-package parserCommands;
+package consoleCommands;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import outputMethods.Result;
+import parserUtils.CommandFactory;
+import parserUtils.ParserResult;
 import utils.Project;
 import app.AppElement;
 import app.domainCommands.AddSubprojectToRepo;
@@ -90,7 +91,7 @@ public class PostSubprojects extends BaseCommandUserAuthentication {
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters){
+		public Callable<ParserResult> newInstance(Map<String, String> parameters){
 			return new PostSubprojects(uRepository, repository, parameters);
 		}
 	}

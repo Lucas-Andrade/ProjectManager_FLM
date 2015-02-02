@@ -1,11 +1,11 @@
-package parserCommands;
+package consoleCommands;
 
 import java.io.FileNotFoundException;
 import java.util.Map;
 
+import consoleCommands.exceptions.InvalidUserException;
+import consoleCommands.exceptions.MandatoryParameterNotPresentException;
 import outputMethods.Result;
-import parserCommands.exceptions.InvalidUserException;
-import parserCommands.exceptions.MandatoryParameterNotPresentException;
 import app.AppElement;
 import app.elements.User;
 import app.repository.UserRepository;

@@ -1,12 +1,13 @@
-package parserCommands;
+package consoleCommands;
 
 import java.io.FileNotFoundException;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import consoleCommands.exceptions.InvalidUserException;
+import consoleCommands.exceptions.MandatoryParameterNotPresentException;
 import outputMethods.Result;
-import parserCommands.exceptions.InvalidUserException;
-import parserCommands.exceptions.MandatoryParameterNotPresentException;
+import parserUtils.ParserResult;
 import app.AppElement;
 
 /**
@@ -20,7 +21,7 @@ import app.AppElement;
  *            this#call()}).
  * @since 08/12/2014
  */
-public abstract class BaseCommand implements Callable<Result>{
+public abstract class BaseCommand implements Callable<ParserResult>{
 
 	/**
 	 * The {@code Command} arguments. These are required by some {@code Command}

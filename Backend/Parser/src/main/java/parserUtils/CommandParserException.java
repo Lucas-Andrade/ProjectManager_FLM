@@ -1,4 +1,5 @@
-package commandParser;
+package parserUtils;
+import parser.CommandParser;
 
 /**
  * {@link CommandParser} exceptions.

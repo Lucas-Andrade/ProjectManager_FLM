@@ -1,4 +1,4 @@
-package parserCommands.exceptions;
+package consoleCommands.exceptions;
 
 /**
  * Base class for {@link Command} exceptions.

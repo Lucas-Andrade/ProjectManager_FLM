@@ -1,9 +1,10 @@
-package parserCommands;
+package consoleCommands;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import outputMethods.Result;
+import parserUtils.CommandFactory;
+import parserUtils.ParserResult;
 import app.AppElement;
 import app.domainCommands.AddUserToRepo;
 import app.domainCommands.exceptions.IllegalEmailException;
@@ -105,7 +106,7 @@ public class PostUsers extends BaseCommandUserAuthentication{
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters){
+		public Callable<ParserResult> newInstance(Map<String, String> parameters){
 			return new PostUsers(uRepository, parameters);
 		}
 

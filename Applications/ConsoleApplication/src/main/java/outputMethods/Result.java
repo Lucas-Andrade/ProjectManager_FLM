@@ -11,6 +11,7 @@ import outputMethods.destination.ToFile;
 import outputMethods.destination.Writable;
 import outputMethods.format.TextParser;
 import outputMethods.format.ToTextPlain;
+import parserUtils.ParserResult;
 
 
 /**
@@ -20,7 +21,7 @@ import outputMethods.format.ToTextPlain;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 28/12/2014
  */
-public class Result{
+public class Result implements ParserResult{
 
 	/**
 	 * The results from a Command execution.
