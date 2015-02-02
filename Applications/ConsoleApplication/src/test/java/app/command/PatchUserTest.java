@@ -8,7 +8,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import parserCommands.PatchUser;
+import consoleCommands.PatchUser;
 import app.RepositoryBuilder;
 import app.repository.InMemoryUserRepo;
 

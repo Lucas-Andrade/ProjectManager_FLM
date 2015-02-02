@@ -1,10 +1,10 @@
-package parserCommands;
+package consoleCommands;
 
 import java.io.FileNotFoundException;
 import java.util.Map;
 
+import consoleCommands.exceptions.MandatoryParameterNotPresentException;
 import outputMethods.Result;
-import parserCommands.exceptions.MandatoryParameterNotPresentException;
 
 /**
  * Abstract Command to be supported by all Commands that support different

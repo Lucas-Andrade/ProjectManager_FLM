@@ -1,9 +1,6 @@
-package parserCommands;
-
+package parserUtils;
 import java.util.Map;
 import java.util.concurrent.Callable;
-
-import outputMethods.Result;
 
 /**
  * Contract to be supported by all {@link Command} Factories. Each
@@ -21,5 +18,5 @@ public interface CommandFactory{
 	 *            The {@code Command} arguments.
 	 * @return
 	 */
-	public Callable<Result> newInstance(Map<String, String> parameters);
+	public Callable<ParserResult> newInstance(Map<String, String> parameters);
 }

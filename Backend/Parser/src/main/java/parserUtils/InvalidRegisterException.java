@@ -1,5 +1,4 @@
-package commandParser;
-
+package parserUtils;
 /**
  * Class whose instances represent {@code CommandParser} errors that result from
  * trying to obtain an unknown command.

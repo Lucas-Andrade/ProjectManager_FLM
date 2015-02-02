@@ -1,16 +1,16 @@
-package parserCommands;
+package consoleCommands;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import outputMethods.Result;
+import parserUtils.CommandFactory;
+import parserUtils.ParserResult;
 import utils.Project;
 import app.AppElement;
 import app.domainCommands.GetProjectFromRepo;
 import app.domainCommands.exceptions.NoSuchProjectException;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
-import commandParser.CommandParser;
 
 /**
  * Class whose instances are commands that return the {@link Project} with specified {@code PID}
@@ -64,7 +64,7 @@ public class GetProjects extends BaseCommandResultsOutputMethod{
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<Result> newInstance(Map<String, String> parameters)	{
+		public Callable<ParserResult> newInstance(Map<String, String> parameters)	{
 			return new GetProjects(repository, parameters);
 		}
 	}

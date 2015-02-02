@@ -8,7 +8,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import parserCommands.PostProjects;
+import consoleCommands.PostProjects;
 import utils.Local;
 import utils.Project;
 import app.RepositoryBuilder;

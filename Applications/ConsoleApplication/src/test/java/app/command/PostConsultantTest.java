@@ -8,7 +8,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import parserCommands.PostConsultant;
+import consoleCommands.PostConsultant;
 import utils.Consultant;
 import utils.Leader;
 import app.RepositoryBuilder;

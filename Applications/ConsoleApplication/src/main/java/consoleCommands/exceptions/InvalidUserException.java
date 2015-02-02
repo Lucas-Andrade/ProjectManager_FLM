@@ -1,7 +1,4 @@
-/**
- * 
- */
-package parserCommands.exceptions;
+package consoleCommands.exceptions;
 
 import java.text.MessageFormat;
 
