@@ -38,7 +38,7 @@ public class WorkerCreationDescriptor {
 	}
 	
 	
-	public ProjectCreationDescriptor latitude(double lat) {
+	public WorkerCreationDescriptor latitude(double lat) {
 		this.latitude = lat;
 		return this;
 	}

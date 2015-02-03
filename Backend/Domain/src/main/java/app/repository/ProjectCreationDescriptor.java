@@ -10,7 +10,7 @@ import utils.Project;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 03/02/2015
  */
-public abstract class ProjectCreationDescriptor {
+public class ProjectCreationDescriptor {
 
 	/**
 	 * Holds the latitude of the {@code Project}'s {@code Local}.
