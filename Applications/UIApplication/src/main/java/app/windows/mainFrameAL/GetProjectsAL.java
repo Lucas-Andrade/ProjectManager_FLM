@@ -1,7 +1,7 @@
 package app.windows.mainFrameAL;
 
 import app.windows.mainFrameAL.mainFrame.MainFrame;
-import repositoryHolders.RepositoryHolder;
+import app.repositoryHolders.RepositoryHolder;
 
 public class GetProjectsAL extends MainFrameActionListener {
 

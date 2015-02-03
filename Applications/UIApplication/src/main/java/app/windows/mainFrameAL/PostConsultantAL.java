@@ -1,6 +1,6 @@
 package app.windows.mainFrameAL;
 
-import repositoryHolders.RepositoryHolder;
+import app.repositoryHolders.RepositoryHolder;
 
 /**
  * Class responsible for calling the {@code PostConsultantFrame}. Extends

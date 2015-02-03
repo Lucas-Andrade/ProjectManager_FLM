@@ -6,13 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import app.domainCommands.Command;
+import app.domainCommands.GetProjectWorkersFromRepo;
 import app.windows.PublishTeamToGetPanel;
 import app.windows.PublishToErrorDialog;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
-import domainCommands.Command;
-import domainCommands.GetProjectWorkersFromRepo;
+
 
 /**
  * Class responsible for instantiating the {@code Command}

@@ -3,6 +3,8 @@ package app.windows;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import utils.AWorker;
+import app.AppElement;
 import app.windows.mainFrameAL.FrameAndPanelHolder;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 

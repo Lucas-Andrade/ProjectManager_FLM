@@ -35,9 +35,9 @@ import app.windows.mainFrameAL.PostProjectAL;
 import app.windows.mainFrameAL.PostSubprojectAL;
 import app.windows.mainFrameAL.PostUserAL;
 import app.windows.mainFrameAL.PostWorkerAL;
-import authentication.Authentication;
-import elements.IUser;
-import repositoryHolders.RepositoryHolder;
+import app.authentication.Authentication;
+import app.elements.IUser;
+import app.repositoryHolders.RepositoryHolder;
 
 /**
  * This class defines the main frame of the main application.

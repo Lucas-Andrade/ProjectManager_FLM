@@ -4,8 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
-import authentication.Authentication;
-import repositoryHolders.RepositoryHolder;
+import app.authentication.Authentication;
+import app.repositoryHolders.RepositoryHolder;
 
 /**
  * Class responsible for implementing the {@link ActionListener}s for the

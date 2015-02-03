@@ -45,10 +45,10 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 	 * Calls the {@code Command} and returns its result. Any exception this action may throw is 
 	 * caught here and a message is published to the {@code ErrorPublisher}.
 	 * @return The array of {@code AppElement} returned by the {@code call()} of the {@code Command}.
-	 * @throws CommandExecutionException 
+	 * @throws Exception 
 	 */
 	@Override
-	protected AppElement[] doInBackground() throws CommandExecutionException {
+	protected AppElement[] doInBackground() throws Exception {
 		
 		publish("<html>Applying changes<br>to the database.<br></html>");
 		return command.call();

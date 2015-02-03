@@ -5,14 +5,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
+import app.domainCommands.Command;
+import app.domainCommands.GetProjectFromRepo;
 import app.windows.PublishToErrorDialog;
 import app.windows.PublishToGetPanel;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
-import domainCommands.Command;
-import domainCommands.GetProjectFromRepo;
-import domainCommands.GetSubprojectsFromRepo;
+
 
 /**
  * Class responsible for instantiating the {@code Command}

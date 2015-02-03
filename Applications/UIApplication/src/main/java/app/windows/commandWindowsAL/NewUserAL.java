@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import app.domainCommands.AddUserToRepo;
+import app.domainCommands.Command;
 import app.windows.PublishToErrorDialog;
 import app.windows.PublishUsersToMainFrame;
 import app.windows.SwingWorkerCommand;

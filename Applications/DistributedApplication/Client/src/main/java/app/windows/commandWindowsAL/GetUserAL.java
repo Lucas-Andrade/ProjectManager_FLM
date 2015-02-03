@@ -6,14 +6,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import app.domainCommands.Command;
+import app.domainCommands.GetAllUsersFromRepo;
+import app.domainCommands.GetUserFromRepo;
 import app.windows.PublishToErrorDialog;
 import app.windows.PublishUsersToGetPanel;
 import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
-import domainCommands.Command;
-import domainCommands.GetAllUsersFromRepo;
-import domainCommands.GetUserFromRepo;
+
 
 /**
  * Class responsible for instantiating the {@code Command}
@@ -85,12 +86,9 @@ public class GetUserAL implements ActionListener {
 				.getUsersRepo());
 	}
 
+	
 	private Command getOneUser() {
-//		if (username.length() == 0) {
-//			new ErrorDialog("The username field was left blank.")
-//					.setVisible(true);
-//			return;
-//		}
+
 		return new GetUserFromRepo(MainFrame.getRepositories()
 				.getUsersRepo(), username);
 	}
