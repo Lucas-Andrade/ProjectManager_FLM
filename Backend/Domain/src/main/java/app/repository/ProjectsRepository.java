@@ -9,7 +9,7 @@ import app.AppElement;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface ProjectsRepository extends Repository<AppElement>{
+public interface ProjectsRepository extends Repository<AppElement> {
 
 	/**
 	 * Get's the {@code Project} with the supplied PID from the repository.
@@ -27,13 +27,14 @@ public interface ProjectsRepository extends Repository<AppElement>{
 	public long getNextPID();
 
 	/**
-	 * Adds a {@code Project} to the repository.
+	 * Creates and adds a {@code Project} to the repository.
 	 * 
 	 * @param project
-	 *            The Project to add.
+	 *            The {@code ProjectCreationDescriptor} with the information
+	 *            necessary to create the {@code Project} to add.
 	 * @return True if successful, False if not.
 	 */
-	public boolean addProject(Project project);
+	public boolean addProject(ProjectCreationDescriptor creationDescriptor);
 
 	/**
 	 * Removes a project from the repository.
@@ -43,7 +44,5 @@ public interface ProjectsRepository extends Repository<AppElement>{
 	 * @return True if successful, False if not.
 	 */
 	boolean removeProject(Project project);
-
-
 
 }

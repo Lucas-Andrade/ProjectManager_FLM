@@ -18,33 +18,36 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 		ProjectsRepository {
 
 	/**
-	 * {@code Collection} that stores the {@code Project}s of this repository.
+	 * {@code Map} that stores the {@code Project}s of this repository.
 	 */
-	private static Map<Long, Project> projects = Collections.synchronizedMap(new HashMap<>());
+	private static final Map<Long, Project> PROJECTS = Collections
+			.synchronizedMap(new HashMap<>());
 
 	/**
 	 * The last PID attributed to a {@link Project} plus one.
 	 */
-	private static long NEXT_PID_TO_BE_USED;
+	private volatile static long NEXT_PID_TO_BE_USED;
 
 	/**
-	 * Constructs a new empty {@code InMemoryProjectRepo}, in which the next {@code PID}
-	 * to be used is set to 1.
+	 * Constructs a new empty {@code InMemoryProjectRepo}, in which the next
+	 * {@code PID} to be used is set to 1.
 	 */
-	public InMemoryProjectRepo(){
+	public InMemoryProjectRepo() {
 		NEXT_PID_TO_BE_USED = 1;
 	}
-	
+
 	/**
 	 * @see ProjectsRepository#addProject(Project)
 	 */
-	public boolean addProject(ProjectCreationDescriptor<?> creationDescriptor) {
-	
-		if (projects.put(NEXT_PID_TO_BE_USED, creationDescriptor.build(NEXT_PID_TO_BE_USED)) != null) {
-			NEXT_PID_TO_BE_USED++;
-			return true;
+	public synchronized boolean addProject(ProjectCreationDescriptor creationDescriptor) {
+		Long newProjectPID = NEXT_PID_TO_BE_USED;
+		Project newProject = creationDescriptor.build(newProjectPID);
+		if (newProject == null) {
+			return false;
 		}
-		return false;
+		PROJECTS.putIfAbsent(newProjectPID, newProject);
+		NEXT_PID_TO_BE_USED++;
+		return true;
 	}
 
 	/**
@@ -52,7 +55,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	 */
 	@Override
 	public boolean removeProject(Project project) {
-		return projects.remove(project.getPID(), project);
+		return PROJECTS.remove(project.getPID(), project);
 	}
 
 	/**
@@ -60,7 +63,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	 */
 	public void removeAll() {
 		NEXT_PID_TO_BE_USED = 1;
-		projects.clear();
+		PROJECTS.clear();
 	}
 
 	/**
@@ -69,7 +72,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		for (Project project : projects.values()){
+		for (Project project : PROJECTS.values()) {
 			builder.append(project.toString()).append("\n");
 		}
 		return builder.toString();
@@ -80,8 +83,8 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	 */
 	@Override
 	public Project getProjectById(long projectId) {
-		Project project = projects.get(projectId);
-      	return project;
+		Project project = PROJECTS.get(projectId);
+		return project;
 	}
 
 	/**
@@ -99,7 +102,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	public Project[] getAll() {
 		Project[] all = new Project[this.size()];
 		int i = 0;
-		for (Project ele : projects.values()){
+		for (Project ele : PROJECTS.values()) {
 			all[i++] = ele;
 		}
 		return all;
@@ -110,21 +113,16 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	 */
 	@Override
 	public int size() {
-		return projects.size();
+		return PROJECTS.size();
 	}
 
 	@Override
 	public JSONObject getJson() {
 		JSONObject json = new JSONObject();
-		for (AppElement ele : projects.values()){
+		for (AppElement ele : PROJECTS.values()) {
 			json.accumulate("All projects", ele.getJson());
 		}
 		return json;
 	}
 
-	@Override
-	public boolean addProject(Project project) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

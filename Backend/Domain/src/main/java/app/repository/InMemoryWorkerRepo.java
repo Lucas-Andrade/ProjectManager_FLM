@@ -1,15 +1,19 @@
 package app.repository;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeSet;
 
 import org.json.JSONObject;
 
 import app.AppElement;
-import app.elements.WorkerComparator;
 import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
+import utils.Project;
+import utils.WorkerComparator;
 
 /**
  * An {@link AWorker}s in memory {@link Repository}.
@@ -21,15 +25,14 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 		WorkerRepository {
 
 	/**
-	 * {@code Collection} that stores the {@code AWorker}s of this repository.
+	 * {@code Map} that stores the {@code AWorker}s of this repository.
 	 */
-	private static final Collection<AWorker> WORKERS = new TreeSet<>(
-			new WorkerComparator());
+	private static final Map<Long, AWorker> WORKERS = Collections.synchronizedMap(new HashMap<Long, AWorker>());
 
 	/**
 	 * The last CID attributed to an {@link AWorker} plus one.
 	 */
-	private static long NEXT_CID_TO_BE_USED;
+	private volatile static long NEXT_CID_TO_BE_USED;
 
 	/**
 	 * Constructs a new empty {@code InMemoryWorkerRepo}, in which the next {@code CID}
@@ -51,16 +54,30 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 * @see WorkerRepository#addManager(Leader)
 	 */
 	@Override
-	public boolean addManager(Leader manager){
-		return addToRepo(manager);
+	public boolean addManager(leaderCreationDescriptor creationDescriptor){
+		Long newManagerCID = NEXT_CID_TO_BE_USED;
+		AWorker newManager = creationDescriptor.build(newManagerCID);
+		if (newManager == null) {
+			return false;
+		}
+		WORKERS.putIfAbsent(newManagerCID, newManager);
+		NEXT_CID_TO_BE_USED++;
+		return true;
 	}
 
 	/**
 	 * @see WorkerRepository#addManager(Leader)
 	 */
 	@Override
-	public boolean addConsultant(Consultant consultant){
-		return addToRepo(consultant);
+	public boolean addConsultant(consultantCreationDescriptor creationDescriptor){
+		Long newConsultantCID = NEXT_CID_TO_BE_USED;
+		AWorker newConsultant = creationDescriptor.build(newConsultantCID);
+		if (newConsultant == null) {
+			return false;
+		}
+		WORKERS.putIfAbsent(newConsultantCID, newConsultant);
+		NEXT_CID_TO_BE_USED++;
+		return true;
 	}
 
 	/**
@@ -72,12 +89,15 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 *            The Worker to add.
 	 * @return True if successful, False if not.
 	 */
-	private boolean addToRepo(AWorker worker){
-		if (WORKERS.add(worker)){
-			NEXT_CID_TO_BE_USED++;
-			return true;
+	private boolean addToRepo(workerCreationDescriptor creationDescriptor){
+		Long newWorkerCID = NEXT_CID_TO_BE_USED;
+		AWorker newWorker = creationDescriptor.build(newWorkerCID);
+		if (newWorker == null) {
+			return false;
 		}
-		return false;
+		WORKERS.putIfAbsent(newWorkerCID, newWorker);
+		NEXT_CID_TO_BE_USED++;
+		return true;
 	}
 
 	/**

@@ -1,8 +1,6 @@
-package app.elements;
+package utils;
 
 import java.util.Comparator;
-
-import utils.AWorker;
 
 /**
  * Produces a comparator that allows to compare {@code AWorker} objects using

@@ -11,7 +11,7 @@ import app.AppElement;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public interface WorkerRepository extends Repository<AppElement>{
+public interface WorkerRepository extends Repository<AppElement> {
 
 	/**
 	 * @return The next available CID ({@link AWorker} ID, there can't be more
@@ -20,22 +20,24 @@ public interface WorkerRepository extends Repository<AppElement>{
 	public long nextCID();
 
 	/**
-	 * Method that adds a Manager {@code Leader} to the repository.
+	 * Method that creates and adds a Manager ({@code Leader}) to the repository.
 	 * 
 	 * @param manager
-	 *            The Manager to add.
+	 *            The {@code leaderCreationDescriptor} with the information
+	 *            necessary to create the Manager ({@code Leader}) to add.
 	 * @return True if successful, False if not.
 	 */
-	public boolean addManager(Leader manager);
+	boolean addManager(leaderCreationDescriptor manager);
 
 	/**
-	 * Method that adds a {@code Consultant} to the repository.
+	 * Method that creates and adds a {@code Consultant} to the repository.
 	 * 
 	 * @param consultant
-	 *            The Consultant to add.
+	 *            The {@code consultantCreationDescriptor} with the information
+	 *            necessary to create the {@code Consultant} to add.
 	 * @return True if successful, False if not.
 	 */
-	public boolean addConsultant(Consultant consultant);
+	public boolean addConsultant(consultantCreationDescriptor consultant);
 
 	/**
 	 * Get's the {@code Consultant} with the supplied CID from the repository.
@@ -55,7 +57,7 @@ public interface WorkerRepository extends Repository<AppElement>{
 	 * @return The Manager with the supplied CID, or null if none.
 	 */
 	public Leader getManagerByID(long cid);
-	
+
 	/**
 	 * Get's the Worker ({@link AWorker}) with the supplied CID from the
 	 * repository.

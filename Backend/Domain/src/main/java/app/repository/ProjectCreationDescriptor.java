@@ -8,7 +8,7 @@ import utils.Project;
  *
  * @param <T>
  */
-public abstract class ProjectCreationDescriptor<T extends ProjectCreationDescriptor<?>> {
+public abstract class ProjectCreationDescriptor {
 
 	/**
 	 * Holds the latitude of the project's local
