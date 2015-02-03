@@ -3,12 +3,11 @@ package consoleCommands;
 import java.io.FileNotFoundException;
 import java.util.Map;
 
-import consoleCommands.exceptions.InvalidUserException;
-import consoleCommands.exceptions.MandatoryParameterNotPresentException;
 import outputMethods.Result;
 import app.AppElement;
 import app.elements.User;
 import app.repository.UserRepository;
+import consoleCommands.exceptions.InvalidUserException;
 
 /**
  * Abstract Command to be supported by all Commands that require an {@link User}
@@ -62,18 +61,11 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand{
 	 * parameters (if not stops the execution) and after authenticates the
 	 * {@code User}. If authentication is incorrect throws
 	 * {@link InvalidUserException}, if correct proceeds with the execution.
-	 * @throws MandatoryParameterNotPresentException 
-	 * @throws FileNotFoundException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
-	 * @throws ClassNotFoundException 
-	 * @throws InvalidUserException 
 	 * @throws Exception 
 	 * @throws FileNotFoundException 
 	 */
 	@Override
-	public Result call() throws MandatoryParameterNotPresentException, ClassNotFoundException, 
-			InstantiationException, IllegalAccessException, FileNotFoundException, InvalidUserException {
+	public Result call() throws Exception {
 		validateDemandingParameters(getMandatoryParameters());
 		String username = parameters.get(LOGINNAME);
 		String password = parameters.get(LOGINPASSWORD);
@@ -102,5 +94,5 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand{
 	 * 
 	 * @throws Exception
 	 */
-	abstract protected AppElement[] internalCall();
+	abstract protected AppElement[] internalCall() throws Exception;
 }

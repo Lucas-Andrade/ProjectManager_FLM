@@ -1,11 +1,8 @@
 package app.domainCommands;
 
-import utils.Local;
-import utils.Project;
 import app.AppElement;
 import app.repository.ProjectCreationDescriptor;
 import app.repository.ProjectsRepository;
-import app.repository.UserCreationDescriptor;
 
 /**
  * This {@code Command} allows to construct a new {@code Project} and add it to
@@ -84,7 +81,7 @@ public class AddProjectToRepo implements Command {
 		
 		ProjectCreationDescriptor projectCreation = new ProjectCreationDescriptor(latitude, longitude, name, price);
 
-		pRepo.addProject(projectCreation);
+		long projectId = pRepo.addProject(projectCreation);
 
 		return new AppElement[] { pRepo.getProjectById(projectId) };
 	}

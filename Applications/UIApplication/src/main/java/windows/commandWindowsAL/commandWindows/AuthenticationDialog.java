@@ -17,8 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import authentication.Authentication;
-import repositoryHolders.RepositoryHolder;
 
 /**
  * This {@code JDialog} allows the user to make the necessary authentication to

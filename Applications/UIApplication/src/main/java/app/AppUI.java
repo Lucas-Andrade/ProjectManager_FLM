@@ -1,7 +1,7 @@
 package app;
 
 import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.windows.mainFrameAL.mainFrame.MainFrame;
+import windows.mainFrameAL.mainFrame.MainFrame;
 
 /**
  * This is the main class.

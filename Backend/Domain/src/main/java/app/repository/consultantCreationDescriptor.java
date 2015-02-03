@@ -2,13 +2,13 @@ package app.repository;
 
 import utils.Consultant;
 
-public class consultantCreationDescriptor extends
+public class ConsultantCreationDescriptor extends
 		WorkerCreationDescriptor<Consultant> {
 
 	/**
 	 * An empty constructor for this class.
 	 */
-	public consultantCreationDescriptor() {
+	public ConsultantCreationDescriptor() {
 		super();
 	}
 
@@ -16,8 +16,7 @@ public class consultantCreationDescriptor extends
 	 * A constructor for this class with the fields for creating a
 	 * {@code Consultant}.
 	 */
-	public consultantCreationDescriptor(String name, double costPerHour,
-			double hoursWorked, double bonus) {
+	public ConsultantCreationDescriptor(String name, double costPerHour, double hoursWorked, double bonus) {
 		super(name, costPerHour, hoursWorked, bonus);
 	}
 

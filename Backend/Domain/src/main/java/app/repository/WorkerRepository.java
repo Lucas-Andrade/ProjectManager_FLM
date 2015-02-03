@@ -37,7 +37,7 @@ public interface WorkerRepository extends Repository<AppElement> {
 	 *            necessary to create the {@code Consultant} to add.
 	 * @return The CID if successful, null if not.
 	 */
-	public Long addConsultant(consultantCreationDescriptor consultant);
+	public Long addConsultant(ConsultantCreationDescriptor consultant);
 
 	/**
 	 * Get's the {@code Consultant} with the supplied CID from the repository.

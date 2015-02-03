@@ -8,8 +8,8 @@ import javax.swing.JTable;
 
 import utils.AWorker;
 import app.AppElement;
-import app.windows.mainFrameAL.mainFrame.ErrorDialog;
-import app.windows.mainFrameAL.mainFrame.MainFrame;
+import windows.mainFrameAL.mainFrame.ErrorDialog;
+import windows.mainFrameAL.mainFrame.MainFrame;
 
 /**
  * This class allows to publish information about a {@code Project}'s

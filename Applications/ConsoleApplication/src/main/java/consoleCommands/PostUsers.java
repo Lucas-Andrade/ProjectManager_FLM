@@ -135,12 +135,13 @@ public class PostUsers extends BaseCommandUserAuthentication{
 	 * Creates a new {@code User} and adds it to the {@code UserRepository} (if
 	 * he doesn't exist already and if the Email argument is valid). Outputs
 	 * successful message if successful.
+	 * @throws Exception 
 	 * 
 	 * @see PostUsers#validEmail()
 	 * @see BaseCommandUserAuthentication#internalCall()
 	 */
 	@Override
-	protected AppElement[] internalCall(){
+	protected AppElement[] internalCall() throws Exception{
 		
 		this.username = getParameterAsString(USERNAME);
 		this.password = getParameterAsString(PASSWORD);

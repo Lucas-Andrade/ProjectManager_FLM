@@ -1,14 +1,13 @@
 package consoleCommands;
 
-import java.io.FileNotFoundException;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import consoleCommands.exceptions.InvalidUserException;
-import consoleCommands.exceptions.MandatoryParameterNotPresentException;
 import outputMethods.Result;
 import parserUtils.ParserResult;
 import app.AppElement;
+import app.elements.User;
+import consoleCommands.exceptions.MandatoryParameterNotPresentException;
 
 /**
  * Abstract Command to be supported by all Commands. Establishes the model to be
@@ -49,16 +48,10 @@ public abstract class BaseCommand implements Callable<ParserResult>{
 	 * This method creates an object Result with the {@code DatabaseElement}s
 	 * returned by {@code this#internalCall()}, after validating the mandatory
 	 * parameters (if not stops the execution).
-	 * @throws MandatoryParameterNotPresentException 
-	 * @throws FileNotFoundException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
-	 * @throws ClassNotFoundException 
-	 * @throws InvalidUserException 
+	 * @throws Exception 
 	 */
 	@Override
-	public Result call() throws MandatoryParameterNotPresentException, ClassNotFoundException, 
-			InstantiationException, IllegalAccessException, FileNotFoundException, InvalidUserException {
+	public Result call() throws Exception {
 		validateDemandingParameters(getMandatoryParameters());
 		return new Result(internalCall(), null, null);
 	}
@@ -68,8 +61,9 @@ public abstract class BaseCommand implements Callable<ParserResult>{
 	 * @see Callable#call()
 	 * 
 	 * @return An array of {@code DatabaseElement} 
+	 * @throws Exception 
 	 */
-	abstract protected AppElement[] internalCall();
+	abstract protected AppElement[] internalCall() throws Exception;
 
 	/**
 	 * Checks if all mandatory arguments are in the

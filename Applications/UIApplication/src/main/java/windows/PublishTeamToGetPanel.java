@@ -3,10 +3,8 @@ package windows;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import utils.AWorker;
-import app.AppElement;
-import app.windows.mainFrameAL.FrameAndPanelHolder;
-import app.windows.mainFrameAL.mainFrame.ErrorDialog;
+import windows.mainFrameAL.FrameAndPanelHolder;
+import windows.mainFrameAL.mainFrame.ErrorDialog;
 
 /**
  * Allows to publish information about a {@code Project}'s {@code Team} members

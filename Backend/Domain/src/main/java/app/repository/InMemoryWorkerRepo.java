@@ -3,6 +3,7 @@ package app.repository;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.json.JSONObject;
 
 import app.AppElement;
@@ -66,8 +67,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 * @see WorkerRepository#addConsultant(consultantCreationDescriptor)
 	 */
 	@Override
-	public synchronized Long addConsultant(
-			consultantCreationDescriptor creationDescriptor) {
+	public synchronized Long addConsultant(ConsultantCreationDescriptor creationDescriptor) {
 		Long newConsultantCID = NEXT_CID_TO_BE_USED;
 		AWorker newConsultant = creationDescriptor.build(newConsultantCID);
 		if (newConsultant == null) {

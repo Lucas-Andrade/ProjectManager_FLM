@@ -1,9 +1,9 @@
 package app.domainCommands;
 
-import utils.Consultant;
-import utils.Leader;
 import app.AppElement;
 import app.domainCommands.exceptions.CostOutOfBoundsException;
+import app.repository.ConsultantCreationDescriptor;
+import app.repository.LeaderCreationDescriptor;
 import app.repository.WorkerRepository;
 
 /**
@@ -82,17 +82,15 @@ public class AddConsultantToRepo implements Command {
 			throw new CostOutOfBoundsException("The cost cannot be negative.");
 		}
 
-		long cid = wRepo.nextCID();
-
+		
 		if (bonusString == null) {
-			Consultant consultant = new Consultant(name, priceHour, 0, cid);
-			wRepo.addConsultant(consultant);
-			return new AppElement[] { consultant };
+			ConsultantCreationDescriptor consultantCreation = new ConsultantCreationDescriptor(name, priceHour, 0, 0);
+			return new AppElement[] { wRepo.getConsultantByID(wRepo.addConsultant(consultantCreation)) };
 		} else {
 			double bonus = Double.parseDouble(bonusString);
-			Leader manager = new Leader(name, priceHour, 0, bonus, cid);
-			wRepo.addManager(manager);
-			return new AppElement[] { manager };
+			LeaderCreationDescriptor managerCreation = new LeaderCreationDescriptor(name, priceHour, 0, bonus);
+			
+			return new AppElement[] {wRepo.getManagerByID(wRepo.addManager(managerCreation)) };
 		}
 	}
 

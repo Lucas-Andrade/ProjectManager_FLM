@@ -1,9 +1,7 @@
 package consoleCommands;
 
-import java.io.FileNotFoundException;
 import java.util.Map;
 
-import consoleCommands.exceptions.MandatoryParameterNotPresentException;
 import outputMethods.Result;
 
 /**
@@ -43,15 +41,10 @@ public abstract class BaseCommandResultsOutputMethod extends BaseCommand{
 	 * returned by {@code this#internalCall()} and the output format and
 	 * destination, after validating the mandatory parameters (if not stops the
 	 * execution).
-	 * @throws MandatoryParameterNotPresentException 
-	 * @throws FileNotFoundException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
-	 * @throws ClassNotFoundException 
+	 * @throws Exception 
 	 */
 	@Override
-	public Result call() throws MandatoryParameterNotPresentException, ClassNotFoundException, 
-			InstantiationException, IllegalAccessException, FileNotFoundException {
+	public Result call() throws Exception {
 		validateDemandingParameters(getMandatoryParameters());
 		return new Result(internalCall(), getResultsOutputDestination(),
 				getResultsOutputFormat());

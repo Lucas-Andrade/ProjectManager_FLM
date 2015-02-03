@@ -14,7 +14,6 @@
 	<modules>
 		<module>ConsoleApplication</module>
 		<module>DistributedApplication</module>
-		<module>GUI</module>
 		<module>UIApplication</module>
 	</modules>
 

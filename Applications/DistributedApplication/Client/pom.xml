@@ -14,7 +14,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>flm.manager.project</groupId>
-			<artifactId>ProjectManager-Applications-GUI</artifactId>
+			<artifactId>ProjectManager-Applications-UIApplication</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
