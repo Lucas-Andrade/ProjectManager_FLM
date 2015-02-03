@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import authentication.Authentication;
+import app.authentication.Authentication;
 
 /**
  * This class instances define the main Panel of all {@code Command} Frames
