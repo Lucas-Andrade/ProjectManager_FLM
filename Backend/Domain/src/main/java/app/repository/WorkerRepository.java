@@ -4,6 +4,8 @@ import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
 import app.AppElement;
+import app.elements.mutable.ConsultantCreationDescriptor;
+import app.elements.mutable.LeaderCreationDescriptor;
 
 /**
  * The interface to be implemented by all {@link AWorker}s {@link Repository}.
@@ -12,12 +14,6 @@ import app.AppElement;
  * @since 08/12/2014
  */
 public interface WorkerRepository extends Repository<AppElement> {
-
-	/**
-	 * @return The next available CID ({@link AWorker} ID, there can't be more
-	 *         than one {@code AWorker} with the same CID).
-	 */
-	public long nextCID();
 
 	/**
 	 * Method that creates and adds a Manager ({@code Leader}) to the repository.

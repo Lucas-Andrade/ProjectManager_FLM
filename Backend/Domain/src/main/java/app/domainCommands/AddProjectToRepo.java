@@ -1,7 +1,7 @@
 package app.domainCommands;
 
 import app.AppElement;
-import app.repository.ProjectCreationDescriptor;
+import app.elements.mutable.ProjectCreationDescriptor;
 import app.repository.ProjectsRepository;
 
 /**

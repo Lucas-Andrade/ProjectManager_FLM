@@ -5,7 +5,7 @@ import app.domainCommands.exceptions.IllegalEmailException;
 import app.domainCommands.exceptions.PasswordLengthOutOfBoundsException;
 import app.domainCommands.exceptions.RepeatedUsernameException;
 import app.elements.User;
-import app.repository.UserCreationDescriptor;
+import app.elements.mutable.UserCreationDescriptor;
 import app.repository.UserRepository;
 
 /**

@@ -7,6 +7,8 @@ import java.util.Map;
 import org.json.JSONObject;
 
 import app.AppElement;
+import app.elements.mutable.ConsultantCreationDescriptor;
+import app.elements.mutable.LeaderCreationDescriptor;
 import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
@@ -37,14 +39,6 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 */
 	public InMemoryWorkerRepo() {
 		NEXT_CID_TO_BE_USED = 1;
-	}
-
-	/**
-	 * @see WorkerRepository#nextCID()
-	 */
-	@Override
-	public long nextCID() {
-		return NEXT_CID_TO_BE_USED;
 	}
 
 	/**

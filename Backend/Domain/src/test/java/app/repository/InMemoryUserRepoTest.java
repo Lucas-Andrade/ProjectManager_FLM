@@ -9,6 +9,8 @@ import app.AppElement;
 import app.RepositoryConstructor;
 import app.elements.Admin;
 import app.elements.IUser;
+import app.elements.User;
+import app.elements.mutable.UserCreationDescriptor;
 import app.repository.InMemoryUserRepo;
 /**
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
@@ -58,12 +60,14 @@ public class InMemoryUserRepoTest {
 	
 	@Test
 	public void shouldNotAddAUserWithUsernameAlreadyUsed(){
-		assertFalse(repo.addUser(RepositoryConstructor.constructUser(1)));
+		User user = RepositoryConstructor.constructUser(1);
+		assertFalse(repo.addUser(new UserCreationDescriptor(user.getLoginPassword(), user.getLoginPassword(), user.getEmail())));
 	}
 	
 	@Test
 	public void shouldAddAUser(){
-		assertTrue(repo.addUser(RepositoryConstructor.constructUser(25489)));
+		User user = RepositoryConstructor.constructUser(25489);
+		assertTrue(repo.addUser(new UserCreationDescriptor(user.getLoginPassword(), user.getLoginPassword(), user.getEmail())));
 	}
 
 	@Test

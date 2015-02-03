@@ -5,6 +5,10 @@ import utils.Leader;
 import utils.Local;
 import utils.Project;
 import app.elements.User;
+import app.elements.mutable.ConsultantCreationDescriptor;
+import app.elements.mutable.LeaderCreationDescriptor;
+import app.elements.mutable.ProjectCreationDescriptor;
+import app.elements.mutable.UserCreationDescriptor;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
 import app.repository.InMemoryWorkerRepo;
@@ -45,8 +49,8 @@ public class RepositoryBuilder {
 
 		for(int i = 1; i <= 5; i++)
 		{
-			Project project = constructProject(repo.getNextPID());
-			repo.addProject(project);
+			Project project = constructProject(0);
+			repo.addProject(new ProjectCreationDescriptor(project.getLocal().getLatitude(), project.getLocal().getLongitude(), project.getLocal().getName(), project.getLocal().getCost()));
 		}
 		repo.getProjectById(3).addProject(repo.getProjectById(4));
 		
@@ -71,7 +75,7 @@ public class RepositoryBuilder {
 		for(int i = 1; i <= 5; i++)
 		{
 			User user = constructUser(i);
-			repo.addUser(user);
+			repo.addUser(new UserCreationDescriptor(user.getLoginName(), user.getLoginPassword(), user.getEmail()));
 		}
 		
 		return repo;
@@ -104,13 +108,13 @@ public class RepositoryBuilder {
 		
 		for(int i = 1; i <= 4; i++) //the value of i represents the value of the CID being used
 		{
-			Consultant cons = constructConsultant(repo.nextCID());
-			repo.addConsultant(cons);
+			Consultant cons = constructConsultant(0);
+			repo.addConsultant(new ConsultantCreationDescriptor(cons.getName(), cons.getCostPerHour(), cons.getWorkerHours()));
 		}
 		for(int i = 5; i <= 6; i++) //the value of i represents the value of the CID being used
 		{
-			Leader mana = constructLeader(repo.nextCID());
-			repo.addManager(mana);
+			Leader mana = constructLeader(0);
+			repo.addManager(new LeaderCreationDescriptor(mana.getName(), mana.getCostPerHour(), mana.getWorkerHours(), mana.getBonus()));
 		}
 		
 		return repo;

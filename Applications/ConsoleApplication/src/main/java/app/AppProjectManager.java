@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import app.elements.mutable.UserCreationDescriptor;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
 import app.repository.InMemoryWorkerRepo;
@@ -204,7 +205,7 @@ public class AppProjectManager{
 		DEFAULT_SYSTEM_OUT.println("*********************************");
 
 		DEFAULT_SYSTEM_OUT.println("\n Create Administrator");
-		DEFAULT_SYSTEM_OUT.println("LoginName: Admin1");
+		DEFAULT_SYSTEM_OUT.println("LoginName: admin1");
 		DEFAULT_SYSTEM_OUT.print("Insert New password:");
 		String password = scanner.nextLine();
 
@@ -213,8 +214,8 @@ public class AppProjectManager{
 					.println("Password must at least have 4 characters.\nInsert password:");
 			password = scanner.nextLine();
 		}
-		userRepo.addAdmin("Admin1", password);
-
+		userRepo.addUser(new UserCreationDescriptor("admin1", password, "admin1@administration.com"));
+		
 		do{
 			DEFAULT_SYSTEM_OUT
 					.println("\nInsert the command you want to execute:");

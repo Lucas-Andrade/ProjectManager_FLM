@@ -3,9 +3,12 @@ package app.repository;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.json.JSONObject;
+
 import utils.Project;
 import app.AppElement;
+import app.elements.mutable.ProjectCreationDescriptor;
 
 /**
  * Abstract class whose purpose will be to store all projects in the memory and
@@ -85,14 +88,6 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	public Project getProjectById(long projectId) {
 		Project project = PROJECTS.get(projectId);
 		return project;
-	}
-
-	/**
-	 * @see ProjectsRepository#getNextPID()
-	 */
-	@Override
-	public long getNextPID() {
-		return NEXT_PID_TO_BE_USED;
 	}
 
 	/**
