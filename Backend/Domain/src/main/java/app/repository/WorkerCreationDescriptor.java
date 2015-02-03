@@ -33,7 +33,7 @@ public abstract class WorkerCreationDescriptor<T extends AWorker> {
 	 * Bonus received by the worker for being a leader or a manager.
 	 */
 	protected double bonus;
-	
+
 	/**
 	 * An empty constructor for this class.
 	 */
@@ -42,7 +42,7 @@ public abstract class WorkerCreationDescriptor<T extends AWorker> {
 
 	/**
 	 * A constructor for this class with the fields for creating a
-	 * {@code Project}.
+	 * {@code AWorker}.
 	 */
 	public WorkerCreationDescriptor(String name, double costPerHour,
 			double hoursWorked, double bonus) {
@@ -52,26 +52,62 @@ public abstract class WorkerCreationDescriptor<T extends AWorker> {
 		this.bonus = bonus;
 	}
 
+	/**
+	 * Method to update the {@code this#name}.
+	 * 
+	 * @param name
+	 *            The name for the {@code AWorker}.
+	 * @return {@code this}.
+	 */
 	public WorkerCreationDescriptor<T> name(String name) {
 		this.name = name;
 		return this;
 	}
 
+	/**
+	 * Method to update the {@code this#costPerHour}.
+	 * 
+	 * @param costPerHour
+	 *            Price receive by the worker for one hour of work.
+	 * @return {@code this}.
+	 */
 	public WorkerCreationDescriptor<T> costPerHour(long costPerHour) {
 		this.costPerHour = costPerHour;
 		return this;
 	}
 
+	/**
+	 * Method to update the {@code this#hoursWorked}.
+	 * 
+	 * @param hoursWorked
+	 *            Total of hours worked by the worker.
+	 * @return {@code this}.
+	 */
 	public WorkerCreationDescriptor<T> hoursWorked(long hoursWorked) {
 		this.hoursWorked = hoursWorked;
 		return this;
 	}
 
+	/**
+	 * Method to update the {@code this#bonus}.
+	 * 
+	 * @param bonus
+	 *            Bonus received by the worker for being a leader or a manager.
+	 * @return {@code this}.
+	 */
 	public WorkerCreationDescriptor<T> bonus(long bonus) {
 		this.bonus = bonus;
 		return this;
 	}
 
+	/**
+	 * Method that instantiates an {@code AWorker} with the fields from
+	 * {@code this} object.
+	 * 
+	 * @param cid
+	 *            The CID of the {@code AWorker} to be created.
+	 * @return The created {@code AWorker}.
+	 */
 	public abstract T build(Long newWorkerCID);
 
 }
