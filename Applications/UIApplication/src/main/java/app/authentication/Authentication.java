@@ -11,8 +11,8 @@ import javax.swing.SwingWorker;
 import app.elements.IUser;
 import app.repository.UserRepository;
 import app.repositoryHolders.RepositoryHolder;
-import windows.mainFrameAL.mainFrame.ErrorDialog;
-import windows.mainFrameAL.mainFrame.LoadingDialog;
+import app.windows.mainFrameAL.mainFrame.ErrorDialog;
+import app.windows.mainFrameAL.mainFrame.LoadingDialog;
 
 /**
  * Class that logs in and logs out an {@code IUser}. It's able to tell if there
