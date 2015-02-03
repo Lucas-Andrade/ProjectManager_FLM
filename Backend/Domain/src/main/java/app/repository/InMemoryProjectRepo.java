@@ -37,17 +37,17 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	}
 
 	/**
-	 * @see ProjectsRepository#addProject(Project)
+	 * @see ProjectsRepository#addProject(ProjectCreationDescriptor)
 	 */
-	public synchronized boolean addProject(ProjectCreationDescriptor creationDescriptor) {
+	public synchronized Long addProject(ProjectCreationDescriptor creationDescriptor) {
 		Long newProjectPID = NEXT_PID_TO_BE_USED;
 		Project newProject = creationDescriptor.build(newProjectPID);
 		if (newProject == null) {
-			return false;
+			return null;
 		}
 		PROJECTS.putIfAbsent(newProjectPID, newProject);
 		NEXT_PID_TO_BE_USED++;
-		return true;
+		return newProjectPID;
 	}
 
 	/**

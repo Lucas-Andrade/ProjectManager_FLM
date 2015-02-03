@@ -2,12 +2,12 @@ package app.repository;
 
 import utils.Leader;
 
-public class leaderCreationDescriptor extends WorkerCreationDescriptor<Leader> {
+public class LeaderCreationDescriptor extends WorkerCreationDescriptor<Leader> {
 
 	/**
 	 * An empty constructor for this class.
 	 */
-	public leaderCreationDescriptor() {
+	public LeaderCreationDescriptor() {
 		super();
 	}
 
@@ -15,7 +15,7 @@ public class leaderCreationDescriptor extends WorkerCreationDescriptor<Leader> {
 	 * A constructor for this class with the fields for creating a
 	 * {@code Leader}.
 	 */
-	public leaderCreationDescriptor(String name, double costPerHour,
+	public LeaderCreationDescriptor(String name, double costPerHour,
 			double hoursWorked, double bonus) {
 		super(name, costPerHour, hoursWorked, bonus);
 	}

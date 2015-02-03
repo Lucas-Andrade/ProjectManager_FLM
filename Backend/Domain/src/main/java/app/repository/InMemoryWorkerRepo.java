@@ -47,35 +47,35 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	}
 
 	/**
-	 * @see WorkerRepository#addManager(Leader)
+	 * @see WorkerRepository#addManager(LeaderCreationDescriptor)
 	 */
 	@Override
-	public synchronized boolean addManager(
-			leaderCreationDescriptor creationDescriptor) {
+	public synchronized Long addManager(
+			LeaderCreationDescriptor creationDescriptor) {
 		Long newManagerCID = NEXT_CID_TO_BE_USED;
 		AWorker newManager = creationDescriptor.build(newManagerCID);
 		if (newManager == null) {
-			return false;
+			return null;
 		}
 		WORKERS.putIfAbsent(newManagerCID, newManager);
 		NEXT_CID_TO_BE_USED++;
-		return true;
+		return newManagerCID;
 	}
 
 	/**
-	 * @see WorkerRepository#addManager(Leader)
+	 * @see WorkerRepository#addConsultant(consultantCreationDescriptor)
 	 */
 	@Override
-	public synchronized boolean addConsultant(
+	public synchronized Long addConsultant(
 			consultantCreationDescriptor creationDescriptor) {
 		Long newConsultantCID = NEXT_CID_TO_BE_USED;
 		AWorker newConsultant = creationDescriptor.build(newConsultantCID);
 		if (newConsultant == null) {
-			return false;
+			return null;
 		}
 		WORKERS.putIfAbsent(newConsultantCID, newConsultant);
 		NEXT_CID_TO_BE_USED++;
-		return true;
+		return newConsultantCID;
 	}
 
 	/**

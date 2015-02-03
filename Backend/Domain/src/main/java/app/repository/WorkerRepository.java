@@ -25,9 +25,9 @@ public interface WorkerRepository extends Repository<AppElement> {
 	 * @param manager
 	 *            The {@code leaderCreationDescriptor} with the information
 	 *            necessary to create the Manager ({@code Leader}) to add.
-	 * @return True if successful, False if not.
+	 * @return The CID if successful, null if not.
 	 */
-	boolean addManager(leaderCreationDescriptor manager);
+	public Long addManager(LeaderCreationDescriptor manager);
 
 	/**
 	 * Method that creates and adds a {@code Consultant} to the repository.
@@ -35,9 +35,9 @@ public interface WorkerRepository extends Repository<AppElement> {
 	 * @param consultant
 	 *            The {@code consultantCreationDescriptor} with the information
 	 *            necessary to create the {@code Consultant} to add.
-	 * @return True if successful, False if not.
+	 * @return The CID if successful, null if not.
 	 */
-	public boolean addConsultant(consultantCreationDescriptor consultant);
+	public Long addConsultant(consultantCreationDescriptor consultant);
 
 	/**
 	 * Get's the {@code Consultant} with the supplied CID from the repository.
