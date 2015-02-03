@@ -61,7 +61,7 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	/**
 	 * @see Repository#removeAll()
 	 */
-	public void removeAll() {
+	public synchronized void removeAll() {
 		NEXT_PID_TO_BE_USED = 1;
 		PROJECTS.clear();
 	}

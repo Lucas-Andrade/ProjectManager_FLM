@@ -1,12 +1,7 @@
 package app.repository;
 
-import utils.AWorker;
 
-public class consultantCreationDescriptor {
+public class consultantCreationDescriptor extends workerCreationDescriptor {
 
-	public AWorker build(long l) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

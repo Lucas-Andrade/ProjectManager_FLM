@@ -27,7 +27,8 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	/**
 	 * {@code Map} that stores the {@code AWorker}s of this repository.
 	 */
-	private static final Map<Long, AWorker> WORKERS = Collections.synchronizedMap(new HashMap<Long, AWorker>());
+	private static final Map<Long, AWorker> WORKERS = Collections
+			.synchronizedMap(new HashMap<Long, AWorker>());
 
 	/**
 	 * The last CID attributed to an {@link AWorker} plus one.
@@ -35,18 +36,18 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	private volatile static long NEXT_CID_TO_BE_USED;
 
 	/**
-	 * Constructs a new empty {@code InMemoryWorkerRepo}, in which the next {@code CID}
-	 * to be used is set to 1.
+	 * Constructs a new empty {@code InMemoryWorkerRepo}, in which the next
+	 * {@code CID} to be used is set to 1.
 	 */
-	public InMemoryWorkerRepo(){
+	public InMemoryWorkerRepo() {
 		NEXT_CID_TO_BE_USED = 1;
 	}
-	
+
 	/**
 	 * @see WorkerRepository#nextCID()
 	 */
 	@Override
-	public long nextCID(){
+	public long nextCID() {
 		return NEXT_CID_TO_BE_USED;
 	}
 
@@ -54,7 +55,8 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 * @see WorkerRepository#addManager(Leader)
 	 */
 	@Override
-	public boolean addManager(leaderCreationDescriptor creationDescriptor){
+	public synchronized boolean addManager(
+			leaderCreationDescriptor creationDescriptor) {
 		Long newManagerCID = NEXT_CID_TO_BE_USED;
 		AWorker newManager = creationDescriptor.build(newManagerCID);
 		if (newManager == null) {
@@ -69,7 +71,8 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 * @see WorkerRepository#addManager(Leader)
 	 */
 	@Override
-	public boolean addConsultant(consultantCreationDescriptor creationDescriptor){
+	public synchronized boolean addConsultant(
+			consultantCreationDescriptor creationDescriptor) {
 		Long newConsultantCID = NEXT_CID_TO_BE_USED;
 		AWorker newConsultant = creationDescriptor.build(newConsultantCID);
 		if (newConsultant == null) {
@@ -81,15 +84,16 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	}
 
 	/**
-	 * Adds an {@code AWorker} to the repository if it doesn't exist already in
-	 * the repository (there can't be more than one {@code AWorker} with the
-	 * same CID).
+	 * Creates and adds an {@code AWorker} to the repository if it doesn't exist
+	 * already in the repository.
 	 * 
 	 * @param worker
-	 *            The Worker to add.
+	 *            The {@code workerCreationDescriptor} with the information
+	 *            necessary to create the {@code AWorker} to add.
 	 * @return True if successful, False if not.
 	 */
-	private boolean addToRepo(workerCreationDescriptor creationDescriptor){
+	private synchronized boolean addToRepo(
+			workerCreationDescriptor creationDescriptor) {
 		Long newWorkerCID = NEXT_CID_TO_BE_USED;
 		AWorker newWorker = creationDescriptor.build(newWorkerCID);
 		if (newWorker == null) {
@@ -104,43 +108,35 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 * @see WorkerRepository#getConsultantByID(long)
 	 */
 	@Override
-	public Consultant getConsultantByID(long cid){
-		for (AWorker worker : WORKERS){
-			if (worker.getCID() == cid){
-				if (!(worker instanceof Leader) && worker instanceof Consultant){
-					return (Consultant) worker;
-				}else{
-					return null;
-				}
-			}
+	public Consultant getConsultantByID(long cid) {
+		AWorker worker = WORKERS.get(cid);
+		if (worker instanceof Consultant) {
+			return (Consultant) worker;
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 	/**
 	 * @see WorkerRepository#getManagerByID(long)
 	 */
 	@Override
-	public Leader getManagerByID(long cid){
-		for (AWorker worker : WORKERS){
-			if (worker.getCID() == cid){
-				if (worker instanceof Leader){
-					return (Leader) worker;
-				}else{
-					return null;
-				}
-			}
+	public Leader getManagerByID(long cid) {
+		AWorker worker = WORKERS.get(cid);
+		if (worker instanceof Leader) {
+			return (Leader) worker;
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 	/**
 	 * @see Object#toString()
 	 */
 	@Override
-	public String toString(){
+	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		for (AWorker worker : WORKERS){
+		for (AWorker worker : WORKERS.values()) {
 			builder.append(worker.toString()).append("\n");
 		}
 		return builder.toString();
@@ -150,18 +146,19 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 * @see Repository#removeAll()
 	 */
 	@Override
-	public void removeAll(){
+	public synchronized void removeAll() {
 		WORKERS.clear();
+		NEXT_CID_TO_BE_USED = 1;
 	}
 
 	/**
 	 * @see Repository#getAll()
 	 */
 	@Override
-	public AWorker[] getAll(){
+	public AWorker[] getAll() {
 		AWorker[] all = new AWorker[this.size()];
 		int i = -1;
-		for (AWorker ele : WORKERS){
+		for (AWorker ele : WORKERS.values()) {
 			all[++i] = ele;
 		}
 		return all;
@@ -171,7 +168,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 * @see Repository#size()
 	 */
 	@Override
-	public int size(){
+	public int size() {
 		return WORKERS.size();
 	}
 
@@ -179,23 +176,17 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 * @see WorkerRepository#getAWorkerByID(long)
 	 */
 	@Override
-	public AWorker getAWorkerByID(long cid){
-		AWorker aWorker = null;
-		for (AWorker worker : WORKERS){
-			if (worker.getCID() == cid){
-				aWorker = worker;
-			}
-		}
-		return aWorker;
+	public AWorker getAWorkerByID(long cid) {
+		return WORKERS.get(cid);
 	}
 
 	@Override
 	public JSONObject getJson() {
 		JSONObject json = new JSONObject();
-		for (AppElement ele : WORKERS){
+		for (AppElement ele : WORKERS.values()) {
 			json.accumulate("All workers", ele.getJson());
 		}
 		return json;
 	}
-	
+
 }
