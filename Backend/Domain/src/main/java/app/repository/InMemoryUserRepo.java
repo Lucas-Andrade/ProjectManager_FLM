@@ -13,6 +13,7 @@ import app.elements.Admin;
 import app.elements.ImmutableAdmin;
 import app.elements.User;
 import app.elements.IUser;
+import app.elements.mutable.UserCreationDescriptor;
 
 /**
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
@@ -26,14 +27,14 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * {@code Key} stores the Username and the {@code Value} stores the
 	 * correspondig {@code User}.
 	 */
-	Map<String, IUser> users =Collections.synchronizedMap( new HashMap<String, IUser>());
+	private static final Map<String, IUser> users = Collections.synchronizedMap(new HashMap<String, IUser>());
 
 	/**
 	 * Constructor for {@code InMemoryUserRepo}. Also adds an {@link ImmutableAdmin}
 	 * {@link User} to the Repository.
 	 */
 	public InMemoryUserRepo(){
-		users.put("admin", new ImmutableAdmin());
+		users.put("admin", new Admin("admin", "admin"));
 	}
 
 	/**
@@ -91,7 +92,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 		if (user.getLoginPassword().equals(userPassword)){
 			return true;
 		}
-			return false;
+		return false;
 	}
 
 	/**
@@ -108,19 +109,19 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 
 	/**
 	 * @throws Exception 
-	 * @see UserRepository#addUser(User)
+	 * @see UserRepository#addUser(UserCreationDescriptor)
 	 */
 	@Override
-	public boolean addUser(UserCreationDescriptor userCreationDescriptor) throws Exception {
+	public boolean addUser(UserCreationDescriptor userCreationDescriptor) {
 
 		String username = userCreationDescriptor.getLoginName();
 				
 		if (users.containsKey(username)){
 			return false;
 		} else{
-			IUser user = userCreationDescriptor.build(username);
+			IUser user = userCreationDescriptor.build();
 			if (user == null){
-				throw new Exception();
+				return false;
 			}
 			synchronized (this){
 			if (!users.containsKey(username)){
@@ -132,7 +133,6 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 		}
 	}
 	
-
 	/**
 	 * @see Repository#size()
 	 */
@@ -141,17 +141,8 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	}
 
 	/**
-	 * @see UserRepository#addAdmin(String, String)
+	 * Returns all the users in from the repository in a JSONObject.
 	 */
-	
-	//TODO
-	@Override
-	public boolean addAdmin(String username, String password){
-		users.put(username, new Admin(username, password));
-		return true;
-	}
-
-	
 	@Override
 	public JSONObject getJson() {
 		AppElement[] allElements = getAll();

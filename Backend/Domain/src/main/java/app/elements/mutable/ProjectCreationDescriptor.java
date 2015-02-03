@@ -1,11 +1,11 @@
-package app.repository;
+package app.elements.mutable;
 
 import utils.Local;
 import utils.Project;
 
 /**
  * Class with the task of creating a new {@code Project} with the supplied
- * parameters.
+ * parameters. Instances of this class aren't immutable.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 03/02/2015
@@ -49,8 +49,6 @@ public class ProjectCreationDescriptor {
 		this.name = name;
 		this.cost = cost;
 	}
-
-	
 
 	/**
 	 * Method to update the {@code this#latitude}.

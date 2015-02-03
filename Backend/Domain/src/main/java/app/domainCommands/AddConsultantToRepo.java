@@ -2,8 +2,8 @@ package app.domainCommands;
 
 import app.AppElement;
 import app.domainCommands.exceptions.CostOutOfBoundsException;
-import app.repository.ConsultantCreationDescriptor;
-import app.repository.LeaderCreationDescriptor;
+import app.elements.mutable.ConsultantCreationDescriptor;
+import app.elements.mutable.LeaderCreationDescriptor;
 import app.repository.WorkerRepository;
 
 /**

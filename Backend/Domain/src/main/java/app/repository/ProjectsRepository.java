@@ -2,6 +2,7 @@ package app.repository;
 
 import utils.Project;
 import app.AppElement;
+import app.elements.mutable.ProjectCreationDescriptor;
 
 /**
  * The interface to be implemented by all {@link Project}s {@link Repository}.
@@ -19,12 +20,6 @@ public interface ProjectsRepository extends Repository<AppElement> {
 	 * @return The Project with the supplied PID, or null if none.
 	 */
 	public Project getProjectById(long projectId);
-
-	/**
-	 * @return The next available PID ({@link Project} ID, there can't be more
-	 *         than one {@code Project} with the same PID).
-	 */
-	public long getNextPID();
 
 	/**
 	 * Creates and adds a {@code Project} to the repository.
