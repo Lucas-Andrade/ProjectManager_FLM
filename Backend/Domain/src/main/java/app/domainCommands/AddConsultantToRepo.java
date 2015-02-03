@@ -84,7 +84,7 @@ public class AddConsultantToRepo implements Command {
 
 		
 		if (bonusString == null) {
-			ConsultantCreationDescriptor consultantCreation = new ConsultantCreationDescriptor(name, priceHour, 0, 0);
+			ConsultantCreationDescriptor consultantCreation = new ConsultantCreationDescriptor(name, priceHour, 0);
 			return new AppElement[] { wRepo.getConsultantByID(wRepo.addConsultant(consultantCreation)) };
 		} else {
 			double bonus = Double.parseDouble(bonusString);

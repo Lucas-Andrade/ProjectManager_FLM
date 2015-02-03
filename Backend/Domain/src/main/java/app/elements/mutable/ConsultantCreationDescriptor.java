@@ -16,8 +16,8 @@ public class ConsultantCreationDescriptor extends
 	 * A constructor for this class with the fields for creating a
 	 * {@code Consultant}.
 	 */
-	public ConsultantCreationDescriptor(String name, double costPerHour, double hoursWorked, double bonus) {
-		super(name, costPerHour, hoursWorked, bonus);
+	public ConsultantCreationDescriptor(String name, double costPerHour, double hoursWorked) {
+		super(name, costPerHour, hoursWorked, 0);
 	}
 
 	/**
