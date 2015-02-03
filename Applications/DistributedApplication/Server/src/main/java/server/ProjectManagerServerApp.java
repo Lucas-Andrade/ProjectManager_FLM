@@ -26,7 +26,7 @@ public class ProjectManagerServerApp{
         
         System.in.read();
         server.stop();
-        System.out.println("Server is stopped, it was an honor serving you."); 
+        System.out.println("Server is stopped, it was an honor serving you.");
 	}
 
 	private static CommandParser constructParser() {
