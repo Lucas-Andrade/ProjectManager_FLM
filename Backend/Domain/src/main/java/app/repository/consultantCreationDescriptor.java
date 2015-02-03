@@ -1,7 +1,7 @@
 package app.repository;
 
 
-public class consultantCreationDescriptor extends workerCreationDescriptor {
+public class consultantCreationDescriptor extends WorkerCreationDescriptor {
 
 
 }

@@ -1,7 +1,7 @@
 package app.repository;
 
 
-public class leaderCreationDescriptor extends workerCreationDescriptor {
+public class leaderCreationDescriptor extends WorkerCreationDescriptor {
 
 
 }

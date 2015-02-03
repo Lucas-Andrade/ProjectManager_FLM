@@ -93,7 +93,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 * @return True if successful, False if not.
 	 */
 	private synchronized boolean addToRepo(
-			workerCreationDescriptor creationDescriptor) {
+			WorkerCreationDescriptor creationDescriptor) {
 		Long newWorkerCID = NEXT_CID_TO_BE_USED;
 		AWorker newWorker = creationDescriptor.build(newWorkerCID);
 		if (newWorker == null) {

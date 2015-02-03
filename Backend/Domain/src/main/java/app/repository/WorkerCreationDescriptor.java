@@ -9,7 +9,7 @@ import utils.AWorker;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 03/02/2015
  */
-public class workerCreationDescriptor {
+public class WorkerCreationDescriptor {
 
 	/**
 	 * @field name - String with the name of the worker.
@@ -27,10 +27,10 @@ public class workerCreationDescriptor {
 	 */
 	private double bonus;
 
-	public workerCreationDescriptor() { }
+	public WorkerCreationDescriptor() { }
 	
 
-	public workerCreationDescriptor(String name, double costPerHour, double hoursWorked, double bonus) {
+	public WorkerCreationDescriptor(String name, double costPerHour, double hoursWorked, double bonus) {
 		this.name=name;
 		this.costPerHour=costPerHour;
 		this.hoursWorked=hoursWorked;
@@ -38,7 +38,10 @@ public class workerCreationDescriptor {
 	}
 	
 	
-	
+	public ProjectCreationDescriptor latitude(double lat) {
+		this.latitude = lat;
+		return this;
+	}
 	
 	public AWorker build(Long newWorkerCID) {
 		// TODO Auto-generated method stub
