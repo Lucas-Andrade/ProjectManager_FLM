@@ -8,44 +8,70 @@ import utils.AWorker;
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 03/02/2015
+ * 
+ * @param <T>
+ *            The type of {@code AWorker}.
  */
-public class WorkerCreationDescriptor {
+public abstract class WorkerCreationDescriptor<T extends AWorker> {
 
 	/**
-	 * @field name - String with the name of the worker.
-	 * @field costPerHour - price receive by the worker for one hour of work.
-	 * @field hoursWorked - total of hours worked by the worker.
-	 * @field cid - the ID of the worker.
+	 * String with the name of the {@code AWorker}.
 	 */
-	private String name;
-	private double costPerHour;
-	private double hoursWorked;
+	protected String name;
 
 	/**
-	 * @field bonus - bonus received by the worker for being a leader or a
-	 *        manager.
+	 * Price receive by the worker for one hour of work.
 	 */
-	private double bonus;
+	protected double costPerHour;
 
-	public WorkerCreationDescriptor() { }
+	/**
+	 * Total of hours worked by the worker.
+	 */
+	protected double hoursWorked;
+
+	/**
+	 * Bonus received by the worker for being a leader or a manager.
+	 */
+	protected double bonus;
 	
-
-	public WorkerCreationDescriptor(String name, double costPerHour, double hoursWorked, double bonus) {
-		this.name=name;
-		this.costPerHour=costPerHour;
-		this.hoursWorked=hoursWorked;
-		this.bonus=bonus;
+	/**
+	 * An empty constructor for this class.
+	 */
+	public WorkerCreationDescriptor() {
 	}
-	
-	
-	public WorkerCreationDescriptor latitude(double lat) {
-		this.latitude = lat;
+
+	/**
+	 * A constructor for this class with the fields for creating a
+	 * {@code Project}.
+	 */
+	public WorkerCreationDescriptor(String name, double costPerHour,
+			double hoursWorked, double bonus) {
+		this.name = name;
+		this.costPerHour = costPerHour;
+		this.hoursWorked = hoursWorked;
+		this.bonus = bonus;
+	}
+
+	public WorkerCreationDescriptor<T> name(String name) {
+		this.name = name;
 		return this;
 	}
-	
-	public AWorker build(Long newWorkerCID) {
-		// TODO Auto-generated method stub
-		return null;
+
+	public WorkerCreationDescriptor<T> costPerHour(long costPerHour) {
+		this.costPerHour = costPerHour;
+		return this;
 	}
+
+	public WorkerCreationDescriptor<T> hoursWorked(long hoursWorked) {
+		this.hoursWorked = hoursWorked;
+		return this;
+	}
+
+	public WorkerCreationDescriptor<T> bonus(long bonus) {
+		this.bonus = bonus;
+		return this;
+	}
+
+	public abstract T build(Long newWorkerCID);
 
 }
