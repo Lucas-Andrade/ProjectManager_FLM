@@ -1,4 +1,4 @@
-package app.windows.commandWindowsAL.commandWindows;
+package windows.commandWindowsAL.commandWindows;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import app.windows.commandWindowsAL.NewConsultantAL;
+import windows.commandWindowsAL.NewConsultantAL;
 
 /**
  * This {@code Frame} allows to insert the mandatory parameters to construct a

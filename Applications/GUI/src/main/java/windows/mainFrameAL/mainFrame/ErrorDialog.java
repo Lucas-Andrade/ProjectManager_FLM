@@ -1,4 +1,4 @@
-package app.windows.mainFrameAL.mainFrame;
+package windows.mainFrameAL.mainFrame;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,14 +7,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-
-import app.windows.commandWindowsAL.commandWindows.MainDialogFrame;
+import windows.commandWindowsAL.commandWindows.MainDialogFrame;
 
 public class ErrorDialog extends JDialog {
 	

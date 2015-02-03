@@ -26,8 +26,11 @@ public interface UserRepository extends Repository<AppElement>{
 	 * @param user
 	 *            The User to add.
 	 * @return True if successful, False if not.
+	 * @throws Exception 
 	 */
-	public boolean addUser(IUser user);
+	
+	//TODO
+	public boolean addUser(UserCreationDescriptor userCreationDescriptor) throws Exception;
 
 	/**
 	 * Checks if the password corresponds to the User with the username.
@@ -48,5 +51,7 @@ public interface UserRepository extends Repository<AppElement>{
 	 * @return
 	 */
 	boolean addAdmin(String username, String password);
+
+	
 
 }

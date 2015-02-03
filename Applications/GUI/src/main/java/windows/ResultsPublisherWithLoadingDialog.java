@@ -1,4 +1,4 @@
-package app.windows;
+package windows;
 
 import utils.AWorker;
 import app.AppElement;

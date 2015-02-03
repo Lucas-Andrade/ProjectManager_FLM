@@ -1,4 +1,4 @@
-package app.windows.commandWindowsAL.commandWindows;
+package windows.commandWindowsAL.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import app.windows.commandWindowsAL.NewUserAL;
+import windows.commandWindowsAL.NewUserAL;
 
 import java.awt.GridBagLayout;
 

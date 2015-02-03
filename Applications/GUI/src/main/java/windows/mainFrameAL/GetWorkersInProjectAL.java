@@ -1,7 +1,7 @@
-package app.windows.mainFrameAL;
+package windows.mainFrameAL;
 
-import app.repositoryHolders.RepositoryHolder;
-import app.windows.mainFrameAL.mainFrame.MainFrame;
+import repositoryHolders.RepositoryHolder;
+import windows.mainFrameAL.mainFrame.MainFrame;
 
 /**
  * Class responsible for calling the {@code GetWorkersInProjectFrame}. Extends

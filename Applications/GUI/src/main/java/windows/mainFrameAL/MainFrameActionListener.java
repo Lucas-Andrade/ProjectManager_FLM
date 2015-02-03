@@ -1,11 +1,11 @@
-package app.windows.mainFrameAL;
+package windows.mainFrameAL;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import app.authentication.Authentication;
-import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
+import authentication.Authentication;
+import repositoryHolders.RepositoryHolder;
+import windows.commandWindowsAL.commandWindows.AuthenticationDialog;
 
 /**
  * Class responsible for implementing the {@link ActionListener}s for the

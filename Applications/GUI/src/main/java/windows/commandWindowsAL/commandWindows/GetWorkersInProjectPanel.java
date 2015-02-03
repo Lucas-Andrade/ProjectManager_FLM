@@ -1,4 +1,4 @@
-package app.windows.commandWindowsAL.commandWindows;
+package windows.commandWindowsAL.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -7,8 +7,9 @@ import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import app.windows.commandWindowsAL.GetWorkersAL;
-import app.windows.mainFrameAL.mainFrame.ProjectID;
+import windows.commandWindowsAL.GetWorkersAL;
+import windows.mainFrameAL.mainFrame.ProjectID;
+
 
 /**
  * This {@code MainGetPanel} allows to insert the mandatory parameters to get the

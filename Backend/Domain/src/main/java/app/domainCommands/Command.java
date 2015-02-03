@@ -22,7 +22,8 @@ public interface Command extends Callable<AppElement[]> {
 	/**
 	 * Calls the {@code Command}. This makes the {@code Command} perform the
 	 * alterations in the repositories, and returns an array of {@code AppElement}s.
+	 * @throws Exception 
 	 */
 	@Override
-	public AppElement[] call() throws CommandExecutionException;
+	public AppElement[] call() throws CommandExecutionException, Exception;
 }

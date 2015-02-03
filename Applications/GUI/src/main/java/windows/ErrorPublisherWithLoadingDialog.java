@@ -1,4 +1,4 @@
-package app.windows;
+package windows;
 
 /**
  * Abstract class of all the {@code Publisher} classes that will publish

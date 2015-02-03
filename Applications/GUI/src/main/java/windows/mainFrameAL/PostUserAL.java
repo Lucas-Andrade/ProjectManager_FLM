@@ -1,6 +1,6 @@
-package app.windows.mainFrameAL;
+package windows.mainFrameAL;
 
-import app.repositoryHolders.RepositoryHolder;
+import repositoryHolders.RepositoryHolder;
 
 /**
  * Class responsible for calling the {@code PostUserFrame}. Extends

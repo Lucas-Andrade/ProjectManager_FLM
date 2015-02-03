@@ -1,4 +1,4 @@
-package app.windows.mainFrameAL.mainFrame;
+package windows.mainFrameAL.mainFrame;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,24 +18,24 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import app.authentication.Authentication;
-import app.elements.IUser;
-import app.repositoryHolders.RepositoryHolder;
-import app.windows.commandWindowsAL.commandWindows.AuthenticationDialog;
-import app.windows.mainFrameAL.DeleteProjectAL;
-import app.windows.mainFrameAL.FrameAndPanelHolder;
-import app.windows.mainFrameAL.GetProjectsAL;
-import app.windows.mainFrameAL.GetSubprojectsAL;
-import app.windows.mainFrameAL.GetUserAL;
-import app.windows.mainFrameAL.GetWorkersInProjectAL;
-import app.windows.mainFrameAL.PatchConsultantAL;
-import app.windows.mainFrameAL.PatchProjectAL;
-import app.windows.mainFrameAL.PatchUserAL;
-import app.windows.mainFrameAL.PostConsultantAL;
-import app.windows.mainFrameAL.PostProjectAL;
-import app.windows.mainFrameAL.PostSubprojectAL;
-import app.windows.mainFrameAL.PostUserAL;
-import app.windows.mainFrameAL.PostWorkerAL;
+import authentication.Authentication;
+import elements.IUser;
+import repositoryHolders.RepositoryHolder;
+import windows.commandWindowsAL.commandWindows.AuthenticationDialog;
+import windows.mainFrameAL.DeleteProjectAL;
+import windows.mainFrameAL.FrameAndPanelHolder;
+import windows.mainFrameAL.GetProjectsAL;
+import windows.mainFrameAL.GetSubprojectsAL;
+import windows.mainFrameAL.GetUserAL;
+import windows.mainFrameAL.GetWorkersInProjectAL;
+import windows.mainFrameAL.PatchConsultantAL;
+import windows.mainFrameAL.PatchProjectAL;
+import windows.mainFrameAL.PatchUserAL;
+import windows.mainFrameAL.PostConsultantAL;
+import windows.mainFrameAL.PostProjectAL;
+import windows.mainFrameAL.PostSubprojectAL;
+import windows.mainFrameAL.PostUserAL;
+import windows.mainFrameAL.PostWorkerAL;
 
 /**
  * This class defines the main frame of the main application.

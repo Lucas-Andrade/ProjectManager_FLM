@@ -1,17 +1,15 @@
-package app.windows.commandWindowsAL;
+package windows.commandWindowsAL;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JTextField;
-
-import app.domainCommands.AddConsultantToRepo;
-import app.domainCommands.Command;
-import app.windows.PublishTeamToMainFrame;
-import app.windows.PublishToErrorDialog;
-import app.windows.SwingWorkerCommand;
-import app.windows.mainFrameAL.mainFrame.ErrorDialog;
-import app.windows.mainFrameAL.mainFrame.MainFrame;
+import domainCommands.AddConsultantToRepo;
+import domainCommands.Command;
+import windows.PublishTeamToMainFrame;
+import windows.PublishToErrorDialog;
+import windows.SwingWorkerCommand;
+import windows.mainFrameAL.mainFrame.ErrorDialog;
+import windows.mainFrameAL.mainFrame.MainFrame;
 
 /**
  * Class responsible for instantiating the {@code Command}

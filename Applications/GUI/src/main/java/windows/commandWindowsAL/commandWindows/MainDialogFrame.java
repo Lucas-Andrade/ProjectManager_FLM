@@ -1,4 +1,4 @@
-package app.windows.commandWindowsAL.commandWindows;
+package windows.commandWindowsAL.commandWindows;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
