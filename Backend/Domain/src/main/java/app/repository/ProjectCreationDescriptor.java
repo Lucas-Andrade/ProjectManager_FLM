@@ -101,7 +101,7 @@ public class ProjectCreationDescriptor {
 	}
 
 	/**
-	 * Method that instatiates a {@code Project} with the fields from
+	 * Method that instantiates a {@code Project} with the fields from
 	 * {@code this} object.
 	 * 
 	 * @param pid

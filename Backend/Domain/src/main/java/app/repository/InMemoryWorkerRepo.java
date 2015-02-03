@@ -1,19 +1,14 @@
 package app.repository;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeSet;
-
 import org.json.JSONObject;
 
 import app.AppElement;
 import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
-import utils.Project;
-import utils.WorkerComparator;
 
 /**
  * An {@link AWorker}s in memory {@link Repository}.
@@ -79,27 +74,6 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 			return false;
 		}
 		WORKERS.putIfAbsent(newConsultantCID, newConsultant);
-		NEXT_CID_TO_BE_USED++;
-		return true;
-	}
-
-	/**
-	 * Creates and adds an {@code AWorker} to the repository if it doesn't exist
-	 * already in the repository.
-	 * 
-	 * @param worker
-	 *            The {@code workerCreationDescriptor} with the information
-	 *            necessary to create the {@code AWorker} to add.
-	 * @return True if successful, False if not.
-	 */
-	private synchronized boolean addToRepo(
-			WorkerCreationDescriptor creationDescriptor) {
-		Long newWorkerCID = NEXT_CID_TO_BE_USED;
-		AWorker newWorker = creationDescriptor.build(newWorkerCID);
-		if (newWorker == null) {
-			return false;
-		}
-		WORKERS.putIfAbsent(newWorkerCID, newWorker);
 		NEXT_CID_TO_BE_USED++;
 		return true;
 	}
