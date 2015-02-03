@@ -8,6 +8,7 @@ import org.junit.Test;
 import utils.Project;
 import app.AppElement;
 import app.RepositoryConstructor;
+import app.elements.mutable.ProjectCreationDescriptor;
 import app.repository.InMemoryProjectRepo;
 /**
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
@@ -22,26 +23,25 @@ public class InMemoryProjectRepoTest {
 		repo = RepositoryConstructor.constructProjectRepo();
 	}
 	
-	@Test
-	public void shouldNotAddARepeatedElement() {
-		Project proj = RepositoryConstructor.constructProject((int) repo.getNextPID());
-		System.out.println(repo.getNextPID());
-		assertTrue(repo.addProject(proj));
-		assertFalse(repo.addProject(proj));
-	}
+//	@Test
+//	public void shouldNotAddARepeatedElement() {
+//		Project proj = RepositoryConstructor.constructProject((int) repo.size()+1);
+//		System.out.println(repo.getNextPID());
+//		assertTrue(repo.addProject(proj));
+//		assertFalse(repo.addProject(proj));
+//	}
 	
 	@Test
 	public void cannotRemoveAnElementThatIsNotThere(){
-		System.out.println(repo.getNextPID());
-		Project proj = RepositoryConstructor.constructProject(repo.getNextPID());
+		Project proj = RepositoryConstructor.constructProject(repo.size()+1);
 		assertFalse(repo.removeProject(proj));
 	}
 	
 	@Test
 	public void shouldRemoveTheElement(){
-		Project proj = RepositoryConstructor.constructProject((int) repo.getNextPID());
+		Project proj = RepositoryConstructor.constructProject((int) repo.size()+1);
 		
-		assertTrue(repo.addProject(proj));
+		assertNotNull(repo.addProject(new ProjectCreationDescriptor(proj.getLocal().getLatitude(), proj.getLocal().getLongitude(), proj.getLocal().getName(), proj.getLocal().getCost())));
 		assertTrue(repo.removeProject(proj));
 		assertFalse(repo.removeProject(proj));
 	}
@@ -69,10 +69,10 @@ public class InMemoryProjectRepoTest {
 		assertNull(repo.getProjectById(55426));
 	}
 	
-	@Test
-	public void shouldNotAddProjectWithTheSamePID(){
-		assertFalse(repo.addProject(RepositoryConstructor.constructProject(2)));
-	}
+//	@Test
+//	public void shouldNotAddProjectWithTheSamePID(){
+//		assertFalse(repo.addProject(RepositoryConstructor.constructProject(2)));
+//	}
 	
 	@Test
 	public void shouldReturnTheWholeRepository(){
