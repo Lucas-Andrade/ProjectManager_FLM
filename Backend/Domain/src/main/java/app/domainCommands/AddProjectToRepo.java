@@ -3,7 +3,9 @@ package app.domainCommands;
 import utils.Local;
 import utils.Project;
 import app.AppElement;
+import app.repository.ProjectCreationDescriptor;
 import app.repository.ProjectsRepository;
+import app.repository.UserCreationDescriptor;
 
 /**
  * This {@code Command} allows to construct a new {@code Project} and add it to
@@ -79,15 +81,12 @@ public class AddProjectToRepo implements Command {
 		double latitude = Double.parseDouble(latitudeString);
 		double longitude = Double.parseDouble(longitudeString);
 		double price = Double.parseDouble(priceString);
+		
+		ProjectCreationDescriptor projectCreation = new ProjectCreationDescriptor(latitude, longitude, name, price);
 
-		Local local = new Local(latitude, longitude, name, price);
+		pRepo.addProject(projectCreation);
 
-		long pid = pRepo.getNextPID();
-		Project project = new Project(local, pid);
-
-		pRepo.addProject(project);
-
-		return new AppElement[] { project };
+		return new AppElement[] { pRepo.getProjectById(projectId) };
 	}
 
 }

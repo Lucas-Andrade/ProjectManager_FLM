@@ -1,4 +1,4 @@
-package app.windows.commandWindowsAL;
+package windows.commandWindowsAL;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,14 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import app.domainCommands.Command;
-import app.domainCommands.GetAllUsersFromRepo;
-import app.domainCommands.GetUserFromRepo;
-import app.windows.PublishToErrorDialog;
-import app.windows.PublishUsersToGetPanel;
-import app.windows.SwingWorkerCommand;
-import app.windows.mainFrameAL.mainFrame.ErrorDialog;
-import app.windows.mainFrameAL.mainFrame.MainFrame;
+import domainCommands.Command;
+import domainCommands.GetAllUsersFromRepo;
+import domainCommands.GetUserFromRepo;
+import windows.PublishToErrorDialog;
+import windows.PublishUsersToGetPanel;
+import windows.SwingWorkerCommand;
+import windows.mainFrameAL.mainFrame.ErrorDialog;
+import windows.mainFrameAL.mainFrame.MainFrame;
 
 /**
  * Class responsible for instantiating the {@code Command}

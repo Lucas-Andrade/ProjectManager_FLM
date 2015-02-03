@@ -1,14 +1,12 @@
-package app.windows.commandWindowsAL.commandWindows;
+package windows.commandWindowsAL.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-
 import javax.swing.JLabel;
-
-import app.windows.commandWindowsAL.NewWorkerInProjectAL;
-import app.windows.mainFrameAL.mainFrame.ProjectID;
-import app.windows.mainFrameAL.mainFrame.WorkerID;
+import windows.commandWindowsAL.NewWorkerInProjectAL;
+import windows.mainFrameAL.mainFrame.ProjectID;
+import windows.mainFrameAL.mainFrame.WorkerID;
 
 /**
  * This {@code Frame} allows to insert the mandatory parameters to add

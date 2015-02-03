@@ -1,4 +1,4 @@
-package app.windows.commandWindowsAL.commandWindows;
+package windows.commandWindowsAL.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -8,7 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import app.windows.commandWindowsAL.NewProjectAL;
+import windows.commandWindowsAL.NewProjectAL;
 
 /**
  * This {@code Frame} allows to insert the mandatory parameters to construct a

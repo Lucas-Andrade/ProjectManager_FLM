@@ -1,11 +1,11 @@
-package app.windows.commandWindowsAL.commandWindows;
+package windows.commandWindowsAL.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JPanel;
-import app.windows.commandWindowsAL.GetSubprojectAL;
-import app.windows.mainFrameAL.mainFrame.ProjectID;
+import windows.commandWindowsAL.GetSubprojectAL;
+import windows.mainFrameAL.mainFrame.ProjectID;
 
 /**
  * This {@code MainGetPanel} allows to insert the mandatory parameters to get

@@ -1,4 +1,4 @@
-package app.windows;
+package windows;
 
 import javax.swing.JTable;
 

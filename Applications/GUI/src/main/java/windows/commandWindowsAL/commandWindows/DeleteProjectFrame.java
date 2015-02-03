@@ -1,10 +1,10 @@
-package app.windows.commandWindowsAL.commandWindows;
+package windows.commandWindowsAL.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import app.windows.commandWindowsAL.RemoveProjectAL;
-import app.windows.mainFrameAL.mainFrame.ProjectID;
+import windows.commandWindowsAL.RemoveProjectAL;
+import windows.mainFrameAL.mainFrame.ProjectID;
 
 /**
  * This {@code MainDialogFrame} allows to insert the mandatory parameters to

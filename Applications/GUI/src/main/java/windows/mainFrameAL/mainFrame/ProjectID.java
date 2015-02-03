@@ -1,4 +1,4 @@
-package app.windows.mainFrameAL.mainFrame;
+package windows.mainFrameAL.mainFrame;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;

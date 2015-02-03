@@ -1,4 +1,4 @@
-package app.windows.mainFrameAL.mainFrame;
+package windows.mainFrameAL.mainFrame;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;

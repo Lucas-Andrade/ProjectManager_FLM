@@ -1,4 +1,4 @@
-package app.windows;
+package windows;
 
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 

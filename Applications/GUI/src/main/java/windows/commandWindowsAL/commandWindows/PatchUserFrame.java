@@ -1,4 +1,4 @@
-package app.windows.commandWindowsAL.commandWindows;
+package windows.commandWindowsAL.commandWindows;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import app.windows.commandWindowsAL.SetUserAL;
+import windows.commandWindowsAL.SetUserAL;
 
 /**
  * This {@code Frame} allows to insert the mandatory parameters to change a {@code User}'s password.

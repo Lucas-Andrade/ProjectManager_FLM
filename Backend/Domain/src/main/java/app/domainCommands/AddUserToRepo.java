@@ -4,8 +4,8 @@ import app.AppElement;
 import app.domainCommands.exceptions.IllegalEmailException;
 import app.domainCommands.exceptions.PasswordLengthOutOfBoundsException;
 import app.domainCommands.exceptions.RepeatedUsernameException;
-import app.elements.IUser;
 import app.elements.User;
+import app.repository.UserCreationDescriptor;
 import app.repository.UserRepository;
 
 /**
@@ -82,11 +82,11 @@ public class AddUserToRepo implements Command {
 	/**
 	 * @return an array of {@code AppElement}s containing the constructed
 	 *         {@code User}.
+	 * @throws Exception 
 	 * @see Command#call()
 	 */
 	@Override
-	public AppElement[] call() throws PasswordLengthOutOfBoundsException,
-			IllegalEmailException, RepeatedUsernameException {
+	public AppElement[] call() throws Exception {
 
 		if (password.length() < User.MIN_CHAR_IN_PASS) {
 			throw new PasswordLengthOutOfBoundsException(
@@ -94,19 +94,19 @@ public class AddUserToRepo implements Command {
 		}
 		validEmail();
 
-		IUser user;
+		UserCreationDescriptor userCreation;
 		if (fullName == null) {
-			user = new User(username, password, email);
+			userCreation = new UserCreationDescriptor(username, password, email);
 		} else {
-			user = new User(username, password, email, fullName);
+			userCreation = new UserCreationDescriptor(username, password, email, fullName);
 		}
 
-		if (!uRepo.addUser(user)) {
+		if (!uRepo.addUser(userCreation)) {
 			throw new RepeatedUsernameException(
 					"That username is already being used.");
 		}
 
-		return new AppElement[] { user };
+		return new AppElement[] { uRepo.getUserByUsername(username) };
 	}
 
 	/**

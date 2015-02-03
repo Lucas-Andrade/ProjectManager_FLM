@@ -42,13 +42,15 @@ public class ProjectCreationDescriptor {
 	 * A constructor for this class with the fields for creating a
 	 * {@code Project}.
 	 */
-	protected ProjectCreationDescriptor(double lat, double lon, String name,
+	public ProjectCreationDescriptor(double lat, double lon, String name,
 			double cost) {
 		this.latitude = lat;
 		this.longitude = lon;
 		this.name = name;
 		this.cost = cost;
 	}
+
+	
 
 	/**
 	 * Method to update the {@code this#latitude}.

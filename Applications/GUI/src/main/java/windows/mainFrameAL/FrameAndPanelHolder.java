@@ -1,25 +1,25 @@
-package app.windows.mainFrameAL;
+package windows.mainFrameAL;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JPanel;
 
-import app.windows.commandWindowsAL.commandWindows.DeleteProjectFrame;
-import app.windows.commandWindowsAL.commandWindows.GetProjectsPanel;
-import app.windows.commandWindowsAL.commandWindows.GetSubprojectsPanel;
-import app.windows.commandWindowsAL.commandWindows.GetUserPanel;
-import app.windows.commandWindowsAL.commandWindows.GetWorkersInProjectPanel;
-import app.windows.commandWindowsAL.commandWindows.MainDialogFrame;
-import app.windows.commandWindowsAL.commandWindows.MainGetPanel;
-import app.windows.commandWindowsAL.commandWindows.PatchConsultantFrame;
-import app.windows.commandWindowsAL.commandWindows.PatchProjectFrame;
-import app.windows.commandWindowsAL.commandWindows.PatchUserFrame;
-import app.windows.commandWindowsAL.commandWindows.PostConsultantFrame;
-import app.windows.commandWindowsAL.commandWindows.PostProjectFrame;
-import app.windows.commandWindowsAL.commandWindows.PostSubprojectFrame;
-import app.windows.commandWindowsAL.commandWindows.PostUserFrame;
-import app.windows.commandWindowsAL.commandWindows.PostWorkerInProjectFrame;
+import windows.commandWindowsAL.commandWindows.DeleteProjectFrame;
+import windows.commandWindowsAL.commandWindows.GetProjectsPanel;
+import windows.commandWindowsAL.commandWindows.GetSubprojectsPanel;
+import windows.commandWindowsAL.commandWindows.GetUserPanel;
+import windows.commandWindowsAL.commandWindows.GetWorkersInProjectPanel;
+import windows.commandWindowsAL.commandWindows.MainDialogFrame;
+import windows.commandWindowsAL.commandWindows.MainGetPanel;
+import windows.commandWindowsAL.commandWindows.PatchConsultantFrame;
+import windows.commandWindowsAL.commandWindows.PatchProjectFrame;
+import windows.commandWindowsAL.commandWindows.PatchUserFrame;
+import windows.commandWindowsAL.commandWindows.PostConsultantFrame;
+import windows.commandWindowsAL.commandWindows.PostProjectFrame;
+import windows.commandWindowsAL.commandWindows.PostSubprojectFrame;
+import windows.commandWindowsAL.commandWindows.PostUserFrame;
+import windows.commandWindowsAL.commandWindows.PostWorkerInProjectFrame;
 
 /**
  * This class instantiates all {@code MainDialogFrame} and {@code MainGetPanel} that the {@code MainFrame}

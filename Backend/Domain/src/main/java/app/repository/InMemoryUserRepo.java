@@ -1,5 +1,6 @@
 package app.repository;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -25,10 +26,10 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * {@code Key} stores the Username and the {@code Value} stores the
 	 * correspondig {@code User}.
 	 */
-	Map<String, IUser> users = new HashMap<String, IUser>();
+	Map<String, IUser> users =Collections.synchronizedMap( new HashMap<String, IUser>());
 
 	/**
-	 * Contructor for {@code InMemoryUserRepo}. Also adds an {@link ImmutableAdmin}
+	 * Constructor for {@code InMemoryUserRepo}. Also adds an {@link ImmutableAdmin}
 	 * {@link User} to the Repository.
 	 */
 	public InMemoryUserRepo(){
@@ -95,7 +96,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 
 	/**
 	 * Removes all Users from the Repository, then adds an
-	 * {@link ImmutableAdmin} {@code User} to the empty Rempository.
+	 * {@link ImmutableAdmin} {@code User} to the empty Repository.
 	 * 
 	 * @see Repository#removeAll()
 	 */
@@ -106,20 +107,31 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	}
 
 	/**
+	 * @throws Exception 
 	 * @see UserRepository#addUser(User)
 	 */
 	@Override
-	public boolean addUser(IUser user){
+	public boolean addUser(UserCreationDescriptor userCreationDescriptor) throws Exception {
 
-		String username = user.getLoginName();
-
+		String username = userCreationDescriptor.getLoginName();
+				
 		if (users.containsKey(username)){
 			return false;
 		} else{
-			users.put(username, user);
-			return true;
+			IUser user = userCreationDescriptor.build(username);
+			if (user == null){
+				throw new Exception();
+			}
+			synchronized (this){
+			if (!users.containsKey(username)){
+				users.putIfAbsent(username, user);
+				return true;
+			}
+			return false;
+			}
 		}
 	}
+	
 
 	/**
 	 * @see Repository#size()
@@ -131,11 +143,15 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	/**
 	 * @see UserRepository#addAdmin(String, String)
 	 */
+	
+	//TODO
 	@Override
 	public boolean addAdmin(String username, String password){
-		return addUser(new Admin(username, password));
+		users.put(username, new Admin(username, password));
+		return true;
 	}
 
+	
 	@Override
 	public JSONObject getJson() {
 		AppElement[] allElements = getAll();
