@@ -5,15 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
-import mainFrameAL.mainFrameAL.mainFrame.ErrorDialog;
-import mainFrameAL.mainFrameAL.mainFrame.MainFrame;
-
-import org.PublishToErrorDialog;
-import org.PublishToMainFrame;
-import org.SwingWorkerCommand;
-
+import mainFrameAL.mainFrame.ErrorDialog;
+import app.AppUI;
 import app.domainCommands.AddSubprojectToRepo;
 import app.domainCommands.Command;
+import app.publisher.PublishToErrorDialog;
+import app.publisher.PublishToMainFrame;
+import app.publisher.SwingWorkerCommand;
 
 
 /**
@@ -73,7 +71,7 @@ public class NewSubprojectAL implements ActionListener {
 		}
 
 		try {
-			Command command = new AddSubprojectToRepo(MainFrame
+			Command command = new AddSubprojectToRepo(AppUI
 					.getRepositories().getProjectsRepo(), pid, subprojectId);
 			new SwingWorkerCommand(command, new PublishToMainFrame(),
 					new PublishToErrorDialog()).execute();

@@ -3,10 +3,10 @@ package app.publisher;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import mainFrameAL.FrameAndPanelHolder;
+import mainFrameAL.mainFrame.ErrorDialog;
 import app.AppElement;
 import app.elements.IUser;
-import app.windows.mainFrameAL.FrameAndPanelHolder;
-import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 
 /**
  * Allows to publish information about {@code User}s 

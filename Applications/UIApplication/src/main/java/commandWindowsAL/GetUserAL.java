@@ -6,16 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import mainFrameAL.mainFrameAL.mainFrame.ErrorDialog;
-import mainFrameAL.mainFrameAL.mainFrame.MainFrame;
-
-import org.PublishToErrorDialog;
-import org.PublishUsersToGetPanel;
-import org.SwingWorkerCommand;
-
+import mainFrameAL.mainFrame.ErrorDialog;
+import app.AppUI;
 import app.domainCommands.Command;
 import app.domainCommands.GetAllUsersFromRepo;
 import app.domainCommands.GetUserFromRepo;
+import app.publisher.PublishToErrorDialog;
+import app.publisher.PublishUsersToGetPanel;
+import app.publisher.SwingWorkerCommand;
 
 
 /**
@@ -84,7 +82,7 @@ public class GetUserAL implements ActionListener {
 	}
 
 	private Command getAllUsers() {
-		return new GetAllUsersFromRepo(MainFrame.getRepositories()
+		return new GetAllUsersFromRepo(AppUI.getRepositories()
 				.getUsersRepo());
 	}
 
@@ -94,7 +92,7 @@ public class GetUserAL implements ActionListener {
 //					.setVisible(true);
 //			return;
 //		}
-		return new GetUserFromRepo(MainFrame.getRepositories()
+		return new GetUserFromRepo(AppUI.getRepositories()
 				.getUsersRepo(), username);
 	}
 

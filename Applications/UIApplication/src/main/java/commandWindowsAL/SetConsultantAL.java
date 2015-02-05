@@ -5,15 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
-import mainFrameAL.mainFrameAL.mainFrame.ErrorDialog;
-import mainFrameAL.mainFrameAL.mainFrame.MainFrame;
-
-import org.PublishTeamToMainFrame;
-import org.PublishToErrorDialog;
-import org.SwingWorkerCommand;
-
+import mainFrameAL.mainFrame.ErrorDialog;
+import app.AppUI;
 import app.domainCommands.Command;
 import app.domainCommands.SetConsultantPropertiesFromRepo;
+import app.publisher.PublishTeamToMainFrame;
+import app.publisher.PublishToErrorDialog;
+import app.publisher.SwingWorkerCommand;
 
 
 /**
@@ -80,7 +78,7 @@ public class SetConsultantAL implements ActionListener {
 		}
 
 		try {
-			Command command = new SetConsultantPropertiesFromRepo(MainFrame
+			Command command = new SetConsultantPropertiesFromRepo(AppUI
 					.getRepositories().getWorkersRepo(), consultantId,
 					consultantName, priceHour);
 			new SwingWorkerCommand(command, new PublishTeamToMainFrame(),

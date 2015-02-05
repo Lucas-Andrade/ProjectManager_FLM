@@ -6,15 +6,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import mainFrameAL.mainFrameAL.mainFrame.ErrorDialog;
-import mainFrameAL.mainFrameAL.mainFrame.MainFrame;
-
-import org.PublishTeamToGetPanel;
-import org.PublishToErrorDialog;
-import org.SwingWorkerCommand;
-
+import mainFrameAL.mainFrame.ErrorDialog;
+import app.AppUI;
 import app.domainCommands.Command;
 import app.domainCommands.GetProjectWorkersFromRepo;
+import app.publisher.PublishTeamToGetPanel;
+import app.publisher.PublishToErrorDialog;
+import app.publisher.SwingWorkerCommand;
 
 
 /**
@@ -87,7 +85,7 @@ public class GetWorkersAL implements ActionListener {
 		}
 
 		try {
-			Command command = new GetProjectWorkersFromRepo(MainFrame
+			Command command = new GetProjectWorkersFromRepo(AppUI
 					.getRepositories().getProjectsRepo(), pid, workerOpt);
 			new SwingWorkerCommand(command, new PublishTeamToGetPanel(),
 					new PublishToErrorDialog()).execute();

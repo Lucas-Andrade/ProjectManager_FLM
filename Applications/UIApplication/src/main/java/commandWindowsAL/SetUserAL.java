@@ -6,15 +6,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import mainFrameAL.mainFrameAL.mainFrame.ErrorDialog;
-import mainFrameAL.mainFrameAL.mainFrame.MainFrame;
-
-import org.PublishToErrorDialog;
-import org.PublishUsersToMainFrame;
-import org.SwingWorkerCommand;
-
+import mainFrameAL.mainFrame.ErrorDialog;
+import app.AppUI;
 import app.domainCommands.Command;
 import app.domainCommands.SetUserPropertiesFromRepo;
+import app.publisher.PublishToErrorDialog;
+import app.publisher.PublishUsersToMainFrame;
+import app.publisher.SwingWorkerCommand;
 
 
 /**
@@ -87,7 +85,7 @@ public class SetUserAL implements ActionListener {
 		}
 
 		try {
-			Command command = new SetUserPropertiesFromRepo(MainFrame
+			Command command = new SetUserPropertiesFromRepo(AppUI
 					.getRepositories().getUsersRepo(), userName, oldPassword,
 					newPassword);
 			new SwingWorkerCommand(command, new PublishUsersToMainFrame(),

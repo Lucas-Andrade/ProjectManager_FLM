@@ -6,10 +6,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 
+import mainFrameAL.mainFrame.ErrorDialog;
+import mainFrameAL.mainFrame.MainFrame;
 import utils.AWorker;
 import app.AppElement;
-import app.windows.mainFrameAL.mainFrame.ErrorDialog;
-import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 /**
  * This class allows to publish information about a {@code Project}'s

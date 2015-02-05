@@ -6,15 +6,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import mainFrameAL.mainFrameAL.mainFrame.ErrorDialog;
-import mainFrameAL.mainFrameAL.mainFrame.MainFrame;
-
-import org.PublishToErrorDialog;
-import org.PublishToMainFrame;
-import org.SwingWorkerCommand;
-
+import mainFrameAL.mainFrame.ErrorDialog;
+import app.AppUI;
 import app.domainCommands.Command;
 import app.domainCommands.RemoveProjectToRepo;
+import app.publisher.PublishToErrorDialog;
+import app.publisher.PublishToMainFrame;
+import app.publisher.SwingWorkerCommand;
 
 
 /**
@@ -77,7 +75,7 @@ public class RemoveProjectAL implements ActionListener {
 				JOptionPane.OK_CANCEL_OPTION);
 		try {
 			if (resposta == JOptionPane.OK_OPTION) {
-				Command command = new RemoveProjectToRepo(MainFrame
+				Command command = new RemoveProjectToRepo(AppUI
 						.getRepositories().getProjectsRepo(), pidString);
 				new SwingWorkerCommand(command, new PublishToMainFrame(),
 						new PublishToErrorDialog()).execute();

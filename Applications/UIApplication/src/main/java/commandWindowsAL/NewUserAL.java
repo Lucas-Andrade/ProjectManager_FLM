@@ -6,15 +6,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import mainFrameAL.mainFrameAL.mainFrame.ErrorDialog;
-import mainFrameAL.mainFrameAL.mainFrame.MainFrame;
-
-import org.PublishToErrorDialog;
-import org.PublishUsersToMainFrame;
-import org.SwingWorkerCommand;
-
+import mainFrameAL.mainFrame.ErrorDialog;
+import app.AppUI;
 import app.domainCommands.AddUserToRepo;
 import app.domainCommands.Command;
+import app.publisher.PublishToErrorDialog;
+import app.publisher.PublishUsersToMainFrame;
+import app.publisher.SwingWorkerCommand;
 
 /**
  * Class responsible for instantiating the {@code Command} {@link AddUserToRepo}
@@ -82,7 +80,7 @@ public class NewUserAL implements ActionListener {
 		}
 
 		try {
-			Command command = new AddUserToRepo(MainFrame.getRepositories()
+			Command command = new AddUserToRepo(AppUI.getRepositories()
 					.getUsersRepo(), username, password, email, fullname);
 			new SwingWorkerCommand(command, new PublishUsersToMainFrame(),
 					new PublishToErrorDialog()).execute();

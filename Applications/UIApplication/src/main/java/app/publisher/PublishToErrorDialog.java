@@ -1,6 +1,6 @@
 package app.publisher;
 
-import app.windows.mainFrameAL.mainFrame.ErrorDialog;
+import mainFrameAL.mainFrame.ErrorDialog;
 
 /**
  * Super class of all the publishers that publish information

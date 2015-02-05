@@ -3,8 +3,8 @@ package app.publisher;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 
+import mainFrameAL.FrameAndPanelHolder;
 import app.AppElement;
-import app.windows.mainFrameAL.FrameAndPanelHolder;
 
 /**
  * Allows to publish information about {@code AppElement}s indirectly to the

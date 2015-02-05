@@ -7,8 +7,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
 
+import mainFrameAL.mainFrame.MainFrame;
 import app.AppElement;
-import app.windows.mainFrameAL.mainFrame.MainFrame;
 
 /**
  * Allows to publish information about {@code AppElement}s into the right panel

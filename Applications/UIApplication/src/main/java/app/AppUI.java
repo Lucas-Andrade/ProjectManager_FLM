@@ -20,7 +20,6 @@ public class AppUI {
 	}
 	
 	private static RepositoryHolder repositories = new InMemoryRepositoryHolder();
-	private AppCommandFactory factory = new AppCommandFactory(repositories);
 	
 	public static RepositoryHolder getRepositories() {
 		return repositories;

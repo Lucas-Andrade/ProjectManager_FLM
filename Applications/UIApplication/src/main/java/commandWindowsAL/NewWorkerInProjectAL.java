@@ -5,16 +5,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
-import mainFrameAL.mainFrameAL.mainFrame.ErrorDialog;
-import mainFrameAL.mainFrameAL.mainFrame.MainFrame;
-import mainFrameAL.mainFrameAL.mainFrame.WorkerID;
-
-import org.PublishToErrorDialog;
-import org.PublishToMainFrame;
-import org.SwingWorkerCommand;
-
+import mainFrameAL.mainFrame.ErrorDialog;
+import mainFrameAL.mainFrame.WorkerID;
+import app.AppUI;
 import app.domainCommands.AddWorkerToProjectInRepo;
 import app.domainCommands.Command;
+import app.publisher.PublishToErrorDialog;
+import app.publisher.PublishToMainFrame;
+import app.publisher.SwingWorkerCommand;
 
 
 /**
@@ -84,8 +82,8 @@ public class NewWorkerInProjectAL implements ActionListener {
 			return;
 		}
 		try {
-			Command command = new AddWorkerToProjectInRepo(MainFrame
-					.getRepositories().getProjectsRepo(), MainFrame
+			Command command = new AddWorkerToProjectInRepo(AppUI
+					.getRepositories().getProjectsRepo(), AppUI
 					.getRepositories().getWorkersRepo(), pid, cid, worker);
 			new SwingWorkerCommand(command, new PublishToMainFrame(),
 					new PublishToErrorDialog()).execute();

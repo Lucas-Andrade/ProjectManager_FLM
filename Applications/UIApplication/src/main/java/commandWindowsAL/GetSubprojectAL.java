@@ -5,15 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
-import mainFrameAL.mainFrameAL.mainFrame.ErrorDialog;
-import mainFrameAL.mainFrameAL.mainFrame.MainFrame;
-
-import org.PublishToErrorDialog;
-import org.PublishToGetPanel;
-import org.SwingWorkerCommand;
-
+import mainFrameAL.mainFrame.ErrorDialog;
+import app.AppUI;
 import app.domainCommands.Command;
 import app.domainCommands.GetSubprojectsFromRepo;
+import app.publisher.PublishToErrorDialog;
+import app.publisher.PublishToGetPanel;
+import app.publisher.SwingWorkerCommand;
 
 
 /**
@@ -71,7 +69,7 @@ public class GetSubprojectAL implements ActionListener {
 			return;
 		}
 		try {
-			Command command = new GetSubprojectsFromRepo(MainFrame
+			Command command = new GetSubprojectsFromRepo(AppUI
 					.getRepositories().getProjectsRepo(), pidString);
 			new SwingWorkerCommand(command, new PublishToGetPanel(),
 					new PublishToErrorDialog()).execute();

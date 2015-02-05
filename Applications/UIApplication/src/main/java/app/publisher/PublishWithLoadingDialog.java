@@ -2,8 +2,8 @@ package app.publisher;
 
 import java.util.List;
 
-import app.windows.mainFrameAL.mainFrame.LoadingDialog;
-import app.windows.mainFrameAL.mainFrame.MainFrame;
+import mainFrameAL.mainFrame.LoadingDialog;
+import mainFrameAL.mainFrame.MainFrame;
 
 /**
  * Super class of all {@code Publishers} that use a {@code LoadingDialog}, while
