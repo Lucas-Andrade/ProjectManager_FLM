@@ -1,8 +1,7 @@
 package app;
 
-import mainFrameAL.mainFrame.MainFrame;
-import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.repositoryHolders.RepositoryHolder;
+import guiElements.ICommandCaller;
+import guiElements.GUIUtils;
 
 /**
  * This is the main class.
@@ -19,16 +18,12 @@ public class AppUI {
 	private AppUI() {
 	}
 	
-	private static RepositoryHolder repositories = new InMemoryRepositoryHolder();
-	
-	public static RepositoryHolder getRepositories() {
-		return repositories;
-	}
-	
 	/**
 	 * Main method, starts the application.
 	 */
 	public static void main(String[] args) {
-		new MainFrame().setVisible(true);
+		ICommandCaller caller = new AppCommandCaller();
+		GUIUtils.initializeMainFrame(caller);
 	}
+	
 }

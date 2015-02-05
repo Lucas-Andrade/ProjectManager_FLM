@@ -1,10 +1,11 @@
 package app.publisher;
 
+import guiElements.mainFrameAL.FrameAndPanelHolder;
+import guiElements.mainFrameAL.mainFrame.ErrorDialog;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import mainFrameAL.FrameAndPanelHolder;
-import mainFrameAL.mainFrame.ErrorDialog;
 import app.AppElement;
 import app.elements.IUser;
 

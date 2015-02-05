@@ -1,9 +1,9 @@
 package app.publisher;
 
-import java.util.List;
+import guiElements.mainFrameAL.mainFrame.LoadingDialog;
+import guiElements.mainFrameAL.mainFrame.MainFrame;
 
-import mainFrameAL.mainFrame.LoadingDialog;
-import mainFrameAL.mainFrame.MainFrame;
+import java.util.List;
 
 /**
  * Super class of all {@code Publishers} that use a {@code LoadingDialog}, while
