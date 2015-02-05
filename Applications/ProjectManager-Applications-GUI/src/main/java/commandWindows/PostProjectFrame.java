@@ -8,7 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import app.windows.commandWindowsAL.NewProjectAL;
+import commandWindowsAL.NewProjectAL;
 
 /**
  * This {@code Frame} allows to insert the mandatory parameters to construct a

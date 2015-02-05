@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import app.windows.commandWindowsAL.SetConsultantAL;
+import commandWindowsAL.SetConsultantAL;
 
 /**
  * This {@code Frame} allows to insert the mandatory parameters to modify a

@@ -9,8 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import app.windows.commandWindowsAL.commandWindows.MainDialogFrame;
-import app.windows.commandWindowsAL.commandWindows.MainPanel;
+import commandWindowsAL.commandWindows.MainDialogFrame;
+import commandWindowsAL.commandWindows.MainPanel;
 
 /**
  * Instances of this abstract class define the main Panel of all the GET

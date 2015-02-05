@@ -107,7 +107,7 @@ public abstract class MainDialogFrame extends JDialog {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			dispose();
+			setVisible(false);
 		}
 	}
 	

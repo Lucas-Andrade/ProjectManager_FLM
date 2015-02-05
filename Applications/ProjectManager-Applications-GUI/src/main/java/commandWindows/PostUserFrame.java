@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import app.windows.commandWindowsAL.NewUserAL;
+import commandWindowsAL.NewUserAL;
 
 import java.awt.GridBagLayout;
 

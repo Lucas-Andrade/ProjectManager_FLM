@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import app.windows.commandWindowsAL.SetUserAL;
+import commandWindowsAL.SetUserAL;
 
 /**
  * This {@code Frame} allows to insert the mandatory parameters to change a {@code User}'s password.

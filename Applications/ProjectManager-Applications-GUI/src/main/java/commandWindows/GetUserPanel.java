@@ -108,7 +108,7 @@ public class GetUserPanel extends MainGetPanel {
 		gbc_results.gridy = 7;
 		getMainGetPanel().add(results, gbc_results);
 
-		this.getGetButton().addActionListener(new app.windows.commandWindowsAL.GetUserAL(userID, allUsers));
+		this.getGetButton().addActionListener(new commandWindowsAL.GetUserAL(userID, allUsers));
 	}
 
 	@Override

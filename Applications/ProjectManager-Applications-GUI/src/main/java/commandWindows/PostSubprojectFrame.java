@@ -6,8 +6,8 @@ import java.awt.Insets;
 
 import javax.swing.JTextField;
 
-import mainFrame.ProjectID;
-import app.windows.commandWindowsAL.NewSubprojectAL;
+import commandWindowsAL.NewSubprojectAL;
+import mainFrameAL.mainFrame.ProjectID;
 
 /**
  * This {@code Frame} allows to insert the mandatory parameters to add a

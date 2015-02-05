@@ -9,8 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import mainFrame.ProjectID;
-import app.windows.commandWindowsAL.GetWorkersAL;
+import commandWindowsAL.GetWorkersAL;
+import mainFrameAL.mainFrame.ProjectID;
 
 
 /**

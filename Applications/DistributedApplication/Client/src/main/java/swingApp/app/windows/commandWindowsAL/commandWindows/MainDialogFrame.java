@@ -11,8 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
+import commandWindowsAL.commandWindows.MainPanel;
 import swingApp.app.windows.commandWindowsAL.commandWindows.MainDialogFrame;
-import app.windows.commandWindowsAL.commandWindows.MainPanel;
 
 /**
  * Instances of this abstract class define the main Dialog frames of all the non GET

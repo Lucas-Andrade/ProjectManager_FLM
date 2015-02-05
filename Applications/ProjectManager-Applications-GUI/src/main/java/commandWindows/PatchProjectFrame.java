@@ -7,8 +7,8 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import mainFrame.ProjectID;
-import app.windows.commandWindowsAL.SetProjectAL;
+import commandWindowsAL.SetProjectAL;
+import mainFrameAL.mainFrame.ProjectID;
 
 /**
  * This {@code Frame} allows to insert the mandatory parameters to perform

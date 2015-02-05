@@ -6,9 +6,9 @@ import java.awt.Insets;
 
 import javax.swing.JLabel;
 
-import mainFrame.ProjectID;
-import mainFrame.WorkerID;
-import app.windows.commandWindowsAL.NewWorkerInProjectAL;
+import commandWindowsAL.NewWorkerInProjectAL;
+import mainFrameAL.mainFrame.ProjectID;
+import mainFrameAL.mainFrame.WorkerID;
 
 /**
  * This {@code Frame} allows to insert the mandatory parameters to add

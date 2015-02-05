@@ -19,8 +19,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import commandWindowsAL.commandWindows.MainDialogFrame;
 import swingApp.app.authentication.Authentication;
-import app.windows.commandWindowsAL.commandWindows.MainDialogFrame;
 
 /**
  * This {@code JDialog} allows the user to make the necessary authentication to

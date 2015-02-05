@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import app.windows.commandWindowsAL.commandWindows.MainDialogFrame;
+import commandWindowsAL.commandWindows.MainDialogFrame;
 import swingApp.app.authentication.Authentication;
 
 

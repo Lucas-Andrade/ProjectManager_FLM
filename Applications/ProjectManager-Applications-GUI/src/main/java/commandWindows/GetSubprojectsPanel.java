@@ -6,8 +6,8 @@ import java.awt.Insets;
 
 import javax.swing.JPanel;
 
-import mainFrame.ProjectID;
-import app.windows.commandWindowsAL.GetSubprojectAL;
+import commandWindowsAL.GetSubprojectAL;
+import mainFrameAL.mainFrame.ProjectID;
 
 /**
  * This {@code MainGetPanel} allows to insert the mandatory parameters to get

@@ -8,11 +8,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
+import mainFrameAL.mainFrameAL.mainFrame.ErrorDialog;
+import mainFrameAL.mainFrameAL.mainFrame.LoadingDialog;
 import app.elements.IUser;
 import app.repository.UserRepository;
 import app.repositoryHolders.RepositoryHolder;
-import app.windows.mainFrameAL.mainFrame.ErrorDialog;
-import app.windows.mainFrameAL.mainFrame.LoadingDialog;
 
 /**
  * Class that logs in and logs out an {@code IUser}. It's able to tell if there

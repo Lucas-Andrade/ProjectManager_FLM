@@ -4,8 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import mainFrame.ProjectID;
-import app.windows.commandWindowsAL.RemoveProjectAL;
+import commandWindowsAL.RemoveProjectAL;
+import mainFrameAL.mainFrame.ProjectID;
 
 /**
  * This {@code MainDialogFrame} allows to insert the mandatory parameters to
