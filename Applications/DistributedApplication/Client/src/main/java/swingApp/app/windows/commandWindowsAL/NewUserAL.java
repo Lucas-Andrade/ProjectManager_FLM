@@ -10,17 +10,16 @@ import swingApp.app.windows.PublishToErrorDialog;
 import swingApp.app.windows.PublishUsersToMainFrame;
 import swingApp.app.windows.SwingWorkerCommand;
 import swingApp.app.windows.mainFrameAL.mainFrame.ErrorDialog;
-
-import commandProxy.AddUserToRepo;
-import commandProxy.Command;
+import commandRequest.PostHttpRequest;
+import commandRequest.Command;
 
 /**
- * Class responsible for instantiating the {@code Command} {@link AddUserToRepo}
+ * Class responsible for instantiating the {@code Command} {@link PostHttpRequest}
  * and for executing it in a new {@link SwingWorkerCommand}, if not possible
  * displays {@link ErrorDialog}s with exception messages. Implements
  * {@code ActionListener}.
  * 
- * @see AddUserToRepo
+ * @see PostHttpRequest
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015
@@ -29,7 +28,7 @@ public class NewUserAL implements ActionListener {
 
 	/**
 	 * An array of {@code JTextField}s containing the parameters for
-	 * instantiating the {@code Command} {@link AddUserToRepo}.
+	 * instantiating the {@code Command} {@link PostHttpRequest}.
 	 */
 	private JTextField[] textfields;
 	private JPasswordField passwordField;
@@ -39,7 +38,7 @@ public class NewUserAL implements ActionListener {
 	 * 
 	 * @param fields
 	 *            A {@code JTextField} containing the parameters for
-	 *            instantiating the {@code Command} {@link AddUserToRepo}.
+	 *            instantiating the {@code Command} {@link PostHttpRequest}.
 	 * @param passwordField 
 	 */
 	public NewUserAL(JTextField[] fields, JPasswordField passwordField) {
@@ -49,7 +48,7 @@ public class NewUserAL implements ActionListener {
 
 	/**
 	 * Method responsible for instantiating the {@code Command}
-	 * {@link AddUserToRepo} and for executing it in a new
+	 * {@link PostHttpRequest} and for executing it in a new
 	 * {@link SwingWorkerCommand}, if not possible displays {@link ErrorDialog}s
 	 * with exception messages. {@see
 	 * ActionListener#actionPerformed(ActionEvent)}
@@ -80,7 +79,7 @@ public class NewUserAL implements ActionListener {
 		}
 
 		try {
-			Command command = new AddUserToRepo(username, password, email, fullname);
+			Command command = new PostHttpRequest(username, password, email, fullname);
 			new SwingWorkerCommand(command, new PublishUsersToMainFrame(),
 					new PublishToErrorDialog()).execute();
 

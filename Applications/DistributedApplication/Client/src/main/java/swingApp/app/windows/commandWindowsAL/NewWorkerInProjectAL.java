@@ -10,9 +10,8 @@ import swingApp.app.windows.PublishToMainFrame;
 import swingApp.app.windows.SwingWorkerCommand;
 import swingApp.app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import swingApp.app.windows.mainFrameAL.mainFrame.WorkerID;
-
-import commandProxy.AddWorkerToProjectInRepo;
-import commandProxy.Command;
+import commandRequest.AddWorkerToProjectInRepo;
+import commandRequest.Command;
 
 
 /**

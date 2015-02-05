@@ -11,9 +11,8 @@ import swingApp.app.windows.PublishUsersToMainFrame;
 import swingApp.app.windows.SwingWorkerCommand;
 import swingApp.app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import swingApp.app.windows.commandWindowsAL.NewUserAL;
-
-import commandProxy.Command;
-import commandProxy.SetUserPropertiesFromRepo;
+import commandRequest.Command;
+import commandRequest.SetUserPropertiesFromRepo;
 
 
 /**

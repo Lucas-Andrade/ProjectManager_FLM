@@ -9,7 +9,7 @@ import org.ErrorPublisher;
 import org.ResultsPublisher;
 
 import app.AppElement;
-import commandProxy.Command;
+import commandRequest.Command;
 import app.domainCommands.exceptions.CommandExecutionException;
 
 /**
@@ -38,7 +38,7 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 	 * @param publisher
 	 * @param errorPublisher
 	 */
-	public SwingWorkerCommand(commandProxy.Command command2, ResultsPublisher publisher, ErrorPublisher errorPublisher) {
+	public SwingWorkerCommand(commandRequest.Command command2, ResultsPublisher publisher, ErrorPublisher errorPublisher) {
 		this.command = command2;
 		this.publisher = publisher;
 		this.errorPublisher = errorPublisher;
