@@ -3,10 +3,6 @@ package swingApp.app.windows;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import org.PublishToGetPanel;
-import org.ResultsPublisherWithLoadingDialog;
-import org.TableBuilder;
-
 import swingApp.app.windows.mainFrameAL.FrameAndPanelHolder;
 import swingApp.app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.AppElement;

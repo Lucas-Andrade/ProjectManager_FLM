@@ -7,9 +7,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
 
-import org.ResultsPublisherWithLoadingDialog;
-import org.TreeBuilder;
-
 import swingApp.app.windows.mainFrameAL.mainFrame.MainFrame;
 import app.AppElement;
 

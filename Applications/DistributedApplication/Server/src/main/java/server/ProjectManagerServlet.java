@@ -133,34 +133,8 @@ public class ProjectManagerServlet extends HttpServlet{
 //		} while (true);
 //	}
 //
-//	/**
-//	 * Gets the singleton {@link CommandParser} created and configured in the
-//	 * application
-//	 * 
-//	 * @return the application {@link CommandParser}
-//	 */
-//	private void getCommandParser(UserRepository userRepo, CommandParser parser) {
-//		try {
-//			parser.registerCommand("POST",
-//					new StringBuilder("/users/").toString(),
-//					new PostUser.Factory(userRepo));
-//
-//			parser.registerCommand("GET",
-//					new StringBuilder("/users").toString(),
-//					new GetUsers.Factory(userRepo));
-//
-//			parser.registerCommand(
-//					"GET",
-//					new StringBuilder("/users/{").append(GetUser.USERNAME)
-//							.append("}").toString(), new GetUser.Factory(userRepo));
-//			
-//		} catch (InvalidRegisterException e) {
-//			LOGGER.error( "Invalid Register Command!: " ,e );
-//			
-//		}
-//
-//	}
-//
+
+	
 	/**
 	 * returns a string with the command line request needed for command parser.
 	 * This string is created based on {@link HttpServletRequest} data.

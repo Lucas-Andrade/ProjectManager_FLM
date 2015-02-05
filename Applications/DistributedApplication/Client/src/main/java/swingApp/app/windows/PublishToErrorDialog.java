@@ -1,7 +1,5 @@
 package swingApp.app.windows;
 
-import org.ErrorPublisherWithLoadingDialog;
-
 import swingApp.app.windows.mainFrameAL.mainFrame.ErrorDialog;
 
 /**

@@ -6,9 +6,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 
-import org.PublishToMainFrame;
-import org.TableBuilder;
-
 import swingApp.app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import swingApp.app.windows.mainFrameAL.mainFrame.MainFrame;
 import app.AppElement;

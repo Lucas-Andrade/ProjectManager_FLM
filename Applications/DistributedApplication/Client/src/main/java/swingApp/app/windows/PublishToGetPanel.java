@@ -3,15 +3,11 @@ package swingApp.app.windows;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 
-import org.ResultsPublisherWithLoadingDialog;
-import org.TreeBuilder;
-
 import swingApp.app.windows.mainFrameAL.FrameAndPanelHolder;
 import app.AppElement;
 
 /**
- * Allows to publish information about {@code AppElement}s indirectly to the
- * {@code MainFrame}. This class presents that information as a {@code JTree},
+ * {@code JTree},
  * and then adds it to the appropriate panel in the {@code MainGetPanel}.
  * 
  * The conversion method used to parse the {@code AppElement}s into nodes in the

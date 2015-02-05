@@ -3,10 +3,10 @@ package consoleCommands;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import outputMethods.Result;
-import parserUtils.ParserResult;
+import javax.xml.transform.Result;
+
 import app.AppElement;
-import app.elements.User;
+import parserUtils.ParserResult;
 import consoleCommands.exceptions.MandatoryParameterNotPresentException;
 
 /**

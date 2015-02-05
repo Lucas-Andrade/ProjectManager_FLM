@@ -76,21 +76,39 @@ public class ProjectManagerServerApp{
 			UserRepository userRepo, ProjectsRepository projectRepo,
 			WorkerRepository workersRepo) throws InvalidRegisterException{
 
-		parser.registerCommand("POST", "/users", new consoleCommands.PostUsers.Factory(userRepo));
-		parser.registerCommand("POST", "/consultants",new consoleCommands.PostConsultant.Factory(userRepo, workersRepo));
-		parser.registerCommand("POST", "/projects", new consoleCommands.PostProjects.Factory(userRepo, projectRepo));
-		parser.registerCommand("POST", "/projects/{" + consoleCommands.PostWorkerInProject.PID + "}/{" + consoleCommands.PostWorkerInProject.WTYPE + "}",
-				new consoleCommands.PostWorkerInProject.Factory(userRepo, projectRepo,
+		parser.registerCommand("POST", "/users",
+				new consoleCommands.PostUsers.Factory(userRepo));
+		parser.registerCommand("POST", "/consultants",
+				new consoleCommands.PostConsultant.Factory(userRepo,
 						workersRepo));
-		parser.registerCommand("POST", "/projects/{" + consoleCommands.PostSubprojects.PID
-				+ "}/subproject", new consoleCommands.PostSubprojects.Factory(userRepo,	projectRepo));
-		parser.registerCommand("GET", "/users", new consoleCommands.GetUsers.Factory(userRepo));
-		parser.registerCommand("GET", "/users/{" + consoleCommands.GetUser.USERNAME + "}",	new consoleCommands.GetUser.Factory(userRepo));
-		parser.registerCommand("GET", "/projects/{" + consoleCommands.GetProjectWorkers.PID	+ "}/{" + consoleCommands.GetProjectWorkers.WTYPE + "}",
+		parser.registerCommand("POST", "/projects",
+				new consoleCommands.PostProjects.Factory(userRepo, projectRepo));
+		parser.registerCommand("POST", "/projects/{"
+				+ consoleCommands.PostWorkerInProject.PID + "}/{"
+				+ consoleCommands.PostWorkerInProject.WTYPE + "}",
+				new consoleCommands.PostWorkerInProject.Factory(userRepo,
+						projectRepo, workersRepo));
+		parser.registerCommand("POST", "/projects/{"
+				+ consoleCommands.PostSubprojects.PID + "}/subproject",
+				new consoleCommands.PostSubprojects.Factory(userRepo,
+						projectRepo));
+		parser.registerCommand("GET", "/users",
+				new consoleCommands.GetUsers.Factory(userRepo));
+		parser.registerCommand("GET", "/users/{"
+				+ consoleCommands.GetUser.USERNAME + "}",
+				new consoleCommands.GetUser.Factory(userRepo));
+		parser.registerCommand("GET", "/projects/{"
+				+ consoleCommands.GetProjectWorkers.PID + "}/{"
+				+ consoleCommands.GetProjectWorkers.WTYPE + "}",
 				new consoleCommands.GetProjectWorkers.Factory(projectRepo));
-		parser.registerCommand("GET", "/projects/{" + consoleCommands.GetSubproject.PID	+ "}/subproject", new consoleCommands.GetSubproject.Factory(projectRepo));
-		parser.registerCommand("GET", "/projects/{" + consoleCommands.GetProjects.PID + "}",new consoleCommands.GetProjects.Factory(projectRepo));
-//		parser.registerCommand("PATCH", "/users/{" + PatchUser.USERNAME + "}",	new PatchUser.Factory(userRepo));
+		parser.registerCommand("GET", "/projects/{"
+				+ consoleCommands.GetSubproject.PID + "}/subproject",
+				new consoleCommands.GetSubproject.Factory(projectRepo));
+		parser.registerCommand("GET", "/projects/{"
+				+ consoleCommands.GetProjects.PID + "}",
+				new consoleCommands.GetProjects.Factory(projectRepo));
+		// parser.registerCommand("PATCH", "/users/{" + PatchUser.USERNAME +
+		// "}", new PatchUser.Factory(userRepo));
 //		parser.registerCommand("PATCH", "/projects/{" + PatchProject.PID + "}",
 //				new PatchProject.Factory(userRepo, projectRepo));
 //		parser.registerCommand("PATCH", "/consultants/{" + PatchConsultant.CID

@@ -1,8 +1,5 @@
 package swingApp.app.windows;
 
-import org.PublishWithLoadingDialog;
-import org.ResultsPublisher;
-
 import utils.AWorker;
 import app.AppElement;
 import app.elements.IUser;
