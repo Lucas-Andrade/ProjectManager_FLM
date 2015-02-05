@@ -5,11 +5,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
+import org.PublishToErrorDialog;
+import org.PublishToMainFrame;
+import org.SwingWorkerCommand;
+
 import app.domainCommands.AddProjectToRepo;
 import app.domainCommands.Command;
-import app.windows.PublishToErrorDialog;
-import app.windows.PublishToMainFrame;
-import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
 

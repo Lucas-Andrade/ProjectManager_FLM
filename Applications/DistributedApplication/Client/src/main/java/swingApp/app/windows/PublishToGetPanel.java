@@ -3,10 +3,11 @@ package swingApp.app.windows;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 
+import org.ResultsPublisherWithLoadingDialog;
+import org.TreeBuilder;
+
 import swingApp.app.windows.mainFrameAL.FrameAndPanelHolder;
 import app.AppElement;
-import app.windows.ResultsPublisherWithLoadingDialog;
-import app.windows.TreeBuilder;
 
 /**
  * Allows to publish information about {@code AppElement}s indirectly to the

@@ -1,7 +1,7 @@
 package swingApp.app.windows;
 
-import app.windows.ErrorPublisher;
-import app.windows.PublishWithLoadingDialog;
+import org.ErrorPublisher;
+import org.PublishWithLoadingDialog;
 
 /**
  * Abstract class of all the {@code Publisher} classes that will publish

@@ -1,7 +1,8 @@
 package app;
 
+import mainFrame.MainFrame;
 import app.repositoryHolders.InMemoryRepositoryHolder;
-import app.windows.mainFrameAL.mainFrame.MainFrame;
+import app.repositoryHolders.RepositoryHolder;
 
 /**
  * This is the main class.
@@ -18,10 +19,16 @@ public class AppUI {
 	private AppUI() {
 	}
 	
+	private static RepositoryHolder repositories = new InMemoryRepositoryHolder();
+	
+	public static RepositoryHolder getRepositories() {
+		return repositories;
+	}
+	
 	/**
 	 * Main method, starts the application.
 	 */
 	public static void main(String[] args) {
-		new MainFrame(new InMemoryRepositoryHolder()).setVisible(true);
+		new MainFrame().setVisible(true);
 	}
 }

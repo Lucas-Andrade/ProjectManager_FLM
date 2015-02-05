@@ -5,11 +5,12 @@ import java.util.concurrent.ExecutionException;
 
 import javax.swing.SwingWorker;
 
+import org.ErrorPublisher;
+import org.ResultsPublisher;
+
 import app.AppElement;
 import commandProxy.Command;
 import app.domainCommands.exceptions.CommandExecutionException;
-import app.windows.ErrorPublisher;
-import app.windows.ResultsPublisher;
 
 /**
  * Is a {@code SwingWorker<AppElement[], String>} that is used to apply changes to the database.

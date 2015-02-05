@@ -1,7 +1,8 @@
 package swingApp.app.windows;
 
+import org.ErrorPublisherWithLoadingDialog;
+
 import swingApp.app.windows.mainFrameAL.mainFrame.ErrorDialog;
-import app.windows.ErrorPublisherWithLoadingDialog;
 
 /**
  * Super class of all the publishers that publish information

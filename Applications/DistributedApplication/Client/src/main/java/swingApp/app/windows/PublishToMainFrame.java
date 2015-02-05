@@ -7,10 +7,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
 
+import org.ResultsPublisherWithLoadingDialog;
+import org.TreeBuilder;
+
 import swingApp.app.windows.mainFrameAL.mainFrame.MainFrame;
 import app.AppElement;
-import app.windows.ResultsPublisherWithLoadingDialog;
-import app.windows.TreeBuilder;
 
 /**
  * Allows to publish information about {@code AppElement}s into the right panel

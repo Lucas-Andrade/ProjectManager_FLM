@@ -6,12 +6,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 
+import org.PublishToMainFrame;
+import org.TableBuilder;
+
 import swingApp.app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import swingApp.app.windows.mainFrameAL.mainFrame.MainFrame;
 import utils.AWorker;
 import app.AppElement;
-import app.windows.PublishToMainFrame;
-import app.windows.TableBuilder;
 
 /**
  * This class allows to publish information about a {@code Project}'s

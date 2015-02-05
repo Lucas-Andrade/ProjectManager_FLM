@@ -6,12 +6,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import org.PublishToErrorDialog;
+import org.PublishUsersToGetPanel;
+import org.SwingWorkerCommand;
+
 import app.domainCommands.Command;
 import app.domainCommands.GetAllUsersFromRepo;
 import app.domainCommands.GetUserFromRepo;
-import app.windows.PublishToErrorDialog;
-import app.windows.PublishUsersToGetPanel;
-import app.windows.SwingWorkerCommand;
 import app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.windows.mainFrameAL.mainFrame.MainFrame;
 

@@ -1,10 +1,11 @@
 package swingApp.app.windows;
 
+import org.PublishWithLoadingDialog;
+import org.ResultsPublisher;
+
 import utils.AWorker;
 import app.AppElement;
 import app.elements.IUser;
-import app.windows.PublishWithLoadingDialog;
-import app.windows.ResultsPublisher;
 
 /**
  * Super class of all publishers that publish information about the expected
