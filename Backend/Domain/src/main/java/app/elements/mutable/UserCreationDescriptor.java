@@ -46,6 +46,7 @@ public class UserCreationDescriptor {
 		this.username = username;
 		this.password = password;
 		this.email = email;
+		this.fullname=this.username;
 	}
 
 	/**

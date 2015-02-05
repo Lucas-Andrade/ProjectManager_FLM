@@ -12,27 +12,23 @@ import parserUtils.ParserResult;
 import app.AppElement;
 
 @SuppressWarnings("serial")
-public class ProjectManagerServlet extends HttpServlet{
+public class GetUsersServlet extends HttpServlet{
 
 	private String commandString;
 	
 	
-	public ProjectManagerServlet(){ }
+	public GetUsersServlet(){ }
     
 	
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    	//TODO colocar aqui ifs para testar o URI inserido e se pode ser feito o substring seguinte
-    
-//    	CommandParser parser = new CommandParser();
-    	String path = getCommandStringFromRequest(req);
     	
-    	String method = path.substring(1, path.indexOf('/', 1));
-    	path = path.substring(path.indexOf('/', 1));
-    	CommandParser cp = getCommandParser();
-    	String input = "";
+    	//commandString = getCommandStringFromRequest(req);
+    	//CommandParser parser = new CommandParser();
+    	CommandParser cp = CommandParser.getInstance();
+    	String input="";
     	try {
-			ParserResult pr = cp.getCommand(method, path).call();
+			ParserResult pr = cp.getCommand("GET", "/users").call();
 			for (AppElement elem : pr.getResults())
 				input+=elem.getJson().toString();
 			
@@ -45,6 +41,7 @@ public class ProjectManagerServlet extends HttpServlet{
 
 		OutputStream out = resp.getOutputStream();
 		out.write(input.getBytes());
+		
 		
 	}
 	
@@ -64,8 +61,8 @@ public class ProjectManagerServlet extends HttpServlet{
 //		out.print(mensage.pop());
 //		out.flush();
 //    }
-	
-	
+//	
+//	
 //	@Override
 //    public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 //		commandString = getCommandStringFromRequest(req);
@@ -82,15 +79,15 @@ public class ProjectManagerServlet extends HttpServlet{
 //    }
 //	
 //	
-	/**
-	 * Gets the singleton {@link CommandParser} created and configured in the application
-	 * @return the application {@link CommandParser}
-	 */
-	private CommandParser getCommandParser() {
-		CommandParser cp = CommandParser.getInstance();
-		return cp;
-	}
-
+//	/**
+//	 * Gets the singleton {@link CommandParser} created and configured in the application
+//	 * @return the application {@link CommandParser}
+//	 */
+//	private CommandParser getCommandParser() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
 //	
 //	public StackMensage startParser(CommandParser parser, String input) {
 //
@@ -161,21 +158,19 @@ public class ProjectManagerServlet extends HttpServlet{
 //
 //	}
 //
-	/**
-	 * returns a string with the command line request needed for command parser.
-	 * This string is created based on {@link HttpServletRequest} data.
-	 * 
-	 * @param req
-	 *            the {@link HttpServletRequest} corresponding to the current
-	 *            HTTP request
-	 * @return the string to send to {@link CommandParser}
-	 */
-	private String getCommandStringFromRequest(HttpServletRequest req) {
-		
-		String path =req.getRequestURI();
-//    	String method = path.substring(1, path.indexOf('/', 1));
-//    	path = path.substring(path.indexOf('/', 1));
-//    	
+//	/**
+//	 * returns a string with the command line request needed for command parser.
+//	 * This string is created based on {@link HttpServletRequest} data.
+//	 * 
+//	 * @param req
+//	 *            the {@link HttpServletRequest} corresponding to the current
+//	 *            HTTP request
+//	 * @return the string to send to {@link CommandParser}
+//	 */
+//	private String getCommandStringFromRequest(HttpServletRequest req) {
+//		req.getRequestURI();
+//		
+//		
 //		StringBuilder out = new StringBuilder();
 //		InputStream input = null;
 //		try {
@@ -189,8 +184,8 @@ public class ProjectManagerServlet extends HttpServlet{
 //		} catch (IOException e) {
 //			LOGGER.error( "FailedCreateActivityFunction Exception Occured : " ,e );
 //		}
-
-		return path;
-	}
+//
+//		return out.toString();
+//	}
 
 }

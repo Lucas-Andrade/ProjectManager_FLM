@@ -1,11 +1,6 @@
 package utils;
 
 import org.junit.Test;
-import utils.Consultant;
-import utils.Leader;
-import utils.Local;
-import utils.Project;
-import utils.Team;
 
 public class ProjectTest
 {

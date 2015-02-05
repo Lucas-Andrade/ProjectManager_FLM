@@ -20,6 +20,18 @@ import parserUtils.UnknownCommandException;
  */
 public class CommandParser{
 
+	//TODO para aperfeiçoar
+	static CommandParser cp;
+	//TODO o construtor tem de passar a private
+	public CommandParser(){
+		
+	}
+	//TODO o proximo metodo nao e thread safe
+	public static CommandParser getInstance(){
+		if (cp==null)
+			cp=new CommandParser();
+		return cp;
+	}
 	/**
 	 * The registry root
 	 */

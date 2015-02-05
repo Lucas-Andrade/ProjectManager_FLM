@@ -41,7 +41,8 @@ public class PatchHttpRequest implements HttpRequest{
 			connection.setDoInput(true); // true indicates the server returns response
 			connection.setDoOutput(true);// true indicates PUT request
 			connection.setRequestMethod("PUT");
-	
+			connection.setRequestProperty("Content-Type",  "application/json"; charset=UTF-8);
+			
 			StringBuffer requestParams = new StringBuffer();
 		
 			Iterator<String> paramIterator = params.keySet().iterator(); 	// creates the params string, encode them using URLEncoder

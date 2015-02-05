@@ -47,7 +47,7 @@ public class CenasRequest{
 		      wr.writeBytes (urlParameters);
 		      wr.flush ();
 		      wr.close ();
-		
+		     
 		      //Get Response    
 		      InputStream is = connection.getInputStream();
 		      BufferedReader rd = new BufferedReader(new InputStreamReader(is));
