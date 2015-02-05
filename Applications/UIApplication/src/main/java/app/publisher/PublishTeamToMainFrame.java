@@ -1,13 +1,14 @@
 package app.publisher;
 
+import guiElements.mainFrameAL.mainFrame.ErrorDialog;
+import guiElements.mainFrameAL.mainFrame.MainFrame;
+
 import java.awt.BorderLayout;
 
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 
-import mainFrameAL.mainFrame.ErrorDialog;
-import mainFrameAL.mainFrame.MainFrame;
 import utils.AWorker;
 import app.AppElement;
 

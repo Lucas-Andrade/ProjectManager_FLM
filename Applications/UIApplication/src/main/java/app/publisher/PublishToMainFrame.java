@@ -1,5 +1,7 @@
 package app.publisher;
 
+import guiElements.mainFrameAL.mainFrame.MainFrame;
+
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
@@ -7,7 +9,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
 
-import mainFrameAL.mainFrame.MainFrame;
 import app.AppElement;
 
 /**

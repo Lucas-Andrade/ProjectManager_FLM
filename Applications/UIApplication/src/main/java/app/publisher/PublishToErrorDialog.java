@@ -1,6 +1,6 @@
 package app.publisher;
 
-import mainFrameAL.mainFrame.ErrorDialog;
+import guiElements.mainFrameAL.mainFrame.ErrorDialog;
 
 /**
  * Super class of all the publishers that publish information

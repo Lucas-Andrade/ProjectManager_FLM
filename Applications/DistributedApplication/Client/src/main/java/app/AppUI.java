@@ -1,13 +1,12 @@
 package app;
 
-import guiElements.ICommandCaller;
 import guiElements.GUIUtils;
 
 /**
  * This is the main class.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
- * @since 19/01/2015
+ * @since 05/02/2015
  */
 public class AppUI {
 	
@@ -22,8 +21,7 @@ public class AppUI {
 	 * Main method, starts the application.
 	 */
 	public static void main(String[] args) {
-		ICommandCaller caller = new AppCommandCaller();
+		AppCommandCaller caller = new AppCommandCaller();
 		GUIUtils.initializeMainFrame(caller);
 	}
-	
 }

@@ -1,9 +1,10 @@
 package app.publisher;
 
+import guiElements.mainFrameAL.FrameAndPanelHolder;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 
-import mainFrameAL.FrameAndPanelHolder;
 import app.AppElement;
 
 /**
