@@ -6,7 +6,6 @@ import java.awt.Insets;
 
 import javax.swing.JLabel;
 
-import commandWindowsAL.NewWorkerInProjectAL;
 import mainFrameAL.mainFrame.ProjectID;
 import mainFrameAL.mainFrame.WorkerID;
 

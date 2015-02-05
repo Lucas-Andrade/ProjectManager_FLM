@@ -1,7 +1,6 @@
 package mainFrameAL;
 
-import mainFrameAL.mainFrameAL.mainFrame.MainFrame;
-import app.repositoryHolders.RepositoryHolder;
+import mainFrameAL.mainFrame.MainFrame;
 
 /**
  * Class responsible for calling the {@code GetUserPanel}. Extends
@@ -11,20 +10,7 @@ import app.repositoryHolders.RepositoryHolder;
  * @since 19/01/2015
  */
 public class GetUserAL extends MainFrameActionListener{
-
-	/**
-	 * Call to the constructor of the {@code super} class.
-	 * 
-	 * @param repositories
-	 *            The {@code RepositoryHolder} with the {@code UserRepository}.
-	 * @param authentication
-	 *            The {@code Authentication} to check if any {@code User} is
-	 *            authenticated.
-	 */
-	public GetUserAL(RepositoryHolder repositories){
-		super(repositories);
-	}
-
+	
 	/**
 	 * @see super{@link #action()}
 	 */

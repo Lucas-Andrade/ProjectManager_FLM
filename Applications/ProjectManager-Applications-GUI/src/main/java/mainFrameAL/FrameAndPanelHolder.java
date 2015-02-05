@@ -5,21 +5,21 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
-import commandWindowsAL.commandWindows.DeleteProjectFrame;
-import commandWindowsAL.commandWindows.GetProjectsPanel;
-import commandWindowsAL.commandWindows.GetSubprojectsPanel;
-import commandWindowsAL.commandWindows.GetUserPanel;
-import commandWindowsAL.commandWindows.GetWorkersInProjectPanel;
-import commandWindowsAL.commandWindows.MainDialogFrame;
-import commandWindowsAL.commandWindows.MainGetPanel;
-import commandWindowsAL.commandWindows.PatchConsultantFrame;
-import commandWindowsAL.commandWindows.PatchProjectFrame;
-import commandWindowsAL.commandWindows.PatchUserFrame;
-import commandWindowsAL.commandWindows.PostConsultantFrame;
-import commandWindowsAL.commandWindows.PostProjectFrame;
-import commandWindowsAL.commandWindows.PostSubprojectFrame;
-import commandWindowsAL.commandWindows.PostUserFrame;
-import commandWindowsAL.commandWindows.PostWorkerInProjectFrame;
+import commandWindows.DeleteProjectFrame;
+import commandWindows.GetProjectsPanel;
+import commandWindows.GetSubprojectsPanel;
+import commandWindows.GetUserPanel;
+import commandWindows.GetWorkersInProjectPanel;
+import commandWindows.MainDialogFrame;
+import commandWindows.MainGetPanel;
+import commandWindows.PatchConsultantFrame;
+import commandWindows.PatchProjectFrame;
+import commandWindows.PatchUserFrame;
+import commandWindows.PostConsultantFrame;
+import commandWindows.PostProjectFrame;
+import commandWindows.PostSubprojectFrame;
+import commandWindows.PostUserFrame;
+import commandWindows.PostWorkerInProjectFrame;
 
 /**
  * This class instantiates all {@code MainDialogFrame} and {@code MainGetPanel} that the {@code MainFrame}

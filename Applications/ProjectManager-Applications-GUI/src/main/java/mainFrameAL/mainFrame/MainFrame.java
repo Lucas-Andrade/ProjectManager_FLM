@@ -20,9 +20,22 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
+import mainFrameAL.Authentication;
+import mainFrameAL.DeleteProjectAL;
+import mainFrameAL.FrameAndPanelHolder;
+import mainFrameAL.GetProjectsAL;
+import mainFrameAL.GetSubprojectsAL;
+import mainFrameAL.GetUserAL;
+import mainFrameAL.GetWorkersInProjectAL;
+import mainFrameAL.PatchConsultantAL;
+import mainFrameAL.PatchProjectAL;
+import mainFrameAL.PatchUserAL;
+import mainFrameAL.PostConsultantAL;
+import mainFrameAL.PostProjectAL;
+import mainFrameAL.PostSubprojectAL;
+import mainFrameAL.PostUserAL;
+import mainFrameAL.PostWorkerAL;
 import commandWindows.AuthenticationDialog;
-
-
 
 /**
  * This class defines the main frame of the main application.
@@ -32,7 +45,7 @@ import commandWindows.AuthenticationDialog;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015
  */
-public class MainFrame extends JFrame implements Authentication.AuthenticationActionListener{
+public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1406565561867998589L;
 	public static final int PANEL_DIVIDER_LOCATION = 120;
@@ -62,7 +75,7 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 	
 	private JLabel logo;
 
-	public MainFrame(CommandFactory factory){
+	public MainFrame(){
 		
 		MainFrame.splitPane = new JSplitPane();
 		this.setBackground(new Color(176, 196, 222));
@@ -88,7 +101,7 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		mntmLogin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AuthenticationDialog(factory).setVisible(true);
+				new AuthenticationDialog().setVisible(true);
 			}
 		});
 
@@ -206,17 +219,17 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		JMenuItem newProjectItem = new JMenuItem("New project");
 		newProjectItem.setBackground(new Color(176, 196, 222));
 		projectsMenu.add(newProjectItem);
-		newProjectItem.addActionListener(new PostProjectAL(repositories));
+		newProjectItem.addActionListener(new PostProjectAL());
 
 		JMenuItem editProjectItem = new JMenuItem("Edit project");
 		editProjectItem.setBackground(new Color(176, 196, 222));
 		projectsMenu.add(editProjectItem);
-		editProjectItem.addActionListener(new PatchProjectAL(repositories));
+		editProjectItem.addActionListener(new PatchProjectAL());
 
 		JMenuItem mntmDeleteProject = new JMenuItem("Delete project");
 		mntmDeleteProject.setBackground(new Color(176, 196, 222));
 		projectsMenu.add(mntmDeleteProject);
-		mntmDeleteProject.addActionListener(new DeleteProjectAL(repositories));
+		mntmDeleteProject.addActionListener(new DeleteProjectAL());
 
 		JMenu mnGet = new JMenu("Get");
 		mnGet.setOpaque(true);
@@ -226,24 +239,22 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		JMenuItem mntmGetProjects = new JMenuItem("Get project");
 		mntmGetProjects.setBackground(new Color(176, 196, 222));
 		mnGet.add(mntmGetProjects);
-		mntmGetProjects.addActionListener(new GetProjectsAL(repositories));
+		mntmGetProjects.addActionListener(new GetProjectsAL());
 		
 		JMenuItem mntmGetSubprojects = new JMenuItem("Get subprojects");
 		mntmGetSubprojects.setBackground(new Color(176, 196, 222));
 		mnGet.add(mntmGetSubprojects);
-		mntmGetSubprojects.addActionListener(new GetSubprojectsAL(repositories));
+		mntmGetSubprojects.addActionListener(new GetSubprojectsAL());
 
 		JMenuItem mntmGetTeam = new JMenuItem("Get Team");
 		mntmGetTeam.setBackground(new Color(176, 196, 222));
 		mnGet.add(mntmGetTeam);
-		mntmGetTeam.addActionListener(new GetWorkersInProjectAL(
-				repositories));
+		mntmGetTeam.addActionListener(new GetWorkersInProjectAL());
 
 		JMenuItem mntmGetManager = new JMenuItem("Get Manager");
 		mntmGetManager.setBackground(new Color(176, 196, 222));
 		mnGet.add(mntmGetManager);
-		mntmGetManager.addActionListener(new GetWorkersInProjectAL(
-				repositories));
+		mntmGetManager.addActionListener(new GetWorkersInProjectAL());
 
 		JMenu mnAddToProject = new JMenu("Add to Project");
 		mnAddToProject.setOpaque(true);
@@ -253,17 +264,17 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		JMenuItem mntmAddConsultant = new JMenuItem("Add Consultant");
 		mntmAddConsultant.setBackground(new Color(176, 196, 222));
 		mnAddToProject.add(mntmAddConsultant);
-		mntmAddConsultant.addActionListener(new PostWorkerAL(repositories));
+		mntmAddConsultant.addActionListener(new PostWorkerAL());
 
 		JMenuItem mntmAddManager = new JMenuItem("Add Manager");
 		mntmAddManager.setBackground(new Color(176, 196, 222));
 		mnAddToProject.add(mntmAddManager);
-		mntmAddManager.addActionListener(new PostWorkerAL(repositories));
+		mntmAddManager.addActionListener(new PostWorkerAL());
 
 		JMenuItem mntmAddSubproject = new JMenuItem("Add Subproject");
 		mntmAddSubproject.setBackground(new Color(176, 196, 222));
 		mnAddToProject.add(mntmAddSubproject);
-		mntmAddSubproject.addActionListener(new PostSubprojectAL(repositories));
+		mntmAddSubproject.addActionListener(new PostSubprojectAL());
 
 		JMenu consultantsMenu = new JMenu("Consultants");
 		consultantsMenu.setBackground(new Color(176, 196, 222));
@@ -272,23 +283,22 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		JMenuItem newConsultantItem = new JMenuItem("New consultant/Manager");
 		newConsultantItem.setBackground(new Color(176, 196, 222));
 		consultantsMenu.add(newConsultantItem);
-		newConsultantItem.addActionListener(new PostConsultantAL(repositories));
+		newConsultantItem.addActionListener(new PostConsultantAL());
 
 		JMenuItem mntmEditWorker = new JMenuItem("Edit worker");
 		mntmEditWorker.setBackground(new Color(176, 196, 222));
 		consultantsMenu.add(mntmEditWorker);
-		mntmEditWorker.addActionListener(new PatchConsultantAL(repositories));
+		mntmEditWorker.addActionListener(new PatchConsultantAL());
 
 		JMenuItem mntmAddWorker = new JMenuItem("Add worker to project");
 		mntmAddWorker.setBackground(new Color(176, 196, 222));
 		consultantsMenu.add(mntmAddWorker);
-		mntmAddWorker.addActionListener(new PostWorkerAL(repositories));
+		mntmAddWorker.addActionListener(new PostWorkerAL());
 
 		JMenuItem mntmGetConsultant = new JMenuItem("Get worker(s) in project");
 		mntmGetConsultant.setBackground(new Color(176, 196, 222));
 		consultantsMenu.add(mntmGetConsultant);
-		mntmGetConsultant.addActionListener(new GetWorkersInProjectAL(
-				repositories));
+		mntmGetConsultant.addActionListener(new GetWorkersInProjectAL());
 
 		JMenu usersMenu = new JMenu("Users");
 		usersMenu.setBackground(new Color(176, 196, 222));
@@ -297,17 +307,17 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		JMenuItem mntmNewUser = new JMenuItem("New user");
 		mntmNewUser.setBackground(new Color(176, 196, 222));
 		usersMenu.add(mntmNewUser);
-		mntmNewUser.addActionListener(new PostUserAL(repositories));
+		mntmNewUser.addActionListener(new PostUserAL());
 
 		JMenuItem mntmGetUser = new JMenuItem("Get user");
 		mntmGetUser.setBackground(new Color(176, 196, 222));
 		usersMenu.add(mntmGetUser);
-		mntmGetUser.addActionListener(new GetUserAL(repositories));
+		mntmGetUser.addActionListener(new GetUserAL());
 
 		JMenuItem mntmEditUser = new JMenuItem("Edit user");
 		mntmEditUser.setBackground(new Color(176, 196, 222));
 		usersMenu.add(mntmEditUser);
-		mntmEditUser.addActionListener(new PatchUserAL(repositories));
+		mntmEditUser.addActionListener(new PatchUserAL());
 
 		JMenu searchMenu = new JMenu("Search");
 		searchMenu.setBackground(new Color(176, 196, 222));
@@ -316,17 +326,17 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		JMenuItem mntmProjects = new JMenuItem("Subprojects in project");
 		mntmProjects.setBackground(new Color(176, 196, 222));
 		searchMenu.add(mntmProjects);
-		mntmProjects.addActionListener(new GetSubprojectsAL(repositories));
+		mntmProjects.addActionListener(new GetSubprojectsAL());
 
 		JMenuItem mntmConsultants = new JMenuItem("Consultants/Manager in project");
 		mntmConsultants.setBackground(new Color(176, 196, 222));
 		searchMenu.add(mntmConsultants);
-		mntmConsultants.addActionListener(new GetWorkersInProjectAL(repositories));
+		mntmConsultants.addActionListener(new GetWorkersInProjectAL());
 
 		JMenuItem mntmUsers = new JMenuItem("User");
 		mntmUsers.setBackground(new Color(176, 196, 222));
 		searchMenu.add(mntmUsers);
-		mntmUsers.addActionListener(new GetUserAL(repositories));
+		mntmUsers.addActionListener(new GetUserAL());
 
 		JLabel randstadGirlImageLabel = new JLabel("");
 		randstadGirlImageLabel.setIcon(new ImageIcon(main));
@@ -337,29 +347,11 @@ public class MainFrame extends JFrame implements Authentication.AuthenticationAc
 		gbc_randstadGirlImageLabel.gridy = 1;
 		leftPanel.add(randstadGirlImageLabel, gbc_randstadGirlImageLabel);
 
-		Authentication.addActionListener(this);
 		pack();
 	}
 
 	JMenu mnFile;
 	JMenuItem mntmLogin;
 	JMenuItem mntmLogout;
-
-	@Override
-	public void actionPerformed(boolean isAuthenticated, IUser authenticatedUser)
-	{
-		if (isAuthenticated)
-		{
-			mntmLogin.setVisible(false);
-			mntmLogout.setText("Logout " + authenticatedUser.getLoginName());
-			mntmLogout.setVisible(true);
-		}
-		else
-		{
-			mntmLogin.setVisible(true);
-			mntmLogout.setVisible(false);
-			mntmLogout.setText("Logout");
-		}
-	}
 
 }

@@ -18,15 +18,13 @@
 			<artifactId>ProjectManager-Backend-Domain</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		
 		<dependency>
-		<groupId>flm.manager.project</groupId>
- 		<artifactId>ProjectManager-Applications-GUI</artifactId>
-  		<version>0.3.2-SNAPSHOT</version>
+			<groupId>flm.manager.project</groupId>
+ 			<artifactId>ProjectManager-Applications-GUI</artifactId>
+  			<version>0.3.2-SNAPSHOT</version>
 		</dependency>
 
 	</dependencies>
-
-  <modules>
-    <module>ProjectManager-Applications-UIApplication-Publishers</module>
-  </modules>
+	
 </project>

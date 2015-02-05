@@ -3,9 +3,8 @@ package mainFrameAL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import commandWindowsAL.commandWindows.AuthenticationDialog;
-import app.authentication.Authentication;
-import app.repositoryHolders.RepositoryHolder;
+import commandWindows.AuthenticationDialog;
+
 
 /**
  * Class responsible for implementing the {@link ActionListener}s for the
@@ -19,21 +18,6 @@ import app.repositoryHolders.RepositoryHolder;
 public abstract class MainFrameActionListener implements ActionListener {
 
 	/**
-	 * The {@code RepositoryHolder} with the {@code UserRepository}.
-	 */
-	protected RepositoryHolder repositories;
-
-	/**
-	 * The constructor for an {@code MainFramActionListener}.
-	 * 
-	 * @param repositories
-	 *            The {@code RepositoryHolder} with the {@code UserRepository}.
-	 */
-	public MainFrameActionListener(RepositoryHolder repositories) {
-		this.repositories = repositories;
-	}
-
-	/**
 	 * Checks if there is an authenticated {@code User} in
 	 * {@code Authentication}, if yes calls the method {@code this#action()}, if
 	 * not calls the {@code AuthenticationDialog}.
@@ -43,7 +27,7 @@ public abstract class MainFrameActionListener implements ActionListener {
 		if (Authentication.isAuthenticated()){
 			this.action();
 		} else {
-			new AuthenticationDialog(repositories).setVisible(true);
+			new AuthenticationDialog().setVisible(true);
 		}
 	}
 
