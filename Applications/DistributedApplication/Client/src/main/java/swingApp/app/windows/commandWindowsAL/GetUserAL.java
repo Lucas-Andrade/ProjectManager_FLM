@@ -10,10 +10,9 @@ import swingApp.app.windows.PublishToErrorDialog;
 import swingApp.app.windows.PublishUsersToGetPanel;
 import swingApp.app.windows.SwingWorkerCommand;
 import swingApp.app.windows.mainFrameAL.mainFrame.ErrorDialog;
-
-import commandProxy.Command;
-import commandProxy.GetAllUsersFromRepo;
-import commandProxy.GetUserFromRepo;
+import commandRequest.Command;
+import commandRequest.GetHttpRequest;
+import commandRequest.GetUserFromRepo;
 
 
 /**
@@ -82,7 +81,7 @@ public class GetUserAL implements ActionListener {
 	}
 
 	private Command getAllUsers() {
-		return new GetAllUsersFromRepo();
+		return new GetHttpRequest();
 	}
 
 	

@@ -10,9 +10,8 @@ import swingApp.app.windows.PublishTeamToGetPanel;
 import swingApp.app.windows.PublishToErrorDialog;
 import swingApp.app.windows.SwingWorkerCommand;
 import swingApp.app.windows.mainFrameAL.mainFrame.ErrorDialog;
-
-import commandProxy.Command;
-import commandProxy.GetProjectWorkersFromRepo;
+import commandRequest.Command;
+import commandRequest.GetProjectWorkersFromRepo;
 
 
 /**

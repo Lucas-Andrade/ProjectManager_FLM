@@ -9,9 +9,8 @@ import swingApp.app.windows.PublishTeamToMainFrame;
 import swingApp.app.windows.PublishToErrorDialog;
 import swingApp.app.windows.SwingWorkerCommand;
 import swingApp.app.windows.mainFrameAL.mainFrame.ErrorDialog;
-
-import commandProxy.Command;
-import commandProxy.SetConsultantPropertiesFromRepo;
+import commandRequest.Command;
+import commandRequest.SetConsultantPropertiesFromRepo;
 
 
 /**

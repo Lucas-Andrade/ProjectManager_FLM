@@ -9,18 +9,17 @@ import swingApp.app.windows.PublishTeamToMainFrame;
 import swingApp.app.windows.PublishToErrorDialog;
 import swingApp.app.windows.SwingWorkerCommand;
 import swingApp.app.windows.mainFrameAL.mainFrame.ErrorDialog;
-
-import commandProxy.AddConsultantToRepo;
-import commandProxy.Command;
+import commandRequest.CenasRequest;
+import commandRequest.Command;
 
 
 /**
  * Class responsible for instantiating the {@code Command}
- * {@link AddConsultantToRepo} and for executing it in a new
+ * {@link CenasRequest} and for executing it in a new
  * {@link SwingWorkerCommand}, if not possible displays {@link ErrorDialog}s
  * with exception messages. Implements {@code ActionListener}.
  * 
- * @see AddConsultantToRepo
+ * @see CenasRequest
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015
@@ -29,7 +28,7 @@ public class NewConsultantAL implements ActionListener {
 
 	/**
 	 * An array of {@code JTextField}s containing the parameters for
-	 * instantiating the {@code Command} {@link AddConsultantToRepo}.
+	 * instantiating the {@code Command} {@link CenasRequest}.
 	 */
 	private JTextField[] textfields;
 
@@ -38,7 +37,7 @@ public class NewConsultantAL implements ActionListener {
 	 * 
 	 * @param textFields
 	 *            A {@code JTextField} containing the parameters for
-	 *            instantiating the {@code Command} {@link AddConsultantToRepo}.
+	 *            instantiating the {@code Command} {@link CenasRequest}.
 	 */
 	public NewConsultantAL(JTextField[] textFields) {
 		this.textfields = textFields;
@@ -46,7 +45,7 @@ public class NewConsultantAL implements ActionListener {
 
 	/**
 	 * Method responsible for instantiating the {@code Command}
-	 * {@link AddConsultantToRepo} and for executing it in a new
+	 * {@link CenasRequest} and for executing it in a new
 	 * {@link SwingWorkerCommand}, if not possible displays {@link ErrorDialog}s
 	 * with exception messages. {@see
 	 * ActionListener#actionPerformed(ActionEvent)}
@@ -72,7 +71,7 @@ public class NewConsultantAL implements ActionListener {
 		}
 
 		try {
-			Command command = new AddConsultantToRepo(name, priceHour, bonus);
+			Command command = new CenasRequest(name, priceHour, bonus);
 			new SwingWorkerCommand(command, new PublishTeamToMainFrame(),
 					new PublishToErrorDialog()).execute();
 
