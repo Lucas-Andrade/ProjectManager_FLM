@@ -1,10 +1,12 @@
 package swingApp.app.windows;
 
+import guiElements.mainFrameAL.FrameAndPanelHolder;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
 
-import swingApp.app.windows.mainFrameAL.FrameAndPanelHolder;
 import app.AppElement;
+import app.publisher.TreeBuilder;
 
 /**
  * {@code JTree},

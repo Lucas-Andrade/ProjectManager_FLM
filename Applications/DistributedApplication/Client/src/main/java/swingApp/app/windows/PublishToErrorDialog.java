@@ -1,6 +1,6 @@
 package swingApp.app.windows;
 
-import swingApp.app.windows.mainFrameAL.mainFrame.ErrorDialog;
+import guiElements.mainFrameAL.mainFrame.ErrorDialog;
 
 /**
  * Super class of all the publishers that publish information

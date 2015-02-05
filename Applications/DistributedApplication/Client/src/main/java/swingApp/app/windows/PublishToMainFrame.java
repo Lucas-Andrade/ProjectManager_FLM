@@ -1,5 +1,7 @@
 package swingApp.app.windows;
 
+import guiElements.mainFrameAL.mainFrame.MainFrame;
+
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
@@ -7,8 +9,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
 
-import swingApp.app.windows.mainFrameAL.mainFrame.MainFrame;
 import app.AppElement;
+import app.publisher.TreeBuilder;
 
 /**
  * Allows to publish information about {@code AppElement}s into the right panel

@@ -1,12 +1,14 @@
 package swingApp.app.windows;
 
+import guiElements.mainFrameAL.FrameAndPanelHolder;
+import guiElements.mainFrameAL.mainFrame.ErrorDialog;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import swingApp.app.windows.mainFrameAL.FrameAndPanelHolder;
-import swingApp.app.windows.mainFrameAL.mainFrame.ErrorDialog;
 import app.AppElement;
 import app.elements.IUser;
+import app.publisher.TableBuilder;
 
 /**
  * Allows to publish information about {@code User}s 

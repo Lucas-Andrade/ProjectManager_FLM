@@ -3,6 +3,8 @@ package swingApp.app.windows;
 import utils.AWorker;
 import app.AppElement;
 import app.elements.IUser;
+import app.publisher.PublishWithLoadingDialog;
+import app.publisher.ResultsPublisher;
 
 /**
  * Super class of all publishers that publish information about the expected

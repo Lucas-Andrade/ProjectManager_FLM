@@ -1,15 +1,17 @@
 package swingApp.app.windows;
 
+import guiElements.mainFrameAL.mainFrame.ErrorDialog;
+import guiElements.mainFrameAL.mainFrame.MainFrame;
+
 import java.awt.BorderLayout;
 
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 
-import swingApp.app.windows.mainFrameAL.mainFrame.ErrorDialog;
-import swingApp.app.windows.mainFrameAL.mainFrame.MainFrame;
 import app.AppElement;
 import app.elements.IUser;
+import app.publisher.TableBuilder;
 
 /**
  * This class allows to publish information about {@code User}s in the form of
