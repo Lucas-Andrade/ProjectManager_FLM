@@ -5,21 +5,14 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * This {@code Command} allows to get all users from a repository.
- * 
- * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
- * @since 19/01/2015
- *
- */
-public class GetHttpRequest  implements HttpRequest{
-
+public class DeleteHttpRequest implements HttpRequest{
+	
 	public static OutputStreamWriter writer;
 
-	public GetHttpRequest() {}
+	public DeleteHttpRequest() {}
 
 	/**
-     * Makes an HTTP request using GET method to the specified URL.
+     * Makes an HTTP request using DELETE method to the specified URL.
      *
      * @param requestURL
      *            the URL of the remote server
@@ -37,8 +30,8 @@ public class GetHttpRequest  implements HttpRequest{
 			
 			connection.setUseCaches(true );
 			connection.setDoInput(true); // true if we want to read server's response
-			connection.setDoOutput(false); // false indicates this is a GET request
-			connection.setRequestMethod("GET");
+			connection.setDoOutput(false); // false indicates this is a DELETE request
+			connection.setRequestMethod("DELETE");
 
 			writer = new OutputStreamWriter(connection.getOutputStream());
 			writer.write(path);
@@ -49,3 +42,4 @@ public class GetHttpRequest  implements HttpRequest{
 	 }
 	
 }
+

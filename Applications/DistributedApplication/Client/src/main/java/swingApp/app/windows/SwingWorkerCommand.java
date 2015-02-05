@@ -5,16 +5,14 @@ import java.util.concurrent.ExecutionException;
 
 import javax.swing.SwingWorker;
 
-import org.ErrorPublisher;
-import org.ResultsPublisher;
-
 import app.AppElement;
-import commandRequest.Command;
 import app.domainCommands.exceptions.CommandExecutionException;
+
+import commandRequest.HttpRequest;
 
 /**
  * Is a {@code SwingWorker<AppElement[], String>} that is used to apply changes to the database.
- * To do so, it receives the {@code Command} to be called, a {@code ResultsPublisher} to publish
+ * To do so, it receives the {@code CommandRequest} to be called, a {@code ResultsPublisher} to publish
  * the result's success, and a {@code ErrorPublisher} if problems were encountered.
  * 
  * Calls the {@code Command} passed as parameter in the {@code doInBackgound()} method of 
@@ -27,25 +25,25 @@ import app.domainCommands.exceptions.CommandExecutionException;
  */
 public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 
-	Command command;
+	HttpRequest commandRequest;
 	ResultsPublisher publisher;
 	ErrorPublisher errorPublisher;
 	
 	/**
 	 * Constructs a new {@code SwingWorkerCommand} passing as parameter all the objects it needs 
 	 * to work correctly. 
-	 * @param command2
+	 * @param commandRequest
 	 * @param publisher
 	 * @param errorPublisher
 	 */
-	public SwingWorkerCommand(commandRequest.Command command2, ResultsPublisher publisher, ErrorPublisher errorPublisher) {
-		this.command = command2;
+	public SwingWorkerCommand(commandRequest.HttpRequest commandRequest, ResultsPublisher publisher, ErrorPublisher errorPublisher) {
+		this.commandRequest = commandRequest;
 		this.publisher = publisher;
 		this.errorPublisher = errorPublisher;
 	}
 
 	/**
-	 * Calls the {@code Command} and returns its result. Any exception this action may throw is 
+	 * Calls the {@code CommandRequest} and returns its result. Any exception this action may throw is 
 	 * caught here and a message is published to the {@code ErrorPublisher}.
 	 * @return The array of {@code AppElement} returned by the {@code call()} of the {@code Command}.
 	 * @throws Exception 
@@ -54,7 +52,7 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 	protected AppElement[] doInBackground() throws Exception {
 		
 		publish("<html>Applying changes<br>to the database.<br></html>");
-		return command.call();
+		return commandRequest.call();
 	}
 	
 	/**

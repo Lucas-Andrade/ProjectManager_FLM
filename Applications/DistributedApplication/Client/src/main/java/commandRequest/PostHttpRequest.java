@@ -20,7 +20,7 @@ import java.util.Map;
  * @since 19/01/2015
  *
  */
-public class PostHttpRequest {
+public class PostHttpRequest implements HttpRequest{
 
 
 	public static OutputStreamWriter writer;
