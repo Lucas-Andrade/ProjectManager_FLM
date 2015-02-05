@@ -4,11 +4,13 @@ public class Authentication {
 	
 	private static boolean authenticated = false;
 	private static String name;
+	private static String password;
 	 
-	public static void authenticate(String newName){
+	public static void authenticate(String newName, String newPassword){
 		if(!authenticated){
 			authenticated = true;
 			name = newName;
+			password = newPassword;
 			GUIUtils.setLogoutButton();
 		}
 	}
@@ -17,6 +19,7 @@ public class Authentication {
 		if(authenticated){
 			authenticated = false;
 			name = "";
+			password = "";
 		}
 		GUIUtils.setLoginButton();
 	}
@@ -27,5 +30,9 @@ public class Authentication {
 	
 	public static String getName() {
 		return name;
+	}
+	
+	public static String getPassword() {
+		return password;
 	}
 }

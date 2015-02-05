@@ -2,19 +2,23 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
+  
   <parent>
     <groupId>flm.manager.project</groupId>
     <artifactId>ProjectManager-Applications</artifactId>
     <version>0.3.2-SNAPSHOT</version>
   </parent>
-  <groupId>flm.manager.project</groupId>
+  
   <artifactId>ProjectManager-Applications-GUI</artifactId>
-  <version>0.3.2-SNAPSHOT</version>
   <name>ProjectManager-Applications-GUI</name>
   <url>http://maven.apache.org</url>
+  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <sonar.exclusions>src/main/java/guiElements/mainFrameAL/mainFrame/*,
+         src/main/java/guiElements/commandWindowsAL/commandWindows/*</sonar.exclusions>
   </properties>
+  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -23,4 +27,5 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
 </project>

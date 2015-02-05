@@ -22,7 +22,8 @@ public class InternalAuthenticationPublish extends ResultsPublisherWithLoadingDi
 	public void publish(AppElement[] appElements) {
 		disposeLoadingDialog();
 		try{
-			Authentication.authenticate(((IUser)appElements[0]).getFullName());
+			IUser user = ((IUser)appElements[0]);
+			Authentication.authenticate(user.getFullName(), user.getLoginPassword());
 		} catch (ClassCastException e) {
 			new ErrorDialog("Could not present the results.").setVisible(true);
 			return;
