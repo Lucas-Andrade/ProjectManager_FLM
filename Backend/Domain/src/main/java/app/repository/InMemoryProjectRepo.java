@@ -32,25 +32,53 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	private volatile static long NEXT_PID_TO_BE_USED;
 
 	/**
+	 * The lock to be used in instructions where
+	 * {@code this#NEXT_PID_TO_BE_USED} cannot be modified by concurrent
+	 * threads.
+	 */
+	private final Object pidLock;
+
+	/**
+	 * The lock to be used when {@code this#NEXT_PID_TO_BE_USED} is reset, by
+	 * all instructions that associate a Project to a PID in the repository,
+	 * thus preventing the possibility of a Project being added to this
+	 * repository with a PID higher than the {@code this#NEXT_PID_TO_BE_USED}.
+	 */
+	private final Object pidResetLock;
+
+	/**
 	 * Constructs a new empty {@code InMemoryProjectRepo}, in which the next
 	 * {@code PID} to be used is set to 1.
 	 */
 	public InMemoryProjectRepo() {
 		NEXT_PID_TO_BE_USED = 1;
+		pidLock = new Object();
+		pidResetLock = new Object();
 	}
 
 	/**
 	 * @see ProjectsRepository#addProject(ProjectCreationDescriptor)
 	 */
-	public synchronized Long addProject(ProjectCreationDescriptor creationDescriptor) {
-		Long newProjectPID = NEXT_PID_TO_BE_USED;
-		Project newProject = creationDescriptor.build(newProjectPID);
-		if (newProject == null) {
-			return null;
+	@Override
+	public Long addProject(ProjectCreationDescriptor creationDescriptor) {
+		Long newProjectPID;
+		Project newProject;
+
+		synchronized (pidLock) {
+			newProjectPID = NEXT_PID_TO_BE_USED++;
+			newProject = creationDescriptor.build(newProjectPID);
+			if (newProject == null) {
+				NEXT_PID_TO_BE_USED--;
+				return null;
+			}
 		}
-		PROJECTS.putIfAbsent(newProjectPID, newProject);
-		NEXT_PID_TO_BE_USED++;
-		return newProjectPID;
+		synchronized (pidResetLock) {
+			if (NEXT_PID_TO_BE_USED > newProjectPID
+					&& PROJECTS.putIfAbsent(newProjectPID, newProject) == null)
+				return newProjectPID;
+		}
+
+		return null;
 	}
 
 	/**
@@ -64,9 +92,11 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	/**
 	 * @see Repository#removeAll()
 	 */
-	public synchronized void removeAll() {
-		NEXT_PID_TO_BE_USED = 1;
-		PROJECTS.clear();
+	public void removeAll() {
+		synchronized (pidResetLock) {
+			NEXT_PID_TO_BE_USED = 1;
+			PROJECTS.clear();
+		}
 	}
 
 	/**

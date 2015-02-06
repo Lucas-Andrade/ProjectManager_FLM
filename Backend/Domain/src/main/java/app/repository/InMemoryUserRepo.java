@@ -30,6 +30,21 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	private static final Map<String, IUser> users = Collections.synchronizedMap(new HashMap<String, IUser>());
 
 	/**
+	 * The lock to be used in instructions where
+	 * {@code this#NEXT_PID_TO_BE_USED} cannot be modified by concurrent
+	 * threads.
+	 */
+	private final Object pidLock;
+
+	/**
+	 * The lock to be used when {@code this#NEXT_PID_TO_BE_USED} is reset, by
+	 * all instructions that associate a Project to a PID in the repository,
+	 * thus preventing the possibility of a Project being added to this
+	 * repository with a PID higher than the {@code this#NEXT_PID_TO_BE_USED}.
+	 */
+	private final Object pidResetLock;
+
+	/**
 	 * Constructor for {@code InMemoryUserRepo}. Also adds an {@link ImmutableAdmin}
 	 * {@link User} to the Repository.
 	 */
@@ -113,24 +128,14 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 */
 	@Override
 	public boolean addUser(UserCreationDescriptor userCreationDescriptor) {
-
-		String username = userCreationDescriptor.getLoginName();
-				
-		if (users.containsKey(username)){
-			return false;
-		} else{
-			IUser user = userCreationDescriptor.build();
-			if (user == null){
-				return false;
-			}
-			synchronized (this){
-			if (!users.containsKey(username)){
-				users.putIfAbsent(username, user);
-				return true;
-			}
-			return false;
-			}
+		String username = userCreationDescriptor.getLoginName();		
+		IUser user = userCreationDescriptor.build();
+			
+		if (user != null && users.putIfAbsent(username, user)==null){
+			return true;
 		}
+			
+		return false;
 	}
 	
 	/**
