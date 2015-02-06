@@ -65,6 +65,6 @@ public class AboutDialog extends JDialog {
 		getContentPane().add(help, gbc_help);
 		
 		pack();
-	}
 
+	}
 }
