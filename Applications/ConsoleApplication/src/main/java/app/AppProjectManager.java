@@ -4,6 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import outputMethods.Result;
+import parser.CommandParser;
+import parserUtils.CommandParserException;
+import parserUtils.InvalidRegisterException;
 import app.elements.mutable.UserCreationDescriptor;
 import app.repository.InMemoryProjectRepo;
 import app.repository.InMemoryUserRepo;
@@ -11,10 +15,6 @@ import app.repository.InMemoryWorkerRepo;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
-import parser.CommandParser;
-import parserUtils.CommandParserException;
-import parserUtils.InvalidRegisterException;
-import parserUtils.ParserResult;
 import consoleCommands.DeleteProjects;
 import consoleCommands.GetProjectWorkers;
 import consoleCommands.GetProjects;
@@ -250,7 +250,7 @@ public class AppProjectManager{
 	 */
 	private static void commandPrompt(CommandParser parser, String cmd){
 		try{
-			ParserResult results = parser.getCommand(cmd.split(" ")).call();
+			Result results = parser.getCommand(cmd.split(" ")).call();
 			results.showResults();
 		} catch (CommandException e){ //commands related exceptions.
 			DEFAULT_SYSTEM_OUT.println(e.getMessage());
