@@ -7,9 +7,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Iterator;
-import java.util.Map;
 
 public class PatchHttpRequest implements HttpRequest{
 
@@ -30,12 +27,14 @@ public class PatchHttpRequest implements HttpRequest{
 	 * @return An HttPURLConnectionobeject
 	 * @throws IOException
 	 */
-	public static HttpURLConnection sendPatchRequest(String requestURL,
-			Map<String, String> params, String path) throws IOException {
+	public HttpURLConnection sendRequest(String requestURL, String path) throws IOException {
 		URL url;
 	      
 	    try {
-			url = new URL(requestURL);
+			
+	    	url = new URL(requestURL);
+
+	   
 			connection = (HttpURLConnection) url.openConnection();
 			
 			connection.setDoInput(true); // true indicates the server returns response
@@ -43,22 +42,9 @@ public class PatchHttpRequest implements HttpRequest{
 			connection.setRequestMethod("PUT");
 			connection.setRequestProperty("Content-Type",  "application/json");
 			
-			StringBuffer requestParams = new StringBuffer();
-		
-			Iterator<String> paramIterator = params.keySet().iterator(); 	// creates the params string, encode them using URLEncoder
-			while (paramIterator.hasNext()) {
-				String key = paramIterator.next();
-				String value = params.get(key);
-	
-				requestParams.append(URLEncoder.encode(key, "UTF-8"));
-				requestParams.append("=").append(URLEncoder.encode(value, "UTF-8"));
-				requestParams.append("&");
-			}
 			
-			requestParams.deleteCharAt(requestParams.length() - 1);  //Delete last &. 
-	
 			writer = new OutputStreamWriter(connection.getOutputStream());
-			writer.write(path + requestParams.toString());
+			writer.write(path);
 			writer.flush();
 			writer.close();
 	
@@ -94,4 +80,10 @@ public class PatchHttpRequest implements HttpRequest{
 		      rd.close();
 		      return response.toString();
 	}
+
+		@Override
+		public String receiveRequest() throws IOException {
+			// TODO Auto-generated method stub
+			return null;
+		}
 }

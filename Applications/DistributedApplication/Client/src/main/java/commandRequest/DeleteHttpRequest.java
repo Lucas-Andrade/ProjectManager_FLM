@@ -8,8 +8,8 @@ import java.net.URL;
 public class DeleteHttpRequest implements HttpRequest{
 	
 	public static OutputStreamWriter writer;
-
-	public DeleteHttpRequest() {}
+	public static HttpURLConnection connection = null;
+	
 
 	/**
      * Makes an HTTP request using DELETE method to the specified URL.
@@ -20,18 +20,20 @@ public class DeleteHttpRequest implements HttpRequest{
      * @throws IOException
      *             thrown if any I/O error occurred
      */
-	 public static HttpURLConnection sendGetRequest(String requestURL, String path)
+	 public HttpURLConnection sendRequest(String requestURL, String path)
 	            throws IOException {
-		 
+		  try {
 		    URL url = new URL(requestURL);
 			//OutputStream output = null;
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection = (HttpURLConnection) url.openConnection();
 			
 			
 			connection.setUseCaches(true );
 			connection.setDoInput(true); // true if we want to read server's response
-			connection.setDoOutput(false); // false indicates this is a DELETE request
+			connection.setDoOutput(true); // TRUE indicates this is a DELETE request
+			connection.setRequestProperty("Content-Type", "application/Json" );
 			connection.setRequestMethod("DELETE");
+			connection.connect();
 
 			writer = new OutputStreamWriter(connection.getOutputStream());
 			writer.write(path);
@@ -39,7 +41,25 @@ public class DeleteHttpRequest implements HttpRequest{
 			writer.close();
 
 			return connection;
+		  } catch (Exception e) {
+				
+		      e.printStackTrace();
+		      return null;
+		
+		    } finally {
+		
+		      if(connection != null) {
+		        connection.disconnect(); 
+		      }
+		    }
 	 }
+
+
+	@Override
+	public String receiveRequest() throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
 

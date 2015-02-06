@@ -50,38 +50,38 @@ public class ProjectManagerServlet extends HttpServlet{
 	
 	
 	
-//	@Override
-//    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-//		commandString = getCommandStringFromRequest(req);
-//		
-//		CommandParser parser = new CommandParser();
-//		String input = getCommandStringFromRequest(req);
-//		StackMensage mensage = startParser(parser, input);
-//
-//		resp.setContentType("application/json");
-//		PrintWriter out;
-//		out = resp.getWriter();
-//		out.print(mensage.pop());
-//		out.flush();
-//    }
+	@Override
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		commandString = getCommandStringFromRequest(req);
+		
+		CommandParser parser = new CommandParser();
+		String input = getCommandStringFromRequest(req);
+		StackMensage mensage = startParser(parser, input);
+
+		resp.setContentType("application/json");
+		PrintWriter out;
+		out = resp.getWriter();
+		out.print(mensage.pop());
+		out.flush();
+    }
 	
 	
-//	@Override
-//    public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-//		commandString = getCommandStringFromRequest(req);
-//		
-//		//give string to command parser and get command
-//    }
-//	
-//	
-//	@Override
-//    public void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-//		commandString = getCommandStringFromRequest(req);
-//		
-//		//give string to command parser and get command
-//    }
-//	
-//	
+	@Override
+    public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		commandString = getCommandStringFromRequest(req);
+		
+		//give string to command parser and get command
+    }
+	
+	
+	@Override
+    public void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		commandString = getCommandStringFromRequest(req);
+		
+		//give string to command parser and get command
+   }
+	
+	
 	/**
 	 * Gets the singleton {@link CommandParser} created and configured in the application
 	 * @return the application {@link CommandParser}
