@@ -3,10 +3,9 @@ package consoleCommands;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import javax.xml.transform.Result;
-
+import outputMethods.Result;
 import app.AppElement;
-import parserUtils.ParserResult;
+import app.elements.User;
 import consoleCommands.exceptions.MandatoryParameterNotPresentException;
 
 /**
@@ -20,7 +19,7 @@ import consoleCommands.exceptions.MandatoryParameterNotPresentException;
  *            this#call()}).
  * @since 08/12/2014
  */
-public abstract class BaseCommand implements Callable<ParserResult>{
+public abstract class BaseCommand implements Callable<Result>{
 
 	/**
 	 * The {@code Command} arguments. These are required by some {@code Command}

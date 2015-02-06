@@ -5,13 +5,12 @@ import java.io.IOException;
 
 import org.json.JSONObject;
 
-import app.AppElement;
 import outputMethods.destination.ToConsole;
 import outputMethods.destination.ToFile;
 import outputMethods.destination.Writable;
 import outputMethods.format.TextParser;
 import outputMethods.format.ToTextPlain;
-import parserUtils.ParserResult;
+import app.AppElement;
 
 
 /**
@@ -21,7 +20,7 @@ import parserUtils.ParserResult;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 28/12/2014
  */
-public class Result implements ParserResult{
+public class Result {
 
 	/**
 	 * The results from a Command execution.
