@@ -9,13 +9,13 @@ import guiElements.GUIUtils;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015
  */
-public class AppUI {
+public class StandAloneAppUI {
 	
 	/**
 	 * As this is an utility class, a private constructor was implemented in order to hide the
 	 * implicit public one.
 	 */
-	private AppUI() {
+	private StandAloneAppUI() {
 	}
 	
 	/**

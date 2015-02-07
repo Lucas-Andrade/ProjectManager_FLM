@@ -1,16 +1,13 @@
-package swingApp.app.windows;
+package app.swingWorkerAndPublisher;
 
 import guiElements.mainFrameAL.mainFrame.MainFrame;
 
 import java.awt.BorderLayout;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTree;
-
-import app.AppElement;
-import app.publisher.TreeBuilder;
 
 /**
  * Allows to publish information about {@code AppElement}s into the right panel
@@ -46,10 +43,10 @@ public class PublishToMainFrame extends ResultsPublisherWithLoadingDialog{
 	 * @see ResultsPublisherWithLoadingDialog#publish(AppElement[])
 	 */
 	@Override
-	public void publish(AppElement[] appElements) {
-		JTree tree = TreeBuilder.getTree(appElements);
+	public void publish(String results) {
 		
-		mainPanel.add(new JScrollPane(tree), BorderLayout.CENTER);
+		JLabel label = new JLabel(results);
+		mainPanel.add(new JScrollPane(label), BorderLayout.CENTER);
 		splitPane.setRightComponent(mainPanel);
 		splitPane.updateUI();
 		disposeLoadingDialog();

@@ -95,6 +95,13 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 		publisher.publish(result);
 	}
 
+	/**
+	 * Checks if the message passed as parameter is null. If it is, a general message will be published
+	 * to the {@code ErrorPublisher}. If it is not, a message based on the message passed as parameter 
+	 * is published.
+	 * 
+	 * @param message
+	 */
 	private void analyseMessage(String message) {
 		if (message == null){
 			errorPublisher.publish("An error was encountered while applying the changes to the database.");

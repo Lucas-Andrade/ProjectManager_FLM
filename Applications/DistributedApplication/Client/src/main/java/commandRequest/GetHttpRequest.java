@@ -16,8 +16,13 @@ import java.net.URLEncoder;
 public class GetHttpRequest  implements HttpRequest{
 
 	public static OutputStreamWriter writer;
-
-	public GetHttpRequest() {}
+	public String requestURL;
+	public String path;
+	
+	public GetHttpRequest(String requestURL, String path) {
+		this.requestURL = requestURL;
+		this.path = path;
+	}
 
 	/**
      * Makes an HTTP request using GET method to the specified URL.
@@ -28,7 +33,7 @@ public class GetHttpRequest  implements HttpRequest{
      * @throws IOException
      *             thrown if any I/O error occurred
      */
-	 public HttpURLConnection sendRequest(String requestURL, String path)
+	 public HttpURLConnection sendRequest()
 	            throws IOException {
 		 
 		    URL url = new URL(requestURL);

@@ -1,8 +1,6 @@
-package swingApp.app.windows;
+package app.swingWorkerAndPublisher;
 
-import app.publisher.ErrorPublisher;
-import app.publisher.PublishWithLoadingDialog;
-
+import guiElements.mainFrameAL.mainFrame.ErrorDialog;
 
 /**
  * Abstract class of all the {@code Publisher} classes that will publish
@@ -14,6 +12,14 @@ import app.publisher.PublishWithLoadingDialog;
  * @since 19/01/2015
  *
  */
-public abstract class ErrorPublisherWithLoadingDialog extends PublishWithLoadingDialog implements ErrorPublisher{
+public class ErrorPublisherWithLoadingDialog extends PublishWithLoadingDialog implements ErrorPublisher{
+
+	@Override
+	public void publish(String message) {
+		ErrorDialog dialog = new ErrorDialog(message);
+		dialog.setAlwaysOnTop(true);
+		dialog.setVisible(true);
+		disposeLoadingDialog();
+	}
 	
 }

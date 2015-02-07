@@ -1,15 +1,13 @@
-package swingApp.app.windows;
+package app.swingWorkerAndPublisher;
 
 import guiElements.mainFrameAL.FrameAndPanelHolder;
 
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import javax.swing.JTree;
-
-import app.AppElement;
-import app.publisher.TreeBuilder;
 
 /**
- * {@code JTree},
+ * Allows to publish information about {@code AppElement}s indirectly to the
+ * {@code MainFrame}. This class presents that information as a {@code JTree},
  * and then adds it to the appropriate panel in the {@code MainGetPanel}.
  * 
  * The conversion method used to parse the {@code AppElement}s into nodes in the
@@ -30,10 +28,10 @@ public class PublishToGetPanel extends ResultsPublisherWithLoadingDialog{
 	 * @see ResultsPublisherWithLoadingDialog#publish(AppElement[])
 	 */
 	@Override
-	public void publish(AppElement[] appElements) {
+	public void publish(String results) {
 		
-		JTree tree = TreeBuilder.getTree(appElements);
-		FrameAndPanelHolder.getLastPanel().setResults(new JScrollPane(tree));
+		JLabel label = new JLabel(results);
+		FrameAndPanelHolder.getLastPanel().setResults(new JScrollPane(label));
 		disposeLoadingDialog();
 	}
 }

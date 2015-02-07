@@ -16,6 +16,7 @@ import app.domainCommands.RemoveProjectToRepo;
 import app.domainCommands.SetConsultantPropertiesFromRepo;
 import app.domainCommands.SetProjectPropertiesFromRepo;
 import app.domainCommands.SetUserPropertiesFromRepo;
+import app.publisher.ErrorPublisher;
 import app.publisher.InternalAuthenticationPublish;
 import app.publisher.PublishTeamToGetPanel;
 import app.publisher.PublishTeamToMainFrame;
@@ -33,9 +34,13 @@ import guiElements.ICommandCaller;
 public class AppCommandCaller implements ICommandCaller{
 
 	private RepositoryHolder repositories;
+	private ErrorPublisher errorPublisher;
+	private ResultsPublisher resultsPublisher;
 	
 	public AppCommandCaller() {
 		repositories = new InMemoryRepositoryHolder();
+		errorPublisher = new PublishToErrorDialog();
+		resultsPublisher = new PublishToMainFrame();
 	}
 
 	@Override
@@ -130,11 +135,11 @@ public class AppCommandCaller implements ICommandCaller{
 	}
 	
 	private void executeSWC(Command command, ResultsPublisher resultsPublisher) {
-		new SwingWorkerCommand(command, resultsPublisher, new PublishToErrorDialog()).execute();
+		new SwingWorkerCommand(command, resultsPublisher, errorPublisher).execute();
 	}
 	
 	private void executeSWC(Command command){
-		executeSWC(command, new PublishToMainFrame());
+		executeSWC(command, resultsPublisher);
 	}
 
 }

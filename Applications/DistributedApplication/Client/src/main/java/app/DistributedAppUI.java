@@ -8,20 +8,24 @@ import guiElements.GUIUtils;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 05/02/2015
  */
-public class AppUI {
+public class DistributedAppUI {
 	
 	/**
 	 * As this is an utility class, a private constructor was implemented in order to hide the
 	 * implicit public one.
 	 */
-	private AppUI() {
+	private DistributedAppUI() {
 	}
+	
+	private static String HOST = "localhost";
+	private final static int PORT = 9999;
 	
 	/**
 	 * Main method, starts the application.
 	 */
 	public static void main(String[] args) {
-		AppCommandCaller caller = new AppCommandCaller();
+		String requestURL = "http://" + HOST + ":" + PORT;
+		AppCommandCaller caller = new AppCommandCaller(requestURL);
 		GUIUtils.initializeMainFrame(caller);
 	}
 }

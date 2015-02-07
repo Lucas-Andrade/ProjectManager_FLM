@@ -13,8 +13,12 @@ public class PatchHttpRequest implements HttpRequest{
 
 	public static OutputStreamWriter writer;
 	public static HttpURLConnection connection = null;
+	public String requestURL;
+	public String path;
 	
-	public PatchHttpRequest() {
+	public PatchHttpRequest(String requestURL, String path) {
+		this.requestURL = requestURL;
+		this.path = path;
 	}
 
 	/**
@@ -27,7 +31,7 @@ public class PatchHttpRequest implements HttpRequest{
 	 * @return An HttPURLConnectionobeject
 	 * @throws IOException
 	 */
-	public HttpURLConnection sendRequest(String requestURL, String path) throws IOException {
+	public HttpURLConnection sendRequest() throws IOException {
 		URL url;
 	      
 	    try {

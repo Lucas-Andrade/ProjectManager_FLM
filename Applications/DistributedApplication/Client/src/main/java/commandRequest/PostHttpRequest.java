@@ -22,8 +22,13 @@ public class PostHttpRequest implements HttpRequest{
 
 	public static OutputStreamWriter writer;
 	public static HttpURLConnection connection = null;
+	public String requestURL;
+	public String path;
 	
-	
+	public PostHttpRequest(String requestURL, String path) {
+		this.requestURL = requestURL;
+		this.path = path;
+	}
 
 	/**
 	 * Method with the responsibility to send a HTTP request using POST method
@@ -35,7 +40,7 @@ public class PostHttpRequest implements HttpRequest{
 	 * @return An HttPURLConnectionobeject
 	 * @throws IOException
 	 */
-	public HttpURLConnection sendRequest(String requestURL, String path) throws IOException {
+	public HttpURLConnection sendRequest() throws IOException {
 		URL url;
 	      
 	    try {

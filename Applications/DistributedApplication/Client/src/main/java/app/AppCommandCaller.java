@@ -1,59 +1,68 @@
 package app;
 
+import app.swingWorkerAndPublisher.ErrorPublisher;
+import app.swingWorkerAndPublisher.ErrorPublisherWithLoadingDialog;
+import app.swingWorkerAndPublisher.ResultsPublisher;
+import app.swingWorkerAndPublisher.ResultsPublisherWithLoadingDialog;
+import app.swingWorkerAndPublisher.SwingWorkerCommand;
+import commandRequest.GetHttpRequest;
 import guiElements.Authentication;
 import guiElements.ICommandCaller;
 
 public class AppCommandCaller implements ICommandCaller{
 	
-	//o que estes métodos vão fazer é enviar para o servidor os dados retirados da janela
-	//para cada command -> cada método constrói a path correspondente a cada Comando
+	private String requestURL;
+	private ResultsPublisher publisher;
+	private ErrorPublisher errorPublisher;
 	
+	public AppCommandCaller(String requestURL) {
+		this.requestURL = requestURL;
+		errorPublisher = new ErrorPublisherWithLoadingDialog();
+		publisher = new ResultsPublisherWithLoadingDialog();
+	}
+
 	@Override
 	public void callDeleteProject(String pidString) {
 		StringBuilder path = new StringBuilder();
 		path.append("DELETE /projects/").append(pidString)
-			.append(" loginName=").append(Authentication.getName())
-			.append("&loginPassword=").append(Authentication.getPassword());
+			.append(loginAndFormat());
 	}
 
 	@Override
 	public void callGetProject(String pidString) {
 		StringBuilder path = new StringBuilder();
 		path.append("GET /projects/").append(pidString)
-			.append(" loginName=").append(Authentication.getName())
-			.append("&loginPassword=").append(Authentication.getPassword());
+			.append(loginAndFormat());
+		
+		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), publisher, errorPublisher);
 	}
 
 	@Override
 	public void callGetSubprojects(String pidString) {
 		StringBuilder path = new StringBuilder();
 		path.append("GET /projects/").append(pidString).append("/subproject")
-			.append(" loginName=").append(Authentication.getName())
-			.append("&loginPassword=").append(Authentication.getPassword());
+			.append(loginAndFormat());
 	}
 
 	@Override
 	public void callGetUsers() {
 		StringBuilder path = new StringBuilder();
 		path.append("GET /users")
-			.append(" loginName=").append(Authentication.getName())
-			.append("&loginPassword=").append(Authentication.getPassword());
+			.append(loginAndFormat());
 	}
 
 	@Override
 	public void callGetUser(String username) {
 		StringBuilder path = new StringBuilder();
 		path.append("GET /users/").append(username)
-			.append(" loginName=").append(Authentication.getName())
-			.append("&loginPassword=").append(Authentication.getPassword());
+			.append(loginAndFormat());
 	}
 
 	@Override
 	public void callGetWorkersInProject(String pid, String workerOpt) {
 		StringBuilder path = new StringBuilder();
 		path.append("GET /projects/").append(pid).append("/").append(workerOpt)
-			.append(" loginName=").append(Authentication.getName())
-			.append("&loginPassword=").append(Authentication.getPassword());
+			.append(loginAndFormat());
 	}
 
 	@Override
@@ -61,8 +70,7 @@ public class AppCommandCaller implements ICommandCaller{
 			String priceHour) {
 		StringBuilder path = new StringBuilder();
 		path.append("PATCH /consultants/").append(consultantId)
-			.append(" loginName=").append(Authentication.getName())
-			.append("&loginPassword=").append(Authentication.getPassword());
+			.append(loginAndFormat());
 		
 		if(consultantId != null && !"".equals(consultantId)) {
 			path.append("&name=").append(consultantId);
@@ -77,8 +85,7 @@ public class AppCommandCaller implements ICommandCaller{
 			String latitude, String price, String localName) {
 		StringBuilder path = new StringBuilder();
 		path.append("PATCH /projects/").append(pidString)
-			.append(" loginName=").append(Authentication.getName())
-			.append("&loginPassword=").append(Authentication.getPassword());
+			.append(loginAndFormat());
 		
 		if(longitude != null && !"".equals(longitude)) {
 			path.append("&longitude=").append(longitude);
@@ -102,8 +109,7 @@ public class AppCommandCaller implements ICommandCaller{
 			String newPassword) {
 		StringBuilder path = new StringBuilder();
 		path.append("PATCH /users/").append(userName)
-			.append(" loginName=").append(Authentication.getName())
-			.append("&loginPassword=").append(Authentication.getPassword())
+			.append(loginAndFormat())
 			.append("&oldPassword=").append(oldPassword)
 			.append("&newPassword=").append(newPassword);
 	}
@@ -112,8 +118,7 @@ public class AppCommandCaller implements ICommandCaller{
 	public void callPostConsultant(String name, String priceHour, String bonus) {
 		StringBuilder path = new StringBuilder();
 		path.append("POST /consultants")
-			.append(" loginName=").append(Authentication.getName())
-			.append("&loginPassword=").append(Authentication.getPassword())
+			.append(loginAndFormat())
 			.append("&name=").append(name).append("&priceHour=").append(priceHour);
 		
 		if(bonus != null && !"".equals(bonus)) {
@@ -126,8 +131,7 @@ public class AppCommandCaller implements ICommandCaller{
 			String price) {
 		StringBuilder path = new StringBuilder();
 		path.append("POST /projects")
-			.append(" loginName=").append(Authentication.getName())
-			.append("&loginPassword=").append(Authentication.getPassword())
+			.append(loginAndFormat())
 			.append("&latitude=").append(latitude).append("&longitude=").append(longitude)
 			.append("&name=").append(name).append("&price").append(price);
 	}
@@ -137,8 +141,7 @@ public class AppCommandCaller implements ICommandCaller{
 			String fullname) {
 		StringBuilder path = new StringBuilder();
 		path.append("POST /users")
-			.append(" loginName=").append(Authentication.getName())
-			.append("&loginPassword=").append(Authentication.getPassword())
+			.append(loginAndFormat())
 			.append("&username=").append(username).append("&password=").append(password)
 			.append("&email=").append(email);
 		
@@ -151,8 +154,7 @@ public class AppCommandCaller implements ICommandCaller{
 	public void callPostSubproject(String pid, String subprojectId) {
 		StringBuilder path = new StringBuilder();
 		path.append("POST /projects/").append(pid).append("/subproject")
-			.append(" loginName=").append(Authentication.getName())
-			.append("&loginPassword=").append(Authentication.getPassword())
+			.append(loginAndFormat())
 			.append("&subPid=").append(subprojectId);
 	}
 
@@ -160,8 +162,7 @@ public class AppCommandCaller implements ICommandCaller{
 	public void callPostWorkerInProject(String pid, String cid, String worker) {
 		StringBuilder path = new StringBuilder();
 		path.append("POST /projects/").append(pid).append("/").append(worker)
-			.append(" loginName=").append(Authentication.getName())
-			.append("&loginPassword=").append(Authentication.getPassword())
+			.append(loginAndFormat())
 			.append("&cid=").append(cid);
 	}
 
@@ -170,7 +171,21 @@ public class AppCommandCaller implements ICommandCaller{
 		StringBuilder path = new StringBuilder();
 		path.append("POST /authenticate")
 			.append(" loginName=").append(name)
-			.append("&loginPassword=").append(password);
+			.append("&loginPassword=").append(password)
+			.append(jsonFormat());
 	}
 
+	private String loginAndFormat() {
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append(" loginName=").append(Authentication.getName())
+			.append("&loginPassword=").append(Authentication.getPassword())
+			.append(jsonFormat());
+		
+		return builder.toString();
+	}
+	
+	private String jsonFormat() {
+		return "accept=application/json";
+	}
 }
