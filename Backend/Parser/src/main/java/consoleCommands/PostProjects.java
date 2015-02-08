@@ -3,8 +3,8 @@ package consoleCommands;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import outputMethods.Result;
 import parserUtils.CommandFactory;
-import parserUtils.ParserResult;
 import utils.Local;
 import utils.Project;
 import app.AppElement;
@@ -93,7 +93,7 @@ public class PostProjects extends BaseCommandUserAuthentication{
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<ParserResult> newInstance(Map<String, String> parameters){
+		public Callable<Result> newInstance(Map<String, String> parameters){
 			return new PostProjects(uRepository, repository, parameters);
 		}
 	}

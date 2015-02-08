@@ -17,11 +17,23 @@
 			<artifactId>ProjectManager-Backend-Parser</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>flm.manager.project</groupId>
-			<artifactId>ProjectManager-Applications-CommonCommands</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 	</dependencies>
-
+	
+	<build>
+      <plugins>
+		<plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-jar-plugin</artifactId>
+		    <version>2.5</version>
+		    <configuration>
+		     <archive>
+		      <manifest>
+		       <addClasspath>true</addClasspath>
+		       <mainClass>app.AppProjectManager</mainClass>
+		      </manifest>
+		     </archive>
+		    </configuration>
+		   </plugin>
+	 </plugins>
+	 </build>
 </project>
