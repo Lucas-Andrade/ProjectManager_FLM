@@ -2,6 +2,8 @@ package parserUtils;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import outputMethods.Result;
+
 /**
  * Contract to be supported by all {@link Command} Factories. Each
  * {@code Command} Factory should generate instances of the corresponding
@@ -11,6 +13,7 @@ import java.util.concurrent.Callable;
  * @since 08/12/2014
  */
 public interface CommandFactory{
+	
 	/**
 	 * Generates a new instance of {@code Command}.
 	 * 
@@ -18,5 +21,5 @@ public interface CommandFactory{
 	 *            The {@code Command} arguments.
 	 * @return
 	 */
-	public Callable<ParserResult> newInstance(Map<String, String> parameters);
+	public Callable<Result> newInstance(Map<String, String> parameters);
 }

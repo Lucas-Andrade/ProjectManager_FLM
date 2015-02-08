@@ -7,9 +7,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Iterator;
-import java.util.Map;
 
 
 /**
@@ -25,8 +22,8 @@ public class PostHttpRequest implements HttpRequest{
 
 	public static OutputStreamWriter writer;
 	public static HttpURLConnection connection = null;
-	public PostHttpRequest() {
-	}
+	
+	
 
 	/**
 	 * Method with the responsibility to send a HTTP request using POST method
@@ -38,8 +35,7 @@ public class PostHttpRequest implements HttpRequest{
 	 * @return An HttPURLConnectionobeject
 	 * @throws IOException
 	 */
-	public static HttpURLConnection sendPostRequest(String requestURL,
-			Map<String, String> params, String path) throws IOException {
+	public HttpURLConnection sendRequest(String requestURL, String path) throws IOException {
 		URL url;
 	      
 	    try {
@@ -48,31 +44,16 @@ public class PostHttpRequest implements HttpRequest{
 			
 			connection.setDoInput(true); // true indicates the server returns response
 			connection.setDoOutput(true);// true indicates POST request
+			connection.setRequestProperty("Content-Type", "application/Json" );
 			connection.setRequestMethod("POST");
-	
-			StringBuffer requestParams = new StringBuffer();
 		
-			Iterator<String> paramIterator = params.keySet().iterator(); 	// creates the params string, encode them using URLEncoder
-			while (paramIterator.hasNext()) {
-				String key = paramIterator.next();
-				String value = params.get(key);
-	
-				requestParams.append(URLEncoder.encode(key, "UTF-8"));
-				requestParams.append("=").append(URLEncoder.encode(value, "UTF-8"));
-				requestParams.append("&");
-			}
-			
-			requestParams.deleteCharAt(requestParams.length() - 1);  //Delete last &. 
-	
 			writer = new OutputStreamWriter(connection.getOutputStream());
-			writer.write(path + requestParams.toString());
+			writer.write(path);
 			writer.flush();
 			writer.close();
 	
 			return connection;
 
-			  
-		
 		    } catch (Exception e) {
 		
 		      e.printStackTrace();
@@ -87,7 +68,7 @@ public class PostHttpRequest implements HttpRequest{
 	}
 	
 	
-	    public static String receivePostRequest() throws IOException {
+	    public String receiveRequest() throws IOException {
 	    	//TODO
 	    	//Get Response    
 		      InputStream is = connection.getInputStream();

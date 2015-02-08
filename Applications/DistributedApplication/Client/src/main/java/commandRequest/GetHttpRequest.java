@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 /**
  * This {@code Command} allows to get all users from a repository.
@@ -27,7 +28,7 @@ public class GetHttpRequest  implements HttpRequest{
      * @throws IOException
      *             thrown if any I/O error occurred
      */
-	 public static HttpURLConnection sendGetRequest(String requestURL, String path)
+	 public HttpURLConnection sendRequest(String requestURL, String path)
 	            throws IOException {
 		 
 		    URL url = new URL(requestURL);
@@ -38,14 +39,22 @@ public class GetHttpRequest  implements HttpRequest{
 			connection.setUseCaches(true );
 			connection.setDoInput(true); // true if we want to read server's response
 			connection.setDoOutput(false); // false indicates this is a GET request
+			connection.setRequestProperty("Content-Type", "application/Json" );
 			connection.setRequestMethod("GET");
 
 			writer = new OutputStreamWriter(connection.getOutputStream());
-			writer.write(path);
+			writer.write(URLEncoder.encode(path, "UTF-8"));
 			writer.flush();
 			writer.close();
 
 			return connection;
 	 }
+
+	@Override
+	public String receiveRequest() throws IOException {
+		
+		
+		return null;
+	}
 	
 }

@@ -3,9 +3,11 @@ package consoleCommands;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import outputMethods.Result;
+import parser.CommandParser;
 import parserUtils.CommandFactory;
-import parserUtils.ParserResult;
 import app.AppElement;
+import app.domainCommands.Command;
 import app.domainCommands.GetUserFromRepo;
 import app.domainCommands.exceptions.NoSuchUsernameException;
 import app.elements.Message;
@@ -67,7 +69,7 @@ public class GetUser extends BaseCommandResultsOutputMethod{
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<ParserResult> newInstance(Map<String, String> parameters){
+		public Callable<Result> newInstance(Map<String, String> parameters){
 			return new GetUser(repository, parameters);
 		}
 	}

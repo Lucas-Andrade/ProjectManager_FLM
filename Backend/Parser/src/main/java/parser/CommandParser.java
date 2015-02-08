@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import outputMethods.Result;
 import parserUtils.CommandFactory;
 import parserUtils.CommandParserException;
 import parserUtils.DuplicateArgumentsException;
 import parserUtils.InvalidCommandArgumentsException;
 import parserUtils.InvalidRegisterException;
-import parserUtils.ParserResult;
 import parserUtils.UnknownCommandException;
 
 
@@ -241,7 +241,7 @@ public class CommandParser{
 	 * @return The associated command instance
 	 * @throws CommandParserException
 	 */
-	public Callable<ParserResult> getCommand(String... args) throws CommandParserException{
+	public Callable<Result> getCommand(String... args) throws CommandParserException{
 		if (args.length < 2 || args.length > 3){
 			throw new UnknownCommandException("args must have 2 or 3 elements");
 		}
@@ -252,7 +252,7 @@ public class CommandParser{
 		Map<String, String> parametersMap = (args.length == 2) ? new HashMap<String, String>()
 				: getParameters(args[2]);
 
-		Callable<ParserResult> c = getCommandInternal(root, pathElements, 0, parametersMap);
+		Callable<Result> c = getCommandInternal(root, pathElements, 0, parametersMap);
 
 		return c;
 	}
@@ -304,7 +304,7 @@ public class CommandParser{
 	 * @return
 	 * @throws UnknownCommandException
 	 */
-	private Callable<ParserResult> getCommandInternal(Node rootNode, String[] pathElements,
+	private Callable<Result> getCommandInternal(Node rootNode, String[] pathElements,
 			int pathStartIndex, Map<String, String> parameters)
 			throws UnknownCommandException{
 		if (pathStartIndex == pathElements.length){

@@ -15,10 +15,7 @@
 		<module>ConsoleApplication</module>
 		<module>DistributedApplication</module>
 		<module>UIApplication</module>
-		<module>GUI</module>
 		<module>ProjectManager-Applications-GUI</module>
-		<module>CommonCommands</module>
-    <module>ProjectManager-Applications-GUIPublishers</module>
-  </modules>
+	</modules>
 
 </project>

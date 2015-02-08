@@ -3,14 +3,16 @@ package consoleCommands;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import outputMethods.Result;
+import parser.CommandParser;
 import parserUtils.CommandFactory;
-import parserUtils.ParserResult;
 import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
 import utils.Project;
 import utils.Team;
 import app.AppElement;
+import app.domainCommands.Command;
 import app.domainCommands.GetProjectWorkersFromRepo;
 import app.domainCommands.exceptions.IllegalWorkerTypeException;
 import app.domainCommands.exceptions.NoManagerInProjectException;
@@ -97,7 +99,7 @@ public class GetProjectWorkers extends BaseCommandResultsOutputMethod {
 		 * @see CommandFactory#newInstance(Map)
 		 */
 		@Override
-		public Callable<ParserResult> newInstance(Map<String, String> parameters){
+		public Callable<Result> newInstance(Map<String, String> parameters){
 			return new GetProjectWorkers(pRepository, parameters);
 		}
 	}
