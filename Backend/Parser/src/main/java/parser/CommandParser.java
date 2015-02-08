@@ -21,17 +21,32 @@ import parserUtils.UnknownCommandException;
 public class CommandParser{
 
 	//TODO para aperfeiçoar
-	static CommandParser cp;
+	private static CommandParser cp;
 	//TODO o construtor tem de passar a private
-	public CommandParser(){
-		
-	}
+	private CommandParser(){}
 	//TODO o proximo metodo nao e thread safe
 	public static CommandParser getInstance(){
 		if (cp==null)
 			cp=new CommandParser();
 		return cp;
 	}
+	//TODO ...
+	public static CommandParser register(CommandsRegister cmdsReg){
+		if (cp==null)
+			cp=new CommandParser();
+		for (String method : cmdsReg.getMethods())
+		{
+			for (String path : cmdsReg.getPaths())
+			{
+				for (CommandFactory cmdFactory : cmdsReg.getFactories())
+				{
+//					this.registerCommand(method, path, cmdFactory);
+				}
+			}
+		}
+		return cp;
+	}
+
 	/**
 	 * The registry root
 	 */

@@ -35,7 +35,7 @@ import app.repository.WorkerRepository;
  */
 public class CommandParserTest {
 
-	CommandParser parser = new CommandParser();
+	CommandParser parser = CommandParser.getInstance();
 	WorkerRepository wRepo = RepositoryBuilder.constructWorkerRepo();
 	UserRepository uRepo = RepositoryBuilder.constructUserRepo();
 	ProjectsRepository pRepo = RepositoryBuilder.constructProjectRepo();

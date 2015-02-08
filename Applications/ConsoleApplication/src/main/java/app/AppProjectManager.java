@@ -270,7 +270,7 @@ public class AppProjectManager{
 	}
 
 	public static void main(String[] args) throws Exception{
-		CommandParser parser = new CommandParser();
+		CommandParser parser = CommandParser.getInstance();
 		UserRepository userRepo = new InMemoryUserRepo();
 		try{
 			RegisterCommand(parser, userRepo, new InMemoryProjectRepo(),
