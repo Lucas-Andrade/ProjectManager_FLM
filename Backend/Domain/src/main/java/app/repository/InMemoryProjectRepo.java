@@ -21,7 +21,8 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 		ProjectsRepository {
 
 	/**
-	 * {@code Map} that stores the {@code Project}s of this repository.
+	 * Synchronized {@code Map} that stores the {@code Project}s of this
+	 * repository.
 	 */
 	private static final Map<Long, Project> PROJECTS = Collections
 			.synchronizedMap(new HashMap<>());
@@ -34,7 +35,8 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	/**
 	 * The lock to be used in instructions where
 	 * {@code this#NEXT_PID_TO_BE_USED} cannot be modified by concurrent
-	 * threads.
+	 * threads. This lock CANNOT be used after a synchronized block with the
+	 * lock {@code this#pidResetLock}.
 	 */
 	private final Object pidLock;
 

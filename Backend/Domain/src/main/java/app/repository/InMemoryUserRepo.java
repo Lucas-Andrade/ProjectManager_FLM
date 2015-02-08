@@ -23,32 +23,18 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 		UserRepository {
 
 	/**
-	 * {@code Map} that stores the {@code User}s of this repository. The
-	 * {@code Key} stores the Username and the {@code Value} stores the
-	 * correspondig {@code User}.
+	 * Synchronized {@code Map} that stores the {@code User}s of this
+	 * repository. The {@code Key} stores the Username and the {@code Value}
+	 * stores the corresponding {@code User}.
 	 */
-	private static final Map<String, IUser> users = Collections.synchronizedMap(new HashMap<String, IUser>());
+	private static final Map<String, IUser> users = Collections
+			.synchronizedMap(new HashMap<String, IUser>());
 
 	/**
-	 * The lock to be used in instructions where
-	 * {@code this#NEXT_PID_TO_BE_USED} cannot be modified by concurrent
-	 * threads.
+	 * Constructor for {@code InMemoryUserRepo}. Also adds an
+	 * {@link ImmutableAdmin} {@link User} to the Repository.
 	 */
-	private final Object pidLock;
-
-	/**
-	 * The lock to be used when {@code this#NEXT_PID_TO_BE_USED} is reset, by
-	 * all instructions that associate a Project to a PID in the repository,
-	 * thus preventing the possibility of a Project being added to this
-	 * repository with a PID higher than the {@code this#NEXT_PID_TO_BE_USED}.
-	 */
-	private final Object pidResetLock;
-
-	/**
-	 * Constructor for {@code InMemoryUserRepo}. Also adds an {@link ImmutableAdmin}
-	 * {@link User} to the Repository.
-	 */
-	public InMemoryUserRepo(){
+	public InMemoryUserRepo() {
 		users.put("admin", new Admin("admin", "admin"));
 	}
 
@@ -56,24 +42,23 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * @see UserRepository#getUserByUsername(String)
 	 */
 	@Override
-	public IUser getUserByUsername(String loginName){
+	public IUser getUserByUsername(String loginName) {
 		return users.get(loginName);
 	}
 
 	/**
 	 * @see Repository#getAll()
 	 * 
-	 * @return An array of {@link IUser} with all the Users in the
-	 *         repository.
+	 * @return An array of {@link IUser} with all the Users in the repository.
 	 */
 	@Override
-	public IUser[] getAll(){
+	public IUser[] getAll() {
 		IUser[] userArray = new IUser[users.size()];
 
 		Set<Entry<String, IUser>> usersSet = users.entrySet();
 		int index = 0;
 
-		for (Entry<String, IUser> user : usersSet){
+		for (Entry<String, IUser> user : usersSet) {
 			userArray[index] = user.getValue();
 			index++;
 		}
@@ -84,27 +69,27 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	/**
 	 * @see Object#toString()
 	 */
-	public String toString(){
+	public String toString() {
 		StringBuilder builder = new StringBuilder();
 
-		for (AppElement user : getAll()){
+		for (AppElement user : getAll()) {
 			builder.append(user.toString()).append("\n");
 		}
 
 		return builder.toString();
 	}
-	
+
 	/**
 	 * @see UserRepository#isPasswordCorrectForUser(String, String)
 	 */
 	@Override
-	public boolean isPasswordCorrectForUser(String username, String userPassword){
+	public boolean isPasswordCorrectForUser(String username, String userPassword) {
 		IUser user = users.get(username);
 
-		if (user == null){
+		if (user == null) {
 			return false;
 		}
-		if (user.getLoginPassword().equals(userPassword)){
+		if (user.getLoginPassword().equals(userPassword)) {
 			return true;
 		}
 		return false;
@@ -117,31 +102,31 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * @see Repository#removeAll()
 	 */
 	@Override
-	public void removeAll(){
+	public void removeAll() {
 		users.clear();
 		users.put("admin", new ImmutableAdmin());
 	}
 
 	/**
-	 * @throws Exception 
+	 * @throws Exception
 	 * @see UserRepository#addUser(UserCreationDescriptor)
 	 */
 	@Override
 	public boolean addUser(UserCreationDescriptor userCreationDescriptor) {
-		String username = userCreationDescriptor.getLoginName();		
+		String username = userCreationDescriptor.getLoginName();
 		IUser user = userCreationDescriptor.build();
-			
-		if (user != null && users.putIfAbsent(username, user)==null){
+
+		if (user != null && users.putIfAbsent(username, user) == null) {
 			return true;
 		}
-			
+
 		return false;
 	}
-	
+
 	/**
 	 * @see Repository#size()
 	 */
-	public int size(){
+	public int size() {
 		return users.size();
 	}
 
@@ -152,7 +137,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	public JSONObject getJson() {
 		AppElement[] allElements = getAll();
 		JSONObject json = new JSONObject();
-		for (AppElement ele : allElements){
+		for (AppElement ele : allElements) {
 			json.accumulate("All users", ele.getJson());
 		}
 		return json;
