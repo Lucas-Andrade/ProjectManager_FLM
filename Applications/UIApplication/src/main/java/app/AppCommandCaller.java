@@ -182,6 +182,10 @@ public class AppCommandCaller implements ICommandCaller{
 	}
 	
 	/**
+	 * Method responsible for instantiating the {@code Command} and for
+	 * executing it in a new {@link SwingWorkerCommand} with the publisher
+	 * {@link ResultsPublisher} that publish information about the expected
+	 * results (when it does not occur any errors of any kind).
 	 * 
 	 * @param command
 	 * @param resultsPublisher
@@ -191,6 +195,8 @@ public class AppCommandCaller implements ICommandCaller{
 	}
 	
 	/**
+	 * Method responsible for execute the command and publish the result at the
+	 * Main Frame.
 	 * 
 	 * @param command
 	 */
