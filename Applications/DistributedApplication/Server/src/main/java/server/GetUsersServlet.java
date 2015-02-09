@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import outputMethods.Result;
 import parser.CommandParser;
-import parserUtils.ParserResult;
 import app.AppElement;
 
 @SuppressWarnings("serial")
@@ -28,7 +28,7 @@ public class GetUsersServlet extends HttpServlet{
     	CommandParser cp = CommandParser.getInstance();
     	String input="";
     	try {
-			ParserResult pr = cp.getCommand("GET", "/users").call();
+			Result pr = cp.getCommand("GET", "/users").call();
 			for (AppElement elem : pr.getResults())
 				input+=elem.getJson().toString();
 			

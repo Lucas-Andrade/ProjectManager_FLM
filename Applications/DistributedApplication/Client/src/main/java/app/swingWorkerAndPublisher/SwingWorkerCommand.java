@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import javax.swing.SwingWorker;
-
 import commandRequest.GetHttpRequest;
 
 public class SwingWorkerCommand extends SwingWorker<String, String>{
@@ -28,7 +27,7 @@ public class SwingWorkerCommand extends SwingWorker<String, String>{
 		try {
 			getHttpRequest.sendRequest();
 			
-			publish("Getting response from server...");
+			publish("Waiting for the server's response...");
 			toReturn = getHttpRequest.receiveRequest();
 			
 		} catch (IOException e) {
@@ -62,7 +61,18 @@ public class SwingWorkerCommand extends SwingWorker<String, String>{
 			errorPublisher.publish("Unexpected interruption.");
 			return;
 		} catch (ExecutionException e) {
-			errorPublisher.publish("An error occurred.");
+			
+			Throwable caughtException = e.getCause();
+
+			if(caughtException instanceof NumberFormatException) {
+				errorPublisher.publish("Letters were introduced in a numbers only field.");
+				return;
+			} else if(caughtException instanceof IllegalArgumentException) {
+				errorPublisher.publish("Illegal arguments were entered.");
+				return;
+			}else{
+				errorPublisher.publish("An error occurred. Please review your data.");
+			}
 		}
 		
 		if(toPublish != null) {

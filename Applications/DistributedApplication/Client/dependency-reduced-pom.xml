@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <parent>
-    <artifactId>ProjectManager-Applications</artifactId>
+    <artifactId>ProjectManager-Applications-DistributedApplication</artifactId>
     <groupId>flm.manager.project</groupId>
     <version>0.3.2-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>ProjectManager-Applications-ConsoleApplication</artifactId>
+  <artifactId>ProjectManager-Applications-DistributedApplication-Client</artifactId>
   <build>
     <plugins>
       <plugin>
@@ -16,7 +16,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>app.AppProjectManager</mainClass>
+              <mainClass>app.AppUI</mainClass>
             </manifest>
           </archive>
         </configuration>

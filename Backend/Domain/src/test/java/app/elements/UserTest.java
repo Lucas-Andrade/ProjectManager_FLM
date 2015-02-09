@@ -33,4 +33,5 @@ public class UserTest {
 		assertTrue(user1.equals(RepositoryConstructor.constructUser(1)));
 	}
 
+	
 }
