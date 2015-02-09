@@ -7,11 +7,11 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 /**
- * This {@code Command} allows to get all users from a repository.
+ * Class responsible for sending the HTTP request using Get method and to
+ * receive and treat the result.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
- * @since 19/01/2015
- *
+ * @since 06/02/2015
  */
 public class GetHttpRequest  implements HttpRequest{
 
@@ -55,6 +55,10 @@ public class GetHttpRequest  implements HttpRequest{
 			return connection;
 	 }
 
+	 /**
+	  * Receive and treat the response to the HTTP request using GET method.
+	  *
+	  */
 	@Override
 	public String receiveRequest() throws IOException {
 		

@@ -89,18 +89,6 @@ public abstract class WorkerCreationDescriptor<T extends AWorker> {
 	}
 
 	/**
-	 * Method to update the {@code this#bonus}.
-	 * 
-	 * @param bonus
-	 *            Bonus received by the worker for being a leader or a manager.
-	 * @return {@code this}.
-	 */
-	public WorkerCreationDescriptor<T> bonus(long bonus) {
-		this.bonus = bonus;
-		return this;
-	}
-
-	/**
 	 * Method that instantiates an {@code AWorker} with the fields from
 	 * {@code this} object.
 	 * 

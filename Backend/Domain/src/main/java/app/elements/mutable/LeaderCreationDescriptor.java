@@ -21,6 +21,18 @@ public class LeaderCreationDescriptor extends WorkerCreationDescriptor<Leader> {
 	}
 
 	/**
+	 * Method to update the {@code super#bonus}.
+	 * 
+	 * @param bonus
+	 *            Bonus received by the worker for being a leader or a manager.
+	 * @return {@code this}.
+	 */
+	public WorkerCreationDescriptor<Leader> bonus(long bonus) {
+		this.bonus = bonus;
+		return this;
+	}
+
+	/**
 	 * Method that instantiates a {@code Leader}.
 	 * 
 	 * @see super{@link #build(Long)}

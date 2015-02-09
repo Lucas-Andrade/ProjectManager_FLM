@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import app.AppElement;
 import app.elements.mutable.ConsultantCreationDescriptor;
 import app.elements.mutable.LeaderCreationDescriptor;
+import app.elements.mutable.WorkerCreationDescriptor;
 import utils.AWorker;
 import utils.Consultant;
 import utils.Leader;
@@ -23,10 +24,27 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 		WorkerRepository {
 
 	/**
-	 * {@code Map} that stores the {@code AWorker}s of this repository.
+	 * Synchronized {@code Map} that stores the {@code AWorker}s of this
+	 * repository.
 	 */
 	private static final Map<Long, AWorker> WORKERS = Collections
 			.synchronizedMap(new HashMap<Long, AWorker>());
+
+	/**
+	 * The lock to be used in instructions where
+	 * {@code this#NEXT_CID_TO_BE_USED} cannot be modified by concurrent
+	 * threads. This lock CANNOT be used after a synchronized block with the
+	 * lock {@code this#cidResetLock}.
+	 */
+	private final Object cidLock;
+
+	/**
+	 * The lock to be used when {@code this#NEXT_CID_TO_BE_USED} is reset, by
+	 * all instructions that associate a Worker to a CID in the repository, thus
+	 * preventing the possibility of a Worker being added to this repository
+	 * with a CID higher than the {@code this#NEXT_CID_TO_BE_USED}.
+	 */
+	private final Object cidResetLock;
 
 	/**
 	 * The last CID attributed to an {@link AWorker} plus one.
@@ -39,37 +57,55 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 */
 	public InMemoryWorkerRepo() {
 		NEXT_CID_TO_BE_USED = 1;
+		cidLock = new Object();
+		cidResetLock = new Object();
 	}
 
 	/**
 	 * @see WorkerRepository#addManager(LeaderCreationDescriptor)
 	 */
 	@Override
-	public synchronized Long addManager(
-			LeaderCreationDescriptor creationDescriptor) {
-		Long newManagerCID = NEXT_CID_TO_BE_USED;
-		AWorker newManager = creationDescriptor.build(newManagerCID);
-		if (newManager == null) {
-			return null;
-		}
-		WORKERS.putIfAbsent(newManagerCID, newManager);
-		NEXT_CID_TO_BE_USED++;
-		return newManagerCID;
+	public Long addManager(LeaderCreationDescriptor creationDescriptor) {
+		return this.addWorker(creationDescriptor);
 	}
 
+	/**
+	 * Method that creates and adds an {@code AWorker} to the repository.
+	 * 
+	 * @param manager
+	 *            The {@code WorkerCreationDescriptor} with the information
+	 *            necessary to create the {@code AWorker} to add.
+	 * @return The CID if successful, null if not.
+	 */
+	@SuppressWarnings("rawtypes")
+	private Long addWorker(WorkerCreationDescriptor creationDescriptor) {
+		Long newWorkerCID;
+		AWorker newWorker;
+
+		synchronized (cidLock) {
+			newWorkerCID = NEXT_CID_TO_BE_USED++;
+			newWorker = creationDescriptor.build(newWorkerCID);
+			if (newWorker == null) {
+				NEXT_CID_TO_BE_USED--;
+				return null;
+			}
+		}
+		synchronized (cidResetLock) {
+			if (NEXT_CID_TO_BE_USED > newWorkerCID
+					&& WORKERS.putIfAbsent(newWorkerCID, newWorker) == null)
+				return newWorkerCID;
+		}
+
+		return null;
+	}
+	
 	/**
 	 * @see WorkerRepository#addConsultant(consultantCreationDescriptor)
 	 */
 	@Override
-	public synchronized Long addConsultant(ConsultantCreationDescriptor creationDescriptor) {
-		Long newConsultantCID = NEXT_CID_TO_BE_USED;
-		AWorker newConsultant = creationDescriptor.build(newConsultantCID);
-		if (newConsultant == null) {
-			return null;
-		}
-		WORKERS.putIfAbsent(newConsultantCID, newConsultant);
-		NEXT_CID_TO_BE_USED++;
-		return newConsultantCID;
+	public synchronized Long addConsultant(
+			ConsultantCreationDescriptor creationDescriptor) {
+		return this.addWorker(creationDescriptor);
 	}
 
 	/**
@@ -115,8 +151,10 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 */
 	@Override
 	public synchronized void removeAll() {
-		WORKERS.clear();
-		NEXT_CID_TO_BE_USED = 1;
+		synchronized (cidResetLock) {
+			WORKERS.clear();
+			NEXT_CID_TO_BE_USED = 1;
+		}
 	}
 
 	/**

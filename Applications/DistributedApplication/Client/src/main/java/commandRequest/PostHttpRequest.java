@@ -10,12 +10,11 @@ import java.net.URL;
 
 
 /**
- * This {@code Command} allows to construct a new {@code User} and add it to the
- * repository.
+ * Class responsible for sending the HTTP request using Post method and to
+ * receive and treat the result.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
- * @since 19/01/2015
- *
+ * @since 06/02/2015
  */
 public class PostHttpRequest implements HttpRequest{
 
@@ -72,7 +71,9 @@ public class PostHttpRequest implements HttpRequest{
 		    }
 	}
 	
-	
+	 /**
+	  * Receive and treat the response to the HTTP request using POST method.
+	  */
 	    public String receiveRequest() throws IOException {
 	    	//TODO
 	    	//Get Response    

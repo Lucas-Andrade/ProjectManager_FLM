@@ -31,6 +31,13 @@ import app.repositoryHolders.InMemoryRepositoryHolder;
 import app.repositoryHolders.RepositoryHolder;
 import guiElements.ICommandCaller;
 
+/**
+ * Class which methods call of the available commands on the
+ * userInterface.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 06/02/2015
+ */
 public class AppCommandCaller implements ICommandCaller{
 
 	private RepositoryHolder repositories;
@@ -43,48 +50,72 @@ public class AppCommandCaller implements ICommandCaller{
 		resultsPublisher = new PublishToMainFrame();
 	}
 
+	/**
+	 * {@see guiElements.ICommandCaller#callDeleteProject(String)}
+	 */
 	@Override
 	public void callDeleteProject(String pidString) {
 		Command command = new RemoveProjectToRepo(repositories.getProjectsRepo(), pidString);
 		executeSWC(command);
 	}
 
+	/**
+	 * {@see guiElements.ICommandCaller#callGetProject(String)}
+	 */
 	@Override
 	public void callGetProject(String pidString) {
 		Command command = new GetProjectFromRepo(repositories.getProjectsRepo(), pidString);
 		executeSWC(command, new PublishToGetPanel());
 	}
 
+	/**
+	 * {@see guiElements.ICommandCaller#callGetSubprojects(String)} 
+	 */
 	@Override
 	public void callGetSubprojects(String pidString) {
 		Command command = new GetSubprojectsFromRepo(repositories.getProjectsRepo(), pidString);
 		executeSWC(command, new PublishToGetPanel());
 	}
 
+	/**
+	 * {@see guiElements.ICommandCaller#callGetUsers()}
+	 */
 	@Override
 	public void callGetUsers() {
 		Command command = new GetAllUsersFromRepo(repositories.getUsersRepo());
 		executeSWC(command, new PublishUsersToGetPanel());
 	}
 	
+	/**
+	 * {@see guiElements.ICommandCaller#callGetUser(String)}
+	 */
 	@Override
 	public void callGetUser(String username) {
 		Command command = new GetUserFromRepo(repositories.getUsersRepo(), username);
 		executeSWC(command, new PublishUsersToGetPanel());
 	}
 
+	/**
+	 * {@see guiElements.ICommandCaller#callGetWorkersInProject(String, String)}
+	 */
 	@Override
 	public void callGetWorkersInProject(String pid, String workerOpt) {
 		Command command = new GetProjectWorkersFromRepo(repositories.getProjectsRepo(), pid, workerOpt);
 		executeSWC(command, new PublishTeamToGetPanel());
 	}
 
+	/**
+	 * {@see guiElements.ICommandCaller#callPatchConsultant(String, String, String)}
+	 */
 	@Override
 	public void callPatchConsultant(String consultantId, String consultantName, String priceHour) {
 		Command command = new SetConsultantPropertiesFromRepo(repositories.getWorkersRepo(), consultantId, consultantName, priceHour);
 		executeSWC(command, new PublishTeamToMainFrame());
 	}
 
+	/**
+	 * {@see guiElements.ICommandCaller#callPatchProject(String, String, String, String, String)}
+	 */
 	@Override
 	public void callPatchProject(String pidString, String longitude, String latitude, String price, String localName) {
 		Command command = new SetProjectPropertiesFromRepo(repositories.getProjectsRepo(), pidString, longitude,
@@ -92,52 +123,88 @@ public class AppCommandCaller implements ICommandCaller{
 		executeSWC(command);
 	}
 
+	/**
+	 * {@see guiElements.ICommandCaller#callPatchUser(String, String, String)}
+	 */
 	@Override
 	public void callPatchUser(String userName, String oldPassword, String newPassword) {
 		Command command = new SetUserPropertiesFromRepo(repositories.getUsersRepo(), userName, oldPassword,	newPassword);
 		executeSWC(command, new PublishUsersToMainFrame());
 	}
 
+	/**
+	 * {@see guiElements.ICommandCaller#callPostConsultant(String, String, String)}
+	 */
 	@Override
 	public void callPostConsultant(String name, String priceHour, String bonus) {
 		Command command = new AddConsultantToRepo(repositories.getWorkersRepo(), name, priceHour, bonus);
 		executeSWC(command, new PublishTeamToMainFrame());
 	}
 
+	/**
+	 * {@see guiElements.ICommandCaller#callPostProject(String, String, String, String)}
+	 */
 	@Override
 	public void callPostProject(String latitude, String longitude, String name, String price) {
 		Command command = new AddProjectToRepo(repositories.getProjectsRepo(), latitude, longitude, name, price);
 		executeSWC(command);
 	}
 
+	/**
+	 * {@see guiElements.ICommandCaller#callPostUser(String, String, String, String)}
+	 */
 	@Override
 	public void callPostUser(String username, String password, String email, String fullname) {
 		Command command = new AddUserToRepo(repositories.getUsersRepo(), username, password, email, fullname);
 		executeSWC(command, new PublishUsersToMainFrame());
 	}
 
+	/**
+	 * {@see guiElements.ICommandCaller#callPostSubproject(String, String)}
+	 */
 	@Override
 	public void callPostSubproject(String pid, String subprojectId) {
 		Command command = new AddSubprojectToRepo(repositories.getProjectsRepo(), pid, subprojectId);
 		executeSWC(command);
 	}
 
+	/**
+	 * {@see guiElements.ICommandCaller#callPostWorkerInProject(String, String, String)}
+	 */
 	@Override
 	public void callPostWorkerInProject(String pid, String cid, String worker) {
 		Command command = new AddWorkerToProjectInRepo(repositories.getProjectsRepo(), repositories.getWorkersRepo(), pid, cid, worker);
 		executeSWC(command);
 	}
 
+	/**
+	 * {@see guiElements.ICommandCaller#callAuthenticateUser(String, String)}
+	 */
 	@Override
 	public void callAuthenticateUser(String name, String password) {
 		Command command = new AuthenticateUser(repositories.getUsersRepo(), name, password);
 		executeSWC(command, new InternalAuthenticationPublish());
 	}
 	
+	/**
+	 * Method responsible for instantiating the {@code Command} and for
+	 * executing it in a new {@link SwingWorkerCommand} with the publisher
+	 * {@link ResultsPublisher} that publish information about the expected
+	 * results (when it does not occur any errors of any kind).
+	 * 
+	 * @param command
+	 * @param resultsPublisher
+	 */
 	private void executeSWC(Command command, ResultsPublisher resultsPublisher) {
 		new SwingWorkerCommand(command, resultsPublisher, errorPublisher).execute();
 	}
 	
+	/**
+	 * Method responsible for execute the command and publish the result at the
+	 * Main Frame.
+	 * 
+	 * @param command
+	 */
 	private void executeSWC(Command command){
 		executeSWC(command, resultsPublisher);
 	}

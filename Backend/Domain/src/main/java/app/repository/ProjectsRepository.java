@@ -27,7 +27,7 @@ public interface ProjectsRepository extends Repository<AppElement> {
 	 * @param project
 	 *            The {@code ProjectCreationDescriptor} with the information
 	 *            necessary to create the {@code Project} to add.
-	 * @return The CID if successful, null if not.
+	 * @return The PID if successful, null if not.
 	 */
 	public Long addProject(ProjectCreationDescriptor creationDescriptor);
 
