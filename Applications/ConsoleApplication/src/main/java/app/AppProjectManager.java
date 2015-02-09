@@ -32,7 +32,6 @@ import consoleCommands.PostUsers;
 import consoleCommands.PostWorkerInProject;
 import consoleCommands.exceptions.CommandException;
 
-
 /**
  * Class for Project Management.
  * 
@@ -95,78 +94,26 @@ import consoleCommands.exceptions.CommandException;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class AppProjectManager{
+public class AppProjectManager {
 
 	/**
-	 * As this is an utility class, a private constructor was implemented in order to hide the
-	 * implicit public one.
+	 * As this is an utility class, a private constructor was implemented in
+	 * order to hide the implicit public one.
 	 */
 	private AppProjectManager() {
 	}
-	
+
 	/**
 	 * The variable that defines the default Output used in this application.
 	 */
 	private static PrintStream DEFAULT_SYSTEM_OUT = System.out;
 
 	/**
-	 * This method associates the method and the path that the user will insert
-	 * to reach the corresponding command factory, and register the command.
-	 * 
-	 * @param parser
-	 * @param userRepo
-	 *            repository to store all registered users
-	 * @param projectRepo
-	 *            repository to store all created projects
-	 * @param workersRepo
-	 *            repository to store all created Consultants (and managers)
-	 * @throws InvalidRegisterException
-	 */
-	public static void RegisterCommand(CommandParser parser,
-			UserRepository userRepo, ProjectsRepository projectRepo,
-			WorkerRepository workersRepo) throws InvalidRegisterException{
-
-		ConsoleCommandsRegister eef;
-		parser.registerCommand("POST", "/users",
-				new PostUsers.Factory(userRepo));
-		parser.registerCommand("POST", "/consultants",
-				new PostConsultant.Factory(userRepo, workersRepo));
-		parser.registerCommand("POST", "/projects", new PostProjects.Factory(
-				userRepo, projectRepo));
-		parser.registerCommand("POST", "/projects/{" + PostWorkerInProject.PID
-				+ "}/{" + PostWorkerInProject.WTYPE + "}",
-				new PostWorkerInProject.Factory(userRepo, projectRepo,
-						workersRepo));
-		parser.registerCommand("POST", "/projects/{" + PostSubprojects.PID
-				+ "}/subproject", new PostSubprojects.Factory(userRepo,
-				projectRepo));
-		parser.registerCommand("GET", "/users", new GetUsers.Factory(userRepo));
-		parser.registerCommand("GET", "/users/{" + GetUser.USERNAME + "}",
-				new GetUser.Factory(userRepo));
-		parser.registerCommand("GET", "/projects/{" + GetProjectWorkers.PID
-				+ "}/{" + GetProjectWorkers.WTYPE + "}",
-				new GetProjectWorkers.Factory(projectRepo));
-		parser.registerCommand("GET", "/projects/{" + GetSubproject.PID
-				+ "}/subproject", new GetSubproject.Factory(projectRepo));
-		parser.registerCommand("GET", "/projects/{" + GetProjects.PID + "}",
-				new GetProjects.Factory(projectRepo));
-		parser.registerCommand("PATCH", "/users/{" + PatchUser.USERNAME + "}",
-				new PatchUser.Factory(userRepo));
-		parser.registerCommand("PATCH", "/projects/{" + PatchProject.PID + "}",
-				new PatchProject.Factory(userRepo, projectRepo));
-		parser.registerCommand("PATCH", "/consultants/{" + PatchConsultant.CID
-				+ "}", new PatchConsultant.Factory(userRepo, workersRepo));
-		parser.registerCommand("DELETE", "/projects/{" + GetProjects.PID + "}",
-				new DeleteProjects.Factory(userRepo, projectRepo));
-		parser.registerCommand("OPTION", "/", new Option.Factory());
-	}
-
-	/**
 	 * This method has all information that the user has to know to correctly
 	 * use this application: The actually available commands and the
 	 * implementation notes
 	 */
-	public static void helpCommand(){
+	public static void helpCommand() {
 		DEFAULT_SYSTEM_OUT.println("IMPLEMENTATION NOTES:");
 		DEFAULT_SYSTEM_OUT
 				.println(" - Only registered users can use POST commands;"
@@ -197,7 +144,7 @@ public class AppProjectManager{
 	 * 
 	 * @throws Exception
 	 */
-	public static void execute(CommandParser parser, UserRepository userRepo){
+	public static void execute(CommandParser parser, UserRepository userRepo) {
 		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 
@@ -210,18 +157,19 @@ public class AppProjectManager{
 		DEFAULT_SYSTEM_OUT.print("Insert New password:");
 		String password = scanner.nextLine();
 
-		while (password.length() <= 3){
+		while (password.length() <= 3) {
 			DEFAULT_SYSTEM_OUT
 					.println("Password must at least have 4 characters.\nInsert password:");
 			password = scanner.nextLine();
 		}
-		userRepo.addUser(new UserCreationDescriptor("admin1", password, "admin1@administration.com"));
-		
-		do{
+		userRepo.addUser(new UserCreationDescriptor("admin1", password,
+				"admin1@administration.com"));
+
+		do {
 			DEFAULT_SYSTEM_OUT
 					.println("\nInsert the command you want to execute:");
 			String cmd = scanner.nextLine();
-			switch (cmd){
+			switch (cmd) {
 
 				case "HELP":
 					helpCommand();
@@ -249,20 +197,21 @@ public class AppProjectManager{
 	 *            A {@code String} of the {@code Command} to execute.
 	 * @throws Exception
 	 */
-	private static void commandPrompt(CommandParser parser, String cmd){
-		try{
+	private static void commandPrompt(CommandParser parser, String cmd) {
+		try {
 			Result results = parser.getCommand(cmd.split(" ")).call();
 			results.showResults();
-		} catch (CommandException e){ //commands related exceptions.
+		} catch (CommandException e) { // commands related exceptions.
 			DEFAULT_SYSTEM_OUT.println(e.getMessage());
-		} catch (CommandParserException e){// Command Parser related exceptions.
+		} catch (CommandParserException e) {// Command Parser related
+											// exceptions.
 			DEFAULT_SYSTEM_OUT.println(e.getMessage());
-		} catch (NullPointerException e){
+		} catch (NullPointerException e) {
 			DEFAULT_SYSTEM_OUT.println("Not found.");
-		} catch (FileNotFoundException e){ //Result related exceptions
+		} catch (FileNotFoundException e) { // Result related exceptions
 			DEFAULT_SYSTEM_OUT
 					.println("Invalid output destination for results.");
-		} catch (ClassNotFoundException e){ //Result related exceptions.
+		} catch (ClassNotFoundException e) { // Result related exceptions.
 			DEFAULT_SYSTEM_OUT.println("Invalid accept format for results.");
 		} catch (Exception e) { // Every other exception
 			DEFAULT_SYSTEM_OUT.println(e.getMessage());
@@ -270,23 +219,19 @@ public class AppProjectManager{
 		}
 	}
 
-	public static void main(String[] args) throws Exception{
-		CommandParser parser = CommandParser.getInstance();
+	public static void main(String[] args) throws Exception {
 		UserRepository userRepo = new InMemoryUserRepo();
-		try{
-			RegisterCommand(parser, userRepo, new InMemoryProjectRepo(),
-					new InMemoryWorkerRepo());
-		} catch (InvalidRegisterException e){
-			DEFAULT_SYSTEM_OUT.println(e.getMessage());
-		}
+		CommandParser parser = CommandParser
+				.register(new ConsoleCommandsRegister(userRepo,
+						new InMemoryProjectRepo(), new InMemoryWorkerRepo()));
 
-		if (args.length == 0){
+		if (args.length == 0) {
 			execute(parser, userRepo);
 			DEFAULT_SYSTEM_OUT.close();
 			return;
 		}
 
-		for (String cmd : args){
+		for (String cmd : args) {
 			commandPrompt(parser, cmd);
 		}
 		DEFAULT_SYSTEM_OUT.close();

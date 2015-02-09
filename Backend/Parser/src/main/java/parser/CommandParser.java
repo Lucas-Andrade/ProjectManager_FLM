@@ -282,7 +282,7 @@ public class CommandParser {
 	 *            The command factory instance
 	 * @throws InvalidRegisterException
 	 */
-	public void registerCommand(String method, String path,
+	private void registerCommand(String method, String path,
 			CommandFactory cmdFactory) throws InvalidRegisterException {
 		String path2 = method.trim() + path;
 
