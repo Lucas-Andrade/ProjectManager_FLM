@@ -1,11 +1,6 @@
-package app.publisher;
+package publishers;
 
-import guiElements.mainFrameAL.FrameAndPanelHolder;
-
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
-
-import app.AppElement;
+import javax.swing.JTable;
 
 /**
  * Allows to publish information about {@code AppElement}s indirectly to the
@@ -19,7 +14,7 @@ import app.AppElement;
  * @since 19/01/2015
  *
  */
-public class PublishToGetPanel extends ResultsPublisherWithLoadingDialog{
+public class PublishToGetPanelAsTable extends PublishToGetPanel{
 
 	/**
 	 * Constructs a {@code JTree} using the method {@code TreeBuilder#getTree}. This
@@ -27,13 +22,10 @@ public class PublishToGetPanel extends ResultsPublisherWithLoadingDialog{
 	 * component. Then, the {@code mainPanel} is added to the {@code MainFrame}, and
 	 * the {@code LoadingDialog} is disposed of, if any was set visible.
 	 * 
-	 * @see ResultsPublisherWithLoadingDialog#publish(AppElement[])
+	 * @see PublishToMainFrame#publish(AppElement[])
 	 */
-	@Override
-	public void publish(AppElement[] appElements) {
-		
-		JTree tree = TreeBuilder2.getTree(appElements);
-		FrameAndPanelHolder.getLastPanel().setResults(new JScrollPane(tree));
-		disposeLoadingDialog();
+	public void publish(String elements) {
+		JTable table = TableBuilder.buildTable(elements);
+		publish(table);
 	}
 }

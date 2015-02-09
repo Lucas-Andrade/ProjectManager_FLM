@@ -1,4 +1,4 @@
-package app.swingWorkerAndPublisher;
+package publishers;
 
 import java.util.List;
 
@@ -15,10 +15,11 @@ public interface ResultsPublisher {
 	 * Publishes information about each element of the array of
 	 * {@code AppElement}s.
 	 * 
-	 * @param result 
-	 * 			The result received from the server
+	 * @param appElements
+	 *            The {@code AppElement} objects about which information will be
+	 *            published.
 	 */
-	public void publish(String result);
+	public void publish(String elements);
 	
 	/**
 	 * Will publish a String from the {@code List}. This overload of the

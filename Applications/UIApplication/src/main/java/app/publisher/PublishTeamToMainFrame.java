@@ -47,7 +47,7 @@ public class PublishTeamToMainFrame extends PublishToMainFrame {
 			new ErrorDialog("Could not present the results.").setVisible(true);
 			return;
 		}
-		JTable table = TableBuilder.getTableOfWorkers(workers);
+		JTable table = TableBuilder2.getTableOfWorkers(workers);
 
 		mainPanel.add(new JScrollPane(table), BorderLayout.CENTER);
 		splitPane.setRightComponent(mainPanel);

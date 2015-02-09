@@ -5,16 +5,17 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import javax.swing.SwingWorker;
-import commandRequest.GetHttpRequest;
+
+import commandRequest.HttpRequest;
 
 public class SwingWorkerCommand extends SwingWorker<String, String>{
 
-	private GetHttpRequest getHttpRequest;
+	private HttpRequest httpRequest;
 	private ResultsPublisher publisher;
 	private ErrorPublisher errorPublisher;
 
-	public SwingWorkerCommand(GetHttpRequest getHttpRequest, ResultsPublisher publisher, ErrorPublisher errorPublisher) {
-		this.getHttpRequest = getHttpRequest;
+	public SwingWorkerCommand(HttpRequest httpRequest, ResultsPublisher publisher, ErrorPublisher errorPublisher) {
+		this.httpRequest = httpRequest;
 		this.publisher = publisher;
 		this.errorPublisher = errorPublisher;
 	}
@@ -25,10 +26,10 @@ public class SwingWorkerCommand extends SwingWorker<String, String>{
 		
 		String toReturn = "";
 		try {
-			getHttpRequest.sendRequest();
+			httpRequest.sendRequest();
 			
 			publish("Waiting for the server's response...");
-			toReturn = getHttpRequest.receiveRequest();
+			toReturn = httpRequest.receiveRequest();
 			
 		} catch (IOException e) {
 			errorPublisher.publish("Could not connect to the server.");

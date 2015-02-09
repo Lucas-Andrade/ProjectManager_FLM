@@ -21,8 +21,12 @@ public class InternalAuthenticationPublish extends ResultsPublisherWithLoadingDi
 	 * to the {@code Authentication} class.
 	 */
 	@Override
-	public void publish(String elementString) 
+	public void publish(String elementString)
 	{
+		if(resultWasError(elementString, "The username or password you introduced was wrong.")) {
+			return;
+		}
+		
 		try {
 			String name = PossibleAuthentication.getName();
 			String pass = PossibleAuthentication.getPassword();

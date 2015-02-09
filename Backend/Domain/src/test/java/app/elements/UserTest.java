@@ -21,6 +21,9 @@ public class UserTest {
 	public void constructUsers(){
 		user1 = RepositoryConstructor.constructUser(1);
 		user2 = RepositoryConstructor.constructUser(2);
+		
+		System.out.println(RepositoryConstructor.constructUserRepo().getJson().toString());
+		System.out.println(RepositoryConstructor.constructWorkerRepo().getJson().toString());
 	}
 	
 	@Test

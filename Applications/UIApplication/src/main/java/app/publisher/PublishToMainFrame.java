@@ -46,7 +46,7 @@ public class PublishToMainFrame extends ResultsPublisherWithLoadingDialog{
 	 */
 	@Override
 	public void publish(AppElement[] appElements) {
-		JTree tree = TreeBuilder.getTree(appElements);
+		JTree tree = TreeBuilder2.getTree(appElements);
 		
 		mainPanel.add(new JScrollPane(tree), BorderLayout.CENTER);
 		splitPane.setRightComponent(mainPanel);

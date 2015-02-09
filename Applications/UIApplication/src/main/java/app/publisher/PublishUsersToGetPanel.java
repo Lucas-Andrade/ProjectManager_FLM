@@ -48,7 +48,7 @@ public class PublishUsersToGetPanel extends PublishToGetPanel{
 			return;
 		}
 		
-		JTable table = TableBuilder.getTableOfUsers(users);
+		JTable table = TableBuilder2.getTableOfUsers(users);
 		FrameAndPanelHolder.getLastPanel().setResults(new JScrollPane(table));
 		disposeLoadingDialog();
 	}

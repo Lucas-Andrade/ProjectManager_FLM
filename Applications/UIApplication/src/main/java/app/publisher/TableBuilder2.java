@@ -6,13 +6,13 @@ import utils.AWorker;
 import utils.Leader;
 import app.elements.IUser;
 
-public class TableBuilder {
+public class TableBuilder2 {
 	
 	/**
 	 * As this is an utility class, a private constructor was implemented in order to hide the
 	 * implicit public one.
 	 */
-	private TableBuilder() {
+	private TableBuilder2() {
 	}
 	
 	public static JTable getTableOfUsers(IUser[] users) {

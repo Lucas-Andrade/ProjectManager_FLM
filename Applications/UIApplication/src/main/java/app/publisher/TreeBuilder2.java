@@ -23,13 +23,13 @@ import app.AppElement;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  *
  */
-public class TreeBuilder {
+public class TreeBuilder2 {
 	
 	/**
 	 * As this is an utility class, a private constructor was implemented in order to hide the
 	 * implicit public one.
 	 */
-	private TreeBuilder() {
+	private TreeBuilder2() {
 	}
 	
 	/**
