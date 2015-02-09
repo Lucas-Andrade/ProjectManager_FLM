@@ -1,5 +1,8 @@
 package publishers;
 
+import guiElements.Authentication;
+import guiElements.mainFrameAL.mainFrame.ErrorDialog;
+
 /**
  * A publisher class with the express purpose of not publishing.
  * Instead, the {@code Authentication} class is updated.
@@ -8,15 +11,28 @@ package publishers;
  * @since 05/02/2015
  *
  */
-public abstract class InternalAuthenticationPublish extends PublishWithLoadingDialog implements ResultsPublisher{
+public class InternalAuthenticationPublish extends PublishWithLoadingDialog implements ResultsPublisher{
 
 	/**
-	 * Will not publish.
+	 * Will not publish. 
 	 */
 	@Override
 	public void publish(String element) {
+		String[] array = element.split(":");
+		
+		if (array[0] == "Error") {
+			new ErrorDialog("The username or password you entered is wrong.").setVisible(true);
+			disposeLoadingDialog();
+			return;
+		}
+		
+		try {
+			Authentication.authenticatePossible();
+		} catch(IllegalStateException e) {
+			new ErrorDialog("Could not authenticate.").setVisible(true);
+		}
+		
+		disposeLoadingDialog();
 	}
-
-	public abstract void authenticate(String name, String password);
 
 }

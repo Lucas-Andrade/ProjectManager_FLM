@@ -1,10 +1,14 @@
-package app.publisher;
+package app;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import javax.swing.SwingWorker;
 
+import org.json.JSONArray;
+
+import publishers.ErrorPublisher;
+import publishers.ResultsPublisher;
 import app.AppElement;
 import app.domainCommands.Command;
 import app.domainCommands.exceptions.CommandExecutionException;
@@ -22,7 +26,7 @@ import app.domainCommands.exceptions.CommandExecutionException;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * 
  */
-public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
+public class SwingWorkerCommand extends SwingWorker<String, String>{
 
 	Command command;
 	ResultsPublisher publisher;
@@ -48,12 +52,33 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 	 * @throws Exception 
 	 */
 	@Override
-	protected AppElement[] doInBackground() throws Exception {
+	protected String doInBackground() throws Exception {
 		
 		publish("<html>Applying changes<br>to the database.<br></html>");
-		return command.call();
+		AppElement[] result = command.call();
+		return toString(result);
 	}
 	
+	/**
+	 * Turns the array of {@code AppElement}s into a string in the JSON format.
+	 * @param result
+	 * @return a string with the information contained in the array of {@code AppElement}s
+	 */
+	private static String toString(AppElement[] result) {
+		
+		String toReturn;
+		if(result.length == 1) {
+			return result[0].getJson().toString();
+		} else {
+			JSONArray array = new JSONArray();
+			for(int i = 0; i < result.length; i++){
+				array.put(result[i].getJson());
+			}
+			toReturn = array.toString();
+		}
+		return toReturn;
+	}
+
 	/**
 	 * Publishes into the {@code ResultsPublisher} object.
 	 * @param chunks
@@ -69,7 +94,7 @@ public class SwingWorkerCommand extends SwingWorker<AppElement[], String>{
 	 */
 	@Override
 	protected void done(){
-		AppElement[] result = null;
+		String result = null;
 		try {
 			result = get();
 		} catch (InterruptedException e) {

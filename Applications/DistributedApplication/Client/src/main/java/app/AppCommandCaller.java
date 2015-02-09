@@ -1,11 +1,12 @@
 package app;
 
-import app.swingWorkerAndPublisher.ErrorPublisher;
-import app.swingWorkerAndPublisher.ErrorPublisherWithLoadingDialog;
-import app.swingWorkerAndPublisher.PublishToGetPanel;
-import app.swingWorkerAndPublisher.PublishToMainFrame;
-import app.swingWorkerAndPublisher.ResultsPublisher;
-import app.swingWorkerAndPublisher.SwingWorkerCommand;
+import publishers.ErrorPublisher;
+import publishers.InternalAuthenticationPublish;
+import publishers.PublishToErrorDialog;
+import publishers.PublishToGetPanelAsTable;
+import publishers.PublishToGetPanelAsTree;
+import publishers.PublishToMainFrameAsTable;
+import publishers.PublishToMainFrameAsTree;
 import commandRequest.DeleteHttpRequest;
 import commandRequest.GetHttpRequest;
 import commandRequest.PatchHttpRequest;
@@ -23,15 +24,11 @@ import guiElements.ICommandCaller;
 public class AppCommandCaller implements ICommandCaller{
 	
 	private String requestURL;
-	private ResultsPublisher mainFramePublisher;
-	private PublishToGetPanel getPanelPublisher;
 	private ErrorPublisher errorPublisher;
 	
 	public AppCommandCaller(String requestURL) {
 		this.requestURL = requestURL;
-		errorPublisher = new ErrorPublisherWithLoadingDialog();
-		mainFramePublisher = new PublishToMainFrame();
-		getPanelPublisher = new PublishToGetPanel();
+		errorPublisher = new PublishToErrorDialog();
 	}
 
 	/**
@@ -50,7 +47,7 @@ public class AppCommandCaller implements ICommandCaller{
 		path.append("DELETE /projects/").append(pidString)
 			.append(loginAndFormat());
 		
-		new SwingWorkerCommand(new DeleteHttpRequest(requestURL, path.toString()), mainFramePublisher, errorPublisher);
+		new SwingWorkerCommand(new DeleteHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTree(), errorPublisher);
 	}
 
 	/**
@@ -70,7 +67,7 @@ public class AppCommandCaller implements ICommandCaller{
 		path.append("GET /projects/").append(pidString)
 			.append(loginAndFormat());
 		
-		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), getPanelPublisher, errorPublisher);
+		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), new PublishToGetPanelAsTree(), errorPublisher);
 	}
 
 	/**
@@ -90,7 +87,7 @@ public class AppCommandCaller implements ICommandCaller{
 		path.append("GET /projects/").append(pidString).append("/subproject")
 			.append(loginAndFormat());
 		
-		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), getPanelPublisher, errorPublisher);
+		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), new PublishToGetPanelAsTree(), errorPublisher);
 	}
 
 	/**
@@ -106,7 +103,7 @@ public class AppCommandCaller implements ICommandCaller{
 		path.append("GET /users")
 			.append(loginAndFormat());
 		
-		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), getPanelPublisher, errorPublisher);
+		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), new PublishToGetPanelAsTable(), errorPublisher);
 	}
 
 	/**
@@ -125,7 +122,7 @@ public class AppCommandCaller implements ICommandCaller{
 		path.append("GET /users/").append(username)
 			.append(loginAndFormat());
 		
-		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), getPanelPublisher, errorPublisher);
+		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), new PublishToGetPanelAsTable(), errorPublisher);
 	}
 
 	/**
@@ -148,7 +145,7 @@ public class AppCommandCaller implements ICommandCaller{
 		path.append("GET /projects/").append(pid).append("/").append(workerOpt)
 			.append(loginAndFormat());
 		
-		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), getPanelPublisher, errorPublisher);
+		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), new PublishToGetPanelAsTable(), errorPublisher);
 	}
 
 	/**
@@ -180,7 +177,7 @@ public class AppCommandCaller implements ICommandCaller{
 			path.append("&priceHour=").append(priceHour);
 		}
 		
-		new SwingWorkerCommand(new PatchHttpRequest(requestURL, path.toString()), mainFramePublisher, errorPublisher);
+		new SwingWorkerCommand(new PatchHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTable(), errorPublisher);
 	}
 
 	/**
@@ -226,7 +223,7 @@ public class AppCommandCaller implements ICommandCaller{
 			path.append("&name=").append(localName);
 		}
 		
-		new SwingWorkerCommand(new PatchHttpRequest(requestURL, path.toString()), mainFramePublisher, errorPublisher);
+		new SwingWorkerCommand(new PatchHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTree(), errorPublisher);
 	}
 
 	/**
@@ -255,7 +252,7 @@ public class AppCommandCaller implements ICommandCaller{
 			.append("&oldPassword=").append(oldPassword)
 			.append("&newPassword=").append(newPassword);
 		
-		new SwingWorkerCommand(new PatchHttpRequest(requestURL, path.toString()), mainFramePublisher, errorPublisher);
+		new SwingWorkerCommand(new PatchHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTable(), errorPublisher);
 	}
 
 	/**
@@ -286,7 +283,7 @@ public class AppCommandCaller implements ICommandCaller{
 			path.append("&bonus=").append(bonus);
 		}
 		
-		new SwingWorkerCommand(new PostHttpRequest(requestURL, path.toString()), mainFramePublisher, errorPublisher);
+		new SwingWorkerCommand(new PostHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTable(), errorPublisher);
 	}
 
 	/**
@@ -314,7 +311,7 @@ public class AppCommandCaller implements ICommandCaller{
 			.append("&latitude=").append(latitude).append("&longitude=").append(longitude)
 			.append("&name=").append(name).append("&price").append(price);
 		
-		new SwingWorkerCommand(new PostHttpRequest(requestURL, path.toString()), mainFramePublisher, errorPublisher);
+		new SwingWorkerCommand(new PostHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTree(), errorPublisher);
 	}
 
 	/**
@@ -347,7 +344,7 @@ public class AppCommandCaller implements ICommandCaller{
 			path.append("&fullname=").append(fullname);
 		}
 		
-		new SwingWorkerCommand(new PostHttpRequest(requestURL, path.toString()), mainFramePublisher, errorPublisher);
+		new SwingWorkerCommand(new PostHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTable(), errorPublisher);
 	}
 
 	/**
@@ -371,7 +368,7 @@ public class AppCommandCaller implements ICommandCaller{
 			.append(loginAndFormat())
 			.append("&subPid=").append(subprojectId);
 		
-		new SwingWorkerCommand(new PostHttpRequest(requestURL, path.toString()), mainFramePublisher, errorPublisher);
+		new SwingWorkerCommand(new PostHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTree(), errorPublisher);
 	}
 
 	/**
@@ -397,7 +394,7 @@ public class AppCommandCaller implements ICommandCaller{
 			.append(loginAndFormat())
 			.append("&cid=").append(cid);
 		
-		new SwingWorkerCommand(new PostHttpRequest(requestURL, path.toString()), mainFramePublisher, errorPublisher);
+		new SwingWorkerCommand(new PostHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTree(), errorPublisher);
 	}
 
 	/**
@@ -412,14 +409,14 @@ public class AppCommandCaller implements ICommandCaller{
 	 */
 	@Override
 	public void callAuthenticateUser(String name, String password) {
+		Authentication.setPossibleAuthentification(name, password);
 		StringBuilder path = new StringBuilder();
 		path.append("POST /authenticate")
 			.append(" loginName=").append(name)
 			.append("&loginPassword=").append(password)
 			.append(jsonFormat());
 		
-		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), mainFramePublisher, errorPublisher);
-		PossibleAuthentication.setNameAndPassword(name, password);
+		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), new InternalAuthenticationPublish(), errorPublisher);
 	}
 
 	private String loginAndFormat() {

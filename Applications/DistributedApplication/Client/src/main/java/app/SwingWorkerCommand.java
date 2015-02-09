@@ -1,4 +1,4 @@
-package app.swingWorkerAndPublisher;
+package app;
 
 import java.io.IOException;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.concurrent.ExecutionException;
 
 import javax.swing.SwingWorker;
 
+import publishers.ErrorPublisher;
+import publishers.ResultsPublisher;
 import commandRequest.HttpRequest;
 
 public class SwingWorkerCommand extends SwingWorker<String, String>{
