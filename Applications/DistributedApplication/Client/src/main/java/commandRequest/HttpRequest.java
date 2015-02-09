@@ -17,5 +17,10 @@ public interface HttpRequest {
 	 public abstract HttpURLConnection sendRequest(String requestURL, String path) throws IOException;
 	 
 	 
+	 /**
+	  * Receive the response to the HTTP request using GET method to the specified URL.
+	  * @return
+	  * @throws IOException
+	  */
 	 public abstract String receiveRequest() throws IOException;
 }
