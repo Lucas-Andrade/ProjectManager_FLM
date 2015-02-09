@@ -126,6 +126,7 @@ public class AppProjectManager{
 			UserRepository userRepo, ProjectsRepository projectRepo,
 			WorkerRepository workersRepo) throws InvalidRegisterException{
 
+		ConsoleCommandsRegister eef;
 		parser.registerCommand("POST", "/users",
 				new PostUsers.Factory(userRepo));
 		parser.registerCommand("POST", "/consultants",

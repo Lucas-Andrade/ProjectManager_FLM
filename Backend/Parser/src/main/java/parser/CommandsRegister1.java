@@ -2,17 +2,18 @@ package parser;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
 import parserUtils.CommandFactory;
 
-public class CommandsRegister {
+public class CommandsRegister1 implements CommandParser.CommandsRegister {
 
 	private final Map<String, CommandFactory> cmdsMap;
 	private final Map<String, String> pathsMap;
 
-	public CommandsRegister() {
+	public CommandsRegister1() {
 		this.cmdsMap = new HashMap<String, CommandFactory>();
 		this.pathsMap = new HashMap<String, String>();
 	}
@@ -22,16 +23,16 @@ public class CommandsRegister {
 		pathsMap.put(method, path);
 	}
 	
-	public Collection<String> getPaths() {
-		return pathsMap.values();
+	public Iterator<String> getPaths() {
+		return pathsMap.values().iterator();
 	}
 
-	public Collection<CommandFactory> getFactories() {
-		return cmdsMap.values();
+	public Iterator<CommandFactory> getFactories() {
+		return cmdsMap.values().iterator();
 	}
 
-	public Set<String> getMethods() {
-		return cmdsMap.keySet();
+	public Iterator<String> getMethods() {
+		return cmdsMap.keySet().iterator();
 	}
 
 }
