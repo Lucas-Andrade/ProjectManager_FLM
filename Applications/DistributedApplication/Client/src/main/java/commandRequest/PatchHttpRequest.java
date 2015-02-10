@@ -8,13 +8,24 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Class responsible for sending the HTTP request using Patch method and to
+ * receive and treat the result.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 06/02/2015
+ */
 public class PatchHttpRequest implements HttpRequest{
 
 
 	public static OutputStreamWriter writer;
 	public static HttpURLConnection connection = null;
+	public String requestURL;
+	public String path;
 	
-	public PatchHttpRequest() {
+	public PatchHttpRequest(String requestURL, String path) {
+		this.requestURL = requestURL;
+		this.path = path;
 	}
 
 	/**
@@ -27,21 +38,17 @@ public class PatchHttpRequest implements HttpRequest{
 	 * @return An HttPURLConnectionobeject
 	 * @throws IOException
 	 */
-	public HttpURLConnection sendRequest(String requestURL, String path) throws IOException {
+	public HttpURLConnection sendRequest() throws IOException {
 		URL url;
 	      
 	    try {
-			
 	    	url = new URL(requestURL);
-
-	   
+	    	
 			connection = (HttpURLConnection) url.openConnection();
-			
 			connection.setDoInput(true); // true indicates the server returns response
 			connection.setDoOutput(true);// true indicates PUT request
 			connection.setRequestMethod("PUT");
 			connection.setRequestProperty("Content-Type",  "application/json");
-			
 			
 			writer = new OutputStreamWriter(connection.getOutputStream());
 			writer.write(path);
@@ -49,9 +56,7 @@ public class PatchHttpRequest implements HttpRequest{
 			writer.close();
 	
 			return connection;
-
-			  
-		
+	
 		    } catch (Exception e) {
 		
 		      e.printStackTrace();
@@ -66,7 +71,11 @@ public class PatchHttpRequest implements HttpRequest{
 	}
 	
 	
-	    public static String receivePatchRequest() throws IOException {
+	 /**
+	  * Receive and treat the response to the HTTP request using PATCH method.
+	  *
+	  */
+	    public String receiveRequest() throws IOException {
 	    	//TODO
 	    	//Get Response    
 		      InputStream is = connection.getInputStream();
@@ -79,11 +88,6 @@ public class PatchHttpRequest implements HttpRequest{
 		      }
 		      rd.close();
 		      return response.toString();
-	}
+	    }
 
-		@Override
-		public String receiveRequest() throws IOException {
-			// TODO Auto-generated method stub
-			return null;
-		}
 }

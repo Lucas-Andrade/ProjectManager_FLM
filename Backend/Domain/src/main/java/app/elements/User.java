@@ -122,14 +122,18 @@ public class User implements IUser{
 	 * @see Object#equals(Object)
 	 */
 	@Override
-	public boolean equals(Object user){
-		if (this == user){
+	public boolean equals(Object user)
+	{
+		if (this == user)
+		{
 			return true;
 		}
-		if (user == null){
+		if (user == null)
+		{
 			return false;
 		}
-		if (getClass() != user.getClass()){
+		if (getClass() != user.getClass())
+		{
 			return false;
 		}
 

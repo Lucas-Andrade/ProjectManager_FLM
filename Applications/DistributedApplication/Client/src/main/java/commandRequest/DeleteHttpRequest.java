@@ -5,11 +5,24 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Class responsible for sending the HTTP request using Delete method and to
+ * receive and treat the result.
+ * 
+ * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
+ * @since 06/02/2015
+ */
 public class DeleteHttpRequest implements HttpRequest{
 	
 	public static OutputStreamWriter writer;
 	public static HttpURLConnection connection = null;
+	public String requestURL;
+	public String path;
 	
+	public DeleteHttpRequest(String requestURL, String path) {
+		this.requestURL = requestURL;
+		this.path = path;
+	}
 
 	/**
      * Makes an HTTP request using DELETE method to the specified URL.
@@ -20,7 +33,7 @@ public class DeleteHttpRequest implements HttpRequest{
      * @throws IOException
      *             thrown if any I/O error occurred
      */
-	 public HttpURLConnection sendRequest(String requestURL, String path)
+	 public HttpURLConnection sendRequest()
 	            throws IOException {
 		  try {
 		    URL url = new URL(requestURL);
@@ -55,6 +68,10 @@ public class DeleteHttpRequest implements HttpRequest{
 	 }
 
 
+	 /**
+	  * Receive and treat the response to the HTTP request using DELETE method.
+	  *
+	  */
 	@Override
 	public String receiveRequest() throws IOException {
 		// TODO Auto-generated method stub

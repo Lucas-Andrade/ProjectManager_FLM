@@ -2,6 +2,7 @@ package server;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import outputMethods.Result;
 import parser.CommandParser;
-import parserUtils.ParserResult;
 import app.AppElement;
 
 @SuppressWarnings("serial")
@@ -47,13 +47,13 @@ public class ProjectManagerServlet extends HttpServlet{
 		
 		CommandParser parser = new CommandParser();
 		String input = getCommandStringFromRequest(req);
-		StackMensage mensage = startParser(parser, input);
-
-		resp.setContentType("application/json");
-		PrintWriter out;
-		out = resp.getWriter();
-		out.print(mensage.pop());
-		out.flush();
+////		StackMensage mensage = startParser(parser, input);
+//
+//		resp.setContentType("application/json");
+//		PrintWriter out;
+//		out = resp.getWriter();
+//		out.print(mensage.pop());
+//		out.flush();
     }
 	
 	

@@ -10,20 +10,24 @@ import java.net.URL;
 
 
 /**
- * This {@code Command} allows to construct a new {@code User} and add it to the
- * repository.
+ * Class responsible for sending the HTTP request using Post method and to
+ * receive and treat the result.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
- * @since 19/01/2015
- *
+ * @since 06/02/2015
  */
 public class PostHttpRequest implements HttpRequest{
 
 
 	public static OutputStreamWriter writer;
 	public static HttpURLConnection connection = null;
+	public String requestURL;
+	public String path;
 	
-	
+	public PostHttpRequest(String requestURL, String path) {
+		this.requestURL = requestURL;
+		this.path = path;
+	}
 
 	/**
 	 * Method with the responsibility to send a HTTP request using POST method
@@ -35,7 +39,7 @@ public class PostHttpRequest implements HttpRequest{
 	 * @return An HttPURLConnectionobeject
 	 * @throws IOException
 	 */
-	public HttpURLConnection sendRequest(String requestURL, String path) throws IOException {
+	public HttpURLConnection sendRequest() throws IOException {
 		URL url;
 	      
 	    try {
@@ -67,7 +71,9 @@ public class PostHttpRequest implements HttpRequest{
 		    }
 	}
 	
-	
+	 /**
+	  * Receive and treat the response to the HTTP request using POST method.
+	  */
 	    public String receiveRequest() throws IOException {
 	    	//TODO
 	    	//Get Response    

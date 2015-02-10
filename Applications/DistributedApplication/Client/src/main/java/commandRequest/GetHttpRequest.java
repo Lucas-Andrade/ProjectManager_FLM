@@ -7,17 +7,22 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 /**
- * This {@code Command} allows to get all users from a repository.
+ * Class responsible for sending the HTTP request using Get method and to
+ * receive and treat the result.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
- * @since 19/01/2015
- *
+ * @since 06/02/2015
  */
 public class GetHttpRequest  implements HttpRequest{
 
 	public static OutputStreamWriter writer;
-
-	public GetHttpRequest() {}
+	public String requestURL;
+	public String path;
+	
+	public GetHttpRequest(String requestURL, String path) {
+		this.requestURL = requestURL;
+		this.path = path;
+	}
 
 	/**
      * Makes an HTTP request using GET method to the specified URL.
@@ -28,7 +33,7 @@ public class GetHttpRequest  implements HttpRequest{
      * @throws IOException
      *             thrown if any I/O error occurred
      */
-	 public HttpURLConnection sendRequest(String requestURL, String path)
+	 public HttpURLConnection sendRequest()
 	            throws IOException {
 		 
 		    URL url = new URL(requestURL);
@@ -50,6 +55,10 @@ public class GetHttpRequest  implements HttpRequest{
 			return connection;
 	 }
 
+	 /**
+	  * Receive and treat the response to the HTTP request using GET method.
+	  *
+	  */
 	@Override
 	public String receiveRequest() throws IOException {
 		
