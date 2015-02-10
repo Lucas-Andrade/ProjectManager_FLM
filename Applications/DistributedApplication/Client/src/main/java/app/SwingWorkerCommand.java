@@ -8,6 +8,7 @@ import javax.swing.SwingWorker;
 
 import publishers.ErrorPublisher;
 import publishers.ResultsPublisher;
+import commandRequest.HttpConnectionException;
 import commandRequest.HttpRequest;
 
 public class SwingWorkerCommand extends SwingWorker<String, String>{
@@ -23,7 +24,7 @@ public class SwingWorkerCommand extends SwingWorker<String, String>{
 	}
 
 	@Override
-	protected String doInBackground() {
+	protected String doInBackground() throws HttpConnectionException {
 		publish("Connecting to server...");
 		
 		String toReturn = "";
