@@ -8,6 +8,7 @@ import javax.swing.SwingWorker;
 
 import publishers.ErrorPublisher;
 import publishers.ResultsPublisher;
+import commandRequest.HttpConnectionException;
 import commandRequest.HttpRequest;
 
 public class SwingWorkerCommand extends SwingWorker<String, String>{
@@ -23,7 +24,7 @@ public class SwingWorkerCommand extends SwingWorker<String, String>{
 	}
 
 	@Override
-	protected String doInBackground() {
+	protected String doInBackground() throws HttpConnectionException {
 		publish("Connecting to server...");
 		
 		String toReturn = "";
@@ -37,6 +38,12 @@ public class SwingWorkerCommand extends SwingWorker<String, String>{
 			errorPublisher.publish("Could not connect to the server.");
 			return null;
 		}
+		
+		if(toReturn.contains("Message")) {
+			errorPublisher.publishJsonFormatString(toReturn);
+			return null;
+		}
+		
 		return toReturn;
 	}
 
@@ -64,18 +71,7 @@ public class SwingWorkerCommand extends SwingWorker<String, String>{
 			errorPublisher.publish("Unexpected interruption.");
 			return;
 		} catch (ExecutionException e) {
-			
-			Throwable caughtException = e.getCause();
-
-			if(caughtException instanceof NumberFormatException) {
-				errorPublisher.publish("Letters were introduced in a numbers only field.");
-				return;
-			} else if(caughtException instanceof IllegalArgumentException) {
-				errorPublisher.publish("Illegal arguments were entered.");
-				return;
-			}else{
-				errorPublisher.publish("An error occurred. Please review your data.");
-			}
+			errorPublisher.publish("Server exception.");
 		}
 		
 		if(toPublish != null) {

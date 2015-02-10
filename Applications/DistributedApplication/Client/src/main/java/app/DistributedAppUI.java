@@ -17,15 +17,30 @@ public class DistributedAppUI {
 	private DistributedAppUI() {
 	}
 	
-	private static String HOST = "localhost";
-	private final static int PORT = 9999;
+	private static final String HOST = "localhost";
+	private static final String PORT = "8081";
+	
+	
+	
+	private static String getPort() {
+		return PORT;
+	}
+
+	private static String getHost() {
+		return HOST;
+	}
+	
+	
+	
 	
 	/**
 	 * Main method, starts the application.
 	 */
 	public static void main(String[] args) {
-		String requestURL = "http://" + HOST + ":" + PORT;
-		AppCommandCaller caller = new AppCommandCaller(requestURL);
+		
+		AppCommandCaller caller = new AppCommandCaller(getHost(), getPort());
 		GUIUtils.initializeMainFrame(caller);
 	}
+
+	
 }

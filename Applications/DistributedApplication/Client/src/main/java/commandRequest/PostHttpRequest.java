@@ -1,12 +1,9 @@
 package commandRequest;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.URL;
 
 
 /**
@@ -16,17 +13,18 @@ import java.net.URL;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 06/02/2015
  */
-public class PostHttpRequest implements HttpRequest{
+public class PostHttpRequest extends HttpRequest{
 
 
 	public static OutputStreamWriter writer;
 	public static HttpURLConnection connection = null;
 	public String requestURL;
 	public String path;
+	private String parameters;
 	
-	public PostHttpRequest(String requestURL, String path) {
-		this.requestURL = requestURL;
-		this.path = path;
+	public PostHttpRequest(String requestURL, String path, String parameters) {
+		super(requestURL,path);
+		this.parameters = parameters;
 	}
 
 	/**
@@ -40,19 +38,17 @@ public class PostHttpRequest implements HttpRequest{
 	 * @throws IOException
 	 */
 	public HttpURLConnection sendRequest() throws IOException {
-		URL url;
 	      
 	    try {
-			url = new URL(requestURL);
-			connection = (HttpURLConnection) url.openConnection();
-			
+	    	connection = super.sendRequest();
+	    	
 			connection.setDoInput(true); // true indicates the server returns response
 			connection.setDoOutput(true);// true indicates POST request
-			connection.setRequestProperty("Content-Type", "application/Json" );
 			connection.setRequestMethod("POST");
+			connection.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
 		
-			writer = new OutputStreamWriter(connection.getOutputStream());
-			writer.write(path);
+			OutputStream writer = connection.getOutputStream();
+			writer.write(parameters.getBytes());
 			writer.flush();
 			writer.close();
 	
@@ -69,23 +65,5 @@ public class PostHttpRequest implements HttpRequest{
 		        connection.disconnect(); 
 		      }
 		    }
-	}
-	
-	 /**
-	  * Receive and treat the response to the HTTP request using POST method.
-	  */
-	    public String receiveRequest() throws IOException {
-	    	//TODO
-	    	//Get Response    
-		      InputStream is = connection.getInputStream();
-		      BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-		      String line;
-		      StringBuffer response = new StringBuffer(); 
-		      while((line = rd.readLine()) != null) {
-			        response.append(line);
-			        response.append('\r');
-		      }
-		      rd.close();
-		      return response.toString();
 	}
 }

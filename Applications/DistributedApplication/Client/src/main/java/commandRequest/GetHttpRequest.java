@@ -1,10 +1,7 @@
 package commandRequest;
 
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 
 /**
  * Class responsible for sending the HTTP request using Get method and to
@@ -13,15 +10,14 @@ import java.net.URLEncoder;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 06/02/2015
  */
-public class GetHttpRequest  implements HttpRequest{
+public class GetHttpRequest  extends HttpRequest{
 
-	public static OutputStreamWriter writer;
-	public String requestURL;
-	public String path;
+
 	
+	private HttpURLConnection connection;
+
 	public GetHttpRequest(String requestURL, String path) {
-		this.requestURL = requestURL;
-		this.path = path;
+		super(requestURL, path);
 	}
 
 	/**
@@ -35,35 +31,26 @@ public class GetHttpRequest  implements HttpRequest{
      */
 	 public HttpURLConnection sendRequest()
 	            throws IOException {
-		 
-		    URL url = new URL(requestURL);
-			//OutputStream output = null;
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			
-			
+		  try { 
+		 	connection = super.sendRequest();
+		  
 			connection.setUseCaches(true );
 			connection.setDoInput(true); // true if we want to read server's response
 			connection.setDoOutput(false); // false indicates this is a GET request
-			connection.setRequestProperty("Content-Type", "application/Json" );
 			connection.setRequestMethod("GET");
 
-			writer = new OutputStreamWriter(connection.getOutputStream());
-			writer.write(URLEncoder.encode(path, "UTF-8"));
-			writer.flush();
-			writer.close();
-
 			return connection;
+		  } catch (Exception e) {
+				
+		      e.printStackTrace();
+		      return null;
+		
+		    } finally {
+		
+		      if(connection != null) {
+		        connection.disconnect(); 
+		      }
 	 }
-
-	 /**
-	  * Receive and treat the response to the HTTP request using GET method.
-	  *
-	  */
-	@Override
-	public String receiveRequest() throws IOException {
-		
-		
-		return null;
-	}
+ }
 	
 }

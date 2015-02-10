@@ -18,4 +18,6 @@ public interface ErrorPublisher {
 	 * 			Message to be published.
 	 */
 	public void publish(String message);
+
+	public void publishJsonFormatString(String toReturn);
 }
