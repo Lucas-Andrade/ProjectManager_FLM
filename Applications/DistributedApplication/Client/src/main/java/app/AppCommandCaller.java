@@ -1,5 +1,10 @@
 package app;
 
+import guiElements.Authentication;
+import guiElements.ICommandCaller;
+
+import java.text.MessageFormat;
+
 import publishers.ErrorPublisher;
 import publishers.InternalAuthenticationPublish;
 import publishers.PublishToErrorDialog;
@@ -7,12 +12,11 @@ import publishers.PublishToGetPanelAsTable;
 import publishers.PublishToGetPanelAsTree;
 import publishers.PublishToMainFrameAsTable;
 import publishers.PublishToMainFrameAsTree;
+
 import commandRequest.DeleteHttpRequest;
 import commandRequest.GetHttpRequest;
 import commandRequest.PatchHttpRequest;
 import commandRequest.PostHttpRequest;
-import guiElements.Authentication;
-import guiElements.ICommandCaller;
 
 /**
  * Class whose methods build the path needed to make the request to the server
@@ -23,14 +27,25 @@ import guiElements.ICommandCaller;
  */
 public class AppCommandCaller implements ICommandCaller{
 	
+	private String LOCALHOST = null;
+	private String PORT = null;
 	private String requestURL;
 	private ErrorPublisher errorPublisher;
 	
-	public AppCommandCaller(String requestURL) {
-		this.requestURL = requestURL;
+	public AppCommandCaller(String host, String port) {
+		LOCALHOST = host;
+		PORT = port;
 		errorPublisher = new PublishToErrorDialog();
 	}
 
+	
+	private String requestURL(){
+			requestURL = MessageFormat.format("http://{0}:{1}/", LOCALHOST, PORT);
+		
+			return requestURL;
+		
+	}
+	
 	/**
 	 * Method responsible for build the path of {@code DeleteProject} command,
 	 * with the parameters received at the user interface and needed to make the
@@ -45,9 +60,9 @@ public class AppCommandCaller implements ICommandCaller{
 	public void callDeleteProject(String pidString) {
 		StringBuilder path = new StringBuilder();
 		path.append("DELETE /projects/").append(pidString)
-			.append(loginAndFormat());
+			.append("?").append(loginAndFormat());
 		
-		new SwingWorkerCommand(new DeleteHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTree(), errorPublisher);
+		new SwingWorkerCommand(new DeleteHttpRequest(requestURL(), path.toString()), new PublishToMainFrameAsTree(), errorPublisher);
 	}
 
 	/**
@@ -65,9 +80,9 @@ public class AppCommandCaller implements ICommandCaller{
 	public void callGetProject(String pidString) {
 		StringBuilder path = new StringBuilder();
 		path.append("GET /projects/").append(pidString)
-			.append(loginAndFormat());
+			.append("?").append(loginAndFormat());
 		
-		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), new PublishToGetPanelAsTree(), errorPublisher);
+		new SwingWorkerCommand(new GetHttpRequest(requestURL(), path.toString()), new PublishToGetPanelAsTree(), errorPublisher);
 	}
 
 	/**
@@ -85,9 +100,9 @@ public class AppCommandCaller implements ICommandCaller{
 	public void callGetSubprojects(String pidString) {
 		StringBuilder path = new StringBuilder();
 		path.append("GET /projects/").append(pidString).append("/subproject")
-			.append(loginAndFormat());
+			.append("?").append(loginAndFormat());
 		
-		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), new PublishToGetPanelAsTree(), errorPublisher);
+		new SwingWorkerCommand(new GetHttpRequest(requestURL(), path.toString()), new PublishToGetPanelAsTree(), errorPublisher);
 	}
 
 	/**
@@ -101,9 +116,9 @@ public class AppCommandCaller implements ICommandCaller{
 	public void callGetUsers() {
 		StringBuilder path = new StringBuilder();
 		path.append("GET /users")
-			.append(loginAndFormat());
+			.append("?").append(loginAndFormat());
 		
-		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), new PublishToGetPanelAsTable(), errorPublisher);
+		new SwingWorkerCommand(new GetHttpRequest(requestURL(), path.toString()), new PublishToGetPanelAsTable(), errorPublisher);
 	}
 
 	/**
@@ -120,9 +135,9 @@ public class AppCommandCaller implements ICommandCaller{
 	public void callGetUser(String username) {
 		StringBuilder path = new StringBuilder();
 		path.append("GET /users/").append(username)
-			.append(loginAndFormat());
+			.append("?").append(loginAndFormat());
 		
-		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), new PublishToGetPanelAsTable(), errorPublisher);
+		new SwingWorkerCommand(new GetHttpRequest(requestURL(), path.toString()), new PublishToGetPanelAsTable(), errorPublisher);
 	}
 
 	/**
@@ -143,9 +158,9 @@ public class AppCommandCaller implements ICommandCaller{
 	public void callGetWorkersInProject(String pid, String workerOpt) {
 		StringBuilder path = new StringBuilder();
 		path.append("GET /projects/").append(pid).append("/").append(workerOpt)
-			.append(loginAndFormat());
+			.append("?").append(loginAndFormat());
 		
-		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), new PublishToGetPanelAsTable(), errorPublisher);
+		new SwingWorkerCommand(new GetHttpRequest(requestURL(), path.toString()), new PublishToGetPanelAsTable(), errorPublisher);
 	}
 
 	/**
@@ -166,18 +181,20 @@ public class AppCommandCaller implements ICommandCaller{
 	@Override
 	public void callPatchConsultant(String consultantId, String consultantName,
 			String priceHour) {
-		StringBuilder path = new StringBuilder();
-		path.append("PATCH /consultants/").append(consultantId)
-			.append(loginAndFormat());
+			StringBuilder path = new StringBuilder();
+			path.append("PATCH /consultants/").append(consultantId);
+			
+			StringBuilder parameters = new StringBuilder();
+			parameters.append(loginAndFormat());
+			
+			if(consultantId != null && !"".equals(consultantId)) {
+				parameters.append("&name=").append(consultantId);
+			}
+			if(priceHour != null && !"".equals(priceHour)) {
+				parameters.append("&priceHour=").append(priceHour);
+			}
 		
-		if(consultantId != null && !"".equals(consultantId)) {
-			path.append("&name=").append(consultantId);
-		}
-		if(priceHour != null && !"".equals(priceHour)) {
-			path.append("&priceHour=").append(priceHour);
-		}
-		
-		new SwingWorkerCommand(new PatchHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTable(), errorPublisher);
+		new SwingWorkerCommand(new PatchHttpRequest(requestURL(), path.toString(), parameters.toString()), new PublishToMainFrameAsTable(), errorPublisher);
 	}
 
 	/**
@@ -204,26 +221,28 @@ public class AppCommandCaller implements ICommandCaller{
 	public void callPatchProject(String pidString, String longitude,
 			String latitude, String price, String localName) {
 		StringBuilder path = new StringBuilder();
-		path.append("PATCH /projects/").append(pidString)
-			.append(loginAndFormat());
+		path.append("PATCH /projects/").append(pidString);
+		
+		StringBuilder parameters = new StringBuilder();
+		parameters.append(loginAndFormat());
 		
 		if(longitude != null && !"".equals(longitude)) {
-			path.append("&longitude=").append(longitude);
+			parameters.append("&longitude=").append(longitude);
 		}
 		
 		if(latitude != null && !"".equals(latitude)) {
-			path.append("&latitude=").append(latitude);
+			parameters.append("&latitude=").append(latitude);
 		}
 		
 		if(price != null && !"".equals(price)) {
-			path.append("&price=").append(price);
+			parameters.append("&price=").append(price);
 		}
 		
 		if(localName != null && !"".equals(localName)) {
-			path.append("&name=").append(localName);
+			parameters.append("&name=").append(localName);
 		}
 		
-		new SwingWorkerCommand(new PatchHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTree(), errorPublisher);
+		new SwingWorkerCommand(new PatchHttpRequest(requestURL(), path.toString(), parameters.toString()), new PublishToMainFrameAsTree(), errorPublisher);
 	}
 
 	/**
@@ -247,12 +266,14 @@ public class AppCommandCaller implements ICommandCaller{
 	public void callPatchUser(String userName, String oldPassword,
 			String newPassword) {
 		StringBuilder path = new StringBuilder();
-		path.append("PATCH /users/").append(userName)
-			.append(loginAndFormat())
+		path.append("PATCH /users/").append(userName);
+		
+		StringBuilder parameters = new StringBuilder();
+		parameters.append(loginAndFormat())
 			.append("&oldPassword=").append(oldPassword)
 			.append("&newPassword=").append(newPassword);
 		
-		new SwingWorkerCommand(new PatchHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTable(), errorPublisher);
+		new SwingWorkerCommand(new PatchHttpRequest(requestURL(), path.toString(), parameters.toString()), new PublishToMainFrameAsTable(), errorPublisher);
 	}
 
 	/**
@@ -275,15 +296,17 @@ public class AppCommandCaller implements ICommandCaller{
 	@Override
 	public void callPostConsultant(String name, String priceHour, String bonus) {
 		StringBuilder path = new StringBuilder();
-		path.append("POST /consultants")
-			.append(loginAndFormat())
+		path.append("POST /consultants");
+		
+		StringBuilder parameters = new StringBuilder();
+		parameters.append(loginAndFormat())
 			.append("&name=").append(name).append("&priceHour=").append(priceHour);
 		
 		if(bonus != null && !"".equals(bonus)) {
-			path.append("&bonus=").append(bonus);
+			parameters.append("&bonus=").append(bonus);
 		}
 		
-		new SwingWorkerCommand(new PostHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTable(), errorPublisher);
+		new SwingWorkerCommand(new PostHttpRequest(requestURL(), path.toString(), parameters.toString()), new PublishToMainFrameAsTable(), errorPublisher);
 	}
 
 	/**
@@ -306,12 +329,15 @@ public class AppCommandCaller implements ICommandCaller{
 	public void callPostProject(String latitude, String longitude, String name,
 			String price) {
 		StringBuilder path = new StringBuilder();
-		path.append("POST /projects")
+		path.append("POST /projects");
+		
+		StringBuilder parameters = new StringBuilder();
+		parameters.append(loginAndFormat())
 			.append(loginAndFormat())
 			.append("&latitude=").append(latitude).append("&longitude=").append(longitude)
 			.append("&name=").append(name).append("&price").append(price);
 		
-		new SwingWorkerCommand(new PostHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTree(), errorPublisher);
+		new SwingWorkerCommand(new PostHttpRequest(requestURL(), path.toString(), parameters.toString()), new PublishToMainFrameAsTree(), errorPublisher);
 	}
 
 	/**
@@ -335,16 +361,19 @@ public class AppCommandCaller implements ICommandCaller{
 	public void callPostUser(String username, String password, String email,
 			String fullname) {
 		StringBuilder path = new StringBuilder();
-		path.append("POST /users")
+		path.append("POST /users");
+		
+		StringBuilder parameters = new StringBuilder();
+		parameters.append(loginAndFormat())
 			.append(loginAndFormat())
 			.append("&username=").append(username).append("&password=").append(password)
 			.append("&email=").append(email);
 		
 		if(fullname != null && !"".equals(fullname)) {
-			path.append("&fullname=").append(fullname);
+			parameters.append("&fullname=").append(fullname);
 		}
 		
-		new SwingWorkerCommand(new PostHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTable(), errorPublisher);
+		new SwingWorkerCommand(new PostHttpRequest(requestURL(), path.toString(), parameters.toString()), new PublishToMainFrameAsTable(), errorPublisher);
 	}
 
 	/**
@@ -364,11 +393,14 @@ public class AppCommandCaller implements ICommandCaller{
 	@Override
 	public void callPostSubproject(String pid, String subprojectId) {
 		StringBuilder path = new StringBuilder();
-		path.append("POST /projects/").append(pid).append("/subproject")
+		path.append("POST /projects/").append(pid).append("/subproject");
+		
+		StringBuilder parameters = new StringBuilder();
+		parameters.append(loginAndFormat())
 			.append(loginAndFormat())
 			.append("&subPid=").append(subprojectId);
 		
-		new SwingWorkerCommand(new PostHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTree(), errorPublisher);
+		new SwingWorkerCommand(new PostHttpRequest(requestURL(), path.toString(), parameters.toString()), new PublishToMainFrameAsTree(), errorPublisher);
 	}
 
 	/**
@@ -390,11 +422,14 @@ public class AppCommandCaller implements ICommandCaller{
 	@Override
 	public void callPostWorkerInProject(String pid, String cid, String worker) {
 		StringBuilder path = new StringBuilder();
-		path.append("POST /projects/").append(pid).append("/").append(worker)
+		path.append("POST /projects/").append(pid).append("/").append(worker);
+		
+		StringBuilder parameters = new StringBuilder();
+		parameters.append(loginAndFormat())
 			.append(loginAndFormat())
 			.append("&cid=").append(cid);
 		
-		new SwingWorkerCommand(new PostHttpRequest(requestURL, path.toString()), new PublishToMainFrameAsTree(), errorPublisher);
+		new SwingWorkerCommand(new PostHttpRequest(requestURL(), path.toString(), parameters.toString()), new PublishToMainFrameAsTree(), errorPublisher);
 	}
 
 	/**
@@ -411,12 +446,13 @@ public class AppCommandCaller implements ICommandCaller{
 	public void callAuthenticateUser(String name, String password) {
 		Authentication.setPossibleAuthentification(name, password);
 		StringBuilder path = new StringBuilder();
-		path.append("POST /authenticate")
+		path.append("GET /authenticate")
+			.append("?")
 			.append(" loginName=").append(name)
 			.append("&loginPassword=").append(password)
 			.append(jsonFormat());
 		
-		new SwingWorkerCommand(new GetHttpRequest(requestURL, path.toString()), new InternalAuthenticationPublish(), errorPublisher);
+		new SwingWorkerCommand(new GetHttpRequest(requestURL(), path.toString()), new InternalAuthenticationPublish(), errorPublisher);
 	}
 
 	private String loginAndFormat() {
