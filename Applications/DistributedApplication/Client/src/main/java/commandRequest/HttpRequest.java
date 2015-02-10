@@ -51,14 +51,9 @@ public abstract class HttpRequest {
 		inputStream.read(bytes);
 		
 		String result = new String (bytes);
-		
-		Gson gson = new Gson();
-		Object gsonResult = gson.toJson(result);
-		
-		
+ 
 		 
-		 
-		 return path;
+		 return result;
 		 
 	 }
 }
