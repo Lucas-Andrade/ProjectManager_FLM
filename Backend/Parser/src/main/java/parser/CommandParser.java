@@ -353,7 +353,7 @@ public class CommandParser {
 	public Callable<Result> getCommand(String... args)
 			throws CommandParserException {
 		if (args.length < 2 || args.length > 3) {
-			throw new UnknownCommandException("args must have 2 or 3 elements");
+			throw new CommandParserException("args must have 2 or 3 elements");
 		}
 
 		String cmd = args[0] + args[1];

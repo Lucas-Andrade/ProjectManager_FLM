@@ -13,7 +13,7 @@ import app.domainCommands.AddProjectToRepo;
 import app.domainCommands.AddSubprojectToRepo;
 import app.domainCommands.AddUserToRepo;
 import app.domainCommands.AddWorkerToProjectInRepo;
-import app.domainCommands.AuthenticateUser;
+import app.domainCommands.UserAuthentication;
 import app.domainCommands.Command;
 import app.domainCommands.GetAllUsersFromRepo;
 import app.domainCommands.GetProjectFromRepo;
@@ -179,7 +179,7 @@ public class AppCommandCaller implements ICommandCaller{
 	@Override
 	public void callAuthenticateUser(String name, String password) {
 		Authentication.setPossibleAuthentification(name, password);
-		Command command = new AuthenticateUser(repositories.getUsersRepo(), name, password);
+		Command command = new UserAuthentication(repositories.getUsersRepo(), name, password);
 		executeSWC(command, new InternalAuthenticationPublish());
 	}
 	

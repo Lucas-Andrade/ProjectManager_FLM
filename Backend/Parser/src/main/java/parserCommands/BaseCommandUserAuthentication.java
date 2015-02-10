@@ -6,6 +6,8 @@ import java.util.Map;
 import outputMethods.Result;
 import parserCommands.exceptions.InvalidUserException;
 import app.AppElement;
+import app.domainCommands.exceptions.IncorrectPasswordException;
+import app.domainCommands.exceptions.NoSuchUsernameException;
 import app.elements.User;
 import app.repository.UserRepository;
 
@@ -67,13 +69,16 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand{
 	@Override
 	public Result call() throws Exception {
 		validateDemandingParameters(getMandatoryParameters());
-		String username = parameters.get(LOGINNAME);
-		String password = parameters.get(LOGINPASSWORD);
-		if (authenticateUser(username, password)){
-			return new Result(internalCall(), null, null);
-		}else{
-			throw new InvalidUserException(username);
+		
+		try{
+			authenticateUser();
+		} catch(NoSuchUsernameException e1) {
+			throw new InvalidUserException(e1.getMessage());
+		} catch(IncorrectPasswordException e2) {
+			throw new InvalidUserException(e2.getMessage());
 		}
+		
+		return new Result(internalCall(), null, null);
 	}
 
 	/**
@@ -81,12 +86,11 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand{
 	 * Username and if the Login Password corresponds to the Password, returns
 	 * {@code True}, if not returns {@code False}.
 	 * 
-	 * @param loginName   The Login Name.
-	 * @param loginPassword   The Login Password.
-	 * @return {@code True} if authentication success, {@code False} otherwise.
+	 * @throws Exception If authentication fails.
 	 */
-	protected boolean authenticateUser(String loginName, String loginPassword){
-		return repository.isPasswordCorrectForUser(loginName, loginPassword);
+	protected void authenticateUser() throws Exception{
+		validateDemandingParameters(DEMANDING_PARAMETERS);
+		new AuthenticateUser(repository, parameters).internalCall();
 	}
 
 	/**
