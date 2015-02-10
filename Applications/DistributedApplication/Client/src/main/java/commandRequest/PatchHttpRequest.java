@@ -1,9 +1,6 @@
 package commandRequest;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -42,7 +39,7 @@ public class PatchHttpRequest extends HttpRequest{
 	public HttpURLConnection sendRequest() throws IOException {
 
 	    try {
-	    	HttpURLConnection connection = super.sendRequest();
+	    	connection = super.sendRequest();
 			
 			connection.setDoInput(true); // true indicates the server returns response
 			connection.setDoOutput(true);// true indicates PUT request
@@ -69,24 +66,4 @@ public class PatchHttpRequest extends HttpRequest{
 		    }
 	}
 	
-	
-	 /**
-	  * Receive and treat the response to the HTTP request using PATCH method.
-	  *
-	  */
-	    public String receiveRequest() throws IOException {
-	    	//TODO
-	    	//Get Response    
-		      InputStream is = connection.getInputStream();
-		      BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-		      String line;
-		      StringBuffer response = new StringBuffer(); 
-		      while((line = rd.readLine()) != null) {
-			        response.append(line);
-			        response.append('\r');
-		      }
-		      rd.close();
-		      return response.toString();
-	    }
-
 }
