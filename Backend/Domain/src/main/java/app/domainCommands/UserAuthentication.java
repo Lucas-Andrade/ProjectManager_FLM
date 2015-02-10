@@ -15,7 +15,7 @@ import app.repository.UserRepository;
  * @since 19/01/2015
  *
  */
-public class AuthenticateUser implements Command {
+public class UserAuthentication implements Command {
 
 	/**
 	 * The {@code UserRepository} where to search for the {@code User} to be authenticated.
@@ -43,7 +43,7 @@ public class AuthenticateUser implements Command {
 	 *            The {@code loginPassword} of the new {@code User}. It must
 	 *            have at least four characters.
 	 */
-	public AuthenticateUser(UserRepository uRepo, String username, String password) {
+	public UserAuthentication(UserRepository uRepo, String username, String password) {
 		if (uRepo == null || username == null || password == null) {
 			throw new IllegalArgumentException();
 		}
@@ -60,13 +60,12 @@ public class AuthenticateUser implements Command {
 	 */
 	@Override
 	public AppElement[] call() throws CommandExecutionException {
-
 		IUser user = uRepo.getUserByUsername(username);
 		if(user == null){
-			throw new NoSuchUsernameException();
+			throw new NoSuchUsernameException("No such user.");
 		}
 		if(!user.getLoginPassword().equals(password)){
-			throw new IncorrectPasswordException();
+			throw new IncorrectPasswordException("Incorrect password.");
 		}
 		
 		return new AppElement[]{user};

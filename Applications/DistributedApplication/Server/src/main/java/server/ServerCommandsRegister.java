@@ -3,14 +3,14 @@
  */
 package server;
 
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.TreeMap;
 
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
 import parser.CommandParser.CommandsRegister;
+import parserCommands.AuthenticateUser;
 import parserCommands.DeleteProjects;
 import parserCommands.GetProjectWorkers;
 import parserCommands.GetProjects;
@@ -37,59 +37,80 @@ import parserUtils.CommandFactory;
 public class ServerCommandsRegister implements CommandsRegister {
 
 	/**
-	 * A {@code Map} containing the methods and the factories of the commands to
-	 * be registered.
+	 * A {@code Map} containing the factories of the commands to be registered.
 	 */
-	private final Map<String, CommandFactory> cmdsMap;
+	private volatile TreeMap<Integer, CommandFactory> cmdsMap;
 
 	/**
-	 * A {@code Map} containing the methods and the paths of the commands to be
-	 * registered.
+	 * A {@code Map} containing the paths of the commands to be registered.
 	 */
-	private final Map<String, String> pathsMap;
+	private volatile TreeMap<Integer, String> pathsMap;
+
+	/**
+	 * A {@code Map} containing the methods of the commands to be registered.
+	 */
+	private volatile TreeMap<Integer, String> methodsMap;
 
 	/**
 	 * The constructor for this class.
 	 */
 	public ServerCommandsRegister(UserRepository userRepo,
 			ProjectsRepository projectRepo, WorkerRepository workersRepo) {
-		this.cmdsMap = new HashMap<String, CommandFactory>();
-		this.pathsMap = new HashMap<String, String>();
+		this.cmdsMap = new TreeMap<Integer, CommandFactory>();
+		this.pathsMap = new TreeMap<Integer, String>();
+		this.methodsMap = new TreeMap<Integer, String>();
 
-		pathsMap.put("POST", "/users");
-		cmdsMap.put("POST", new PostUsers.Factory(userRepo));
-		pathsMap.put("POST", "/consultants");
-		cmdsMap.put("POST", new PostConsultant.Factory(userRepo, workersRepo));
-		pathsMap.put("POST", "/projects");
-		cmdsMap.put("POST", new PostProjects.Factory(userRepo, projectRepo));
-		pathsMap.put("POST", "/projects/{" + PostWorkerInProject.PID + "}/{"
+		methodsMap.put(1, "POST");
+		pathsMap.put(1, "/users");
+		cmdsMap.put(1, new PostUsers.Factory(userRepo));
+		methodsMap.put(2, "POST");
+		pathsMap.put(2, "/consultants");
+		cmdsMap.put(2, new PostConsultant.Factory(userRepo, workersRepo));
+		methodsMap.put(3, "POST");
+		pathsMap.put(3, "/projects");
+		cmdsMap.put(3, new PostProjects.Factory(userRepo, projectRepo));
+		methodsMap.put(4, "POST");
+		pathsMap.put(4, "/projects/{" + PostWorkerInProject.PID + "}/{"
 				+ PostWorkerInProject.WTYPE + "}");
-		cmdsMap.put("POST", new PostWorkerInProject.Factory(userRepo,
-				projectRepo, workersRepo));
-		pathsMap.put("POST", "/projects/{" + PostSubprojects.PID
-				+ "}/subproject");
-		cmdsMap.put("POST", new PostSubprojects.Factory(userRepo, projectRepo));
-		pathsMap.put("GET", "/users");
-		cmdsMap.put("GET", new GetUsers.Factory(userRepo));
-		pathsMap.put("GET", "/users/{" + GetUser.USERNAME + "}");
-		cmdsMap.put("GET", new GetUser.Factory(userRepo));
-		pathsMap.put("GET", "/projects/{" + GetProjectWorkers.PID + "}/{"
+		cmdsMap.put(4, new PostWorkerInProject.Factory(userRepo, projectRepo,
+				workersRepo));
+		methodsMap.put(5, "POST");
+		pathsMap.put(5, "/projects/{" + PostSubprojects.PID + "}/subproject");
+		cmdsMap.put(5, new PostSubprojects.Factory(userRepo, projectRepo));
+		methodsMap.put(6, "GET");
+		pathsMap.put(6, "/users");
+		cmdsMap.put(6, new GetUsers.Factory(userRepo));
+		methodsMap.put(7, "GET");
+		pathsMap.put(7, "/users/{" + GetUser.USERNAME + "}");
+		cmdsMap.put(7, new GetUser.Factory(userRepo));
+		methodsMap.put(8, "GET");
+		pathsMap.put(8, "/projects/{" + GetProjectWorkers.PID + "}/{"
 				+ GetProjectWorkers.WTYPE + "}");
-		cmdsMap.put("GET", new GetProjectWorkers.Factory(projectRepo));
-		pathsMap.put("GET", "/projects/{" + GetSubproject.PID + "}/subproject");
-		cmdsMap.put("GET", new GetSubproject.Factory(projectRepo));
-		pathsMap.put("GET", "/projects/{" + GetProjects.PID + "}");
-		cmdsMap.put("GET", new GetProjects.Factory(projectRepo));
-		pathsMap.put("PATCH", "/users/{" + PatchUser.USERNAME + "}");
-		cmdsMap.put("PATCH", new PatchUser.Factory(userRepo));
-		pathsMap.put("PATCH", "/projects/{" + PatchProject.PID + "}");
-		cmdsMap.put("PATCH", new PatchProject.Factory(userRepo, projectRepo));
-		pathsMap.put("PATCH", "/consultants/{" + PatchConsultant.CID + "}");
-		cmdsMap.put("PATCH", new PatchConsultant.Factory(userRepo, workersRepo));
-		pathsMap.put("DELETE", "/projects/{" + GetProjects.PID + "}");
-		cmdsMap.put("DELETE", new DeleteProjects.Factory(userRepo, projectRepo));
-		pathsMap.put("OPTION", "/");
-		cmdsMap.put("OPTION", new Option.Factory());
+		cmdsMap.put(8, new GetProjectWorkers.Factory(projectRepo));
+		methodsMap.put(9, "GET");
+		pathsMap.put(9, "/projects/{" + GetSubproject.PID + "}/subproject");
+		cmdsMap.put(9, new GetSubproject.Factory(projectRepo));
+		methodsMap.put(10, "GET");
+		pathsMap.put(10, "/projects/{" + GetProjects.PID + "}");
+		cmdsMap.put(10, new GetProjects.Factory(projectRepo));
+//		methodsMap.put(11, "PATCH");
+//		pathsMap.put(11, "/users/{" + PatchUser.USERNAME + "}");
+//		cmdsMap.put(11, new PatchUser.Factory(userRepo));
+//		methodsMap.put(12, "PATCH");
+//		pathsMap.put(12, "/projects/{" + PatchProject.PID + "}");
+//		cmdsMap.put(12, new PatchProject.Factory(userRepo, projectRepo));
+//		methodsMap.put(13, "PATCH");
+//		pathsMap.put(13, "/consultants/{" + PatchConsultant.CID + "}");
+//		cmdsMap.put(13, new PatchConsultant.Factory(userRepo, workersRepo));
+//		methodsMap.put(14, "DELETE");
+//		pathsMap.put(14, "/projects/{" + GetProjects.PID + "}");
+//		cmdsMap.put(14, new DeleteProjects.Factory(userRepo, projectRepo));
+//		methodsMap.put(15, "OPTION");
+//		pathsMap.put(15, "/");
+//		cmdsMap.put(15, new Option.Factory());
+		methodsMap.put(16, "GET");
+		pathsMap.put(16, "/authenticate");
+		cmdsMap.put(16, new AuthenticateUser.Factory(userRepo));
 	}
 
 	/*
@@ -99,7 +120,7 @@ public class ServerCommandsRegister implements CommandsRegister {
 	 */
 	@Override
 	public Iterator<String> getMethods() {
-		return cmdsMap.keySet().iterator();
+		return methodsMap.values().iterator();
 	}
 
 	/*
