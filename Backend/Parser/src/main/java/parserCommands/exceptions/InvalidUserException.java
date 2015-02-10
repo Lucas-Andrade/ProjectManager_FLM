@@ -1,6 +1,8 @@
-package consoleCommands.exceptions;
+package parserCommands.exceptions;
 
 import java.text.MessageFormat;
+
+import consoleCommands.exceptions.CommandException;
 
 /**
  * Extends {@link CommandException}. 

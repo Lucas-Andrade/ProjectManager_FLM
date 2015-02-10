@@ -1,10 +1,9 @@
 /**
  * 
  */
-package app;
+package server;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import app.repository.ProjectsRepository;
@@ -34,7 +33,7 @@ import parserUtils.CommandFactory;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 09/02/2015
  */
-public class ConsoleCommandsRegister implements CommandsRegister {
+public class ServerCommandsRegister implements CommandsRegister {
 
 	/**
 	 * A {@code Map} containing the methods and the factories of the commands to
@@ -51,7 +50,7 @@ public class ConsoleCommandsRegister implements CommandsRegister {
 	/**
 	 * The constructor for this class.
 	 */
-	public ConsoleCommandsRegister(UserRepository userRepo,
+	public ServerCommandsRegister(UserRepository userRepo,
 			ProjectsRepository projectRepo, WorkerRepository workersRepo) {
 		this.cmdsMap = new HashMap<String, CommandFactory>();
 		this.pathsMap = new HashMap<String, String>();

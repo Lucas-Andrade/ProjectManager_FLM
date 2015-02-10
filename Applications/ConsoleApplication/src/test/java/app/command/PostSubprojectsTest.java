@@ -9,7 +9,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import consoleCommands.PostSubprojects;
+import parserCommands.PostSubprojects;
 import utils.Project;
 import app.RepositoryBuilder;
 import app.repository.InMemoryProjectRepo;

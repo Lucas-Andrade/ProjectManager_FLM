@@ -1,12 +1,13 @@
-package consoleCommands;
+package parserCommands;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
 
 import outputMethods.Result;
+import parserCommands.exceptions.MandatoryParameterNotPresentException;
 import app.AppElement;
 import app.elements.User;
-import consoleCommands.exceptions.MandatoryParameterNotPresentException;
+import consoleCommands.BaseCommand;
 
 /**
  * Abstract Command to be supported by all Commands. Establishes the model to be

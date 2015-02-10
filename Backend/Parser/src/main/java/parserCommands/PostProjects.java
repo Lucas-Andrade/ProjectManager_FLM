@@ -1,8 +1,11 @@
-package consoleCommands;
+package parserCommands;
 
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import consoleCommands.BaseCommandUserAuthentication;
+import consoleCommands.PostProjects;
+import consoleCommands.app;
 import outputMethods.Result;
 import parserUtils.CommandFactory;
 import utils.Local;

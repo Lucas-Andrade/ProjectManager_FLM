@@ -26,7 +26,7 @@
 			    <artifactId>maven-jar-plugin</artifactId>
 			    <version>2.5</version>
 			    <configuration>
-			     <archive>
+		     <archive>
 			      <manifest>
 			       <addClasspath>true</addClasspath>
 			       <mainClass>server.ProjectManagerServerApp</mainClass>

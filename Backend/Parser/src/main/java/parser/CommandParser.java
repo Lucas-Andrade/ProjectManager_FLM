@@ -23,7 +23,7 @@ public class CommandParser {
 	/**
 	 * The only instance of {@code CommandParser} that should exist.
 	 */
-	private static CommandParser cp;
+	private volatile static CommandParser cp;
 
 	/**
 	 * The lock to be used in

@@ -6,6 +6,22 @@ import java.util.Scanner;
 
 import outputMethods.Result;
 import parser.CommandParser;
+import parserCommands.DeleteProjects;
+import parserCommands.GetProjectWorkers;
+import parserCommands.GetProjects;
+import parserCommands.GetSubproject;
+import parserCommands.GetUser;
+import parserCommands.GetUsers;
+import parserCommands.Option;
+import parserCommands.PatchConsultant;
+import parserCommands.PatchProject;
+import parserCommands.PatchUser;
+import parserCommands.PostConsultant;
+import parserCommands.PostProjects;
+import parserCommands.PostSubprojects;
+import parserCommands.PostUsers;
+import parserCommands.PostWorkerInProject;
+import parserCommands.exceptions.CommandException;
 import parserUtils.CommandParserException;
 import parserUtils.InvalidRegisterException;
 import app.elements.mutable.UserCreationDescriptor;
@@ -15,22 +31,6 @@ import app.repository.InMemoryWorkerRepo;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
-import consoleCommands.DeleteProjects;
-import consoleCommands.GetProjectWorkers;
-import consoleCommands.GetProjects;
-import consoleCommands.GetSubproject;
-import consoleCommands.GetUser;
-import consoleCommands.GetUsers;
-import consoleCommands.Option;
-import consoleCommands.PatchConsultant;
-import consoleCommands.PatchProject;
-import consoleCommands.PatchUser;
-import consoleCommands.PostConsultant;
-import consoleCommands.PostProjects;
-import consoleCommands.PostSubprojects;
-import consoleCommands.PostUsers;
-import consoleCommands.PostWorkerInProject;
-import consoleCommands.exceptions.CommandException;
 
 /**
  * Class for Project Management.

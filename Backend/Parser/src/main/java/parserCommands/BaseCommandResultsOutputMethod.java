@@ -1,7 +1,8 @@
-package consoleCommands;
+package parserCommands;
 
 import java.util.Map;
 
+import consoleCommands.BaseCommand;
 import outputMethods.Result;
 
 /**
