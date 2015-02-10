@@ -8,7 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 
-public class TableBuilderTester  {
+public class TableBuilderTest  {
 
 	public static void main(String[] args) {
 		JTable table = TableBuilder.buildTable("{\"All users\":[{\"Email\":\"user1@email.com\",\"Username\":\"user1\",\"Full name\":\"user1\"},{\"Email\":\"user2@email.com\",\"Username\":\"user2\",\"Full name\":\"user2\"},{\"Email\":\"admin_admin@administration.com\",\"Username\":\"admin\",\"Full name\":\"Administator\"},{\"Email\":\"user5@email.com\",\"Username\":\"user5\",\"Full name\":\"user5\"},{\"Email\":\"user3@email.com\",\"Username\":\"user3\",\"Full name\":\"user3\"},{\"Email\":\"user4@email.com\",\"Username\":\"user4\",\"Full name\":\"user4\"}]}");

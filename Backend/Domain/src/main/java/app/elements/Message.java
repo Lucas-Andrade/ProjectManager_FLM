@@ -53,5 +53,4 @@ public class Message implements AppElement{
 		json.put(title, messageContent);
 		return json;
 	}
-
 }

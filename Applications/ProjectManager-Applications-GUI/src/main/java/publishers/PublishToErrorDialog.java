@@ -1,5 +1,10 @@
 package publishers;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
+
 import guiElements.mainFrameAL.mainFrame.ErrorDialog;
 
 /**
@@ -27,10 +32,24 @@ public class PublishToErrorDialog extends PublishWithLoadingDialog implements Er
 		disposeLoadingDialog();
 	}
 
+	/**
+	 * Parses a message in the JSON format into plain text, and then publishes it into an {@code ErrorDialog}
+	 * 
+	 * @param message
+	 * 			The message to be presented int the {@code ErrorDialog}, in JSON format. 
+	 * 			This should be a simple {"Message":"The message that will be presented in the ErrorDialog"}.
+	 */
 	@Override
-	public void publishJsonFormatString(String toReturn) {
-		// TODO Auto-generated method stub
-		
+	public void publishJsonFormatString(String message) {
+		String finalMessage;
+		try {
+			JsonElement element = new JsonParser().parse(message);
+			JsonObject object = element.getAsJsonObject();
+			finalMessage = object.get("Message").getAsString();
+		} catch(JsonParseException | IllegalStateException | ClassCastException | UnsupportedOperationException e) {
+			finalMessage = "Could not present the error message.";
+		}
+		publish(finalMessage);
 	}
 
 }
