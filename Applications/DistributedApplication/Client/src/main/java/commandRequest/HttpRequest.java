@@ -5,13 +5,12 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import com.google.gson.Gson;
-
 public abstract class HttpRequest {
  
 	private String requestURL;
 	private String path;
 	private HttpURLConnection connection;
+	private String result;
 
 
 	public HttpRequest (String requestURL, String path){
@@ -42,23 +41,21 @@ public abstract class HttpRequest {
 	  * Receive the response to the HTTP request using GET method to the specified URL.
 	  * @return
 	  * @throws IOException
+	 * @throws HttpConnectionException 
 	  */
-	 public String receiveRequest() throws IOException{
+	 public String receiveRequest() throws IOException, HttpConnectionException{
 		
-		 InputStream inputStream = connection.getInputStream();
-		int numBytes = Integer.parseInt(connection.getHeaderField("Content-Length"));
-		byte[] bytes = new byte [numBytes];
-		inputStream.read(bytes);
-		
-		String result = new String (bytes);
-		
-		Gson gson = new Gson();
-		Object gsonResult = gson.toJson(result);
-		
-		
-		 
-		 
-		 return path;
-		 
+		InputStream inputStream = connection.getInputStream();
+		if(	connection.getResponseCode() == 200){
+			int numBytes = Integer.parseInt(connection.getHeaderField("Content-Length"));
+			byte[] bytes = new byte [numBytes];
+			inputStream.read(bytes);
+			
+			result = new String (bytes);
+		} else{
+			throw new HttpConnectionException(connection.getResponseMessage());	
+		}
+				 
+		 return result; 
 	 }
 }

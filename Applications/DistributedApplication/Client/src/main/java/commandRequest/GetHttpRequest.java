@@ -14,6 +14,8 @@ public class GetHttpRequest  extends HttpRequest{
 
 
 	
+	private HttpURLConnection connection;
+
 	public GetHttpRequest(String requestURL, String path) {
 		super(requestURL, path);
 	}
@@ -29,8 +31,8 @@ public class GetHttpRequest  extends HttpRequest{
      */
 	 public HttpURLConnection sendRequest()
 	            throws IOException {
-		 
-		 	HttpURLConnection connection = super.sendRequest();
+		  try { 
+		 	connection = super.sendRequest();
 		  
 			connection.setUseCaches(true );
 			connection.setDoInput(true); // true if we want to read server's response
@@ -38,17 +40,17 @@ public class GetHttpRequest  extends HttpRequest{
 			connection.setRequestMethod("GET");
 
 			return connection;
-	 }
-
-	 /**
-	  * Receive and treat the response to the HTTP request using GET method.
-	  *
-	  */
-	@Override
-	public String receiveRequest() throws IOException {
-		super.receiveRequest();
+		  } catch (Exception e) {
+				
+		      e.printStackTrace();
+		      return null;
 		
-		return null;
-	}
+		    } finally {
+		
+		      if(connection != null) {
+		        connection.disconnect(); 
+		      }
+	 }
+ }
 	
 }

@@ -1,7 +1,6 @@
 package commandRequest;
 
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 
 /**
@@ -13,7 +12,6 @@ import java.net.HttpURLConnection;
  */
 public class DeleteHttpRequest extends HttpRequest{
 	
-	public static OutputStreamWriter writer;
 	public static HttpURLConnection connection = null;
 	public String requestURL;
 	public String path;
@@ -36,7 +34,7 @@ public class DeleteHttpRequest extends HttpRequest{
 		  try {
 		
 			
-			HttpURLConnection connection = super.sendRequest();
+			connection = super.sendRequest();
 			connection.setUseCaches(true );
 			connection.setDoInput(true); // true if we want to read server's response
 			connection.setDoOutput(true); // TRUE indicates this is a DELETE request
@@ -56,17 +54,6 @@ public class DeleteHttpRequest extends HttpRequest{
 		      }
 		    }
 	 }
-
-
-	 /**
-	  * Receive and treat the response to the HTTP request using DELETE method.
-	  *
-	  */
-	@Override
-	public String receiveRequest() throws IOException {
-		super.receiveRequest();
-		return null;
-	}
 	
 }
 
