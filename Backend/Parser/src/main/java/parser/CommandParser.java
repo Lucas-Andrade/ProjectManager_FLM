@@ -36,6 +36,7 @@ public class CommandParser {
 	 * of {@code CommandParser}, so this constructor is private.
 	 */
 	private CommandParser() {
+		registerLock = new Object();
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package parserCommands.exceptions;
 
+import app.domainCommands.Command;
+
 /**
  * Base class for {@link Command} exceptions.
  */

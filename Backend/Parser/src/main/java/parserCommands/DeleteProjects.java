@@ -3,9 +3,6 @@ package parserCommands;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import consoleCommands.BaseCommandUserAuthentication;
-import consoleCommands.DeleteProjects;
-import consoleCommands.app;
 import outputMethods.Result;
 import parser.CommandParser;
 import parserUtils.CommandFactory;

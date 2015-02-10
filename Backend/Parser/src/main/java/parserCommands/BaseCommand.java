@@ -7,7 +7,6 @@ import outputMethods.Result;
 import parserCommands.exceptions.MandatoryParameterNotPresentException;
 import app.AppElement;
 import app.elements.User;
-import consoleCommands.BaseCommand;
 
 /**
  * Abstract Command to be supported by all Commands. Establishes the model to be

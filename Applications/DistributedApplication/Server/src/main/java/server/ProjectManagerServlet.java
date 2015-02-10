@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import outputMethods.Result;
 import parser.CommandParser;
+import parserUtils.CommandParserException;
 import app.AppElement;
 
 @SuppressWarnings("serial")
@@ -19,7 +20,7 @@ public class ProjectManagerServlet extends HttpServlet{
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     	String path = getCommandStringFromRequest(req);
     	String method = getCommandMethodFromRequest(req);
-    	System.out.println(req.getQueryString() + path + method);
+    	System.out.println(req.getQueryString() + " caminho " + path + " metodo " + method);
 //    	CommandParser cp = getCommandParser();
 //    	String input = "";
 //    	try {
@@ -43,10 +44,7 @@ public class ProjectManagerServlet extends HttpServlet{
 	
 	@Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		commandString = getCommandStringFromRequest(req);
-		
-		CommandParser parser = new CommandParser();
-		String input = getCommandStringFromRequest(req);
+
 ////		StackMensage mensage = startParser(parser, input);
 //
 //		resp.setContentType("application/json");
@@ -59,7 +57,6 @@ public class ProjectManagerServlet extends HttpServlet{
 	
 	@Override
     public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		commandString = getCommandStringFromRequest(req);
 		
 		//give string to command parser and get command
     }
@@ -67,7 +64,6 @@ public class ProjectManagerServlet extends HttpServlet{
 	
 	@Override
     public void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		commandString = getCommandStringFromRequest(req);
 		
 		//give string to command parser and get command
    }
@@ -76,8 +72,9 @@ public class ProjectManagerServlet extends HttpServlet{
 	/**
 	 * Gets the singleton {@link CommandParser}.
 	 * @return the application {@link CommandParser}
+	 * @throws CommandParserException 
 	 */
-	private CommandParser getCommandParser() {
+	private CommandParser getCommandParser() throws CommandParserException {
 		return CommandParser.getInstance();
 	}
 

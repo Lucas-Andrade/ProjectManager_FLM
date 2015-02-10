@@ -8,7 +8,6 @@ import parserCommands.exceptions.InvalidUserException;
 import app.AppElement;
 import app.elements.User;
 import app.repository.UserRepository;
-import consoleCommands.BaseCommand;
 
 /**
  * Abstract Command to be supported by all Commands that require an {@link User}

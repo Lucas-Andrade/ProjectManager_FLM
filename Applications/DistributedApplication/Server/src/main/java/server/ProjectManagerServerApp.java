@@ -30,6 +30,7 @@ public class ProjectManagerServerApp {
 		ServletHandler handler = new ServletHandler();
 		server.setHandler(handler);
 		handler.addServletWithMapping(ProjectManagerServlet.class, "/*");
+		handler.addServletWithMapping(FaviconIcoServlet.class, "/favicon.ico"); //TODO
 		return server;
 	}
 
