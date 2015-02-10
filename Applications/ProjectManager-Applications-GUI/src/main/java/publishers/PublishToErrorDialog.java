@@ -27,4 +27,10 @@ public class PublishToErrorDialog extends PublishWithLoadingDialog implements Er
 		disposeLoadingDialog();
 	}
 
+	@Override
+	public void publishJsonFormatString(String toReturn) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

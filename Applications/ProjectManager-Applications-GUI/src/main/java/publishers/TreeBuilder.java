@@ -30,23 +30,17 @@ public class TreeBuilder {
 	private static void constructTree(DefaultMutableTreeNode root, JsonElement element, String nameOfProperty) {
 		
 		if(element.isJsonArray()) {
-			System.out.println("Descobrimos um array");
 			JsonArray array = element.getAsJsonArray();
-			parseArray(array, root);
+			parseArray(array, root, nameOfProperty);
 			
 		} else if(element.isJsonObject()) {
-			System.out.println("Descobrimos um object");
-			System.out.println(element.toString());
 			root.add(parseObject(element.getAsJsonObject()));
 			
 		} else if(element.isJsonPrimitive()){
-			System.out.println("Descobrimos uma primitiva");
 			root.add(parsePrimitive(element.getAsJsonPrimitive(), nameOfProperty));
 			
 		} else if(element.isJsonNull()) {
 			root.add(parseNull());
-		} else {
-			System.out.println("unknown type of json element. this should never happen");
 		}
 		
 	}
@@ -55,22 +49,32 @@ public class TreeBuilder {
 		return new DefaultMutableTreeNode("Empty");
 	}
 
-	private static void parseArray(JsonArray array, DefaultMutableTreeNode root) {
+	private static void parseArray(JsonArray array, DefaultMutableTreeNode root, String name) {
 		Iterator<JsonElement> iterator = array.iterator();
+		
+		if(!"".equals(name)){
+			DefaultMutableTreeNode arrayNode = new DefaultMutableTreeNode(name);
+			root.add(arrayNode);
+			iterateAlongTheArray(iterator, arrayNode, name);
+		} else {
+			iterateAlongTheArray(iterator, root, name);
+		}
+		
+	}
+	
+	private static void iterateAlongTheArray(Iterator<JsonElement> iterator, DefaultMutableTreeNode node, String name) {
 		while(iterator.hasNext()){
 			JsonElement arrayElement = iterator.next();
-			constructTree(root, arrayElement, "");
+			constructTree(node, arrayElement, name);
 		}
 	}
 
 	private static DefaultMutableTreeNode parsePrimitive(JsonPrimitive primitive, String nameOfProperty) {
-		System.out.println("valor da primitiva: " + primitive.getAsString());
 		return new DefaultMutableTreeNode(nameOfProperty + ": " + primitive.getAsString());
 	}
 
 	private static DefaultMutableTreeNode parseObject(JsonObject object) {
 		
-		System.out.println("vamos parsear o objecto");
 		DefaultMutableTreeNode objectNode = new DefaultMutableTreeNode(getName(object));
 		Iterator<Entry<String, JsonElement>> iterator = object.entrySet().iterator();
 		
@@ -85,39 +89,9 @@ public class TreeBuilder {
 		return objectNode;
 	}
 
-//	private static DefaultMutableTreeNode parseSubprojects(JsonElement element) {
-//		
-//		System.out.println("ENTROU NO PARSE SUBPROJECT");
-//		DefaultMutableTreeNode subprojectsNode = new DefaultMutableTreeNode("Subprojects");
-//		
-//		if(element.isJsonNull()) {
-//			System.out.println("É NULL");
-//			return new DefaultMutableTreeNode("Subprojects: None.");
-////		} else if(element.isJsonArray()) {
-////			System.out.println("É ARRAY");
-////			DefaultMutableTreeNode subprojectsNode = new DefaultMutableTreeNode("Subprojects");
-////			
-////			JsonArray array = element.getAsJsonArray();
-////			parseArray(array, subprojectsNode);
-////			
-////			return subprojectsNode;
-//		} else {
-//			if(element.isJsonArray()) {
-//				System.out.println("É ARRAY");
-//			} else if(element.isJsonObject()) {
-//				System.out.println("É OBJECTO");
-//			} else if(element.isJsonPrimitive()) {
-//				System.out.println("É PRIMITIVA");
-//			}
-//			constructTree(subprojectsNode, element);
-//			return subprojectsNode;
-//		}
-//	}
-
 	private static String getName(JsonElement element) {
 
 		if(element.isJsonObject()) {
-			System.out.println("vamos tirar o nome do object");
 			JsonObject object = element.getAsJsonObject();
 			
 			Set<Entry<String, JsonElement>> set = object.entrySet();
@@ -129,7 +103,7 @@ public class TreeBuilder {
 				String key = iterator.next().getKey();
 				
 				if("Project ID".equals(key)){
-					return "Project";
+					return key + ": " + object.get(key).getAsString();
 				} 
 	
 				if("Username".equals(key)){
@@ -155,14 +129,7 @@ public class TreeBuilder {
 			
 			if (consultantFlag) {
 				return "Worker";
-			} else {
-				return "Item";
 			}
-			
-		}else if(element.isJsonArray()) {
-			System.out.println("no arrays allowed");
-		} else {
-			System.out.println("no other things allowed.");
 		}
 		return "Item";
 	}
