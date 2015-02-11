@@ -28,11 +28,11 @@ import commandRequest.PostHttpRequest;
 public class AppCommandCaller implements ICommandCaller{
 	
 	private String LOCALHOST = null;
-	private String PORT = null;
+	private int PORT;
 	private String requestURL;
 	private ErrorPublisher errorPublisher;
 	
-	public AppCommandCaller(String host, String port) {
+	public AppCommandCaller(String host, int port) {
 		LOCALHOST = host;
 		PORT = port;
 		errorPublisher = new PublishToErrorDialog();

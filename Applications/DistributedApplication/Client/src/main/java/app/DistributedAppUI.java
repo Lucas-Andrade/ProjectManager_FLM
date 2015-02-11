@@ -18,11 +18,10 @@ public class DistributedAppUI {
 	}
 	
 	private static final String HOST = "localhost";
-	private static final String PORT = "8081";
+	private static final int PORT = 8081;
 	
 	
-	
-	private static String getPort() {
+	private static int getPort() {
 		return PORT;
 	}
 
