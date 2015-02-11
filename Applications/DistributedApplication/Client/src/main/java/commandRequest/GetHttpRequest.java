@@ -31,26 +31,15 @@ public class GetHttpRequest  extends HttpRequest{
      */
 	 public HttpURLConnection sendRequest()
 	            throws IOException {
-		  try { 
-		 	connection = super.sendRequest();
-		  
-			connection.setUseCaches(true );
-			connection.setDoInput(true); // true if we want to read server's response
-			connection.setDoOutput(false); // false indicates this is a GET request
-			connection.setRequestMethod("GET");
 
-			return connection;
-		  } catch (Exception e) {
-				
-		      e.printStackTrace();
-		      return null;
-		
-		    } finally {
-		
-		      if(connection != null) {
-		        connection.disconnect(); 
-		      }
-	 }
+	 	connection = super.sendRequest();
+	  
+		connection.setUseCaches(true );
+		connection.setDoInput(true); // true if we want to read server's response
+		connection.setDoOutput(false); // false indicates this is a GET request
+		connection.setRequestMethod("GET");
+
+		return connection;
  }
 	
 }

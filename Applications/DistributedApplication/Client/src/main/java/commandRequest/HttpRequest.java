@@ -31,7 +31,7 @@ public abstract class HttpRequest {
 		 URL url = new URL(requestURL+path);
 		
 		connection = (HttpURLConnection) url.openConnection();
-		connection.setRequestProperty("Content-Type", "application/Json" );	
+		connection.setRequestProperty("Accept", "application/json" );	
 				
 		return connection;
 	 }

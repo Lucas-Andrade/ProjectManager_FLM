@@ -1,6 +1,7 @@
 package app;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -28,8 +29,11 @@ public class SwingWorkerCommand extends SwingWorker<String, String>{
 		publish("Connecting to server...");
 		
 		String toReturn = "";
+		HttpURLConnection connection = null;
+		
 		try {
-			httpRequest.sendRequest();
+			connection = httpRequest.sendRequest();
+			connection.connect();
 			
 			publish("Waiting for the server's response...");
 			toReturn = httpRequest.receiveRequest();
@@ -37,6 +41,10 @@ public class SwingWorkerCommand extends SwingWorker<String, String>{
 		} catch (IOException e) {
 			errorPublisher.publish("Could not connect to the server.");
 			return null;
+		} finally {
+			if (connection != null) {
+				connection.disconnect();
+			}
 		}
 		
 		if(toReturn.contains("Message")) {
