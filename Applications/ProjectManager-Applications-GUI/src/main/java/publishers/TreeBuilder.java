@@ -102,24 +102,24 @@ public class TreeBuilder {
 			while(iterator.hasNext()) {
 				String key = iterator.next().getKey();
 				
-				if("Project ID".equals(key)){
-					return key + ": " + object.get(key).getAsString();
-				} 
-	
-				if("Username".equals(key)){
-					return "User";
-				} 
-	
-				if("Bonus".equals(key)){
-					return "Manager";
-				}
+				switch(key) {
 				
-				if("Consultant ID".equals(key)){
+				case "Project ID" :
+					return key + ": " + object.get(key).getAsString();
+					
+				case "Username" :
+					return "User";
+					
+				case "Bonus" :
+					return "Manager";
+					
+				case "Consultant ID" :
 					consultantFlag = true;
-				} 
-	
-				if("Longitude".equals(key)){
+					
+				case "Longitude" :
 					return "Local";
+					
+				default : {}
 				}
 				
 				if(set.size() == 1) {
