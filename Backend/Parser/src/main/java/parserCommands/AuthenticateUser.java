@@ -16,7 +16,7 @@ import app.repository.UserRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 05/01/2015
  */
-public class AuthenticateUser extends BaseCommandUserAuthentication{
+public class AuthenticateUser extends BaseCommandResultsOutputMethod{
 
 	/**
 	 * {@code String} with the {@code User} Login Name argument's name.
@@ -77,7 +77,7 @@ public class AuthenticateUser extends BaseCommandUserAuthentication{
 	 * @param parameters   The {@code Command} arguments.
 	 */
 	public AuthenticateUser(UserRepository repository, Map<String, String> parameters){
-		super(repository, parameters);
+		super(parameters);
 		this.repository = repository;
 	}
 

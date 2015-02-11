@@ -124,12 +124,13 @@ public class DeleteProjects extends BaseCommandUserAuthentication{
 	protected AppElement[] internalCall(){
 		String pid = this.getParameterAsString(PID);
 
+		AppElement [] result;
 		try{
-			new RemoveProjectToRepo(repository, pid).call();
+			result = new RemoveProjectToRepo(repository, pid).call();
 		} catch( NoSuchProjectException e) {
 			return new AppElement[]{new Message("Project does not exist.")};
 		}
-		return new AppElement[]{new Message("Project successfully deleted.")};
+		return result;
 	}
 
 }

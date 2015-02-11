@@ -19,6 +19,8 @@ import parserUtils.DuplicateArgumentsException;
 import parserUtils.InvalidCommandArgumentsException;
 import parserUtils.UnknownCommandException;
 import app.AppElement;
+import app.domainCommands.exceptions.IncorrectPasswordException;
+import app.domainCommands.exceptions.NoSuchUsernameException;
 
 @SuppressWarnings("serial")
 public class ProjectManagerServlet extends HttpServlet {
@@ -140,24 +142,13 @@ public class ProjectManagerServlet extends HttpServlet {
 	@Override
 	public void doDelete(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-
-		InputStream inputStream = req.getInputStream();
-		
-		int numBytes = Integer.parseInt(req.getHeader("Content-length"));
-		byte[] bytes = new byte [numBytes];
-		inputStream.read(bytes);
-		
-		String parameters = new String(bytes) + "&accept="+ req.getHeader("Accept");
-		resp.setContentType("application/json");
-		
-		
+		String parameters = req.getQueryString();
 		String path = getCommandStringFromRequest(req);
 		String method = getCommandMethodFromRequest(req);
 		CommandParser cp = null;
 		String input = "";
 		try {
 			cp = getCommandParser();
-			cp.getCommand("GET", "/authenticate", parameters).call();
 			Result pr = cp.getCommand(method, path, parameters).call();
 			for (AppElement elem : pr.getResults())
 			{
@@ -276,17 +267,24 @@ public class ProjectManagerServlet extends HttpServlet {
 			message = e.getMessage();
 		if (e.getClass().equals(UnknownCommandException.class)) {
 			resp.sendError(404, message);
+			System.out.println("Error " + 404 + " - " + message);
 		} else if (e.getClass().equals(
 				InvalidCommandArgumentsException.class)
 				|| e.getClass().equals(DuplicateArgumentsException.class)) {
 			resp.sendError(400, message);
-		} else if (e.getClass().equals(InvalidUserException.class)) {
+			System.out.println("Error " + 400 + " - " + message);
+		} else if (e.getClass().equals(InvalidUserException.class)
+				|| e.getClass().equals(NoSuchUsernameException.class)
+						|| e.getClass().equals(IncorrectPasswordException.class)) {
 			resp.sendError(401, message);
+			System.out.println("Error " + 401 + " - " + message);
 		} else if (e.getClass().equals(
 				MandatoryParameterNotPresentException.class)) {
 			resp.sendError(400, message);
+			System.out.println("Error " + 400 + " - " + message);
 		} else {
 			resp.sendError(500, message);
+			System.out.println("Error " + 500 + " - " + message);
 		}
 	}
 	

@@ -119,9 +119,9 @@ public class PatchConsultant extends BaseCommandUserAuthentication {
 	 */
 	@Override
 	protected AppElement[] internalCall() {
-		
+		AppElement [] result;
 		try{
-			new SetConsultantPropertiesFromRepo(repository, getParameterAsString(CID), 
+			result = new SetConsultantPropertiesFromRepo(repository, getParameterAsString(CID), 
 					getParameterAsString(NAME), getParameterAsString(PRICE_HOUR)).call();
 		} catch(NoSuchWorkerException e) {
 			return new AppElement[] { new Message("Worker with CID: "
@@ -131,7 +131,7 @@ public class PatchConsultant extends BaseCommandUserAuthentication {
 					"Worker's cost per hour cannot be negative.") };
 		}
 		
-		return new AppElement[] { new Message("The Consultant parameters were successfully changed!")};
+		return result;
 	}
 
 	/**

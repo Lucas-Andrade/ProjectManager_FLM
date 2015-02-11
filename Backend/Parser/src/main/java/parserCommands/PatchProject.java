@@ -120,9 +120,9 @@ public class PatchProject extends BaseCommandUserAuthentication {
 	 */
 	@Override
 	protected AppElement[] internalCall() {
-		
+		AppElement [] result;
 		try{
-			new SetProjectPropertiesFromRepo(pRepository, getParameterAsString(PID),
+			result = new SetProjectPropertiesFromRepo(pRepository, getParameterAsString(PID),
 				getParameterAsString(LONGITUDE), getParameterAsString(LATITUDE), getParameterAsString(PRICE), 
 				getParameterAsString(NAME)).call();
 		} catch(NoSuchProjectException e) {
@@ -133,7 +133,7 @@ public class PatchProject extends BaseCommandUserAuthentication {
 			return new AppElement[]{new Message("A negative price is not allowed.")};
 		}
 		
-		return new AppElement[]{new Message("The Project parameters were successfully changed!")};
+		return result;
 	}
 
 	/**

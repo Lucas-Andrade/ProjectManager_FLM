@@ -48,7 +48,7 @@ public class SwingWorkerCommand extends SwingWorker<String, String> {
 					.publish("Connection timeout. The server did not answer.");
 			return null;
 		} catch (IOException e) {
-			errorPublisher.publish("Could not connect to the server.");
+			errorPublisher.publish(e.getCause().getMessage()); //This should improve, should show http response status code and message.
 			return null;
 
 		} finally {
@@ -97,8 +97,7 @@ public class SwingWorkerCommand extends SwingWorker<String, String> {
 						.publish("Could not process. Please review your data.");
 				return;
 			} else {
-				errorPublisher.publish("Server error: "
-						+ caughtException.getMessage());
+				errorPublisher.publish(caughtException.getMessage()); //This should improve, should show http response status code and message.
 				return;
 			}
 		}

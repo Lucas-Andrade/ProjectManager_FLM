@@ -90,7 +90,7 @@ public abstract class BaseCommandUserAuthentication extends BaseCommand{
 	 */
 	protected void authenticateUser() throws Exception{
 		validateDemandingParameters(DEMANDING_PARAMETERS);
-		new AuthenticateUser(repository, parameters).internalCall();
+		new AuthenticateUser.Factory(repository).newInstance(parameters).call();
 	}
 
 	/**

@@ -93,6 +93,7 @@ public class ServerCommandsRegister implements CommandsRegister {
 		methodsMap.put(10, "GET");
 		pathsMap.put(10, "/projects/{" + GetProjects.PID + "}");
 		cmdsMap.put(10, new GetProjects.Factory(projectRepo));
+		//TODO
 //		methodsMap.put(11, "PATCH");
 //		pathsMap.put(11, "/users/{" + PatchUser.USERNAME + "}");
 //		cmdsMap.put(11, new PatchUser.Factory(userRepo));
@@ -102,12 +103,9 @@ public class ServerCommandsRegister implements CommandsRegister {
 //		methodsMap.put(13, "PATCH");
 //		pathsMap.put(13, "/consultants/{" + PatchConsultant.CID + "}");
 //		cmdsMap.put(13, new PatchConsultant.Factory(userRepo, workersRepo));
-//		methodsMap.put(14, "DELETE");
-//		pathsMap.put(14, "/projects/{" + GetProjects.PID + "}");
-//		cmdsMap.put(14, new DeleteProjects.Factory(userRepo, projectRepo));
-//		methodsMap.put(15, "OPTION");
-//		pathsMap.put(15, "/");
-//		cmdsMap.put(15, new Option.Factory());
+		methodsMap.put(14, "DELETE");
+		pathsMap.put(14, "/projects/{" + GetProjects.PID + "}");
+		cmdsMap.put(14, new DeleteProjects.Factory(userRepo, projectRepo));
 		methodsMap.put(16, "GET");
 		pathsMap.put(16, "/authenticate");
 		cmdsMap.put(16, new AuthenticateUser.Factory(userRepo));
