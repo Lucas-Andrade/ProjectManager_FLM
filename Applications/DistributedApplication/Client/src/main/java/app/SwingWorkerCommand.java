@@ -2,6 +2,7 @@ package app;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -33,11 +34,17 @@ public class SwingWorkerCommand extends SwingWorker<String, String>{
 		
 		try {
 			connection = httpRequest.sendRequest();
+			connection.setConnectTimeout(60000);
 			connection.connect();
 			
 			publish("Waiting for the server's response...");
 			toReturn = httpRequest.receiveRequest();
 			
+			System.out.println(toReturn);
+			
+		} catch (SocketTimeoutException e) {
+			errorPublisher.publish("Connection timeout. The server did not answer.");
+			return null;
 		} catch (IOException e) {
 			errorPublisher.publish("Could not connect to the server.");
 			return null;
@@ -72,7 +79,7 @@ public class SwingWorkerCommand extends SwingWorker<String, String>{
 	@Override
 	protected void done(){
 		
-		String toPublish = "";
+		String toPublish = null;
 		
 		try {
 			toPublish = get();
@@ -80,7 +87,14 @@ public class SwingWorkerCommand extends SwingWorker<String, String>{
 			errorPublisher.publish("Unexpected interruption.");
 			return;
 		} catch (ExecutionException e) {
-			errorPublisher.publish("Server exception.");
+			Throwable caughtException = e.getCause();
+			if (caughtException instanceof IllegalArgumentException) {
+				errorPublisher.publish("Could not process. Please review your data.");
+				return;
+			} else {
+				errorPublisher.publish("Server error.");
+				return;
+			}
 		}
 		
 		if(toPublish != null) {

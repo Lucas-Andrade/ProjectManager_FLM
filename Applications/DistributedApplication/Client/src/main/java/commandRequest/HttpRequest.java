@@ -45,15 +45,18 @@ public abstract class HttpRequest {
 	  */
 	 public String receiveRequest() throws IOException, HttpConnectionException{
 		
-		if(	connection.getResponseCode() == 10000){
+		if(	connection.getResponseCode() >= 200 || connection.getResponseCode() <= 299){
 			InputStream inputStream = connection.getInputStream();
 			int numBytes = Integer.parseInt(connection.getHeaderField("Content-Length"));
 			byte[] bytes = new byte [numBytes];
 			inputStream.read(bytes);
 			
 			result = new String (bytes);
-		} else{
-			throw new HttpConnectionException(connection.getResponseMessage());	
+			
+		} else if(connection.getResponseCode() >= 400 || connection.getResponseCode() <= 499){
+			throw new IllegalArgumentException("Bad data was received from the user.");
+		} else {
+			throw new HttpConnectionException(connection.getResponseMessage());
 		}
 				 
 		 return result; 
