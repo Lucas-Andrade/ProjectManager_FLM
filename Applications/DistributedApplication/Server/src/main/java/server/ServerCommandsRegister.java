@@ -119,8 +119,8 @@ public class ServerCommandsRegister implements CommandsRegister {
 	 * @see parser.CommandParser.CommandsRegister#getMethods()
 	 */
 	@Override
-	public Iterator<String> getMethods() {
-		return methodsMap.values().iterator();
+	public TreeMap<Integer, String> getMethods() {
+		return methodsMap;
 	}
 
 	/*
@@ -129,8 +129,8 @@ public class ServerCommandsRegister implements CommandsRegister {
 	 * @see parser.CommandParser.CommandsRegister#getPaths()
 	 */
 	@Override
-	public Iterator<String> getPaths() {
-		return pathsMap.values().iterator();
+	public TreeMap<Integer, String> getPaths() {
+		return pathsMap;
 	}
 
 	/*
@@ -139,8 +139,8 @@ public class ServerCommandsRegister implements CommandsRegister {
 	 * @see parser.CommandParser.CommandsRegister#getFactories()
 	 */
 	@Override
-	public Iterator<CommandFactory> getFactories() {
-		return cmdsMap.values().iterator();
+	public TreeMap<Integer, CommandFactory> getFactories() {
+		return cmdsMap;
 	}
 
 }
