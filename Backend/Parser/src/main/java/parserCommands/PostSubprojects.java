@@ -132,8 +132,9 @@ public class PostSubprojects extends BaseCommandUserAuthentication {
 		String pid = getParameterAsString(PID);
 		String subPid = getParameterAsString(SUBPID);
 		
+		AppElement[] element;
 		try{
-			new AddSubprojectToRepo(repository, pid, subPid).call();
+			element = new AddSubprojectToRepo(repository, pid, subPid).call();
 		} catch(ProjectAddedToItselfException e) {
 			return new AppElement[]{ new Message("Specified project identifications are equal!")};
 		} catch(AddedExistingSubproject e) {
@@ -143,6 +144,6 @@ public class PostSubprojects extends BaseCommandUserAuthentication {
 			return new AppElement[]{ new Message("At least one of the specified projects to not exist.")};
 		}
 		
-		return new AppElement[]{ new Message("Success.")};
+		return element;
 	}
 }

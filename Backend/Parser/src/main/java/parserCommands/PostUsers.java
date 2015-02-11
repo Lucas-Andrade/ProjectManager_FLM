@@ -66,8 +66,8 @@ public class PostUsers extends BaseCommandUserAuthentication{
 	/**
 	 * An array of {@code String}s with the names of all mandatory arguments.
 	 */
-	private static final String[] DEMANDING_PARAMETERS = { USERNAME, PASSWORD,
-			EMAIL, FULLNAME };
+	private static final String[] DEMANDING_PARAMETERS = {USERNAME, PASSWORD,
+			EMAIL};
 
 	/**
 	 * The {@link UserRepository} with the {@code User}s. The created
@@ -146,10 +146,14 @@ public class PostUsers extends BaseCommandUserAuthentication{
 		this.username = getParameterAsString(USERNAME);
 		this.password = getParameterAsString(PASSWORD);
 		this.email = getParameterAsString(EMAIL);
-		this.fullname = getParameterAsString(FULLNAME);
+		if(getParameterAsString(FULLNAME)==null)
+			this.fullname=this.username;
+		else
+			this.fullname = getParameterAsString(FULLNAME);
 		
+		AppElement [] result;
 		try{
-			new AddUserToRepo(repository, username, password, email, fullname).call();
+			result = new AddUserToRepo(repository, username, password, email, fullname).call();
 		} catch(PasswordLengthOutOfBoundsException e) {
 			return new AppElement[]{new Message("User's password must have at least 4 characters.")};
 		} catch(IllegalEmailException e) {
@@ -158,7 +162,7 @@ public class PostUsers extends BaseCommandUserAuthentication{
 			return new AppElement[]{new Message("The Specified Username is already being used.")};
 		}
 		
-		return new AppElement[]{new Message("Success.")};
+		return result;
 	}
 
 }

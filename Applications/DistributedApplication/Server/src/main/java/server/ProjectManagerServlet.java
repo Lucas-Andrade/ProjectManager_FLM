@@ -141,7 +141,7 @@ public class ProjectManagerServlet extends HttpServlet {
 	public void doDelete(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 
-InputStream inputStream = req.getInputStream();
+		InputStream inputStream = req.getInputStream();
 		
 		int numBytes = Integer.parseInt(req.getHeader("Content-length"));
 		byte[] bytes = new byte [numBytes];

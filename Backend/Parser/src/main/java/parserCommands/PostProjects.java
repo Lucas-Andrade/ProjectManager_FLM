@@ -133,20 +133,17 @@ public class PostProjects extends BaseCommandUserAuthentication{
 		String longitude = getParameterAsString(LONGITUDE);
 		String name = getParameterAsString(NAME);
 		String price = getParameterAsString(PRICE);
-		Project project;
-		
+
+		AppElement[] element;
 		try{ 
-			AppElement[] element = new AddProjectToRepo(repository, latitude, longitude, name, price).call();
-			project = (Project)element[0];
-		} catch(IllegalArgumentException e){ //this also covers NumberFormatException
+			element = new AddProjectToRepo(repository, latitude, longitude, name, price).call();
+			} catch(IllegalArgumentException e){ //this also covers NumberFormatException
 			return new AppElement[]{
 					new Message("Price, latitude or longitude out of bounds.")};
 		} catch(ClassCastException e){ //just in case
 			return new AppElement[]{new Message("Unexpected result.")};
 		}
-		
-		Message message = new Message("Product identification (PID): " + project.getPID());
-		AppElement[] messageAux = {message};
-		return messageAux;
+
+		return element;
 	}
 }

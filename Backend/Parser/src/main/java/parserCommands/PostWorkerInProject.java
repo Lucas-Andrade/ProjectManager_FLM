@@ -187,8 +187,9 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication{
 		this.typeWorker = getParameterAsString(WTYPE);
 		this.workerId = getParameterAsString(CID);
 
+		AppElement[] element;
 		try{
-			new AddWorkerToProjectInRepo(projectRepository, workerRepository, 
+			element = new AddWorkerToProjectInRepo(projectRepository, workerRepository, 
 						projectId, workerId, typeWorker).call();
 		} catch (WorkerNotAddedException e) {
 			return new AppElement[]{new Message("Could not add the worker to the project. That worker may already be assigned to the project.")};
@@ -202,6 +203,6 @@ public class PostWorkerInProject extends BaseCommandUserAuthentication{
 			return new AppElement[]{new Message("The Specified Consultant does not exist.")};
 		}
 
-		return new AppElement[]{new Message("Success.")};
+		return element;
 	}
 }

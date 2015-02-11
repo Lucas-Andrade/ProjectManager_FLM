@@ -127,10 +127,9 @@ public class PostConsultant extends BaseCommandUserAuthentication{
 		String priceHour = getParameterAsString(PRICE_HOUR);
 		String bonus = getParameterAsString(BONUS);
 		
-		AWorker worker = null;
+		AppElement[] elements;
 		try{
-			AppElement[] elements = new AddConsultantToRepo(repository, name, priceHour, bonus).call();
-			worker = (AWorker)elements[0];
+			elements = new AddConsultantToRepo(repository, name, priceHour, bonus).call();
 		} catch(CostOutOfBoundsException e) {
 			return new AppElement[]{new Message("Specified price per hour of the worker is less than zero.")};
 		} catch(IllegalArgumentException e) {
@@ -139,6 +138,6 @@ public class PostConsultant extends BaseCommandUserAuthentication{
 			return new AppElement[]{new Message("Unexpected result.")}; //just in case
 		}
 		
-		return new AppElement[]{new Message("Worker's identification (CID): " + worker.getCID())};
+		return elements;
 	}
 }
