@@ -26,6 +26,8 @@ public class PatchHttpRequest extends HttpRequest{
 		this.parameters = parameters;
 	}
 
+	
+	
 	/**
 	 * Method with the responsibility to send a HTTP request using PUT method
 	 * to the specified URL
@@ -38,7 +40,6 @@ public class PatchHttpRequest extends HttpRequest{
 	 */
 	public HttpURLConnection sendRequest() throws IOException {
 
-	    try {
 	    	connection = super.sendRequest();
 			
 			connection.setDoInput(true); // true indicates the server returns response
@@ -51,19 +52,6 @@ public class PatchHttpRequest extends HttpRequest{
 			writer.flush();
 			writer.close();
 	
-			return connection;
-	
-		    } catch (Exception e) {
-		
-		      e.printStackTrace();
-		      return null;
-		
-		    } finally {
-		
-		      if(connection != null) {
-		        connection.disconnect(); 
-		      }
-		    }
+			return connection;   
 	}
-	
 }

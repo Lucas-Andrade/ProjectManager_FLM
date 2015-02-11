@@ -38,8 +38,7 @@ public class PostHttpRequest extends HttpRequest{
 	 * @throws IOException
 	 */
 	public HttpURLConnection sendRequest() throws IOException {
-	      
-	    try {
+	     
 	    	connection = super.sendRequest();
 	    	
 			connection.setDoInput(true); // true indicates the server returns response
@@ -54,16 +53,5 @@ public class PostHttpRequest extends HttpRequest{
 	
 			return connection;
 
-		    } catch (Exception e) {
-		
-		      e.printStackTrace();
-		      return null;
-		
-		    } finally {
-		
-		      if(connection != null) {
-		        connection.disconnect(); 
-		      }
-		    }
 	}
 }

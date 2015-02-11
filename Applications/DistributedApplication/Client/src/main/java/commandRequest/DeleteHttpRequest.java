@@ -31,9 +31,7 @@ public class DeleteHttpRequest extends HttpRequest{
      */
 	 public HttpURLConnection sendRequest()
 	            throws IOException {
-		  try {
-		
-			
+		  
 			connection = super.sendRequest();
 			connection.setUseCaches(true );
 			connection.setDoInput(true); // true if we want to read server's response
@@ -42,18 +40,7 @@ public class DeleteHttpRequest extends HttpRequest{
 			connection.connect();
 
 			return connection;
-		  } catch (Exception e) {
-				
-		      e.printStackTrace();
-		      return null;
-		
-		    } finally {
-		
-		      if(connection != null) {
-		        connection.disconnect(); 
-		      }
-		    }
-	 }
 	
+	 }
 }
 
