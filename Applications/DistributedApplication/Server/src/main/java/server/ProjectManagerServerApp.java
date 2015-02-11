@@ -11,7 +11,7 @@ import app.repository.InMemoryWorkerRepo;
 
 public class ProjectManagerServerApp {
 
-	private static final int LISTEN_PORT = 4567;
+	private static final int LISTEN_PORT = 8081;
 
 	public static void main(String[] args) throws Exception {
 		constructParser();
