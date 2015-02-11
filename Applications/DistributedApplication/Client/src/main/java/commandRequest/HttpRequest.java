@@ -45,8 +45,8 @@ public abstract class HttpRequest {
 	  */
 	 public String receiveRequest() throws IOException, HttpConnectionException{
 		
-		InputStream inputStream = connection.getInputStream();
 		if(	connection.getResponseCode() == 10000){
+			InputStream inputStream = connection.getInputStream();
 			int numBytes = Integer.parseInt(connection.getHeaderField("Content-Length"));
 			byte[] bytes = new byte [numBytes];
 			inputStream.read(bytes);
