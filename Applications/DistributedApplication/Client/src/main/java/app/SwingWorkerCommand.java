@@ -41,6 +41,7 @@ public class SwingWorkerCommand extends SwingWorker<String, String>{
 		} catch (IOException e) {
 			errorPublisher.publish("Could not connect to the server.");
 			return null;
+		
 		} finally {
 			if (connection != null) {
 				connection.disconnect();

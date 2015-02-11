@@ -12,7 +12,6 @@ import publishers.PublishToGetPanelAsTable;
 import publishers.PublishToGetPanelAsTree;
 import publishers.PublishToMainFrameAsTable;
 import publishers.PublishToMainFrameAsTree;
-
 import commandRequest.DeleteHttpRequest;
 import commandRequest.GetHttpRequest;
 import commandRequest.PatchHttpRequest;
@@ -28,11 +27,11 @@ import commandRequest.PostHttpRequest;
 public class AppCommandCaller implements ICommandCaller{
 	
 	private String LOCALHOST = null;
-	private int PORT;
+	private String PORT;
 	private String requestURL;
 	private ErrorPublisher errorPublisher;
 	
-	public AppCommandCaller(String host, int port) {
+	public AppCommandCaller(String host, String port) {
 		LOCALHOST = host;
 		PORT = port;
 		errorPublisher = new PublishToErrorDialog();
