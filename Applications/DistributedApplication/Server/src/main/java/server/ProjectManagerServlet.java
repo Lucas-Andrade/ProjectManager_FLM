@@ -23,9 +23,7 @@ import app.AppElement;
 
 @SuppressWarnings("serial")
 public class ProjectManagerServlet extends HttpServlet {
-
-	 	private String path;
-		private ServletInputStream inputStream;
+	
 
 	
 		/**
