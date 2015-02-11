@@ -34,7 +34,6 @@ public class TableBuilder {
 			columnNames = getColumnNames(element);
 			data = new String[1][columnNames.length];
 			data[0] = getLineData(element, columnNames);
-			System.out.println("object");
 			
 		} else {
 			throw new IllegalStateException();

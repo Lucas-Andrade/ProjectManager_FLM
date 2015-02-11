@@ -130,6 +130,10 @@ public class AddWorkerToProjectInRepo implements Command{
 			throw new NoSuchWorkerException("There is no worker with that ID.");
 		}
 		
+		if (consultant instanceof Leader) {
+			throw new WorkerNotAddedException("A Manager cannot be added to a Consultant's position.");
+		}
+		
 		if(! pRepo.getProjectById(pid).addWorker(consultant)){
 			throw new WorkerNotAddedException("Worker could not be added. The worker may already be in the project's team."); 
 		}

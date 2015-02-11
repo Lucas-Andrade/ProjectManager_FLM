@@ -54,7 +54,7 @@ public class SwingWorkerCommand extends SwingWorker<String, String>{
 	@Override
 	protected String doInBackground() throws Exception {
 		
-		publish("<html>Applying changes<br>to the database.<br></html>");
+		publish("<html>Getting information<br>from the database.<br></html>");
 		AppElement[] result = command.call();
 		return toString(result);
 	}
