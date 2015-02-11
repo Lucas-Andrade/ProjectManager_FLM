@@ -3,13 +3,13 @@
  */
 package app;
 
-import java.util.Iterator;
 import java.util.TreeMap;
 
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
 import parser.CommandParser.CommandsRegister;
+import parserCommands.AuthenticateUser;
 import parserCommands.DeleteProjects;
 import parserCommands.GetProjectWorkers;
 import parserCommands.GetProjects;
@@ -107,6 +107,9 @@ public class ConsoleCommandsRegister implements CommandsRegister {
 		methodsMap.put(15, "OPTION");
 		pathsMap.put(15, "/");
 		cmdsMap.put(15, new Option.Factory());
+		methodsMap.put(16, "GET");
+		pathsMap.put(16, "/authenticate");
+		cmdsMap.put(16, new AuthenticateUser.Factory(userRepo));
 	}
 
 	/*
@@ -115,8 +118,8 @@ public class ConsoleCommandsRegister implements CommandsRegister {
 	 * @see parser.CommandParser.CommandsRegister#getMethods()
 	 */
 	@Override
-	public Iterator<String> getMethods() {
-		return methodsMap.values().iterator();
+	public TreeMap<Integer, String> getMethods() {
+		return methodsMap;
 	}
 
 	/*
@@ -125,8 +128,8 @@ public class ConsoleCommandsRegister implements CommandsRegister {
 	 * @see parser.CommandParser.CommandsRegister#getPaths()
 	 */
 	@Override
-	public Iterator<String> getPaths() {
-		return pathsMap.values().iterator();
+	public TreeMap<Integer, String> getPaths() {
+		return pathsMap;
 	}
 
 	/*
@@ -135,8 +138,8 @@ public class ConsoleCommandsRegister implements CommandsRegister {
 	 * @see parser.CommandParser.CommandsRegister#getFactories()
 	 */
 	@Override
-	public Iterator<CommandFactory> getFactories() {
-		return cmdsMap.values().iterator();
+	public TreeMap<Integer, CommandFactory> getFactories() {
+		return cmdsMap;
 	}
 
 }

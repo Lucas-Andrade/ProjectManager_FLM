@@ -4,6 +4,7 @@ import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.Callable;
 
 import outputMethods.Result;
@@ -75,11 +76,11 @@ public class CommandParser {
 		}
 		CommandParser newCp = new CommandParser();
 		String method;
-		Iterator<String> methods = cmdsReg.getMethods();
+		Iterator<String> methods = cmdsReg.getMethods().values().iterator();
 		String path;
-		Iterator<String> paths = cmdsReg.getPaths();
+		Iterator<String> paths = cmdsReg.getPaths().values().iterator();
 		CommandFactory cmdFactory;
-		Iterator<CommandFactory> cmdFactories = cmdsReg.getFactories();
+		Iterator<CommandFactory> cmdFactories = cmdsReg.getFactories().values().iterator();
 
 		while (methods.hasNext()) {
 			method = methods.next();
@@ -124,19 +125,28 @@ public class CommandParser {
 	 */
 	public static interface CommandsRegister {
 		/**
-		 * @return The commands methods.
+		 * @return A {@code TreeMap} with the commands corresponding order
+		 *         numbers ({@code Integer}; only useful to match the commands
+		 *         methods to the corresponding paths and factories) and methods
+		 *         ({@code String}s) .
 		 */
-		public Iterator<String> getMethods();
+		public TreeMap<Integer, String> getMethods();
 
 		/**
-		 * @return The commands paths.
+		 * @return A {@code TreeMap} with the commands corresponding order
+		 *         numbers ({@code Integer}; only useful to match the commands
+		 *         paths to the corresponding methods and factories) and paths (
+		 *         {@code String}s) .
 		 */
-		public Iterator<String> getPaths();
+		public TreeMap<Integer, String> getPaths();
 
 		/**
-		 * @return The commands factories.
+		 * @return A {@code TreeMap} with the commands corresponding order
+		 *         numbers ({@code Integer}; only useful to match the commands
+		 *         factories to the corresponding methods and paths) and
+		 *         factories ({@code CommandFactory}s) .
 		 */
-		public Iterator<CommandFactory> getFactories();
+		public TreeMap<Integer, CommandFactory> getFactories();
 	}
 
 	/**
