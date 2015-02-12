@@ -80,7 +80,14 @@ public class ProjectManagerServlet extends HttpServlet {
 			getErrorMessage(resp, e);
 		}
 
-		System.out.println(input);
+		System.out.println("New Connection Received:"); //For test purposes.
+		System.out.println(method + " " + path + " " + parameters); //For test purposes.
+		int numBytes = Integer.parseInt(req.getHeader("Content-length")); //For test purposes.
+		byte[] bytes = new byte [numBytes]; //For test purposes.
+		req.getInputStream().read(bytes); //For test purposes.
+		System.out.println("IO contents: " + new String(bytes)); //For test purposes.
+		System.out.println(input); //For test purposes.
+
 		OutputStream out = resp.getOutputStream();
 		out.write(input.getBytes());
     }
@@ -129,6 +136,10 @@ public class ProjectManagerServlet extends HttpServlet {
 			getErrorMessage(resp, e);
 		}
 
+		System.out.println("New Connection Received:"); //For test purposes.
+		System.out.println(method + " " + path + " " + parameters); //For test purposes.
+		System.out.println(input); //For test purposes.
+
 		OutputStream out = resp.getOutputStream();
 		out.write(input.getBytes());
 	}
@@ -166,6 +177,14 @@ public class ProjectManagerServlet extends HttpServlet {
 		} catch (Exception e) {
 			getErrorMessage(resp, e);
 		}
+
+		System.out.println("New Connection Received:"); //For test purposes.
+		System.out.println(method + " " + path + " " + parameters); //For test purposes.
+		int numBytes = Integer.parseInt(req.getHeader("Content-length")); //For test purposes.
+		byte[] bytes = new byte [numBytes]; //For test purposes.
+		req.getInputStream().read(bytes); //For test purposes.
+		System.out.println("IO contents: " + new String(bytes)); //For test purposes.
+		System.out.println(input); //For test purposes.
 
 		OutputStream out = resp.getOutputStream();
 		out.write(input.getBytes());
@@ -214,6 +233,14 @@ public class ProjectManagerServlet extends HttpServlet {
 		} catch (Exception e) {
 			getErrorMessage(resp, e);
 		}
+
+		System.out.println("New Connection Received:"); //For test purposes.
+		System.out.println(method + " " + path + " " + parameters); //For test purposes.
+		//int numBytes = Integer.parseInt(req.getHeader("Content-length")); //For test purposes.
+		//byte[] bytes = new byte [numBytes]; //For test purposes.
+		req.getInputStream().read(bytes); //For test purposes.
+		System.out.println("IO contents: " + new String(bytes)); //For test purposes.
+		System.out.println(input); //For test purposes.
 
 		OutputStream out = resp.getOutputStream();
 		out.write(input.getBytes());
@@ -267,24 +294,24 @@ public class ProjectManagerServlet extends HttpServlet {
 		else
 			message = e.getMessage();
 		if (e.getClass().equals(UnknownCommandException.class)) {
-			resp.sendError(404, message);
+			resp.sendError(404, message); //For test purposes.
 			System.out.println("Error " + 404 + " - " + message);
 		} else if (e.getClass().equals(
 				InvalidCommandArgumentsException.class)
 				|| e.getClass().equals(DuplicateArgumentsException.class)) {
-			resp.sendError(400, message);
+			resp.sendError(400, message); //For test purposes.
 			System.out.println("Error " + 400 + " - " + message);
 		} else if (e.getClass().equals(InvalidUserException.class)
 				|| e.getClass().equals(NoSuchUsernameException.class)
 						|| e.getClass().equals(IncorrectPasswordException.class)) {
-			resp.sendError(401, message);
+			resp.sendError(401, message); //For test purposes.
 			System.out.println("Error " + 401 + " - " + message);
 		} else if (e.getClass().equals(
 				MandatoryParameterNotPresentException.class)) {
-			resp.sendError(400, message);
+			resp.sendError(400, message); //For test purposes.
 			System.out.println("Error " + 400 + " - " + message);
 		} else {
-			resp.sendError(500, message);
+			resp.sendError(500, message); //For test purposes.
 			System.out.println("Error " + 500 + " - " + message);
 		}
 	}
