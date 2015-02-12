@@ -16,33 +16,38 @@ import org.json.JSONObject;
  * @param <Elements>
  *            - any instances of a type compatible with {@code Element}.
  */
-public abstract class AContainer<Elements extends UtilsElement> implements ICost, Iterable<Elements>{
+public abstract class AContainer<Elements extends UtilsElement> implements
+		ICost, Iterable<Elements> {
 
-	private final Collection<Elements> elementsList;
+	/**
+	 * A volatile collection.
+	 */
+	private volatile Collection<Elements> elementsList;
 
 	/**
 	 * ACointaner constructor the will instantiate {@code elementsList} as a
-	 * {@link TreeSet} collection.
+	 * synchronized {@link TreeSet} collection.
 	 * 
 	 * This type of collection will allow all its elements to be always ordered
 	 * by their natural order defined by the override of the method
 	 * {@code compareTo()} from the {@link Comparable} Interface implemented by
 	 * {@code Element}.
 	 */
-	public AContainer(){
-		this.elementsList = new TreeSet<Elements>();
+	public AContainer() {
+		this.elementsList = Collections
+				.synchronizedSortedSet(new TreeSet<Elements>());
 	}
 
 	/**
-	 * @return An {@code Iterator<elements>} that goes over all elements in 
-	 * this {@code AContainer}.
+	 * @return An {@code Iterator<elements>} that goes over all elements in this
+	 *         {@code AContainer}.
 	 * 
 	 * @see java.util.Iterator
 	 */
 	public Iterator<Elements> iterator() {
 		return elementsList.iterator();
 	}
-	
+
 	/**
 	 * Abstract method that will be implemented by the subclasses of
 	 * {@code ACointaner}.
@@ -76,20 +81,15 @@ public abstract class AContainer<Elements extends UtilsElement> implements ICost
 	 * @return true if the {@code Element} is successfully added and false
 	 *         Otherwise.
 	 */
-	public boolean addElement(Elements element){
-		for (Elements currentElement : elementsList){
-			if (currentElement.equals(element)){
-				return false;
-			}
-		}
-
+	public boolean addElement(Elements element) {
 		return elementsList.add(element);
 	}
 
 	/**
-	 * Method that will allow a given {@code Element} to be removed from the the
-	 * container. If the {@code Element} is not in the container the element
-	 * wont be removed and the method will return false.
+	 * Method that will remove the {@code Element} equal to element from this
+	 * container. If this container doesn't have an {@code Element} equal to element,
+	 * then no {@code Element} will be removed and the method will
+	 * return false.
 	 * 
 	 * If the given parameter is null returns false.
 	 * 
@@ -99,14 +99,14 @@ public abstract class AContainer<Elements extends UtilsElement> implements ICost
 	 * @return true if the {@code Element} is successfully added and false
 	 *         Otherwise.
 	 */
-	public boolean remove(UtilsElement element){
+	public boolean remove(UtilsElement element) {
 		return this.elementsList.remove(element);
 	}
 
 	/**
 	 * @return and unmodifiable view of {@code elementsList}.
 	 */
-	public Collection<Elements> getElementsList(){
+	public Collection<Elements> getElementsList() {
 		return Collections.unmodifiableCollection(elementsList);
 	}
 
@@ -115,11 +115,11 @@ public abstract class AContainer<Elements extends UtilsElement> implements ICost
 	 * Interface.
 	 */
 	@Override
-	public double getCost(){
+	public double getCost() {
 
 		double cost = 0;
 
-		for (Elements element : elementsList){
+		for (Elements element : elementsList) {
 			cost += element.getCost();
 		}
 		return cost;
@@ -129,43 +129,43 @@ public abstract class AContainer<Elements extends UtilsElement> implements ICost
 	 * Override of the method {@code toString()} from {@code Object}.
 	 */
 	@Override
-	public String toString(){
-		return toString(0);	
+	public String toString() {
+		return toString(0);
 	}
-	
+
 	public String toString(int i) {
 		String spaces = "";
-		for(int n = 0; n < i; n++){
+		for (int n = 0; n < i; n++) {
 			spaces += " ";
 		}
 		StringBuilder builder = new StringBuilder();
 
-		for (Elements element : elementsList){
+		for (Elements element : elementsList) {
 			builder.append(spaces).append(element.toString()).append("\n");
 		}
 
 		return builder.toString();
 	}
-	
+
 	public JSONObject[] getJson() {
 		Collection<Elements> elementsCol = getElementsList();
 		JSONObject[] jsonArray = new JSONObject[elementsCol.size()];
 		int index = 0;
-		
-		for (Elements element : elementsCol){
+
+		for (Elements element : elementsCol) {
 			jsonArray[index++] = element.getJson();
 		}
 		return jsonArray;
 	}
-	
+
 	/**
 	 * @return the number of elements the container contains
 	 */
-	public int size(){
+	public int size() {
 		return elementsList.size();
 	}
-	
-	public void removeAll(){
+
+	public void removeAll() {
 		elementsList.clear();
 	}
 
@@ -184,40 +184,46 @@ public abstract class AContainer<Elements extends UtilsElement> implements ICost
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean equals(Object container){
-		if (this == container){
+	public boolean equals(Object container) {
+		if (this == container) {
 			return true;
 		}
-		if (container == null){
+		if (container == null) {
 			return false;
 		}
-		if (getClass() != container.getClass()){
+		if (getClass() != container.getClass()) {
 			return false;
 		}
-		return hasSameElements((AContainer<UtilsElement>)container);
+		return hasSameElements((AContainer<UtilsElement>) container);
 	}
-	
+
 	/**
-	 * Verifies if the {@code AContainer} passed as parameter has the same elements as {@code this}.
+	 * Verifies if the {@code AContainer} passed as parameter has the same
+	 * elements as {@code this}.
+	 * 
 	 * @param worker
-	 * @return true if the {@code AContainer} passed as parameter has the same elements as {@code this}
-	 * @return false if the {@code AContainer} passed as parameter has not the same elements as 
-	 * {@code this}
+	 * @return true if the {@code AContainer} passed as parameter has the same
+	 *         elements as {@code this}
+	 * @return false if the {@code AContainer} passed as parameter has not the
+	 *         same elements as {@code this}
 	 */
-	public boolean hasSameElements(AContainer<UtilsElement> container){
-		if(size() != container.size()){
+	public boolean hasSameElements(AContainer<UtilsElement> container) {
+		if (size() != container.size()) {
 			return false;
 		}
-		
-		Iterator<UtilsElement> iterator = container.getElementsList().iterator();
-		for (UtilsElement element : elementsList){
-			if (! element.equals(iterator.next())){ //TreeSet is ordered, so we can compare elements in pairs
+
+		Iterator<UtilsElement> iterator = container.getElementsList()
+				.iterator();
+		for (UtilsElement element : elementsList) {
+			if (!element.equals(iterator.next())) { // TreeSet is ordered, so we
+													// can compare elements in
+													// pairs
 				return false;
 			}
 		}
 		return true;
 	}
-	
+
 	/**
 	 * @return true if the {@code AContainer} is empty
 	 */

@@ -16,15 +16,24 @@ import org.json.JSONObject;
 public abstract class AWorker implements IWorker {
 
 	/**
-	 * @field name - String with the name of the worker.
-	 * @field costPerHour - price receive by the worker for one hour of work.
+	 * @field name - A volatile String with the name of the worker.
+	 * @field costPerHour - A volatile double with the price receive by the worker for one hour of work.
 	 * @field hoursWorked - total of hours worked by the worker.
 	 * @field cid - the ID of the worker.
 	 */
-	private String name;
-	private double costPerHour;
+	private volatile String name;
+	private volatile double costPerHour;
 	private final double hoursWorked;
 	private final long cid;
+	
+	/**
+	 * The lock to be used inside {@code this#setName(String)}.
+	 */
+	private final Object lockSetName = new Object();
+	/**
+	 * The lock to be used inside {@code this#setCostPerHour(double)}.
+	 */
+	private final Object lockSetCostPerHour = new Object();
 
 	/**
 	 * AWorker constructor that will receive the worker's name, cost per hour
@@ -94,17 +103,18 @@ public abstract class AWorker implements IWorker {
 	}
 
 	/**
-	 * Patch the name of the worker.
+	 * Patch the name of the worker. Synchronized method.
 	 * 
 	 * @param name
 	 *            The name of the worker.
 	 */
 	public void setName(String name){
-		this.name = name;
+		synchronized (lockSetName){
+		this.name = name;}
 	}
 
 	/**
-	 * Patch the worker cost per hour.
+	 * Patch the worker cost per hour. Synchronized update.
 	 * 
 	 * @param costPerHour
 	 *            The cost of the worker for one hour of work.
@@ -113,7 +123,8 @@ public abstract class AWorker implements IWorker {
 		if(costPerHour < 0){
 			return false;
 		}
-		this.costPerHour = costPerHour;
+		synchronized (lockSetCostPerHour){
+		this.costPerHour = costPerHour;}
 		return true;
 	}
 

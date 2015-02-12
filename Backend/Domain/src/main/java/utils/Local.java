@@ -15,14 +15,33 @@ import org.json.JSONObject;
 public class Local implements ICost, IName {
 
 	/**
+	 * Volatile fields for thread-safety.
+	 * 
 	 * @field name - String with the name of the local.
-	 * @field localisation - String with the address of the local.
+	 * @field latitude/longitude - coordinates of the local.
 	 * @field cost - the cost associated with the local.
 	 */
-	private String name;
-	private double cost;
-	private double latitude;
-	private double longitude;
+	private volatile String name;
+	private volatile double cost;
+	private volatile double latitude;
+	private volatile double longitude;
+
+	/**
+	 * The lock to be used inside {@code this#setName(String)}.
+	 */
+	private final Object lockSetName = new Object();
+	/**
+	 * The lock to be used inside {@code this#setLatitude(double)}.
+	 */
+	private final Object lockSetLatitude = new Object();
+	/**
+	 * The lock to be used inside {@code this#setLongitude(double)}.
+	 */
+	private final Object lockSetLongitude = new Object();
+	/**
+	 * The lock to be used inside {@code this#setPrice(double)}.
+	 */
+	private final Object lockSetCost = new Object();
 
 	/**
 	 * Local constructor that will receive the local's name, address and cost as
@@ -106,6 +125,7 @@ public class Local implements ICost, IName {
 	/**
 	 * sets the value of the {@code longitude} to the new value passed as parameter, provided 
 	 * it is between the correct bounds
+	 * The update in this method is synchronized.
 	 * 
 	 * @param newLongitude - new {@code longitude} value
 	 * 
@@ -114,7 +134,8 @@ public class Local implements ICost, IName {
 	 */
 	public boolean setLongitude(double newLongitude) {
 		if(checkLongitude(newLongitude)){
-			longitude = newLongitude;
+			synchronized(lockSetLongitude){
+			longitude = newLongitude;}
 			return true;
 		}
 		return false;
@@ -123,6 +144,7 @@ public class Local implements ICost, IName {
 	/**
 	 * sets the value of the {@code latitude} to the new value passed as parameter, provided 
 	 * it is between the correct bounds
+	 * The update in this method is synchronized.
 	 * 
 	 * @param newLatitude - new {@code latitude} value
 	 * 
@@ -132,7 +154,7 @@ public class Local implements ICost, IName {
 	public boolean setLatitude(double newLatitude) {
 
 		if(checkLatitude(newLatitude)){
-			latitude = newLatitude;
+			synchronized(lockSetLatitude){latitude = newLatitude;}
 			return true;
 		}
 		return false;
@@ -140,15 +162,18 @@ public class Local implements ICost, IName {
 
 	/**
 	 * sets the {@code name} of the {@code Local} to the new {@code String}, passed as parameter
+	 * The update in this method is synchronized.
+	 * 
 	 * @param newName - the new name of the {@code Local}
 	 */
 	public void setName(String newName) {
-		this.name = newName;
+		synchronized(lockSetName){this.name = newName;}
 	}
 
 	/**
 	 * sets the value of the {@code price} to the new value passed as parameter, provided 
 	 * it is between the correct bounds
+	 * The update in this method is synchronized.
 	 * 
 	 * @param newPrice - new {@code price} value
 	 * 
@@ -157,7 +182,7 @@ public class Local implements ICost, IName {
 	 */
 	public boolean setPrice(double newPrice) {
 		if(checkPrice(newPrice)){
-			this.cost = newPrice;
+			synchronized(lockSetCost){this.cost = newPrice;}
 			return true;
 		}
 		return false;

@@ -11,12 +11,21 @@ import org.json.JSONObject;
  */
 public class User implements IUser{
 
+	/**
+	 * A volatile String with the password.
+	 */
+	private volatile String password;
+
 	private final String username;
-	private String password;
-	private String email;
+	private final String email;
 	private final String fullname;
 	public final static int MIN_CHAR_IN_PASS = 4;
 
+	/**
+	 * The lock to be used inside {@code this#setNewPassword(String)}.
+	 */
+	private Object lockSetNewPassword;
+	
 	/**
 	 * The constructor of {@code User}.
 	 * 
@@ -157,13 +166,17 @@ public class User implements IUser{
 		return false;
 	}
 
+	/**
+	 * Synchronized update.
+	 */
 	@Override
 	public boolean setNewPassword(String newPassword) {
 		
 		if (newPassword.length() < MIN_CHAR_IN_PASS){
 			return false;
 		}else{
-			password = newPassword;
+			synchronized(lockSetNewPassword){
+			password = newPassword;}
 			return true;
 		}
 	}
