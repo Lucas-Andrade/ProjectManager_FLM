@@ -160,7 +160,7 @@ public class AppCommandCaller implements ICommandCaller {
 	@Override
 	public void callGetWorkersInProject(String pid, String workerOpt) {
 		StringBuilder path = new StringBuilder();
-		path.append("projects/").append(pid).append("/").append(workerOpt)
+		path.append("/projects/").append(pid).append("/").append(workerOpt)
 				.append("?").append(loginAndFormat());
 
 		new SwingWorkerCommand(
