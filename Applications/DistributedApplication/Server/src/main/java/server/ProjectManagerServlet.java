@@ -55,6 +55,10 @@ public class ProjectManagerServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
+
+		System.out.println(); //For test purposes.
+		System.out.println("New Connection Received:"); //For test purposes.
+
 		String parameters = req.getQueryString();
 		String path = getCommandStringFromRequest(req);
 		String method = getCommandMethodFromRequest(req);
@@ -80,7 +84,6 @@ public class ProjectManagerServlet extends HttpServlet {
 			getErrorMessage(resp, e);
 		}
 
-		System.out.println("New Connection Received:"); //For test purposes.
 		System.out.println(method + " - " + path + " - " + parameters); //For test purposes.
 		try //For test purposes.
 		{ //For test purposes.
@@ -106,7 +109,10 @@ public class ProjectManagerServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		
+
+		System.out.println(); //For test purposes.
+		System.out.println("New Connection Received:"); //For test purposes.
+
 		InputStream inputStream = req.getInputStream();
 		
 		int numBytes = Integer.parseInt(req.getHeader("Content-length"));
@@ -140,7 +146,6 @@ public class ProjectManagerServlet extends HttpServlet {
 			getErrorMessage(resp, e);
 		}
 
-		System.out.println("New Connection Received:"); //For test purposes.
 		System.out.println(method + " - " + path + " - IO constents: " + parameters); //For test purposes.
 		System.out.println(input); //For test purposes.
 
@@ -158,6 +163,10 @@ public class ProjectManagerServlet extends HttpServlet {
 	@Override
 	public void doDelete(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
+
+		System.out.println(); //For test purposes.
+		System.out.println("New Connection Received:"); //For test purposes.
+
 		String parameters = req.getQueryString();
 		String path = getCommandStringFromRequest(req);
 		String method = getCommandMethodFromRequest(req);
@@ -182,7 +191,6 @@ public class ProjectManagerServlet extends HttpServlet {
 			getErrorMessage(resp, e);
 		}
 
-		System.out.println("New Connection Received:"); //For test purposes.
 		System.out.println(method + " " + path + " " + parameters); //For test purposes.
 		try //For test purposes.
 		{ //For test purposes.
@@ -208,6 +216,9 @@ public class ProjectManagerServlet extends HttpServlet {
  */
 	public void doPatch(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
+
+		System.out.println(); //For test purposes.
+		System.out.println("New Connection Received:"); //For test purposes.
 
 	}
 
