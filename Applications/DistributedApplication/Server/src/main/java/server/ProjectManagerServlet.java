@@ -80,6 +80,7 @@ public class ProjectManagerServlet extends HttpServlet {
 			getErrorMessage(resp, e);
 		}
 
+		System.out.println(input);
 		OutputStream out = resp.getOutputStream();
 		out.write(input.getBytes());
     }
