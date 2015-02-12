@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
+
 import outputMethods.Result;
 import outputMethods.format.ToTextHtml;
 import parser.CommandParser;
@@ -44,7 +46,26 @@ public class ProjectManagerServlet extends HttpServlet {
 			super.service(req, resp);
 		}
     }
-	    
+    
+    /**
+     * Turns the array of {@code AppElement}s into a string in the JSON format.
+     * @param result
+     * @return a string with the information contained in the array of {@code AppElement}s
+     */
+    private static String toString(AppElement[] result) {
+     
+     String toReturn;
+     if(result.length == 1) {
+      return result[0].getJson().toString();
+     } else {
+      JSONArray array = new JSONArray();
+      for(int i = 0; i < result.length; i++){
+       array.put(result[i].getJson());
+      }
+      toReturn = array.toString();
+     }
+     return toReturn;
+    }
 	 
     /**
      * 
@@ -68,16 +89,16 @@ public class ProjectManagerServlet extends HttpServlet {
 			cp = getCommandParser();
 			cp.getCommand("GET", "/authenticate", parameters).call();
 			Result pr = cp.getCommand(method, path, parameters).call();
-			for (AppElement elem : pr.getResults())
+			if (req.getHeader("Accept").contains("text/html"))
 			{
-				if (req.getHeader("Accept").contains("text/html"))
+				for (AppElement elem : pr.getResults())
 				{
 					input += new ToTextHtml().parse(elem.getJson());
 				}
-				else
-				{
-					input += elem.getJson().toString();
-				}
+			}
+			else
+			{
+				input = toString(pr.getResults());
 			}
 			resp.setStatus(200);
 		} catch (Exception e) {
@@ -130,16 +151,16 @@ public class ProjectManagerServlet extends HttpServlet {
 		try {
 			cp = getCommandParser();
 			Result pr = cp.getCommand(method, path, parameters).call();
-			for (AppElement elem : pr.getResults())
+			if (req.getHeader("Accept").contains("text/html"))
 			{
-				if (req.getHeader("Accept").contains("text/html"))
+				for (AppElement elem : pr.getResults())
 				{
 					input += new ToTextHtml().parse(elem.getJson());
 				}
-				else
-				{
-					input += elem.getJson().toString();
-				}
+			}
+			else
+			{
+				input = toString(pr.getResults());
 			}
 			resp.setStatus(200);
 		} catch (Exception e) {
@@ -175,16 +196,16 @@ public class ProjectManagerServlet extends HttpServlet {
 		try {
 			cp = getCommandParser();
 			Result pr = cp.getCommand(method, path, parameters).call();
-			for (AppElement elem : pr.getResults())
+			if (req.getHeader("Accept").contains("text/html"))
 			{
-				if (req.getHeader("Accept").contains("text/html"))
+				for (AppElement elem : pr.getResults())
 				{
 					input += new ToTextHtml().parse(elem.getJson());
 				}
-				else
-				{
-					input += elem.getJson().toString();
-				}
+			}
+			else
+			{
+				input = toString(pr.getResults());
 			}
 			resp.setStatus(200);
 		} catch (Exception e) {
