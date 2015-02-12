@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import outputMethods.Result;
 import outputMethods.format.ToTextHtml;
@@ -53,18 +54,26 @@ public class ProjectManagerServlet extends HttpServlet {
      * @return a string with the information contained in the array of {@code AppElement}s
      */
     private static String toString(AppElement[] result) {
-     
-     String toReturn;
-     if(result.length == 1) {
-      return result[0].getJson().toString();
-     } else {
-      JSONArray array = new JSONArray();
-      for(int i = 0; i < result.length; i++){
-       array.put(result[i].getJson());
-      }
-      toReturn = array.toString();
-     }
-     return toReturn;
+    	return toJSONObject(result).toString();
+    }
+    
+    /**
+     * Turns the array of {@code AppElement}s into a {@code JSONObject}.
+     * @param result
+     * @return a a {@code JSONObject} with the information contained in the array 
+     * 		of {@code AppElement}s
+     */
+    private static JSONObject toJSONObject(AppElement[] result) {
+    	JSONArray array;
+    	if(result.length == 1) {
+    		return result[0].getJson();
+    	} else {
+    		array = new JSONArray();
+    		for(int i = 0; i < result.length; i++){
+    			array.put(result[i].getJson());
+    		}
+     	}
+    	return array.toJSONObject(array);
     }
 	 
     /**
@@ -91,10 +100,7 @@ public class ProjectManagerServlet extends HttpServlet {
 			Result pr = cp.getCommand(method, path, parameters).call();
 			if (req.getHeader("Accept").contains("text/html"))
 			{
-				for (AppElement elem : pr.getResults())
-				{
-					input += new ToTextHtml().parse(elem.getJson());
-				}
+				new ToTextHtml().parse(toJSONObject(pr.getResults()));
 			}
 			else
 			{

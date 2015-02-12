@@ -1,6 +1,6 @@
 package app;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
@@ -25,11 +25,11 @@ import parserCommands.PostUsers;
 import parserCommands.PostWorkerInProject;
 import parserUtils.CommandParserException;
 import utils.Leader;
-import app.ConsoleCommandsRegister;
-import app.RepositoryBuilder;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
+
+
 
 /**
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
