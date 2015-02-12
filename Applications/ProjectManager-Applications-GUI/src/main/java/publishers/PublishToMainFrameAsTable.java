@@ -29,6 +29,7 @@ public class PublishToMainFrameAsTable extends PublishToMainFrame{
 	 */
 	@Override
 	public void publish(String elements) {
+		System.out.println("ele vai começar a parsear o resultado");
 		JTable table = new JTable();
 		try{
 			table = TableBuilder.buildTable(elements);

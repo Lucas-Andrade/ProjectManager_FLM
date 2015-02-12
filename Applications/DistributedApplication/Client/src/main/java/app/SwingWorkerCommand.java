@@ -35,19 +35,20 @@ public class SwingWorkerCommand extends SwingWorker<String, String> {
 
 		try {
 			connection = httpRequest.sendRequest();
+//			System.out.println("does the swing worker get a null connection? " + (connection == null));
 			connection.setConnectTimeout(60000);
 			connection.connect();
 
 			publish("Waiting for the server's response...");
 			toReturn = httpRequest.receiveRequest();
-
-			System.out.println(toReturn);
+//			System.out.println("Mas sera que chegou aqui??");
+//			System.out.println("retorno: " + toReturn);
 
 		} catch (SocketTimeoutException e) {
 			errorPublisher.publish("Connection timeout. The server did not answer.");
 			return null;
 		} catch (IOException | NumberFormatException e) {
-			errorPublisher.publish("Could not understand server's answer.");//e.getCause().getMessage()); //This should improve, should show http response status code and message.
+			errorPublisher.publish(e.getCause().getMessage()); //This should improve, should show http response status code and message."Could not understand server's answer.");
 			return null;
 		} catch(IllegalArgumentException e) {
 			errorPublisher.publish("Could not process. Please review your data.");
@@ -58,11 +59,14 @@ public class SwingWorkerCommand extends SwingWorker<String, String> {
 			}
 		}
 
+//		System.out.println("ele chega aqui");
 		if (toReturn.contains("Message")) {
 			errorPublisher.publishJsonFormatString(toReturn);
 			return null;
 		}
-
+		
+//		System.out.println("ele chega aqui2");
+		publisher.publish(toReturn);
 		return toReturn;
 	}
 
@@ -83,21 +87,30 @@ public class SwingWorkerCommand extends SwingWorker<String, String> {
 	 */
 	@Override
 	protected void done() {
-
+		
+//		System.out.println("ele chega ao done");
 		String toPublish = null;
 
 		try {
 			toPublish = get();
+//			System.out.println("ele faz o get");
+		} catch (NullPointerException e) {
+			System.out.println("a null pointer exception foi apanhada");
+			return;
 		} catch (InterruptedException e) {
 			errorPublisher.publish("Unexpected interruption.");
 			return;
 		} catch (ExecutionException e) {
+//			System.out.println(e.toString());
 			errorPublisher.publish("Unexpected error with data received from server."); //This should improve, should show http response status code and message.
 			return;
 		}
 
+//		System.out.println("ele sai do tri cach");
 		if (toPublish != null) {
+			System.out.println("ele vai publicar");
 			publisher.publish(toPublish);
+			System.out.println("ele acabou de publicar");
 		}
 	}
 

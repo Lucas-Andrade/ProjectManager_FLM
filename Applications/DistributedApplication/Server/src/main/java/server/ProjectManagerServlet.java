@@ -241,7 +241,9 @@ public class ProjectManagerServlet extends HttpServlet {
 		out.write(input.getBytes());
 	}
 
-	
+	public void doPut(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+	System.out.println("sucesso");}
 
 /**
  * 
