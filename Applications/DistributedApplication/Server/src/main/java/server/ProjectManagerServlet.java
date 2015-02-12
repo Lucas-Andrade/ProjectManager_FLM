@@ -294,25 +294,25 @@ public class ProjectManagerServlet extends HttpServlet {
 		else
 			message = e.getMessage();
 		if (e.getClass().equals(UnknownCommandException.class)) {
-			resp.sendError(404, message); //For test purposes.
-			System.out.println("Error " + 404 + " - " + message);
+			resp.sendError(404, message);
+			System.out.println("Error " + 404 + " - " + message); //For test purposes.
 		} else if (e.getClass().equals(
 				InvalidCommandArgumentsException.class)
 				|| e.getClass().equals(DuplicateArgumentsException.class)) {
-			resp.sendError(400, message); //For test purposes.
-			System.out.println("Error " + 400 + " - " + message);
+			resp.sendError(400, message);
+			System.out.println("Error " + 400 + " - " + message); //For test purposes.
 		} else if (e.getClass().equals(InvalidUserException.class)
 				|| e.getClass().equals(NoSuchUsernameException.class)
 						|| e.getClass().equals(IncorrectPasswordException.class)) {
-			resp.sendError(401, message); //For test purposes.
-			System.out.println("Error " + 401 + " - " + message);
+			resp.sendError(401, message);
+			System.out.println("Error " + 401 + " - " + message); //For test purposes.
 		} else if (e.getClass().equals(
 				MandatoryParameterNotPresentException.class)) {
-			resp.sendError(400, message); //For test purposes.
-			System.out.println("Error " + 400 + " - " + message);
+			resp.sendError(400, message);
+			System.out.println("Error " + 400 + " - " + message); //For test purposes.
 		} else {
-			resp.sendError(500, message); //For test purposes.
-			System.out.println("Error " + 500 + " - " + message);
+			resp.sendError(500, message);
+			System.out.println("Error " + 500 + " - " + message); //For test purposes.
 		}
 	}
 	
