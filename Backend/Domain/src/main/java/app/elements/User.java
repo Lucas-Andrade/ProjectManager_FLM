@@ -24,7 +24,7 @@ public class User implements IUser{
 	/**
 	 * The lock to be used inside {@code this#setNewPassword(String)}.
 	 */
-	private Object lockSetNewPassword;
+	private Object lockSetNewPassword = new Object();
 	
 	/**
 	 * The constructor of {@code User}.
