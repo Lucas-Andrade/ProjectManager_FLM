@@ -81,11 +81,15 @@ public class ProjectManagerServlet extends HttpServlet {
 		}
 
 		System.out.println("New Connection Received:"); //For test purposes.
-		System.out.println(method + " " + path + " " + parameters); //For test purposes.
-//		int numBytes = Integer.parseInt(req.getHeader("Content-length")); //For test purposes.
-//		byte[] bytes = new byte [numBytes]; //For test purposes.
-//		req.getInputStream().read(bytes); //For test purposes.
-//		System.out.println("IO contents: " + new String(bytes)); //For test purposes.
+		System.out.println(method + " - " + path + " - " + parameters); //For test purposes.
+		try //For test purposes.
+		{ //For test purposes.
+			int numBytes = Integer.parseInt(req.getHeader("Content-length")); //For test purposes.
+			byte[] bytes = new byte [numBytes]; //For test purposes.
+			req.getInputStream().read(bytes); //For test purposes.
+			System.out.println("IO contents: " + new String(bytes)); //For test purposes.
+		} //For test purposes.
+		catch (NumberFormatException e){} //For test purposes.
 		System.out.println(input); //For test purposes.
 
 		OutputStream out = resp.getOutputStream();
@@ -137,7 +141,7 @@ public class ProjectManagerServlet extends HttpServlet {
 		}
 
 		System.out.println("New Connection Received:"); //For test purposes.
-		System.out.println(method + " " + path + " " + parameters); //For test purposes.
+		System.out.println(method + " - " + path + " - IO constents: " + parameters); //For test purposes.
 		System.out.println(input); //For test purposes.
 
 		OutputStream out = resp.getOutputStream();
@@ -180,10 +184,14 @@ public class ProjectManagerServlet extends HttpServlet {
 
 		System.out.println("New Connection Received:"); //For test purposes.
 		System.out.println(method + " " + path + " " + parameters); //For test purposes.
-//		int numBytes = Integer.parseInt(req.getHeader("Content-length")); //For test purposes.
-//		byte[] bytes = new byte [numBytes]; //For test purposes.
-//		req.getInputStream().read(bytes); //For test purposes.
-//		System.out.println("IO contents: " + new String(bytes)); //For test purposes.
+		try //For test purposes.
+		{ //For test purposes.
+			int numBytes = Integer.parseInt(req.getHeader("Content-length")); //For test purposes.
+			byte[] bytes = new byte [numBytes]; //For test purposes.
+			req.getInputStream().read(bytes); //For test purposes.
+			System.out.println("IO contents: " + new String(bytes)); //For test purposes.
+		} //For test purposes.
+		catch (NumberFormatException e){} //For test purposes.
 		System.out.println(input); //For test purposes.
 
 		OutputStream out = resp.getOutputStream();
@@ -201,49 +209,6 @@ public class ProjectManagerServlet extends HttpServlet {
 	public void doPatch(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 
-		InputStream inputStream = req.getInputStream();
-		
-		int numBytes = Integer.parseInt(req.getHeader("Content-length"));
-		byte[] bytes = new byte [numBytes];
-		inputStream.read(bytes);
-		
-		String parameters = new String(bytes) + "&accept="+ req.getHeader("Accept");
-		resp.setContentType("application/json");
-		
-		
-		String path = getCommandStringFromRequest(req);
-		String method = getCommandMethodFromRequest(req);
-		CommandParser cp = null;
-		String input = "";
-		try {
-			cp = getCommandParser();
-			Result pr = cp.getCommand(method, path, parameters).call();
-			for (AppElement elem : pr.getResults())
-			{
-				if (req.getHeader("Accept").contains("text/html"))
-				{
-					input += new ToTextHtml().parse(elem.getJson());
-				}
-				else
-				{
-					input += elem.getJson().toString();
-				}
-			}
-			resp.setStatus(200);
-		} catch (Exception e) {
-			getErrorMessage(resp, e);
-		}
-
-		System.out.println("New Connection Received:"); //For test purposes.
-		System.out.println(method + " " + path + " " + parameters); //For test purposes.
-		//int numBytes = Integer.parseInt(req.getHeader("Content-length")); //For test purposes.
-		//byte[] bytes = new byte [numBytes]; //For test purposes.
-		req.getInputStream().read(bytes); //For test purposes.
-		System.out.println("IO contents: " + new String(bytes)); //For test purposes.
-		System.out.println(input); //For test purposes.
-
-		OutputStream out = resp.getOutputStream();
-		out.write(input.getBytes());
 	}
 
 
