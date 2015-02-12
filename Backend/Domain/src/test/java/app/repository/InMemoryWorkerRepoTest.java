@@ -29,18 +29,6 @@ public class InMemoryWorkerRepoTest {
 		repo = RepositoryConstructor.constructWorkerRepo();
 	}
 	
-//	@Test
-//	public void shouldNotAddAWorkerWithRepeatedCID()
-//	{
-//		Consultant cons = RepositoryConstructor.constructConsultant(5);
-//		repo.addConsultant(new ConsultantCreationDescriptor(cons.getName(), cons.getCostPerHour(), cons.getWorkerHours())
-//		Leader lead = RepositoryConstructor.constructLeader(1);
-//		repo.addManager(new LeaderCreationDescriptor(lead.getName(), lead.getCostPerHour(), lead.getWorkerHours(), lead.getBonus()));
-//		
-//		assertFalse(repo.addConsultant(RepositoryConstructor.constructConsultant(5)));
-//		assertFalse(repo.addManager(RepositoryConstructor.constructLeader(1)));
-//	}
-	
 	@Test
 	public void shouldAddTheNewWorker()
 	{
@@ -51,10 +39,10 @@ public class InMemoryWorkerRepoTest {
 	@Test
 	public void shouldGetTheCorrectConsultant()
 	{
-		Consultant cons = RepositoryConstructor.constructConsultant(52365);
+		Consultant cons = RepositoryConstructor.constructConsultant(1);
 		repo.addConsultant(new ConsultantCreationDescriptor(cons.getName(), cons.getCostPerHour(), cons.getWorkerHours()));
 		
-		Consultant cons2 = repo.getConsultantByID(52365);
+		Consultant cons2 = repo.getConsultantByID(1);
 		
 		assertEquals(cons, cons2);
 	}
@@ -62,10 +50,10 @@ public class InMemoryWorkerRepoTest {
 	@Test
 	public void shouldGetTheCorrectManager()
 	{
-		Leader lead = RepositoryConstructor.constructLeader(52365);
+		Leader lead = RepositoryConstructor.constructLeader(5);
 		repo.addManager(new LeaderCreationDescriptor(lead.getName(), lead.getCostPerHour(), lead.getWorkerHours(), lead.getBonus()));
 		
-		Leader lead2 = repo.getManagerByID(52365);
+		Leader lead2 = repo.getManagerByID(5);
 		
 		assertEquals(lead, lead2);
 	}

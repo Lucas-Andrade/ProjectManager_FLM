@@ -44,13 +44,14 @@ public class SwingWorkerCommand extends SwingWorker<String, String> {
 			System.out.println(toReturn);
 
 		} catch (SocketTimeoutException e) {
-			errorPublisher
-					.publish("Connection timeout. The server did not answer.");
+			errorPublisher.publish("Connection timeout. The server did not answer.");
 			return null;
-		} catch (IOException e) {
-			errorPublisher.publish(e.getCause().getMessage()); //This should improve, should show http response status code and message.
+		} catch (IOException | NumberFormatException e) {
+			errorPublisher.publish("Could not understand server's answer.");//e.getCause().getMessage()); //This should improve, should show http response status code and message.
 			return null;
-
+		} catch(IllegalArgumentException e) {
+			errorPublisher.publish("Could not process. Please review your data.");
+			return null;
 		} finally {
 			if (connection != null) {
 				connection.disconnect();
@@ -91,15 +92,8 @@ public class SwingWorkerCommand extends SwingWorker<String, String> {
 			errorPublisher.publish("Unexpected interruption.");
 			return;
 		} catch (ExecutionException e) {
-			Throwable caughtException = e.getCause();
-			if (caughtException instanceof IllegalArgumentException) {
-				errorPublisher
-						.publish("Could not process. Please review your data.");
-				return;
-			} else {
-				errorPublisher.publish(caughtException.getMessage()); //This should improve, should show http response status code and message.
-				return;
-			}
+			errorPublisher.publish("Unexpected error with data received from server."); //This should improve, should show http response status code and message.
+			return;
 		}
 
 		if (toPublish != null) {

@@ -5,9 +5,6 @@ package server;
 
 import java.util.TreeMap;
 
-import app.repository.ProjectsRepository;
-import app.repository.UserRepository;
-import app.repository.WorkerRepository;
 import parser.CommandParser.CommandsRegister;
 import parserCommands.AuthenticateUser;
 import parserCommands.DeleteProjects;
@@ -25,6 +22,9 @@ import parserCommands.PostSubprojects;
 import parserCommands.PostUsers;
 import parserCommands.PostWorkerInProject;
 import parserUtils.CommandFactory;
+import app.repository.ProjectsRepository;
+import app.repository.UserRepository;
+import app.repository.WorkerRepository;
 
 /**
  * Class that implements {@link CommandsRegister}.

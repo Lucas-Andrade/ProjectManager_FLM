@@ -52,14 +52,16 @@ public class WorkerID extends JPanel {
 		add(managerId, gbc_textField);
 		managerId.setEnabled(false);
 		
+		
 		radbtnManager.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				rdbtnConsultants.setSelected(false);
+				consultants.setEnabled(false);
 				managerId.setEnabled(true);
 				consultants.setText("");
-				consultants.setEnabled(false);
+				
 			}
 			
 		});
@@ -86,10 +88,11 @@ public class WorkerID extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				radbtnManager.setEnabled(false);
+				radbtnManager.setSelected(false);
 				consultants.setEnabled(true);
-				managerId.setText("");
 				managerId.setEnabled(false);
+				managerId.setText("");
+				
 			}
 			
 		});
