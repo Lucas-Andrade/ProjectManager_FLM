@@ -82,10 +82,10 @@ public class ProjectManagerServlet extends HttpServlet {
 
 		System.out.println("New Connection Received:"); //For test purposes.
 		System.out.println(method + " " + path + " " + parameters); //For test purposes.
-		int numBytes = Integer.parseInt(req.getHeader("Content-length")); //For test purposes.
-		byte[] bytes = new byte [numBytes]; //For test purposes.
-		req.getInputStream().read(bytes); //For test purposes.
-		System.out.println("IO contents: " + new String(bytes)); //For test purposes.
+//		int numBytes = Integer.parseInt(req.getHeader("Content-length")); //For test purposes.
+//		byte[] bytes = new byte [numBytes]; //For test purposes.
+//		req.getInputStream().read(bytes); //For test purposes.
+//		System.out.println("IO contents: " + new String(bytes)); //For test purposes.
 		System.out.println(input); //For test purposes.
 
 		OutputStream out = resp.getOutputStream();
@@ -180,10 +180,10 @@ public class ProjectManagerServlet extends HttpServlet {
 
 		System.out.println("New Connection Received:"); //For test purposes.
 		System.out.println(method + " " + path + " " + parameters); //For test purposes.
-		int numBytes = Integer.parseInt(req.getHeader("Content-length")); //For test purposes.
-		byte[] bytes = new byte [numBytes]; //For test purposes.
-		req.getInputStream().read(bytes); //For test purposes.
-		System.out.println("IO contents: " + new String(bytes)); //For test purposes.
+//		int numBytes = Integer.parseInt(req.getHeader("Content-length")); //For test purposes.
+//		byte[] bytes = new byte [numBytes]; //For test purposes.
+//		req.getInputStream().read(bytes); //For test purposes.
+//		System.out.println("IO contents: " + new String(bytes)); //For test purposes.
 		System.out.println(input); //For test purposes.
 
 		OutputStream out = resp.getOutputStream();
