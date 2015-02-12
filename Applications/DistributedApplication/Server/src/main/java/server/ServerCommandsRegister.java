@@ -3,12 +3,8 @@
  */
 package server;
 
-import java.util.Iterator;
 import java.util.TreeMap;
 
-import app.repository.ProjectsRepository;
-import app.repository.UserRepository;
-import app.repository.WorkerRepository;
 import parser.CommandParser.CommandsRegister;
 import parserCommands.AuthenticateUser;
 import parserCommands.DeleteProjects;
@@ -17,16 +13,15 @@ import parserCommands.GetProjects;
 import parserCommands.GetSubproject;
 import parserCommands.GetUser;
 import parserCommands.GetUsers;
-import parserCommands.Option;
-import parserCommands.PatchConsultant;
-import parserCommands.PatchProject;
-import parserCommands.PatchUser;
 import parserCommands.PostConsultant;
 import parserCommands.PostProjects;
 import parserCommands.PostSubprojects;
 import parserCommands.PostUsers;
 import parserCommands.PostWorkerInProject;
 import parserUtils.CommandFactory;
+import app.repository.ProjectsRepository;
+import app.repository.UserRepository;
+import app.repository.WorkerRepository;
 
 /**
  * Class that implements {@link CommandsRegister}.
