@@ -61,13 +61,13 @@ public class InMemoryUserRepoTest {
 	@Test
 	public void shouldNotAddAUserWithUsernameAlreadyUsed(){
 		User user = RepositoryConstructor.constructUser(1);
-		assertFalse(repo.addUser(new UserCreationDescriptor(user.getLoginPassword(), user.getLoginPassword(), user.getEmail())));
+		assertFalse(repo.addUser(new UserCreationDescriptor(user.getLoginName(), user.getLoginPassword(), user.getEmail())));
 	}
 	
 	@Test
 	public void shouldAddAUser(){
 		User user = RepositoryConstructor.constructUser(25489);
-		assertTrue(repo.addUser(new UserCreationDescriptor(user.getLoginPassword(), user.getLoginPassword(), user.getEmail())));
+		assertTrue(repo.addUser(new UserCreationDescriptor(user.getLoginName(), user.getLoginPassword(), user.getEmail())));
 	}
 
 	@Test

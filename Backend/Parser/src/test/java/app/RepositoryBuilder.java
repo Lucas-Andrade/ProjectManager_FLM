@@ -49,7 +49,7 @@ public class RepositoryBuilder {
 
 		for(int i = 1; i <= 5; i++)
 		{
-			Project project = constructProject(0);
+			Project project = constructProject(i);
 			repo.addProject(new ProjectCreationDescriptor(project.getLocal().getLatitude(), project.getLocal().getLongitude(), project.getLocal().getName(), project.getLocal().getCost()));
 		}
 		repo.getProjectById(3).addProject(repo.getProjectById(4));
@@ -108,12 +108,12 @@ public class RepositoryBuilder {
 		
 		for(int i = 1; i <= 4; i++) //the value of i represents the value of the CID being used
 		{
-			Consultant cons = constructConsultant(0);
+			Consultant cons = constructConsultant(i);
 			repo.addConsultant(new ConsultantCreationDescriptor(cons.getName(), cons.getCostPerHour(), cons.getWorkerHours()));
 		}
 		for(int i = 5; i <= 6; i++) //the value of i represents the value of the CID being used
 		{
-			Leader mana = constructLeader(0);
+			Leader mana = constructLeader(i);
 			repo.addManager(new LeaderCreationDescriptor(mana.getName(), mana.getCostPerHour(), mana.getWorkerHours(), mana.getBonus()));
 		}
 		
@@ -162,7 +162,7 @@ public class RepositoryBuilder {
 	 */
 	public static User constructUser(int i)
 	{
-		return new User("user" + i, "userPass" + i, "user" + i + "@email.com", "User " + i);
+		return new User("user" + i, "userPass" + i, "user" + i + "@email.com");
 	}
 	
 	/**

@@ -1,4 +1,4 @@
-package app.commandParser;
+package app;
 
 import static org.junit.Assert.*;
 
@@ -35,7 +35,7 @@ import app.repository.WorkerRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
  */
-public class CommandParserTest {
+public class CommandsRegisterTest {
 
 	static CommandParser parser;
 	static WorkerRepository wRepo;

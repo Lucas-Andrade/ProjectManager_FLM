@@ -23,14 +23,6 @@ public class InMemoryProjectRepoTest {
 		repo = RepositoryConstructor.constructProjectRepo();
 	}
 	
-//	@Test
-//	public void shouldNotAddARepeatedElement() {
-//		Project proj = RepositoryConstructor.constructProject((int) repo.size()+1);
-//		System.out.println(repo.getNextPID());
-//		assertTrue(repo.addProject(proj));
-//		assertFalse(repo.addProject(proj));
-//	}
-	
 	@Test
 	public void cannotRemoveAnElementThatIsNotThere(){
 		Project proj = RepositoryConstructor.constructProject(repo.size()+1);
@@ -68,11 +60,6 @@ public class InMemoryProjectRepoTest {
 	public void cannotReturnAnElementIfThePIDIsInvalid(){
 		assertNull(repo.getProjectById(55426));
 	}
-	
-//	@Test
-//	public void shouldNotAddProjectWithTheSamePID(){
-//		assertFalse(repo.addProject(RepositoryConstructor.constructProject(2)));
-//	}
 	
 	@Test
 	public void shouldReturnTheWholeRepository(){
