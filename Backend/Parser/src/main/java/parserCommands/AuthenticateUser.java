@@ -7,6 +7,8 @@ import outputMethods.Result;
 import parserUtils.CommandFactory;
 import app.AppElement;
 import app.domainCommands.UserAuthentication;
+import app.domainCommands.exceptions.CommandExecutionException;
+import app.elements.Message;
 import app.repository.UserRepository;
 
 /**
@@ -98,7 +100,14 @@ public class AuthenticateUser extends BaseCommandResultsOutputMethod{
 		String username = getParameterAsString(USERNAME);
 		String password = getParameterAsString(PASSWORD);
 		
-		return new UserAuthentication(repository, username, password).call();
+		AppElement[] toReturn;
+		
+		try{
+			toReturn = new UserAuthentication(repository, username, password).call();
+		} catch(CommandExecutionException e) {
+			toReturn = new AppElement[]{new Message("Introduced username or password is incorrect.")};
+		}
+		return toReturn;
 	}
 
 }
