@@ -1,6 +1,8 @@
 package publishers;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -12,6 +14,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class TableBuilder {
+	
+	private static Map<String, Integer> columnsContent = new HashMap<String, Integer>();
 	
 	public static JTable buildTable(String elements){
 		
@@ -51,7 +55,9 @@ public class TableBuilder {
 		Iterator<Entry<String, JsonElement>> iterator = set.iterator();
 		int i = 0;
 		while(iterator.hasNext()) {
-			columnElements[i++] = iterator.next().getKey();
+			String columnName = iterator.next().getKey();
+			columnsContent.put(columnName, i);
+			columnElements[i++] = columnName;
 		}
 		
 		return columnElements;
@@ -65,9 +71,12 @@ public class TableBuilder {
 		Set<Entry<String, JsonElement>> set = object.entrySet();
 		Iterator<Entry<String, JsonElement>> iterator = set.iterator();
 		
-		int i = 0;
 		while(iterator.hasNext()) {
-			line[i++] = iterator.next().getValue().getAsString();
+			Entry<String, JsonElement> entry = iterator.next();
+			String cellContent = entry.getValue().getAsString();
+			String columnTitle = entry.getKey();
+			int column = columnsContent.get(columnTitle);
+			line[column] = cellContent;
 		}
 		
 		return line;

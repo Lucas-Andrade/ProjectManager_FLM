@@ -1,6 +1,10 @@
 package publishers;
 
+import guiElements.mainFrameAL.mainFrame.ErrorDialog;
+
 import javax.swing.JTable;
+
+import com.google.gson.JsonParseException;
 
 /**
  * Allows to publish information about {@code AppElement}s indirectly to the
@@ -25,7 +29,13 @@ public class PublishToGetPanelAsTable extends PublishToGetPanel{
 	 * @see PublishToMainFrame#publish(AppElement[])
 	 */
 	public void publish(String elements) {
-		JTable table = TableBuilder.buildTable(elements);
+		JTable table = new JTable();
+		try{
+			table = TableBuilder.buildTable(elements);
+		} catch(JsonParseException | IllegalStateException | ClassCastException | UnsupportedOperationException e) {
+			new ErrorDialog("Could not present the results.").setVisible(true);
+			return;
+		}
 		publish(table);
 	}
 }

@@ -14,24 +14,15 @@ import guiElements.mainFrameAL.mainFrame.ErrorDialog;
 public class InternalAuthenticationPublish extends PublishWithLoadingDialog implements ResultsPublisher{
 
 	/**
-	 * Will not publish. 
+	 * Will not publish publish data into a frame or panel. Only authenticates the user.
 	 */
 	@Override
 	public void publish(String element) {
-		String[] array = element.split(":");
-		
-		if (array[0] == "Error") {
-			new ErrorDialog("The username or password you entered is wrong.").setVisible(true);
-			disposeLoadingDialog();
-			return;
-		}
-		
 		try {
 			Authentication.authenticatePossible();
 		} catch(IllegalStateException e) {
 			new ErrorDialog("Could not authenticate.").setVisible(true);
 		}
-		
 		disposeLoadingDialog();
 	}
 

@@ -4,7 +4,7 @@
   <interface id="1" language="java" name="publishers.ErrorPublisher" project="ProjectManager-Applications-GUI" 
     file="/ProjectManager-Applications-GUI/src/main/java/publishers/ErrorPublisher.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="771" y="83"/>    
+    <position height="-1" width="-1" x="655" y="67"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -34,7 +34,7 @@
   <class id="4" language="java" name="publishers.PublishToGetPanel" project="ProjectManager-Applications-GUI" 
     file="/ProjectManager-Applications-GUI/src/main/java/publishers/PublishToGetPanel.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-160" y="255"/>    
+    <position height="-1" width="-1" x="-155" y="266"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -44,7 +44,7 @@
   <class id="5" language="java" name="publishers.PublishToGetPanelAsTable" project="ProjectManager-Applications-GUI" 
     file="/ProjectManager-Applications-GUI/src/main/java/publishers/PublishToGetPanelAsTable.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-252" y="400"/>    
+    <position height="-1" width="-1" x="-143" y="422"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -54,7 +54,7 @@
   <class id="6" language="java" name="publishers.PublishToGetPanelAsTree" project="ProjectManager-Applications-GUI" 
     file="/ProjectManager-Applications-GUI/src/main/java/publishers/PublishToGetPanelAsTree.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-68" y="401"/>    
+    <position height="-1" width="-1" x="38" y="424"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -64,7 +64,7 @@
   <class id="7" language="java" name="publishers.PublishToMainFrame" project="ProjectManager-Applications-GUI" 
     file="/ProjectManager-Applications-GUI/src/main/java/publishers/PublishToMainFrame.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="318" y="251"/>    
+    <position height="-1" width="-1" x="312" y="280"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -74,7 +74,7 @@
   <class id="8" language="java" name="publishers.PublishToMainFrameAsTable" project="ProjectManager-Applications-GUI" 
     file="/ProjectManager-Applications-GUI/src/main/java/publishers/PublishToMainFrameAsTable.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="457" y="410"/>    
+    <position height="-1" width="-1" x="432" y="428"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   <class id="9" language="java" name="publishers.PublishToMainFrameAsTree" project="ProjectManager-Applications-GUI" 
     file="/ProjectManager-Applications-GUI/src/main/java/publishers/PublishToMainFrameAsTree.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="248" y="411"/>    
+    <position height="-1" width="-1" x="235" y="426"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -105,7 +105,7 @@
   <class id="11" language="java" name="publishers.PublishToErrorDialog" project="ProjectManager-Applications-GUI" 
     file="/ProjectManager-Applications-GUI/src/main/java/publishers/PublishToErrorDialog.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="771" y="208"/>    
+    <position height="-1" width="-1" x="655" y="427"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -113,59 +113,59 @@
     </display>  
   </class>  
   <generalization id="12">    
-    <bendpoint x="-167" y="200"/>    
-    <bendpoint x="450" y="201"/>    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <generalization id="13">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <realization id="14">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <generalization id="15">    
     <bendpoint x="67" y="200"/>    
     <bendpoint x="451" y="202"/>    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <generalization id="16">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="17">    
+  <realization id="13">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <generalization id="14">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="7"/>  
   </generalization>  
-  <realization id="18">    
+  <realization id="15">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="2"/>  
   </realization>  
-  <generalization id="19">    
+  <generalization id="16">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <generalization id="20">    
+  <realization id="17">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <generalization id="18">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="4"/>  
   </generalization>  
+  <generalization id="19">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <realization id="20">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
   <generalization id="21">    
     <bendpoint x="312" y="201"/>    
     <bendpoint x="451" y="201"/>    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <realization id="22">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="1"/>  
-  </realization>  
-  <realization id="23">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
+  <generalization id="22">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="23">    
+    <bendpoint x="-167" y="200"/>    
+    <bendpoint x="450" y="201"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
