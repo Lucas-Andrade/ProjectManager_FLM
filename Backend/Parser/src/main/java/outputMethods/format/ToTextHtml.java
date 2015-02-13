@@ -162,4 +162,15 @@ public class ToTextHtml implements TextParser{
 		}
 		return builder.append("</html>").toString();
 	}
+
+	@Override
+	public String parse(JSONArray jsonArray) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("<html>");
+
+		for (int i = 0; i < jsonArray.length(); i++){
+			builder.append(parse(jsonArray.getJSONObject(i), "</p>\n", 0)).append("<hr>\n");
+		}
+		return builder.append("</html>").toString();
+	}
 }

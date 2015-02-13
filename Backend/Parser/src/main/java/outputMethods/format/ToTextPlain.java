@@ -128,4 +128,18 @@ public class ToTextPlain implements TextParser {
 	public String parse(JSONObject[] toWrite){
 		return TextParser.parseArray(toWrite, "----", this);
 	}
+
+	@Override
+	public String parse(JSONArray jsonArray) {
+		if (jsonArray.length() == 1){
+			return parse(jsonArray.getJSONObject(0));
+		} else {
+			StringBuilder builder = new StringBuilder();
+			for (int i = 0; i < jsonArray.length(); i++){
+				builder.append(parse(jsonArray.getJSONObject(i))).append("----")
+						.append("\n");
+			}
+			return builder.toString();
+		}
+	}
 }

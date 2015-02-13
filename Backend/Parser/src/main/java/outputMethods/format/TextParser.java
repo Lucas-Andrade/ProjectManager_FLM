@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -24,6 +25,17 @@ public interface TextParser{
 	 *         JSONObject>
 	 */
 	public String parse(JSONObject jsonObject);
+	
+	/**
+	 * Parses the <@code JSONArray> to a string in the desired format. All the
+	 * information contained in the <@code JSONArray> is parsed into a readable
+	 * format.
+	 * 
+	 * @param jsonArray
+	 * @return a string with all the information contained in the <@code
+	 *         JSONArray>
+	 */
+	public String parse(JSONArray jsonArray);
 
 	/**
 	 * Parses the information in each element of the array to a string in the
