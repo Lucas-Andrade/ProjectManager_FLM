@@ -45,7 +45,8 @@ public class PatchHttpRequest extends HttpRequest{
 			connection.setDoInput(true); // true indicates the server returns response
 			connection.setDoOutput(true);// true indicates PUT request
 			connection.setRequestMethod("PATCH");
-			connection.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
+			connection.setRequestProperty("Content-type", "text/plain");
+			
 			
 			OutputStream writer = connection.getOutputStream();
 			writer.write(parameters.getBytes());
