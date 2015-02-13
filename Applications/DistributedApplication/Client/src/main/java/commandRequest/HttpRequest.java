@@ -48,12 +48,17 @@ public abstract class HttpRequest {
 		if (connection.getResponseCode() >= 200 && connection.getResponseCode() <= 299) {
 
 			InputStream inputStream = connection.getInputStream();
-		
+//			System.out.println("is input stream null? " + (inputStream == null));
+//			System.out.println("is receive request's connection null? " + (connection == null));
+			
 			int numBytes = Integer.parseInt(connection.getHeaderField("Content-Length"));
 			byte[] bytes = new byte[numBytes];
 			inputStream.read(bytes);
 
+//			System.out.println("ele chegou aqui");
 			result = new String(bytes);
+//			System.out.println("is result null? " + (result == null));
+
 
 		} else if (connection.getResponseCode() >= 400 && connection.getResponseCode() <= 499) {
 			throw new IllegalArgumentException("Bad data was received from the user.");

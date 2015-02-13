@@ -158,6 +158,17 @@ public class ProjectManagerServlet extends HttpServlet {
 		out.write(input.getBytes());
 	}
 
+	public void doPut(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+	System.out.println("sucesso");}
+
+/**
+ * 
+ * @param req
+ * @param resp
+ * @throws IOException
+ */
+//	public void doPatch(HttpServletRequest req, HttpServletResponse resp)
 	private void doGetAndDelete(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		System.out.println(); // For test purposes.
