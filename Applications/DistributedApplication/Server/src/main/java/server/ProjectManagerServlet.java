@@ -117,6 +117,7 @@ public class ProjectManagerServlet extends HttpServlet {
 	private String callRequestedCommand(String method, String path, String parameters, HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		try {
 			CommandParser cp = getCommandParser();
+			resp.setCharacterEncoding("UTF-8");
 			if(method.equals("GET"))
 				callAuthenticateCommand(parameters, cp);
 			Result pr = cp.getCommand(method, path, parameters).call();
@@ -199,7 +200,7 @@ public class ProjectManagerServlet extends HttpServlet {
 		catch (NumberFormatException e) { // For test purposes.
 		} // For test purposes.
 		System.out.println(input); // For test purposes.
-
+		resp.setHeader("text/plain", "charset=UTF-8");
 		OutputStream out = resp.getOutputStream();
 		out.write(input.getBytes());
 	}

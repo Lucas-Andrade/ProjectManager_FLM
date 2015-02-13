@@ -21,6 +21,7 @@ public class ToTextHtml implements TextParser{
 	public String parse(JSONObject jsonObject){
 		StringBuilder builder = new StringBuilder();
 		return builder.append("<html>\n")
+				.append("<head><meta http-equiv=\"Content-Type\"content=\"text/html;charset=UTF-8\"></head>")
 				.append(parse(jsonObject, "</p>\n", 0)).append("</html>")
 				.toString();
 	}
