@@ -1,13 +1,11 @@
 package utils;
 
-
 /**
  * Class {@code Consultant} whose objects will represent the consultants that
- * will constitute a {@code Team}
- * 
- * Extends {@link AWorker}.
+ * will constitute a {@code Team}. All {@code Consultant} instances are
+ * thread-safe. Extends {@link AWorker}.
  */
-public class Consultant extends AWorker{
+public class Consultant extends AWorker {
 
 	/**
 	 * Consultant constructor that will receive as parameters the worker's name,
@@ -27,7 +25,7 @@ public class Consultant extends AWorker{
 	 *            - total amount of hours worked by the worker.
 	 */
 	public Consultant(String name, double costPerHour, double hoursWorked,
-			long cid){
+			long cid) {
 		super(name, costPerHour, hoursWorked, cid);
 	}
 
