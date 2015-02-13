@@ -4,7 +4,10 @@ import guiElements.mainFrameAL.FrameAndPanelHolder;
 import guiElements.mainFrameAL.mainFrame.MainFrame;
 
 /**
- * This class provides some utilitarian tools for running the GUI
+ * This class provides some utilitarian tools for running the GUI. Such utilities
+ * are to initialize the {@code MainFrame}, to set the authentication button to login
+ * or to log out. It also stores an instance of {@code ICommandCaller} and 
+ * intanciates and stores an instance of {@code FrameAndPanelHolder}.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 06/02/2015

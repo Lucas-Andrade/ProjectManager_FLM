@@ -17,20 +17,29 @@ public class DistributedAppUI {
 	private DistributedAppUI() {
 	}
 	
+	/**
+	 * The host of the server.
+	 */
 	private static final String HOST = "localhost";
+	
+	/**
+	 * The port where the server is expected to be waiting for requests.
+	 */
 	private static final String PORT = "8081";
 	
-	
+	/**
+	 * @return a {@code String} with the port where the server is expected to be waiting for requests.
+	 */
 	private static String getPort() {
 		return PORT;
 	}
 
+	/**
+	 * @return a {@code String} with the host where the server is expected to be waiting for requests.
+	 */
 	private static String getHost() {
 		return HOST;
 	}
-	
-	
-	
 	
 	/**
 	 * Main method, starts the application.

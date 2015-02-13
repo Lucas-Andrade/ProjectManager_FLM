@@ -9,12 +9,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 
 /**
- * Class responsible for instantiating the {@code Command}
- * {@link SetConsultantPropertiesFromRepo} and for executing it in a new
- * {@link SwingWorkerCommand}, if not possible displays {@link ErrorDialog}s
- * with exception messages. Implements {@code ActionListener}.
- * 
- * @see SetConsultantPropertiesFromRepo
+ * Class responsible for calling the method {@code ICommandCaller#callPatchConsultant}.
+ * Implements {@code ActionListener}.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015
@@ -40,11 +36,10 @@ public class SetConsultantAL implements ActionListener {
 	}
 
 	/**
-	 * Method responsible for instantiating the {@code Command}
-	 * {@link SetConsultantPropertiesFromRepo} and for executing it in a new
-	 * {@link SwingWorkerCommand}, if not possible displays {@link ErrorDialog}s
-	 * with exception messages. {@see
-	 * ActionListener#actionPerformed(ActionEvent)}
+	 * Tests if the {@code TextField}s received from the frame that constructed {@code this}
+	 * were left blank and calls the method {@code ICommandCaller#callPatchConsultant}.
+	 * If a field was left blank an {@code ErrorDialog} will be set to visible and
+	 * the method {@code ICommandCaller#callPatchConsultant} will not be called.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
