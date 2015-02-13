@@ -11,11 +11,7 @@ import java.net.HttpURLConnection;
  * @since 06/02/2015
  */
 public class DeleteHttpRequest extends HttpRequest{
-	
-	public static HttpURLConnection connection = null;
-	public String requestURL;
-	public String path;
-	
+
 	public DeleteHttpRequest(String requestURL, String path) {
 		super(requestURL, path);
 	}

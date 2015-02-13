@@ -7,9 +7,9 @@ import java.net.URL;
 
 public abstract class HttpRequest {
 
-	private String requestURL;
-	private String path;
-	private HttpURLConnection connection;
+	protected String requestURL;
+	protected String path;
+	protected HttpURLConnection connection;
 	private String result;
 
 	public HttpRequest(String requestURL, String path) {

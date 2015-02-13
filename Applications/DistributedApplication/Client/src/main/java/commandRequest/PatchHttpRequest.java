@@ -2,7 +2,6 @@ package commandRequest;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
@@ -16,11 +15,6 @@ import java.net.URL;
  */
 public class PatchHttpRequest extends HttpRequest{
 
-
-	public static OutputStreamWriter writer;
-	public static HttpURLConnectionForPatch connection = null;
-	public String requestURL;
-	public String path;
 	private String parameters;
 	
 	public PatchHttpRequest(String requestURL, String path, String parameters) {
