@@ -473,7 +473,14 @@ public class AppCommandCaller implements ICommandCaller {
 		builder.append("loginName=").append(Authentication.getName())
 				.append("&loginPassword=").append(Authentication.getPassword());
 
-		return builder.toString();
+		
+		 try {
+	           String utf8Out = new String(builder.toString().getBytes("UTF-8"), "ISO-8859-1");
+	           return utf8Out;
+	        } catch (java.io.UnsupportedEncodingException e) {
+	            return null;
+	        }
+	         
 	}
 
 }

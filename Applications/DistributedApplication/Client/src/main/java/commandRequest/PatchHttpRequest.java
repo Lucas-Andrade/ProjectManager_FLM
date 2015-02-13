@@ -46,7 +46,7 @@ public class PatchHttpRequest extends HttpRequest{
 
 		connection = (HttpURLConnectionForPatch) url.openConnection();
 		connection.setRequestProperty("Accept", "application/json");
-			
+
 //    	System.out.println("is connection null? " + (connection == null));
 //    	System.out.println("ele chegou aqui1");
 		connection.setDoInput(true); // true indicates the server returns response
