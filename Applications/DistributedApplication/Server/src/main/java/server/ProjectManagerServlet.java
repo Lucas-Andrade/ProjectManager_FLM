@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import outputMethods.Result;
 import outputMethods.format.ToTextHtml;
@@ -47,6 +46,7 @@ public class ProjectManagerServlet extends HttpServlet {
 		}
 	}
 
+	
 	/**
 	 * Turns the array of {@code AppElement}s into a string in the JSON format.
 	 * 
@@ -54,28 +54,37 @@ public class ProjectManagerServlet extends HttpServlet {
 	 * @return a string with the information contained in the array of
 	 *         {@code AppElement}s
 	 */
-	private static String toString(AppElement[] result) {
-		return toJSONObject(result).toString();
-	}
+	private static String toJSONString(AppElement[] result) {
 
-	/**
-	 * Turns the array of {@code AppElement}s into a {@code JSONObject}.
-	 * 
-	 * @param result
-	 * @return a a {@code JSONObject} with the information contained in the
-	 *         array of {@code AppElement}s
-	 */
-	private static JSONObject toJSONObject(AppElement[] result) {
-		JSONArray array;
 		if (result.length == 1) {
-			return result[0].getJson();
+			return result[0].getJson().toString();
 		} else {
-			array = new JSONArray();
+			JSONArray array = new JSONArray();
 			for (int i = 0; i < result.length; i++) {
 				array.put(result[i].getJson());
 			}
+			return array.toString();
 		}
-		return array.toJSONObject(array);
+	}
+	
+	/**
+	 * Turns the array of {@code AppElement}s into a string in the HTML format.
+	 * 
+	 * @param result
+	 * @return a string with the information contained in the array of
+	 *         {@code AppElement}s
+	 */
+	private static String toHTMLString(AppElement[] result) {
+		
+		if (result.length == 1) {
+			return new ToTextHtml().parse(result[0].getJson());
+		} else {
+			JSONArray array = new JSONArray();
+			for (int i = 0; i < result.length; i++) {
+				array.put(result[i].getJson());
+			}
+			return new ToTextHtml().parse(array);
+		}
 	}
 
 	/**
@@ -117,13 +126,14 @@ public class ProjectManagerServlet extends HttpServlet {
 	private String callRequestedCommand(String method, String path, String parameters, HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		try {
 			CommandParser cp = getCommandParser();
+			resp.setCharacterEncoding("UTF-8");
 			if(method.equals("GET"))
 				callAuthenticateCommand(parameters, cp);
 			Result pr = cp.getCommand(method, path, parameters).call();
 			if (req.getHeader("Accept").contains("text/html")) {
-				return new ToTextHtml().parse(toJSONObject(pr.getResults()));
+				return toHTMLString(pr.getResults());
 			} else {
-				return toString(pr.getResults());
+				return toJSONString(pr.getResults());
 			}
 		} catch (Exception e) {
 			getErrorMessage(resp, e);
@@ -199,7 +209,7 @@ public class ProjectManagerServlet extends HttpServlet {
 		catch (NumberFormatException e) { // For test purposes.
 		} // For test purposes.
 		System.out.println(input); // For test purposes.
-
+		resp.setHeader("text/plain", "charset=UTF-8");
 		OutputStream out = resp.getOutputStream();
 		out.write(input.getBytes());
 	}

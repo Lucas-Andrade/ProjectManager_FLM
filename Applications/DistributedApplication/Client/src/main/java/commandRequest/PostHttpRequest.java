@@ -2,7 +2,6 @@ package commandRequest;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 
 
@@ -15,11 +14,6 @@ import java.net.HttpURLConnection;
  */
 public class PostHttpRequest extends HttpRequest{
 
-
-	public static OutputStreamWriter writer;
-	public static HttpURLConnection connection = null;
-	public String requestURL;
-	public String path;
 	private String parameters;
 	
 	public PostHttpRequest(String requestURL, String path, String parameters) {

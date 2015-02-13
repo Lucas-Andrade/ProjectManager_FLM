@@ -21,6 +21,7 @@ public class ToTextHtml implements TextParser{
 	public String parse(JSONObject jsonObject){
 		StringBuilder builder = new StringBuilder();
 		return builder.append("<html>\n")
+				.append("<head><meta http-equiv=\"Content-Type\"content=\"text/html;charset=UTF-8\"></head>")
 				.append(parse(jsonObject, "</p>\n", 0)).append("</html>")
 				.toString();
 	}
@@ -159,6 +160,17 @@ public class ToTextHtml implements TextParser{
 
 		for (JSONObject json : toWrite){
 			builder.append(parse(json, "</p>\n", 0)).append("<hr>\n");
+		}
+		return builder.append("</html>").toString();
+	}
+
+	@Override
+	public String parse(JSONArray jsonArray) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("<html>");
+
+		for (int i = 0; i < jsonArray.length(); i++){
+			builder.append(parse(jsonArray.getJSONObject(i), "</p>\n", 0)).append("<hr>\n");
 		}
 		return builder.append("</html>").toString();
 	}

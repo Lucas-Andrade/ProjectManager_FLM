@@ -12,10 +12,6 @@ import java.net.HttpURLConnection;
  */
 public class GetHttpRequest  extends HttpRequest{
 
-
-	
-	private HttpURLConnection connection;
-
 	public GetHttpRequest(String requestURL, String path) {
 		super(requestURL, path);
 	}

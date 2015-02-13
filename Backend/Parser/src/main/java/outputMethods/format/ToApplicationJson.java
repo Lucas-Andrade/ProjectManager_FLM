@@ -1,5 +1,6 @@
 package outputMethods.format;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -34,5 +35,13 @@ public class ToApplicationJson implements TextParser{
 			builder.append(parse(toWrite[toWrite.length - 1])).append("]");
 			return builder.toString();
 		}
+	}
+
+	/**
+	 * @see TextParser#parse(JSONArray)
+	 */
+	@Override
+	public String parse(JSONArray jsonArray) {
+		return jsonArray.toString();
 	}
 }

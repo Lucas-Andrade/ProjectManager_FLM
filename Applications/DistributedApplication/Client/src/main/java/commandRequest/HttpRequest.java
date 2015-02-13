@@ -7,9 +7,9 @@ import java.net.URL;
 
 public abstract class HttpRequest {
 
-	private String requestURL;
-	private String path;
-	private HttpURLConnection connection;
+	protected String requestURL;
+	protected String path;
+	protected HttpURLConnection connection;
 	private String result;
 
 	public HttpRequest(String requestURL, String path) {
@@ -48,16 +48,12 @@ public abstract class HttpRequest {
 		if (connection.getResponseCode() >= 200 && connection.getResponseCode() <= 299) {
 
 			InputStream inputStream = connection.getInputStream();
-//			System.out.println("is input stream null? " + (inputStream == null));
-//			System.out.println("is receive request's connection null? " + (connection == null));
 			
 			int numBytes = Integer.parseInt(connection.getHeaderField("Content-Length"));
 			byte[] bytes = new byte[numBytes];
 			inputStream.read(bytes);
 
-//			System.out.println("ele chegou aqui");
 			result = new String(bytes);
-//			System.out.println("is result null? " + (result == null));
 
 
 		} else if (connection.getResponseCode() >= 400 && connection.getResponseCode() <= 499) {
@@ -68,8 +64,5 @@ public abstract class HttpRequest {
 		}
 
 		return result;
-		
-		
-
 	}
 }
