@@ -12,9 +12,9 @@ import publishers.PublishToGetPanelAsTable;
 import publishers.PublishToGetPanelAsTree;
 import publishers.PublishToMainFrameAsTable;
 import publishers.PublishToMainFrameAsTree;
+
 import commandRequest.DeleteHttpRequest;
 import commandRequest.GetHttpRequest;
-import commandRequest.PatchHttpRequest;
 import commandRequest.PostHttpRequest;
 
 /**
@@ -199,7 +199,7 @@ public class AppCommandCaller implements ICommandCaller {
 			parameters.append("&priceHour=").append(priceHour);
 		}
 
-		new SwingWorkerCommand(new PatchHttpRequest(requestURL(),
+		new SwingWorkerCommand(new PostHttpRequest(requestURL(),
 				path.toString(), parameters.toString()),
 				new PublishToMainFrameAsTable(), errorPublisher).execute();
 	}
@@ -248,7 +248,7 @@ public class AppCommandCaller implements ICommandCaller {
 			parameters.append("&name=").append(localName);
 		}
 
-		new SwingWorkerCommand(new PatchHttpRequest(requestURL(),
+		new SwingWorkerCommand(new PostHttpRequest(requestURL(),
 				path.toString(), parameters.toString()),
 				new PublishToMainFrameAsTree(), errorPublisher).execute();
 	}
@@ -280,7 +280,7 @@ public class AppCommandCaller implements ICommandCaller {
 				.append(oldPassword).append("&newPassword=")
 				.append(newPassword);
 
-		new SwingWorkerCommand(new PatchHttpRequest(requestURL(),
+		new SwingWorkerCommand(new PostHttpRequest(requestURL(),
 				path.toString(), parameters.toString()),
 				new PublishToMainFrameAsTable(), errorPublisher).execute();
 	}

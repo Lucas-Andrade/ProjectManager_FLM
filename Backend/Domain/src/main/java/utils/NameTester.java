@@ -32,12 +32,18 @@ public abstract class NameTester {
 		return Collections.unmodifiableCollection(USED_NAMES);
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public String toString() {
 		String names = "";
-		for (String name : USED_NAMES) {
-			names += name.toString();
-		}
+		String[] usedNames = null;
+		if (USED_NAMES.size() > 0)
+			USED_NAMES.toArray(usedNames);
+		if (usedNames != null)
+			for (String name : usedNames) {
+				names += name.toString();
+			}
 		return names;
 	}
+
 }

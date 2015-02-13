@@ -9,9 +9,8 @@ import org.json.JSONObject;
 
 /**
  * Abstract class {@code AContainer} that will allow homogeneous collections of
- * {@code Project} and {@code AWorker} to be created.
- *
- * Implements the Interface {@link ICost}.
+ * {@code Project} and {@code AWorker} to be created. All {@code AContainer}
+ * instances are thread-safe. Implements the Interface {@link ICost}.
  *
  * @param <Elements>
  *            - any instances of a type compatible with {@code Element}.
@@ -25,6 +24,11 @@ public abstract class AContainer<Elements extends UtilsElement> implements
 	private volatile Collection<Elements> elementsList;
 
 	/**
+	 * The lock to be used inside {@code this} object.
+	 */
+	private Object lockAContainer = new Object();
+
+	/**
 	 * ACointaner constructor the will instantiate {@code elementsList} as a
 	 * synchronized {@link TreeSet} collection.
 	 * 
@@ -34,8 +38,9 @@ public abstract class AContainer<Elements extends UtilsElement> implements
 	 * {@code Element}.
 	 */
 	public AContainer() {
-		this.elementsList = Collections
-				.synchronizedSortedSet(new TreeSet<Elements>());
+		synchronized (lockAContainer) {
+			this.elementsList = new TreeSet<Elements>();
+		}
 	}
 
 	/**
@@ -45,7 +50,9 @@ public abstract class AContainer<Elements extends UtilsElement> implements
 	 * @see java.util.Iterator
 	 */
 	public Iterator<Elements> iterator() {
-		return elementsList.iterator();
+		synchronized (lockAContainer) {
+			return elementsList.iterator();
+		}
 	}
 
 	/**
@@ -82,13 +89,15 @@ public abstract class AContainer<Elements extends UtilsElement> implements
 	 *         Otherwise.
 	 */
 	public boolean addElement(Elements element) {
-		return elementsList.add(element);
+		synchronized (lockAContainer) {
+			return elementsList.add(element);
+		}
 	}
 
 	/**
 	 * Method that will remove the {@code Element} equal to element from this
-	 * container. If this container doesn't have an {@code Element} equal to element,
-	 * then no {@code Element} will be removed and the method will
+	 * container. If this container doesn't have an {@code Element} equal to
+	 * element, then no {@code Element} will be removed and the method will
 	 * return false.
 	 * 
 	 * If the given parameter is null returns false.
@@ -100,14 +109,18 @@ public abstract class AContainer<Elements extends UtilsElement> implements
 	 *         Otherwise.
 	 */
 	public boolean remove(UtilsElement element) {
-		return this.elementsList.remove(element);
+		synchronized (lockAContainer) {
+			return this.elementsList.remove(element);
+		}
 	}
 
 	/**
 	 * @return and unmodifiable view of {@code elementsList}.
 	 */
 	public Collection<Elements> getElementsList() {
-		return Collections.unmodifiableCollection(elementsList);
+		synchronized (lockAContainer) {
+			return Collections.unmodifiableCollection(elementsList);
+		}
 	}
 
 	/**
@@ -116,13 +129,14 @@ public abstract class AContainer<Elements extends UtilsElement> implements
 	 */
 	@Override
 	public double getCost() {
+		synchronized (lockAContainer) {
+			double cost = 0;
 
-		double cost = 0;
-
-		for (Elements element : elementsList) {
-			cost += element.getCost();
+			for (Elements element : elementsList) {
+				cost += element.getCost();
+			}
+			return cost;
 		}
-		return cost;
 	}
 
 	/**
@@ -130,52 +144,64 @@ public abstract class AContainer<Elements extends UtilsElement> implements
 	 */
 	@Override
 	public String toString() {
-		return toString(0);
+		synchronized (lockAContainer) {
+			return toString(0);
+		}
 	}
 
 	public String toString(int i) {
-		String spaces = "";
-		for (int n = 0; n < i; n++) {
-			spaces += " ";
-		}
-		StringBuilder builder = new StringBuilder();
+		synchronized (lockAContainer) {
+			String spaces = "";
+			for (int n = 0; n < i; n++) {
+				spaces += " ";
+			}
+			StringBuilder builder = new StringBuilder();
 
-		for (Elements element : elementsList) {
-			builder.append(spaces).append(element.toString()).append("\n");
-		}
+			for (Elements element : elementsList) {
+				builder.append(spaces).append(element.toString()).append("\n");
+			}
 
-		return builder.toString();
+			return builder.toString();
+		}
 	}
 
 	public JSONObject[] getJson() {
-		Collection<Elements> elementsCol = getElementsList();
-		JSONObject[] jsonArray = new JSONObject[elementsCol.size()];
-		int index = 0;
+		synchronized (lockAContainer) {
+			Collection<Elements> elementsCol = getElementsList();
+			JSONObject[] jsonArray = new JSONObject[elementsCol.size()];
+			int index = 0;
 
-		for (Elements element : elementsCol) {
-			jsonArray[index++] = element.getJson();
+			for (Elements element : elementsCol) {
+				jsonArray[index++] = element.getJson();
+			}
+			return jsonArray;
 		}
-		return jsonArray;
 	}
 
 	/**
 	 * @return the number of elements the container contains
 	 */
 	public int size() {
-		return elementsList.size();
+		synchronized (lockAContainer) {
+			return elementsList.size();
+		}
 	}
 
 	public void removeAll() {
-		elementsList.clear();
+		synchronized (lockAContainer) {
+			elementsList.clear();
+		}
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((elementsList == null) ? 0 : elementsList.hashCode());
-		return result;
+		synchronized (lockAContainer) {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result
+					+ ((elementsList == null) ? 0 : elementsList.hashCode());
+			return result;
+		}
 	}
 
 	/**
@@ -185,16 +211,18 @@ public abstract class AContainer<Elements extends UtilsElement> implements
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object container) {
-		if (this == container) {
-			return true;
+		synchronized (lockAContainer) {
+			if (this == container) {
+				return true;
+			}
+			if (container == null) {
+				return false;
+			}
+			if (getClass() != container.getClass()) {
+				return false;
+			}
+			return hasSameElements((AContainer<UtilsElement>) container);
 		}
-		if (container == null) {
-			return false;
-		}
-		if (getClass() != container.getClass()) {
-			return false;
-		}
-		return hasSameElements((AContainer<UtilsElement>) container);
 	}
 
 	/**
@@ -208,27 +236,33 @@ public abstract class AContainer<Elements extends UtilsElement> implements
 	 *         same elements as {@code this}
 	 */
 	public boolean hasSameElements(AContainer<UtilsElement> container) {
-		if (size() != container.size()) {
-			return false;
-		}
-
-		Iterator<UtilsElement> iterator = container.getElementsList()
-				.iterator();
-		for (UtilsElement element : elementsList) {
-			if (!element.equals(iterator.next())) { // TreeSet is ordered, so we
-													// can compare elements in
-													// pairs
+		synchronized (lockAContainer) {
+			if (size() != container.size()) {
 				return false;
 			}
+
+			Iterator<UtilsElement> iterator = container.getElementsList()
+					.iterator();
+			for (UtilsElement element : elementsList) {
+				if (!element.equals(iterator.next())) { // TreeSet is ordered,
+														// so we
+														// can compare elements
+														// in
+														// pairs
+					return false;
+				}
+			}
+			return true;
 		}
-		return true;
 	}
 
 	/**
 	 * @return true if the {@code AContainer} is empty
 	 */
 	public boolean isEmpty() {
-		return elementsList.isEmpty();
+		synchronized (lockAContainer) {
+			return elementsList.isEmpty();
+		}
 	}
 
 }

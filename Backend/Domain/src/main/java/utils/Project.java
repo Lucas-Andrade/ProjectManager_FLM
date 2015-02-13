@@ -7,9 +7,8 @@ import java.util.Iterator;
 import org.json.JSONObject;
 
 /**
- * Class {@code Project} whose instances will represent a project.
- * 
- * Extends {@link UtilsElement}.
+ * Class {@code Project} whose instances will represent a project. All
+ * {@code Project} instances are thread-safe. Extends {@link UtilsElement}.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
@@ -28,16 +27,9 @@ public class Project implements IProject {
 	private final long pid;
 
 	/**
-	 * The lock to be used inside {@code this#setManager(Leader)} and
-	 * {@code this#addWorker(AWorker)}.
+	 * The lock to be used inside {@code this} object.
 	 */
-	private final Object lockAddWorkerAndOrSetManager = new Object();
-	/**
-	 * The lock to be used inside {@code this#addProject(Project)},
-	 * {@code this#removeProject(Project)} and
-	 * {@code this#removeAllSubprojects()}.
-	 */
-	private final Object lockAddOrRemoveProjectAndTestName = new Object();
+	private final Object lockProject = new Object();
 
 	/**
 	 * Project constructor that will receive as parameter the name of the
@@ -61,16 +53,18 @@ public class Project implements IProject {
 	 */
 	private Project(String name, Local local, Leader manager, Team team,
 			long pid) {
-		if (name == null || local == null || team == null) {
-			throw new IllegalArgumentException(
-					"Name, Local and Team can't be null.");
+		synchronized (lockProject) {
+			if (name == null || local == null || team == null) {
+				throw new IllegalArgumentException(
+						"Name, Local and Team can't be null.");
+			}
+			this.name = name;
+			this.local = local;
+			this.team = team;
+			this.manager = manager;
+			this.pid = pid;
+			projectsContainer = new ProjectsContainer();
 		}
-		this.name = name;
-		this.local = local;
-		this.team = team;
-		this.manager = manager;
-		this.pid = pid;
-		projectsContainer = new ProjectsContainer();
 	}
 
 	/**
@@ -96,8 +90,6 @@ public class Project implements IProject {
 	 * {@code manager} the worker will not be added and the method will return
 	 * false.
 	 * 
-	 * This method has some synchronized instructions.
-	 * 
 	 * Throws {@link IllegalArgumentException} if the given parameter is null.
 	 * 
 	 * @param worker
@@ -106,10 +98,10 @@ public class Project implements IProject {
 	 * @return true if the worker is successfully added and false otherwise.
 	 */
 	public boolean addWorker(AWorker worker) {
-		if (worker == null) {
-			throw new IllegalArgumentException();
-		}
-		synchronized (lockAddWorkerAndOrSetManager) {
+		synchronized (lockProject) {
+			if (worker == null) {
+				throw new IllegalArgumentException();
+			}
 			if (worker.equals(manager)) {
 				return false;
 			}
@@ -126,8 +118,6 @@ public class Project implements IProject {
 	 * added Sub{@code Project}'s name to the {@link NameTester} ({@see
 	 * NameTester#addName(String)}; {@see Project#removeProject(Project)}).
 	 * 
-	 * This method has some synchronized instructions.
-	 * 
 	 * Throws {@link IllegalArgumentException} if the given parameter is null.
 	 * 
 	 * @param project
@@ -136,15 +126,16 @@ public class Project implements IProject {
 	 * @return true if the subproject is successfully added and false otherwise.
 	 */
 	public boolean addProject(Project project) {
-		if (project == null) {
-			throw new IllegalArgumentException();
-		}
-		synchronized (lockAddOrRemoveProjectAndTestName) {
+		synchronized (lockProject) {
+			if (project == null) {
+				throw new IllegalArgumentException();
+			}
 			if (NameTester.addName(project.getName())) {
 				return projectsContainer.addElement(project);
 			}
+
+			return false;
 		}
-		return false;
 	}
 
 	/**
@@ -164,11 +155,12 @@ public class Project implements IProject {
 	 * @return true if the worker is successfully removed and false otherwise.
 	 */
 	public boolean removeAWorker(String name) {
-
-		if (name == null) {
-			throw new IllegalArgumentException();
+		synchronized (lockProject) {
+			if (name == null) {
+				throw new IllegalArgumentException();
+			}
+			return team.remove(getWorkerByName(name));
 		}
-		return team.remove(getWorkerByName(name));
 	}
 
 	/**
@@ -193,7 +185,9 @@ public class Project implements IProject {
 	 *         otherwise.
 	 */
 	public boolean removeProject(String name) {
-		return removeProject(getSubProjectByName(name));
+		synchronized (lockProject) {
+			return removeProject(getSubProjectByName(name));
+		}
 	}
 
 	/**
@@ -220,22 +214,24 @@ public class Project implements IProject {
 	 *         otherwise.
 	 */
 	public boolean removeProject(Project project) {
-		if (name == null) {
-			throw new IllegalArgumentException();
-		}
-		synchronized (lockAddOrRemoveProjectAndTestName) {
+		synchronized (lockProject) {
+			if (name == null) {
+				throw new IllegalArgumentException();
+			}
+
 			if (projectsContainer.remove(project)) {
 				return NameTester.removeName(name);
 			}
+
+			return false;
 		}
-		return false;
 	}
 
 	/**
-	 * Synchronized method that clears the projects container and NameTester.
+	 * Clears the projects container and NameTester.
 	 */
 	public void removeAllSubprojects() {
-		synchronized (lockAddOrRemoveProjectAndTestName) {
+		synchronized (lockProject) {
 			NameTester.removeAll();
 			projectsContainer.removeAll();
 		}
@@ -259,11 +255,12 @@ public class Project implements IProject {
 	 *         in the {@code team} verifies this condition.
 	 */
 	public AWorker getWorkerByName(String name) {
-
-		if (name == null) {
-			throw new IllegalArgumentException();
+		synchronized (lockProject) {
+			if (name == null) {
+				throw new IllegalArgumentException();
+			}
+			return (AWorker) team.getElementByName(name);
 		}
-		return (AWorker) team.getElementByName(name);
 	}
 
 	/**
@@ -285,12 +282,13 @@ public class Project implements IProject {
 	 *         with the given name exists.
 	 */
 	public Project getSubProjectByName(String name) {
-
-		if (name == null) {
-			throw new IllegalArgumentException();
+		synchronized (lockProject) {
+			if (name == null) {
+				throw new IllegalArgumentException();
+			}
+			return this.getName().equals(name) ? this
+					: (Project) projectsContainer.getElementByName(name);
 		}
-		return this.getName().equals(name) ? this : (Project) projectsContainer
-				.getElementByName(name);
 	}
 
 	/**
@@ -298,7 +296,9 @@ public class Project implements IProject {
 	 *         method {@code getElementsList()}.
 	 */
 	public Collection<AWorker> getTeam() {
-		return this.team.getElementsList();
+		synchronized (lockProject) {
+			return this.team.getElementsList();
+		}
 	}
 
 	/**
@@ -307,14 +307,18 @@ public class Project implements IProject {
 	 */
 	@Override
 	public Collection<Project> getContainerProject() {
-		return this.projectsContainer.getElementsList();
+		synchronized (lockProject) {
+			return this.projectsContainer.getElementsList();
+		}
 	}
 
 	/**
 	 * @return {@link Local} of the {@code Project}.
 	 */
 	public Local getLocal() {
-		return local;
+		synchronized (lockProject) {
+			return local;
+		}
 	}
 
 	/**
@@ -323,7 +327,9 @@ public class Project implements IProject {
 	 */
 	@Override
 	public String getName() {
-		return name;
+		synchronized (lockProject) {
+			return name;
+		}
 	}
 
 	/**
@@ -331,7 +337,9 @@ public class Project implements IProject {
 	 */
 	@Override
 	public String toString() {
-		return toString(0);
+		synchronized (lockProject) {
+			return toString(0);
+		}
 	}
 
 	/**
@@ -343,51 +351,55 @@ public class Project implements IProject {
 	 * @return information about the project
 	 */
 	protected String toString(int nr) {
+		synchronized (lockProject) {
+			StringBuilder spaceBuilder = new StringBuilder();
+			for (int i = 0; i < nr * 5; i++) {
+				spaceBuilder.append(" ");
+			}
+			String space = spaceBuilder.toString();
 
-		StringBuilder spaceBuilder = new StringBuilder();
-		for (int i = 0; i < nr * 5; i++) {
-			spaceBuilder.append(" ");
+			StringBuilder builder = new StringBuilder();
+			DecimalFormat df = new DecimalFormat("#.##");
+			builder.append(space).append("Project ID: ").append(pid)
+					.append("\n").append(space).append("Cost: ")
+					.append(df.format(getCost())).append(" Euros").append("\n")
+					.append(space).append("Local: ").append(local.toString())
+					.append("\n");
+			if (manager != null) {
+				builder.append(space).append("Manager: ")
+						.append(manager.toString()).append("\n");
+			}
+			builder.append(space)
+					.append("Team: ")
+					.append("\n")
+					.append(space)
+					.append(team.toString(5))
+					// .append("\n")
+					.append(space)
+					.append("Subprojects: ")
+					.append(projectsContainer.isEmpty() ? "None." : "\n"
+							+ projectsContainer.toString(nr + 1)).append("\n");
+
+			return builder.toString();
 		}
-		String space = spaceBuilder.toString();
-
-		StringBuilder builder = new StringBuilder();
-		DecimalFormat df = new DecimalFormat("#.##");
-		builder.append(space).append("Project ID: ").append(pid).append("\n")
-				.append(space).append("Cost: ").append(df.format(getCost()))
-				.append(" Euros").append("\n").append(space).append("Local: ")
-				.append(local.toString()).append("\n");
-		if (manager != null) {
-			builder.append(space).append("Manager: ")
-					.append(manager.toString()).append("\n");
-		}
-		builder.append(space)
-				.append("Team: ")
-				.append("\n")
-				.append(space)
-				.append(team.toString(5))
-				// .append("\n")
-				.append(space)
-				.append("Subprojects: ")
-				.append(projectsContainer.isEmpty() ? "None." : "\n"
-						+ projectsContainer.toString(nr + 1)).append("\n");
-
-		return builder.toString();
 	}
 
 	@Override
 	public JSONObject getJson() {
-		DecimalFormat df = new DecimalFormat("#.##");
-		JSONObject json = new JSONObject();
-		json.put("Subprojects", projectsContainer.isEmpty() ? "None."
-				: projectsContainer.getJson());
-		json.put("Project team", team.getJson());
-		if (manager != null) {
-			json.put("Manager", manager.getJson());
+		synchronized (lockProject) {
+			DecimalFormat df = new DecimalFormat("#.##");
+			JSONObject json = new JSONObject();
+			json.put("Subprojects", projectsContainer.isEmpty() ? "None."
+					: projectsContainer.getJson());
+			json.put("Project team", team.getJson());
+			if (manager != null) {
+				json.put("Manager", manager.getJson());
+			}
+			json.put("Local", local.getJson());
+			json.put("Cost (Euros)", df.format(getCost()).replaceAll(",", "."));
+			json.put("Project ID", pid);
+			return json;
 		}
-		json.put("Local", local.getJson());
-		json.put("Cost (Euros)", df.format(getCost()).replaceAll(",", "."));
-		json.put("Project ID", pid);
-		return json;
 	}
 
 	/**
@@ -396,16 +408,17 @@ public class Project implements IProject {
 	 */
 	@Override
 	public double getCost() {
+		synchronized (lockProject) {
+			double managerCost;
+			try {
+				managerCost = manager.getCost();
+			} catch (NullPointerException e) {
+				managerCost = 0;
+			}
 
-		double managerCost;
-		try {
-			managerCost = manager.getCost();
-		} catch (NullPointerException e) {
-			managerCost = 0;
+			return local.getCost() + managerCost + team.getCost()
+					+ projectsContainer.getCost();
 		}
-
-		return local.getCost() + managerCost + team.getCost()
-				+ projectsContainer.getCost();
 	}
 
 	/**
@@ -421,18 +434,19 @@ public class Project implements IProject {
 	 */
 	@Override
 	public int compareTo(UtilsElement element) {
-
-		if (element == null) {
-			throw new IllegalArgumentException();
+		synchronized (lockProject) {
+			if (element == null) {
+				throw new IllegalArgumentException();
+			}
+			if (!(element instanceof Project)) {
+				throw new ClassCastException();
+			}
+			if (this.getName().equalsIgnoreCase(element.getName())) {
+				return this.getName().compareTo(element.getName());
+			}
+			return this.getName().toLowerCase()
+					.compareTo(element.getName().toLowerCase());
 		}
-		if (!(element instanceof Project)) {
-			throw new ClassCastException();
-		}
-		if (this.getName().equalsIgnoreCase(element.getName())) {
-			return this.getName().compareTo(element.getName());
-		}
-		return this.getName().toLowerCase()
-				.compareTo(element.getName().toLowerCase());
 	}
 
 	/**
@@ -440,13 +454,15 @@ public class Project implements IProject {
 	 */
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
+		synchronized (lockProject) {
+			final int prime = 31;
+			int result = 1;
 
-		result = prime * result + ((local == null) ? 0 : local.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+			result = prime * result + ((local == null) ? 0 : local.hashCode());
+			result = prime * result + ((name == null) ? 0 : name.hashCode());
 
-		return result;
+			return result;
+		}
 	}
 
 	/**
@@ -455,19 +471,21 @@ public class Project implements IProject {
 	 */
 	@Override
 	public boolean equals(Object project) {
-		if (this == project) {
-			return true;
+		synchronized (lockProject) {
+			if (this == project) {
+				return true;
+			}
+			if (project == null) {
+				return false;
+			}
+			if (getClass() != project.getClass()) {
+				return false;
+			}
+			if (((Project) project).compareTo(this) != 0) {
+				return false;
+			}
+			return hasSameProperties((Project) project);
 		}
-		if (project == null) {
-			return false;
-		}
-		if (getClass() != project.getClass()) {
-			return false;
-		}
-		if (((Project) project).compareTo(this) != 0) {
-			return false;
-		}
-		return hasSameProperties((Project) project);
 	}
 
 	/**
@@ -481,33 +499,36 @@ public class Project implements IProject {
 	 *         properties as {@code this}
 	 */
 	public boolean hasSameProperties(Project project) {
-		if (pid != project.getPID()) {
-			return false;
+		synchronized (lockProject) {
+			if (pid != project.getPID()) {
+				return false;
+			}
+			if (!local.equals(project.getLocal())) {
+				return false;
+			}
+			if (!hasSameManager(project)) {
+				return false;
+			}
+			if (!hasSameTeam(project)) {
+				return false;
+			}
+			if (!hasSameSubprojects(project)) {
+				return false;
+			}
+			return true;
 		}
-		if (!local.equals(project.getLocal())) {
-			return false;
-		}
-		if (!hasSameManager(project)) {
-			return false;
-		}
-		if (!hasSameTeam(project)) {
-			return false;
-		}
-		if (!hasSameSubprojects(project)) {
-			return false;
-		}
-		return true;
 	}
 
 	public boolean hasSameManager(Project project) {
-
-		if (manager == null && project.getManager() != null) {
-			return false;
+		synchronized (lockProject) {
+			if (manager == null && project.getManager() != null) {
+				return false;
+			}
+			if (manager != null && !manager.equals(project.getManager())) {
+				return false;
+			}
+			return true;
 		}
-		if (manager != null && !manager.equals(project.getManager())) {
-			return false;
-		}
-		return true;
 	}
 
 	/**
@@ -521,17 +542,19 @@ public class Project implements IProject {
 	 *         team as {@code this}
 	 */
 	public boolean hasSameTeam(Project project) {
-		if (getTeam().size() != project.getTeam().size()) {
-			return false;
-		}
-
-		Iterator<AWorker> otherTeam = project.getTeam().iterator();
-		for (AWorker worker : getTeam()) {
-			if (!worker.equals(otherTeam.next())) {
+		synchronized (lockProject) {
+			if (getTeam().size() != project.getTeam().size()) {
 				return false;
 			}
+
+			Iterator<AWorker> otherTeam = project.getTeam().iterator();
+			for (AWorker worker : getTeam()) {
+				if (!worker.equals(otherTeam.next())) {
+					return false;
+				}
+			}
+			return true;
 		}
-		return true;
 	}
 
 	/**
@@ -545,35 +568,39 @@ public class Project implements IProject {
 	 *         subprojects as {@code this}
 	 */
 	public boolean hasSameSubprojects(Project project) {
-		if (getContainerProject().size() != project.getContainerProject()
-				.size()) {
-			return false;
-		}
-		Iterator<Project> subprojects = project.getContainerProject()
-				.iterator();
-		for (Project proj : getContainerProject()) {
-			if (!proj.equals(subprojects.next())) {
+		synchronized (lockProject) {
+			if (getContainerProject().size() != project.getContainerProject()
+					.size()) {
 				return false;
 			}
+			Iterator<Project> subprojects = project.getContainerProject()
+					.iterator();
+			for (Project proj : getContainerProject()) {
+				if (!proj.equals(subprojects.next())) {
+					return false;
+				}
+			}
+			return true;
 		}
-		return true;
 	}
 
 	/**
 	 * @return The Manager of the {@code Project}.
 	 */
 	public Leader getManager() {
-		return manager;
+		synchronized (lockProject) {
+			return manager;
+		}
 	}
 
 	/**
-	 * Synchronized method for setting a manager.
+	 * Method for setting a manager.
 	 * 
 	 * @param manager
 	 *            The manager to set in the {@code Project}.
 	 */
 	public void setManager(Leader manager) {
-		synchronized (lockAddWorkerAndOrSetManager) {
+		synchronized (lockProject) {
 			this.manager = manager;
 		}
 	}
@@ -583,7 +610,9 @@ public class Project implements IProject {
 	 */
 	@Override
 	public long getPID() {
-		return pid;
+		synchronized (lockProject) {
+			return pid;
+		}
 	}
 
 	/**
@@ -592,7 +621,9 @@ public class Project implements IProject {
 	 */
 	@Override
 	public boolean updateLongitude(double newLongitude) {
-		return local.setLongitude(newLongitude);
+		synchronized (lockProject) {
+			return local.setLongitude(newLongitude);
+		}
 	}
 
 	/**
@@ -601,7 +632,9 @@ public class Project implements IProject {
 	 */
 	@Override
 	public boolean updateLatitude(double newLatitude) {
-		return local.setLatitude(newLatitude);
+		synchronized (lockProject) {
+			return local.setLatitude(newLatitude);
+		}
 	}
 
 	/**
@@ -610,7 +643,9 @@ public class Project implements IProject {
 	 */
 	@Override
 	public void updateLocalName(String newName) {
-		local.setName(newName);
+		synchronized (lockProject) {
+			local.setName(newName);
+		}
 	}
 
 	/**
@@ -619,7 +654,9 @@ public class Project implements IProject {
 	 */
 	@Override
 	public boolean updateLocalPrice(double newPrice) {
-		return local.setPrice(newPrice);
+		synchronized (lockProject) {
+			return local.setPrice(newPrice);
+		}
 	}
 
 	/**
@@ -628,6 +665,9 @@ public class Project implements IProject {
 	 * @return the number of subprojects
 	 */
 	public int getSubprojectsNumber() {
-		return projectsContainer.size();
+		synchronized (lockProject) {
+			return projectsContainer.size();
+		}
 	}
+
 }

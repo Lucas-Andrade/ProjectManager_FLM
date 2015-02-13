@@ -5,9 +5,9 @@ import java.text.DecimalFormat;
 import org.json.JSONObject;
 
 /**
- * Class {@code Local} whose objects will represent the local of a project.
- * 
- * Implements the Interfaces {@link ICost}, {@link IName}.
+ * Class {@code Local} whose objects will represent the local of a project. All
+ * {@code Local} instances are thread-safe. Implements the Interfaces
+ * {@link ICost}, {@link IName}.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 08/12/2014
@@ -15,7 +15,7 @@ import org.json.JSONObject;
 public class Local implements ICost, IName {
 
 	/**
-	 * Volatile fields for thread-safety.
+	 * All fields are Volatile.
 	 * 
 	 * @field name - String with the name of the local.
 	 * @field latitude/longitude - coordinates of the local.
@@ -27,21 +27,9 @@ public class Local implements ICost, IName {
 	private volatile double longitude;
 
 	/**
-	 * The lock to be used inside {@code this#setName(String)}.
+	 * The lock to be used in all {@code this} methods.
 	 */
-	private final Object lockSetName = new Object();
-	/**
-	 * The lock to be used inside {@code this#setLatitude(double)}.
-	 */
-	private final Object lockSetLatitude = new Object();
-	/**
-	 * The lock to be used inside {@code this#setLongitude(double)}.
-	 */
-	private final Object lockSetLongitude = new Object();
-	/**
-	 * The lock to be used inside {@code this#setPrice(double)}.
-	 */
-	private final Object lockSetCost = new Object();
+	private final Object lockLocal = new Object();
 
 	/**
 	 * Local constructor that will receive the local's name, address and cost as
@@ -57,24 +45,29 @@ public class Local implements ICost, IName {
 	 * @param cost
 	 *            - the cost associated with the local.
 	 */
-	public Local(double latitude, double longitude, String name, double cost){
-		if (name == null || !checkLatitude(latitude) || !checkLongitude(longitude) || 
-				!checkPrice(cost)){
-			throw new IllegalArgumentException("Latitude must be between -90 and 90, Longitude\nbetween -180 and 180 and Price must be above 0.");
+	public Local(double latitude, double longitude, String name, double cost) {
+		synchronized (lockLocal) {
+			if (name == null || !checkLatitude(latitude)
+					|| !checkLongitude(longitude) || !checkPrice(cost)) {
+				throw new IllegalArgumentException(
+						"Latitude must be between -90 and 90, Longitude\nbetween -180 and 180 and Price must be above 0.");
+			}
+			this.name = name;
+			this.cost = cost;
+			this.latitude = latitude;
+			this.longitude = longitude;
 		}
-		this.name = name;
-		this.cost = cost;
-		this.latitude = latitude;
-		this.longitude = longitude;
 	}
-	
+
 	/**
 	 * Override of the method {@code getName()} from the {@code IName}
 	 * Interface.
 	 */
 	@Override
-	public String getName(){
-		return name;
+	public String getName() {
+		synchronized (lockLocal) {
+			return name;
+		}
 	}
 
 	/**
@@ -82,155 +75,188 @@ public class Local implements ICost, IName {
 	 * Interface.
 	 */
 	@Override
-	public double getCost(){
-		return cost;
+	public double getCost() {
+		synchronized (lockLocal) {
+			return cost;
+		}
 	}
-	
+
 	/**
 	 * @return The latitude of the {@code Local}
 	 */
-	public double getLatitude(){
-		return latitude;
+	public double getLatitude() {
+		synchronized (lockLocal) {
+			return latitude;
+		}
 	}
-	
+
 	/**
 	 * @return The longitude of the {@code Local}
 	 */
-	public double getLongitude(){
-		return longitude;
+	public double getLongitude() {
+		synchronized (lockLocal) {
+			return longitude;
+		}
 	}
 
 	/**
 	 * Override of the method {@code toString()} from {@code Object}.
 	 */
 	@Override
-	public String toString(){
-		DecimalFormat df = new DecimalFormat("#.##");
-		return name + ", " + "(" + latitude + ", " + longitude + ")"
-				+ ", cost: " + df.format(getCost()) + " Euros";
+	public String toString() {
+		synchronized (lockLocal) {
+			DecimalFormat df = new DecimalFormat("#.##");
+			return name + ", " + "(" + latitude + ", " + longitude + ")"
+					+ ", cost: " + df.format(getCost()) + " Euros";
+		}
 	}
 
-	
 	public JSONObject getJson() {
-		DecimalFormat df = new DecimalFormat("#.##");
-		JSONObject json = new JSONObject();
-		json.put("Cost (Euros)", df.format(getCost()).replaceAll(",", "."));
-		json.put("Longitude", longitude);
-		json.put("Latitude", latitude);
-		json.put("Name", name.replaceAll("%20", " "));
-		return json;
+		synchronized (lockLocal) {
+			DecimalFormat df = new DecimalFormat("#.##");
+			JSONObject json = new JSONObject();
+			json.put("Cost (Euros)", df.format(getCost()).replaceAll(",", "."));
+			json.put("Longitude", longitude);
+			json.put("Latitude", latitude);
+			json.put("Name", name.replaceAll("%20", " "));
+			return json;
+		}
 	}
-	
-	
+
 	/**
-	 * sets the value of the {@code longitude} to the new value passed as parameter, provided 
-	 * it is between the correct bounds
-	 * The update in this method is synchronized.
+	 * sets the value of the {@code longitude} to the new value passed as
+	 * parameter, provided it is between the correct bounds
 	 * 
-	 * @param newLongitude - new {@code longitude} value
+	 * @param newLongitude
+	 *            - new {@code longitude} value
 	 * 
 	 * @return {@code true} if the {@code longitude} was set to the new value
-	 * @return {@code false} if the {@code longitude} was not in the correct bounds
+	 * @return {@code false} if the {@code longitude} was not in the correct
+	 *         bounds
 	 */
 	public boolean setLongitude(double newLongitude) {
-		if(checkLongitude(newLongitude)){
-			synchronized(lockSetLongitude){
-			longitude = newLongitude;}
-			return true;
+		synchronized (lockLocal) {
+			if (checkLongitude(newLongitude)) {
+				longitude = newLongitude;
+				return true;
+			}
+			return false;
 		}
-		return false;
 	}
-	
+
 	/**
-	 * sets the value of the {@code latitude} to the new value passed as parameter, provided 
-	 * it is between the correct bounds
-	 * The update in this method is synchronized.
+	 * sets the value of the {@code latitude} to the new value passed as
+	 * parameter, provided it is between the correct bounds
 	 * 
-	 * @param newLatitude - new {@code latitude} value
+	 * @param newLatitude
+	 *            - new {@code latitude} value
 	 * 
 	 * @return {@code true} if the {@code latitude} was set to the new value
-	 * @return {@code false} if the {@code latitude} was not in the correct bounds
+	 * @return {@code false} if the {@code latitude} was not in the correct
+	 *         bounds
 	 */
 	public boolean setLatitude(double newLatitude) {
-
-		if(checkLatitude(newLatitude)){
-			synchronized(lockSetLatitude){latitude = newLatitude;}
-			return true;
+		synchronized (lockLocal) {
+			if (checkLatitude(newLatitude)) {
+				latitude = newLatitude;
+				return true;
+			}
+			return false;
 		}
-		return false;
 	}
 
 	/**
-	 * sets the {@code name} of the {@code Local} to the new {@code String}, passed as parameter
-	 * The update in this method is synchronized.
+	 * sets the {@code name} of the {@code Local} to the new {@code String},
+	 * passed as parameter
 	 * 
-	 * @param newName - the new name of the {@code Local}
+	 * @param newName
+	 *            - the new name of the {@code Local}
 	 */
 	public void setName(String newName) {
-		synchronized(lockSetName){this.name = newName;}
+		synchronized (lockLocal) {
+			this.name = newName;
+		}
 	}
 
 	/**
-	 * sets the value of the {@code price} to the new value passed as parameter, provided 
-	 * it is between the correct bounds
-	 * The update in this method is synchronized.
+	 * sets the value of the {@code price} to the new value passed as parameter,
+	 * provided it is between the correct bounds
 	 * 
-	 * @param newPrice - new {@code price} value
+	 * @param newPrice
+	 *            - new {@code price} value
 	 * 
 	 * @return {@code true} if the {@code price} was set to the new value
 	 * @return {@code false} if the {@code price} was not in the correct bounds
 	 */
 	public boolean setPrice(double newPrice) {
-		if(checkPrice(newPrice)){
-			synchronized(lockSetCost){this.cost = newPrice;}
-			return true;
+		synchronized (lockLocal) {
+			if (checkPrice(newPrice)) {
+				this.cost = newPrice;
+				return true;
+			}
+			return false;
 		}
-		return false;
 	}
-	
+
 	/**
-	 * verifies if the value of the {@code latitude} is between the correct interval
-	 * @param latitude - value of the {@code latitude} to be verified
+	 * verifies if the value of the {@code latitude} is between the correct
+	 * interval
+	 * 
+	 * @param latitude
+	 *            - value of the {@code latitude} to be verified
 	 * @return {@code true} if it is inside the interval
 	 * @return {@code false} if it is not inside the interval
 	 */
-	private boolean checkLatitude(double latitude){
-		return latitude >= -90 && latitude <= 90;
+	private boolean checkLatitude(double latitude) {
+		synchronized (lockLocal) {
+			return latitude >= -90 && latitude <= 90;
+		}
 	}
-	
+
 	/**
-	 * verifies if the value of the {@code longitude} is between the correct interval
-	 * @param latitudeString - value of the {@code longitude} to be verified
+	 * verifies if the value of the {@code longitude} is between the correct
+	 * interval
+	 * 
+	 * @param latitudeString
+	 *            - value of the {@code longitude} to be verified
 	 * @return {@code true} if it is inside the interval
 	 * @return {@code false} if it is not inside the interval
 	 */
-	private boolean checkLongitude(double longitude){
-		return longitude >= -180 && longitude <= 180;
+	private boolean checkLongitude(double longitude) {
+		synchronized (lockLocal) {
+			return longitude >= -180 && longitude <= 180;
+		}
 	}
-	
+
 	/**
 	 * verifies if the value of the {@code price} non negative
-	 * @param latitudeString - value of the {@code price} to be verified
+	 * 
+	 * @param latitudeString
+	 *            - value of the {@code price} to be verified
 	 * @return {@code true} if it is non negative
 	 * @return {@code false} if it is negative
 	 */
-	private boolean checkPrice(double price){
-		return price >= 0;
+	private boolean checkPrice(double price) {
+		synchronized (lockLocal) {
+			return price >= 0;
+		}
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(cost);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(latitude);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(longitude);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
+		synchronized (lockLocal) {
+			final int prime = 31;
+			int result = 1;
+			long temp;
+			temp = Double.doubleToLongBits(cost);
+			result = prime * result + (int) (temp ^ (temp >>> 32));
+			temp = Double.doubleToLongBits(latitude);
+			result = prime * result + (int) (temp ^ (temp >>> 32));
+			temp = Double.doubleToLongBits(longitude);
+			result = prime * result + (int) (temp ^ (temp >>> 32));
+			result = prime * result + ((name == null) ? 0 : name.hashCode());
+			return result;
+		}
 	}
 
 	/**
@@ -238,48 +264,54 @@ public class Local implements ICost, IName {
 	 * consistent with the {@code compareTo()} method.
 	 */
 	@Override
-	public boolean equals(Object local){
-		if (this == local){
+	public boolean equals(Object local) {
+		synchronized (lockLocal) {
+			if (this == local) {
+				return true;
+			}
+
+			if (local == null) {
+				return false;
+			}
+
+			if (getClass() != local.getClass()) {
+				return false;
+			}
+
+			return hasSameParameters((Local) local);
+		}
+	}
+
+	/**
+	 * Verifies if the {@code Local} passed as parameter has the same properties
+	 * as {@code this}.
+	 * 
+	 * @param worker
+	 * @return true if the {@code Local} passed as parameter has the same
+	 *         properties as {@code this}
+	 * @return false if the {@code Local} passed as parameter has not the same
+	 *         properties as {@code this}
+	 */
+	public boolean hasSameParameters(Local local) {
+		synchronized (lockLocal) {
+			if (longitude != local.getLongitude()) {
+				return false;
+			}
+
+			if (latitude != local.getLatitude()) {
+				return false;
+			}
+
+			if (cost != local.getCost()) {
+				return false;
+			}
+
+			if (!name.equals(local.getName())) {
+				return false;
+			}
+
 			return true;
 		}
-
-		if (local == null){
-			return false;
-		}
-
-		if (getClass() != local.getClass()){
-			return false;
-		}
-		
-		return hasSameParameters((Local) local);
 	}
-	
-	/**
-	 * Verifies if the {@code Local} passed as parameter has the same properties as {@code this}.
-	 * @param worker
-	 * @return true if the {@code Local} passed as parameter has the same properties as {@code this}
-	 * @return false if the {@code Local} passed as parameter has not the same properties as 
-	 * {@code this}
-	 */
-	public boolean hasSameParameters(Local local){
-		if (longitude != local.getLongitude()){
-			return false;
-		}
-		
-		if (latitude != local.getLatitude()){
-			return false;
-		}
-		
-		if (cost != local.getCost()){
-			return false;
-		}
-		
-		if (! name.equals(local.getName())){
-			return false;
-		}
-		
-		return true;
-	}
-
 
 }
