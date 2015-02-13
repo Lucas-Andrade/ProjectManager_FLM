@@ -103,6 +103,17 @@ public class ServerCommandsRegister implements CommandsRegister {
 		methodsMap.put(14, "DELETE");
 		pathsMap.put(14, "/projects/{" + GetProjects.PID + "}");
 		cmdsMap.put(14, new DeleteProjects.Factory(userRepo, projectRepo));
+
+		methodsMap.put(17, "POST");
+		pathsMap.put(17, "/users/{" + PatchUser.USERNAME + "}/update");
+		cmdsMap.put(17, new PatchUser.Factory(userRepo));
+		methodsMap.put(18, "POST");
+		pathsMap.put(18, "/projects/{" + PatchProject.PID + "}/update");
+		cmdsMap.put(18, new PatchProject.Factory(userRepo, projectRepo));
+		methodsMap.put(19, "POST");
+		pathsMap.put(19, "/consultants/{" + PatchConsultant.CID + "}/update");
+		cmdsMap.put(19, new PatchConsultant.Factory(userRepo, workersRepo));
+
 		methodsMap.put(16, "GET");
 		pathsMap.put(16, "/authenticate");
 		cmdsMap.put(16, new AuthenticateUser.Factory(userRepo));
