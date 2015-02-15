@@ -80,7 +80,8 @@ public class CommandParser {
 		String path;
 		Iterator<String> paths = cmdsReg.getPaths().values().iterator();
 		CommandFactory cmdFactory;
-		Iterator<CommandFactory> cmdFactories = cmdsReg.getFactories().values().iterator();
+		Iterator<CommandFactory> cmdFactories = cmdsReg.getFactories().values()
+				.iterator();
 
 		while (methods.hasNext()) {
 			method = methods.next();
@@ -113,6 +114,16 @@ public class CommandParser {
 		}
 
 		return cp;
+	}
+
+	/**
+	 * @return {@code true} if {@code this#cp} is not null, {@code false} if it
+	 *         is.
+	 */
+	public static boolean isInstantiated() {
+		if (cp == null)
+			return false;
+		return true;
 	}
 
 	/**

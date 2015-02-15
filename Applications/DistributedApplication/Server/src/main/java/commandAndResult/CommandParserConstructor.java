@@ -1,10 +1,11 @@
 /**
  * 
  */
-package server;
+package commandAndResult;
 
 import java.util.TreeMap;
 
+import parser.CommandParser;
 import parser.CommandParser.CommandsRegister;
 import parserCommands.AuthenticateUser;
 import parserCommands.DeleteProjects;
@@ -22,6 +23,7 @@ import parserCommands.PostSubprojects;
 import parserCommands.PostUsers;
 import parserCommands.PostWorkerInProject;
 import parserUtils.CommandFactory;
+import parserUtils.CommandParserException;
 import app.repository.ProjectsRepository;
 import app.repository.UserRepository;
 import app.repository.WorkerRepository;
@@ -32,7 +34,7 @@ import app.repository.WorkerRepository;
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 09/02/2015
  */
-public class ServerCommandsRegister implements CommandsRegister {
+public class CommandParserConstructor implements CommandsRegister {
 
 	/**
 	 * A {@code Map} containing the factories of the commands to be registered.
@@ -52,12 +54,29 @@ public class ServerCommandsRegister implements CommandsRegister {
 	/**
 	 * The constructor for this class.
 	 */
-	public ServerCommandsRegister(UserRepository userRepo,
-			ProjectsRepository projectRepo, WorkerRepository workersRepo) {
+	public CommandParserConstructor() {
 		this.cmdsMap = new TreeMap<Integer, CommandFactory>();
 		this.pathsMap = new TreeMap<Integer, String>();
 		this.methodsMap = new TreeMap<Integer, String>();
+	}
 
+	/**
+	 * Method for constructing the singleton instance of {@code CommandParser}.
+	 * 
+	 * @param userRepo
+	 *            The {@code UserRepository} to be used by the
+	 *            {@code CommandParser} commands.
+	 * @param projectRepo
+	 *            The {@code ProjectsRepository} to be used by the
+	 *            {@code CommandParser} commands.
+	 * @param workersRepo
+	 *            The {@code WorkersRepository} to be used by the
+	 *            {@code CommandParser} commands.
+	 * @throws CommandParserException
+	 */
+	public void constructCommandParser(UserRepository userRepo,
+			ProjectsRepository projectRepo, WorkerRepository workersRepo)
+			throws CommandParserException {
 		methodsMap.put(1, "POST");
 		pathsMap.put(1, "/users");
 		cmdsMap.put(1, new PostUsers.Factory(userRepo));
@@ -103,7 +122,6 @@ public class ServerCommandsRegister implements CommandsRegister {
 		methodsMap.put(14, "DELETE");
 		pathsMap.put(14, "/projects/{" + GetProjects.PID + "}");
 		cmdsMap.put(14, new DeleteProjects.Factory(userRepo, projectRepo));
-
 		methodsMap.put(17, "POST");
 		pathsMap.put(17, "/users/{" + PatchUser.USERNAME + "}/update");
 		cmdsMap.put(17, new PatchUser.Factory(userRepo));
@@ -113,10 +131,11 @@ public class ServerCommandsRegister implements CommandsRegister {
 		methodsMap.put(19, "POST");
 		pathsMap.put(19, "/consultants/{" + PatchConsultant.CID + "}/update");
 		cmdsMap.put(19, new PatchConsultant.Factory(userRepo, workersRepo));
-
 		methodsMap.put(16, "GET");
 		pathsMap.put(16, "/authenticate");
 		cmdsMap.put(16, new AuthenticateUser.Factory(userRepo));
+
+		CommandParser.register(this);
 	}
 
 	/*
