@@ -31,7 +31,6 @@ public class FaviconIcoServlet extends HttpServlet {
 		URL fav = this.getClass().getClassLoader().getResource("favicon.ico");
 		System.out.println("ola");
 		if (fav != null) {
-			System.out.println("efwe");
 			byte[] favicon = IO.readBytes(fav.openStream());
 			resp.setStatus(HttpServletResponse.SC_OK);
 			resp.setContentType("image/x-icon");
