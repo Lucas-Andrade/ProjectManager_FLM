@@ -6,7 +6,7 @@ import guiElements.mainFrameAL.mainFrame.MainFrame;
 import java.util.List;
 
 /**
- * Super class of all {@code Publishers} that use a {@code LoadingDialog}, while
+ * Super class of all publishers that use a {@code LoadingDialog}, while
  * lengthy work is occurring. The {@code LoadingDialog} is disposed when the
  * method {@code publish} is called (be it in an {@code ErrorPublisher}, or in a
  * {@code ResultsPublisher}).
@@ -22,11 +22,14 @@ public abstract class PublishWithLoadingDialog {
 	 */
 	private static boolean shouldCreateWindow;
 
+	/**
+	 * The {@code LoadingDialog} to be presented.
+	 */
 	private static LoadingDialog loadingDialog;
 
 	/**
-	 * Constructs the publisher, and sets the {@code loadingPublishedFlag} to
-	 * false.
+	 * Constructs the publisher, sets the {@code loadingPublishedFlag} to
+	 * {@code false} and instantiates a new {@code LoadingDialog}.
 	 */
 	public PublishWithLoadingDialog() {
 		shouldCreateWindow = true;
@@ -34,7 +37,7 @@ public abstract class PublishWithLoadingDialog {
 	}
 
 	/**
-	 * Constructs and sets visible a new {@code LoadingDialog}, where the text
+	 * Sets visible a new {@code LoadingDialog}, where the text
 	 * message will be the first element of {@code chunks}.
 	 * 
 	 * @param chunks
@@ -49,6 +52,9 @@ public abstract class PublishWithLoadingDialog {
 		}
 	}
 
+	/**
+	 * Disposes of the {@code LoadingDialog}.
+	 */
 	protected void disposeLoadingDialog() {
 		shouldCreateWindow = false;
 		loadingDialog.dispose();

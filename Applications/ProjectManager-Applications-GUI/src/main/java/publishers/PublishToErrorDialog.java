@@ -8,8 +8,7 @@ import com.google.gson.JsonParser;
 import guiElements.mainFrameAL.mainFrame.ErrorDialog;
 
 /**
- * Super class of all the publishers that publish information
- * to an {@code ErrorDialog}.
+ * Will publish information to an {@code ErrorDialog}.
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 19/01/2015

@@ -6,6 +6,7 @@ import guiElements.mainFrameAL.mainFrame.ErrorDialog;
 /**
  * A publisher class with the express purpose of not publishing.
  * Instead, the {@code Authentication} class is updated.
+ * This is why it an "InternalPublish".
  * 
  * @author Filipa Gonçalves, Filipe Maia, Lucas Andrade.
  * @since 05/02/2015
