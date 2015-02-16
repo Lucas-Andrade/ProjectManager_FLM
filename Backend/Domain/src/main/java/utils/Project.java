@@ -21,7 +21,7 @@ public class Project implements IProject {
 	private volatile Leader manager;
 
 	private final String name;
-	private final Local local;
+	private Local local;
 	private final Team team;
 	private final ProjectsContainer projectsContainer;
 	private final long pid;
@@ -613,48 +613,8 @@ public class Project implements IProject {
 		}
 	}
 
-	/**
-	 * Override of the method {@code updateLongitude(double newLongitude)} from
-	 * {@code ProjectInterface}
-	 */
-	@Override
-	public boolean updateLongitude(double newLongitude) {
-		synchronized (lockProject) {
-			return local.setLongitude(newLongitude);
-		}
-	}
-
-	/**
-	 * Override of the method {@code updateLatitude(double newLatitude)} from
-	 * {@code ProjectInterface}
-	 */
-	@Override
-	public boolean updateLatitude(double newLatitude) {
-		synchronized (lockProject) {
-			return local.setLatitude(newLatitude);
-		}
-	}
-
-	/**
-	 * Override of the method {@code updateLocalName(String newName)} from
-	 * {@code ProjectInterface}
-	 */
-	@Override
-	public void updateLocalName(String newName) {
-		synchronized (lockProject) {
-			local.setName(newName);
-		}
-	}
-
-	/**
-	 * Override of the method {@code updateLocalPrice(double newPrice)} from
-	 * {@code ProjectInterface}
-	 */
-	@Override
-	public boolean updateLocalPrice(double newPrice) {
-		synchronized (lockProject) {
-			return local.setPrice(newPrice);
-		}
+	public void setLocal(Local newLocal) {
+		local = newLocal;
 	}
 
 	/**

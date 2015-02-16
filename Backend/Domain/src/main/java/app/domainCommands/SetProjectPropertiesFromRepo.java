@@ -1,9 +1,9 @@
 package app.domainCommands;
 
+import utils.Local;
 import utils.Project;
 import app.AppElement;
-import app.domainCommands.exceptions.CostOutOfBoundsException;
-import app.domainCommands.exceptions.GeographicCoordinatesOutOfBoundsException;
+import app.domainCommands.exceptions.CommandExecutionException;
 import app.domainCommands.exceptions.NoSuchProjectException;
 import app.repository.ProjectsRepository;
 
@@ -45,6 +45,21 @@ public class SetProjectPropertiesFromRepo implements Command {
 	 * The new {@code Local}'s {@code name}
 	 */
 	String localName;
+	
+	/**
+	 * The new {@code longitude}
+	 */
+	double longitude;
+
+	/**
+	 * The new {@code latitude}
+	 */
+	double latitude;
+
+	/**
+	 * The new {@code Local}'s {@code price}
+	 */
+	double price;
 
 	/**
 	 * Constructs the {@code Command}. It is allowed to pass as parameter new
@@ -94,11 +109,11 @@ public class SetProjectPropertiesFromRepo implements Command {
 
 	/**
 	 * @return an array of {@code AppElement}s containing the modified {@code Project}.
+	 * @throws CommandExecutionException 
 	 * @see Command#call()
 	 */
 	@Override
-	public AppElement[] call() throws NoSuchProjectException,
-			GeographicCoordinatesOutOfBoundsException, CostOutOfBoundsException {
+	public AppElement[] call() throws CommandExecutionException {
 
 		long pid = Long.parseLong(pidString);
 
@@ -120,70 +135,92 @@ public class SetProjectPropertiesFromRepo implements Command {
 	 * bounds a {@code Message} will be returned.
 	 * 
 	 * @param project
-	 * @throws GeographicCoordinatesOutOfBoundsException
-	 * @throws CostOutOfBoundsException
+	 * @throws CommandExecutionException 
 	 */
 	private void patchParameters(Project project)
-			throws GeographicCoordinatesOutOfBoundsException,
-			CostOutOfBoundsException {
-		if (localName != null) {
-			project.updateLocalName(localName);
+			throws CommandExecutionException {
+		setName(project);
+		setLongitude(project);
+		setLatitude(project);
+		setPrice(project);
+		
+		Local local = constructNewLocal();
+		if(local != null) {
+			project.setLocal(local);
 		}
-		if (longitudeString != null) {
-			patchLongitude(project);
-		}
-		if (latitudeString != null) {
-			patchLatitude(project);
-		}
-		if (priceString != null) {
-			patchPrice(project);
+	}
+	
+	/**
+	 * Checks if it has been introduced a new price for the {@code Local}. If it has, the 
+	 * price is parsed into a {@code double} format. If it has not, the price of the previous
+	 * local is used.
+	 * 
+	 * @param project
+	 */
+	private void setPrice(Project project) {
+		if (priceString == null) {
+			price = project.getLocal().getCost();
+		} else {
+			price = Double.parseDouble(priceString);
 		}
 	}
 
 	/**
-	 * Updates the {@code longitude} of the {@code Project}, if it is within the
-	 * correct boundaries
+	 * Checks if it has been introduced a new latitude for the {@code Local}. If it has, the 
+	 * latitude is parsed into a {@code double} format. If it has not, the latitude of the previous
+	 * local is used.
 	 * 
 	 * @param project
-	 * @throws GeographicCoordinatesOutOfBoundsException
 	 */
-	private void patchLongitude(Project project)
-			throws GeographicCoordinatesOutOfBoundsException {
-		double longitude = Double.parseDouble(longitudeString);
-		if (!project.updateLongitude(longitude)) {
-			throw new GeographicCoordinatesOutOfBoundsException(
-					"The longitude is out of bounds.");
+	private void setLatitude(Project project) {
+		if (latitudeString == null) {
+			latitude = project.getLocal().getLatitude();
+		} else {
+			latitude = Double.parseDouble(latitudeString);
 		}
 	}
 
 	/**
-	 * Updates the {@code latitude} of the {@code Project} if it is within the
-	 * correct boundaries
+	 * Checks if it has been introduced a new longitude for the {@code Local}. If it has, the 
+	 * longitude is parsed into a {@code double} format. If it has not, the longitude of the previous
+	 * local is used.
 	 * 
 	 * @param project
-	 * @throws GeographicCoordinatesOutOfBoundsException
 	 */
-	private void patchLatitude(Project project)
-			throws GeographicCoordinatesOutOfBoundsException {
-		double latitude = Double.parseDouble(latitudeString);
-		if (!project.updateLatitude(latitude)) {
-			throw new GeographicCoordinatesOutOfBoundsException(
-					"The latitude is out of bounds.");
+	private void setLongitude(Project project) {
+		if (longitudeString == null) {
+			longitude = project.getLocal().getLongitude();
+		} else {
+			longitude = Double.parseDouble(longitudeString);
 		}
 	}
 
 	/**
-	 * Updates the {@code cost} of the {@code Project} as long it is not
-	 * negative
+	 * Checks if it has been introduced a new name for the {@code Local}. 
+	 * If it has not, the name of the previous local is used.
 	 * 
 	 * @param project
-	 * @throws CostOutOfBoundsException
 	 */
-	private void patchPrice(Project project) throws CostOutOfBoundsException {
-		double price = Double.parseDouble(priceString);
-		if (!project.updateLocalPrice(price)) {
-			throw new CostOutOfBoundsException("The cost cannot be negative.");
+	private void setName(Project project) {
+		if (localName == null) {
+			localName = project.getLocal().getName();
+		} 
+	}
+
+	/**
+	 * Constructs and returns the {@code Project}'s new {@code Local}
+	 * @return the {@code Project}'s new {@code Local}
+	 * @throws CommandExecutionException 
+	 */
+	private Local constructNewLocal() throws CommandExecutionException {
+		Local local = null;
+		try {
+			local = new Local(latitude, longitude, localName, price);
+		} catch (IllegalArgumentException e) {
+			throw new CommandExecutionException(e.getMessage());
 		}
+		
+		return local;
 	}
 
 	/**

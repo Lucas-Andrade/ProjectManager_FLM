@@ -9,8 +9,7 @@ import parserUtils.CommandFactory;
 import utils.Project;
 import app.AppElement;
 import app.domainCommands.SetProjectPropertiesFromRepo;
-import app.domainCommands.exceptions.CostOutOfBoundsException;
-import app.domainCommands.exceptions.GeographicCoordinatesOutOfBoundsException;
+import app.domainCommands.exceptions.CommandExecutionException;
 import app.domainCommands.exceptions.NoSuchProjectException;
 import app.elements.Message;
 import app.repository.ProjectsRepository;
@@ -127,10 +126,8 @@ public class PatchProject extends BaseCommandUserAuthentication {
 				getParameterAsString(NAME)).call();
 		} catch(NoSuchProjectException e) {
 			return new AppElement[]{new Message("Project not found!")};
-		} catch(GeographicCoordinatesOutOfBoundsException e) {
-			return new AppElement[]{new Message("Longitude and/or latitude out of bounds.")};
-		} catch(CostOutOfBoundsException e) {
-			return new AppElement[]{new Message("A negative price is not allowed.")};
+		} catch(CommandExecutionException e) {
+			return new AppElement[]{new Message(e.getMessage())};
 		}
 		
 		return result;
