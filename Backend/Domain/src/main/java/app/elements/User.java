@@ -40,16 +40,15 @@ public class User implements IUser {
 	 *            The User's Full Name.
 	 */
 	public User(String username, String password, String email, String fullname) {
-		synchronized (lockUser) {
-			if (password.length() < MIN_CHAR_IN_PASS) {
+	
+			if (password.length() < MIN_CHAR_IN_PASS)
 				throw new IllegalArgumentException();
-			}
 			this.username = username;
 			this.password = password;
 			this.email = email;
 			this.fullname = fullname;
 		}
-	}
+	
 
 	public User(String username, String password, String email) {
 		this(username, password, email, username);

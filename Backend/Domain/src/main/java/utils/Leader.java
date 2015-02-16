@@ -44,13 +44,11 @@ public class Leader extends Consultant {
 	public Leader(String name, double costPerHour, double hoursWorked,
 			double bonus, long cid) {
 		super(name, costPerHour, hoursWorked, cid);
-		synchronized (lockLeader) {
 			if (bonus < 0) {
 				throw new IllegalArgumentException();
 			}
 
 			this.bonus = bonus;
-		}
 	}
 
 	/**

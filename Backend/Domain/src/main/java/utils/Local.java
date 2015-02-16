@@ -46,6 +46,7 @@ public class Local implements ICost, IName {
 	 *            - the cost associated with the local.
 	 */
 	public Local(double latitude, double longitude, String name, double cost) {
+
 		if (name == null || !checkLatitude(latitude)
 				|| !checkLongitude(longitude) || !checkPrice(cost)) {
 			throw new IllegalArgumentException(
