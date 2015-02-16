@@ -1,6 +1,6 @@
 package publishers;
 
-import guiElements.mainFrameAL.FrameAndPanelHolder;
+import guiElements.FrameAndPanelHolder;
 
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;

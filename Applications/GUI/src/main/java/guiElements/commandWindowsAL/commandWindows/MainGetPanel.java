@@ -26,10 +26,22 @@ public abstract class MainGetPanel extends JPanel {
 	private JButton getButton;
 	protected JPanel results;
 	
+	/**
+	 * Allows to add a {@code JComponent} to the {@code MainGetPanel}'s results panel
+	 * @param component
+	 */
 	public void setResults(JComponent component) {
 		results.removeAll();
 		results.setLayout(new BorderLayout(0, 0));
 		results.add(component);
+		results.updateUI();
+	}
+	
+	/**
+	 * Clears the results panel.
+	 */
+	public void clearResults() {
+		results.removeAll();
 		results.updateUI();
 	}
 	
@@ -90,7 +102,7 @@ public abstract class MainGetPanel extends JPanel {
 			getButton.setIcon(new ImageIcon(MainDialogFrame.class.getClassLoader().getResource("images/Ok.png")));
 			getButton.setActionCommand("GET");
 			buttonPane.add(getButton);
-		}	  
+		}
 	}
 
 	/**

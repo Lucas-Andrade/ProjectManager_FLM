@@ -1,5 +1,7 @@
 package guiElements.mainFrameAL;
 
+import guiElements.FrameAndPanelHolder;
+
 /**
  * Class responsible for calling the {@code PatchUserFrame}. Extends
  * {@link MainFrameActionListener}.
