@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import commandAndResult.ResultFormater;
-
 import outputMethods.Result;
 import parser.CommandParser;
 import parserCommands.exceptions.InvalidUserException;
@@ -45,12 +44,18 @@ public class ProjectManagerServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
-		String method = req.getMethod();
-		if (method.equals("PATCH")) {
-			doPatch(req, resp);
-			return;
-		} else {
-			super.service(req, resp);
+		
+		try {
+			String method = req.getMethod();
+			if (method.equals("PATCH")) {
+				doPatch(req, resp);
+				return;
+			} else {
+				super.service(req, resp);
+			}
+		} catch (Exception e) {
+			//LOG
+			throw new ServletException(e);
 		}
 	}
 

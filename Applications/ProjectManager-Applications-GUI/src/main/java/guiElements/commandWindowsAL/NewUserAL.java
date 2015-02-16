@@ -1,5 +1,6 @@
 package guiElements.commandWindowsAL;
 
+import guiElements.FrameAndPanelHolder;
 import guiElements.GUIUtils;
 import guiElements.mainFrameAL.mainFrame.ErrorDialog;
 
@@ -74,7 +75,9 @@ public class NewUserAL implements ActionListener {
 
 		} catch (IllegalArgumentException iae) {
 			new ErrorDialog("Invalid or null Argument.\n" + iae.getMessage());
+			return;
 		}
+		FrameAndPanelHolder.resetFields();
 	}
 
 	public static String constructPassword(char[] charPass) {

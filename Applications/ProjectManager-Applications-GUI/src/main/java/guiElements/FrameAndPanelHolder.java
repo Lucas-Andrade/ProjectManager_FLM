@@ -1,4 +1,4 @@
-package guiElements.mainFrameAL;
+package guiElements;
 
 import guiElements.commandWindowsAL.commandWindows.DeleteProjectFrame;
 import guiElements.commandWindowsAL.commandWindows.GetProjectsPanel;
@@ -81,7 +81,8 @@ public class FrameAndPanelHolder {
 	 * 				The name of the dialog to be set visible.
 	 */
 	public static void setDialogVisible(String dialogName) {
-		setNotVisibleAndReset();
+		setNotVisible();
+		resetFields();
 		MainDialogFrame dialog = DIALOGS.get(dialogName);
 		dialog.setFrameUser();
 		dialog.pack();
@@ -102,25 +103,35 @@ public class FrameAndPanelHolder {
 	 * @return The requested {@code JPanel}
 	 */
 	public static JPanel getPanel(String panelName) {
-		setNotVisibleAndReset();
+		setNotVisible();
+		resetFields();
 		MainGetPanel panel = PANELS.get(panelName);
 		panel.setFrameUser();
 		lastPanel = panel;
 		return panel;
 	}
 	
+	/**
+	 * @return the last used {@code MainGetPanel}
+	 */
 	public static MainGetPanel getLastPanel() {
 		return lastPanel;
 	}
 
 	/**
-	 * Sets the last used {@code MainDialogFrame} and {@code MainGetPanel}, to
-	 * not visible, and resets all their text fields. 
+	 * Sets the last used {@code MainDialogFrame} to not visible. 
 	 */
-	private static void setNotVisibleAndReset() {
+	private static void setNotVisible() {
 		lastDialog.setVisible(false);
+	}
+	
+	/**
+	 * Resets the fields of the last used {@code MainDialogFrame} and {@code MainGetPanel}
+	 */
+	public static void resetFields() {
 		lastDialog.resetAllFields();
 		lastPanel.resetAllFields();
+		lastPanel.clearResults();
 	}
 	
 	

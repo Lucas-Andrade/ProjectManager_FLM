@@ -22,7 +22,7 @@ public abstract class MainDialogFrame extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private static final int Y_BOUND = 100;
-	private static final int X_BOUND =100;
+	private static final int X_BOUND = 100;
 	private JButton saveButton;
 	private final MainPanel mainDialogPanel;
 	

@@ -1,6 +1,5 @@
 package guiElements;
 
-import guiElements.mainFrameAL.FrameAndPanelHolder;
 import guiElements.mainFrameAL.mainFrame.MainFrame;
 
 /**

@@ -140,7 +140,7 @@ public abstract class AContainer<Elements extends UtilsElement> implements
 	}
 
 	/**
-	 * Override of the method {@code toString()} from {@code Object}.
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {

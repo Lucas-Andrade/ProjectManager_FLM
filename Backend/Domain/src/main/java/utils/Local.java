@@ -46,17 +46,15 @@ public class Local implements ICost, IName {
 	 *            - the cost associated with the local.
 	 */
 	public Local(double latitude, double longitude, String name, double cost) {
-		synchronized (lockLocal) {
-			if (name == null || !checkLatitude(latitude)
-					|| !checkLongitude(longitude) || !checkPrice(cost)) {
-				throw new IllegalArgumentException(
-						"Latitude must be between -90 and 90, Longitude\nbetween -180 and 180 and Price must be above 0.");
-			}
-			this.name = name;
-			this.cost = cost;
-			this.latitude = latitude;
-			this.longitude = longitude;
+		if (name == null || !checkLatitude(latitude)
+				|| !checkLongitude(longitude) || !checkPrice(cost)) {
+			throw new IllegalArgumentException(
+					"Latitude must be between -90 and 90, Longitude\nbetween -180 and 180 and Price must be above 0.");
 		}
+		this.name = name;
+		this.cost = cost;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 
 	/**
