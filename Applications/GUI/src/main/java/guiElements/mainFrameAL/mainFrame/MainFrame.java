@@ -26,7 +26,9 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -94,6 +96,12 @@ public class MainFrame extends JFrame {
 		this.setBackground(new Color(176, 196, 222));
 		
 		this.setTitle("Project Manager");
+		try {
+			this.setIconImage(ImageIO.read(MainFrame.class.getClassLoader().getResource("images/Pm48x48.png")));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(850, 500);
 		splitPane.setContinuousLayout(true);
