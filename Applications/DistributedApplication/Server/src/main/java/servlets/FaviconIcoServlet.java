@@ -28,7 +28,7 @@ public class FaviconIcoServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		URL fav = this.getClass().getClassLoader().getResource("favicon.ico");
+		URL fav = this.getClass().getClassLoader().getResource("imgo.jpeg");
 		if (fav != null) {
 			byte[] favicon = IO.readBytes(fav.openStream());
 			resp.setStatus(HttpServletResponse.SC_OK);

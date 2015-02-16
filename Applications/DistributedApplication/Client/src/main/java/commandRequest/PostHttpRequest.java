@@ -38,10 +38,10 @@ public class PostHttpRequest extends HttpRequest{
 			connection.setDoInput(true); // true indicates the server returns response
 			connection.setDoOutput(true);// true indicates POST request
 			connection.setRequestMethod("POST");
-			connection.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
+			connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 		
 			OutputStream writer = connection.getOutputStream();
-			writer.write(parameters.getBytes());
+			writer.write(parameters.getBytes("UTF-8"));
 			writer.flush();
 			writer.close();
 	

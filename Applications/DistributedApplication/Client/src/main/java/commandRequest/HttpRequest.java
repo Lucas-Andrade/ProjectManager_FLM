@@ -53,7 +53,7 @@ public abstract class HttpRequest {
 			byte[] bytes = new byte[numBytes];
 			inputStream.read(bytes);
 
-			result = new String(bytes);
+			result = new String(bytes, "UTF-8");
 
 
 		} else if (connection.getResponseCode() >= 400 && connection.getResponseCode() <= 499) {

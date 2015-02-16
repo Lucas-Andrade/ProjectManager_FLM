@@ -68,7 +68,6 @@ public class ProjectManagerServlet extends HttpServlet {
 		try {
 			callAuthenticateCommand(parameters);
 		} catch (Exception e) {
-
 			getErrorMessage(resp, e);
 		}
 
@@ -232,15 +231,11 @@ public class ProjectManagerServlet extends HttpServlet {
 	 */
 	private void writeResponse(String commandResult, HttpServletResponse resp)
 			throws IOException {
-		resp.setHeader("text/plain", "charset=UTF-8"); // TODO isto está bem? o
-														// o mesmo está no
-														// cliente?
-		resp.setCharacterEncoding("UTF-8"); // TODO isto está bem?
-											// o mesmo está no cliente?
 		resp.setStatus(HttpServletResponse.SC_OK);
 
+		resp.setCharacterEncoding("UTF-8");
 		OutputStream out = resp.getOutputStream();
-		out.write(commandResult.getBytes());
+		out.write(commandResult.getBytes("UTF-8"));
 	}
 
 	/**
@@ -279,7 +274,6 @@ public class ProjectManagerServlet extends HttpServlet {
 			resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
 					message);
 		}
-		e.printStackTrace(System.out); // For test purposes.
 	}
 
 	/**
@@ -298,7 +292,7 @@ public class ProjectManagerServlet extends HttpServlet {
 		int numBytes = Integer.parseInt(req.getHeader("Content-length"));
 		byte[] bytes = new byte[numBytes];
 		inputStream.read(bytes);
-		return new String(bytes);
+		return new String(bytes, "UTF-8");
 	}
 
 	/**
