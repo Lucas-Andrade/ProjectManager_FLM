@@ -29,7 +29,7 @@
 			     <archive>
 			      <manifest>
 			       <addClasspath>true</addClasspath>
-			       <mainClass>app.AppUI</mainClass>
+			       <mainClass>app.DistributedAppUI</mainClass>
 			      </manifest>
 			     </archive>
 			    </configuration>

@@ -29,7 +29,7 @@
 		     <archive>
 			      <manifest>
 			       <addClasspath>true</addClasspath>
-			       <mainClass>server.ProjectManagerServerApp</mainClass>
+			       <mainClass>app.ProjectManagerServerApp</mainClass>
 			      </manifest>
 			     </archive>
 			    </configuration>
