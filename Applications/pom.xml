@@ -15,7 +15,7 @@
 		<module>ConsoleApplication</module>
 		<module>DistributedApplication</module>
 		<module>UIApplication</module>
-		<module>ProjectManager-Applications-GUI</module>
+		<module>GUI</module>
 	</modules>
 
 </project>

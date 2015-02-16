@@ -29,7 +29,6 @@ public class FaviconIcoServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		URL fav = this.getClass().getClassLoader().getResource("favicon.ico");
-		System.out.println("ola");
 		if (fav != null) {
 			byte[] favicon = IO.readBytes(fav.openStream());
 			resp.setStatus(HttpServletResponse.SC_OK);
