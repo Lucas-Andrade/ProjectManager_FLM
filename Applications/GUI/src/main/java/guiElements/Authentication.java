@@ -85,8 +85,6 @@ public class Authentication {
 			name = possibleName;
 			password = possiblePassword;
 			GUIUtils.setLogoutButton();
-		} else {
-			throw new IllegalStateException();
 		}
 	}
 	
