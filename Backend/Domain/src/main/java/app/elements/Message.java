@@ -32,10 +32,8 @@ public class Message implements AppElement {
 	 * @param message
 	 */
 	public Message(String message) {
-		synchronized (lockMessage) {
 			this.title = "Message";
 			this.messageContent = message;
-		}
 	}
 
 	/**

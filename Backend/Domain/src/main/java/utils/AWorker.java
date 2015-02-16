@@ -46,7 +46,6 @@ public abstract class AWorker implements IWorker {
 	 *            - total amount of hours worked by the worker.
 	 */
 	public AWorker(String name, double costPerHour, double hoursWorked, long cid) {
-		synchronized (lockWorker) {
 			if (name == null || costPerHour < 0 || hoursWorked < 0) {
 				throw new IllegalArgumentException();
 			}
@@ -54,7 +53,6 @@ public abstract class AWorker implements IWorker {
 			this.hoursWorked = hoursWorked;
 			this.name = name;
 			this.cid = cid;
-		}
 	}
 
 	/**

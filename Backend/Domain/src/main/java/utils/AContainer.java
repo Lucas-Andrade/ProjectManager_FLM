@@ -38,9 +38,7 @@ public abstract class AContainer<Elements extends UtilsElement> implements
 	 * {@code Element}.
 	 */
 	public AContainer() {
-		synchronized (lockAContainer) {
 			this.elementsList = new TreeSet<Elements>();
-		}
 	}
 
 	/**

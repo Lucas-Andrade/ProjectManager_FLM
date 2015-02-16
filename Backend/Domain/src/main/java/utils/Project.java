@@ -53,7 +53,6 @@ public class Project implements IProject {
 	 */
 	private Project(String name, Local local, Leader manager, Team team,
 			long pid) {
-		synchronized (lockProject) {
 			if (name == null || local == null || team == null) {
 				throw new IllegalArgumentException(
 						"Name, Local and Team can't be null.");
@@ -64,7 +63,6 @@ public class Project implements IProject {
 			this.manager = manager;
 			this.pid = pid;
 			projectsContainer = new ProjectsContainer();
-		}
 	}
 
 	/**
