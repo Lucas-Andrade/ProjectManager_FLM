@@ -2,6 +2,7 @@ package guiElements.mainFrameAL;
 
 import guiElements.Authentication;
 import guiElements.commandWindowsAL.commandWindows.AuthenticationDialog;
+import guiElements.mainFrameAL.mainFrame.MainFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

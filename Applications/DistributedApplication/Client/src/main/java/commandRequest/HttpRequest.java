@@ -52,13 +52,8 @@ public abstract class HttpRequest {
 			int numBytes = Integer.parseInt(connection.getHeaderField("Content-Length"));
 			byte[] bytes = new byte[numBytes];
 			inputStream.read(bytes);
-<<<<<<< HEAD
-			
-			result = new String(bytes);
-=======
 
 			result = new String(bytes, "UTF-8");
->>>>>>> 32cc9a2bba5dea1850c6a6902fdf6233686dca33
 
 		} else if (connection.getResponseCode() >= 400 && connection.getResponseCode() <= 499) {
 			throw new IllegalArgumentException("Bad data was received from the user.");

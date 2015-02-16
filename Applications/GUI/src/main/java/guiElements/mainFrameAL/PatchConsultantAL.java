@@ -2,6 +2,7 @@ package guiElements.mainFrameAL;
 
 import guiElements.FrameAndPanelHolder;
 
+
 /**
  * Class responsible for calling the {@code PatchConsultantFrame}. Extends
  * {@link MainFrameActionListener}.

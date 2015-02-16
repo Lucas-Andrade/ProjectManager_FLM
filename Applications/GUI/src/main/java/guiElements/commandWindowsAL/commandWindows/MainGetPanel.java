@@ -3,6 +3,7 @@ package guiElements.commandWindowsAL.commandWindows;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;

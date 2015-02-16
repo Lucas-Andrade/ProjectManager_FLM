@@ -3,6 +3,7 @@ package guiElements.commandWindowsAL.commandWindows;
 import guiElements.commandWindowsAL.NewUserAL;
 
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.io.IOException;
 
@@ -10,8 +11,6 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-import java.awt.GridBagLayout;
 
 /**
  * This {@code Frame} allows to insert the mandatory parameters to construct a

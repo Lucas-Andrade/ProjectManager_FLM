@@ -48,4 +48,6 @@ public class GUIUtils {
 	public static void setLogoutButton() {
 		main.setLogoutButton();
 	}
+	
+	
 }

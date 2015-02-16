@@ -1,11 +1,11 @@
 package publishers;
 
+import guiElements.mainFrameAL.mainFrame.ErrorDialog;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
-
-import guiElements.mainFrameAL.mainFrame.ErrorDialog;
 
 /**
  * Will publish information to an {@code ErrorDialog}.
