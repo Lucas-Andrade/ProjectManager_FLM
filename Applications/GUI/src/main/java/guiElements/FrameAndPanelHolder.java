@@ -111,20 +111,22 @@ public class FrameAndPanelHolder {
 		return panel;
 	}
 	
+	/**
+	 * @return the last used {@code MainGetPanel}
+	 */
 	public static MainGetPanel getLastPanel() {
 		return lastPanel;
 	}
 
 	/**
-	 * Sets the last used {@code MainDialogFrame} to not visible
+	 * Sets the last used {@code MainDialogFrame} to not visible. 
 	 */
 	private static void setNotVisible() {
 		lastDialog.setVisible(false);
 	}
 	
 	/**
-	 * Resets all the fields of the last used {@code MainDialogFrame} and {@code MainGetPanel}, to
-	 * not visible, and resets all their text fields. 
+	 * Resets the fields of the last used {@code MainDialogFrame} and {@code MainGetPanel}
 	 */
 	public static void resetFields() {
 		lastDialog.resetAllFields();
