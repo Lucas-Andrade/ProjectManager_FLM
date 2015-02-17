@@ -1,5 +1,6 @@
 package app.repository;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -103,7 +104,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 * @see WorkerRepository#addConsultant(consultantCreationDescriptor)
 	 */
 	@Override
-	public synchronized Long addConsultant(
+	public Long addConsultant(
 			ConsultantCreationDescriptor creationDescriptor) {
 		return this.addWorker(creationDescriptor);
 	}
@@ -140,7 +141,8 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		for (AWorker worker : WORKERS.values()) {
+		Iterable<AWorker> workers = WORKERS.values();
+		for (AWorker worker : workers) {
 			builder.append(worker.toString()).append("\n");
 		}
 		return builder.toString();
@@ -150,7 +152,7 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 * @see Repository#removeAll()
 	 */
 	@Override
-	public synchronized void removeAll() {
+	public void removeAll() {
 		synchronized (cidResetLock) {
 			WORKERS.clear();
 			NEXT_CID_TO_BE_USED = 1;
@@ -162,9 +164,10 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	 */
 	@Override
 	public AWorker[] getAll() {
-		AWorker[] all = new AWorker[this.size()];
+		Collection<AWorker> workers = WORKERS.values();
+		AWorker[] all = new AWorker[workers.size()];
 		int i = -1;
-		for (AWorker ele : WORKERS.values()) {
+		for (AWorker ele : workers) {
 			all[++i] = ele;
 		}
 		return all;
@@ -189,7 +192,8 @@ public class InMemoryWorkerRepo extends InMemoryRepo<AWorker> implements
 	@Override
 	public JSONObject getJson() {
 		JSONObject json = new JSONObject();
-		for (AppElement ele : WORKERS.values()) {
+		Iterable<AWorker> workers = WORKERS.values();
+		for (AppElement ele : workers) {
 			json.accumulate("All workers", ele.getJson());
 		}
 		return json;

@@ -27,7 +27,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * repository. The {@code Key} stores the Username and the {@code Value}
 	 * stores the corresponding {@code User}.
 	 */
-	private static final Map<String, IUser> users = Collections
+	private static final Map<String, IUser> USERS = Collections
 			.synchronizedMap(new HashMap<String, IUser>());
 
 	/**
@@ -35,7 +35,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * {@link ImmutableAdmin} {@link User} to the Repository.
 	 */
 	public InMemoryUserRepo() {
-		users.put("admin", new Admin("admin", "admin"));
+		USERS.put("admin", new Admin("admin", "admin"));
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 */
 	@Override
 	public IUser getUserByUsername(String loginName) {
-		return users.get(loginName);
+		return USERS.get(loginName);
 	}
 
 	/**
@@ -53,9 +53,8 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 */
 	@Override
 	public IUser[] getAll() {
-		IUser[] userArray = new IUser[users.size()];
-
-		Set<Entry<String, IUser>> usersSet = users.entrySet();
+		Set<Entry<String, IUser>> usersSet = USERS.entrySet();
+		IUser[] userArray = new IUser[usersSet.size()];
 		int index = 0;
 
 		for (Entry<String, IUser> user : usersSet) {
@@ -84,7 +83,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 */
 	@Override
 	public boolean isPasswordCorrectForUser(String username, String userPassword) {
-		IUser user = users.get(username);
+		IUser user = USERS.get(username);
 
 		if (user == null) {
 			return false;
@@ -103,8 +102,8 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 */
 	@Override
 	public void removeAll() {
-		users.clear();
-		users.put("admin", new ImmutableAdmin());
+		USERS.clear();
+		USERS.put("admin", new ImmutableAdmin());
 	}
 
 	/**
@@ -116,7 +115,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 		String username = userCreationDescriptor.getLoginName();
 		IUser user = userCreationDescriptor.build();
 
-		if (user != null && users.putIfAbsent(username, user) == null) {
+		if (user != null && USERS.putIfAbsent(username, user) == null) {
 			return true;
 		}
 
@@ -127,7 +126,7 @@ public class InMemoryUserRepo extends InMemoryRepo<User> implements
 	 * @see Repository#size()
 	 */
 	public int size() {
-		return users.size();
+		return USERS.size();
 	}
 
 	/**

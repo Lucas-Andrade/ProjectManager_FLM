@@ -106,8 +106,9 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	 */
 	@Override
 	public String toString() {
+		Iterable<Project> projects = PROJECTS.values();
 		StringBuilder builder = new StringBuilder();
-		for (Project project : PROJECTS.values()) {
+		for (Project project : projects) {
 			builder.append(project.toString()).append("\n");
 		}
 		return builder.toString();
@@ -128,8 +129,9 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	@Override
 	public Project[] getAll() {
 		Project[] all = new Project[this.size()];
+		Iterable<Project> projects = PROJECTS.values();
 		int i = 0;
-		for (Project ele : PROJECTS.values()) {
+		for (Project ele : projects) {
 			all[i++] = ele;
 		}
 		return all;
@@ -146,7 +148,8 @@ public class InMemoryProjectRepo extends InMemoryRepo<Project> implements
 	@Override
 	public JSONObject getJson() {
 		JSONObject json = new JSONObject();
-		for (AppElement ele : PROJECTS.values()) {
+		Iterable<Project> projects = PROJECTS.values();
+		for (AppElement ele : projects) {
 			json.accumulate("All projects", ele.getJson());
 		}
 		return json;
