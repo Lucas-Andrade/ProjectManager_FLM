@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
+
 
 	<artifactId>ProjectManager-Applications-UIApplication</artifactId>
 	<packaging>jar</packaging>
 
+
+
 	<parent>
 		<groupId>flm.manager.project</groupId>
 		<artifactId>ProjectManager-Applications</artifactId>
-		<version>0.3.2-SNAPSHOT</version>
+		<version>0.4.2-SNAPSHOT</version>
 	</parent>
+
+
 
 	<dependencies>
 
@@ -18,29 +25,52 @@
 			<artifactId>ProjectManager-Backend-Domain</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>flm.manager.project</groupId>
- 			<artifactId>ProjectManager-Applications-GUI</artifactId>
-  			<version>0.3.2-SNAPSHOT</version>
+			<artifactId>ProjectManager-Applications-GUI</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 
 	</dependencies>
+
+
+
 	<build>
 		<plugins>
+
 			<plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-jar-plugin</artifactId>
-			    <version>2.5</version>
-			    <configuration>
-			     <archive>
-			      <manifest>
-			       <addClasspath>true</addClasspath>
-			       <mainClass>app.StandAloneAppUI</mainClass>
-			      </manifest>
-			     </archive>
-			    </configuration>
-		   </plugin>
-		 </plugins>
+				<!-- Build an executable JAR -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>app.StandAloneAppUI</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
 	</build>
+
+
+
 </project>
