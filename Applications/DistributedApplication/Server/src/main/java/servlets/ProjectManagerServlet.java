@@ -44,7 +44,7 @@ public class ProjectManagerServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
-		
+
 		try {
 			String method = req.getMethod();
 			if (method.equals("PATCH")) {
@@ -54,8 +54,7 @@ public class ProjectManagerServlet extends HttpServlet {
 				super.service(req, resp);
 			}
 		} catch (Exception e) {
-			//LOG
-			throw new ServletException(e);
+			getErrorMessage(resp, e);
 		}
 	}
 
@@ -263,6 +262,7 @@ public class ProjectManagerServlet extends HttpServlet {
 		else {
 			message = e.getMessage();
 		}
+
 		if (e.getClass().equals(UnknownCommandException.class)) {
 			resp.sendError(HttpServletResponse.SC_NOT_FOUND, message);
 		} else if (e.getClass().equals(InvalidCommandArgumentsException.class)
