@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <parent>
-    <artifactId>ProjectManager-Backend</artifactId>
+    <artifactId>ProjectManager-Applications</artifactId>
     <groupId>flm.manager.project</groupId>
     <version>0.4.2-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>ProjectManager-Backend-Domain</artifactId>
+  <artifactId>ProjectManager-Applications-GUI</artifactId>
   <build>
     <plugins>
       <plugin>
@@ -27,19 +27,9 @@
       </plugin>
     </plugins>
   </build>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>hamcrest-core</artifactId>
-          <groupId>org.hamcrest</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-  </dependencies>
+  <properties>
+    <sonar.exclusions>src/main/java/guiElements/mainFrameAL/mainFrame/*,
+			src/main/java/guiElements/commandWindowsAL/commandWindows/*</sonar.exclusions>
+  </properties>
 </project>
 

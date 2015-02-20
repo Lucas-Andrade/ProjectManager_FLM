@@ -54,6 +54,16 @@ public class ProjectManagerServerApp {
 		server.setHandler(handler);
 		handler.addServletWithMapping(ProjectManagerServlet.class, "/*");
 		handler.addServletWithMapping(FaviconIcoServlet.class, "/favicon.ico");
+		handler.addServletWithMapping(servlets.MaiaServlet.class, "/maia");
+		handler.addServletWithMapping(servlets.FilipaEServlet.class, "/filipa/e");
+		handler.addServletWithMapping(servlets.FilipaGServlet.class, "/filipa/g");
+		handler.addServletWithMapping(servlets.JoseServlet.class, "/jose");
+		handler.addServletWithMapping(servlets.LucasServlet.class, "/lucas");
+		handler.addServletWithMapping(servlets.DanielServlet.class, "/daniel");
+		handler.addServletWithMapping(servlets.EvaServlet.class, "/erva");
+		handler.addServletWithMapping(servlets.PantunesServlet.class, "/pantunes");
+		handler.addServletWithMapping(servlets.GoncaloServlet.class, "/goncalo");
+		handler.addServletWithMapping(servlets.HugoServlet.class, "/hugo");
 		return server;
 	}
 
